@@ -1,0 +1,95 @@
+#dashboard {
+    display: grid;
+    grid-template-rows: 0.5fr 1.5fr 2.5fr 0.5fr;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#dashboard #greetings {
+    grid-row: 1;
+    grid-column: 1;
+    align-self: center;
+}
+
+#dashboard nav {
+    grid-row: 1;
+    grid-column: 4;
+    justify-self: end;
+    margin: 2em;
+    display: flex;
+}
+
+#dashboard nav img {
+    margin: 0 1em;
+}
+
+#dashboard nav #menu {
+    cursor: pointer;
+}
+
+#dashboard #ask-for-a-title {
+    grid-row: 2;
+    grid-column: 1;
+    align-self: center;
+}
+
+#dashboard #ask-for-a-title button {
+    padding: 2em;
+    border: none;
+    background-color: #999999;
+    border-radius: 0.5em;
+    font-weight: 700;
+    cursor: pointer;
+    color: #ffffffe5;;
+}
+
+#dashboard #applications-in-progress {
+    grid-row: 3/5;
+}
+
+#dashboard #main-title {
+    grid-row: 2;
+    grid-column: 3/5;
+}
+
+#dashboard #other-titles {
+    grid-row: 3/5;
+    grid-column: 3/5;
+    display: flex;
+    flex-direction: column;
+}
+
+#dashboard #other-titles #other-titles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#dashboard #service-lines {
+    grid-row: 5;
+    grid-column: 3/5;
+    align-self: center;
+}
+
+
+#dashboard #applications-in-progress ul {
+    padding-left: 2em;
+}
+
+#dashboard #applications-in-progress li:first-of-type {
+    margin-bottom: 1em;
+}
+
+#dashboard .title {
+    font-weight: 500;
+    margin-bottom: 1em;
+}
+
+/* #dashboard .other-titles-card {
+    width: 30%;
+    margin-bottom: 1em;
+} */
+
+#dashboard .service-line-card {
+    margin-bottom: 1em;
+}
+

@@ -1,0 +1,31 @@
+#sign {
+    margin: 1em 3em;
+}
+
+#sign h2, #sign p {
+    text-align: center;
+}
+
+#sign p {
+    margin: 2em;
+}
+
+#sign form {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+#sign label>* {
+    margin: 2em;
+}
+
+#sign input {
+    padding: 0.5em;
+}
+
+
+#sign input[type=submit] {
+    display: inline-block;
+}
+
