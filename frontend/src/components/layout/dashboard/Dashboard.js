@@ -2,7 +2,9 @@ import React from 'react';
 import store from '../../../app/redux/store';
 import { Link } from 'react-router-dom';
 
-import './Dashboard.css';
+import './Dashboard.scss';
+
+import Header from '../../header/Header';
 
 import sailorPicMock from '../../../resources/img/mocks/sailor.png';
 import menuPicMock from '../../../resources/img/mocks/menu.png';
@@ -10,7 +12,9 @@ import TitleCard from '../../cards/title-card/TitleCard';
 
 const Dashboard = () => {
     return (
+     
         <div id="dashboard">
+               {/*<Header></Header>*/ }
             {/* <h2>MON TABLEAU DE BORD</h2> */}
             <nav>
                 <div id="photo">
