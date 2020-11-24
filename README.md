@@ -10,7 +10,7 @@ Pré-requis : pour faire tourner l'application sur votre ordinateur, vous devez 
 4) Toujours dans le terminal, accédez au dossier `target`
 5) Tapez `java -jar backend-0.0.1-SNAPSHOT.jar` : la commande fait démarrer l'exécutable, qui tournera sur le port 8080 de l'ordinateur
 6) Dans un navigateur web, tapez `http://localhost:8080/api/sailors/123` : si une réponse en json s'affiche, c'est que le backend fonctionne. Youpi !
-* Attention : le backend tourne tant que la fenêtre de temrinal à partir de laquelle il a été lancé est ouverte. Si cette fenêtre est fermée, le backend ne tournera plus. *
+*Attention : le backend tourne tant que la fenêtre de temrinal à partir de laquelle il a été lancé est ouverte. Si cette fenêtre est fermée, le backend ne tournera plus.*
 7) Faisons maintenant tourner le frontend ! Sur votre ordinateur, ouvrez un terminal et accédez au dossier `capqualif-poc-v1 > frontend`
 8) Tapez `npm install` : cette commande permet de télécharger sur son ordinateur toutes les dépendances nécessaires pour faire marcher le frontend de l'application
 9) Tapez `npm start` pour faire démarrer le frontend
