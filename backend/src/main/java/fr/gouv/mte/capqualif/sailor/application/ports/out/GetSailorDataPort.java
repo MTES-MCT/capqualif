@@ -2,8 +2,8 @@ package fr.gouv.mte.capqualif.sailor.application.ports.out;
 
 import fr.gouv.mte.capqualif.sailor.domain.Sailor;
 
-public interface GetSailorBasicDataPort {
+public interface GetSailorDataPort {
 
-    Sailor getSailorBasicData(String sailorNumber);
+    Sailor getSailorData(String sailorNumber);
 
 }

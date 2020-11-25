@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/titles")
+@RequestMapping("/titles")
 @CrossOrigin(origins = "http://localhost:3000")
 public class GetSuggestedTitlesController {
 

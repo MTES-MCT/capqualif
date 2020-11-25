@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.sailor.adapters.out.api.mocks;
 
 import fr.gouv.mte.capqualif.sailor.domain.SailorEducationData;
-import fr.gouv.mte.capqualif.sailor.domain.SailorTitle;
+import fr.gouv.mte.capqualif.sailor.domain.titreMarin;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ import java.util.List;
 @Component
 public class SailorEducationDataApiMock {
     public SailorEducationData findSailorEducationDataBySailorId(String sailorId) {
-        List<SailorTitle> titlesList = new ArrayList<>();
+        List<titreMarin> titlesList = new ArrayList<>();
         List<String> restrictions1 = new ArrayList<String>(Arrays.asList("pas de bras", "pas de chocolat"));
-        titlesList.add(new SailorTitle(
+        titlesList.add(new titreMarin(
                 "1",
                 "CAEERS",
                 "29/01/1988",
@@ -23,7 +23,7 @@ public class SailorEducationDataApiMock {
                 "28/02/2025",
                 restrictions1));
         List<String> restrictions2 = new ArrayList<String>(Arrays.asList("pas de bras", "pas de chocolat"));
-        titlesList.add(new SailorTitle(
+        titlesList.add(new titreMarin(
                 "2",
                 "CGO",
                 "20/03/1978",
