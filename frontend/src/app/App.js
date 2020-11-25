@@ -3,7 +3,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-import './App.css';
+import './App.scss';
 
 import Sign from '../components/layout/sign/Sign';
 import Dashboard from '../components/layout/dashboard/Dashboard';

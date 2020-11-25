@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { getAllTitles } from '../../../../features/titlesCatalog/titlesSlice';
 
-import './NewTitleChoice.css';
+import './NewTitleChoice.scss';
 
 import TitleCard from '../../../cards/title-card/TitleCard';
 

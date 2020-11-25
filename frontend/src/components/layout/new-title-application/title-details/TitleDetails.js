@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getTitle } from '../../../../features/titlesCatalog/titlesSlice';
 
-import './TitleDetails.css';
+import './TitleDetails.scss';
 
 const TitleDetails = () => {
 

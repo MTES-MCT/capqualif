@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import { getSailorBasicData } from '../../../features/sailorData/sailorsSlice';
 
-import './Sign.css';
+import './Sign.scss';
 
 const Sign = ({ history }) => {
 
