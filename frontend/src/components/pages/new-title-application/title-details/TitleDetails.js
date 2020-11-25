@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getTitle } from '../../../../features/titlesCatalog/titlesSlice';
+import { getTitle } from '../../../../core-logic/features/catalog/titles/titlesThunks';
 
 import './TitleDetails.scss';
 

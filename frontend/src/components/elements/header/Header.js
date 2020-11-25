@@ -1,5 +1,5 @@
 import React from 'react';
-import store from '../../app/redux/store';
+import store from '../../../core-logic/store';
 import { Link } from 'react-router-dom';
 //import { Header} from '@gouvfr/header/src/scripts';
 

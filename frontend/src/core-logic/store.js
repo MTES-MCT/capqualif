@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import sailorReducer from '../../features/sailorData/sailorsSlice';
-import titlesReducer from '../../features/titlesCatalog/titlesSlice';
+import sailorReducer from '../core-logic/features/sailor/sailorsSlice';
+import titlesReducer from '../core-logic/features/catalog/titles/titlesSlice';
 
 const store = configureStore({
   reducer: {

@@ -1,14 +1,14 @@
 import React from 'react';
-import store from '../../../app/redux/store';
+import store from '../../../core-logic/store';
 import { Link } from 'react-router-dom';
 
 import './Dashboard.scss';
 
-import Header from '../../header/Header';
+import Header from '../../elements/header/Header';
 
 import sailorPicMock from '../../../resources/img/mocks/sailor.png';
 import menuPicMock from '../../../resources/img/mocks/menu.png';
-import TitleCard from '../../cards/title-card/TitleCard';
+import TitleCard from '../../elements/cards/title-card/TitleCard';
 
 const Dashboard = () => {
     return (

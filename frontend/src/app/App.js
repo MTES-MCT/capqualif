@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import store from '../core-logic/store';
 
 import './App.scss';
 
-import Sign from '../components/layout/sign/Sign';
-import Dashboard from '../components/layout/dashboard/Dashboard';
-import NewTitleChoice from '../components/layout/new-title-application/new-title-choice/NewTitleChoice';
-import TitleDetails from '../components/layout/new-title-application/title-details/TitleDetails';
-import ApplicationRecap from '../components/layout/new-title-application/application-recap/ApplicationRecap';
-import Error from '../components/layout/error/Error';
+import Sign from '../components/pages/sign/Sign';
+import Dashboard from '../components/pages/dashboard/Dashboard';
+import NewTitleChoice from '../components/pages/new-title-application/new-title-choice/NewTitleChoice';
+import TitleDetails from '../components/pages/new-title-application/title-details/TitleDetails';
+import ApplicationRecap from '../components/pages/new-title-application/application-recap/ApplicationRecap';
+import Error from '../components/pages/error/Error';
 
 class App extends Component {
   render() {

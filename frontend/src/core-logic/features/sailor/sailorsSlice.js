@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { CAPQUALIF_URL, SAILORS_ENDPOINT } from '../../api/apiList';
+import { CAPQUALIF_URL, SAILORS_ENDPOINT } from '../../../config/api/apiList';
 
 
 export const getSailorBasicData = createAsyncThunk(

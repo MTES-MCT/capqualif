@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { getAllTitles } from '../../../../features/titlesCatalog/titlesSlice';
+import { getAllTitles } from '../../../../core-logic/features/catalog/titles/titlesThunks';
 
 import './NewTitleChoice.scss';
 
-import TitleCard from '../../../cards/title-card/TitleCard';
+import TitleCard from '../../../elements/cards/title-card/TitleCard';
 
 const NewTitleChoice = () => {
     

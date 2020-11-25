@@ -3,7 +3,7 @@ import { unwrapResult } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { getSailorBasicData } from '../../../features/sailorData/sailorsSlice';
+import { getSailorBasicData } from '../../../core-logic/features/sailor/sailorsSlice';
 
 import './Sign.scss';
 
