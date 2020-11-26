@@ -18,4 +18,4 @@ Pré-requis : pour faire tourner l'application sur votre ordinateur, vous devez 
 
 
 ----
-C'est partie pour le dev front !
+C'est parti pour le dev front !
