@@ -3,7 +3,7 @@ package fr.gouv.mte.capqualif.sailor.adapters.out.api;
 import fr.gouv.mte.capqualif.sailor.adapters.out.api.mocks.SailorCivilDataApiMock;
 import fr.gouv.mte.capqualif.sailor.adapters.out.api.mocks.SailorEducationDataApiMock;
 import fr.gouv.mte.capqualif.sailor.adapters.out.api.mocks.SailorIdentityMarkersDataApiMock;
-import fr.gouv.mte.capqualif.sailor.application.ports.out.GetSailorDataPort;
+import fr.gouv.mte.capqualif.sailor.application.ports.out.GetSailorBasicDataPort;
 import fr.gouv.mte.capqualif.sailor.domain.Sailor;
 import fr.gouv.mte.capqualif.sailor.domain.SailorCivilData;
 import fr.gouv.mte.capqualif.sailor.domain.SailorEducationData;
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GetSailorDataAPIAdapter implements GetSailorDataPort {
+public class GetSailorBasicDataAPIAdapter implements GetSailorBasicDataPort {
 
     @Autowired
     private SailorCivilDataApiMock sailorCivilDataApiMock;
@@ -24,7 +24,7 @@ public class GetSailorDataAPIAdapter implements GetSailorDataPort {
     private SailorIdentityMarkersDataApiMock sailorIdentityMarkersDataApiMock;
 
     @Override
-    public Sailor getSailorData(String sailorNumber) {
+    public Sailor getSailorBasicData(String sailorNumber) {
         getSailorCivilData(sailorNumber);
         getSailorEducationData(sailorNumber);
         Sailor sailor = new Sailor(
@@ -46,10 +46,7 @@ public class GetSailorDataAPIAdapter implements GetSailorDataPort {
     private SailorEducationData getSailorEducationData(String sailorNumber) {
         String sailorId = sailorNumber;
         // TO DO : replace by an API call : [URL_BASE_ITEM]/api/v1/titres/{idAdmIntervenant}
-
-
-
-        return null;
+        return sailorEducationDataApiMock.findSailorEducationDataBySailorId(sailorId);
     }
 
     private SailorIdentityMarkersData getSailorIdentityMarkersData(String sailorNumber) {

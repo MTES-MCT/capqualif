@@ -5,30 +5,30 @@ import java.util.List;
 public class Title {
 
     private String id;
-    private String libelle;
-    private List<ConditionTitre> conditions;
-    private List<String> restrictions;
+    private String titleName;
+    private List<String> criteria;
+    private List<String> prerogatives;
 
-    public Title(String id, String libelle, List<ConditionTitre> conditions, List<String> restrictions) {
+    public Title(String id, String titleName, List<String> criteria, List<String> prerogatives) {
         this.id = id;
-        this.libelle = libelle;
-        this.conditions = conditions;
-        this.restrictions = restrictions;
+        this.titleName = titleName;
+        this.criteria = criteria;
+        this.prerogatives = prerogatives;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public String getTitleName() {
+        return titleName;
     }
 
-    public List<ConditionTitre> getConditions() {
-        return conditions;
+    public List<String> getCriteria() {
+        return criteria;
     }
 
-    public List<String> getRestrictions() {
-        return restrictions;
+    public List<String> getPrerogatives() {
+        return prerogatives;
     }
 }

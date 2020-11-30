@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/titles")
+@RequestMapping("/api/titles")
 @CrossOrigin(origins = "http://localhost:3000")
 public class GetAllTitlesController {
 

@@ -1,15 +1,18 @@
 package fr.gouv.mte.capqualif.sailor.domain;
 
+import fr.gouv.mte.capqualif.sailor.domain.SailorTitle;
+
 import java.util.List;
 
 public class SailorEducationData {
-    private List<titreMarin> titres;
+    private List<SailorTitle> sailorTitles;
+    //    TO DO : add private List<String> visas;
 
-    public SailorEducationData(List<titreMarin> titres) {
-        this.titres = titres;
+    public SailorEducationData(List<SailorTitle> sailorTitles) {
+        this.sailorTitles = sailorTitles;
     }
 
-    public List<titreMarin> getTitles() {
-        return titres;
+    public List<SailorTitle> getTitles() {
+        return sailorTitles;
     }
 }
