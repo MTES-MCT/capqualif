@@ -1,13 +1,20 @@
 package fr.gouv.mte.capqualif.title.domain;
 
-public class ConditionTitre implements ConditionEducation {
+public class ConditionTitre {
 
-    private String libelle;
+    private String valeur;
+    private String existingDataSource;
 
-    @Override
-    public boolean checkValidity() {
-        // "valide" + dateExpiration ok
-        return false;
+    public ConditionTitre(String valeur, String existingDataSource) {
+        this.valeur = valeur;
+        this.existingDataSource = existingDataSource;
     }
 
+    public String getValeur() {
+        return valeur;
+    }
+
+    public String getExistingDataSource() {
+        return existingDataSource;
+    }
 }
