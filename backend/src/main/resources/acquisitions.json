@@ -1,0 +1,90 @@
+[
+  {
+    "libelleVersionFormation": "Formation de base à la sécurité",
+    "dateAcquisition": "2020-02-12",
+    "dateFinValidite": "2025-02-11",
+    "libelleModeAcquisition": "Formation",
+    "libelleModuleUv": "UV formation de base à la lutte incendie",
+    "libelleTypeFormation": "Formation spécifique"
+  },
+  {
+    "libelleVersionFormation": "Formation de base à la sécurité",
+    "dateAcquisition": "2020-02-12",
+    "dateFinValidite": null,
+    "libelleModeAcquisition": "Formation",
+    "libelleModuleUv": "UV Sécurité personnes / responsabilités sociales",
+    "libelleTypeFormation": "Formation spécifique"
+  },
+  {
+    "libelleVersionFormation": "Formation de base à la sécurité",
+    "dateAcquisition": "2020-02-12",
+    "dateFinValidite": "2025-02-11",
+    "libelleModeAcquisition": "Formation",
+    "libelleModuleUv": "UV Techniques individuelles de survie",
+    "libelleTypeFormation": "Formation spécifique"
+  },
+  {
+    "libelleVersionFormation": "Enseignement médical niveau I",
+    "dateAcquisition": "2020-02-13",
+    "dateFinValidite": "2025-02-12",
+    "libelleModeAcquisition": "Formation",
+    "libelleModuleUv": "UV HPR",
+    "libelleTypeFormation": "Formation spécifique"
+  },
+  {
+    "libelleVersionFormation": "Enseignement médical niveau I",
+    "dateAcquisition": "2020-02-13",
+    "dateFinValidite": "2025-02-12",
+    "libelleModeAcquisition": "Formation",
+    "libelleModuleUv": "UV PSC1",
+    "libelleTypeFormation": "Formation spécifique"
+  },
+  {
+    "libelleVersionFormation": "Enseignement médical niveau I",
+    "dateAcquisition": "2020-02-13",
+    "dateFinValidite": null,
+    "libelleModeAcquisition": "Formation",
+    "libelleModuleUv": "UV AMMCT1",
+    "libelleTypeFormation": "Formation spécifique"
+  },
+  {
+    "libelleVersionFormation": "Formation de matelot Pont",
+    "dateAcquisition": "2020-06-24",
+    "dateFinValidite": "2025-06-23",
+    "libelleModeAcquisition": "Evaluation",
+    "libelleModuleUv": "P1–Appui-Navigation",
+    "libelleTypeFormation": "Formation modulaire"
+  },
+  {
+    "libelleVersionFormation": "Formation de matelot Pont",
+    "dateAcquisition": "2020-06-24",
+    "dateFinValidite": "2025-06-23",
+    "libelleModeAcquisition": "Evaluation",
+    "libelleModuleUv": "P3–Appui-Exploitation/assist/entretien/répar",
+    "libelleTypeFormation": "Formation modulaire"
+  },
+  {
+    "libelleVersionFormation": "Formation de sensibilisation à la sûreté",
+    "dateAcquisition": "2020-02-06",
+    "dateFinValidite": null,
+    "libelleModeAcquisition": "Formation",
+    "libelleModuleUv": "UV sensibilisation à la sûreté",
+    "libelleTypeFormation": "Formation spécifique"
+  },
+  {
+    "libelleVersionFormation": "Formation de matelot Pont",
+    "dateAcquisition": "2020-06-24",
+    "dateFinValidite": "2025-06-23",
+    "libelleModeAcquisition": "Evaluation",
+    "libelleModuleUv": "NP–Appui-Module Nation Pont",
+    "libelleTypeFormation": "Formation modulaire"
+  },
+  {
+    "libelleVersionFormation": "Formation de matelot Pont",
+    "dateAcquisition": "2020-06-24",
+    "dateFinValidite": "2025-06-23",
+    "libelleModeAcquisition": "Evaluation",
+    "libelleModuleUv": "P2–Appui-Manutention/arrimage cargaison/pêche",
+    "libelleTypeFormation": "Formation modulaire"
+  }
+]

@@ -13,6 +13,8 @@ import fr.gouv.mte.capqualif.title.domain.Title;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public class CompareSailorDataToTitleConditionsService implements CompareSailorDataToTitleConditionsUseCase {
@@ -28,7 +30,7 @@ public class CompareSailorDataToTitleConditionsService implements CompareSailorD
 
 
     @Override
-    public List<CompareResult> compareSailorDataToTitleConditions(String sailorNumber, String titleId) {
+    public List<CompareResult> compareSailorDataToTitleConditions(String sailorNumber, String titleId) throws IOException {
 
         String dummyDate = "2020-12-08";
 
@@ -40,15 +42,20 @@ public class CompareSailorDataToTitleConditionsService implements CompareSailorD
         DataFinder dataFinder = new DataFinder();
 
         for (ConditionTitre condition : conditions) {
-            dataFinder.findMatchingMarinData(condition.getExistingDataSource(), sailorNumber);
-            checkDataValidity(condition.getValeur(), dummyDate);
+            List<String> data = dataFinder.findMatchingMarinData(condition.getExistingDataSource(), sailorNumber);
+            checkDataValidity(data, condition.getValeur(), dummyDate);
         }
         return null;
     }
 
 
-    private boolean checkDataValidity(String conditionValeur, String date) {
+    private boolean checkDataValidity(List<String> data, String conditionValeur, String date) {
         boolean result = false;
+        for(String element : data) {
+            if(element == conditionValeur) {
+                result = true;
+            }
+        }
         return result;
     }
 
