@@ -6,5 +6,5 @@ import java.io.IOException;
 import java.util.List;
 
 public interface CompareSailorDataToTitleConditionsUseCase {
-    List<CompareResult> compareSailorDataToTitleConditions(String sailorNumber, String titleId) throws IOException;
+    List<CompareResult> compareSailorDataToTitleConditions(String sailorNumber, String titleId);
 }

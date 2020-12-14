@@ -3,7 +3,8 @@ package fr.gouv.mte.capqualif.instructeur.application.services;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import fr.gouv.mte.capqualif.utils.JsonReader;
+import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetAptitudeMedicalePort;
+import fr.gouv.mte.capqualif.utils.LocalJsonGetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,30 +17,36 @@ import java.util.Map;
 public class DataFinder {
 
     @Autowired
-    JsonReader jsonReader;
+    LocalJsonGetter localJsonGetter;
+
+    @Autowired
+    GetAptitudeMedicalePort getAptitudeMedicalePort;
 
     public List<String> findMatchingMarinData(String existingDataSource, String sailorNumber) {
-        List<String> data = getData(existingDataSource);
+        List<String> data = getData(existingDataSource, sailorNumber);
         return data;
     }
 
-    private List<String> getData(String existingDataSource) {
+    private List<String> getData(String existingDataSource, String sailorNumber) {
 
         Map infos = whatInfosToLookFor(existingDataSource);
 
-        JsonArray json = jsonReader.readJson(infos.get("source").toString());
+        JsonArray json = getAptitudeMedicalePort.getAptitudeMedicale(infos.get("source").toString(), sailorNumber);
+//                localJsonGetter.getJson(infos.get("source").toString());
 
         ArrayList allMatchingData = new ArrayList();
 
-        for (JsonElement element : json) {
-            JsonObject jsonObject = element.getAsJsonObject();
-            String data;
-            if (!infos.containsKey("subField")) {
-                data = jsonObject.get(infos.get("field").toString()).getAsString();
+        if (json != null) {
+            for (JsonElement element : json) {
+                JsonObject jsonObject = element.getAsJsonObject();
+                String data;
+                if (!infos.containsKey("subField")) {
+                    data = jsonObject.get(infos.get("field").toString()).getAsString();
+                }
+                JsonObject field = jsonObject.get(infos.get("field").toString()).getAsJsonObject();
+                data = field.get(infos.get("subField").toString()).getAsString();
+                allMatchingData.add(data);
             }
-            JsonObject field = jsonObject.get(infos.get("field").toString()).getAsJsonObject();
-            data = field.get(infos.get("subField").toString()).getAsString();
-            allMatchingData.add(data);
         }
 
         return allMatchingData;
@@ -49,7 +56,9 @@ public class DataFinder {
         HashMap<String, String> infos = new HashMap<>();
         switch(existingDataSource) {
             case("esculape"):
-                infos.put("source", "aptitudeMedicale.json");
+//                infos.put("source", "mocks/aptitudeMedicale.json");
+                infos.put("source", "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/");
+//                infos.put("source", "https://jsonplaceholder.typicode.com/todos/1");
                 infos.put("field", "decisionMedicale");
                 infos.put("subField", "libelle");
                 return infos;

@@ -23,7 +23,8 @@ public class CompareMarinDataToTitreConditionsController {
 
     @GetMapping("/test")
     public List<String> compareSailorDataToTitleConditions() {
-        return dataFinder.findMatchingMarinData("esculape", "123");
+
+        return dataFinder.findMatchingMarinData("esculape", "209533");
     }
 
 

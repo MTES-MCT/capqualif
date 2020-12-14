@@ -3,6 +3,7 @@ package fr.gouv.mte.capqualif.instructeur.application.services;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import fr.gouv.mte.capqualif.instructeur.application.ports.in.CompareSailorDataToTitleConditionsUseCase;
+import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetAptitudeMedicalePort;
 import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetSailorPort;
 import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetTitlePort;
 import fr.gouv.mte.capqualif.instructeur.domain.CompareResult;
