@@ -6,49 +6,43 @@ import { getAllTitles } from '../../../../features/titlesCatalog/titlesSlice';
 
 import './NewTitleChoice.scss';
 
-import TitleCard from '../../../cards/title-card/TitleCard';
+import SectionHead from '../../../elements/section-head/SectionHead';
+import TitleCard from '../../../elements/cards/title-card/TitleCard';
 
 const NewTitleChoice = () => {
-    
-    const dispatch = useDispatch();
-    const allTitles = useSelector(state => state.titles.allTitles);
+  const dispatch = useDispatch();
+  const allTitles = useSelector((state) => state.titles.allTitles);
 
-    useEffect(() => {
-        // TO DO : implement dispatch(getSuggestedTitles());
-        dispatch(getAllTitles());
-      }, [dispatch]
-    );
+  useEffect(() => {
+    // TO DO : implement dispatch(getSuggestedTitles());
+    dispatch(getAllTitles());
+  }, [dispatch]);
 
-    return (
-        <div id="new-title-choice">
-            <h3>Demande d'un nouveau titre</h3>
-            <h1>Choisissez le titre</h1>
-            <div>
-                <h4>Titres recommandés pour vous</h4>
-                {
-                    allTitles.map(title => 
-                        <Link to={`/new-title-application/details/`}>
-                            <TitleCard key={title.id} title={title} titleType="fromCatalog" />
-                        </Link>
-                    )
-                }
-            </div>
-            <div>
-                <h4>Tous les titres</h4>
-                <input type="text"></input>
-                {
-                    allTitles.map(title => 
-                        <Link to={`/new-title-application/details/`}>
-                            <TitleCard key={title.id} title={title} titleType="fromCatalog" />
-                        </Link>
-                    )
-                }
-            </div>
+  return (
+    <div id="new-title-choice">
+      <SectionHead
+        title="Demande d'un nouveau titre"
+        subtitle="Choisissez le titre"
+      />
+      <div>
+        <h3>Titres recommandés pour vous</h3>
+        {allTitles.map((title) => (
+          <Link to={`/new-title-application/details/`}>
+            <TitleCard key={title.id} title={title} titleType="fromCatalog" />
+          </Link>
+        ))}
+      </div>
+      <div>
+        <h3>Tous les titres</h3>
+        <input type="text"></input>
+        {allTitles.map((title) => (
+          <Link to={`/new-title-application/details/`}>
+            <TitleCard key={title.id} title={title} titleType="fromCatalog" />
+          </Link>
+        ))}
+      </div>
 
-
-
-
-            {/* <h2>Quel titre souhaitez-vous demander ?</h2>
+      {/* <h2>Quel titre souhaitez-vous demander ?</h2>
             <div id="suggested-titles">
                 <h3>Titres suggérés</h3>
                 <h4>Voici les titres que vous pouvez demander immédiatement.</h4>
@@ -79,8 +73,8 @@ const NewTitleChoice = () => {
                     </div>
                 </div>
             </div> */}
-        </div>
-    );
+    </div>
+  );
 };
 
 export default NewTitleChoice;
