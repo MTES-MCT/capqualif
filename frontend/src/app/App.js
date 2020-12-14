@@ -5,6 +5,8 @@ import store from './redux/store';
 
 import './App.scss';
 
+
+import Header from '../components/header/Header';
 import Sign from '../components/layout/sign/Sign';
 import Dashboard from '../components/layout/dashboard/Dashboard';
 import NewTitleChoice from '../components/layout/new-title-application/new-title-choice/NewTitleChoice';
@@ -19,6 +21,7 @@ class App extends Component {
     // TO DO : create a routes component as soon as more routes add up 
       <Provider store={store}>
         <Router>
+          <Header />
           <section>
             <Switch>      
               <Route exact path='/' component={Sign} /> 

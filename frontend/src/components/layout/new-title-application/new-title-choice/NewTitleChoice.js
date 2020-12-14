@@ -14,13 +14,41 @@ const NewTitleChoice = () => {
     const allTitles = useSelector(state => state.titles.allTitles);
 
     useEffect(() => {
+        // TO DO : implement dispatch(getSuggestedTitles());
         dispatch(getAllTitles());
       }, [dispatch]
     );
 
     return (
         <div id="new-title-choice">
-            <h2>Quel titre souhaitez-vous demander ?</h2>
+            <h3>Demande d'un nouveau titre</h3>
+            <h1>Choisissez le titre</h1>
+            <div>
+                <h4>Titres recommandés pour vous</h4>
+                {
+                    allTitles.map(title => 
+                        <Link to={`/new-title-application/details/`}>
+                            <TitleCard key={title.id} title={title} titleType="fromCatalog" />
+                        </Link>
+                    )
+                }
+            </div>
+            <div>
+                <h4>Tous les titres</h4>
+                <input type="text"></input>
+                {
+                    allTitles.map(title => 
+                        <Link to={`/new-title-application/details/`}>
+                            <TitleCard key={title.id} title={title} titleType="fromCatalog" />
+                        </Link>
+                    )
+                }
+            </div>
+
+
+
+
+            {/* <h2>Quel titre souhaitez-vous demander ?</h2>
             <div id="suggested-titles">
                 <h3>Titres suggérés</h3>
                 <h4>Voici les titres que vous pouvez demander immédiatement.</h4>
@@ -50,7 +78,7 @@ const NewTitleChoice = () => {
                         Lorem ipsum
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
