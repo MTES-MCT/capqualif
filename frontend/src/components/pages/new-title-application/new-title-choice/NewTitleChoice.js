@@ -25,13 +25,13 @@ const NewTitleChoice = () => {
                 <h3>Titres suggérés</h3>
                 <h4>Voici les titres que vous pouvez demander immédiatement.</h4>
                 <div id="suggested-titles-container">
-                    {
+                    {/* {
                         allTitles.map(title => 
                             <Link to={`/new-title-application/details/`}>
                                 <TitleCard key={title.id} title={title} titleType="fromCatalog" />
                             </Link>
                         )
-                    }
+                    } */}
         
 
                 </div>

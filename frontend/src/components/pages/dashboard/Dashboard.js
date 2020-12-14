@@ -46,10 +46,10 @@ const Dashboard = () => {
             <div id="other-titles">
                 <p className="title">Mes autres titres</p>
                 <div id="other-titles-container">
-                    {
+                    {/* {
                         store.getState().sailors.sailorBasicData.sailorEducationData.titles
                         .map(title => <TitleCard key={title.id} title={title} />)
-                    }
+                    } */}
                 </div>
 
             </div>

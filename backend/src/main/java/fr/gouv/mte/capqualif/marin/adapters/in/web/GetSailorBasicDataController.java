@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/sailors")
-@CrossOrigin(origins = "http://localhost:3000") // TO DO : removed if not neeeded anymore
 public class GetSailorBasicDataController {
 
     @Autowired
