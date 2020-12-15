@@ -1,5 +1,5 @@
 export const HOME_PATH = '/';
-export const DASHBOARD_PATH = '/';
+export const DASHBOARD_PATH = '/dashboard';
 export const NEW_TITLE_APPLICATION_CHOICE_PATH =
   '/new-title-application/choice';
 export const NEW_TITLE_APPLICATION_DETAILS_PATH =
