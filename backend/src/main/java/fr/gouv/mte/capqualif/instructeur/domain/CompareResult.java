@@ -1,22 +1,20 @@
 package fr.gouv.mte.capqualif.instructeur.domain;
 
-import java.util.List;
-
 public class CompareResult {
 
     private String label;
-    private boolean estValide;
+    private boolean isValid;
 
-    public CompareResult(String label, boolean estValide) {
+    public CompareResult(String label, boolean isValid) {
         this.label = label;
-        this.estValide = estValide;
+        this.isValid = isValid;
     }
 
     public String getLabel() {
         return label;
     }
 
-    public boolean isEstValide() {
-        return estValide;
+    public boolean isValid() {
+        return isValid;
     }
 }

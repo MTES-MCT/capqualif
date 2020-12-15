@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.instructeur.application.ports.out;
+package fr.gouv.mte.capqualif.titre.application.ports.out;
 
 import fr.gouv.mte.capqualif.titre.domain.Titre;
 

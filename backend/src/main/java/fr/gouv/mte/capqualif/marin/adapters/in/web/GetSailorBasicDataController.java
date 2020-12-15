@@ -12,8 +12,8 @@ public class GetSailorBasicDataController {
     @Autowired
     private GetSailorBasicDataUseCase getSailorBasicDataUseCase;
 
-    @GetMapping("/{sailorNumber}")
-    public Sailor getSailorBasicData (@PathVariable("sailorNumber") String id) {
-        return getSailorBasicDataUseCase.getSailorBasicData(id);
+    @GetMapping("/{numeroDeMarin}")
+    public Sailor getSailorBasicData (@PathVariable("numeroDeMarin") String numeroDeMarin) {
+        return getSailorBasicDataUseCase.getSailorBasicData(numeroDeMarin);
     }
 }
