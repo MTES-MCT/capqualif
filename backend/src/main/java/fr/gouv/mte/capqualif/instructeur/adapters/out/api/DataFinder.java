@@ -21,18 +21,18 @@ public class DataFinder {
     LocalJsonGetter localJsonGetter;
 
     @Autowired
-    GetAptitudeMedicalePort getAptitudeMedicalePort;
+    GetMarinDataPort getMarinDataPort;
 
 //    public List<String> findMatchingMarinData(String existingDataSource, String sailorNumber) {
 //        List<String> data = getData(existingDataSource, sailorNumber);
 //        return data;
 //    }
 
-    public List<String> findMatchingMarinData(String existingDataSource, String sailorNumber) {
+    public List<String> findMatchingMarinData(String existingDataSource, String numeroDeMarin) {
 
         Map infos = whatInfosToLookFor(existingDataSource);
 
-        JsonArray json = getAptitudeMedicalePort.getAptitudeMedicale(infos.get("source").toString(), sailorNumber);
+        JsonArray json = getMarinDataPort.getMarinData(infos.get("source").toString(), numeroDeMarin);
 //                localJsonGetter.getJson(infos.get("source").toString());
 
         ArrayList allMatchingData = new ArrayList();
@@ -56,6 +56,10 @@ public class DataFinder {
     private Map whatInfosToLookFor(String existingDataSource) {
         HashMap<String, String> infos = new HashMap<>();
         switch(existingDataSource) {
+            case("dumbSource"):
+                infos.put("source", "https://jsonplaceholder.typicode.com/posts");
+                infos.put("field", "title");
+                return infos;
             case("esculape"):
 //                infos.put("source", "mocks/aptitudeMedicale.json");
                 infos.put("source", "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/");
