@@ -1,20 +1,13 @@
 {
-	"aptitudeMedicale" : {
-		"dateFinDeValidite": 123,
-		"rendezVous": 123,
-		"decisionMedicale": {
-			"idCode": 1,
-			"code": "1",
-			"libelle": "Apte TF/TN",
-			"libelleAnglais": null,
-			"libelleCourt": null,
-			"dateDebutApplication": 156,
-			"dateFinApplication": null,
-			"bloque": false,
-			"codeExport": null
-		},
-	  "restrictionMedicale1": null,
-	  "restrictionMedicale2": null,
-	  "idMarin": 123	
-	}
+  "Post": {
+    "title": "string",
+    "views": "int",
+    "published": "boolean",
+    "createdAt": "date",
+    "comments": "Comment[]"
+  },
+  "Comment": {
+    "body": "string",
+    "post": "Post"
+  }
 }
