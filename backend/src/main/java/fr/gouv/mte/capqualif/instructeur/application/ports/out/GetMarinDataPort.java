@@ -1,10 +1,10 @@
 package fr.gouv.mte.capqualif.instructeur.application.ports.out;
 
-import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
 import java.util.List;
 
 public interface GetMarinDataPort {
-    JsonArray getMarinData(String existingDataSource, String numeroDeMarin);
+    JsonElement getMarinData(String existingDataSource, String numeroDeMarin);
 
 }

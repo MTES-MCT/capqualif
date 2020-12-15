@@ -25,7 +25,7 @@ public class TitresApiMock {
 
 
         List<ConditionTitre> conditions = new ArrayList<ConditionTitre>(Arrays.asList(
-                new ConditionTitre("16", "administres"),
+//                new ConditionTitre("16", "administres"),
                 new ConditionTitre("Apte TF/TN", "esculape")));
 //                new ConditionTitre("Apte TF/TN", "esculape"))); TO DO : conditions AMFORE - faire une nouvelle condition par module ou une liste de modules ?
 

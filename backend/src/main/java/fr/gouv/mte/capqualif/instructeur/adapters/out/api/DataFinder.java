@@ -3,7 +3,6 @@ package fr.gouv.mte.capqualif.instructeur.adapters.out.api;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetAptitudeMedicalePort;
 import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.utils.LocalJsonGetter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,24 +31,48 @@ public class DataFinder {
 
         Map infos = whatInfosToLookFor(existingDataSource);
 
-        JsonArray json = getMarinDataPort.getMarinData(infos.get("source").toString(), numeroDeMarin);
-//                localJsonGetter.getJson(infos.get("source").toString());
+        JsonElement json = getMarinDataPort.getMarinData(infos.get("source").toString(), numeroDeMarin);
 
         ArrayList allMatchingData = new ArrayList();
 
-        if (json != null) {
-            for (JsonElement element : json) {
-                JsonObject jsonObject = element.getAsJsonObject();
-                String data = null;
-                if (!infos.containsKey("subField")) {
-                    data = jsonObject.get(infos.get("field").toString()).getAsString();
+        if (json!=null) {
+            if (json instanceof JsonObject) {
+                allMatchingData = processJsonObject(infos, (JsonObject) json, allMatchingData);
+            } else if (json instanceof JsonArray) {
+                JsonArray jsonArray = (JsonArray) json;
+                for (JsonElement element : jsonArray) {
+                    allMatchingData = processJsonObject(infos, element, allMatchingData);
                 }
-//                JsonObject field = jsonObject.get(infos.get("field").toString()).getAsJsonObject();
-//                data = field.get(infos.get("subField").toString()).getAsString();
-                allMatchingData.add(data);
             }
         }
+//
+//        if (json != null) {
+//            for (JsonElement element : json) {
+//                JsonObject jsonObject = element.getAsJsonObject();
+//                String data = null;
+//                if (!infos.containsKey("subField")) {
+//                    data = jsonObject.get(infos.get("field").toString()).getAsString();
+//                }
+////                JsonObject field = jsonObject.get(infos.get("field").toString()).getAsJsonObject();
+////                data = field.get(infos.get("subField").toString()).getAsString();
+//                allMatchingData.add(data);
+//            }
+//        }
 
+        return allMatchingData;
+    }
+
+    // TO DO : this works for {} structure, but what if we have {{}} ?
+    private ArrayList processJsonObject(Map infos, JsonElement json, ArrayList allMatchingData) {
+        JsonObject jsonObject = (JsonObject) json;
+        if (!infos.containsKey("subField")) {
+            String field = jsonObject.get(infos.get("field").toString()).getAsString();
+            allMatchingData.add(field);
+            return allMatchingData;
+        }
+        JsonObject field = jsonObject.get(infos.get("field").toString()).getAsJsonObject();
+        String subfield = field.get(infos.get("subField").toString()).getAsString();
+        allMatchingData.add(subfield);
         return allMatchingData;
     }
 
@@ -63,7 +86,8 @@ public class DataFinder {
                 return infos;
             case("esculape"):
 //                infos.put("source", "mocks/aptitudeMedicale.json");
-                infos.put("source", "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/");
+//                infos.put("source", "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/");
+                infos.put("source", "https://run.mocky.io/v3/3239b396-a0d5-4d55-9ac7-e2c19cf7e46b");
 //                infos.put("source", "https://jsonplaceholder.typicode.com/todos/1");
                 infos.put("field", "decisionMedicale");
                 infos.put("subField", "libelle");
