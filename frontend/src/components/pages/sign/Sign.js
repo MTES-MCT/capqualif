@@ -3,11 +3,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-<<<<<<< HEAD:frontend/src/components/pages/sign/Sign.js
-import { getSailorBasicData } from '../../../core-logic/features/sailor/sailorsSlice';
-=======
 import { getSailorBasicData } from '../../../redux/features/sailorData/sailorsSlice';
->>>>>>> front-dev:frontend/src/components/layout/sign/Sign.js
 
 import './Sign.scss';
 

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTitle } from '../../../../core-logic/features/catalog/titles/titlesThunks';
 =======
 import { getTitle } from '../../../../redux/features/titlesCatalog/titlesSlice';
->>>>>>> front-dev:frontend/src/components/layout/new-title-application/title-details/TitleDetails.js
+>>>>>>> front-dev:frontend/src/components/pages/new-title-application/title-details/TitleDetails.js
 
 import './TitleDetails.scss';
 

@@ -13,7 +13,7 @@ import { getAllTitles } from '../../../../redux/features/titlesCatalog/titlesSli
 import './NewTitleChoice.scss';
 
 import SectionHead from '../../../elements/section/section-head/SectionHead';
->>>>>>> front-dev:frontend/src/components/layout/new-title-application/new-title-choice/NewTitleChoice.js
+>>>>>>> front-dev:frontend/src/components/pages/new-title-application/new-title-choice/NewTitleChoice.js
 import TitleCard from '../../../elements/cards/title-card/TitleCard';
 
 const NewTitleChoice = () => {

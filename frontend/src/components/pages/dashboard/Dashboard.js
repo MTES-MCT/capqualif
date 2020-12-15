@@ -3,7 +3,7 @@ import React from 'react';
 import store from '../../../core-logic/store';
 =======
 import store from '../../../redux/store';
->>>>>>> front-dev:frontend/src/components/layout/dashboard/Dashboard.js
+>>>>>>> front-dev:frontend/src/components/pages/dashboard/Dashboard.js
 import { Link } from 'react-router-dom';
 
 import './Dashboard.scss';
@@ -12,7 +12,7 @@ import './Dashboard.scss';
 import Header from '../../elements/header/Header';
 
 =======
->>>>>>> front-dev:frontend/src/components/layout/dashboard/Dashboard.js
+>>>>>>> front-dev:frontend/src/components/pages/dashboard/Dashboard.js
 import sailorPicMock from '../../../resources/img/mocks/sailor.png';
 import menuPicMock from '../../../resources/img/mocks/menu.png';
 import TitleCard from '../../elements/cards/title-card/TitleCard';
