@@ -7,7 +7,7 @@ import java.util.List;
 
 @Component
 public class DataChecker {
-    // TO DO : add data check
+    // TO DO : add date check
     public boolean checkDataValidity(List<String> data, String conditionValeur, LocalDate date) {
         boolean result = false;
         for(String element : data) {

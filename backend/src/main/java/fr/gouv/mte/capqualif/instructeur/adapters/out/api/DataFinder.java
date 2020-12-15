@@ -53,6 +53,7 @@ public class DataFinder {
         return allMatchingData;
     }
 
+    // TO DO : in the future, this infos will be built in the DAM module
     private Map whatInfosToLookFor(String existingDataSource) {
         HashMap<String, String> infos = new HashMap<>();
         switch(existingDataSource) {
