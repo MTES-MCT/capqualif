@@ -1,5 +1,5 @@
 import React from 'react';
-import store from '../../../app/redux/store';
+import store from '../../../redux/store';
 import { Link } from 'react-router-dom';
 
 import './Dashboard.scss';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import store from '../redux/store';
 
 import './App.scss';
 
@@ -33,7 +33,7 @@ class App extends Component {
                 component={TitleDetails}
               />
               <Route
-                path="/new-title-application/recap"
+                path="/new-title-application/recapitulatif"
                 component={ApplicationRecap}
               />
               <Route exact path="/error" component={Error} />
