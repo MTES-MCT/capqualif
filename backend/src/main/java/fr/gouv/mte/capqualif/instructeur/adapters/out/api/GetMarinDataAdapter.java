@@ -35,7 +35,7 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
         Gson gson = new Gson();
         JsonArray json = gson.fromJson(res, JsonArray.class);
 
-        return null;
+        return json;
     }
 
 }

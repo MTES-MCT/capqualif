@@ -11,7 +11,7 @@ public class DataChecker {
     public boolean checkDataValidity(List<String> data, String conditionValeur, LocalDate date) {
         boolean result = false;
         for(String element : data) {
-            if(element == conditionValeur) {
+            if(element.equals(conditionValeur)) {
                 result = true;
             }
         }

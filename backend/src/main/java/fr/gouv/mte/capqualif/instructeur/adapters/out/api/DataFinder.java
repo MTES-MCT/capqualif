@@ -40,12 +40,12 @@ public class DataFinder {
         if (json != null) {
             for (JsonElement element : json) {
                 JsonObject jsonObject = element.getAsJsonObject();
-                String data;
+                String data = null;
                 if (!infos.containsKey("subField")) {
                     data = jsonObject.get(infos.get("field").toString()).getAsString();
                 }
-                JsonObject field = jsonObject.get(infos.get("field").toString()).getAsJsonObject();
-                data = field.get(infos.get("subField").toString()).getAsString();
+//                JsonObject field = jsonObject.get(infos.get("field").toString()).getAsJsonObject();
+//                data = field.get(infos.get("subField").toString()).getAsString();
                 allMatchingData.add(data);
             }
         }
