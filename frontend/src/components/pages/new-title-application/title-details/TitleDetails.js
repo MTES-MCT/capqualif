@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-<<<<<<< HEAD:frontend/src/components/pages/new-title-application/title-details/TitleDetails.js
-import { getTitle } from '../../../../core-logic/features/catalog/titles/titlesThunks';
-=======
 import { getTitle } from '../../../../redux/features/titlesCatalog/titlesSlice';
->>>>>>> front-dev:frontend/src/components/pages/new-title-application/title-details/TitleDetails.js
 
 import './TitleDetails.scss';
 

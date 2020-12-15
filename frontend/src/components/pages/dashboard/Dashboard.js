@@ -1,18 +1,9 @@
 import React from 'react';
-<<<<<<< HEAD:frontend/src/components/pages/dashboard/Dashboard.js
-import store from '../../../core-logic/store';
-=======
 import store from '../../../redux/store';
->>>>>>> front-dev:frontend/src/components/pages/dashboard/Dashboard.js
 import { Link } from 'react-router-dom';
 
 import './Dashboard.scss';
 
-<<<<<<< HEAD:frontend/src/components/pages/dashboard/Dashboard.js
-import Header from '../../elements/header/Header';
-
-=======
->>>>>>> front-dev:frontend/src/components/pages/dashboard/Dashboard.js
 import sailorPicMock from '../../../resources/img/mocks/sailor.png';
 import menuPicMock from '../../../resources/img/mocks/menu.png';
 import TitleCard from '../../elements/cards/title-card/TitleCard';
@@ -20,7 +11,6 @@ import TitleCard from '../../elements/cards/title-card/TitleCard';
 const Dashboard = () => {
   return (
     <div id="dashboard">
-      {/* <h2>MON TABLEAU DE BORD</h2> */}
       <nav>
         <div id="photo">
           <img src={sailorPicMock} alt="a fake sailor's pic" />

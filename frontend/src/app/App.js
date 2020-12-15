@@ -22,7 +22,7 @@ import NewTitleChoice from '../components/pages/new-title-application/new-title-
 import TitleDetails from '../components/pages/new-title-application/title-details/TitleDetails';
 import ApplicationRecap from '../components/pages/new-title-application/application-recap/ApplicationRecap';
 import Error from '../components/pages/error/Error';
-import AddPiece from '../components/pages/add-piece';
+import AddPiece from '../components/pages/add-piece/AddPiece';
 
 class App extends Component {
   render() {
