@@ -84,6 +84,8 @@ public class DataFinder {
                 infos.put("source", "https://jsonplaceholder.typicode.com/posts");
                 infos.put("field", "title");
                 return infos;
+            case("administres"):
+//                return "amfore.json";
             case("esculape"):
 //                infos.put("source", "mocks/aptitudeMedicale.json");
 //                infos.put("source", "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/");
@@ -97,6 +99,4 @@ public class DataFinder {
         }
         return null;
     }
-
-
 }
