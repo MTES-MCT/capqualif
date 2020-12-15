@@ -1,15 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import './ApplicationRecap.scss';
+import SectionHead from '../../elements/section/section-head/SectionHead';
+import SectionFooter from '../../elements/section/section-footer/SectionFooter';
 
-import { ADD_PIECE_PATH } from '../../../../app/pathes';
-
-import SectionHead from '../../../elements/section/section-head/SectionHead';
-import SectionFooter from '../../../elements/section/section-footer/SectionFooter';
-
-const ApplicationRecap = () => {
+const AddPiece = () => {
   const currentTitle = useSelector((state) => state.titles.currentTitle);
 
   const possibleActions = [
@@ -27,14 +22,14 @@ const ApplicationRecap = () => {
     <div>
       <SectionHead
         title={currentTitle.titleName}
-        subtitle="Demande d'un nouveau titre"
+        subtitle="Compléter votre dossier"
       />
       <div>
-        Il manque CETTE PIECE <Link to={ADD_PIECE_PATH}>Ajouter</Link>
+        Pour finaliser la demande du titre, il vous manque cette pièce : XXX.
       </div>
       <SectionFooter possibleActions={possibleActions} />
     </div>
   );
 };
 
-export default ApplicationRecap;
+export default AddPiece;
