@@ -3,6 +3,15 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 
+import {
+  HOME_PATH,
+  DASHBOARD_PATH,
+  NEW_TITLE_APPLICATION_CHOICE_PATH,
+  NEW_TITLE_APPLICATION_DETAILS_PATH,
+  NEW_TITLE_APPLICATION_RECAP_PATH,
+  ERROR_PATH,
+} from './pathes';
+
 import './App.scss';
 
 import Header from '../components/elements/header/Header';
@@ -22,18 +31,18 @@ class App extends Component {
           <Header />
           <section>
             <Switch>
-              <Route exact path="/" component={Sign} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path={HOME_PATH} component={Sign} />
+              <Route exact path={DASHBOARD_PATH} component={Dashboard} />
               <Route
-                path="/new-title-application/choice"
+                path={NEW_TITLE_APPLICATION_CHOICE_PATH}
                 component={NewTitleChoice}
               />
               <Route
-                path="/new-title-application/details"
+                path={NEW_TITLE_APPLICATION_DETAILS_PATH}
                 component={TitleDetails}
               />
               <Route
-                path="/new-title-application/recapitulatif"
+                path={NEW_TITLE_APPLICATION_RECAP_PATH}
                 component={ApplicationRecap}
               />
               <Route exact path="/error" component={Error} />
