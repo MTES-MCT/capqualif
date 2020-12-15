@@ -7,3 +7,4 @@ export const NEW_TITLE_APPLICATION_DETAILS_PATH =
 export const NEW_TITLE_APPLICATION_RECAP_PATH =
   '/new-title-application/recapitulatif';
 export const ERROR_PATH = '/error';
+export const ADD_PIECE_PATH = '/ajouter-une-piece';

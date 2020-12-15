@@ -10,6 +10,7 @@ import {
   NEW_TITLE_APPLICATION_DETAILS_PATH,
   NEW_TITLE_APPLICATION_RECAP_PATH,
   ERROR_PATH,
+  ADD_PIECE_PATH,
 } from './pathes';
 
 import './App.scss';
@@ -21,6 +22,7 @@ import NewTitleChoice from '../components/layout/new-title-application/new-title
 import TitleDetails from '../components/layout/new-title-application/title-details/TitleDetails';
 import ApplicationRecap from '../components/layout/new-title-application/application-recap/ApplicationRecap';
 import Error from '../components/layout/error/Error';
+import AddPiece from '../components/layout/add-piece/AddPiece';
 
 class App extends Component {
   render() {
@@ -45,6 +47,7 @@ class App extends Component {
                 path={NEW_TITLE_APPLICATION_RECAP_PATH}
                 component={ApplicationRecap}
               />
+              <Route path={ADD_PIECE_PATH} component={AddPiece} />
               <Route exact path="/error" component={Error} />
             </Switch>
           </section>
