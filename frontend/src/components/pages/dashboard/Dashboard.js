@@ -33,9 +33,11 @@ const Dashboard = () => {
           </div>
 
           <div class="cq-content-right">
+          <Link to="/new-title-application/choice" id="ask-for-a-title">
               <button class="rf-btn cq-upper" title="Demander un titre">
                 Demander un titre
               </button>
+            </Link>
           </div>
 
 
@@ -50,7 +52,7 @@ const Dashboard = () => {
                 <a class="rf-link" href="#" target="_self">Mes titres</a>
               </li>
               <li class="rf-nav__item">
-                <a class="rf-link" href="#" target="_self">Mon dossier</a>
+                <a class="rf-link" href="#" target="_self">Mon dossier professionnel</a>
               </li>
               <li class="rf-nav__item">
                 <a class="rf-link" href="#" target="_self">Mes informations personelles</a>
@@ -63,6 +65,7 @@ const Dashboard = () => {
       </header>
 
       <div class="cq-content rf-container">
+
         <div class="rf-grid-row">
           <div class="rf-col-3 cq-left-3">
             <ul class="cq-sidemenu">
@@ -86,36 +89,51 @@ const Dashboard = () => {
 
 
           <div class="rf-col-9 cq-right-col-9">
+            <div class="cq-main-content">
+          
+            <div class="cq-section__title">
+                <div class="cq-section__overtitle">Mes</div>
+                <h2>demandes en cours</h2>
+              </div>
 
-          <div id="applications-in-progress" class="cq-main-content">
-        <p className="title">Mes demandes en cours</p>
-        <ul className="card">
-          <li>CFBS : dossier en traitement ⏳</li>
-          <li>Premiers secours : dossier à compléter 🖊️</li>
-        </ul>
-      </div>
-      <div id="main-title">
-        <p className="title">Fonction principales</p>
-        <div className="card">Matelot Pont</div>
-      </div>
-      <div id="other-titles">
-        <p className="title">Mes autres titres</p>
-        <div id="other-titles-container">
-          {store
-            .getState()
-            .sailors.sailorBasicData.sailorEducationData.titles.map((title) => (
-              <TitleCard key={title.id} title={title} />
-            ))}
-        </div>
-      </div>
+              <div id="applications-in-progress" >
+                <ul className="card">
+                  <li>CFBS : dossier en traitement ⏳</li>
+                  <li>Premiers secours : dossier à compléter 🖊️</li>
+                </ul>
+              </div>
 
+              <div class="cq-section__title">
+                <div class="cq-section__overtitle">Mes titres pour exercer des</div>
+                <h2>fonction principales</h2>
+              </div>
 
+              <div id="main-title">  
+                <div className="card">Matelot Pont</div>
+              </div>
 
+              <div class="cq-section__title">
+                <div class="cq-section__overtitle">Mes titres pour exercer des</div>
+                <h2>fonction particulières</h2>
+              </div>
+
+            
+              <div id="other-titles-container">
+                {store
+                  .getState()
+                  .sailors.sailorBasicData.sailorEducationData.titles.map((title) => (
+                    <TitleCard key={title.id} title={title} />
+                  ))}
+              </div>
           </div>
-        </div>
 
+      
+        </div> {/* ROW */}
+      </div> {/* cq-content */}
 
       </div>
+      
+ 
 
       
 
@@ -176,7 +194,7 @@ const Dashboard = () => {
       
       */}
 
-</div>    
+  </div>    
   );
 };
 

@@ -7,19 +7,18 @@ const Header = ({serviceName,adminName,username,userSailorNumber}) => {
       <div className="rf-container rf-container__header">
         <div className="rf-header__body">
 
-        < HeaderBrand 
-        administrationLabel1={'Ministère'} administrationLabel2={'de la mer'}/>
+        < HeaderBrand administrationLabel1={'Ministère'} administrationLabel2={'de la mer'}/>
       
-          <div className="rf-header__navbar">
-            <div className="rf-service">
-              <a className="rf-service__title" href="#" title="Nom du service">
-               {serviceName}
-              </a>
-              <p className="rf-service__tagline">
-                {adminName}
-              </p>
-            </div>
+        <div className="rf-header__navbar">
+          <div className="rf-service">
+            <a className="rf-service__title" href="#" title="Nom du service">
+              {serviceName}
+            </a>
+            <p className="rf-service__tagline">
+              {adminName}
+            </p>
           </div>
+        </div>
 
           <div class="rf-header__tools">
             
