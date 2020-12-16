@@ -71,16 +71,26 @@ public class DataFinder {
                 infos.put("field", "title");
                 return infos;
             case("administres"):
-//                infos.put("source", "https://run.mocky.io/v3/3239b396-a0d5-4d55-9ac7-e2c19cf7e46b");
-                infos.put("source", "***REMOVED******REMOVED***");
-                infos.put("field", "decisionMedicale");
-                infos.put("nestedField", "libelle");
-                return infos;
+                // Marin de moins de 16 ans
+                infos.put("source", "https://run.mocky.io/v3/b33b5c2f-0c95-46c1-ac8d-a33b918f0bac");
 
+                // Marin de plus de 16 ans
+//                infos.put("source", "https://run.mocky.io/v3/d05d9429-48e4-4785-a8a4-b353de3d94da");
+
+                // Vraie source
+//                infos.put("source", "***REMOVED******REMOVED***");
+
+                infos.put("field", "dateNaissance");
+                return infos;
             case("esculape"):
+                // Vraie source
 //                infos.put("source", "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/");
-                infos.put("source", "https://run.mocky.io/v3/3239b396-a0d5-4d55-9ac7-e2c19cf7e46b");
-//                infos.put("source", "https://jsonplaceholder.typicode.com/todos/1");
+
+                // Marin apte
+//                infos.put("source", "https://run.mocky.io/v3/1957dab6-73e3-49db-aece-d21599093db5");
+
+                // Marin inapte
+                infos.put("source", "https://run.mocky.io/v3/971a4c10-63b3-4ab6-bd58-aaab66ab4365");
                 infos.put("field", "decisionMedicale");
                 infos.put("nestedField", "libelle");
                 return infos;

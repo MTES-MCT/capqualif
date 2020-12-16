@@ -2,16 +2,16 @@ package fr.gouv.mte.capqualif.instructeur.domain;
 
 public class CompareResult {
 
-    private String label;
+    private String libelle;
     private boolean isValid;
 
-    public CompareResult(String label, boolean isValid) {
-        this.label = label;
+    public CompareResult(String libelle, boolean isValid) {
+        this.libelle = libelle;
         this.isValid = isValid;
     }
 
-    public String getLabel() {
-        return label;
+    public String getLibelle() {
+        return libelle;
     }
 
     public boolean isValid() {
