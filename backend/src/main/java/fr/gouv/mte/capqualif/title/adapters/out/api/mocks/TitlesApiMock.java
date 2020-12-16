@@ -16,7 +16,7 @@ public class TitlesApiMock {
         List<String> prerogatives1 = new ArrayList<String>(Arrays.asList("Fonctions d'appui sur le pont", "Confection de banana splits"));
         titlesList.add(new Title(
                 "1",
-                "Matelot Pont",
+                "Certificat de matelot pont - CMP (9525)",
                 criteria1,
                 prerogatives1));
 

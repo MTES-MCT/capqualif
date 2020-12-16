@@ -11,7 +11,6 @@ import TitleCard from '../../elements/cards/title-card/TitleCard';
 const Dashboard = () => {
   return (
     <div id="dashboard">
-      {/* <h2>MON TABLEAU DE BORD</h2> */}
       <nav>
         <div id="photo">
           <img src={sailorPicMock} alt="a fake sailor's pic" />
