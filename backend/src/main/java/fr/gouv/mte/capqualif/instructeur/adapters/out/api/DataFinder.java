@@ -45,33 +45,19 @@ public class DataFinder {
                 }
             }
         }
-//
-//        if (json != null) {
-//            for (JsonElement element : json) {
-//                JsonObject jsonObject = element.getAsJsonObject();
-//                String data = null;
-//                if (!infos.containsKey("subField")) {
-//                    data = jsonObject.get(infos.get("field").toString()).getAsString();
-//                }
-////                JsonObject field = jsonObject.get(infos.get("field").toString()).getAsJsonObject();
-////                data = field.get(infos.get("subField").toString()).getAsString();
-//                allMatchingData.add(data);
-//            }
-//        }
-
         return allMatchingData;
     }
 
     // TO DO : this works for {} structure, but what if we have {{}} ?
     private ArrayList processJsonObject(Map infos, JsonElement json, ArrayList allMatchingData) {
         JsonObject jsonObject = (JsonObject) json;
-        if (!infos.containsKey("subField")) {
+        if (!infos.containsKey("nestedField")) {
             String field = jsonObject.get(infos.get("field").toString()).getAsString();
             allMatchingData.add(field);
             return allMatchingData;
         }
         JsonObject field = jsonObject.get(infos.get("field").toString()).getAsJsonObject();
-        String subfield = field.get(infos.get("subField").toString()).getAsString();
+        String subfield = field.get(infos.get("nestedField").toString()).getAsString();
         allMatchingData.add(subfield);
         return allMatchingData;
     }
@@ -85,14 +71,18 @@ public class DataFinder {
                 infos.put("field", "title");
                 return infos;
             case("administres"):
-//                return "amfore.json";
+//                infos.put("source", "https://run.mocky.io/v3/3239b396-a0d5-4d55-9ac7-e2c19cf7e46b");
+                infos.put("source", "***REMOVED******REMOVED***");
+                infos.put("field", "decisionMedicale");
+                infos.put("nestedField", "libelle");
+                return infos;
+
             case("esculape"):
-//                infos.put("source", "mocks/aptitudeMedicale.json");
 //                infos.put("source", "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/");
                 infos.put("source", "https://run.mocky.io/v3/3239b396-a0d5-4d55-9ac7-e2c19cf7e46b");
 //                infos.put("source", "https://jsonplaceholder.typicode.com/todos/1");
                 infos.put("field", "decisionMedicale");
-                infos.put("subField", "libelle");
+                infos.put("nestedField", "libelle");
                 return infos;
             case("amfore"):
 //                return "amfore.json";
