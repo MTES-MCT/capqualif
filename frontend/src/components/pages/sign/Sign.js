@@ -3,6 +3,8 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import HeaderBrand from '../../elements/header-brand/HeaderBrand';
+
 import { getSailorBasicData } from '../../../redux/features/sailorData/sailorsSlice';
 
 import './Sign.scss';
@@ -30,23 +32,44 @@ const Sign = ({ history }) => {
   };
 
   return (
-    <div id="sign">
-      <h2>Bonjour !</h2>
-      <p>Quel est votre numéro de marin ?</p>
-      <form onSubmit={(event) => handleSubmit(event)}>
-        <div id="form-group">
-          <label htmlFor="sailor-id">
-            Mon numéro est
-            <input
+    <div id="sign-in" className="page rf-container">
+      <div class="sign-in__container">
+        <div class="sign-in__header">
+          <div class="logo_gouvfr">
+             < HeaderBrand />
+          </div>
+        </div>
+        <div class="sign-in__title">
+          CapQualif
+        </div>
+        <div class="sign-in__welcome">
+          <div class="welcome">
+          Bienvenu sur CapQualif, notre nouvel espace pour faire vos demandes de titre.
+          </div>
+       
+        </div>
+        <div class="sign-in__form">
+        <form onSubmit={(event) => handleSubmit(event)}>
+         
+            <label class="rf-label" for="text-input-text">Numéro d'identification</label>
+            <input 
+              class="rf-input" 
               type="text"
               name="sailor-id"
               placeholder="Exemple : 19780030"
-              onChange={(event) => handleChange(event)}
+              onChange={(event) => handleChange(event)} 
             />
-          </label>
-          <input type="submit" value="Envoyer" />
-        </div>
-      </form>
+           
+            <button type="submit" class="rf-btn" title="Se connecter">
+              Se connecter
+            </button>
+       
+        </form>
+        </div>   
+      </div>
+    
+   
+     
     </div>
   );
 };
