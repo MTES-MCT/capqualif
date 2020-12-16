@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class CompareMarinDataToConditionsTitreService implements CompareMarinDataToConditionsTitreUseCase {
@@ -41,7 +42,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
 
         // For each condition, check if marin data are valid and save the result
         for (ConditionTitre condition : conditions) {
-            List<String> data = dataFinder.findMatchingMarinData(condition.getExistingDataSource(), numeroDeMarin);
+            Map<String, String> data = dataFinder.findMatchingMarinData(condition.getExistingDataSource(), numeroDeMarin);
             boolean result = dataChecker.compareDataToCondition(data, condition, LocalDate.now());
             CompareResult compareResult = new CompareResult(condition.getLibelle(), result);
             compareResults.add(compareResult);

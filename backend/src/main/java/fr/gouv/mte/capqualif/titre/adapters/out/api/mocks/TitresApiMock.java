@@ -38,7 +38,6 @@ public class TitresApiMock {
                 prerogatives));
 
         List<ConditionTitre> conditions2 = new ArrayList<ConditionTitre>(Arrays.asList(
-                new ConditionTitre("age minimum","16", "minimum", "administres"),
                 new ConditionTitre("aptitude médicale", "Apte TF/TN", "egaliteStricte", "esculape")));
         List<String> prerogatives2 = new ArrayList<String>(Arrays.asList("Cuisson de tartes flambées", "Préparation de crèmes brûlées"));
         titresList.add(new Titre(

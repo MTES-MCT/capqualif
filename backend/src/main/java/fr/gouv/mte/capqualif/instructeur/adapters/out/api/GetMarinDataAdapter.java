@@ -16,16 +16,15 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
     @Override
     public JsonElement getMarinData(String existingDataSource, String numeroDeMarin) {
 
-        // TO DO : convert numeroDeMarin to ID_ADMINISTRE => api pda
+        // TO DO : convert numeroDeMarin to ID_ADMINISTRE
 
-//        String request = existingDataSource + numeroDeMarin;
-//        System.out.println("Looking for " + request);
-
-        String request = existingDataSource;
+        String request = existingDataSource + numeroDeMarin;
         System.out.println("Looking for " + request);
 
+//        String request = existingDataSource;
+//        System.out.println("Looking for " + request);
+
         String res = restTemplate.getForObject(request, String.class);
-        System.out.println("API response is " + res);
 
         Gson gson = new Gson();
         JsonElement json = gson.fromJson(res, JsonElement.class);
