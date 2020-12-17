@@ -39,14 +39,14 @@ public class DataChecker {
 
     private boolean isDataExpired(String expirationDate) {
         boolean isDataExpired = false;
-        LocalDate localExpirationDate = timeConverter.convertEpochDatetoLocalDate(expirationDate);
+        LocalDate localExpirationDate = timeConverter.convertToLocalDate(expirationDate);
         int result = localExpirationDate.compareTo(LocalDate.now());
         if (result <= 0) isDataExpired = true;
         return isDataExpired;
     }
 
     private Integer calculateYearsBetweenDateAndToday(String dateFromMarinData) {
-        LocalDate date = timeConverter.convertStringDateToLocalDate(dateFromMarinData);
+        LocalDate date = timeConverter.convertToLocalDate(dateFromMarinData);
         LocalDate today = LocalDate.now();
         if ((date != null)) {
             return Period.between(date, today).getYears();
