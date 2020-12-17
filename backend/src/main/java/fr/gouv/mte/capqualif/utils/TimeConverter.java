@@ -20,21 +20,16 @@ public class TimeConverter {
                 .appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
                 .toFormatter();
-        LocalDate localDate = LocalDate.parse(date, formatter);
-        return localDate;
+        return LocalDate.parse(date, formatter);
     }
 
     private LocalDate convertEpochDatetoLocalDate(String epochDate) {
-        LocalDate localDate = Instant.ofEpochMilli(Long.parseLong(epochDate)).atZone(ZoneId.systemDefault()).toLocalDate();
-        return localDate;
+        return Instant.ofEpochMilli(Long.parseLong(epochDate)).atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     private boolean isDateEpoch(String date) {
         int EPOCH_LENGTH = 10;
-        if (date.length() >= EPOCH_LENGTH && !date.contains("/") && !date.contains("-")) return true;
-        return false;
+        return date.length() >= EPOCH_LENGTH && !date.contains("/") && !date.contains("-");
     }
-
-
 
 }
