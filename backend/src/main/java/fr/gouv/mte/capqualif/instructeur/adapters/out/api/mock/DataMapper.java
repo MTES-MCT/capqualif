@@ -49,8 +49,11 @@ public class DataMapper {
                 infos.put("expirationField", "dateFinDeValidite");
                 return infos;
             case("amfore"):
-//                infos.put("expirationField", "dateFinDeValidite");
-//                return "amfore.json";
+                // Vraie source
+                infos.put("source", "http://ws-amfore-capqualif-test.dsi.damgm.i2/amfore/api/v1/acquisitions/");
+                infos.put("simpleField", "decisionMedicale");
+                infos.put("nestedField", "libelle");
+                infos.put("expirationField", "dateFinDeValidite");
         }
         return null;
     }
