@@ -48,9 +48,7 @@ public class GetSailorDataAPIAdapter implements GetSailorDataPort {
         String sailorId = sailorNumber;
         // TO DO : replace by an API call : [URL_BASE_ITEM]/api/v1/titres/{idAdmIntervenant}
 
-
-
-        return null;
+        return sailorEducationDataApiMock.findSailorEducationDataBySailorId(sailorId);
     }
 
     private SailorIdentityMarkersData getSailorIdentityMarkersData(String sailorNumber) {

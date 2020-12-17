@@ -13,15 +13,15 @@ public class TitresApiMock {
 
     public List<Titre> buildTitresList() {
         List<Titre> titresList = new ArrayList<>();
-        List<ConditionTitre> conditionsDumb = new ArrayList<ConditionTitre>(Arrays.asList(new ConditionTitre("a dumb condition", "qui est esse", "egaliteStricte", "dumbSource")));
-
-        List<String> prerogativesDumb = new ArrayList<String>(Arrays.asList("Préparation de poires Belle Hélène", "Confection de banana splits"));
-
-        titresList.add(new Titre(
-                "0",
-                "Dumb titre",
-                conditionsDumb,
-                prerogativesDumb));
+//        List<ConditionTitre> conditionsDumb = new ArrayList<ConditionTitre>(Arrays.asList(new ConditionTitre("a dumb condition", "qui est esse", "egaliteStricte", "dumbSource")));
+//
+//        List<String> prerogativesDumb = new ArrayList<String>(Arrays.asList("Préparation de poires Belle Hélène", "Confection de banana splits"));
+//
+//        titresList.add(new Titre(
+//                "0",
+//                "Dumb titre",
+//                conditionsDumb,
+//                prerogativesDumb));
 
 
         List<ConditionTitre> conditions = new ArrayList<ConditionTitre>
