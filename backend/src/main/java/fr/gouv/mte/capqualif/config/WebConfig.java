@@ -13,4 +13,3 @@
 //        registry.addViewController("/api/home").setViewName("forward:/index.html");
 //    }
 //}
-

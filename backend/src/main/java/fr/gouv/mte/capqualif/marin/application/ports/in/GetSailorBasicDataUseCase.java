@@ -2,8 +2,8 @@ package fr.gouv.mte.capqualif.marin.application.ports.in;
 
 import fr.gouv.mte.capqualif.marin.domain.Sailor;
 
-public interface GetMarinDataUseCase {
+public interface GetSailorBasicDataUseCase {
 
-    Sailor getMarinData(String id);
+    Sailor getSailorBasicData(String id);
 
 }

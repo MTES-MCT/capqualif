@@ -2,8 +2,8 @@ package fr.gouv.mte.capqualif.marin.application.ports.out;
 
 import fr.gouv.mte.capqualif.marin.domain.Sailor;
 
-public interface GetMarinDataPort {
+public interface GetSailorDataPort {
 
-    Sailor getMarinData(String sailorNumber);
+    Sailor getSailorData(String sailorNumber);
 
 }

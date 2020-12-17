@@ -1,15 +1,15 @@
-//package fr.gouv.mte.capqualif.marin.adapters.out.api.mocks;
-//
-//import fr.gouv.mte.capqualif.marin.domain.SailorEducationData;
-//import fr.gouv.mte.capqualif.marin.domain.titreMarin;
-//import org.springframework.stereotype.Component;
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.List;
-//
-//@Component
-//public class SailorEducationDataApiMock {
+package fr.gouv.mte.capqualif.marin.adapters.out.api.mocks;
+
+import fr.gouv.mte.capqualif.marin.domain.SailorEducationData;
+import fr.gouv.mte.capqualif.marin.domain.titreMarin;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+@Component
+public class SailorEducationDataApiMock {
 //    public SailorEducationData findSailorEducationDataBySailorId(String sailorId) {
 //        List<titreMarin> titlesList = new ArrayList<>();
 //        List<String> restrictions1 = new ArrayList<String>(Arrays.asList("pas de bras", "pas de chocolat"));
@@ -37,5 +37,5 @@
 //        SailorEducationData sailorEducationData = new SailorEducationData(titlesList);
 //        return sailorEducationData;
 //    }
-//
-//}
+
+}
