@@ -18,11 +18,11 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
 
         // TO DO : convert numeroDeMarin to ID_ADMINISTRE
 
-//        String request = existingDataSource + numeroDeMarin;
-//        System.out.println("Looking for " + request);
-
-        String request = existingDataSource;
+        String request = existingDataSource + numeroDeMarin;
         System.out.println("Looking for " + request);
+
+//        String request = existingDataSource;
+//        System.out.println("Looking for " + request);
 
         String res = restTemplate.getForObject(request, String.class);
 
