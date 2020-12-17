@@ -21,7 +21,6 @@ public class TimeConverter {
                 .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
                 .toFormatter();
         LocalDate localDate = LocalDate.parse(date, formatter);
-        System.out.println(localDate);
         return localDate;
     }
 
@@ -32,11 +31,7 @@ public class TimeConverter {
 
     private boolean isDateEpoch(String date) {
         int EPOCH_LENGTH = 10;
-        if (date.length() == EPOCH_LENGTH && !date.contains("/") && !date.contains("-")) return true;
-
-//        if (date.length() == EPOCH_LENGTH) {
-//            if (!date.contains("/") && !date.contains("-")) return true;
-//        }
+        if (date.length() >= EPOCH_LENGTH && !date.contains("/") && !date.contains("-")) return true;
         return false;
     }
 

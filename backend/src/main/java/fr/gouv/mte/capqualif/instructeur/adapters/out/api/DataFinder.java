@@ -27,28 +27,30 @@ public class DataFinder {
     @Autowired
     InfosToLookFor infosToLookFor;
 
-    public Map<String, String> findMatchingMarinData(String existingDataSource, String numeroDeMarin) {
+    public List<Map> findMatchingMarinData(String existingDataSource, String numeroDeMarin) {
         Map infos = infosToLookFor.whatInfosToLookFor(existingDataSource);
         JsonElement json = getMarinDataPort.getMarinData(infos.get("source").toString(), numeroDeMarin);
-        Map<String, String> allMatchingData = buildMatchingDataList(infos, json);
+        List<Map> allMatchingData = buildMatchingDataList(infos, json);
+//        Map<String, String> allMatchingData = buildMatchingDataList(infos, json);
         return allMatchingData;
     }
 
-    private Map<String, String> buildMatchingDataList(Map infos, JsonElement json) {
-        Map matchingData = new HashMap();
+    private List<Map> buildMatchingDataList(Map infos, JsonElement json) {
+        List<Map> matchingDataList = new ArrayList<>();
         if (json instanceof JsonObject) {
-            matchingData = getMatchingData(infos, (JsonObject) json, matchingData);
+            matchingDataList.add(getMatchingData(infos, (JsonObject) json));
         } else if (json instanceof JsonArray) {
             JsonArray jsonArray = (JsonArray) json;
             for (JsonElement element : jsonArray) {
-                matchingData = getMatchingData(infos, element, matchingData);
+                matchingDataList.add(getMatchingData(infos, element));
             }
         }
-        return matchingData;
+        return matchingDataList;
     }
 
     // TO DO : this works for {} structure, but what if we have {{}} ?
-    private Map getMatchingData(Map infos, JsonElement json, Map matchingData) {
+    private Map getMatchingData(Map infos, JsonElement json) {
+        Map matchingData = new HashMap();
         JsonObject jsonObject = (JsonObject) json;
         if (infos.containsKey("expirationField")) {
             String expirationField = getDataForTheField(infos, jsonObject, "expirationField");

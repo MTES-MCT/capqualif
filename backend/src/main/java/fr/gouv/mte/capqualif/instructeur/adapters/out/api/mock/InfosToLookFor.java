@@ -54,6 +54,9 @@ public class InfosToLookFor {
                 // Marin avec les bons modules
                 infos.put("source", "https://run.mocky.io/v3/ae790ede-9dce-4ca5-b967-5ed92f924348");
 
+                // Marin avec le module NP manquant
+                infos.put("source", "https://run.mocky.io/v3/4f683454-5dda-41de-8864-f0114161b2f0");
+
                 // Vraie source
 //                infos.put("source", "http://ws-amfore-capqualif-test.dsi.damgm.i2/amfore/api/v1/acquisitions/");
                 infos.put("simpleField", "libelleModuleUv");

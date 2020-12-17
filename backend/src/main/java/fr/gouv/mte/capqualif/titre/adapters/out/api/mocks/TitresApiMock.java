@@ -27,12 +27,12 @@ public class TitresApiMock {
         List<ConditionTitre> conditions = new ArrayList<ConditionTitre>
             (Arrays.asList
                 (
-//                    new ConditionTitre("age minimum","16", "minimum", "administres"),
-//                    new ConditionTitre("aptitude médicale", "Apte TF/TN", "egaliteStricte", "esculape"),
-                    new ConditionTitre("formation modulaire", "P1–Appui-Navigation", "egaliteStricte", "amfore"),
-                    new ConditionTitre("formation modulaire", "P2–Appui-Manutention/arrimage cargaison/pêche", "egaliteStricte", "amfore"),
-                    new ConditionTitre("formation modulaire", "P3–Appui-Exploitation/assist/entretien/répar", "egaliteStricte", "amfore"),
-                    new ConditionTitre("formation modulaire", "NP–Appui-Module Nation Pont", "egaliteStricte", "amfore")
+                    new ConditionTitre("age minimum","16", "minimum", "administres"),
+                    new ConditionTitre("aptitude médicale", "Apte TF/TN", "egaliteStricte", "esculape"),
+                    new ConditionTitre("formation modulaire : Module P1-Appui", "P1–Appui-Navigation", "egaliteStricte", "amfore"),
+                    new ConditionTitre("formation modulaire : Module P2-Appui", "P2–Appui-Manutention/arrimage cargaison/pêche", "egaliteStricte", "amfore"),
+                    new ConditionTitre("formation modulaire : Module P3-Appui", "P3–Appui-Exploitation/assist/entretien/répar", "egaliteStricte", "amfore"),
+                    new ConditionTitre("formation modulaire : Module NP-Appui", "NP–Appui-Module Nation Pont", "egaliteStricte", "amfore")
                 )
             );
 

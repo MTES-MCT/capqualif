@@ -5,11 +5,10 @@ import fr.gouv.mte.capqualif.utils.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -18,23 +17,30 @@ public class DataChecker {
     @Autowired
     TimeConverter timeConverter;
 
-    public boolean compareDataToCondition(Map<String, String> data, ConditionTitre condition, LocalDate date) {
+    public boolean compareDataToCondition(List<Map> dataList, ConditionTitre condition, LocalDate date) {
 
-        boolean result = false;
+        List<Boolean> results = new ArrayList<>();
 
-        switch (condition.getCommentComparer()) {
-            case "minimum":
-                Integer age = calculateYearsBetweenDateAndToday(data.get("simpleField"));
-                if (age > Integer.parseInt(condition.getValeur())) result = true;
-            case "egaliteStricte":
-                if(data.containsKey("simpleField")) {
-                    if(data.get("simpleField").equals(condition.getValeur()) && !isDataExpired(data.get("expirationField"))) result = true;
-                }
-                if(data.containsKey("nestedField")) {
-                    if(data.get("nestedField").equals(condition.getValeur()) && !isDataExpired(data.get("expirationField"))) result = true;
-                }
+        for (Map data : dataList) {
+
+            boolean singleCompareResult = false;
+
+            switch (condition.getCommentComparer()) {
+                case "minimum":
+                    Integer age = calculateYearsBetweenDateAndToday(data.get("simpleField").toString());
+                    if (age > Integer.parseInt(condition.getValeur())) singleCompareResult = true;
+                case "egaliteStricte":
+                    if(data.containsKey("simpleField")) {
+                        if(data.get("simpleField").equals(condition.getValeur()) && !isDataExpired(data.get("expirationField").toString())) singleCompareResult = true;
+                    }
+                    if(data.containsKey("nestedField")) {
+                        if(data.get("nestedField").equals(condition.getValeur()) && !isDataExpired(data.get("expirationField").toString())) singleCompareResult = true;
+                    }
+            }
+            results.add(singleCompareResult);
         }
-        return result;
+        if (results.contains(Boolean.TRUE)) return true;
+        return false;
     }
 
     private boolean isDataExpired(String expirationDate) {

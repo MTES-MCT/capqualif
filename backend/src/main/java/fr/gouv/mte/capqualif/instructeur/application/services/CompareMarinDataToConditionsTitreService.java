@@ -42,8 +42,8 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
 
         // For each condition, check if marin data are valid and save the result
         for (ConditionTitre condition : conditions) {
-            Map<String, String> data = dataFinder.findMatchingMarinData(condition.getExistingDataSource(), numeroDeMarin);
-            boolean result = dataChecker.compareDataToCondition(data, condition, LocalDate.now());
+            List<Map> allMatchingData = dataFinder.findMatchingMarinData(condition.getExistingDataSource(), numeroDeMarin);
+            boolean result = dataChecker.compareDataToCondition(allMatchingData, condition, LocalDate.now());
             CompareResult compareResult = new CompareResult(condition.getLibelle(), result);
             compareResults.add(compareResult);
         }
