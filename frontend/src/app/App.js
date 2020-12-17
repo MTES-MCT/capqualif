@@ -15,7 +15,6 @@ import {
 
 import './App.scss';
 
-
 import Sign from '../components/pages/sign/Sign';
 import Dashboard from '../components/pages/dashboard/Dashboard';
 import NewTitleChoice from '../components/pages/new-title-application/new-title-choice/NewTitleChoice';
@@ -30,8 +29,7 @@ class App extends Component {
       // TO DO : create a routes component as soon as more routes add up
       <Provider store={store}>
         <Router>
-        
-          <section class='page-container'>
+          <section class="page-container">
             <Switch>
               <Route exact path={HOME_PATH} component={Sign} />
               <Route exact path={DASHBOARD_PATH} component={Dashboard} />

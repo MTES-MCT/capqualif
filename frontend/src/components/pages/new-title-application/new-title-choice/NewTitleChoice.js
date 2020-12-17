@@ -24,17 +24,20 @@ const NewTitleChoice = () => {
   const userSailorNumber = user.sailorNumber;
 
   return (
-
     <div id="new-title-choice" className="page">
-      <Header serviceName={'CapQualif'} adminName={'Direction des affaires maritimes'} username={username} userSailorNumber={userSailorNumber}/>
+      <Header
+        serviceName={'CapQualif'}
+        adminName={'Direction des affaires maritimes'}
+        username={username}
+        userSailorNumber={userSailorNumber}
+      />
 
-    <header class="rf-header cq-subheader no-shadow">
-      <div class="rf-container cq-breadcrumb">
-        <a class="cq-simple-link">Retour à l'accueil</a>
-        
-      </div>
-    </header>
-    
+      <header class="rf-header cq-subheader no-shadow">
+        <div class="rf-container cq-breadcrumb">
+          <a class="cq-simple-link">Retour à l'accueil</a>
+        </div>
+      </header>
+
       <SectionHead
         title="Demande d'un nouveau titre"
         subtitle="Choisissez le titre"
