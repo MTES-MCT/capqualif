@@ -15,7 +15,3 @@ Pré-requis : pour faire tourner l'application sur votre ordinateur, vous devez 
 8) Tapez `npm install` : cette commande permet de télécharger sur son ordinateur toutes les dépendances nécessaires pour faire marcher le frontend de l'application
 9) Tapez `npm start` pour faire démarrer le frontend
 10) Dans un navigateur web, tapez `http://localhost:3000` : l'application devrait s'afficher. Si c'est le cas, bravo !
-
-
-----
-C'est parti pour le dev front !
