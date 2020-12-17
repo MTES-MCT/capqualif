@@ -94,19 +94,75 @@ const Dashboard = () => {
             <div class="cq-section__title">
                 <div class="cq-section__overtitle">Mes</div>
                 <h2>demandes en cours</h2>
-              </div>
+            </div>
 
-              <div id="applications-in-progress" >
+            <br />
+
+
+            <div class="cq-section__title">
+                <div class="cq-section__overtitle">Mes titres pour exercer des</div>
+                <h2>fonction principales</h2>
+            </div>
+
+
+            
+
+                <div class="cq-admin-item cq-admin-item-9 cq-title cq-admin-item--default">
+                  <div class="cq-admin-item__header">
+
+                    <div class="cq-admin-item__name-container">
+                      <div class="cq-admin-item__main-attributes">
+                        Appui &#8226; Monovalence pont
+                      </div>
+                      <div class="cq-admin-item__name">
+                        Certificat de matelot pont
+                      </div>
+                    </div>
+                    <div class="cq-admin-item__right-header">
+
+                      <div class="cq-admin-item__timeline">
+                        <div class="start-date">18.09.2020</div>
+                        <div class="timeline-graphic">
+                          <div class="line"></div>
+                          <div class="cursor"></div>
+                        </div>
+                        <div class="end-date">18.09.2025</div>
+                      </div>
+
+                      <div class="cq-admin-item__status cq-admin-item__status--valid">
+                        Valide
+                      </div>
+                      
+                      <div class="cq-admin-item__document-links">
+                        <div class="cq-admin-item__document--title">
+                          <span class="rf-fi-file-line"></span>
+                        </div>
+                      </div>
+
+                      <div class="cq-admin-item__extend">
+                        <span class="rf-fi-arrow-down-s-line"></span>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="cq-admin-item__content">
+                  </div>
+
+                </div>
+
+
+
+
+
+
                 <ul className="card">
                   <li>CFBS : dossier en traitement ⏳</li>
                   <li>Premiers secours : dossier à compléter 🖊️</li>
                 </ul>
-              </div>
+             
 
-              <div class="cq-section__title">
-                <div class="cq-section__overtitle">Mes titres pour exercer des</div>
-                <h2>fonction principales</h2>
-              </div>
+              
 
               <div id="main-title">  
                 <div className="card">Matelot Pont</div>

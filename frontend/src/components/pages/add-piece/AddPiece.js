@@ -19,21 +19,12 @@ const AddPiece = () => {
       nextPageLink: '',
     },
   ];
-  const user = store.getState().sailors.sailorBasicData.sailorCivilData;
-    const username = user.firstName + ' ' + user.lastName;
-    const userSailorNumber = user.sailorNumber;
-  
+    
 
   return (
     
-    <div id="demander-un-titre" className="page">
-      <Header serviceName={'CapQualif'} adminName={'Direction des affaires maritimes'} username={username} userSailorNumber={userSailorNumber}/>
-      
-
-      <header class="rf-header no-shadow">
-        <div class="rf-container">
-        </div>
-      </header>
+    <div id="ajouter-piece" className="page">
+     
 
       <SectionHead
         title={currentTitle.titleName}
