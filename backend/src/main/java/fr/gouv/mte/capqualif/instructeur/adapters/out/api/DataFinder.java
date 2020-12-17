@@ -2,8 +2,9 @@ package fr.gouv.mte.capqualif.instructeur.adapters.out.api;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
-import fr.gouv.mte.capqualif.instructeur.adapters.out.api.mock.DataMapper;
+import fr.gouv.mte.capqualif.instructeur.adapters.out.api.mock.InfosToLookFor;
 import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.utils.LocalJsonGetter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +25,20 @@ public class DataFinder {
     GetMarinDataPort getMarinDataPort;
 
     @Autowired
-    DataMapper dataMapper;
+    InfosToLookFor infosToLookFor;
 
     public Map<String, String> findMatchingMarinData(String existingDataSource, String numeroDeMarin) {
-        Map infos = dataMapper.whatInfosToLookFor(existingDataSource);
+        Map infos = infosToLookFor.whatInfosToLookFor(existingDataSource);
         JsonElement json = getMarinDataPort.getMarinData(infos.get("source").toString(), numeroDeMarin);
         Map<String, String> allMatchingData = buildMatchingDataList(infos, json);
-//        ArrayList allMatchingData = buildMatchingDataList(infos, json);
         return allMatchingData;
     }
 
     private Map<String, String> buildMatchingDataList(Map infos, JsonElement json) {
-        Map<String, String> matchingData = new HashMap();
-        if (json !=null && json instanceof JsonObject) {
+        Map matchingData = new HashMap();
+        if (json instanceof JsonObject) {
             matchingData = getMatchingData(infos, (JsonObject) json, matchingData);
-        } else if (json !=null && json instanceof JsonArray) {
+        } else if (json instanceof JsonArray) {
             JsonArray jsonArray = (JsonArray) json;
             for (JsonElement element : jsonArray) {
                 matchingData = getMatchingData(infos, element, matchingData);
@@ -68,6 +68,10 @@ public class DataFinder {
     }
 
     private String getDataForTheField(Map infos, JsonObject jsonObject, String dataField) {
-        return jsonObject.get(infos.get(dataField).toString()).getAsString();
+        JsonElement jsonElement = jsonObject.get(infos.get(dataField).toString());
+        if (jsonElement instanceof JsonNull) {
+            return "null";
+        }
+        return jsonElement.getAsString();
     }
 }
