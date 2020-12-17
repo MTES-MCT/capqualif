@@ -53,15 +53,6 @@ section.page-container {
 }
 
 
-
-
-
-
-h1 {
-  font-size:$title;
-  margin-bottom:.6em;
-}
-
 strong {
   font-weight:$bold;
 }
@@ -71,3 +62,93 @@ i {
 p {
   margin-bottom:.6em;
 }
+
+h1 {
+  font-size:$sizeH1;
+  margin:4px;
+}
+
+h2 {
+  font-size:$sizeH2
+}
+
+h3 {
+  font-size:$sizeH3;
+}
+
+h4{
+  font-size:$normal;
+  font-weight:$regular;
+  margin:4px;
+}
+
+
+
+//HEADER
+.page{
+  width:100vw;
+}
+
+//override capqualif > gouvfr
+.rf-header{
+  width:100vw;
+  position:relative;
+  left:0;
+  
+  box-shadow: 0 .5rem .5rem 0 rgba(0, 0, 0, 0.03);
+
+
+  .rf-header__tools {
+    width:300px;
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-end;
+    align-items: center;
+    position:relative;
+    color:$marianne-blue;
+    .cq-user {
+      margin-right:10px;
+      display:block;
+      .cq-user__name{
+        font-weight:$bold;
+      }
+      .cq-user__sailor-number{
+        .label{
+          color:$g500;
+          margin-right:6px;
+        }
+      }
+    }
+    .cq-user__picture{
+      display:block;
+      width:30px;
+      height:30px;
+      border-radius:15px;
+      //background-color:#EEE;
+      border:1px solid $marianne-blue;
+      margin-left:10px;
+    }
+    
+  }
+}
+
+//SUB-HEADER
+.sub-header{
+  height:60px;
+}
+
+// NAV
+.rf-header.no-shadow{
+  box-shadow: 0 .5rem .5rem 0 rgba(0, 0, 0, 0);
+}
+cq.rf-nav {
+  color:$marianne-blue;
+
+  a{
+    color:$marianne-blue;
+  }
+}
+
+
+
+

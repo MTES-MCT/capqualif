@@ -36,7 +36,7 @@ const Sign = ({ history }) => {
       <div class="sign-in__container">
         <div class="sign-in__header">
           <div class="logo_gouvfr">
-             < HeaderBrand />
+             < HeaderBrand administrationLabel1={'Ministère'} administrationLabel2={'de la mer'}/>
           </div>
         </div>
         <div class="sign-in__title">
