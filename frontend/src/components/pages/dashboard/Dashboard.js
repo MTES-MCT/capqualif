@@ -8,6 +8,7 @@ import sailorPicMock from '../../../resources/img/mocks/sailor.png';
 import menuPicMock from '../../../resources/img/mocks/menu.png';
 import TitleCard from '../../elements/cards/title-card/TitleCard';
 import Header from '../../elements/header/Header';
+import CQItem from '../../elements/cq-item/CQItem';
 
 const Dashboard = () => {
   const user = store.getState().sailors.sailorBasicData.sailorCivilData;
@@ -101,12 +102,21 @@ const Dashboard = () => {
           </div>
           <div class="rf-col-9 cq-right-col-9">
             <div class="cq-main-content">
+
               <div class="cq-section__title">
                 <div class="cq-section__overtitle">Mes</div>
                 <h2>demandes en cours</h2>
               </div>
 
-              <br />
+              <CQItem 
+              level={""} 
+              type={"Sécurité"} 
+              itemName={"Certificat de formation de base à la sécurité"}
+              timeline={false}
+              startDate={""}
+              endDate={""}
+              status={"En cours de traitement"} 
+              />
 
               <div class="cq-section__title">
                 <div class="cq-section__overtitle">
@@ -115,53 +125,15 @@ const Dashboard = () => {
                 <h2>fonction principales</h2>
               </div>
 
-              <div class="cq-admin-item cq-admin-item-9 cq-title cq-admin-item--default">
-                <div class="cq-admin-item__header">
-                  <div class="cq-admin-item__name-container">
-                    <div class="cq-admin-item__main-attributes">
-                      Appui &#8226; Monovalence pont
-                    </div>
-                    <div class="cq-admin-item__name">
-                      Certificat de matelot pont
-                    </div>
-                  </div>
-                  <div class="cq-admin-item__right-header">
-                    <div class="cq-admin-item__timeline">
-                      <div class="start-date">18.09.2020</div>
-                      <div class="timeline-graphic">
-                        <div class="line"></div>
-                        <div class="cursor"></div>
-                      </div>
-                      <div class="end-date">18.09.2025</div>
-                    </div>
-
-                    <div class="cq-admin-item__status cq-admin-item__status--valid">
-                      Valide
-                    </div>
-
-                    <div class="cq-admin-item__document-links">
-                      <div class="cq-admin-item__document--title">
-                        <span class="rf-fi-file-line"></span>
-                      </div>
-                    </div>
-
-                    <div class="cq-admin-item__extend">
-                      <span class="rf-fi-arrow-down-s-line"></span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="cq-admin-item__content"></div>
-              </div>
-
-              <ul className="card">
-                <li>CFBS : dossier en traitement ⏳</li>
-                <li>Premiers secours : dossier à compléter 🖊️</li>
-              </ul>
-
-              <div id="main-title">
-                <div className="card">Matelot Pont</div>
-              </div>
+              <CQItem 
+              level={"Appui"} 
+              type={"Monovalence pont"} 
+              itemName={"Certificat de matelot pont"}
+              timeline={true}
+              startDate={"18.09.2020"}
+              endDate={"18.09.2025"}
+              status={"Valide"} 
+              />
 
               <div class="cq-section__title">
                 <div class="cq-section__overtitle">
@@ -169,6 +141,25 @@ const Dashboard = () => {
                 </div>
                 <h2>fonction particulières</h2>
               </div>
+
+              <CQItem 
+              level={""} 
+              type={"Médicale"} 
+              itemName={"Enseignement médical de niveau 1"}
+              timeline={true}
+              startDate={"21.06.2018"}
+              endDate={"20.06.2023"}
+              status={"Valide"} 
+              />
+              <CQItem 
+              level={""} 
+              type={"Radio-télécomunication"} 
+              itemName={"Certificat général d'opérateur"}
+              timeline={true}
+              startDate={"12.03.2019"}
+              endDate={"11.03.2024"}
+              status={"Valide"} 
+              />
 
               <div id="other-titles-container">
                 {store
