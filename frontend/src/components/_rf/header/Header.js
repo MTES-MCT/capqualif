@@ -1,7 +1,8 @@
 import React from 'react';
 import HeaderBrand from '../header-brand/HeaderBrand';
 
-const Header = ({serviceName,adminName,username,userSailorNumber}) => {
+const Header = ({serviceName,adminName,username,sailorNumber}) => {
+
   return (
     <header className="rf-header">
       <div className="rf-container rf-container__header">
@@ -26,7 +27,7 @@ const Header = ({serviceName,adminName,username,userSailorNumber}) => {
 
               <div class='cq-user__name'>{username}</div>
               <div class="cq-user__sailor-number">
-                <span class="label">identifiant :</span><span class="nb">{userSailorNumber}</span>
+                <span class="label">identifiant :</span><span class="nb">{sailorNumber}</span>
               </div>
 
             </div>  

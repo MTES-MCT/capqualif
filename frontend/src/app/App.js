@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route,withRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 
@@ -22,13 +22,28 @@ import TitleDetails from '../components/pages/new-title-application/title-detail
 import ApplicationRecap from '../components/pages/new-title-application/application-recap/ApplicationRecap';
 import Error from '../components/pages/error/Error';
 import AddPiece from '../components/pages/add-piece/AddPiece';
+import Header from '../components/_rf/header/Header';
+
 
 class App extends Component {
   render() {
+    const getLoginInformation = () => {
+      const user = store.getState().sailors.sailorBasicData.sailorCivilData;
+      return user ? {
+        username: user.firstName + ' ' + user.lastName,
+        userSailorNumber: user.sailorNumber
+      } : null   
+    }
     return (
       // TO DO : create a routes component as soon as more routes add up
       <Provider store={store}>
         <Router>
+        { this.props.location.pathname!=='/connection' ? <Header
+              serviceName={'CapQualif'}
+              adminName={'Direction des affaires maritimes'}
+              username={getLoginInformation() ? getLoginInformation().username: ""}
+              sailorNumber={getLoginInformation() ? getLoginInformation().userSailorNumber: ""}
+      />:null}
           <section class="page-container">
             <Switch>
               <Route exact path={HOME_PATH} component={Sign} />
@@ -55,4 +70,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

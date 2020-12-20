@@ -6,29 +6,26 @@ import './Dashboard.scss';
 
 import sailorPicMock from '../../../resources/img/mocks/sailor.png';
 import menuPicMock from '../../../resources/img/mocks/menu.png';
-import TitleCard from '../../elements/cards/title-card/TitleCard';
-import Header from '../../elements/header/Header';
-import CQItem from '../../elements/cq-item/CQItem';
+import TitleCard from '../../_cq/title-card/TitleCard';
+import Header from '../../_rf/header/Header';
+import CQItem from '../../_cq/cq-item/CQItem';
+import { NEW_TITLE_APPLICATION_CHOICE_PATH } from '../../../app/pathes';
 
 const Dashboard = () => {
-  const user = store.getState().sailors.sailorBasicData.sailorCivilData;
-  const username = user.firstName + ' ' + user.lastName;
-  const userSailorNumber = user.sailorNumber;
-  console.log(user);
+  const getLoginInformation = () => {
+    const user = store.getState().sailors.sailorBasicData.sailorCivilData;
+    return user;  
+  }
+
 
   return (
     <div id="accueil" className="page">
-      <Header
-        serviceName={'CapQualif'}
-        adminName={'Direction des affaires maritimes'}
-        username={username}
-        userSailorNumber={userSailorNumber}
-      />
+      
 
       <div className="cq-section-header rf-container">
         <div class="cq-content-left">
           <div class="cq-welcome">
-            <h1>Bonjour {user.firstName}</h1>
+            <h1>Bonjour {getLoginInformation() ? getLoginInformation().firstName:""}</h1>
 
             <h4>
               Bienvenue sur <strong>CapQualif !</strong>
@@ -37,7 +34,7 @@ const Dashboard = () => {
         </div>
 
         <div class="cq-content-right">
-          <Link to="/new-title-application/choice" id="ask-for-a-title">
+          <Link to={NEW_TITLE_APPLICATION_CHOICE_PATH} id="ask-for-a-title">
             <button class="rf-btn cq-upper" title="Demander un titre">
               Demander un titre
             </button>

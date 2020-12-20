@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import store from '../../../redux/store';
+import './CQItem.scss';
 
 
 const CQItem = ({level,type,itemName,timeline,startDate,endDate,status}) => {
@@ -10,7 +9,6 @@ const CQItem = ({level,type,itemName,timeline,startDate,endDate,status}) => {
         if(!level || level === ""){
             return (type);
         } else {
-            console.log("hello");
             return (level+" • "+type);
         }
     }
@@ -26,12 +24,12 @@ const CQItem = ({level,type,itemName,timeline,startDate,endDate,status}) => {
                     </div>
                     <div class="end-date">{endDate}</div>
                 </div>
-            );
-
+            );                                                                             
+                      
         } else {
             return ('');
         }      
-    }
+    } 
     return (
         <div class="cq-item cq-title cq-item--default">
         <div class="cq-item__header">
@@ -53,19 +51,21 @@ const CQItem = ({level,type,itemName,timeline,startDate,endDate,status}) => {
             </div>
             
             <div class="cq-item__document-links">
-            <div class="cq-item__document--title">
-                <span class="rf-fi-file-line"></span>
+            <div class="cq-item__document-item">
+                <span class="rf-fi-file-line rf-fi--lg"></span>
             </div>
             </div>
 
             <div class="cq-item__extend">
-            <span class="rf-fi-arrow-down-s-line"></span>
+            <span class="rf-fi-arrow-down-s-line rf-fi--lg"></span>
+
             </div>
 
         </div>
         </div>
 
         <div class="cq-item__content">
+            {/* TODO */}
         </div>
 
     </div>
