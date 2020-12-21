@@ -36,40 +36,38 @@ const Sign = ({ history }) => {
       <div class="sign-in__container">
         <div class="sign-in__header">
           <div class="logo_gouvfr">
-             < HeaderBrand administrationLabel1={'Ministère'} administrationLabel2={'de la mer'}/>
+            <HeaderBrand
+              administrationLabel1={'Ministère'}
+              administrationLabel2={'de la mer'}
+            />
           </div>
         </div>
-        <div class="sign-in__title">
-          CapQualif
-        </div>
+        <div class="sign-in__title">CapQualif</div>
         <div class="sign-in__welcome">
           <div class="welcome">
-          Bienvenu sur CapQualif, notre nouvel espace pour faire vos demandes de titre.
+            Bienvenue sur CapQualif, notre nouvel espace pour faire vos demandes
+            de titres.
           </div>
-       
         </div>
         <div class="sign-in__form">
-        <form onSubmit={(event) => handleSubmit(event)}>
-         
-            <label class="rf-label" for="text-input-text">Numéro d'identification</label>
-            <input 
-              class="rf-input" 
+          <form onSubmit={(event) => handleSubmit(event)}>
+            <label class="rf-label" for="text-input-text">
+              Numéro d'identification
+            </label>
+            <input
+              class="rf-input"
               type="text"
               name="sailor-id"
               placeholder="Exemple : 19780030"
-              onChange={(event) => handleChange(event)} 
+              onChange={(event) => handleChange(event)}
             />
-           
+
             <button type="submit" class="rf-btn" title="Se connecter">
               Se connecter
             </button>
-       
-        </form>
-        </div>   
+          </form>
+        </div>
       </div>
-    
-   
-     
     </div>
   );
 };

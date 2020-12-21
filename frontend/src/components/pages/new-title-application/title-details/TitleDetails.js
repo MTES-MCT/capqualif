@@ -28,7 +28,7 @@ const TitleDetails = () => {
   return (
     <div id="title-details">
       <SectionHead
-        title={currentTitle.titleName}
+        title={currentTitle.libelle}
         subtitle="Demande d'un nouveau titre"
       />
       <div>

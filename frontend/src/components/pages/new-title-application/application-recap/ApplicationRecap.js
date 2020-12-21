@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './ApplicationRecap.scss';
 
 import { ADD_PIECE_PATH } from '../../../../app/pathes';
 
+import { getConditions } from '../../../../redux/features/conditions/conditionsSlice';
+
 import SectionHead from '../../../elements/section/section-head/SectionHead';
 import SectionFooter from '../../../elements/section/section-footer/SectionFooter';
 
 const ApplicationRecap = () => {
+  const dispatch = useDispatch();
   const currentTitle = useSelector((state) => state.titles.currentTitle);
+  const marin = useSelector((state) => state.titles.currentTitle);
+
+  useEffect(() => {
+    dispatch(getConditions('1'));
+  }, []);
 
   const possibleActions = [
     {
@@ -25,12 +33,9 @@ const ApplicationRecap = () => {
 
   return (
     <div>
-      <SectionHead
-        title={currentTitle.titleName}
-        subtitle="Demande d'un nouveau titre"
-      />
+      <SectionHead title={currentTitle.libelle} subtitle="Récapitulatif" />
       <div>
-        Il manque CETTE PIECE <Link to={ADD_PIECE_PATH}>Ajouter</Link>
+        {/* Il manque CETTE PIECE <Link to={ADD_PIECE_PATH}>Ajouter</Link> */}
       </div>
       <SectionFooter possibleActions={possibleActions} />
     </div>
