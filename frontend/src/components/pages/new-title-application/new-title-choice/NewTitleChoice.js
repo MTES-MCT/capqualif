@@ -6,9 +6,10 @@ import store from '../../../../redux/store';
 import { getAllTitles } from '../../../../redux/features/titlesCatalog/titlesSlice';
 
 import './NewTitleChoice.scss';
-import SectionHead from '../../../elements/section/section-head/SectionHead';
-import TitleCard from '../../../elements/cards/title-card/TitleCard';
-import Header from '../../../elements/header/Header';
+import SectionHead from '../../../_cq/section/section-head/SectionHead';
+import TitleCard from '../../../_cq/title-card/TitleCard';
+import Header from '../../../_rf/header/Header';
+import { NEW_TITLE_APPLICATION_DETAILS_PATH } from '../../../../app/pathes';
 
 const NewTitleChoice = () => {
   const dispatch = useDispatch();
@@ -25,12 +26,6 @@ const NewTitleChoice = () => {
 
   return (
     <div id="new-title-choice" className="page">
-      <Header
-        serviceName={'CapQualif'}
-        adminName={'Direction des affaires maritimes'}
-        username={username}
-        userSailorNumber={userSailorNumber}
-      />
 
       <header class="rf-header cq-subheader no-shadow">
         <div class="rf-container cq-breadcrumb">
@@ -45,7 +40,7 @@ const NewTitleChoice = () => {
       <div>
         <h3>Titres recommandés pour vous</h3>
         {allTitles.map((title) => (
-          <Link to={`/new-title-application/details/`}>
+          <Link to={NEW_TITLE_APPLICATION_DETAILS_PATH}>
             <TitleCard key={title.id} title={title} titleType="fromCatalog" />
           </Link>
         ))}
@@ -54,7 +49,7 @@ const NewTitleChoice = () => {
         <h3>Tous les titres</h3>
         <input type="text"></input>
         {allTitles.map((title) => (
-          <Link to={`/new-title-application/details/`}>
+          <Link to={NEW_TITLE_APPLICATION_DETAILS_PATH}>
             <TitleCard key={title.id} title={title} titleType="fromCatalog" />
           </Link>
         ))}

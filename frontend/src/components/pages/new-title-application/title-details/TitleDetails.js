@@ -7,8 +7,8 @@ import './TitleDetails.scss';
 
 import { NEW_TITLE_APPLICATION_RECAP_PATH } from '../../../../app/pathes';
 
-import SectionHead from '../../../elements/section/section-head/SectionHead';
-import SectionFooter from '../../../elements/section/section-footer/SectionFooter';
+import SectionHead from '../../../_cq/section/section-head/SectionHead';
+import SectionFooter from '../../../_cq/section/section-footer/SectionFooter';
 
 const TitleDetails = () => {
   const dispatch = useDispatch();

@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './ApplicationRecap.scss';
 
-import { ADD_PIECE_PATH } from '../../../../app/pathes';
+import { ADD_PIECE_PATH, DASHBOARD_PATH } from '../../../../app/pathes';
 
 import { getConditions } from '../../../../redux/features/conditions/conditionsSlice';
 
-import SectionHead from '../../../elements/section/section-head/SectionHead';
-import SectionFooter from '../../../elements/section/section-footer/SectionFooter';
+import SectionHead from '../../../_cq/section/section-head/SectionHead';
+import SectionFooter from '../../../_cq/section/section-footer/SectionFooter';
 
 const ApplicationRecap = () => {
   const dispatch = useDispatch();
@@ -23,11 +23,11 @@ const ApplicationRecap = () => {
   const possibleActions = [
     {
       label: 'Enregistrer le dossier',
-      nextPageLink: '',
+      nextPageLink: DASHBOARD_PATH,
     },
     {
       label: 'Continuer',
-      nextPageLink: '',
+      nextPageLink: DASHBOARD_PATH,
     },
   ];
 

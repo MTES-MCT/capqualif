@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { DASHBOARD_PATH } from '../../../app/pathes';
 
-import HeaderBrand from '../../elements/header-brand/HeaderBrand';
+
+import HeaderBrand from '../../_rf/header-brand/HeaderBrand';
 
 import { getSailorBasicData } from '../../../redux/features/sailorData/sailorsSlice';
 
@@ -19,7 +21,7 @@ const Sign = ({ history }) => {
       .then(unwrapResult)
       .then((originalPromiseResult) => {
         console.log(originalPromiseResult);
-        history.push('/dashboard');
+        history.push(DASHBOARD_PATH);
       })
       .catch((serializedError) => {
         console.log(serializedError);

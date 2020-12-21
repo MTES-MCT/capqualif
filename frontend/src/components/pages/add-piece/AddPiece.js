@@ -2,9 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import store from '../../../redux/store';
 
-import SectionHead from '../../elements/section/section-head/SectionHead';
-import SectionFooter from '../../elements/section/section-footer/SectionFooter';
-import Header from '../../elements/header/Header';
+import SectionHead from '../../_cq/section/section-head/SectionHead';
+import SectionFooter from '../../_cq/section/section-footer/SectionFooter';
+import Header from '../../_rf/header/Header';
 
 const AddPiece = () => {
   const currentTitle = useSelector((state) => state.titles.currentTitle);
