@@ -34,23 +34,37 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     @Override
     public List<CompareResult> compareMarinDataToConditionsTitre(String titreId, String numeroDeMarin) {
 
+        List<ConditionTitre> conditions = getConditionTitres(titreId);
+
         List<CompareResult> compareResults = new ArrayList<CompareResult>();
 
-        // Retrieve titre to know what conditions to check
-        Titre titre = getTitlePort.getTitle(titreId);
-        List<ConditionTitre> conditions = titre.getConditions();
-
-        // For each condition, check if marin data are valid and save the result
         for (ConditionTitre condition : conditions) {
-            // find the json with the matching main key (identifier)
+
+            // find the json with the matching main key (identifier) at any level
+            //      load all marin data json from api
+            //      find matching portion of the json
+            //      return the complete set of data from the matching portion
+
+//            List<Map> allMatchingData = getMarinDataPort.getMarinData(condition.getExistingDataSource(), numeroDeMarin);
+
+
             // get additional validity values for this object
-            // check additional validity values
-            List<Map> allMatchingData = dataFinder.findMatchingMarinData(condition.getExistingDataSource(), numeroDeMarin);
-            boolean result = dataChecker.compareDataToCondition(allMatchingData, condition, LocalDate.now());
-            CompareResult compareResult = new CompareResult(condition.getLibelle(), result);
-            compareResults.add(compareResult);
+            //      take the set of data
+            //      check all data (minus the main key?) validity values
+
+//            List<Map> allMatchingData = dataFinder.findMatchingMarinData(condition.getExistingDataSource(), numeroDeMarin);
+//            boolean result = dataChecker.compareDataToCondition(allMatchingData, condition, LocalDate.now());
+//            CompareResult compareResult = new CompareResult(condition.getLibelle(), result);
+//            compareResults.add(compareResult);
         }
         return compareResults;
     }
+
+    private List<ConditionTitre> getConditionTitres(String titreId) {
+        Titre titre = getTitlePort.getTitle(titreId);
+        List<ConditionTitre> conditions = titre.getConditions();
+        return conditions;
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package fr.gouv.mte.capqualif.instructeur.adapters.in.web;
 
+import fr.gouv.mte.capqualif.instructeur.adapters.out.api.GetMarinDataAdapter;
 import fr.gouv.mte.capqualif.instructeur.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.instructeur.domain.CompareResult;
 import fr.gouv.mte.capqualif.utils.TimeConverter;
@@ -18,12 +19,17 @@ public class CompareMarinDataToConditionsTitreController {
     CompareMarinDataToConditionsTitreUseCase compareMarinDataToConditionsTitreUseCase;
 
     @Autowired
-    TimeConverter timeConverter;
+    GetMarinDataAdapter getMarinDataAdapter;
 
     @GetMapping("/{titreId}/{numeroDeMarin}")
     public List<CompareResult> compareSailorDataToTitleConditions(
             @PathVariable("titreId") String titreId,
             @PathVariable("numeroDeMarin") String numeroDeMarin) {
         return compareMarinDataToConditionsTitreUseCase.compareMarinDataToConditionsTitre(titreId, numeroDeMarin);
+    }
+
+    @GetMapping("/test")
+    public void test() {
+        getMarinDataAdapter.dumb();
     }
 }

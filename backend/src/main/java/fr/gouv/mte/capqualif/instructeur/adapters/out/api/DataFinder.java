@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
-import fr.gouv.mte.capqualif.instructeur.adapters.out.api.mock.InfosToLookFor;
+import fr.gouv.mte.capqualif.legislateur.mock.InfosToLookFor;
 import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.utils.LocalJsonGetter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +29,17 @@ public class DataFinder {
 
     public List<Map> findMatchingMarinData(String existingDataSource, String numeroDeMarin) {
         Map infos = infosToLookFor.whatInfosToLookFor(existingDataSource);
-        JsonElement json = getMarinDataPort.getMarinData(infos.get("source").toString(), numeroDeMarin);
-        List<Map> allMatchingData = buildMatchingDataList(infos, json);
-//        Map<String, String> allMatchingData = buildMatchingDataList(infos, json);
-        return allMatchingData;
+        JsonElement json = getMarinDataPort.getMarinData(infos, numeroDeMarin);
+//        JsonElement json = getMarinDataPort.getMarinData(infos.get("source").toString(), numeroDeMarin);
+//        List<Map> allMatchingData = buildMatchingDataList(infos, json);
+//        return allMatchingData;
+        return null;
     }
 
     private List<Map> buildMatchingDataList(Map infos, JsonElement json) {
         List<Map> matchingDataList = new ArrayList<>();
         if (json instanceof JsonObject) {
-            matchingDataList.add(getMatchingData(infos, (JsonObject) json));
+            matchingDataList.add(getMatchingData(infos, json));
         } else if (json instanceof JsonArray) {
             JsonArray jsonArray = (JsonArray) json;
             for (JsonElement element : jsonArray) {

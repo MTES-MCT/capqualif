@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.instructeur.adapters.out.api.mock;
+package fr.gouv.mte.capqualif.legislateur.mock;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -57,6 +57,9 @@ public class InfosToLookFor {
                 infos.put("simpleField", "libelleModuleUv");
                 infos.put("expirationField", "dateFinValidite");
                 return infos;
+            case("item"):
+                infos.put("source", "http://ws-amfore-capqualif-test.dsi.damgm.i2/amfore/api/v1/acquisitions/");
+                infos.put("mainValue", "Certificat de formation de base à la sécurité (STCW10)");
         }
         return null;
     }
