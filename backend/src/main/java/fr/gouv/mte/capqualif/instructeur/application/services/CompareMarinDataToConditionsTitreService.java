@@ -42,6 +42,9 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
 
         // For each condition, check if marin data are valid and save the result
         for (ConditionTitre condition : conditions) {
+            // find the json with the matching main key (identifier)
+            // get additional validity values for this object
+            // check additional validity values
             List<Map> allMatchingData = dataFinder.findMatchingMarinData(condition.getExistingDataSource(), numeroDeMarin);
             boolean result = dataChecker.compareDataToCondition(allMatchingData, condition, LocalDate.now());
             CompareResult compareResult = new CompareResult(condition.getLibelle(), result);

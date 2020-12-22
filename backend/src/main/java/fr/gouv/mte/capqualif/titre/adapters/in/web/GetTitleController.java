@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/titles")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class GetTitleController {
 
     @Autowired

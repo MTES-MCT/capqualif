@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/titles")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class GetAllTitlesController {
 
     @Autowired
