@@ -12,28 +12,27 @@ import java.util.Map;
 @Component
 public class JsonExtractor {
 
-    public List<JsonObject> findMatchingJsonObjects(JsonElement jsonElement, String mainWantedKey, String mainWantedValue) {
-        List<JsonObject> matchingJsonObjects = new ArrayList<JsonObject>();
+    public JsonObject findMatchingJson(JsonElement jsonElement, String mainWantedKey, String mainWantedValue) {
         if (jsonElement instanceof JsonArray) {
             JsonArray jsonArray = (JsonArray) jsonElement;
             for (JsonElement element : jsonArray) {
                 if (element instanceof JsonObject) {
-                    if (findMatchingJsonObject((JsonObject) element, mainWantedKey, mainWantedValue) != null) {
-                        matchingJsonObjects.add(findMatchingJsonObject((JsonObject) element, mainWantedKey, mainWantedValue));
+                    if(findMatchingJsonObject((JsonObject) element, mainWantedKey, mainWantedValue) != null) {
+                        return findMatchingJsonObject((JsonObject) element, mainWantedKey, mainWantedValue);
                     }
                 }
             }
         } else if (jsonElement instanceof JsonObject) {
-            matchingJsonObjects.add(findMatchingJsonObject((JsonObject) jsonElement, mainWantedKey, mainWantedValue));
+            return findMatchingJsonObject((JsonObject) jsonElement, mainWantedKey, mainWantedValue);
         }
-        return matchingJsonObjects;
+        return null;
     }
 
     private JsonObject findMatchingJsonObject(JsonObject jsonObject, String wantedKey, String wantedValue) {
         if (jsonObject.has(wantedKey)) {
             if (hasWantedValue(jsonObject, wantedKey, wantedValue)) {
-//                System.out.println("********* Wanted element *********");
-//                System.out.println(jsonObject);
+                System.out.println("********* Wanted element *********");
+                System.out.println(jsonObject);
                 return jsonObject;
             }
         } else {
@@ -61,10 +60,10 @@ public class JsonExtractor {
     }
 
 
-    public List<Map<String, String>> getAllWantedData() {
-
-      return null;
-    };
+//    public List<Map<String, String>> getAllWantedData(Json ) {
+//
+//      return null;
+//    };
 
 
     private boolean hasWantedValue(JsonObject jsonObject, String wantedKey, String wantedValue) {

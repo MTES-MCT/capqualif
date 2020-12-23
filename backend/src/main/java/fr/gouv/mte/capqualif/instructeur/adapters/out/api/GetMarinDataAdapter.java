@@ -32,13 +32,13 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
     }
 
     public void dumb() {
-        JsonElement json = getJson("123", "https://run.mocky.io/v3/6cb166af-401d-4358-ad28-f71ffc4d448c");
-        List<JsonObject> list = jsonExtractor.findMatchingJsonObjects(json, "libelle", "Certificat de formation de base à la sécurité (STCW10)");
-        for (JsonObject jsonObject : list) {
-            jsonExtractor.getAllWantedData();
-        }
-        System.out.println("*********** Final list is ****************");
-        System.out.println(list);
+        JsonElement initialJson = getJson("123", "https://run.mocky.io/v3/6cb166af-401d-4358-ad28-f71ffc4d448c");
+        JsonObject processedJson = jsonExtractor.findMatchingJson(initialJson, "libelle", "Certificat de formation de base à la sécurité (STCW10)");
+//        for (JsonObject jsonObject : list) {
+//            jsonExtractor.getAllWantedData();
+//        }
+        System.out.println("*********** Final processedJson is ****************");
+        System.out.println(processedJson);
     }
 
     private JsonElement getJson(String numeroDeMarin, String existingDataSource) {

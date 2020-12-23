@@ -34,9 +34,4 @@ public class CompareMarinDataToConditionsTitreController {
     public void test() {
         getMarinDataAdapter.dumb();
     }
-
-    @GetMapping("/{source}")
-    public void testInfos( @PathVariable("source") String source) {
-        infosToLookFor.whatInfosToLookFor(source);
-    }
 }
