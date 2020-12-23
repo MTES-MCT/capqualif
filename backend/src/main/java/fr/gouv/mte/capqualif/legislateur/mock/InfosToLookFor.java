@@ -2,57 +2,51 @@ package fr.gouv.mte.capqualif.legislateur.mock;
 
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 // NOTE : in the future, this infos will be built in the DAM module
 
 @Component
 public class InfosToLookFor {
 
-    public Map whatInfosToLookFor(String existingDataSource) {
-        HashMap<String, String> infos = new HashMap<>();
+    public Map<String, List> whatInfosToLookFor(String existingDataSource) {
+        HashMap<String, List> infos = new HashMap<>();
         switch(existingDataSource) {
             case("administres"):
-                // Marin de moins de 16 ans
-//                infos.put("source", "https://run.mocky.io/v3/b33b5c2f-0c95-46c1-ac8d-a33b918f0bac");
-
-                // Marin de plus de 16 ans
-//                infos.put("source", "https://run.mocky.io/v3/d05d9429-48e4-4785-a8a4-b353de3d94da");
-
-                // Vraie source
-                infos.put("source", "***REMOVED******REMOVED***");
-                infos.put("simpleField", "dateNaissance");
+                infos.put("source", Collections.singletonList("***REMOVED******REMOVED***"));
+                infos.put("mainWantedKey", Collections.singletonList("dateNaissance"));
                 return infos;
             case("esculape"):
-                // Marin apte
-//                infos.put("source", "https://run.mocky.io/v3/1957dab6-73e3-49db-aece-d21599093db5");
-
-                // Marin apte mais périmé
-//                infos.put("source", "https://run.mocky.io/v3/86517f52-2fe6-4bb3-a786-14561dae7f68");
-
-                // Vraie source
-                infos.put("source", "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/");
-                infos.put("simpleField", "decisionMedicale");
-                infos.put("nestedField", "libelle");
-                infos.put("expirationField", "dateFinDeValidite");
+                infos.put("source", Collections.singletonList("http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/"));
+                infos.put("mainWantedKey", Collections.singletonList("libelle"));
+                List<Map<String, String>> esculapeAdditionalWantedKeys = new ArrayList<>();
+                esculapeAdditionalWantedKeys.add(createMap("expirationKey", "dateFinDeValidite"));
+                infos.put("additionalWantedKeys", esculapeAdditionalWantedKeys);
                 return infos;
             case("amfore"):
-                // Marin avec les bons modules
-//                infos.put("source", "https://run.mocky.io/v3/ae790ede-9dce-4ca5-b967-5ed92f924348");
-
-                // Marin avec le module NP manquant
-//                infos.put("source", "https://run.mocky.io/v3/4f683454-5dda-41de-8864-f0114161b2f0");
-
-                // Vraie source
-                infos.put("source", "http://ws-amfore-capqualif-test.dsi.damgm.i2/amfore/api/v1/acquisitions/");
-                infos.put("simpleField", "libelleModuleUv");
-                infos.put("expirationField", "dateFinValidite");
+                infos.put("source", Collections.singletonList("http://ws-amfore-capqualif-test.dsi.damgm.i2/amfore/api/v1/acquisitions/"));
+                infos.put("mainWantedKey", Collections.singletonList("libelleModuleUv"));
+                List<Map<String, String>> amforeAdditionalWantedKeys = new ArrayList<>();
+                amforeAdditionalWantedKeys.add(createMap("expirationKey", "dateFinValidite"));
+                infos.put("additionalWantedKeys", amforeAdditionalWantedKeys);
                 return infos;
             case("item"):
-                infos.put("source", "http://ws-amfore-capqualif-test.dsi.damgm.i2/amfore/api/v1/acquisitions/");
-                infos.put("mainValue", "Certificat de formation de base à la sécurité (STCW10)");
+                infos.put("source", Collections.singletonList("***REMOVED***"));
+                infos.put("mainWantedKey", Collections.singletonList("libelle"));
+                List<Map<String, String>> itemAdditionalWantedKeys = new ArrayList<>();
+                itemAdditionalWantedKeys.add(createMap("expirationKey", "dateExpiration"));
+                itemAdditionalWantedKeys.add(createMap("validityKey", "libelle"));
+                infos.put("additionalWantedKeys", itemAdditionalWantedKeys);
+                return infos;
+            default:
+                System.out.println("No matching existing source found!");
         }
         return null;
     }
+
+    private Map<String, String> createMap(String keyName, String keyValue) {
+        Map<String, String> map = new HashMap<>();
+        map.put(keyName, keyValue);
+        return map;
+    };
 }

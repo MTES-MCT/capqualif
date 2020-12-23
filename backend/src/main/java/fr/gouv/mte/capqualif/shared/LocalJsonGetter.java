@@ -2,6 +2,7 @@ package fr.gouv.mte.capqualif.shared;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
@@ -11,17 +12,17 @@ import java.util.stream.Collectors;
 @Component
 public class LocalJsonGetter {
 
-    public JsonArray getJson(String resource) {
-        JsonArray jsonArray = buildJson(resource);
-        return jsonArray;
+    public JsonElement getJson(String resource) {
+        JsonElement jsonElement = buildJson(resource);
+        return jsonElement;
     }
 
-    private JsonArray buildJson(String resource) {
+    private JsonElement buildJson(String resource) {
         String json = fromStreamToString(resource);
 //        System.out.println(json);
         Gson gson = new Gson();
-        JsonArray jsonArray = gson.fromJson(json, JsonArray.class);
-        return jsonArray;
+        JsonElement jsonElement = gson.fromJson(json, JsonElement.class);
+        return jsonElement;
     }
 
     private String fromStreamToString(String resource) {

@@ -32,8 +32,8 @@ public class JsonExtractor {
     private JsonObject findMatchingJsonObject(JsonObject jsonObject, String wantedKey, String wantedValue) {
         if (jsonObject.has(wantedKey)) {
             if (hasWantedValue(jsonObject, wantedKey, wantedValue)) {
-                System.out.println("********* Wanted element *********");
-                System.out.println(jsonObject);
+//                System.out.println("********* Wanted element *********");
+//                System.out.println(jsonObject);
                 return jsonObject;
             }
         } else {
@@ -48,8 +48,8 @@ public class JsonExtractor {
                 JsonObject nestedJsonObject = (JsonObject) entry.getValue();
                 if (nestedJsonObject.has(wantedKey)) {
                     if (hasWantedValue(nestedJsonObject, wantedKey, wantedValue)) {
-                        System.out.println("****** Nested wanted element *********");
-                        System.out.println(jsonObject);
+//                        System.out.println("****** Nested wanted element *********");
+//                        System.out.println(jsonObject);
                         return jsonObject;
                     } else {
                         findMatchingNestedJsonObject(wantedKey, wantedValue, nestedJsonObject);
@@ -59,6 +59,13 @@ public class JsonExtractor {
         }
         return null;
     }
+
+
+    public List<Map<String, String>> getAllWantedData() {
+
+      return null;
+    };
+
 
     private boolean hasWantedValue(JsonObject jsonObject, String wantedKey, String wantedValue) {
         return jsonObject.get(wantedKey).getAsString().equals(wantedValue);

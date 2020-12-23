@@ -28,8 +28,8 @@ public class DataFinder {
     InfosToLookFor infosToLookFor;
 
     public List<Map> findMatchingMarinData(String existingDataSource, String numeroDeMarin) {
-        Map infos = infosToLookFor.whatInfosToLookFor(existingDataSource);
-        JsonElement json = getMarinDataPort.getMarinData(infos, numeroDeMarin);
+//        Map infos = infosToLookFor.whatInfosToLookFor(existingDataSource);
+//        JsonElement json = getMarinDataPort.getMarinData(infos, numeroDeMarin);
 //        JsonElement json = getMarinDataPort.getMarinData(infos.get("source").toString(), numeroDeMarin);
 //        List<Map> allMatchingData = buildMatchingDataList(infos, json);
 //        return allMatchingData;

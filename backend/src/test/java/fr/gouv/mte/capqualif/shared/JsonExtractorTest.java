@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class JsonExtractorTest {
 
     LocalJsonGetter localJsonGetter;
-    JsonArray initialJson;
+    JsonElement initialJson;
 
     @Before
     public void setUp() throws Exception {
@@ -50,6 +50,24 @@ public class JsonExtractorTest {
         assertEquals(expected.replaceAll("\\s", ""), testedList.toString().replaceAll("\\s", ""));
     }
 
+    @Test
+    public void findEsculapeFirstLevelMatchingJson() {
+        initialJson = localJsonGetter.getJson("mocks/aptitudeMedicale.json");
+        String expected = getExpectedResult("esculape", "1");
+        JsonExtractor jsonExtractor = new JsonExtractor();
+        List<JsonObject> testedList = jsonExtractor.findMatchingJsonObjects(initialJson, "rendezVous", "1608073200000");
+        assertEquals(expected.replaceAll("\\s", ""), testedList.toString().replaceAll("\\s", ""));
+    }
+
+    @Test
+    public void findEsculapeSecondLevelMatchingJson() {
+        initialJson = localJsonGetter.getJson("mocks/aptitudeMedicale.json");
+        String expected = getExpectedResult("esculape", "2");
+        JsonExtractor jsonExtractor = new JsonExtractor();
+        List<JsonObject> testedList = jsonExtractor.findMatchingJsonObjects(initialJson, "libelle", "Apte TF/TN");
+        assertEquals(expected.replaceAll("\\s", ""), testedList.toString().replaceAll("\\s", ""));
+    }
+
 
     private String getExpectedResult(String API, String level) {
         switch (API) {
@@ -63,7 +81,14 @@ public class JsonExtractorTest {
                 }
             case "amfore":
                 if (level.equals("1")) {
-                    return "[{\n" + "    \"libelleVersionFormation\": \"Formation de matelot Pont\",\n" + "    \"dateAcquisition\": \"2020-06-24\",\n" + "    \"dateFinValidite\": \"2025-06-23\",\n" + "    \"libelleModeAcquisition\": \"Evaluation\",\n" + "    \"libelleModuleUv\": \"P3–Appui-Exploitation/assist/entretien/répar\",\n" + "    \"libelleTypeFormation\": \"Formation modulaire\"\n" + "  }]";
+                    return "[{\n" + "    \"libelleVersionFormation\": \"Formation de matelot Pont\",\n" + "    " +
+                            "\"dateAcquisition\": \"2020-06-24\",\n" + "    \"dateFinValidite\": \"2025-06-23\",\n" + "    \"libelleModeAcquisition\": \"Evaluation\",\n" + "    \"libelleModuleUv\": \"P3–Appui-Exploitation/assist/entretien/répar\",\n" + "    \"libelleTypeFormation\": \"Formation modulaire\"\n" + "  }]";
+                }
+            case "esculape":
+                if (level.equals("1")) {
+                    return "[{\n" + "  \"dateFinDeValidite\": 1640905200000,\n" + "  \"rendezVous\": 1608073200000,\n" + "  \"decisionMedicale\": {\n" + "    \"idCode\": 1,\n" + "    \"code\": \"1\",\n" + "    \"libelle\": \"Apte TF/TN\",\n" + "    \"libelleAnglais\": null,\n" + "    \"libelleCourt\": null,\n" + "    \"dateDebutApplication\": 1241388000000,\n" + "    \"dateFinApplication\": null,\n" + "    \"bloque\": false,\n" + "    \"codeExport\": null\n" + "  },\n" + "  \"restrictionMedicale1\": null,\n" + "  \"restrictionMedicale2\": null,\n" + "  \"idMarin\": 346575\n" + "}]";
+                } else if (level.equals("2")) {
+                    return "[{\n" + "  \"dateFinDeValidite\": 1640905200000,\n" + "  \"rendezVous\": 1608073200000,\n" + "  \"decisionMedicale\": {\n" + "    \"idCode\": 1,\n" + "    \"code\": \"1\",\n" + "    \"libelle\": \"Apte TF/TN\",\n" + "    \"libelleAnglais\": null,\n" + "    \"libelleCourt\": null,\n" + "    \"dateDebutApplication\": 1241388000000,\n" + "    \"dateFinApplication\": null,\n" + "    \"bloque\": false,\n" + "    \"codeExport\": null\n" + "  },\n" + "  \"restrictionMedicale1\": null,\n" + "  \"restrictionMedicale2\": null,\n" + "  \"idMarin\": 346575\n" + "}]";
                 }
             default:
                 return null;
