@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.instructeur.application.services;
 
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
-import fr.gouv.mte.capqualif.utils.TimeConverter;
+import fr.gouv.mte.capqualif.shared.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

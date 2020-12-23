@@ -1,16 +1,8 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
-import fr.gouv.mte.capqualif.utils.LocalJsonGetter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 // NOTE : in the future, this infos will be built in the DAM module

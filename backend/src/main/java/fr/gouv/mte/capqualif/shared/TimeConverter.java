@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.utils;
+package fr.gouv.mte.capqualif.shared;
 
 import org.springframework.stereotype.Component;
 
@@ -34,7 +34,4 @@ public class TimeConverter {
         if (date.length() >= EPOCH_LENGTH && !date.contains("/") && !date.contains("-")) return true;
         return false;
     }
-
-
-
 }

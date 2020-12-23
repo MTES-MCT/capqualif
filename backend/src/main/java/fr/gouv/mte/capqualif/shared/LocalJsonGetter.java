@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.utils;
+package fr.gouv.mte.capqualif.shared;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -18,7 +18,7 @@ public class LocalJsonGetter {
 
     private JsonArray buildJson(String resource) {
         String json = fromStreamToString(resource);
-        System.out.println(json);
+//        System.out.println(json);
         Gson gson = new Gson();
         JsonArray jsonArray = gson.fromJson(json, JsonArray.class);
         return jsonArray;

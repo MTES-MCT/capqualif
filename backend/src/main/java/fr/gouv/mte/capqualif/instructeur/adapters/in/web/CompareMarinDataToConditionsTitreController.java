@@ -3,11 +3,9 @@ package fr.gouv.mte.capqualif.instructeur.adapters.in.web;
 import fr.gouv.mte.capqualif.instructeur.adapters.out.api.GetMarinDataAdapter;
 import fr.gouv.mte.capqualif.instructeur.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.instructeur.domain.CompareResult;
-import fr.gouv.mte.capqualif.utils.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Time;
 import java.util.List;
 
 @RestController

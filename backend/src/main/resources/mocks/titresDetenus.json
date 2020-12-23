@@ -1,0 +1,297 @@
+[
+  {
+    "idIteTitreDetenu": 839308,
+    "idIteVisaAttestaion": null,
+    "numeroTitre": "123",
+    "numeroVisa": null,
+    "dateDelivrance": "09/04/2020",
+    "dateRevalidation": null,
+    "dateEffet": "12/02/2020",
+    "dateExpiration": "11/02/2025",
+    "codeEtatTitre": {
+      "idc": 3,
+      "code": "03",
+      "libelle": "Valide",
+      "libelleAnglais": "Valid",
+      "libelleCourt": null,
+      "dateDebutApplication": null,
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": null
+    },
+    "codeEtatVisa": null,
+    "codeBrevetMarin": {
+      "idc": 243,
+      "code": "9556",
+      "libelle": "Certificat de formation de base à la sécurité (STCW10)",
+      "libelleAnglais": null,
+      "libelleCourt": null,
+      "dateDebutApplication": "2013-07-26",
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": null,
+      "codeFrmFamilleTitre": {
+        "idc": 3,
+        "code": "CERTIFICAT",
+        "libelle": "Certificat",
+        "libelleAnglais": null,
+        "libelleCourt": null,
+        "dateDebutApplication": null,
+        "dateFinApplication": null,
+        "bloque": false,
+        "codeExport": null
+      },
+      "infoBrevetPourPmrLong": null
+    },
+    "codeAutoriteDelivrance": {
+      "idc": null,
+      "code": "DILH",
+      "libelle": "DIRM",
+      "libelleAnglais": null,
+      "libelleCourt": "DIRM",
+      "dateDebutApplication": "2010-09-28",
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": "DILH"
+    },
+    "listTitreCapacite": [
+
+    ],
+    "listVisaCapacite": null
+  },
+  {
+    "idIteTitreDetenu": 666,
+    "idIteVisaAttestaion": null,
+    "numeroTitre": "10463946",
+    "numeroVisa": null,
+    "dateDelivrance": "09/04/2020",
+    "dateRevalidation": null,
+    "dateEffet": "13/02/2020",
+    "dateExpiration": "12/02/2025",
+    "codeEtatTitre": {
+      "idc": 3,
+      "code": "03",
+      "libelle": "Valide",
+      "libelleAnglais": "Valid",
+      "libelleCourt": null,
+      "dateDebutApplication": null,
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": null
+    },
+    "codeEtatVisa": null,
+    "codeBrevetMarin": {
+      "idc": 201,
+      "code": "7758",
+      "libelle": "Enseignement médical de niveau I",
+      "libelleAnglais": null,
+      "libelleCourt": null,
+      "dateDebutApplication": "2012-06-04",
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": null,
+      "codeFrmFamilleTitre": {
+        "idc": 3,
+        "code": "CERTIFICAT",
+        "libelle": "Certificat",
+        "libelleAnglais": null,
+        "libelleCourt": null,
+        "dateDebutApplication": null,
+        "dateFinApplication": null,
+        "bloque": false,
+        "codeExport": null
+      },
+      "infoBrevetPourPmrLong": null
+    },
+    "codeAutoriteDelivrance": {
+      "idc": null,
+      "code": "DILH",
+      "libelle": "DIRM",
+      "libelleAnglais": null,
+      "libelleCourt": "DIRM",
+      "dateDebutApplication": "2010-09-28",
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": "DILH"
+    },
+    "listTitreCapacite": [
+
+    ],
+    "listVisaCapacite": null
+  },
+  {
+    "idIteTitreDetenu": 888,
+    "idIteVisaAttestaion": null,
+    "numeroTitre": "10469394",
+    "numeroVisa": null,
+    "dateDelivrance": "07/07/2020",
+    "dateRevalidation": null,
+    "dateEffet": "06/02/2020",
+    "dateExpiration": null,
+    "codeEtatTitre": {
+      "idc": 3,
+      "code": "03",
+      "libelle": "Valide",
+      "libelleAnglais": "Valid",
+      "libelleCourt": null,
+      "dateDebutApplication": null,
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": null
+    },
+    "codeEtatVisa": null,
+    "codeBrevetMarin": {
+      "idc": 229,
+      "code": "9554",
+      "libelle": "Certificat de sensibilisation à la sûreté (STCW10)",
+      "libelleAnglais": null,
+      "libelleCourt": null,
+      "dateDebutApplication": "2012-11-30",
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": null,
+      "codeFrmFamilleTitre": {
+        "idc": 3,
+        "code": "CERTIFICAT",
+        "libelle": "Certificat banana split",
+        "libelleAnglais": null,
+        "libelleCourt": null,
+        "dateDebutApplication": null,
+        "dateFinApplication": null,
+        "bloque": false,
+        "codeExport": null
+      },
+      "infoBrevetPourPmrLong": null
+    },
+    "codeAutoriteDelivrance": {
+      "idc": null,
+      "code": "DILH",
+      "libelle": "DIRM NEVERLAND",
+      "libelleAnglais": null,
+      "libelleCourt": "DIRM",
+      "dateDebutApplication": "2010-09-28",
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": "DILH"
+    },
+    "listTitreCapacite": [
+
+    ],
+    "listVisaCapacite": null
+  },
+  {
+    "idIteTitreDetenu": 848912,
+    "idIteVisaAttestaion": null,
+    "numeroTitre": "10474236",
+    "numeroVisa": null,
+    "dateDelivrance": "20/08/2020",
+    "dateRevalidation": null,
+    "dateEffet": "24/06/2020",
+    "dateExpiration": null,
+    "codeEtatTitre": {
+      "idc": 3,
+      "code": "03",
+      "libelle": "Valide",
+      "libelleAnglais": "Valid",
+      "libelleCourt": null,
+      "dateDebutApplication": null,
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": null
+    },
+    "codeEtatVisa": null,
+    "codeBrevetMarin": {
+      "idc": 250,
+      "code": "9525",
+      "libelle": "Certificat de matelot pont (2015)",
+      "libelleAnglais": null,
+      "libelleCourt": null,
+      "dateDebutApplication": "2015-09-01",
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": null,
+      "codeFrmFamilleTitre": {
+        "idc": 1,
+        "code": "BREVET",
+        "libelle": "Brevet",
+        "libelleAnglais": null,
+        "libelleCourt": null,
+        "dateDebutApplication": null,
+        "dateFinApplication": null,
+        "bloque": false,
+        "codeExport": null
+      },
+      "infoBrevetPourPmrLong": null
+    },
+    "codeAutoriteDelivrance": {
+      "idc": null,
+      "code": "DILH",
+      "libelle": "DIRM",
+      "libelleAnglais": null,
+      "libelleCourt": "DIRM",
+      "dateDebutApplication": "2010-09-28",
+      "dateFinApplication": null,
+      "bloque": false,
+      "codeExport": "DILH"
+    },
+    "listTitreCapacite": [
+      {
+        "idIteTitreCapaciteRest": 77777,
+        "restrictionLibre": null,
+        "restrictionLibreAnglais": null,
+        "idTitreDetenu": null,
+        "codeFrmTitreCapaciteRestriction": {
+          "idc": 883,
+          "code": "864",
+          "libelle": "Fonction d'appui sur navires armés au commerce ou à la plaisance avec ou sans tâches spécialisées à bord de navires de jauge brute inférieure à 500 ou sans tâches spécialisées à bord de navires de jauge brute égale ou supérieure à 500",
+          "libelleAnglais": " Function at the support level with or without specialized duties on merchant ships or yachts of less than 500 gross tonnage or without specialized duties on ships of 500 gross tonnage or more",
+          "libelleCourt": null,
+          "dateDebutApplication": "2015-09-01",
+          "dateFinApplication": null,
+          "bloque": false,
+          "codeExport": null
+        },
+        "codeFrmTitreCapaciteStwc": {
+          "idc": 42,
+          "code": "052",
+          "libelle": "Matelot",
+          "libelleAnglais": "Rating",
+          "libelleCourt": null,
+          "dateDebutApplication": "2011-06-30",
+          "dateFinApplication": null,
+          "bloque": false,
+          "codeExport": null
+        }
+      },
+      {
+        "idIteTitreCapaciteRest": 698668,
+        "restrictionLibre": null,
+        "restrictionLibreAnglais": null,
+        "idTitreDetenu": null,
+        "codeFrmTitreCapaciteRestriction": {
+          "idc": 884,
+          "code": "865",
+          "libelle": "Fonction d'appui avec ou sans tâches spécialisées sur navires de pêche",
+          "libelleAnglais": "Function at the support level with or without specialized duties ",
+          "libelleCourt": null,
+          "dateDebutApplication": "2015-08-01",
+          "dateFinApplication": null,
+          "bloque": false,
+          "codeExport": null
+        },
+        "codeFrmTitreCapaciteStwc": {
+          "idc": 42,
+          "code": "052",
+          "libelle": "Matelot",
+          "libelleAnglais": "Rating",
+          "libelleCourt": null,
+          "dateDebutApplication": "2011-06-30",
+          "dateFinApplication": null,
+          "bloque": false,
+          "codeExport": null
+        }
+      }
+    ],
+    "listVisaCapacite": null
+  }
+]

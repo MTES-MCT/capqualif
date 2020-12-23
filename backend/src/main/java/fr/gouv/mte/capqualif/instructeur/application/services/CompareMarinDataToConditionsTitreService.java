@@ -41,8 +41,8 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         for (ConditionTitre condition : conditions) {
 
             // find the json with the matching main key (identifier) at any level
-            //      load all marin data json from api
-            //      find matching portion of the json
+            //      load all marin data json from api x
+            //      find matching portion of the json x
             //      return the complete set of data from the matching portion
 
 //            List<Map> allMatchingData = getMarinDataPort.getMarinData(condition.getExistingDataSource(), numeroDeMarin);

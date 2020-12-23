@@ -6,7 +6,7 @@ import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import fr.gouv.mte.capqualif.legislateur.mock.InfosToLookFor;
 import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
-import fr.gouv.mte.capqualif.utils.LocalJsonGetter;
+import fr.gouv.mte.capqualif.shared.LocalJsonGetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

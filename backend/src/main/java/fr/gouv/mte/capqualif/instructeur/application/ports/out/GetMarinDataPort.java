@@ -6,5 +6,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface GetMarinDataPort {
-    JsonElement getMarinData(Map infosToLookFor, String numeroDeMarin);
+    JsonElement getMarinData(Map<String, String> infosToLookFor, String numeroDeMarin);
 }
