@@ -41,9 +41,10 @@ public class InfosToLookFor {
                 return amforeExistingDataInfos;
             case ("item"):
                 AdditionalWantedKey itemAdditionalWantedKey1 = new AdditionalWantedKey("expirationKey", "dateExpiration");
-                AdditionalWantedKey itemAdditionalWantedKey2 = new AdditionalWantedKey("validityKey", "libelle");
+                AdditionalWantedKey itemAdditionalWantedKey2 = new AdditionalWantedKey("validityKey", "libelle", true, "codeEtatTitre");
                 List<AdditionalWantedKey> itemAdditionalWantedKeys = new ArrayList<>();
                 itemAdditionalWantedKeys.add(itemAdditionalWantedKey1);
+                itemAdditionalWantedKeys.add(itemAdditionalWantedKey2);
                 ExistingDataInfos itemExistingDataInfos = new ExistingDataInfos(
                         "item",
                         "***REMOVED***",

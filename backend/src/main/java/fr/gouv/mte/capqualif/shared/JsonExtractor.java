@@ -63,13 +63,14 @@ public class JsonExtractor {
 
 
     public List<Map<String, String>> getAllWantedData(JsonObject json, ExistingDataInfos existingDataInfos) {
-        System.out.println("Inside");
-        System.out.println(existingDataInfos);
-      List<AdditionalWantedKey> additionalWantedKeys = existingDataInfos.getAdditionalWantedKeys();
-      for (AdditionalWantedKey additionalWantedKey : additionalWantedKeys) {
-          System.out.println(additionalWantedKey.getKeyName());
-          System.out.println(additionalWantedKey.getKeyValue());
-//          json.get(additionalWantedKey.keySet())
+      for (AdditionalWantedKey additionalWantedKey : existingDataInfos.getAdditionalWantedKeys()) {
+          if(additionalWantedKey.isNested()) {
+              JsonObject parent = (JsonObject)json.get(additionalWantedKey.getParentKeyName());
+              System.out.println(parent.get(additionalWantedKey.getKeyValue()));
+          } else {
+              System.out.println(additionalWantedKey.getKeyValue());
+              System.out.println(json.get(additionalWantedKey.getKeyValue()));
+          }
       }
       return null;
     };
