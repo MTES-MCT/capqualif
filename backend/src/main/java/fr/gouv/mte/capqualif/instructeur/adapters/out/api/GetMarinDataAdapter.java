@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
+import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataInfos;
 import fr.gouv.mte.capqualif.legislateur.mock.InfosToLookFor;
 import fr.gouv.mte.capqualif.shared.JsonExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +34,16 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
 
     public void dumb() {
         JsonElement initialJson = getJson("123", "https://run.mocky.io/v3/6cb166af-401d-4358-ad28-f71ffc4d448c");
-        JsonObject processedJson = jsonExtractor.findMatchingJson(initialJson, "libelle", "Certificat de formation de base à la sécurité (STCW10)");
+        JsonObject matchingJson = jsonExtractor.findMatchingJson(initialJson, "libelle", "Certificat de formation de base à la sécurité (STCW10)");
 //        for (JsonObject jsonObject : list) {
 //            jsonExtractor.getAllWantedData();
 //        }
+
         System.out.println("*********** Final processedJson is ****************");
-        System.out.println(processedJson);
+        System.out.println(matchingJson);
+
+        ExistingDataInfos existingDataInfos = infosToLookFor.whatExistingDataInfosToLookFor("item");
+        jsonExtractor.getAllWantedData(matchingJson, existingDataInfos);
     }
 
     private JsonElement getJson(String numeroDeMarin, String existingDataSource) {

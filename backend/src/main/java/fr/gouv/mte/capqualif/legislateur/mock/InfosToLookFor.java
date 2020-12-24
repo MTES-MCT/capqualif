@@ -9,44 +9,95 @@ import java.util.*;
 @Component
 public class InfosToLookFor {
 
-    public Map<String, List> whatInfosToLookFor(String existingDataSource) {
-        HashMap<String, List> infos = new HashMap<>();
-        switch(existingDataSource) {
-            case("administres"):
-                infos.put("source", Collections.singletonList("***REMOVED******REMOVED***"));
-                infos.put("mainWantedKey", Collections.singletonList("dateNaissance"));
-                return infos;
-            case("esculape"):
-                infos.put("source", Collections.singletonList("http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/"));
-                infos.put("mainWantedKey", Collections.singletonList("libelle"));
-                List<Map<String, String>> esculapeAdditionalWantedKeys = new ArrayList<>();
-                esculapeAdditionalWantedKeys.add(createMap("expirationKey", "dateFinDeValidite"));
-                infos.put("additionalWantedKeys", esculapeAdditionalWantedKeys);
-                return infos;
-            case("amfore"):
-                infos.put("source", Collections.singletonList("http://ws-amfore-capqualif-test.dsi.damgm.i2/amfore/api/v1/acquisitions/"));
-                infos.put("mainWantedKey", Collections.singletonList("libelleModuleUv"));
-                List<Map<String, String>> amforeAdditionalWantedKeys = new ArrayList<>();
-                amforeAdditionalWantedKeys.add(createMap("expirationKey", "dateFinValidite"));
-                infos.put("additionalWantedKeys", amforeAdditionalWantedKeys);
-                return infos;
-            case("item"):
-                infos.put("source", Collections.singletonList("***REMOVED***"));
-                infos.put("mainWantedKey", Collections.singletonList("libelle"));
-                List<Map<String, String>> itemAdditionalWantedKeys = new ArrayList<>();
-                itemAdditionalWantedKeys.add(createMap("expirationKey", "dateExpiration"));
-                itemAdditionalWantedKeys.add(createMap("validityKey", "libelle"));
-                infos.put("additionalWantedKeys", itemAdditionalWantedKeys);
-                return infos;
+    public ExistingDataInfos whatExistingDataInfosToLookFor(String existingDataSource) {
+        switch (existingDataSource) {
+            case ("administres"):
+                ExistingDataInfos administresExistingDataInfos = new ExistingDataInfos(
+                        "administres",
+                        "***REMOVED******REMOVED***",
+                        "dateNaissance");
+                return administresExistingDataInfos;
+            case ("esculape"):
+                AdditionalWantedKey esculapeAdditionalWantedKey1 = new AdditionalWantedKey("expirationKey", "dateFinDeValidite");
+                List<AdditionalWantedKey> esculapeAdditionalWantedKeys = new ArrayList<>();
+                esculapeAdditionalWantedKeys.add(esculapeAdditionalWantedKey1);
+                ExistingDataInfos esculapeExistingDataInfos = new ExistingDataInfos(
+                        "esculape",
+                        "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/",
+                        "libelle",
+                        esculapeAdditionalWantedKeys
+                        );
+                return esculapeExistingDataInfos;
+            case ("amfore"):
+                AdditionalWantedKey amforeAdditionalWantedKey1 = new AdditionalWantedKey("expirationKey", "dateFinValidite");
+                List<AdditionalWantedKey> amforeAdditionalWantedKeys = new ArrayList<>();
+                amforeAdditionalWantedKeys.add(amforeAdditionalWantedKey1);
+                ExistingDataInfos amforeExistingDataInfos = new ExistingDataInfos(
+                        "amfore",
+                        "http://ws-amfore-capqualif-test.dsi.damgm.i2/amfore/api/v1/acquisitions/",
+                        "libelleModuleUv",
+                        amforeAdditionalWantedKeys
+                        );
+                return amforeExistingDataInfos;
+            case ("item"):
+                AdditionalWantedKey itemAdditionalWantedKey1 = new AdditionalWantedKey("expirationKey", "dateExpiration");
+                AdditionalWantedKey itemAdditionalWantedKey2 = new AdditionalWantedKey("validityKey", "libelle");
+                List<AdditionalWantedKey> itemAdditionalWantedKeys = new ArrayList<>();
+                itemAdditionalWantedKeys.add(itemAdditionalWantedKey1);
+                ExistingDataInfos itemExistingDataInfos = new ExistingDataInfos(
+                        "item",
+                        "***REMOVED***",
+                        "libelle",
+                        itemAdditionalWantedKeys);
+                return itemExistingDataInfos;
             default:
                 System.out.println("No matching existing source found!");
+                return null;
         }
-        return null;
     }
-
-    private Map<String, String> createMap(String keyName, String keyValue) {
-        Map<String, String> map = new HashMap<>();
-        map.put(keyName, keyValue);
-        return map;
-    };
 }
+
+//    public Map<String, List> whatInfosToLookFor(String existingDataSource) {
+//        HashMap<String, List> infos = new HashMap<>();
+//        switch(existingDataSource) {
+//            case("administres"):
+//                infos.put("source", Collections.singletonList("***REMOVED***
+//                ***REMOVED***"));
+//                infos.put("mainWantedKey", Collections.singletonList("dateNaissance"));
+//                return infos;
+//            case("esculape"):
+//                infos.put("source", Collections.singletonList("http://ws-esculape-capqualif-test.dsi.damgm
+//                .i2/esculape/api/v1/aptitudes/"));
+//                infos.put("mainWantedKey", Collections.singletonList("libelle"));
+//                List<Map<String, String>> esculapeAdditionalWantedKeys = new ArrayList<>();
+//                esculapeAdditionalWantedKeys.add(createMap("expirationKey", "dateFinDeValidite"));
+//                infos.put("additionalWantedKeys", esculapeAdditionalWantedKeys);
+//                return infos;
+//            case("amfore"):
+//                infos.put("source", Collections.singletonList("http://ws-amfore-capqualif-test.dsi.damgm
+//                .i2/amfore/api/v1/acquisitions/"));
+//                infos.put("mainWantedKey", Collections.singletonList("libelleModuleUv"));
+//                List<Map<String, String>> amforeAdditionalWantedKeys = new ArrayList<>();
+//                amforeAdditionalWantedKeys.add(createMap("expirationKey", "dateFinValidite"));
+//                infos.put("additionalWantedKeys", amforeAdditionalWantedKeys);
+//                return infos;
+//            case("item"):
+//                infos.put("source", Collections.singletonList("http://ws-item-back-capqualif-test.dsi.damgm
+//                .i2/item-back/api/v1/titres/"));
+//                infos.put("mainWantedKey", Collections.singletonList("libelle"));
+//                List<Map<String, String>> itemAdditionalWantedKeys = new ArrayList<>();
+//                itemAdditionalWantedKeys.add(createMap("expirationKey", "dateExpiration"));
+//                itemAdditionalWantedKeys.add(createMap("validityKey", "libelle"));
+//                infos.put("additionalWantedKeys", itemAdditionalWantedKeys);
+//                return infos;
+//            default:
+//                System.out.println("No matching existing source found!");
+//        }
+//        return null;
+//    }
+//
+//    private Map<String, String> createMap(String keyName, String keyValue) {
+//        Map<String, String> map = new HashMap<>();
+//        map.put(keyName, keyValue);
+//        return map;
+//    };
