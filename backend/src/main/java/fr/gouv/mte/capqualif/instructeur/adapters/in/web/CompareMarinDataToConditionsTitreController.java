@@ -4,16 +4,14 @@ import fr.gouv.mte.capqualif.instructeur.application.ports.in.CompareMarinDataTo
 import fr.gouv.mte.capqualif.instructeur.domain.CompareResult;
 import fr.gouv.mte.capqualif.utils.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
 import java.util.List;
 
 @RestController
 @RequestMapping("/instruction/comparaison")
+@CrossOrigin
 public class CompareMarinDataToConditionsTitreController {
 
     @Autowired
