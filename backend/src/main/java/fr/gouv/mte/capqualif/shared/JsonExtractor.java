@@ -60,10 +60,10 @@ public class JsonExtractor {
     }
 
 
-    public List<Map<String, String>> getAllWantedData(JsonObject json, Map<String, List> wantedData) {
-      List<Map<String, String>> additionalWantedKeys = wantedData.get("additionalWantedKeys".toString());
-      for (Map<String, String> keyMap : additionalWantedKeys) {
-          json.get(keyMap.get())
+    public List<Map<String, String>> getAllWantedData(JsonObject json, Map<String, List> infosToLookFor) {
+      List<Map<String, String>> additionalWantedKeys = infosToLookFor.get("additionalWantedKeys".toString());
+      for (Map<String, String> additionalWantedKey : additionalWantedKeys) {
+          json.get(additionalWantedKey.get())
           return null;
       }
       return null;
