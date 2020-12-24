@@ -60,10 +60,14 @@ public class JsonExtractor {
     }
 
 
-//    public List<Map<String, String>> getAllWantedData(Json ) {
-//
-//      return null;
-//    };
+    public List<Map<String, String>> getAllWantedData(JsonObject json, Map<String, List> wantedData) {
+      List<Map<String, String>> additionalWantedKeys = wantedData.get("additionalWantedKeys".toString());
+      for (Map<String, String> keyMap : additionalWantedKeys) {
+          json.get(keyMap.get())
+          return null;
+      }
+      return null;
+    };
 
 
     private boolean hasWantedValue(JsonObject jsonObject, String wantedKey, String wantedValue) {
