@@ -1,17 +1,17 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
-public class AdditionalWantedKey {
+public class Key {
     private String keyName;
     private String keyValue;
     private boolean isNested;
     private String parentKeyName;
 
-    public AdditionalWantedKey(String keyName, String keyValue) {
+    public Key(String keyName, String keyValue) {
         this.keyName = keyName;
         this.keyValue = keyValue;
     }
 
-    public AdditionalWantedKey(String keyName, String keyValue, boolean isNested, String parentKeyName) {
+    public Key(String keyName, String keyValue, boolean isNested, String parentKeyName) {
         this.keyName = keyName;
         this.keyValue = keyValue;
         this.isNested = isNested;

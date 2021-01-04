@@ -22,7 +22,6 @@ public class DataChecker {
         List<Boolean> results = new ArrayList<>();
 
         for (Map data : dataList) {
-
             boolean singleCompareResult = false;
 
             switch (condition.getCommentComparer()) {

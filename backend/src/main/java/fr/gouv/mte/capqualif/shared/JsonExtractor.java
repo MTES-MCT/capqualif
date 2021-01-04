@@ -3,11 +3,10 @@ package fr.gouv.mte.capqualif.shared;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import fr.gouv.mte.capqualif.legislateur.mock.AdditionalWantedKey;
+import fr.gouv.mte.capqualif.legislateur.mock.Key;
 import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataInfos;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -63,8 +62,8 @@ public class JsonExtractor {
 
 
     public List<Map<String, String>> getAllWantedData(JsonObject json, ExistingDataInfos existingDataInfos) {
-      for (AdditionalWantedKey additionalWantedKey : existingDataInfos.getAdditionalWantedKeys()) {
-          if(additionalWantedKey.isNested()) {
+      for (Key additionalWantedKey : existingDataInfos.getAdditionalWantedKeys()) {
+          if (additionalWantedKey.isNested()) {
               JsonObject parent = (JsonObject)json.get(additionalWantedKey.getParentKeyName());
               System.out.println(parent.get(additionalWantedKey.getKeyValue()));
           } else {

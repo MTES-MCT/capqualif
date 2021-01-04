@@ -18,8 +18,8 @@ public class InfosToLookFor {
                         "dateNaissance");
                 return administresExistingDataInfos;
             case ("esculape"):
-                AdditionalWantedKey esculapeAdditionalWantedKey1 = new AdditionalWantedKey("expirationKey", "dateFinDeValidite");
-                List<AdditionalWantedKey> esculapeAdditionalWantedKeys = new ArrayList<>();
+                Key esculapeAdditionalWantedKey1 = new Key("expirationKey", "dateFinDeValidite");
+                List<Key> esculapeAdditionalWantedKeys = new ArrayList<>();
                 esculapeAdditionalWantedKeys.add(esculapeAdditionalWantedKey1);
                 ExistingDataInfos esculapeExistingDataInfos = new ExistingDataInfos(
                         "esculape",
@@ -29,8 +29,8 @@ public class InfosToLookFor {
                         );
                 return esculapeExistingDataInfos;
             case ("amfore"):
-                AdditionalWantedKey amforeAdditionalWantedKey1 = new AdditionalWantedKey("expirationKey", "dateFinValidite");
-                List<AdditionalWantedKey> amforeAdditionalWantedKeys = new ArrayList<>();
+                Key amforeAdditionalWantedKey1 = new Key("expirationKey", "dateFinValidite");
+                List<Key> amforeAdditionalWantedKeys = new ArrayList<>();
                 amforeAdditionalWantedKeys.add(amforeAdditionalWantedKey1);
                 ExistingDataInfos amforeExistingDataInfos = new ExistingDataInfos(
                         "amfore",
@@ -40,9 +40,9 @@ public class InfosToLookFor {
                         );
                 return amforeExistingDataInfos;
             case ("item"):
-                AdditionalWantedKey itemAdditionalWantedKey1 = new AdditionalWantedKey("expirationKey", "dateExpiration");
-                AdditionalWantedKey itemAdditionalWantedKey2 = new AdditionalWantedKey("validityKey", "libelle", true, "codeEtatTitre");
-                List<AdditionalWantedKey> itemAdditionalWantedKeys = new ArrayList<>();
+                Key itemAdditionalWantedKey1 = new Key("expirationKey", "dateExpiration");
+                Key itemAdditionalWantedKey2 = new Key("validityKey", "libelle", true, "codeEtatTitre");
+                List<Key> itemAdditionalWantedKeys = new ArrayList<>();
                 itemAdditionalWantedKeys.add(itemAdditionalWantedKey1);
                 itemAdditionalWantedKeys.add(itemAdditionalWantedKey2);
                 ExistingDataInfos itemExistingDataInfos = new ExistingDataInfos(

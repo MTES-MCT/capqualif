@@ -6,10 +6,10 @@ public class ExistingDataInfos {
     private String source;
     private String url;
     private String mainWantedKey;
-    private List<AdditionalWantedKey> additionalWantedKeys;
+    private List<Key> additionalWantedKeys;
 
     public ExistingDataInfos(String source, String url, String mainWantedKey,
-                             List<AdditionalWantedKey> additionalWantedKeys) {
+                             List<Key> additionalWantedKeys) {
         this.source = source;
         this.url = url;
         this.mainWantedKey = mainWantedKey;
@@ -34,7 +34,7 @@ public class ExistingDataInfos {
         return mainWantedKey;
     }
 
-    public List<AdditionalWantedKey> getAdditionalWantedKeys() {
+    public List<Key> getAdditionalWantedKeys() {
         return additionalWantedKeys;
     }
 }
