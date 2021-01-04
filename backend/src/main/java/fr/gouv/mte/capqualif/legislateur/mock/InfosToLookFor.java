@@ -26,7 +26,7 @@ public class InfosToLookFor {
                         "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/",
                         "libelle",
                         esculapeAdditionalWantedKeys
-                        );
+                );
                 return esculapeExistingDataInfos;
             case ("amfore"):
                 Key amforeAdditionalWantedKey1 = new Key("expirationKey", "dateFinValidite");
@@ -37,14 +37,25 @@ public class InfosToLookFor {
                         "http://ws-amfore-capqualif-test.dsi.damgm.i2/amfore/api/v1/acquisitions/",
                         "libelleModuleUv",
                         amforeAdditionalWantedKeys
-                        );
+                );
                 return amforeExistingDataInfos;
             case ("item"):
                 Key itemAdditionalWantedKey1 = new Key("expirationKey", "dateExpiration");
-                Key itemAdditionalWantedKey2 = new Key("validityKey", "libelle", true, "codeEtatTitre");
+
+                Key itemAdditionalWantedKey2 = new Key("validityKey", "libelle", true,
+                        Arrays.asList(new ParentKey(Position.POSITION_1, "codeEtatTitre")));
+
+                Key itemAdditionalWantedKey3 = new Key("testKey", "ceQueJeVeuxKey", true,
+                        Arrays.asList(
+                                new ParentKey(Position.POSITION_1, "codeEtatTitre"),
+                                new ParentKey(Position.POSITION_2, "codeExport"),
+                                new ParentKey(Position.POSITION_3, "niveau1"),
+                                new ParentKey(Position.POSITION_4, "niveau2")));
+
                 List<Key> itemAdditionalWantedKeys = new ArrayList<>();
                 itemAdditionalWantedKeys.add(itemAdditionalWantedKey1);
                 itemAdditionalWantedKeys.add(itemAdditionalWantedKey2);
+                itemAdditionalWantedKeys.add(itemAdditionalWantedKey3);
                 ExistingDataInfos itemExistingDataInfos = new ExistingDataInfos(
                         "item",
                         "***REMOVED***",

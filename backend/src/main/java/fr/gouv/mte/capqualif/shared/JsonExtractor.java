@@ -3,10 +3,14 @@ package fr.gouv.mte.capqualif.shared;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import fr.gouv.mte.capqualif.legislateur.mock.Key;
 import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataInfos;
+import fr.gouv.mte.capqualif.legislateur.mock.ParentKey;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +22,7 @@ public class JsonExtractor {
             JsonArray jsonArray = (JsonArray) jsonElement;
             for (JsonElement element : jsonArray) {
                 if (element instanceof JsonObject) {
-                    if(findMatchingJsonObject((JsonObject) element, mainWantedKey, mainWantedValue) != null) {
+                    if (findMatchingJsonObject((JsonObject) element, mainWantedKey, mainWantedValue) != null) {
                         return findMatchingJsonObject((JsonObject) element, mainWantedKey, mainWantedValue);
                     }
                 }
@@ -48,8 +52,6 @@ public class JsonExtractor {
                 JsonObject nestedJsonObject = (JsonObject) entry.getValue();
                 if (nestedJsonObject.has(wantedKey)) {
                     if (hasWantedValue(nestedJsonObject, wantedKey, wantedValue)) {
-//                        System.out.println("****** Nested wanted element *********");
-//                        System.out.println(jsonObject);
                         return jsonObject;
                     } else {
                         findMatchingNestedJsonObject(wantedKey, wantedValue, nestedJsonObject);
@@ -62,17 +64,32 @@ public class JsonExtractor {
 
 
     public List<Map<String, String>> getAllWantedData(JsonObject json, ExistingDataInfos existingDataInfos) {
-      for (Key additionalWantedKey : existingDataInfos.getAdditionalWantedKeys()) {
-          if (additionalWantedKey.isNested()) {
-              JsonObject parent = (JsonObject)json.get(additionalWantedKey.getParentKeyName());
-              System.out.println(parent.get(additionalWantedKey.getKeyValue()));
-          } else {
-              System.out.println(additionalWantedKey.getKeyValue());
-              System.out.println(json.get(additionalWantedKey.getKeyValue()));
-          }
-      }
-      return null;
-    };
+        JsonObject source = json;
+        for (Key additionalWantedKey : existingDataInfos.getAdditionalWantedKeys()) {
+            if (additionalWantedKey.isNested()) {
+                String nestedKeyValue = getNestedKeyValue(source, additionalWantedKey);
+                System.out.println(nestedKeyValue);
+                // Reset json source
+                source = json;
+            } else {
+                System.out.println(additionalWantedKey.getKeyValue());
+            }
+        }
+        return null;
+    }
+
+    private String getNestedKeyValue(JsonObject source, Key additionalWantedKey) {
+        List<ParentKey> parentKeys = additionalWantedKey.getParentKeys();
+        for (ParentKey parentKey : parentKeys) {
+            for (int i = 1; i <= parentKeys.size(); i++) {
+                if (parentKey.getPosition().toString().equals("POSITION_" + i) && (source.get(parentKey.getKeyName()) instanceof JsonObject)) {
+                    JsonObject jsonSource = (JsonObject) source.get(parentKey.getKeyName());
+                    source = jsonSource;
+                }
+            }
+        }
+        return source.get(additionalWantedKey.getKeyValue()).getAsString();
+    }
 
 
     private boolean hasWantedValue(JsonObject jsonObject, String wantedKey, String wantedValue) {
