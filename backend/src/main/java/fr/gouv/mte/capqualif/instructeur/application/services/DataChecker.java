@@ -1,5 +1,6 @@
 package fr.gouv.mte.capqualif.instructeur.application.services;
 
+import fr.gouv.mte.capqualif.titre.domain.ComparisonType;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.shared.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +25,16 @@ public class DataChecker {
         for (Map data : dataList) {
             boolean singleCompareResult = false;
 
-            switch (condition.getCommentComparer()) {
-                case "minimum":
+            switch (condition.getHowToCompareValue()) {
+                case BIGGER_THAN:
                     Integer age = calculateYearsBetweenDateAndToday(data.get("simpleField").toString());
-                    if (age > Integer.parseInt(condition.getValeur())) singleCompareResult = true;
-                case "egaliteStricte":
+                    if (age > Integer.parseInt(condition.getValue())) singleCompareResult = true;
+                case STRICT_EQUALITY:
                     if(data.containsKey("simpleField")) {
-                        if(data.get("simpleField").equals(condition.getValeur()) && !isDataExpired(data.get("expirationField").toString())) singleCompareResult = true;
+                        if(data.get("simpleField").equals(condition.getValue()) && !isDataExpired(data.get("expirationField").toString())) singleCompareResult = true;
                     }
                     if(data.containsKey("nestedField")) {
-                        if(data.get("nestedField").equals(condition.getValeur()) && !isDataExpired(data.get("expirationField").toString())) singleCompareResult = true;
+                        if(data.get("nestedField").equals(condition.getValue()) && !isDataExpired(data.get("expirationField").toString())) singleCompareResult = true;
                     }
             }
             results.add(singleCompareResult);

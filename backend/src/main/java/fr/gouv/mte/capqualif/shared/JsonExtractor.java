@@ -3,7 +3,6 @@ package fr.gouv.mte.capqualif.shared;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import fr.gouv.mte.capqualif.legislateur.mock.Key;
 import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataInfos;
 import fr.gouv.mte.capqualif.legislateur.mock.ParentKey;
@@ -62,23 +61,30 @@ public class JsonExtractor {
         return null;
     }
 
-
-    public List<Map<String, String>> getAllWantedData(JsonObject json, ExistingDataInfos existingDataInfos) {
+    public List<Map<String, String>> getAllAdditionalData(JsonObject json, ExistingDataInfos existingDataInfos) {
+        List<Map<String, String>> allAdditionalData = new ArrayList<>();
         JsonObject source = json;
         for (Key additionalWantedKey : existingDataInfos.getAdditionalWantedKeys()) {
             if (additionalWantedKey.isNested()) {
-                String nestedKeyValue = getNestedKeyValue(source, additionalWantedKey);
-                System.out.println(nestedKeyValue);
+                Map<String, String> data = getNestedData(source, additionalWantedKey);
+                System.out.println(data);
+                allAdditionalData.add(data);
                 // Reset json source
                 source = json;
             } else {
-                System.out.println(additionalWantedKey.getKeyValue());
+                Map<String, String> data = new HashMap<>();
+                data.put(additionalWantedKey.getKeyName(), json.get(additionalWantedKey.getKeyName()).getAsString());
+//                System.out.println(additionalWantedKey.getKeyValue());
+                System.out.println(data);
+                allAdditionalData.add(data);
             }
         }
-        return null;
+        System.out.println(allAdditionalData);
+        return allAdditionalData;
     }
 
-    private String getNestedKeyValue(JsonObject source, Key additionalWantedKey) {
+    // TO DO : Rewrite
+    private Map<String, String> getNestedData(JsonObject source, Key additionalWantedKey) {
         List<ParentKey> parentKeys = additionalWantedKey.getParentKeys();
         for (ParentKey parentKey : parentKeys) {
             for (int i = 1; i <= parentKeys.size(); i++) {
@@ -88,7 +94,10 @@ public class JsonExtractor {
                 }
             }
         }
-        return source.get(additionalWantedKey.getKeyValue()).getAsString();
+        Map<String, String> data = new HashMap<>();
+        data.put(additionalWantedKey.getKeyName(), source.get(additionalWantedKey.getKeyName()).getAsString());
+        return data;
+//        return source.get(additionalWantedKey.getKeyValue()).getAsString();
     }
 
 

@@ -7,6 +7,7 @@ import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataInfos;
 import fr.gouv.mte.capqualif.legislateur.mock.InfosToLookFor;
 import fr.gouv.mte.capqualif.shared.JsonExtractor;
+import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -28,7 +29,10 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
 
 
     @Override
-    public JsonElement getMarinData(Map<String, String> infosToLookFor, String numeroDeMarin) {
+    public JsonElement getMarinData(String numeroDeMarin, ConditionTitre conditionTitre, ExistingDataInfos existingDataInfos) {
+        JsonElement initialJson = getJson(numeroDeMarin, existingDataInfos.getUrl());
+        JsonObject jsonPortionMatchingMainWantedValue = jsonExtractor.findMatchingJson(initialJson, existingDataInfos.getMainWantedKey(), conditionTitre.getValue());
+        List<Map<String, String>> additionalData = jsonExtractor.getAllAdditionalData(jsonPortionMatchingMainWantedValue, existingDataInfos);
         return null;
     }
 
@@ -37,15 +41,12 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
 //        JsonElement initialJson = getJson("123", "https://run.mocky.io/v3/e56c1664-98c1-40f7-8e6e-b9e8064c2d02");
         JsonElement initialJson = getJson("123", "***REMOVED***");
         JsonObject matchingJson = jsonExtractor.findMatchingJson(initialJson, "libelle", "Certificat de formation de base à la sécurité (STCW10)");
-//        for (JsonObject jsonObject : list) {
-//            jsonExtractor.getAllWantedData();
-//        }
 
         System.out.println("*********** Final processedJson is ****************");
         System.out.println(matchingJson);
 
         ExistingDataInfos existingDataInfos = infosToLookFor.whatExistingDataInfosToLookFor("item");
-        jsonExtractor.getAllWantedData(matchingJson, existingDataInfos);
+        jsonExtractor.getAllAdditionalData(matchingJson, existingDataInfos);
     }
 
     private JsonElement getJson(String numeroDeMarin, String existingDataSource) {
@@ -63,5 +64,4 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
         JsonElement json = gson.fromJson(res, JsonElement.class);
         return json;
     }
-
 }

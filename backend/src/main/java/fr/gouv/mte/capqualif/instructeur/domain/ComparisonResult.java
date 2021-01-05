@@ -1,11 +1,11 @@
 package fr.gouv.mte.capqualif.instructeur.domain;
 
-public class CompareResult {
+public class ComparisonResult {
 
     private String libelle;
     private boolean isValid;
 
-    public CompareResult(String libelle, boolean isValid) {
+    public ComparisonResult(String libelle, boolean isValid) {
         this.libelle = libelle;
         this.isValid = isValid;
     }

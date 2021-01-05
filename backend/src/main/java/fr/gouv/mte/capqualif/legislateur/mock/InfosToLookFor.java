@@ -40,27 +40,42 @@ public class InfosToLookFor {
                 );
                 return amforeExistingDataInfos;
             case ("item"):
+
+                // ================= Additional wanted keys =================
+
                 Key itemAdditionalWantedKey1 = new Key("expirationKey", "dateExpiration");
 
                 Key itemAdditionalWantedKey2 = new Key("validityKey", "libelle", true,
                         Arrays.asList(new ParentKey(Position.POSITION_1, "codeEtatTitre")));
 
-                Key itemAdditionalWantedKey3 = new Key("testKey", "ceQueJeVeuxKey", true,
-                        Arrays.asList(
-                                new ParentKey(Position.POSITION_1, "codeEtatTitre"),
-                                new ParentKey(Position.POSITION_2, "codeExport"),
-                                new ParentKey(Position.POSITION_3, "niveau1"),
-                                new ParentKey(Position.POSITION_4, "niveau2")));
+                // For testing purpose
+
+//                Key itemAdditionalWantedKey3 = new Key("testKey", "ceQueJeVeuxKey", true,
+//                        Arrays.asList(
+//                                new ParentKey(Position.POSITION_1, "codeEtatTitre"),
+//                                new ParentKey(Position.POSITION_2, "codeExport"),
+//                                new ParentKey(Position.POSITION_3, "niveau1"),
+//                                new ParentKey(Position.POSITION_4, "niveau2")));
 
                 List<Key> itemAdditionalWantedKeys = new ArrayList<>();
                 itemAdditionalWantedKeys.add(itemAdditionalWantedKey1);
                 itemAdditionalWantedKeys.add(itemAdditionalWantedKey2);
-                itemAdditionalWantedKeys.add(itemAdditionalWantedKey3);
+//                itemAdditionalWantedKeys.add(itemAdditionalWantedKey3);
+
+                // ============================================================
+
                 ExistingDataInfos itemExistingDataInfos = new ExistingDataInfos(
                         "item",
                         "***REMOVED***",
                         "libelle",
                         itemAdditionalWantedKeys);
+
+                // With the real url :
+//                ExistingDataInfos itemExistingDataInfos = new ExistingDataInfos(
+//                        "item",
+//                        "***REMOVED***",
+//                        "libelle",
+//                        itemAdditionalWantedKeys);
                 return itemExistingDataInfos;
             default:
                 System.out.println("No matching existing source found!");

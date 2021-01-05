@@ -2,28 +2,28 @@ package fr.gouv.mte.capqualif.titre.domain;
 
 public class ConditionTitre {
 
-    private String libelle;
-    private String valeur;
-    private String commentComparer;
+    private String name;
+    private String value;
+    private ComparisonType howToCompareValue;
     private String existingDataSource;
 
-    public ConditionTitre(String libelle, String valeur, String commentComparer, String existingDataSource) {
-        this.libelle = libelle;
-        this.valeur = valeur;
-        this.commentComparer = commentComparer;
+    public ConditionTitre(String name, String value, ComparisonType howToCompareValue, String existingDataSource) {
+        this.name = name;
+        this.value = value;
+        this.howToCompareValue = howToCompareValue;
         this.existingDataSource = existingDataSource;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public String getName() {
+        return name;
     }
 
-    public String getValeur() {
-        return valeur;
+    public String getValue() {
+        return value;
     }
 
-    public String getCommentComparer() {
-        return commentComparer;
+    public ComparisonType getHowToCompareValue() {
+        return howToCompareValue;
     }
 
     public String getExistingDataSource() {

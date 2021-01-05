@@ -3,29 +3,29 @@ package fr.gouv.mte.capqualif.legislateur.mock;
 import java.util.List;
 
 public class Key {
+    private String keyCategory;
     private String keyName;
-    private String keyValue;
     private boolean isNested;
     private List<ParentKey> parentKeys;
 
-    public Key(String keyName, String keyValue) {
+    public Key(String keyCategory, String keyName) {
+        this.keyCategory = keyCategory;
         this.keyName = keyName;
-        this.keyValue = keyValue;
     }
 
-    public Key(String keyName, String keyValue, boolean isNested, List<ParentKey> parentKeys) {
+    public Key(String keyCategory, String keyName, boolean isNested, List<ParentKey> parentKeys) {
+        this.keyCategory = keyCategory;
         this.keyName = keyName;
-        this.keyValue = keyValue;
         this.isNested = isNested;
         this.parentKeys = parentKeys;
     }
 
-    public String getKeyName() {
-        return keyName;
+    public String getKeyCategory() {
+        return keyCategory;
     }
 
-    public String getKeyValue() {
-        return keyValue;
+    public String getKeyName() {
+        return keyName;
     }
 
     public boolean isNested() {
