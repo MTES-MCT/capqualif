@@ -6,8 +6,11 @@ import com.google.gson.JsonObject;
 import fr.gouv.mte.capqualif.legislateur.mock.Key;
 import fr.gouv.mte.capqualif.legislateur.mock.DataInExistingJsonAPI;
 import fr.gouv.mte.capqualif.legislateur.mock.ParentKey;
+import fr.gouv.mte.capqualif.titre.domain.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,15 +19,17 @@ import java.util.Map;
 @Component
 public class JsonExtractor {
 
-    public List<Map<String, String>> getWantedData(JsonElement json, DataInExistingJsonAPI dataInExistingJsonAPI, String conditionValue) {
+    @Autowired
+    TimeConverter timeConverter;
+
+    public List<Map<String, String>> getWantedData(JsonElement json, DataInExistingJsonAPI dataInExistingJsonAPI, Value conditionValue) {
         JsonObject jsonPortionMatchingConditionValue = findJsonObjectByEntryValue(json, dataInExistingJsonAPI.getMainWantedKey(), conditionValue);
         return extractWantedDataFromJson(jsonPortionMatchingConditionValue, dataInExistingJsonAPI);
     }
 
+    public JsonObject findJsonObjectByEntryValue(JsonElement jsonElement, Key mainWantedKey, Value mainWantedValue) {
 
-    public JsonObject findJsonObjectByEntryValue(JsonElement jsonElement, Key mainWantedKey, String mainWantedValue) {
-
-        // In case you don't know : an entry is a "key:value" pair. So an entry value is the "value" in "key:value".
+        // In case you don't know: an entry is a "key:value" pair. So an entry value is the "value" in "key:value".
 
         if (jsonElement instanceof JsonArray) {
             JsonArray jsonArray = (JsonArray) jsonElement;
@@ -36,12 +41,13 @@ public class JsonExtractor {
                 }
             }
         } else if (jsonElement instanceof JsonObject) {
+//            return (JsonObject) jsonElement;
             return findMatchingJsonObject((JsonObject) jsonElement, mainWantedKey.getKeyName(), mainWantedValue);
         }
         return null;
     }
 
-    private JsonObject findMatchingJsonObject(JsonObject jsonObject, String wantedKey, String wantedValue) {
+    private JsonObject findMatchingJsonObject(JsonObject jsonObject, String wantedKey, Value wantedValue) {
         if (jsonObject.has(wantedKey)) {
             if (hasWantedValue(jsonObject, wantedKey, wantedValue)) {
                 return jsonObject;
@@ -52,7 +58,7 @@ public class JsonExtractor {
         return null;
     }
 
-    private JsonObject findMatchingNestedJsonObject(String wantedKey, String wantedValue, JsonObject jsonObject) {
+    private JsonObject findMatchingNestedJsonObject(String wantedKey, Value wantedValue, JsonObject jsonObject) {
         for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
             if (entry.getValue() instanceof JsonObject) {
                 JsonObject nestedJsonObject = (JsonObject) entry.getValue();
@@ -78,7 +84,7 @@ public class JsonExtractor {
             allData.add(findEntryByWantedKey(json, dataInExistingJsonAPI.getMainWantedKey()));
 
             // Let's add additional data!
-            if(dataInExistingJsonAPI.getAdditionalWantedKeys() != null) {
+            if (dataInExistingJsonAPI.getAdditionalWantedKeys() != null) {
                 for (Key additionalWantedKey : dataInExistingJsonAPI.getAdditionalWantedKeys()) {
                     allData.add(findEntryByWantedKey(json, additionalWantedKey));
                 }
@@ -101,7 +107,7 @@ public class JsonExtractor {
         return data;
     }
 
-    // TO DO : Rewrite
+    // TO DO : Rewrite to sort positionKey (make them int)
     private Map<String, String> findNestedEntryByWantedKey(JsonObject source, Key wantedKey) {
         List<ParentKey> parentKeys = wantedKey.getParentKeys();
         for (ParentKey parentKey : parentKeys) {
@@ -121,7 +127,19 @@ public class JsonExtractor {
         return data;
     }
 
-    private boolean hasWantedValue(JsonObject jsonObject, String wantedKey, String wantedValue) {
-        return jsonObject.get(wantedKey).getAsString().equals(wantedValue);
+    private boolean hasWantedValue(JsonObject jsonObject, String wantedKey, Value wantedValue) {
+        if (wantedValue.getType() == "date") {
+            return checkDate(jsonObject, wantedKey, wantedValue.getContent());
+        }
+        if (wantedValue.getType() == "string") {
+            return jsonObject.get(wantedKey).getAsString().equals(wantedValue.getContent());
+        }
+        return false;
+    }
+
+    private boolean checkDate(JsonObject jsonObject, String wantedKey, String wantedValue) {
+        LocalDate wantedDate = timeConverter.convertToLocalDate(wantedValue);
+        LocalDate testedDate = timeConverter.convertToLocalDate(jsonObject.get(wantedKey).getAsString());
+        return testedDate.isAfter(wantedDate);
     }
 }

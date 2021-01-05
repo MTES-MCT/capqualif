@@ -7,6 +7,7 @@ import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.legislateur.mock.DataInExistingJsonAPI;
 import fr.gouv.mte.capqualif.legislateur.mock.InfosToLookFor;
 import fr.gouv.mte.capqualif.shared.JsonExtractor;
+import fr.gouv.mte.capqualif.titre.domain.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -28,15 +29,9 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
 
 
     @Override
-    public List<Map<String, String>> getMarinData(String numeroDeMarin, String conditionValue, DataInExistingJsonAPI dataInExistingJsonAPI) {
+    public List<Map<String, String>> getMarinData(String numeroDeMarin, Value mainValue, DataInExistingJsonAPI dataInExistingJsonAPI) {
         JsonElement marinJson = getJson(numeroDeMarin, dataInExistingJsonAPI.getUrl());
-//        JsonObject jsonPortionMatchingConditionValue = jsonExtractor.findJsonObjectByEntryValue(marinJson,
-//                dataInExistingJsonAPI.getMainWantedKey(), conditionValue);
-        return jsonExtractor.getWantedData(marinJson, dataInExistingJsonAPI, conditionValue);
-//        List<Map<String, String>> data = jsonExtractor.extractWantedDataFromJson(jsonPortionMatchingConditionValue,
-//                dataInExistingJsonAPI);
-//        System.out.println(data);
-//        return null;
+        return jsonExtractor.getWantedData(marinJson, dataInExistingJsonAPI,mainValue);
     }
 
     private JsonElement getJson(String numeroDeMarin, String existingDataSource) {

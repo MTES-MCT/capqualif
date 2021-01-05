@@ -15,7 +15,7 @@ public class TimeConverter {
         return isDateEpoch(date) ? convertEpochDatetoLocalDate(date) : convertStringDateToLocalDate(date);
     }
 
-    private LocalDate convertStringDateToLocalDate(String date) {
+    public LocalDate convertStringDateToLocalDate(String date) {
         DateTimeFormatter formatter = new DateTimeFormatterBuilder()
                 .appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy"))

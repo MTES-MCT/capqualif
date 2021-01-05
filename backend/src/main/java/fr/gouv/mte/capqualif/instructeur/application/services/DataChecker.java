@@ -28,13 +28,13 @@ public class DataChecker {
             switch (condition.getHowToCompareValue()) {
                 case BIGGER_THAN:
                     Integer age = calculateYearsBetweenDateAndToday(data.get("simpleField").toString());
-                    if (age > Integer.parseInt(condition.getValue())) singleCompareResult = true;
+                    if (age > Integer.parseInt(condition.getValue().getContent())) singleCompareResult = true;
                 case STRICT_EQUALITY:
                     if(data.containsKey("simpleField")) {
-                        if(data.get("simpleField").equals(condition.getValue()) && !isDataExpired(data.get("expirationField").toString())) singleCompareResult = true;
+                        if(data.get("simpleField").equals(condition.getValue().getContent()) && !isDataExpired(data.get("expirationField").toString())) singleCompareResult = true;
                     }
                     if(data.containsKey("nestedField")) {
-                        if(data.get("nestedField").equals(condition.getValue()) && !isDataExpired(data.get("expirationField").toString())) singleCompareResult = true;
+                        if(data.get("nestedField").equals(condition.getValue().getContent()) && !isDataExpired(data.get("expirationField").toString())) singleCompareResult = true;
                     }
             }
             results.add(singleCompareResult);

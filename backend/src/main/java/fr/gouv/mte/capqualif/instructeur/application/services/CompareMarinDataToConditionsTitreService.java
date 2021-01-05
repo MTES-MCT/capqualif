@@ -38,21 +38,13 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         List<ConditionTitre> conditions = getConditionTitre(titreId);
         List<ComparisonResult> results = new ArrayList<ComparisonResult>();
         for (ConditionTitre condition : conditions) {
-            List<Map<String, String>> marinData = getMarinDataPort.getMarinData("123", condition.getValue(),
-                    infosToLookFor.whatExistingDataInfosToLookFor(condition.getExistingDataSource()));
-            System.out.println(marinData);
 
-            // find the json with the matching main key (identifier) at any level
-            //      load all marin data json from api x
-            //      find matching portion of the json x
-            //      return the complete set of data from the matching portion
+            List<Map<String, String>> marinMatchingData = getMarinDataPort.getMarinData("123", condition.getValue(),
+                                                                                        infosToLookFor.whatExistingDataInfosToLookFor(condition.getExistingDataSource()));
 
-//            List<Map> allMatchingData = getMarinDataPort.getMarinData(condition.getExistingDataSource(),
-//            numeroDeMarin);
+            System.out.println(marinMatchingData);
 
 
-            // get additional validity values for this object
-            //      take the set of data
             //      check all data (minus the main key?) validity values
 
 //            List<Map> allMatchingData = dataFinder.findMatchingMarinData(condition.getExistingDataSource(),
