@@ -29,9 +29,4 @@ public class CompareMarinDataToConditionsTitreController {
             @PathVariable("numeroDeMarin") String numeroDeMarin) {
         return compareMarinDataToConditionsTitreUseCase.compareMarinDataToConditionsTitre(titreId, numeroDeMarin);
     }
-
-    @GetMapping("/test")
-    public void test() {
-        getMarinDataAdapter.dumb();
-    }
 }

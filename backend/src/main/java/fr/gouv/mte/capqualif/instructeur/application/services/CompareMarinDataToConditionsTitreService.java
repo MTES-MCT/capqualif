@@ -4,7 +4,6 @@ import fr.gouv.mte.capqualif.instructeur.adapters.out.api.DataFinder;
 import fr.gouv.mte.capqualif.instructeur.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instructeur.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataInfos;
 import fr.gouv.mte.capqualif.legislateur.mock.InfosToLookFor;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitlePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class CompareMarinDataToConditionsTitreService implements CompareMarinDataToConditionsTitreUseCase {
@@ -38,8 +38,9 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         List<ConditionTitre> conditions = getConditionTitre(titreId);
         List<ComparisonResult> results = new ArrayList<ComparisonResult>();
         for (ConditionTitre condition : conditions) {
-            getMarinDataPort.getMarinData("123", condition,
+            List<Map<String, String>> marinData = getMarinDataPort.getMarinData("123", condition.getValue(),
                     infosToLookFor.whatExistingDataInfosToLookFor(condition.getExistingDataSource()));
+            System.out.println(marinData);
 
             // find the json with the matching main key (identifier) at any level
             //      load all marin data json from api x

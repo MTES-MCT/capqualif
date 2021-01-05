@@ -17,12 +17,12 @@ public class TitresApiMock {
         List<ConditionTitre> conditions = new ArrayList<ConditionTitre>
             (Arrays.asList
                 (
-//                    new ConditionTitre("age minimum","16", ComparisonType.BIGGER_THAN, "administres"),
-//                    new ConditionTitre("aptitude médicale", "Apte TF/TN", ComparisonType.STRICT_EQUALITY, "esculape"),
-//                    new ConditionTitre("formation modulaire : Module P1-Appui", "P1–Appui-Navigation", ComparisonType.STRICT_EQUALITY, "amfore"),
-//                    new ConditionTitre("formation modulaire : Module P2-Appui", "P2–Appui-Manutention/arrimage cargaison/pêche", ComparisonType.STRICT_EQUALITY, "amfore"),
-//                    new ConditionTitre("formation modulaire : Module P3-Appui", "P3–Appui-Exploitation/assist/entretien/répar", ComparisonType.STRICT_EQUALITY, "amfore"),
-//                    new ConditionTitre("formation modulaire : Module NP-Appui", "NP–Appui-Module Nation Pont", ComparisonType.STRICT_EQUALITY, "amfore"),
+                    new ConditionTitre("age minimum","16", ComparisonType.BIGGER_THAN, "administres"),
+                    new ConditionTitre("aptitude médicale", "Apte TF/TN", ComparisonType.STRICT_EQUALITY, "esculape"),
+                    new ConditionTitre("formation modulaire : Module P1-Appui", "P1–Appui-Navigation", ComparisonType.STRICT_EQUALITY, "amfore"),
+                    new ConditionTitre("formation modulaire : Module P2-Appui", "P2–Appui-Manutention/arrimage cargaison/pêche", ComparisonType.STRICT_EQUALITY, "amfore"),
+                    new ConditionTitre("formation modulaire : Module P3-Appui", "P3–Appui-Exploitation/assist/entretien/répar", ComparisonType.STRICT_EQUALITY, "amfore"),
+                    new ConditionTitre("formation modulaire : Module NP-Appui", "NP–Appui-Module Nation Pont", ComparisonType.STRICT_EQUALITY, "amfore"),
                     new ConditionTitre("certificat de formation de base à la sécurité (CFBS)", "Certificat de formation de base à la sécurité (STCW10)", ComparisonType.STRICT_EQUALITY, "item")
                 )
             );

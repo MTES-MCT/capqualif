@@ -2,21 +2,21 @@ package fr.gouv.mte.capqualif.legislateur.mock;
 
 import java.util.List;
 
-public class ExistingDataInfos {
+public class DataInExistingJsonAPI {
     private String source;
     private String url;
-    private String mainWantedKey;
+    private Key mainWantedKey;
     private List<Key> additionalWantedKeys;
 
-    public ExistingDataInfos(String source, String url, String mainWantedKey,
-                             List<Key> additionalWantedKeys) {
+    public DataInExistingJsonAPI(String source, String url, Key mainWantedKey,
+                                 List<Key> additionalWantedKeys) {
         this.source = source;
         this.url = url;
         this.mainWantedKey = mainWantedKey;
         this.additionalWantedKeys = additionalWantedKeys;
     }
 
-    public ExistingDataInfos(String source, String url, String mainWantedKey) {
+    public DataInExistingJsonAPI(String source, String url, Key mainWantedKey) {
         this.source = source;
         this.url = url;
         this.mainWantedKey = mainWantedKey;
@@ -30,7 +30,7 @@ public class ExistingDataInfos {
         return url;
     }
 
-    public String getMainWantedKey() {
+    public Key getMainWantedKey() {
         return mainWantedKey;
     }
 
