@@ -35,14 +35,14 @@ public class JsonExtractor {
             JsonArray jsonArray = (JsonArray) jsonElement;
             for (JsonElement element : jsonArray) {
                 if (element instanceof JsonObject) {
-                    if (findMatchingJsonObject((JsonObject) element, mainWantedKey.getKeyName(), mainWantedValue) != null) {
-                        return findMatchingJsonObject((JsonObject) element, mainWantedKey.getKeyName(), mainWantedValue);
-                    }
+                    JsonObject matchingJsonObject = findMatchingJsonObject((JsonObject) element, mainWantedKey.getKeyName(), mainWantedValue);
+                    if (matchingJsonObject != null) return findMatchingJsonObject((JsonObject) element, mainWantedKey.getKeyName(), mainWantedValue);
                 }
             }
-        } else if (jsonElement instanceof JsonObject) {
-//            return (JsonObject) jsonElement;
-            return findMatchingJsonObject((JsonObject) jsonElement, mainWantedKey.getKeyName(), mainWantedValue);
+        }
+        if (jsonElement instanceof JsonObject) {
+            return (JsonObject) jsonElement;
+//            return findMatchingJsonObject((JsonObject) jsonElement, mainWantedKey.getKeyName(), mainWantedValue);
         }
         return null;
     }
@@ -140,6 +140,6 @@ public class JsonExtractor {
     private boolean checkDate(JsonObject jsonObject, String wantedKey, String wantedValue) {
         LocalDate wantedDate = timeConverter.convertToLocalDate(wantedValue);
         LocalDate testedDate = timeConverter.convertToLocalDate(jsonObject.get(wantedKey).getAsString());
-        return testedDate.isAfter(wantedDate);
+        return testedDate.isBefore(wantedDate);
     }
 }

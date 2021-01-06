@@ -1,5 +1,6 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
+import fr.gouv.mte.capqualif.titre.domain.ExistingDataSource;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -9,9 +10,9 @@ import java.util.*;
 @Component
 public class InfosToLookFor {
 
-    public DataInExistingJsonAPI whatExistingDataInfosToLookFor(String existingDataSource) {
+    public DataInExistingJsonAPI whatExistingDataInfosToLookFor(ExistingDataSource existingDataSource) {
         switch (existingDataSource) {
-            case ("administres"):
+            case ADMINISTRES:
 
                 DataInExistingJsonAPI administresExistingDataInfos = new DataInExistingJsonAPI(
                         "administres",
@@ -21,7 +22,7 @@ public class InfosToLookFor {
 
 //              "***REMOVED******REMOVED***",
 
-            case ("esculape"):
+            case ESCULAPE:
                 Key esculapeAdditionalWantedKey1 = new Key("expirationKey", "dateFinDeValidite");
                 List<Key> esculapeAdditionalWantedKeys = new ArrayList<>();
                 esculapeAdditionalWantedKeys.add(esculapeAdditionalWantedKey1);
@@ -34,27 +35,26 @@ public class InfosToLookFor {
 
 //              "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/",
 
-            case ("amfore"):
+            case AMFORE:
                 Key amforeAdditionalWantedKey1 = new Key("expirationKey", "dateFinValidite");
                 List<Key> amforeAdditionalWantedKeys = new ArrayList<>();
                 amforeAdditionalWantedKeys.add(amforeAdditionalWantedKey1);
-                DataInExistingJsonAPI amforeExistingDataInfos = new DataInExistingJsonAPI(
+                return new DataInExistingJsonAPI(
                         "amfore",
                         "***REMOVED***",
                         new Key("mainKey", "libelleModuleUv"),
                         amforeAdditionalWantedKeys);
-                return amforeExistingDataInfos;
 
 //              "http://ws-amfore-capqualif-test.dsi.damgm.i2/amfore/api/v1/acquisitions/",
 
-            case ("item"):
+            case ITEM:
 
                 // ================= Additional wanted keys =================
 
                 Key itemAdditionalWantedKey1 = new Key("expirationKey", "dateExpiration");
 
                 Key itemAdditionalWantedKey2 = new Key("validityKey", "libelle", true,
-                        Arrays.asList(new ParentKey(Position.POSITION_1, "codeEtatTitre")));
+                        Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre")));
 
                 // For testing purpose
 
@@ -76,16 +76,11 @@ public class InfosToLookFor {
 //              "***REMOVED***",
 
 
-                DataInExistingJsonAPI itemExistingDataInfos = new DataInExistingJsonAPI(
+                return new DataInExistingJsonAPI(
                         "item",
                         "***REMOVED***",
                         new Key("mainKey", "libelle", true, Arrays.asList(new ParentKey(Position.POSITION_1, "codeBrevetMarin"))),
                         itemAdditionalWantedKeys);
-
-
-//              "***REMOVED***",
-
-                return itemExistingDataInfos;
             default:
                 System.out.println("No matching existing source found!");
                 return null;

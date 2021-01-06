@@ -5,9 +5,9 @@ public class ConditionTitre {
     private String name;
     private Value value;
     private ComparisonType howToCompareValue;
-    private String existingDataSource;
+    private ExistingDataSource existingDataSource;
 
-    public ConditionTitre(String name, Value value, ComparisonType howToCompareValue, String existingDataSource) {
+    public ConditionTitre(String name, Value value, ComparisonType howToCompareValue, ExistingDataSource existingDataSource) {
         this.name = name;
         this.value = value;
         this.howToCompareValue = howToCompareValue;
@@ -26,7 +26,7 @@ public class ConditionTitre {
         return howToCompareValue;
     }
 
-    public String getExistingDataSource() {
+    public ExistingDataSource getExistingDataSource() {
         return existingDataSource;
     }
 }
