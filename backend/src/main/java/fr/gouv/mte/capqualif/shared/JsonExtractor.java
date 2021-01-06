@@ -29,7 +29,7 @@ public class JsonExtractor {
 
     public JsonObject findJsonObjectByEntryValue(JsonElement jsonElement, Key mainWantedKey, Value mainWantedValue) {
 
-        // In case you don't know: an entry is a "key:value" pair. So an entry value is the "value" in "key:value".
+        // In case you don't know: an entry is a "key:value" pair. Example : for entry "bestMeal:kebab", entry value is "kebab".
 
         if (jsonElement instanceof JsonArray) {
             JsonArray jsonArray = (JsonArray) jsonElement;
@@ -41,8 +41,8 @@ public class JsonExtractor {
             }
         }
         if (jsonElement instanceof JsonObject) {
-            return (JsonObject) jsonElement;
-//            return findMatchingJsonObject((JsonObject) jsonElement, mainWantedKey.getKeyName(), mainWantedValue);
+//            return (JsonObject) jsonElement;
+            return findMatchingJsonObject((JsonObject) jsonElement, mainWantedKey.getKeyName(), mainWantedValue);
         }
         return null;
     }

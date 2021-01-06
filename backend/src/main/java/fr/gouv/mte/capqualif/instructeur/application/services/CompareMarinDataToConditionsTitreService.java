@@ -1,6 +1,5 @@
 package fr.gouv.mte.capqualif.instructeur.application.services;
 
-import fr.gouv.mte.capqualif.instructeur.adapters.out.api.DataFinder;
 import fr.gouv.mte.capqualif.instructeur.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instructeur.domain.ComparisonResult;
@@ -25,9 +24,6 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     GetMarinDataPort getMarinDataPort;
 
     @Autowired
-    DataFinder dataFinder;
-
-    @Autowired
     DataChecker dataChecker;
 
     @Autowired
@@ -40,9 +36,12 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         for (ConditionTitre condition : conditions) {
 
             List<Map<String, String>> marinMatchingData = getMarinDataPort.getMarinData("123", condition.getValue(),
-                                                                                        infosToLookFor.whatExistingDataInfosToLookFor(condition.getExistingDataSource()));
-
-            System.out.println(marinMatchingData);
+                    infosToLookFor.whatExistingDataInfosToLookFor(condition.getExistingDataSource()));
+            if (marinMatchingData == null) {
+                System.out.println("No matching data found for " + condition.getName() + " = " + condition.getValue().getContent());
+            } else {
+                System.out.println(marinMatchingData);
+            }
 
 
             //      check all data (minus the main key?) validity values
@@ -58,8 +57,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
 
     private List<ConditionTitre> getConditionTitre(String titreId) {
         Titre titre = getTitlePort.getTitle(titreId);
-        List<ConditionTitre> conditions = titre.getConditions();
-        return conditions;
+        return titre.getConditions();
     }
 
 
