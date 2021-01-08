@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import fr.gouv.mte.capqualif.legislateur.mock.Key;
 import fr.gouv.mte.capqualif.titre.domain.Value;
+import fr.gouv.mte.capqualif.titre.domain.enums.ValueType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +29,7 @@ public class JsonExtractorTest {
         String expected = getExpectedResult("item", "1");
         JsonExtractor jsonExtractor = new JsonExtractor();
         Key mainWantedKey = new Key("mainWantedKey", "idIteTitreDetenu");
-        JsonObject tested = jsonExtractor.findJsonObjectByEntryValue(initialJson, mainWantedKey, new Value("839308", "string"));
+        JsonObject tested = jsonExtractor.findJsonObjectByEntryValue(initialJson, mainWantedKey, new Value("839308", ValueType.STRING));
         assertEquals(expected.replaceAll("\\s", ""), tested.toString().replaceAll("\\s", ""));
     }
 
@@ -38,7 +39,7 @@ public class JsonExtractorTest {
         String expected = getExpectedResult("item", "2");
         JsonExtractor jsonExtractor = new JsonExtractor();
         Key mainWantedKey = new Key("mainWantedKey", "libelle");
-        JsonObject tested = jsonExtractor.findJsonObjectByEntryValue(initialJson, mainWantedKey,  new Value("Certificat de matelot pont (2015)", "string")
+        JsonObject tested = jsonExtractor.findJsonObjectByEntryValue(initialJson, mainWantedKey,  new Value("Certificat de matelot pont (2015)", ValueType.STRING)
                 );
         assertEquals(expected.replaceAll("\\s", ""), tested.toString().replaceAll("\\s", ""));
     }
@@ -49,7 +50,7 @@ public class JsonExtractorTest {
         String expected = getExpectedResult("amfore", "1");
         JsonExtractor jsonExtractor = new JsonExtractor();
         Key mainWantedKey = new Key("mainWantedKey", "libelleModuleUv");
-        JsonObject tested = jsonExtractor.findJsonObjectByEntryValue(initialJson, mainWantedKey, new Value("P3–Appui-Exploitation/assist/entretien/répar", "string"));
+        JsonObject tested = jsonExtractor.findJsonObjectByEntryValue(initialJson, mainWantedKey, new Value("P3–Appui-Exploitation/assist/entretien/répar", ValueType.STRING));
         assertEquals(expected.replaceAll("\\s", ""), tested.toString().replaceAll("\\s", ""));
     }
 
@@ -59,7 +60,7 @@ public class JsonExtractorTest {
         String expected = getExpectedResult("esculape", "1");
         JsonExtractor jsonExtractor = new JsonExtractor();
         Key mainWantedKey = new Key("mainWantedKey", "rendezVous");
-        JsonObject tested = jsonExtractor.findJsonObjectByEntryValue(initialJson, mainWantedKey, new Value("1608073200000", "string"));
+        JsonObject tested = jsonExtractor.findJsonObjectByEntryValue(initialJson, mainWantedKey, new Value("1608073200000", ValueType.STRING));
         assertEquals(expected.replaceAll("\\s", ""), tested.toString().replaceAll("\\s", ""));
     }
 
@@ -69,7 +70,7 @@ public class JsonExtractorTest {
         String expected = getExpectedResult("esculape", "2");
         JsonExtractor jsonExtractor = new JsonExtractor();
         Key mainWantedKey = new Key("mainWantedKey", "libelle");
-        JsonObject tested = jsonExtractor.findJsonObjectByEntryValue(initialJson, mainWantedKey, new Value("Apte TF/TN", "string"));
+        JsonObject tested = jsonExtractor.findJsonObjectByEntryValue(initialJson, mainWantedKey, new Value("Apte TF/TN", ValueType.STRING));
         assertEquals(expected.replaceAll("\\s", ""), tested.toString().replaceAll("\\s", ""));
     }
 

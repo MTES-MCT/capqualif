@@ -17,12 +17,6 @@ public class CompareMarinDataToConditionsTitreController {
     @Autowired
     CompareMarinDataToConditionsTitreUseCase compareMarinDataToConditionsTitreUseCase;
 
-    @Autowired
-    GetMarinDataAdapter getMarinDataAdapter;
-
-    @Autowired
-    InfosToLookFor infosToLookFor;
-
     @GetMapping("/{titreId}/{numeroDeMarin}")
     public List<ComparisonResult> compareSailorDataToTitleConditions(
             @PathVariable("titreId") String titreId,

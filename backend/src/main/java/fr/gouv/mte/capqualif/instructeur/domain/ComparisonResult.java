@@ -1,5 +1,7 @@
 package fr.gouv.mte.capqualif.instructeur.domain;
 
+import java.util.Objects;
+
 public class ComparisonResult {
 
     private String name;
@@ -16,5 +18,16 @@ public class ComparisonResult {
 
     public boolean isValid() {
         return isValid;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        ComparisonResult result = (ComparisonResult) o;
+        return isValid == result.isValid &&
+                name.equals(result.name);
     }
 }

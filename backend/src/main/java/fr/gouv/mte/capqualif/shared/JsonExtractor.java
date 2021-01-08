@@ -4,17 +4,15 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import fr.gouv.mte.capqualif.legislateur.mock.Key;
-import fr.gouv.mte.capqualif.legislateur.mock.DataInExistingJsonAPI;
+import fr.gouv.mte.capqualif.legislateur.mock.ExistingAPIMapper;
 import fr.gouv.mte.capqualif.legislateur.mock.ParentKey;
 import fr.gouv.mte.capqualif.titre.domain.Value;
+import fr.gouv.mte.capqualif.titre.domain.enums.ValueType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class JsonExtractor {
@@ -22,12 +20,12 @@ public class JsonExtractor {
     @Autowired
     TimeConverter timeConverter;
 
-    public List<Map<String, String>> getWantedData(JsonElement json, DataInExistingJsonAPI dataInExistingJsonAPI, Value conditionValue) {
-        JsonObject jsonPortionMatchingConditionValue = findJsonObjectByEntryValue(json, dataInExistingJsonAPI.getMainWantedKey(), conditionValue);
-        return extractWantedDataFromJson(jsonPortionMatchingConditionValue, dataInExistingJsonAPI);
+    public List<Map<String, String>> getWantedData(JsonElement json, Value conditionValue, ExistingAPIMapper existingAPIMapper) {
+        JsonObject jsonPortionMatchingConditionValue = findJsonObjectByEntryValue(json, existingAPIMapper.getKeyOfMainWantedData(), conditionValue);
+        return extractWantedDataFromJson(jsonPortionMatchingConditionValue, existingAPIMapper);
     }
 
-    public JsonObject findJsonObjectByEntryValue(JsonElement jsonElement, Key mainWantedKey, Value mainWantedValue) {
+    public JsonObject findJsonObjectByEntryValue(JsonElement jsonElement, Key keyOfMainWantedData, Value valueOfMainWantedData) {
 
         // In case you don't know: an entry is a "key:value" pair. Example : for entry "bestMeal:kebab", entry value is "kebab".
 
@@ -35,14 +33,14 @@ public class JsonExtractor {
             JsonArray jsonArray = (JsonArray) jsonElement;
             for (JsonElement element : jsonArray) {
                 if (element instanceof JsonObject) {
-                    JsonObject matchingJsonObject = findMatchingJsonObject((JsonObject) element, mainWantedKey.getKeyName(), mainWantedValue);
-                    if (matchingJsonObject != null) return findMatchingJsonObject((JsonObject) element, mainWantedKey.getKeyName(), mainWantedValue);
+                    JsonObject matchingJsonObject = findMatchingJsonObject((JsonObject) element, keyOfMainWantedData.getKeyRealNameInExistingDataSource(), valueOfMainWantedData);
+                    if (matchingJsonObject != null) return findMatchingJsonObject((JsonObject) element, keyOfMainWantedData.getKeyRealNameInExistingDataSource(), valueOfMainWantedData);
                 }
             }
         }
         if (jsonElement instanceof JsonObject) {
 //            return (JsonObject) jsonElement;
-            return findMatchingJsonObject((JsonObject) jsonElement, mainWantedKey.getKeyName(), mainWantedValue);
+            return findMatchingJsonObject((JsonObject) jsonElement, keyOfMainWantedData.getKeyRealNameInExistingDataSource(), valueOfMainWantedData);
         }
         return null;
     }
@@ -76,23 +74,23 @@ public class JsonExtractor {
 
 
 
-    private List<Map<String, String>> extractWantedDataFromJson(JsonObject json, DataInExistingJsonAPI dataInExistingJsonAPI) {
+    private List<Map<String, String>> extractWantedDataFromJson(JsonObject json, ExistingAPIMapper existingAPIMapper) {
         if (json != null) {
             List<Map<String, String>> allData = new ArrayList<>();
 
             // Let's add the main data!
-            allData.add(findEntryByWantedKey(json, dataInExistingJsonAPI.getMainWantedKey()));
+            allData.add(findEntryByWantedKey(json, existingAPIMapper.getKeyOfMainWantedData()));
 
             // Let's add additional data!
-            if (dataInExistingJsonAPI.getAdditionalWantedKeys() != null) {
-                for (Key additionalWantedKey : dataInExistingJsonAPI.getAdditionalWantedKeys()) {
-                    allData.add(findEntryByWantedKey(json, additionalWantedKey));
+            if (existingAPIMapper.getKeysOfAdditionnalWantedData() != null) {
+                for (Key keyOfAdditionnalWantedData : existingAPIMapper.getKeysOfAdditionnalWantedData()) {
+                    allData.add(findEntryByWantedKey(json, keyOfAdditionnalWantedData));
                 }
             }
 
             return allData;
         }
-        return null;
+        return Collections.emptyList();
     }
 
     private Map<String, String> findEntryByWantedKey(JsonObject json, Key wantedKey) {
@@ -112,8 +110,8 @@ public class JsonExtractor {
         List<ParentKey> parentKeys = wantedKey.getParentKeys();
         for (ParentKey parentKey : parentKeys) {
             for (int i = 1; i <= parentKeys.size(); i++) {
-                if (parentKey.getPosition().toString().equals("POSITION_" + i) && (source.get(parentKey.getKeyName()) instanceof JsonObject)) {
-                    JsonObject jsonSource = (JsonObject) source.get(parentKey.getKeyName());
+                if (parentKey.getPosition().toString().equals("POSITION_" + i) && (source.get(parentKey.getKeyRealNameInExistingDataSource()) instanceof JsonObject)) {
+                    JsonObject jsonSource = (JsonObject) source.get(parentKey.getKeyRealNameInExistingDataSource());
                     source = jsonSource;
                 }
             }
@@ -123,15 +121,15 @@ public class JsonExtractor {
 
     private Map<String, String> createMap(JsonObject source, Key wantedKey) {
         Map<String, String> data = new HashMap<>();
-        data.put(wantedKey.getKeyCategory(), source.get(wantedKey.getKeyName()).getAsString());
+        data.put(wantedKey.getKeyGenericName(), source.get(wantedKey.getKeyRealNameInExistingDataSource()).getAsString());
         return data;
     }
 
     private boolean hasWantedValue(JsonObject jsonObject, String wantedKey, Value wantedValue) {
-        if (wantedValue.getType() == "date") {
+        if (wantedValue.getType() == ValueType.DATE) {
             return checkDate(jsonObject, wantedKey, wantedValue.getContent());
         }
-        if (wantedValue.getType() == "string") {
+        if (wantedValue.getType() == ValueType.STRING) {
             return jsonObject.get(wantedKey).getAsString().equals(wantedValue.getContent());
         }
         return false;

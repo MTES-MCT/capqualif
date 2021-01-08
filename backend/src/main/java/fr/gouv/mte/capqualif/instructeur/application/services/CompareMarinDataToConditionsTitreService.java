@@ -37,11 +37,17 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
 
             List<Map<String, String>> marinMatchingData = getMarinDataPort.getMarinData("123", condition.getValue(),
                     infosToLookFor.whatExistingDataInfosToLookFor(condition.getExistingDataSource()));
+
+            // ===== TO DO : for dev logs purposes, remove later =====
             if (marinMatchingData == null) {
-                System.out.println("No matching data found for " + condition.getName() + " = " + condition.getValue().getContent());
+                System.out.println("No matching data found for " + condition.getJuridicalDesignation() + " = " + condition.getValue().getContent());
             } else {
                 System.out.println(marinMatchingData);
             }
+            // =======================================================
+
+            // Passer chaque matching marinData au dataChecker !
+
 
 
             //      check all data (minus the main key?) validity values

@@ -1,6 +1,6 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
-import fr.gouv.mte.capqualif.titre.domain.ExistingDataSource;
+import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -10,12 +10,12 @@ import java.util.*;
 @Component
 public class InfosToLookFor {
 
-    public DataInExistingJsonAPI whatExistingDataInfosToLookFor(ExistingDataSource existingDataSource) {
-        switch (existingDataSource) {
+    public ExistingAPIMapper whatExistingDataInfosToLookFor(ExistingDataSourceName existingDataSourceName) {
+        switch (existingDataSourceName) {
             case ADMINISTRES:
 
-                DataInExistingJsonAPI administresExistingDataInfos = new DataInExistingJsonAPI(
-                        "administres",
+                ExistingAPIMapper administresExistingDataInfos = new ExistingAPIMapper(
+                        ExistingDataSourceName.ADMINISTRES,
                         "https://run.mocky.io/v3/23493c22-70dd-4b8b-9e54-19aa5108c66b",
                         new Key("mainKey", "dateNaissance"));
                 return administresExistingDataInfos;
@@ -27,8 +27,8 @@ public class InfosToLookFor {
                 Key esculapeAdditionalWantedKey1 = new Key("expirationKey", "dateFinDeValidite");
                 List<Key> esculapeAdditionalWantedKeys = new ArrayList<>();
                 esculapeAdditionalWantedKeys.add(esculapeAdditionalWantedKey1);
-                DataInExistingJsonAPI esculapeExistingDataInfos = new DataInExistingJsonAPI(
-                        "esculape",
+                ExistingAPIMapper esculapeExistingDataInfos = new ExistingAPIMapper(
+                        ExistingDataSourceName.ESCULAPE,
                         "***REMOVED***",
                         new Key("mainKey", "libelle", true, Arrays.asList(new ParentKey(Position.POSITION_1, "decisionMedicale"))),
                         esculapeAdditionalWantedKeys);
@@ -40,8 +40,8 @@ public class InfosToLookFor {
                 Key amforeAdditionalWantedKey1 = new Key("expirationKey", "dateFinValidite");
                 List<Key> amforeAdditionalWantedKeys = new ArrayList<>();
                 amforeAdditionalWantedKeys.add(amforeAdditionalWantedKey1);
-                return new DataInExistingJsonAPI(
-                        "amfore",
+                return new ExistingAPIMapper(
+                        ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new Key("mainKey", "libelleModuleUv"),
                         amforeAdditionalWantedKeys);
@@ -77,8 +77,8 @@ public class InfosToLookFor {
 //              "***REMOVED***",
 
 
-                return new DataInExistingJsonAPI(
-                        "item",
+                return new ExistingAPIMapper(
+                        ExistingDataSourceName.ITEM,
                         "***REMOVED***",
                         new Key("mainKey", "libelle", true, Arrays.asList(new ParentKey(Position.POSITION_1, "codeBrevetMarin"))),
                         itemAdditionalWantedKeys);
