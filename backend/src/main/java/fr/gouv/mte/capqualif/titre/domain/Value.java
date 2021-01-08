@@ -1,12 +1,12 @@
 package fr.gouv.mte.capqualif.titre.domain;
 
-import fr.gouv.mte.capqualif.titre.domain.enums.ValueType;
+import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 
 public class Value {
     private String content;
-    private ValueType type;
+    private DataType type;
 
-    public Value(String content, ValueType type) {
+    public Value(String content, DataType type) {
         this.content = content;
         this.type = type;
     }
@@ -15,7 +15,15 @@ public class Value {
         return content;
     }
 
-    public ValueType getType() {
+    public DataType getType() {
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return "Value{" +
+                "content='" + content + '\'' +
+                ", type=" + type +
+                '}';
     }
 }

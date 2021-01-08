@@ -3,7 +3,7 @@ package fr.gouv.mte.capqualif.instructeur.adapters.in.web;
 import fr.gouv.mte.capqualif.instructeur.adapters.out.api.GetMarinDataAdapter;
 import fr.gouv.mte.capqualif.instructeur.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.instructeur.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.legislateur.mock.InfosToLookFor;
+import fr.gouv.mte.capqualif.legislateur.mock.ConditionDataSourceToDataToSearchForInExistingDataSourceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

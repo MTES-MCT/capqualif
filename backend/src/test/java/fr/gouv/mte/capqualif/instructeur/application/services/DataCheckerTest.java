@@ -1,12 +1,13 @@
 package fr.gouv.mte.capqualif.instructeur.application.services;
 
 import fr.gouv.mte.capqualif.instructeur.domain.ComparisonResult;
+import fr.gouv.mte.capqualif.instructeur.domain.Entry;
 import fr.gouv.mte.capqualif.shared.TimeConverter;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
-import fr.gouv.mte.capqualif.titre.domain.enums.ValueType;
+import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,25 +58,25 @@ public class DataCheckerTest {
 
         ConditionTitre conditionTitre = new ConditionTitre(
                                 "age minimum",
-                                        new Value(conditionDate.toString(), ValueType.DATE),
+                                        new Value(conditionDate.toString(), DataType.DATE),
                                         ComparisonRule.BIGGER_THAN,
                                         ExistingDataSourceName.ADMINISTRES);
 
         // Create macthingData
-        String key = "mainKey";
-        String value = "21/09/1991";
-        Map<String, String> marinData = new HashMap<>();
-        marinData.put(key, value);
-        List<Map<String, String>> marinDataList = Collections.singletonList(marinData);
+        String key = "age minimum";
+        String valueContent = "21/09/1991";
+        Value value = new Value(valueContent, DataType.DATE);
+        Entry entry = new Entry(key, value);
+        List<Entry> marinDataList = Collections.singletonList(entry);
 
         ComparisonResult expected = new ComparisonResult(key, true);
         DataChecker dataChecker = new DataChecker();
 
-        Mockito.when(timeConverter.convertStringDateToLocalDate(value)).thenReturn(LocalDate.of(1991, 9, 21));
+        Mockito.when(timeConverter.convertStringDateToLocalDate(valueContent)).thenReturn(LocalDate.of(1991, 9, 21));
         Mockito.when(timeConverter.convertStringDateToLocalDate(conditionDate.toString())).thenReturn(LocalDate.now());
 
         ComparisonResult tested = dataChecker.compareDataToCondition(marinDataList, conditionTitre);
-        assertEquals(expected.getName(), tested.getName());
+        assertEquals(expected.getConditionJuridicalDesignation(), tested.getConditionJuridicalDesignation());
         assertEquals(expected.isValid(), tested.isValid());
 
 

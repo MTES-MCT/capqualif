@@ -1,17 +1,15 @@
 package fr.gouv.mte.capqualif.instructeur.application.services;
 
 import fr.gouv.mte.capqualif.instructeur.domain.ComparisonResult;
+import fr.gouv.mte.capqualif.instructeur.domain.Entry;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.shared.TimeConverter;
-import fr.gouv.mte.capqualif.titre.domain.enums.ValueType;
+import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class DataChecker {
@@ -19,15 +17,15 @@ public class DataChecker {
     @Autowired
     TimeConverter timeConverter;
 
-    public ComparisonResult compareDataToCondition(List<Map<String, String>> dataList, ConditionTitre condition) {
+    public ComparisonResult compareDataToCondition(List<Entry> entryList, ConditionTitre condition) {
 
         boolean result = false;
 
-        for (Map<String, String> data : dataList) {
+        for (Entry entry : entryList) {
             System.out.println("!!!!!!!!!!!!!!!!");
-            System.out.println(data);
-            if (condition.getValue().getType() == ValueType.DATE) {
-                result = isDateBeforeLimitDate(data.get("mainKey"), condition.getValue().getContent());
+            System.out.println(entry);
+            if (condition.getValue().getType() == DataType.DATE) {
+                result = isDateBeforeLimitDate(entry.getValue().getContent(), condition.getValue().getContent());
             }
         }
 

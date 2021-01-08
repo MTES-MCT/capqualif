@@ -1,5 +1,6 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
+import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 import org.springframework.stereotype.Component;
 
@@ -8,42 +9,42 @@ import java.util.*;
 // NOTE : in the future, this infos will be built in the DAM module
 
 @Component
-public class InfosToLookFor {
+public class ConditionDataSourceToDataToSearchForInExistingDataSourceMapper {
 
-    public ExistingAPIMapper whatExistingDataInfosToLookFor(ExistingDataSourceName existingDataSourceName) {
+    public DataToSearchForInExistingDataSource whatExistingDataToSearchFor(ExistingDataSourceName existingDataSourceName) {
         switch (existingDataSourceName) {
             case ADMINISTRES:
 
-                ExistingAPIMapper administresExistingDataInfos = new ExistingAPIMapper(
+                DataToSearchForInExistingDataSource administresExistingDataInfos = new DataToSearchForInExistingDataSource(
                         ExistingDataSourceName.ADMINISTRES,
                         "https://run.mocky.io/v3/23493c22-70dd-4b8b-9e54-19aa5108c66b",
-                        new Key("mainKey", "dateNaissance"));
+                        new Key("dateNaissance", DataType.DATE));
                 return administresExistingDataInfos;
 
 //              "***REMOVED******REMOVED***",
 //
 
             case ESCULAPE:
-                Key esculapeAdditionalWantedKey1 = new Key("expirationKey", "dateFinDeValidite");
+                Key esculapeAdditionalWantedKey1 = new Key("dateFinDeValidite", DataType.DATE);
                 List<Key> esculapeAdditionalWantedKeys = new ArrayList<>();
                 esculapeAdditionalWantedKeys.add(esculapeAdditionalWantedKey1);
-                ExistingAPIMapper esculapeExistingDataInfos = new ExistingAPIMapper(
+                DataToSearchForInExistingDataSource esculapeExistingDataInfos = new DataToSearchForInExistingDataSource(
                         ExistingDataSourceName.ESCULAPE,
                         "***REMOVED***",
-                        new Key("mainKey", "libelle", true, Arrays.asList(new ParentKey(Position.POSITION_1, "decisionMedicale"))),
+                        new Key("libelle", DataType.STRING, true, Arrays.asList(new ParentKey(Position.POSITION_1, "decisionMedicale"))),
                         esculapeAdditionalWantedKeys);
                 return esculapeExistingDataInfos;
 
 //              "http://ws-esculape-capqualif-test.dsi.damgm.i2/esculape/api/v1/aptitudes/",
 
             case AMFORE:
-                Key amforeAdditionalWantedKey1 = new Key("expirationKey", "dateFinValidite");
+                Key amforeAdditionalWantedKey1 = new Key("dateFinValidite", DataType.DATE);
                 List<Key> amforeAdditionalWantedKeys = new ArrayList<>();
                 amforeAdditionalWantedKeys.add(amforeAdditionalWantedKey1);
-                return new ExistingAPIMapper(
+                return new DataToSearchForInExistingDataSource(
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
-                        new Key("mainKey", "libelleModuleUv"),
+                        new Key("libelleModuleUv", DataType.STRING),
                         amforeAdditionalWantedKeys);
 
 //              "http://ws-amfore-capqualif-test.dsi.damgm.i2/amfore/api/v1/acquisitions/",
@@ -52,9 +53,9 @@ public class InfosToLookFor {
 
                 // ================= Additional wanted keys =================
 
-                Key itemAdditionalWantedKey1 = new Key("expirationKey", "dateExpiration");
+                Key itemAdditionalWantedKey1 = new Key("dateExpiration", DataType.DATE);
 
-                Key itemAdditionalWantedKey2 = new Key("validityKey", "libelle", true,
+                Key itemAdditionalWantedKey2 = new Key("libelle", DataType.STRING, true,
                         Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre")));
 
                 // For testing purpose
@@ -77,10 +78,10 @@ public class InfosToLookFor {
 //              "***REMOVED***",
 
 
-                return new ExistingAPIMapper(
+                return new DataToSearchForInExistingDataSource(
                         ExistingDataSourceName.ITEM,
                         "***REMOVED***",
-                        new Key("mainKey", "libelle", true, Arrays.asList(new ParentKey(Position.POSITION_1, "codeBrevetMarin"))),
+                        new Key("libelle", DataType.STRING, true, Arrays.asList(new ParentKey(Position.POSITION_1, "codeBrevetMarin"))),
                         itemAdditionalWantedKeys);
             default:
                 System.out.println("No matching existing source found!");

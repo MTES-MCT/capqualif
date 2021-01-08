@@ -3,7 +3,7 @@ package fr.gouv.mte.capqualif.titre.adapters.out.api.mocks;
 import fr.gouv.mte.capqualif.titre.domain.*;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
-import fr.gouv.mte.capqualif.titre.domain.enums.ValueType;
+import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -34,13 +34,13 @@ public class TitresApiMock {
         List<ConditionTitre> conditions = new ArrayList<ConditionTitre>
             (Arrays.asList
                 (
-                    new ConditionTitre("age minimum", new Value(LocalDate.now().minusYears(16).toString(), ValueType.DATE), ComparisonRule.BIGGER_THAN, ExistingDataSourceName.ADMINISTRES),
-                    new ConditionTitre("aptitude médicale", new Value("Apte TF/TN", ValueType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ESCULAPE),
-                    new ConditionTitre("formation modulaire : Module P1-Appui", new Value("P1–Appui-Navigation", ValueType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("formation modulaire : Module P2-Appui", new Value("P2–Appui-Manutention/arrimage cargaison/pêche", ValueType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("formation modulaire : Module P3-Appui", new Value("P3–Appui-Exploitation/assist/entretien/répar", ValueType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("formation modulaire : Module NP-Appui", new Value("NP–Appui-Module Nation Pont", ValueType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("certificat de formation de base à la sécurité (CFBS)", new Value("Certificat de formation de base à la sécurité (STCW10)", ValueType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ITEM)
+                    new ConditionTitre("age minimum", new Value(LocalDate.now().minusYears(16).toString(), DataType.DATE), ComparisonRule.BIGGER_THAN, ExistingDataSourceName.ADMINISTRES),
+                    new ConditionTitre("aptitude médicale", new Value("Apte TF/TN", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ESCULAPE),
+                    new ConditionTitre("formation modulaire : Module P1-Appui", new Value("P1–Appui-Navigation", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
+                    new ConditionTitre("formation modulaire : Module P2-Appui", new Value("P2–Appui-Manutention/arrimage cargaison/pêche", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
+                    new ConditionTitre("formation modulaire : Module P3-Appui", new Value("P3–Appui-Exploitation/assist/entretien/répar", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
+                    new ConditionTitre("formation modulaire : Module NP-Appui", new Value("NP–Appui-Module Nation Pont", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
+                    new ConditionTitre("certificat de formation de base à la sécurité (CFBS)", new Value("Certificat de formation de base à la sécurité (STCW10)", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ITEM)
                 )
             );
 
@@ -53,7 +53,7 @@ public class TitresApiMock {
                 prerogatives));
 
         List<ConditionTitre> conditions2 = new ArrayList<ConditionTitre>(Arrays.asList(
-                new ConditionTitre("aptitude médicale", new Value("Apte TF/TN", ValueType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ESCULAPE)));
+                new ConditionTitre("aptitude médicale", new Value("Apte TF/TN", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ESCULAPE)));
         List<String> prerogatives2 = new ArrayList<String>(Arrays.asList("Cuisson de tartes flambées", "Préparation de crèmes brûlées"));
         titresList.add(new Titre(
                 "2",

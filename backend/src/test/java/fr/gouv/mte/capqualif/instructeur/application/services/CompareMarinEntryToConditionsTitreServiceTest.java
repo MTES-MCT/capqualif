@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CompareMarinDataToConditionsTitreServiceTest {
+public class CompareMarinEntryToConditionsTitreServiceTest {
 
     @Autowired
     TitresApiMock titresApiMock;

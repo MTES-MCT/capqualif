@@ -1,19 +1,17 @@
 package fr.gouv.mte.capqualif.instructeur.domain;
 
-import java.util.Objects;
-
 public class ComparisonResult {
 
-    private String name;
+    private String conditionJuridicalDesignation;
     private boolean isValid;
 
-    public ComparisonResult(String name, boolean isValid) {
-        this.name = name;
+    public ComparisonResult(String conditionJuridicalDesignation, boolean isValid) {
+        this.conditionJuridicalDesignation = conditionJuridicalDesignation;
         this.isValid = isValid;
     }
 
-    public String getName() {
-        return name;
+    public String getConditionJuridicalDesignation() {
+        return conditionJuridicalDesignation;
     }
 
     public boolean isValid() {
@@ -28,6 +26,6 @@ public class ComparisonResult {
             return false;
         ComparisonResult result = (ComparisonResult) o;
         return isValid == result.isValid &&
-                name.equals(result.name);
+                conditionJuridicalDesignation.equals(result.conditionJuridicalDesignation);
     }
 }

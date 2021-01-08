@@ -4,21 +4,21 @@ import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 
 import java.util.List;
 
-public class ExistingAPIMapper {
+public class DataToSearchForInExistingDataSource {
     private ExistingDataSourceName APIName;
     private String APIUrl;
     private Key keyOfMainWantedData;
     private List<Key> keysOfAdditionnalWantedData;
 
-    public ExistingAPIMapper(ExistingDataSourceName APIName, String APIUrl, Key keyOfMainWantedData,
-                             List<Key> KeysOfAdditionnalWantedData) {
+    public DataToSearchForInExistingDataSource(ExistingDataSourceName APIName, String APIUrl, Key keyOfMainWantedData,
+                                               List<Key> KeysOfAdditionnalWantedData) {
         this.APIName = APIName;
         this.APIUrl = APIUrl;
         this.keyOfMainWantedData = keyOfMainWantedData;
         this.keysOfAdditionnalWantedData = KeysOfAdditionnalWantedData;
     }
 
-    public ExistingAPIMapper(ExistingDataSourceName APIName, String APIUrl, Key keyOfMainWantedData) {
+    public DataToSearchForInExistingDataSource(ExistingDataSourceName APIName, String APIUrl, Key keyOfMainWantedData) {
         this.APIName = APIName;
         this.APIUrl = APIUrl;
         this.keyOfMainWantedData = keyOfMainWantedData;

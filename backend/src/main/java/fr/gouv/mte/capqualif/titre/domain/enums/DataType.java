@@ -1,6 +1,6 @@
 package fr.gouv.mte.capqualif.titre.domain.enums;
 
-public enum ValueType {
+public enum DataType {
     DATE,
     STRING
 }

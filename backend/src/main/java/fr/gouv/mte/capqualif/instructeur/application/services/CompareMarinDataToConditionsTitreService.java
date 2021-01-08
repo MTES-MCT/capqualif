@@ -3,7 +3,8 @@ package fr.gouv.mte.capqualif.instructeur.application.services;
 import fr.gouv.mte.capqualif.instructeur.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instructeur.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.legislateur.mock.InfosToLookFor;
+import fr.gouv.mte.capqualif.instructeur.domain.Entry;
+import fr.gouv.mte.capqualif.legislateur.mock.ConditionDataSourceToDataToSearchForInExistingDataSourceMapper;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitlePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Titre;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class CompareMarinDataToConditionsTitreService implements CompareMarinDataToConditionsTitreUseCase {
@@ -27,7 +27,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     DataChecker dataChecker;
 
     @Autowired
-    InfosToLookFor infosToLookFor;
+    ConditionDataSourceToDataToSearchForInExistingDataSourceMapper conditionDataSourceToDataToSearchForInExistingDataSourceMapper;
 
     @Override
     public List<ComparisonResult> compareMarinDataToConditionsTitre(String titreId, String numeroDeMarin) {
@@ -35,14 +35,16 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         List<ComparisonResult> results = new ArrayList<ComparisonResult>();
         for (ConditionTitre condition : conditions) {
 
-            List<Map<String, String>> marinMatchingData = getMarinDataPort.getMarinData("123", condition.getValue(),
-                    infosToLookFor.whatExistingDataInfosToLookFor(condition.getExistingDataSource()));
+            List<Entry> marinMatchingData = getMarinDataPort.getMarinData("123", condition.getValue(),
+                    conditionDataSourceToDataToSearchForInExistingDataSourceMapper.whatExistingDataToSearchFor(condition.getExistingDataSource()));
 
             // ===== TO DO : for dev logs purposes, remove later =====
             if (marinMatchingData == null) {
                 System.out.println("No matching data found for " + condition.getJuridicalDesignation() + " = " + condition.getValue().getContent());
             } else {
-                System.out.println(marinMatchingData);
+                for (Entry data : marinMatchingData) {
+                    System.out.println(data.toString());
+                }
             }
             // =======================================================
 
