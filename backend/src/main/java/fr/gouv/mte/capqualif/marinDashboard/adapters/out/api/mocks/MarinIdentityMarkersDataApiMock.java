@@ -1,11 +1,11 @@
-package fr.gouv.mte.capqualif.marin.adapters.out.api.mocks;
+package fr.gouv.mte.capqualif.marinDashboard.adapters.out.api.mocks;
 
-import fr.gouv.mte.capqualif.marin.domain.MarinIdentityMarkersData;
+import fr.gouv.mte.capqualif.marinDashboard.domain.MarinIdentityMarkersData;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MarinIdentityMarkersDataApiMock {
-    public MarinIdentityMarkersData findSailorIdentityMarkersBySailorId(String sailorId) {
+    public MarinIdentityMarkersData findMarinIdentityMarkersByNumeroDeMarin(String numeroDeMarin) {
         MarinIdentityMarkersData marinIdentityMarkersData = new MarinIdentityMarkersData(
                 "123",
                 "Virginia"

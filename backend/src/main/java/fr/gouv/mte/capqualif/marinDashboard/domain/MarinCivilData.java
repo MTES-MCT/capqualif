@@ -1,7 +1,7 @@
-package fr.gouv.mte.capqualif.marin.domain;
+package fr.gouv.mte.capqualif.marinDashboard.domain;
 
-public class MarinCivilData implements Data {
-    private String sailorNumber;      // numeroIdentification dans Objet IndividuDto (numIdentification dans doc API ADM)
+public class MarinCivilData {
+    private String numeroDeMarin;      // numeroIdentification dans Objet IndividuDto (numIdentification dans doc API ADM)
     private String firstName;       // prénom dans Objet IndividuDto
     private String lastName;        // nom dans Objet IndividuDto
     private String dateOfBirth;       // date de naissance dans Objet IndividuDto
@@ -11,8 +11,8 @@ public class MarinCivilData implements Data {
 //    private String phoneNumber;     // cette info n'est pas récupérable par API ADM
 
 
-    public MarinCivilData(String sailorNumber, String firstName, String lastName, String dateOfBirth, String placeOfBirth, String address, String email) {
-        this.sailorNumber = sailorNumber;
+    public MarinCivilData(String numeroDeMarin, String firstName, String lastName, String dateOfBirth, String placeOfBirth, String address, String email) {
+        this.numeroDeMarin = numeroDeMarin;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -21,8 +21,8 @@ public class MarinCivilData implements Data {
         this.email = email;
     }
 
-    public String getSailorNumber() {
-        return sailorNumber;
+    public String getNumeroDeMarin() {
+        return numeroDeMarin;
     }
 
     public String getFirstName() {

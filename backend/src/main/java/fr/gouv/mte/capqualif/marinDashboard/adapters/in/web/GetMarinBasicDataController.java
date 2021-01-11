@@ -1,7 +1,7 @@
-package fr.gouv.mte.capqualif.marin.adapters.in.web;
+package fr.gouv.mte.capqualif.marinDashboard.adapters.in.web;
 
-import fr.gouv.mte.capqualif.marin.application.ports.in.GetMarinBasicDataUseCase;
-import fr.gouv.mte.capqualif.marin.domain.Marin;
+import fr.gouv.mte.capqualif.marinDashboard.application.ports.in.GetMarinBasicDataUseCase;
+import fr.gouv.mte.capqualif.marinDashboard.domain.Marin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ public class GetMarinBasicDataController {
     private GetMarinBasicDataUseCase getMarinBasicDataUseCase;
 
     @GetMapping("/{numeroDeMarin}")
-    public Marin getSailorBasicData (@PathVariable("numeroDeMarin") String numeroDeMarin) {
+    public Marin getMarinBasicData(@PathVariable("numeroDeMarin") String numeroDeMarin) {
         return getMarinBasicDataUseCase.getMarinBasicData(numeroDeMarin);
     }
 }

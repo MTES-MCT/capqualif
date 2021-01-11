@@ -1,7 +1,7 @@
-package fr.gouv.mte.capqualif.marin.adapters.out.api.mocks;
+package fr.gouv.mte.capqualif.marinDashboard.adapters.out.api.mocks;
 
-import fr.gouv.mte.capqualif.marin.domain.MarinEducationData;
-import fr.gouv.mte.capqualif.marin.domain.titreMarin;
+import fr.gouv.mte.capqualif.marinDashboard.domain.MarinEducationData;
+import fr.gouv.mte.capqualif.marinDashboard.domain.titreMarin;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 public class MarinEducationDataApiMock {
-    public MarinEducationData findSailorEducationDataBySailorId(String sailorId) {
+    public MarinEducationData findMarinEducationDataByNumeroDeMarin(String numeroDeMarin) {
         List<titreMarin> titlesList = new ArrayList<>();
         List<String> restrictions1 = new ArrayList<String>(Arrays.asList("pas de bras", "pas de chocolat"));
         titlesList.add(new titreMarin(

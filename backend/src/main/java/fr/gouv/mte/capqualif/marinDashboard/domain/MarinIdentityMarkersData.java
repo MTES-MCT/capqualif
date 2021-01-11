@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.marin.domain;
+package fr.gouv.mte.capqualif.marinDashboard.domain;
 
 public class MarinIdentityMarkersData {
     private String photo;           // cette info n'est pas récupérable par API ADM
