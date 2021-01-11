@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+// import PropTypes from 'prop-types';
 import { DASHBOARD_PATH } from '../../../app/pathes';
-
 
 import HeaderBrand from '../../_rf/header-brand/HeaderBrand';
 
@@ -11,20 +11,19 @@ import { getSailorBasicData } from '../../../redux/features/sailorData/sailorsSl
 
 import './Sign.scss';
 
-const Sign = ({ history }) => {
+const Sign = () => {
   const [localSailorNumber, setLocalSailorNumber] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(getSailorBasicData(localSailorNumber))
       .then(unwrapResult)
-      .then((originalPromiseResult) => {
-        console.log(originalPromiseResult);
+      .then(() => {
         history.push(DASHBOARD_PATH);
       })
-      .catch((serializedError) => {
-        console.log(serializedError);
+      .catch(() => {
         history.push('/error');
       });
   };
@@ -74,4 +73,4 @@ const Sign = ({ history }) => {
   );
 };
 
-export default withRouter(Sign);
+export default Sign;

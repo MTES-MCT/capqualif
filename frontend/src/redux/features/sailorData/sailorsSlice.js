@@ -5,8 +5,8 @@ import { CAPQUALIF_URL, SAILORS_ENDPOINT } from '../../../api/apiList';
 
 export const getSailorBasicData = createAsyncThunk(
   'sailors/getSailorBasicDataBySailorNumber',
-  // TO DO : remove thunkAPI parameter?
-  async (sailorNumber, thunkAPI) => {
+
+  async (sailorNumber) => {
     const response = await axios.get(
       `${CAPQUALIF_URL}/${SAILORS_ENDPOINT}/${sailorNumber}`
     );
@@ -17,7 +17,25 @@ export const getSailorBasicData = createAsyncThunk(
 export const sailorSlice = createSlice({
   name: 'sailor',
   initialState: {
-    sailorBasicData: {},
+    sailorBasicData: {
+      sailorNumber: '',
+      sailorCivilData: {
+        sailorNumber: '',
+        firstName: '',
+        lastName: '',
+        dateOfBirth: '',
+        placeOfBirth: '',
+        address: '',
+        email: '',
+      },
+      sailorIdentityMarkersData: {
+        photo: '',
+        signature: '',
+      },
+      sailorEducationData: {
+        titles: [],
+      },
+    },
   },
   reducers: {},
   extraReducers: {
