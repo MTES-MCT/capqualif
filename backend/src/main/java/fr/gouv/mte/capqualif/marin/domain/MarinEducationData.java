@@ -2,10 +2,10 @@ package fr.gouv.mte.capqualif.marin.domain;
 
 import java.util.List;
 
-public class SailorEducationData {
+public class MarinEducationData {
     private List<titreMarin> titres;
 
-    public SailorEducationData(List<titreMarin> titres) {
+    public MarinEducationData(List<titreMarin> titres) {
         this.titres = titres;
     }
 

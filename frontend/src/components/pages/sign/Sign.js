@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 import { DASHBOARD_PATH } from '../../../app/pathes';
 
 import HeaderBrand from '../../_rf/header-brand/HeaderBrand';
 
-import { getSailorBasicData } from '../../../redux/features/sailorData/sailorsSlice';
+import { getMarinBasicData } from '../../../redux/features/marinData/marinsSlice';
 
 import './Sign.scss';
 
@@ -18,7 +17,7 @@ const Sign = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(getSailorBasicData(localSailorNumber))
+    dispatch(getMarinBasicData(localSailorNumber))
       .then(unwrapResult)
       .then(() => {
         history.push(DASHBOARD_PATH);
@@ -37,6 +36,7 @@ const Sign = () => {
       <div class="sign-in__container">
         <div class="sign-in__header">
           <div class="logo_gouvfr">
+            {/* To DO : refactor to have only one label */}
             <HeaderBrand
               administrationLabel1={'Ministère'}
               administrationLabel2={'de la mer'}

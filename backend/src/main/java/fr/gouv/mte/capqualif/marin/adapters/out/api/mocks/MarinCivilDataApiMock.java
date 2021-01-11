@@ -1,13 +1,13 @@
 package fr.gouv.mte.capqualif.marin.adapters.out.api.mocks;
 
-import fr.gouv.mte.capqualif.marin.domain.SailorCivilData;
+import fr.gouv.mte.capqualif.marin.domain.MarinCivilData;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SailorCivilDataApiMock {
+public class MarinCivilDataApiMock {
 
-    public SailorCivilData findSailorCivilDataBySailorId(String sailorId) {
-        SailorCivilData sailorCivilData = new SailorCivilData(
+    public MarinCivilData findMarinCivilDataBySailorId(String sailorId) {
+        MarinCivilData marinCivilData = new MarinCivilData(
                 "123",
                 "Virginia",
                 "Wolf",
@@ -16,6 +16,6 @@ public class SailorCivilDataApiMock {
                 "5, Baker Street",
                 "virginia@gmail.fr"
         );
-        return sailorCivilData;
+        return marinCivilData;
     }
 }

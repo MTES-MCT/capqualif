@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import sailorReducer from './features/sailorData/sailorsSlice';
+import marinsReducer from './features/marinData/marinsSlice';
 import titlesReducer from './features/titlesCatalog/titlesSlice';
 
 const store = configureStore({
   reducer: {
-    sailors: sailorReducer,
+    marins: marinsReducer,
     titles: titlesReducer,
   },
 });

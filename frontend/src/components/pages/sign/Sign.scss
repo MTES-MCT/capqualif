@@ -1,72 +1,71 @@
-
 @import './src/sass/_variables';
 
 #sign-in.page.rf-container {
-    margin:0;
-    display:block;
-    position:fixed;
-    top:0;left:0;
-    max-width:100vw;
+  margin: 0;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  max-width: 100vw;
 
-    width:100vw;
-    height:100vh;
-    background-color:$marianne-blue__light1;
+  width: 100vw;
+  height: 100vh;
+  background-color: $marianne-blue__light1;
 }
 
 .sign-in__container {
-    display:block;
-    width:600px;
-    height:500px;
-    margin: 20vh auto;
-    background-color:$white;
-    border-radius:5px;
-
+  display: block;
+  width: 600px;
+  height: 500px;
+  margin: 20vh auto;
+  background-color: $white;
+  border-radius: 5px;
 }
 
 .sign-in__header {
-    height:100px;
-    display:flex;
-    justify-content: flex-start;
-    align-items:center;
-    //background-color:$gbeige;
-    padding:0 0 0 10px;
+  height: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  //background-color:$gbeige;
+  padding: 0 0 0 10px;
 }
-.sign-in__title{
-    height:60px;
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    font-size:1.6em;
-    font-weight:$extraBold;
-    text-transform: uppercase;
-    color:$marianne-blue;
+.sign-in__title {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6em;
+  font-weight: $extraBold;
+  text-transform: uppercase;
+  color: $marianne-blue;
 }
 .sign-in__welcome {
-    height:100px;
-    display:flex;
-    justify-content:center;
-    align-items: center;
-    .welcome{
-        width:70%;
-        text-align:left;
-    }
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .welcome {
+    width: 70%;
+    text-align: left;
+  }
 }
 .sign-in__form {
-    display:flex;
-    margin:0 auto;
-    width:70%;
-    justify-content:center;
-    align-items:space-between;
-    height:200px;
-    form {
-        margin-top:10px;
-        width:100%;
-        input {
-            margin-bottom:30px;
-        }
-        button{
-            display:block;
-            margin:0 auto;
-        }
+  display: flex;
+  margin: 0 auto;
+  width: 70%;
+  justify-content: center;
+  align-items: space-between;
+  height: 200px;
+  form {
+    margin-top: 10px;
+    width: 100%;
+    input {
+      margin-bottom: 30px;
     }
+    button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
 }

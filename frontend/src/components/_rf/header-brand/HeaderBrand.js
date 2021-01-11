@@ -6,6 +6,7 @@ const HeaderBrand = ({ administrationLabel1, administrationLabel2 }) => {
     <div className="rf-header__brand">
       <a className="rf-logo" href="#" title="République française">
         <span className="rf-logo__title">
+          {/* To DO : refactor to have only one label */}
           {administrationLabel1} <br /> {administrationLabel2}
         </span>
       </a>

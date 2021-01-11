@@ -1,10 +1,10 @@
 package fr.gouv.mte.capqualif.marin.domain;
 
-public class SailorIdentityMarkersData {
+public class MarinIdentityMarkersData {
     private String photo;           // cette info n'est pas récupérable par API ADM
     private String signature;       // cette info n'est pas récupérable par API ADM
 
-    public SailorIdentityMarkersData(String photo, String signature) {
+    public MarinIdentityMarkersData(String photo, String signature) {
         this.photo = photo;
         this.signature = signature;
     }
