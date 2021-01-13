@@ -19,13 +19,9 @@ const AddPiece = () => {
       nextPageLink: '',
     },
   ];
-    
 
   return (
-    
     <div id="ajouter-piece" className="page">
-     
-
       <SectionHead
         title={currentTitle.titleName}
         subtitle="Compléter votre dossier"
@@ -34,8 +30,6 @@ const AddPiece = () => {
         Pour finaliser la demande du titre, il vous manque cette pièce : XXX.
       </div>
       <SectionFooter possibleActions={possibleActions} />
-
-
     </div>
   );
 };

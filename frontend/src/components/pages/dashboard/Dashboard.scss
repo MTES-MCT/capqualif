@@ -1,142 +1,130 @@
 @import './src/sass/_variables';
 
-.cq-section-header{
-  height:147px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  
+.cq-section-header {
+  height: 147px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.cq-upper{
-  text-transform:uppercase;
+.cq-upper {
+  text-transform: uppercase;
 }
 
-.cq-content{
-  height:100vh;
-  background-color:g200;
+.cq-content {
+  height: 100vh;
+  background-color: g200;
 }
-
 
 //SIDEMENU
 
 .rf-col-3 {
-  background-color:transparent;
+  background-color: transparent;
 }
 
 .cq-sidemenu {
-  margin-top:60px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  align-items:bottom;
-  
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: bottom;
 
   .rf-nav__item--active.cq-nav__vertical-item > .rf-link {
     box-shadow: inset 2px 0 0 0 $marianne-blue;
   }
 }
 
-
 // CONTENT
 .cq-main-content {
-  margin-top:60px;
+  margin-top: 60px;
 }
 
-.cq-section__title{
-  .cq-section__overtitle{
-    font-weight:$regular;
-    font-size:$normal;
+.cq-section__title {
+  .cq-section__overtitle {
+    font-weight: $regular;
+    font-size: $normal;
   }
 }
 
 // TITLE COMPONENT
 .cq-item {
-  width:100%;
-  margin:20px 0;
+  width: 100%;
+  margin: 20px 0;
   .cq-item__header {
-    display:flex;
-    width:100%;
-    background-color:$white;
-    padding:20px;
-    justify-content:space-between;
+    display: flex;
+    width: 100%;
+    background-color: $white;
+    padding: 20px;
+    justify-content: space-between;
     align-items: center;
 
     .cq-item__name-container {
-      margin-left:10px;
-      padding-left:20px;
-      position:relative;
-      max-width:40%;
-      &:before{
-        content:'';
-        position:absolute;
-        $lineHeight:36px;
-        height:$lineHeight;
-        top:calc(50% - #{$lineHeight}/2); 
-        left:0px;
-        border-left:1px solid $marianne-blue;
+      margin-left: 10px;
+      padding-left: 20px;
+      position: relative;
+      max-width: 40%;
+      &:before {
+        content: '';
+        position: absolute;
+        $lineHeight: 36px;
+        height: $lineHeight;
+        top: calc(50% - #{$lineHeight}/ 2);
+        left: 0px;
+        border-left: 1px solid $marianne-blue;
       }
       .cq-item__main-attributes {
-        color:$g500;
+        color: $g500;
       }
       .cq-item__name {
-        font-size:$sizeH2;
-        font-weight:$bold;
+        font-size: $sizeH2;
+        font-weight: $bold;
       }
     }
 
     .cq-item__right-header {
-      display:flex;
-      max-width:60%;
-      margin-right:10px;
-      justify-content:flex-end;
-      align-items:center;
+      display: flex;
+      max-width: 60%;
+      margin-right: 10px;
+      justify-content: flex-end;
+      align-items: center;
       > * {
-        margin-left:20px;
+        margin-left: 20px;
       }
       .cq-item__timeline {
-        display:flex;
+        display: flex;
         justify-content: flex-start;
         align-items: center;
-        font-size:$small;
+        font-size: $small;
         > * {
-          margin-left:10px;
+          margin-left: 10px;
         }
         .timeline-graphic {
-          position:relative;
-          width:80px;
+          position: relative;
+          width: 80px;
           .line {
-            position:absolute;
-            top:80%;
-            width:80px;
-            border-bottom:1px solid $g800;
+            position: absolute;
+            top: 80%;
+            width: 80px;
+            border-bottom: 1px solid $g800;
           }
           .cursor {
-            position:absolute;
-            $cursorRadius:4px;
-            top:calc(50% - #{$cursorRadius} + 1px);
-            left:10%;
-            width:calc(#{$cursorRadius}*2);
-            height:calc(#{$cursorRadius}*2);
-            border-radius:$cursorRadius;
-            border:2px solid $marianne-blue;
-            background-color:$white;
+            position: absolute;
+            $cursorRadius: 4px;
+            top: calc(50% - #{$cursorRadius} + 1px);
+            left: 10%;
+            width: calc(#{$cursorRadius}* 2);
+            height: calc(#{$cursorRadius}* 2);
+            border-radius: $cursorRadius;
+            border: 2px solid $marianne-blue;
+            background-color: $white;
           }
-
         }
-    }
+      }
 
-    .cq-item__status {
-      font-weight:$bold;
-      color:$marianne-blue;
-    }
-
-      
+      .cq-item__status {
+        font-weight: $bold;
+        color: $marianne-blue;
+      }
     }
   }
-
 }
-
-
-
-

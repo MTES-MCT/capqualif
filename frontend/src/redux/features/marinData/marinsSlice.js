@@ -3,9 +3,8 @@ import axios from 'axios';
 
 import { CAPQUALIF_URL, MARINS_ENDPOINT } from '../../../api/apiList';
 
-export const getMarinBasicData = createAsyncThunk(
+export const getMarinBasicDataByNumeroDeMarin = createAsyncThunk(
   'marins/getMarinBasicDataByNumeroDeMarin',
-
   async (numeroDeMarin) => {
     const response = await axios.get(
       `${CAPQUALIF_URL}/${MARINS_ENDPOINT}/${numeroDeMarin}`
@@ -18,28 +17,33 @@ export const marinsSlice = createSlice({
   name: 'marin',
   initialState: {
     marinBasicData: {
-      numeroDeMarin: '',
-      marinCivilData: {
-        numeroDeMarin: '',
-        firstName: '',
-        lastName: '',
-        dateOfBirth: '',
-        placeOfBirth: '',
-        address: '',
-        email: '',
+      nom: '',
+      numIdentification: '',
+      nomUsage: '',
+      prenom: '',
+      villeNaissance: '',
+      numeroFixe: '',
+      numeroPortable: '',
+      adresseMessagerie: '',
+      dateNaissance: '',
+      dateIdentification: '',
+      codeNationalite: {
+        libelle: '',
+        libelleAnglais: '',
       },
-      marinIdentityMarkersData: {
-        photo: '',
-        signature: '',
+      codeCivilite: {
+        code: '',
+        libelle: '',
       },
-      marinEducationData: {
-        titles: [],
+      codeServiceRattachement: {
+        code: '',
+        libelle: '',
       },
     },
   },
   reducers: {},
   extraReducers: {
-    [getMarinBasicData.fulfilled]: (state, action) => {
+    [getMarinBasicDataByNumeroDeMarin.fulfilled]: (state, action) => {
       state.marinBasicData = action.payload;
     },
   },

@@ -6,18 +6,18 @@ import { DASHBOARD_PATH } from '../../../app/pathes';
 
 import HeaderBrand from '../../_rf/header-brand/HeaderBrand';
 
-import { getMarinBasicData } from '../../../redux/features/marinData/marinsSlice';
+import { getMarinBasicDataByNumeroDeMarin } from '../../../redux/features/marinData/marinsSlice';
 
 import './Sign.scss';
 
 const Sign = () => {
-  const [localSailorNumber, setLocalSailorNumber] = useState('');
+  const [numeroDeMarin, setNumeroDeMarin] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(getMarinBasicData(localSailorNumber))
+    dispatch(getMarinBasicDataByNumeroDeMarin(numeroDeMarin))
       .then(unwrapResult)
       .then(() => {
         history.push(DASHBOARD_PATH);
@@ -28,7 +28,7 @@ const Sign = () => {
   };
 
   const handleChange = (event) => {
-    setLocalSailorNumber(event.target.value);
+    setNumeroDeMarin(event.target.value);
   };
 
   return (

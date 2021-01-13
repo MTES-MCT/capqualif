@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import store from '../../../../redux/store';
+import { store } from '../../../../redux/store';
 
 import { getAllTitles } from '../../../../redux/features/titlesCatalog/titlesSlice';
 
@@ -26,7 +26,6 @@ const NewTitleChoice = () => {
 
   return (
     <div id="new-title-choice" className="page">
-
       <header class="rf-header cq-subheader no-shadow">
         <div class="rf-container cq-breadcrumb">
           <a class="cq-simple-link">Retour à l'accueil</a>
