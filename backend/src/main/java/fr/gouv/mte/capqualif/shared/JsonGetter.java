@@ -13,15 +13,15 @@ public class JsonGetter {
     @Autowired
     private RestTemplate restTemplate;
 
-    public JsonElement getJsonFromAPI(String numeroDeMarin, String existingDataSource) {
+    public JsonElement getJsonFromAPI(String numeroDeMarin, String apiUrl) {
 
         // TO DO : convert numeroDeMarin to ID_ADMINISTRE
 
-//        String request = existingDataSource + numeroDeMarin;
+//        String request = apiUrl + numeroDeMarin;
 //        System.out.println("Looking for " + request);
 
 //        For MOCKY :
-        String request = existingDataSource;
+        String request = apiUrl;
         System.out.println("Looking for " + request);
 
         String res = restTemplate.getForObject(request, String.class);
@@ -29,11 +29,11 @@ public class JsonGetter {
         return gson.fromJson(res, JsonElement.class);
     }
 
-    public Marin getMarinFromAPI(String numeroDeMarin, String existingDataSource) {
-//        String request = existingDataSource + numeroDeMarin;
+    public Marin getMarinFromAPI(String numeroDeMarin, String apiUrl) {
+//        String request = apiUrl + numeroDeMarin;
 //        System.out.println("Looking for " + request);
 
-        String request = existingDataSource;
+        String request = apiUrl;
         System.out.println("Looking for " + request);
 
         String res = restTemplate.getForObject(request, String.class);
