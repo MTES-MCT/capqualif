@@ -24,7 +24,7 @@ const Dashboard = () => {
           <div className="cq-welcome">
             <h1>Bonjour, {marinData.prenom}.</h1>
             <h4>
-              Bienvenue sur <strong>CapQualif !</strong>
+              Bienvenue sur <strong>CapQualif</strong> !
             </h4>
           </div>
         </div>

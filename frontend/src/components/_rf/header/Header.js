@@ -1,7 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { store } from '../../../redux/store';
 import HeaderBrand from '../header-brand/HeaderBrand';
 
-const Header = ({ serviceName, adminName, username, sailorNumber }) => {
+const Header = ({ numeroDeMarin }) => {
+  const [localMarinData, setLocalMarinData] = useState('');
+
+  useEffect(() => {
+    setLocalMarinData(store.getState().marinsReducer.marinBasicData);
+  }, []);
+
   return (
     <header className="rf-header">
       <div className="rf-container rf-container__header">
@@ -14,18 +21,22 @@ const Header = ({ serviceName, adminName, username, sailorNumber }) => {
           <div className="rf-header__navbar">
             <div className="rf-service">
               <a className="rf-service__title" href="#" title="Nom du service">
-                {serviceName}
+                CapQualif
               </a>
-              <p className="rf-service__tagline">{adminName}</p>
+              <p className="rf-service__tagline">
+                Direction des affaires maritimes
+              </p>
             </div>
           </div>
 
           <div class="rf-header__tools">
             <div class="cq-user">
-              <div class="cq-user__name">{username}</div>
+              <div class="cq-user__name">
+                {localMarinData.prenom} {localMarinData.nom}
+              </div>
               <div class="cq-user__sailor-number">
                 <span class="label">identifiant :</span>
-                <span class="nb">{sailorNumber}</span>
+                <span class="nb">{numeroDeMarin}</span>
               </div>
             </div>
 
