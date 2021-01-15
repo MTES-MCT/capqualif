@@ -1,8 +1,6 @@
 
 package fr.gouv.mte.capqualif.marin.adapters.out.api.dto;
 
-import fr.gouv.mte.capqualif.marin.adapters.out.api.dto.restriction.ListTitreCapacite;
-
 import java.util.List;
 
 public class TitreOfMarinDto {
@@ -15,7 +13,7 @@ public class TitreOfMarinDto {
     private CodeEtatTitre codeEtatTitre;
     private CodeBrevetMarin codeBrevetMarin;
     private CodeAutoriteDelivrance codeAutoriteDelivrance;
-    private List<ListTitreCapacite> listTitreCapacite;
+    private List<TitreCapaciteRest> listTitreCapacite;
 
 
     public String getNumeroTitre() {
@@ -50,7 +48,7 @@ public class TitreOfMarinDto {
         return codeAutoriteDelivrance;
     }
 
-    public List<ListTitreCapacite> getListTitreCapacite() {
+    public List<TitreCapaciteRest> getListTitreCapacite() {
         return listTitreCapacite;
     }
 }

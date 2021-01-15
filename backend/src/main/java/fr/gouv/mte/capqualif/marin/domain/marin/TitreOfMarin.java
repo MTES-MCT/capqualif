@@ -1,11 +1,6 @@
 
 package fr.gouv.mte.capqualif.marin.domain.marin;
 
-import fr.gouv.mte.capqualif.marin.adapters.out.api.dto.CodeAutoriteDelivrance;
-import fr.gouv.mte.capqualif.marin.adapters.out.api.dto.CodeBrevetMarin;
-import fr.gouv.mte.capqualif.marin.adapters.out.api.dto.CodeEtatTitre;
-import fr.gouv.mte.capqualif.marin.adapters.out.api.dto.restriction.ListTitreCapacite;
-
 import java.util.List;
 
 public class TitreOfMarin {
@@ -18,11 +13,22 @@ public class TitreOfMarin {
     private String expirationDate;
     private String isValid;
     private String autoriteDeDelivrance;
-    private List<ListTitreCapacite> restrictions;
+    private List<String> restrictionsInStandardFormat;
+    private List<String> restrictionsInStandardFormatEnglish;
+    private List<String> restrictionInFreeFormat;
+    private List<String> restrictionInFreeFormatEnglish;
+
+    // TO DO : get these data ASAP from a "titres catalog" module.
+    // These data are generic and attached to a title, not specific for a marin
+    // therefore they should not be here!
+    private String capacite;
+    private String capaciteEnglish;
 
     public TitreOfMarin(String numeroDuTitre, String name, String delivranceDate, String revalidationDate,
                         String effetDate, String expirationDate, String isValid, String autoriteDeDelivrance,
-                        List<ListTitreCapacite> restrictions) {
+                        List<String> restrictionsInStandardFormat, List<String> restrictionsInStandardFormatEnglish,
+                        List<String> restrictionInFreeFormat, List<String> restrictionInFreeFormatEnglish,
+                        String capacite, String capaciteEnglish) {
         this.numeroDuTitre = numeroDuTitre;
         this.name = name;
         this.delivranceDate = delivranceDate;
@@ -31,7 +37,12 @@ public class TitreOfMarin {
         this.expirationDate = expirationDate;
         this.isValid = isValid;
         this.autoriteDeDelivrance = autoriteDeDelivrance;
-        this.restrictions = restrictions;
+        this.restrictionsInStandardFormat = restrictionsInStandardFormat;
+        this.restrictionsInStandardFormatEnglish = restrictionsInStandardFormatEnglish;
+        this.restrictionInFreeFormat = restrictionInFreeFormat;
+        this.restrictionInFreeFormatEnglish = restrictionInFreeFormatEnglish;
+        this.capacite = capacite;
+        this.capaciteEnglish = capaciteEnglish;
     }
 
     public String getNumeroDuTitre() {
@@ -66,7 +77,27 @@ public class TitreOfMarin {
         return autoriteDeDelivrance;
     }
 
-    public List<ListTitreCapacite> getRestrictions() {
-        return restrictions;
+    public List<String> getRestrictionsInStandardFormat() {
+        return restrictionsInStandardFormat;
+    }
+
+    public List<String> getRestrictionsInStandardFormatEnglish() {
+        return restrictionsInStandardFormatEnglish;
+    }
+
+    public List<String> getRestrictionInFreeFormat() {
+        return restrictionInFreeFormat;
+    }
+
+    public List<String> getRestrictionInFreeFormatEnglish() {
+        return restrictionInFreeFormatEnglish;
+    }
+
+    public String getCapacite() {
+        return capacite;
+    }
+
+    public String getCapaciteEnglish() {
+        return capaciteEnglish;
     }
 }

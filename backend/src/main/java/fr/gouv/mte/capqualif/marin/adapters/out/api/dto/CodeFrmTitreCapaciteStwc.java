@@ -1,11 +1,16 @@
 
-package fr.gouv.mte.capqualif.marin.adapters.out.api.dto.restriction;
+package fr.gouv.mte.capqualif.marin.adapters.out.api.dto;
 
 
-public class CodeFrmTitreCapaciteRestriction {
+public class CodeFrmTitreCapaciteStwc {
 
+    private String code;
     private String libelle;
     private String libelleAnglais;
+
+    public String getCode() {
+        return code;
+    }
 
     public String getLibelle() {
         return libelle;
