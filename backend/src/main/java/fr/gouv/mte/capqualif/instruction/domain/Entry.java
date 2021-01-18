@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.instructeur.domain;
+package fr.gouv.mte.capqualif.instruction.domain;
 
 import fr.gouv.mte.capqualif.titre.domain.Value;
 

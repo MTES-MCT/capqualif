@@ -13,12 +13,12 @@ import { NEW_TITLE_APPLICATION_DETAILS_PATH } from '../../../../app/pathes';
 
 const NewTitleChoice = () => {
   const dispatch = useDispatch();
-  const allTitles = useSelector((state) => state.titles.allTitles);
+  const allTitles = useSelector((state) => state.titlesReducer.allTitles);
 
   useEffect(() => {
     // TO DO : implement dispatch(getSuggestedTitles());
     dispatch(getAllTitles());
-  }, [dispatch]);
+  }, []);
 
   const user = store.getState().sailors.sailorBasicData.sailorCivilData;
   const username = user.firstName + ' ' + user.lastName;

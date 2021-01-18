@@ -80,7 +80,7 @@ public class ConditionDataSourceToDataToSearchForInExistingDataSourceMapper {
 
                 return new DataToSearchForInExistingDataSource(
                         ExistingDataSourceName.ITEM,
-                        "***REMOVED***",
+                        "S",
                         new Key("libelle", DataType.STRING, true, Arrays.asList(new ParentKey(Position.POSITION_1, "codeBrevetMarin"))),
                         itemAdditionalWantedKeys);
             default:

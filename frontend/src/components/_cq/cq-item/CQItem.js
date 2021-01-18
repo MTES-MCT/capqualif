@@ -1,13 +1,15 @@
 import React from 'react';
 import './CQItem.scss';
 
+// level = Appui, Execution, Direction
+
 const CQItem = ({
   level,
   type,
   itemName,
   timeline,
-  startDate,
-  endDate,
+  delivranceDate,
+  expirationDate,
   status,
 }) => {
   const topTitle = () => {
@@ -23,12 +25,12 @@ const CQItem = ({
     if (timeline) {
       return (
         <div class="cq-item__timeline">
-          <div class="start-date">{startDate}</div>
+          <div class="start-date">{delivranceDate}</div>
           <div class="timeline-graphic">
             <div class="line"></div>
             <div class="cursor"></div>
           </div>
-          <div class="end-date">{endDate}</div>
+          <div class="end-date">{expirationDate}</div>
         </div>
       );
     } else {

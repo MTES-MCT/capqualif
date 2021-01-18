@@ -17,8 +17,8 @@ export const marinsSlice = createSlice({
   name: 'marin',
   initialState: {
     marinBasicData: {
+      numeroDeMarin: '',
       nom: '',
-      numIdentification: '',
       nomUsage: '',
       prenom: '',
       villeNaissance: '',
@@ -27,18 +27,10 @@ export const marinsSlice = createSlice({
       adresseMessagerie: '',
       dateNaissance: '',
       dateIdentification: '',
-      codeNationalite: {
-        libelle: '',
-        libelleAnglais: '',
-      },
-      codeCivilite: {
-        code: '',
-        libelle: '',
-      },
-      codeServiceRattachement: {
-        code: '',
-        libelle: '',
-      },
+      nationalite: '',
+      civilite: '',
+      serviceRattachement: '',
+      allTitresOfMarin: [],
     },
   },
   reducers: {},

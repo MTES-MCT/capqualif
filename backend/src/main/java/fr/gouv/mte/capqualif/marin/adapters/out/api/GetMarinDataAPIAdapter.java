@@ -9,7 +9,6 @@ import fr.gouv.mte.capqualif.shared.JsonGetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,7 +43,7 @@ public class GetMarinDataAPIAdapter implements GetMarinDataPort {
         Marin marin = marinMapper.mapToDomaineEntity(marinDto);
 
         // Let's wire titres to marin
-        marin.setAllTitresofMarin(allTitresOfMarin);
+        marin.setAllTitresOfMarin(allTitresOfMarin);
 
         return marin;
     }

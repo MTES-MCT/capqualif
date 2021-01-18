@@ -3,7 +3,7 @@ package fr.gouv.mte.capqualif.shared;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import fr.gouv.mte.capqualif.instructeur.domain.Entry;
+import fr.gouv.mte.capqualif.instruction.domain.Entry;
 import fr.gouv.mte.capqualif.legislateur.mock.Key;
 import fr.gouv.mte.capqualif.legislateur.mock.DataToSearchForInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ParentKey;

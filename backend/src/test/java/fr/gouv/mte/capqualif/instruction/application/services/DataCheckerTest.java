@@ -1,7 +1,7 @@
-package fr.gouv.mte.capqualif.instructeur.application.services;
+package fr.gouv.mte.capqualif.instruction.application.services;
 
-import fr.gouv.mte.capqualif.instructeur.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.instructeur.domain.Entry;
+import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
+import fr.gouv.mte.capqualif.instruction.domain.Entry;
 import fr.gouv.mte.capqualif.shared.TimeConverter;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Value;

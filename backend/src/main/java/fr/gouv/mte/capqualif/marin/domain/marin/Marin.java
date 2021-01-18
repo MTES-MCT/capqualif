@@ -17,7 +17,7 @@ public class Marin {
     private String nationalite;
     private String civilite;
     private String serviceRattachement;
-    private List<TitreOfMarin> allTitresofMarin;
+    private List<TitreOfMarin> allTitresOfMarin;
 
     public Marin(String numeroDeMarin, String nom, String nomUsage, String prenom, String villeNaissance,
                  String numeroFixe, String numeroPortable, String adresseMessagerie, String dateNaissance,
@@ -37,8 +37,8 @@ public class Marin {
         this.serviceRattachement = serviceRattachement;
     }
 
-    public void setAllTitresofMarin(List<TitreOfMarin> allTitresofMarin) {
-        this.allTitresofMarin = allTitresofMarin;
+    public void setAllTitresOfMarin(List<TitreOfMarin> allTitresOfMarin) {
+        this.allTitresOfMarin = allTitresOfMarin;
     }
 
     public String getNumeroDeMarin() {
@@ -93,7 +93,7 @@ public class Marin {
         return serviceRattachement;
     }
 
-    public List<TitreOfMarin> getAllTitresofMarin() {
-        return allTitresofMarin;
+    public List<TitreOfMarin> getAllTitresOfMarin() {
+        return allTitresOfMarin;
     }
 }

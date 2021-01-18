@@ -1,6 +1,6 @@
-package fr.gouv.mte.capqualif.instructeur.application.services;
+package fr.gouv.mte.capqualif.instruction.application.services;
 
-import fr.gouv.mte.capqualif.instructeur.domain.ComparisonResult;
+import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
 import fr.gouv.mte.capqualif.titre.adapters.out.api.GetTitleApiAdapter;
 import fr.gouv.mte.capqualif.titre.adapters.out.api.mocks.TitresApiMock;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;

@@ -1,9 +1,9 @@
-package fr.gouv.mte.capqualif.instructeur.adapters.out.api;
+package fr.gouv.mte.capqualif.instruction.adapters.out.api;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import fr.gouv.mte.capqualif.instructeur.application.ports.out.GetMarinDataPort;
-import fr.gouv.mte.capqualif.instructeur.domain.Entry;
+import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
+import fr.gouv.mte.capqualif.instruction.domain.Entry;
 import fr.gouv.mte.capqualif.legislateur.mock.DataToSearchForInExistingDataSource;
 import fr.gouv.mte.capqualif.shared.JsonExtractor;
 import fr.gouv.mte.capqualif.titre.domain.Value;

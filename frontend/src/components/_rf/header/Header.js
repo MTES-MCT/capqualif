@@ -36,7 +36,7 @@ const Header = ({ numeroDeMarin }) => {
               </div>
               <div class="cq-user__sailor-number">
                 <span class="label">identifiant :</span>
-                <span class="nb">{numeroDeMarin}</span>
+                <span class="nb">{localMarinData.numeroDeMarin}</span>
               </div>
             </div>
 
