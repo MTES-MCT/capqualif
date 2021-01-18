@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import './SectionFooter.scss';
 
-const SectionFooter = ({ nextPage, possibleActions }) => {
+const SectionFooter = ({ possibleActions }) => {
   let history = useHistory();
 
   return (

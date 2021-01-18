@@ -11,14 +11,14 @@ import { persistor } from '../redux/store';
 import { store } from '../redux/store';
 
 import {
-  HOME_PATH,
-  DASHBOARD_PATH,
-  NEW_TITLE_APPLICATION_CHOICE_PATH,
-  NEW_TITLE_APPLICATION_DETAILS_PATH,
-  NEW_TITLE_APPLICATION_RECAP_PATH,
-  ERROR_PATH,
-  ADD_PIECE_PATH,
-} from './pathes';
+  HOME_ROUTE,
+  DASHBOARD_ROUTE,
+  NEW_TITLE_APPLICATION_CHOICE_ROUTE,
+  NEW_TITLE_APPLICATION_DETAILS_ROUTE,
+  NEW_TITLE_APPLICATION_RECAP_ROUTE,
+  ERROR_ROUTE,
+  ADD_PIECE_ROUTE,
+} from './routesList';
 
 import './App.scss';
 
@@ -39,22 +39,22 @@ const App = () => {
         <Router>
           <section className="page-container">
             <Switch>
-              <Route exact path={HOME_PATH} component={Sign} />
-              <Route exact path={DASHBOARD_PATH} component={Dashboard} />
+              <Route exact path={HOME_ROUTE} component={Sign} />
+              <Route exact path={DASHBOARD_ROUTE} component={Dashboard} />
               <Route
-                path={NEW_TITLE_APPLICATION_CHOICE_PATH}
+                path={NEW_TITLE_APPLICATION_CHOICE_ROUTE}
                 component={NewTitleChoice}
               />
               <Route
-                path={NEW_TITLE_APPLICATION_DETAILS_PATH}
+                path={NEW_TITLE_APPLICATION_DETAILS_ROUTE}
                 component={TitleDetails}
               />
               <Route
-                path={NEW_TITLE_APPLICATION_RECAP_PATH}
+                path={NEW_TITLE_APPLICATION_RECAP_ROUTE}
                 component={ApplicationRecap}
               />
-              <Route path={ADD_PIECE_PATH} component={AddPiece} />
-              <Route exact path={ERROR_PATH} component={Error} />
+              <Route path={ADD_PIECE_ROUTE} component={AddPiece} />
+              <Route exact path={ERROR_ROUTE} component={Error} />
             </Switch>
           </section>
         </Router>
