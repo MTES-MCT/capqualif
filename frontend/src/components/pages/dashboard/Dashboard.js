@@ -10,12 +10,14 @@ import { NEW_TITLE_APPLICATION_CHOICE_ROUTE } from '../../../app/routesList';
 import CQItem from '../../_cq/cq-item/CQItem';
 import SideNav from '../../../components/_cq/navs/side-nav/SideNav';
 import Button from '../../_cq/button/Button';
+import SubHeader from '../../_cq/subheader/SubHeader';
 import HorizontalNav from '../../_cq/navs/horizontal-nav/HorizontalNav';
 
 const Dashboard = () => {
   return (
     <div id="dashboard">
-      <div className="cq-section-header rf-container">
+      <SubHeader />
+      {/* <div className="cq-section-header rf-container">
         <div className="cq-content-left">
           <div className="cq-welcome">
             <h1>
@@ -30,7 +32,7 @@ const Dashboard = () => {
           label="Demander un titre"
           route={NEW_TITLE_APPLICATION_CHOICE_ROUTE}
         />
-      </div>
+      </div> */}
       <HorizontalNav />
       <div className="cq-content rf-container">
         <div className="rf-grid-row">
