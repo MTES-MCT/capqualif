@@ -1,11 +1,12 @@
 import React from 'react';
-import './CQItem.scss';
+import './CqItem.scss';
 
 // level = Appui, Execution, Direction
+// type = ?
 
-const CQItem = ({
+const CqItem = ({
   level,
-  type,
+  capacite,
   itemName,
   timeline,
   delivranceDate,
@@ -13,11 +14,10 @@ const CQItem = ({
   status,
 }) => {
   const topTitle = () => {
-    console.log(level);
-    if (!level || level === '') {
-      return type;
+    if (!level || level === undefined || level === '') {
+      return capacite;
     } else {
-      return level + ' • ' + type;
+      return level + ' • ' + capacite;
     }
   };
 
@@ -66,4 +66,4 @@ const CQItem = ({
   );
 };
 
-export default CQItem;
+export default CqItem;

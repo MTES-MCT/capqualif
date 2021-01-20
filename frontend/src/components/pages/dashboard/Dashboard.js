@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Dashboard.scss';
 
-import CQItem from '../../_cq/cq-item/CQItem';
+import CqItem from '../../_cq/cq-item/CqItem';
 import SideNav from '../../../components/_cq/navs/side-nav/SideNav';
 import Button from '../../_cq/button/Button';
 import SubHeader from '../../_cq/subheader/SubHeader';

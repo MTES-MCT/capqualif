@@ -3,7 +3,7 @@ import { store } from '../../../../redux/store';
 
 import './DashboardContent.scss';
 
-import CQItem from '../../../_cq/cq-item/CQItem';
+import CqItem from '../../../_cq/cq-item/CqItem';
 
 const DashboardContent = () => {
   return (
@@ -11,9 +11,9 @@ const DashboardContent = () => {
       <div className="cq-title-small">
         Mes <span className="cq-title-big">demandes en cours</span>
       </div>
-      <CQItem
+      <CqItem
         level={''}
-        type={'Sécurité'}
+        capacite={'Sécurité'}
         itemName={'Certificat de formation de base à la sécurité'}
         timeline={false}
         startDate={''}
@@ -30,9 +30,9 @@ const DashboardContent = () => {
       {store
         .getState()
         .marinsReducer.marinBasicData.allTitresOfMarin.map((titre) => (
-          <CQItem
+          <CqItem
             level={''}
-            type={titre.capacite}
+            capacite={titre.capacite}
             itemName={titre.name}
             delivranceDate={titre.delivranceDate}
             expirationDate={titre.expirationDate}
