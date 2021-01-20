@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 
 import './Dashboard.scss';
 
-import TitleCard from '../../_cq/title-card/TitleCard';
-import Header from '../../_rf/header/Header';
+// import TitleCard from '../../_cq/title-card/TitleCard';
+// import Header from '../../_rf/header/Header';
 import CQItem from '../../_cq/cq-item/CQItem';
 import { NEW_TITLE_APPLICATION_CHOICE_PATH } from '../../../app/routesList';
+
+import SideNav from '../../_cq/navs/side-nav/SideNav';
 
 const Dashboard = () => {
   return (
@@ -48,12 +50,12 @@ const Dashboard = () => {
               </li>
               <li className="rf-nav__item">
                 <a className="rf-link" href="#" target="_self">
-                  Mon dossier professionnel
+                  Mon dossier professionnel : à venir
                 </a>
               </li>
               <li className="rf-nav__item">
                 <a className="rf-link" href="#" target="_self">
-                  Mes informations personelles
+                  Mes informations personelles : à venir
                 </a>
               </li>
             </ul>
@@ -64,33 +66,7 @@ const Dashboard = () => {
       <div className="cq-content rf-container">
         <div className="rf-grid-row">
           <div className="rf-col-3 cq-left-3">
-            <ul className="cq-sidemenu">
-              <li className="rf-nav__item cq-nav__vertical-item">
-                <a className="rf-link" href="#" target="_self">
-                  Mes Demandes en cours
-                </a>
-              </li>
-              <li className="rf-nav__item cq-nav__vertical-item">
-                <a className="rf-link" href="#" target="_self">
-                  Fonctions principales
-                </a>
-              </li>
-              <li className="rf-nav__item cq-nav__vertical-item">
-                <a className="rf-link" href="#" target="_self">
-                  Fonctions secondaires
-                </a>
-              </li>
-              <li className="rf-nav__item cq-nav__vertical-item">
-                <a className="rf-link" href="#" target="_self">
-                  Diplômes
-                </a>
-              </li>
-              <li className="rf-nav__item cq-nav__vertical-item">
-                <a className="rf-link" href="#" target="_self">
-                  Mes anciens titres
-                </a>
-              </li>
-            </ul>
+            <SideNav />
           </div>
           <div className="rf-col-9 cq-right-col-9">
             <div className="cq-main-content">
