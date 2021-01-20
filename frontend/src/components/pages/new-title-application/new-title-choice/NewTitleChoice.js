@@ -9,7 +9,7 @@ import './NewTitleChoice.scss';
 import SectionHead from '../../../_cq/section/section-head/SectionHead';
 import TitleCard from '../../../_cq/title-card/TitleCard';
 import Header from '../../../_rf/header/Header';
-import { NEW_TITLE_APPLICATION_DETAILS_PATH } from '../../../../app/pathes';
+import { NEW_TITLE_APPLICATION_DETAILS_PATH } from '../../../../app/routesList';
 
 const NewTitleChoice = () => {
   const dispatch = useDispatch();

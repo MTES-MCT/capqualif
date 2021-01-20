@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { DASHBOARD_PATH } from '../../../app/pathes';
+import { DASHBOARD_PATH } from '../../../app/routesList';
 
 import HeaderBrand from '../../_rf/header-brand/HeaderBrand';
 

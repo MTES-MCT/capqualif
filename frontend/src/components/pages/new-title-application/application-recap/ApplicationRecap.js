@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './ApplicationRecap.scss';
 
-import { ADD_PIECE_PATH, DASHBOARD_PATH } from '../../../../app/pathes';
+import { ADD_PIECE_PATH, DASHBOARD_PATH } from '../../../../app/routesList';
 
 import { getConditions } from '../../../../redux/features/conditions/conditionsSlice';
 

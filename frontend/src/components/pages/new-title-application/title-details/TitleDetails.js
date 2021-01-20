@@ -5,7 +5,7 @@ import { getTitle } from '../../../../redux/features/titlesCatalog/titlesSlice';
 
 import './TitleDetails.scss';
 
-import { NEW_TITLE_APPLICATION_RECAP_PATH } from '../../../../app/pathes';
+import { NEW_TITLE_APPLICATION_RECAP_PATH } from '../../../../app/routesList';
 
 import SectionHead from '../../../_cq/section/section-head/SectionHead';
 import SectionFooter from '../../../_cq/section/section-footer/SectionFooter';

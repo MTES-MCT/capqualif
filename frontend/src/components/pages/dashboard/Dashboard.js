@@ -7,7 +7,7 @@ import './Dashboard.scss';
 import TitleCard from '../../_cq/title-card/TitleCard';
 import Header from '../../_rf/header/Header';
 import CQItem from '../../_cq/cq-item/CQItem';
-import { NEW_TITLE_APPLICATION_CHOICE_PATH } from '../../../app/pathes';
+import { NEW_TITLE_APPLICATION_CHOICE_PATH } from '../../../app/routesList';
 
 const Dashboard = () => {
   return (
@@ -23,6 +23,7 @@ const Dashboard = () => {
             </h4>
           </div>
         </div>
+
         <div className="cq-content-right">
           <Link to={NEW_TITLE_APPLICATION_CHOICE_PATH} id="ask-for-a-title">
             <button className="rf-btn cq-upper" title="Demander un titre">
