@@ -5,7 +5,7 @@ import { getTitle } from '../../../../redux/features/titlesCatalog/titlesSlice';
 
 import './TitleDetails.scss';
 
-import { NEW_TITLE_APPLICATION_RECAP_PATH } from '../../../../app/routesList';
+import { NEW_TITLE_APPLICATION_RECAP_ROUTE } from '../../../../app/routesList';
 
 import SectionHead from '../../../_cq/section/section-head/SectionHead';
 import SectionFooter from '../../../_cq/section/section-footer/SectionFooter';
@@ -21,7 +21,7 @@ const TitleDetails = () => {
   const possibleActions = [
     {
       label: 'Continuer',
-      nextPageLink: NEW_TITLE_APPLICATION_RECAP_PATH,
+      nextPageLink: NEW_TITLE_APPLICATION_RECAP_ROUTE,
     },
   ];
 

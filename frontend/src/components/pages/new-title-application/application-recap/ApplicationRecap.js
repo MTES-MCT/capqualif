@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './ApplicationRecap.scss';
 
-import { ADD_PIECE_PATH, DASHBOARD_PATH } from '../../../../app/routesList';
+import { ADD_PIECE_ROUTE, DASHBOARD_ROUTE } from '../../../../app/routesList';
 
 import { getConditions } from '../../../../redux/features/conditions/conditionsSlice';
 
@@ -23,11 +23,11 @@ const ApplicationRecap = () => {
   const possibleActions = [
     {
       label: 'Enregistrer le dossier',
-      nextPageLink: DASHBOARD_PATH,
+      nextPageLink: DASHBOARD_ROUTE,
     },
     {
       label: 'Continuer',
-      nextPageLink: DASHBOARD_PATH,
+      nextPageLink: DASHBOARD_ROUTE,
     },
   ];
 
@@ -35,7 +35,7 @@ const ApplicationRecap = () => {
     <div>
       <SectionHead title={currentTitle.libelle} subtitle="Récapitulatif" />
       <div>
-        {/* Il manque CETTE PIECE <Link to={ADD_PIECE_PATH}>Ajouter</Link> */}
+        {/* Il manque CETTE PIECE <Link to={ADD_PIECE_ROUTE}>Ajouter</Link> */}
       </div>
       <SectionFooter possibleActions={possibleActions} />
     </div>

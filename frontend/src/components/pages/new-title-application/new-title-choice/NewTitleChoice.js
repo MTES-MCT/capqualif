@@ -9,16 +9,16 @@ import './NewTitleChoice.scss';
 import SectionHead from '../../../_cq/section/section-head/SectionHead';
 import TitleCard from '../../../_cq/title-card/TitleCard';
 import Header from '../../../_rf/header/Header';
-import { NEW_TITLE_APPLICATION_DETAILS_PATH } from '../../../../app/routesList';
+import { NEW_TITLE_APPLICATION_DETAILS_ROUTE } from '../../../../app/routesList';
 
 const NewTitleChoice = () => {
   const dispatch = useDispatch();
-  const allTitles = useSelector((state) => state.titlesReducer.allTitles);
+  const allTitles = useSelector((state) => state.titles.allTitles);
 
   useEffect(() => {
     // TO DO : implement dispatch(getSuggestedTitles());
     dispatch(getAllTitles());
-  }, []);
+  }, [dispatch]);
 
   const user = store.getState().sailors.sailorBasicData.sailorCivilData;
   const username = user.firstName + ' ' + user.lastName;
@@ -39,7 +39,7 @@ const NewTitleChoice = () => {
       <div>
         <h3>Titres recommandés pour vous</h3>
         {allTitles.map((title) => (
-          <Link to={NEW_TITLE_APPLICATION_DETAILS_PATH}>
+          <Link to={NEW_TITLE_APPLICATION_DETAILS_ROUTE}>
             <TitleCard key={title.id} title={title} titleType="fromCatalog" />
           </Link>
         ))}
@@ -48,7 +48,7 @@ const NewTitleChoice = () => {
         <h3>Tous les titres</h3>
         <input type="text"></input>
         {allTitles.map((title) => (
-          <Link to={NEW_TITLE_APPLICATION_DETAILS_PATH}>
+          <Link to={NEW_TITLE_APPLICATION_DETAILS_ROUTE}>
             <TitleCard key={title.id} title={title} titleType="fromCatalog" />
           </Link>
         ))}

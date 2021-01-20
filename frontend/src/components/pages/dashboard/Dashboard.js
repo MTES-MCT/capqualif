@@ -4,12 +4,20 @@ import { Link } from 'react-router-dom';
 
 import './Dashboard.scss';
 
+<<<<<<< HEAD
 // import TitleCard from '../../_cq/title-card/TitleCard';
 // import Header from '../../_rf/header/Header';
 import CQItem from '../../_cq/cq-item/CQItem';
 import { NEW_TITLE_APPLICATION_CHOICE_PATH } from '../../../app/routesList';
 
 import SideNav from '../../_cq/navs/side-nav/SideNav';
+=======
+import Button from '../../_cq/button/Button';
+import TitleCard from '../../_cq/title-card/TitleCard';
+import Header from '../../_rf/header/Header';
+import CQItem from '../../_cq/cq-item/CQItem';
+import { NEW_TITLE_APPLICATION_CHOICE_ROUTE } from '../../../app/routesList';
+>>>>>>> storybook-test
 
 const Dashboard = () => {
   return (
@@ -25,6 +33,7 @@ const Dashboard = () => {
             </h4>
           </div>
         </div>
+<<<<<<< HEAD
 
         <div className="cq-content-right">
           <Link to={NEW_TITLE_APPLICATION_CHOICE_PATH} id="ask-for-a-title">
@@ -33,6 +42,12 @@ const Dashboard = () => {
             </button>
           </Link>
         </div>
+=======
+        <Button
+          label="Demander un titre"
+          route={NEW_TITLE_APPLICATION_CHOICE_ROUTE}
+        />
+>>>>>>> storybook-test
       </div>
 
       <header className="rf-header no-shadow">
