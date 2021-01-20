@@ -4,24 +4,17 @@ import { Link } from 'react-router-dom';
 
 import './Dashboard.scss';
 
-<<<<<<< HEAD
+import { NEW_TITLE_APPLICATION_CHOICE_ROUTE } from '../../../app/routesList';
 // import TitleCard from '../../_cq/title-card/TitleCard';
 // import Header from '../../_rf/header/Header';
 import CQItem from '../../_cq/cq-item/CQItem';
-import { NEW_TITLE_APPLICATION_CHOICE_PATH } from '../../../app/routesList';
-
-import SideNav from '../../_cq/navs/side-nav/SideNav';
-=======
+import SideNav from '../../../components/_cq/navs/side-nav/SideNav';
 import Button from '../../_cq/button/Button';
-import TitleCard from '../../_cq/title-card/TitleCard';
-import Header from '../../_rf/header/Header';
-import CQItem from '../../_cq/cq-item/CQItem';
-import { NEW_TITLE_APPLICATION_CHOICE_ROUTE } from '../../../app/routesList';
->>>>>>> storybook-test
+import HorizontalNav from '../../_cq/navs/horizontal-nav/HorizontalNav';
 
 const Dashboard = () => {
   return (
-    <div id="accueil" className="page">
+    <div id="dashboard">
       <div className="cq-section-header rf-container">
         <div className="cq-content-left">
           <div className="cq-welcome">
@@ -33,51 +26,12 @@ const Dashboard = () => {
             </h4>
           </div>
         </div>
-<<<<<<< HEAD
-
-        <div className="cq-content-right">
-          <Link to={NEW_TITLE_APPLICATION_CHOICE_PATH} id="ask-for-a-title">
-            <button className="rf-btn cq-upper" title="Demander un titre">
-              Demander un titre
-            </button>
-          </Link>
-        </div>
-=======
         <Button
           label="Demander un titre"
           route={NEW_TITLE_APPLICATION_CHOICE_ROUTE}
         />
->>>>>>> storybook-test
       </div>
-
-      <header className="rf-header no-shadow">
-        <div className="rf-container">
-          <nav
-            className="rf-nav cq"
-            role="navigation"
-            aria-label="Menu principal"
-          >
-            <ul className="rf-nav__list">
-              <li className="rf-nav__item rf-nav__item--active">
-                <a className="rf-link" href="#" target="_self">
-                  Mes titres
-                </a>
-              </li>
-              <li className="rf-nav__item">
-                <a className="rf-link" href="#" target="_self">
-                  Mon dossier professionnel : à venir
-                </a>
-              </li>
-              <li className="rf-nav__item">
-                <a className="rf-link" href="#" target="_self">
-                  Mes informations personelles : à venir
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-
+      <HorizontalNav />
       <div className="cq-content rf-container">
         <div className="rf-grid-row">
           <div className="rf-col-3 cq-left-3">

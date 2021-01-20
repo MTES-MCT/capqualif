@@ -2,12 +2,12 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import {
-  DASHBOARD_PATH,
-  NEW_TITLE_APPLICATION_CHOICE_PATH,
-  NEW_TITLE_APPLICATION_DETAILS_PATH,
-  NEW_TITLE_APPLICATION_RECAP_PATH,
-  ERROR_PATH,
-  ADD_PIECE_PATH,
+  DASHBOARD_ROUTE,
+  NEW_TITLE_APPLICATION_CHOICE_ROUTE,
+  NEW_TITLE_APPLICATION_DETAILS_ROUTE,
+  NEW_TITLE_APPLICATION_RECAP_ROUTE,
+  ERROR_ROUTE,
+  ADD_PIECE_ROUTE,
 } from './routesList';
 
 import Dashboard from '../components/pages/dashboard/Dashboard';
@@ -21,21 +21,21 @@ const Routes = () => {
   return (
     <section className="page-container">
       <Switch>
-        <Route exact path={DASHBOARD_PATH} component={Dashboard} />
+        <Route exact path={DASHBOARD_ROUTE} component={Dashboard} />
         <Route
-          path={NEW_TITLE_APPLICATION_CHOICE_PATH}
+          path={NEW_TITLE_APPLICATION_CHOICE_ROUTE}
           component={NewTitleChoice}
         />
         <Route
-          path={NEW_TITLE_APPLICATION_DETAILS_PATH}
+          path={NEW_TITLE_APPLICATION_DETAILS_ROUTE}
           component={TitleDetails}
         />
         <Route
-          path={NEW_TITLE_APPLICATION_RECAP_PATH}
+          path={NEW_TITLE_APPLICATION_RECAP_ROUTE}
           component={ApplicationRecap}
         />
-        <Route path={ADD_PIECE_PATH} component={AddPiece} />
-        <Route exact path={ERROR_PATH} component={Error} />
+        <Route path={ADD_PIECE_ROUTE} component={AddPiece} />
+        <Route exact path={ERROR_ROUTE} component={Error} />
       </Switch>
     </section>
   );

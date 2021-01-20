@@ -1,10 +1,8 @@
-export const HOME_PATH = '/';
-export const DASHBOARD_PATH = '/accueil';
-export const NEW_TITLE_APPLICATION_CHOICE_PATH =
-  '/demander-un-titre/choix';
-export const NEW_TITLE_APPLICATION_DETAILS_PATH =
-  '/demander-un-titre/details';
-export const NEW_TITLE_APPLICATION_RECAP_PATH =
+export const HOME_ROUTE = '/';
+export const DASHBOARD_ROUTE = '/accueil';
+export const NEW_TITLE_APPLICATION_CHOICE_ROUTE = '/demander-un-titre/choix';
+export const NEW_TITLE_APPLICATION_DETAILS_ROUTE = '/demander-un-titre/details';
+export const NEW_TITLE_APPLICATION_RECAP_ROUTE =
   '/demander-un-titre/recapitulatif';
-export const ERROR_PATH = '/erreur';
-export const ADD_PIECE_PATH = '/ajouter-une-piece';
+export const ERROR_ROUTE = '/erreur';
+export const ADD_PIECE_ROUTE = '/ajouter-une-piece';
