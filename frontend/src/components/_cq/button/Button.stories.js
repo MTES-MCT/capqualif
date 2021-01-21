@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from './Button';
 import '../../../sass/main.scss';
-import '../../../app/App.scss';
 
 export default {
   title: 'Button',

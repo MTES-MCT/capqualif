@@ -77,50 +77,50 @@
       }
     }
 
-    .cq-item__right-header {
-      display: flex;
-      max-width: 60%;
-      margin-right: 10px;
-      justify-content: flex-end;
-      align-items: center;
-      > * {
-        margin-left: 20px;
-      }
-      .cq-item__timeline {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        font-size: $small;
-        > * {
-          margin-left: 10px;
-        }
-        .timeline-graphic {
-          position: relative;
-          width: 80px;
-          .line {
-            position: absolute;
-            top: 80%;
-            width: 80px;
-            border-bottom: 1px solid $g800;
-          }
-          .cursor {
-            position: absolute;
-            $cursorRadius: 4px;
-            top: calc(50% - #{$cursorRadius} + 1px);
-            left: 10%;
-            width: calc(#{$cursorRadius}* 2);
-            height: calc(#{$cursorRadius}* 2);
-            border-radius: $cursorRadius;
-            border: 2px solid $marianne-blue;
-            background-color: $white;
-          }
-        }
-      }
+    // .cq-item__right-header {
+    //   display: flex;
+    //   max-width: 60%;
+    //   margin-right: 10px;
+    //   justify-content: flex-end;
+    //   align-items: center;
+    //   > * {
+    //     margin-left: 20px;
+    //   }
+    //   .cq-item__timeline {
+    //     display: flex;
+    //     justify-content: flex-start;
+    //     align-items: center;
+    //     font-size: $small;
+    //     > * {
+    //       margin-left: 10px;
+    //     }
+    //     .timeline-graphic {
+    //       position: relative;
+    //       width: 80px;
+    //       .line {
+    //         position: absolute;
+    //         top: 80%;
+    //         width: 80px;
+    //         border-bottom: 1px solid $g800;
+    //       }
+    //       .cursor {
+    //         position: absolute;
+    //         $cursorRadius: 4px;
+    //         top: calc(50% - #{$cursorRadius} + 1px);
+    //         left: 10%;
+    //         width: calc(#{$cursorRadius}* 2);
+    //         height: calc(#{$cursorRadius}* 2);
+    //         border-radius: $cursorRadius;
+    //         border: 2px solid $marianne-blue;
+    //         background-color: $white;
+    //       }
+    //     }
+    //   }
 
-      .cq-item__status {
-        font-weight: $bold;
-        color: $marianne-blue;
-      }
-    }
+    //   .cq-item__status-label {
+    //     font-weight: $bold;
+    //     color: $marianne-blue;
+    //   }
+    // }
   }
 }

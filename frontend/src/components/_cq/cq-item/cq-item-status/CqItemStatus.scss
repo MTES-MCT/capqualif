@@ -1,0 +1,39 @@
+@import '../../../../sass/variables';
+
+.cq-item__timeline {
+  display: flex;
+  //   justify-content: flex-start;
+  align-items: center;
+  font-size: $small;
+  margin: 0 2em 0 0;
+  //   > * {
+  //     // margin-left: 10px;
+  //   }
+  .timeline-graphic {
+    position: relative;
+    width: 80px;
+    margin: 0 1em;
+    .line {
+      position: absolute;
+      top: 80%;
+      width: 80px;
+      border-bottom: 1px solid $g800;
+    }
+    .cursor {
+      position: absolute;
+      $cursorRadius: 4px;
+      top: calc(50% - #{$cursorRadius} + 1px);
+      left: 10%;
+      width: calc(#{$cursorRadius}* 2);
+      height: calc(#{$cursorRadius}* 2);
+      border-radius: $cursorRadius;
+      border: 2px solid $marianne-blue;
+      background-color: $white;
+    }
+  }
+}
+
+.cq-item__status-container {
+  display: flex;
+  margin: 0 2em;
+}

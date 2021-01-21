@@ -19,7 +19,7 @@ import AddPiece from '../components/pages/add-piece/AddPiece';
 
 const Routes = () => {
   return (
-    <section className="page-container">
+    <section>
       <Switch>
         <Route exact path={DASHBOARD_ROUTE} component={Dashboard} />
         <Route

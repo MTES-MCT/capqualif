@@ -3,22 +3,24 @@ import { store } from '../../../../redux/store';
 
 import './DashboardContent.scss';
 
+import { IN_PROGRESS } from '../../../../dictionnary/demandeDeTitre';
 import CqItem from '../../../_cq/cq-item/CqItem';
 
 const DashboardContent = () => {
   return (
     <div className="cq-dashboard-content">
       <div className="cq-title-small">
-        Mes <span className="cq-title-big">demandes en cours</span>
+        Mes <span className="cq-title-big">demandes en cours </span>: à venir
       </div>
       <CqItem
         level={''}
         capacite={'Sécurité'}
         itemName={'Certificat de formation de base à la sécurité'}
-        timeline={false}
+        timeline={true}
         startDate={''}
         endDate={''}
-        status={'En cours de traitement'}
+        status={IN_PROGRESS}
+        isWip={true}
       />
 
       <div className="cq-title-small">

@@ -19,12 +19,10 @@ const App = () => {
       <PersistGate loading={null} persistor={persistor}>
         <Header />
         <Router>
-          <section className="page-container">
-            <Switch>
-              <Route exact path={HOME_ROUTE} component={Sign} />
-              <Routes />
-            </Switch>
-          </section>
+          <Switch>
+            <Route exact path={HOME_ROUTE} component={Sign} />
+            <Routes />
+          </Switch>
         </Router>
       </PersistGate>
     </Provider>
