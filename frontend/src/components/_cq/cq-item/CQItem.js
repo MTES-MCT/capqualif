@@ -6,6 +6,7 @@ import './CqItem.scss';
 // type = ?
 
 const CqItem = ({
+  owner,
   level,
   capacite,
   itemName,

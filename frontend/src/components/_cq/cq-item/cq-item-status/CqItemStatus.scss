@@ -13,12 +13,12 @@
     position: relative;
     width: 80px;
     margin: 0 1em;
-    .line {
-      position: absolute;
-      top: 80%;
-      width: 80px;
-      border-bottom: 1px solid $g800;
-    }
+    // .line {
+    //   position: absolute;
+    //   top: 80%;
+    //   width: 80px;
+    //   border-bottom: 1px solid $g800;
+    // }
     .cursor {
       position: absolute;
       $cursorRadius: 4px;

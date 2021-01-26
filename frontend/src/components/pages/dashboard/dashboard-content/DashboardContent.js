@@ -3,6 +3,7 @@ import { store } from '../../../../redux/store';
 
 import './DashboardContent.scss';
 
+import { MARIN } from '../../../../dictionnary/common';
 import { IN_PROGRESS } from '../../../../dictionnary/demandeDeTitre';
 import CqItem from '../../../_cq/cq-item/CqItem';
 
@@ -13,14 +14,12 @@ const DashboardContent = () => {
         Mes <span className="cq-title-big">demandes en cours </span>: à venir
       </div>
       <CqItem
+        owner={MARIN}
         level={''}
         capacite={'Sécurité'}
         itemName={'Certificat de formation de base à la sécurité'}
         timeline={true}
-        startDate={''}
-        endDate={''}
         status={IN_PROGRESS}
-        isWip={true}
       />
 
       <div className="cq-title-small">

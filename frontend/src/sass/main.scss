@@ -116,6 +116,14 @@ body {
   // min-height: 100vh;
 }
 
+a {
+  color: $g800;
+}
+
+li.cq-no-bullet::before {
+  content: '';
+}
+
 // section.page-container {
 //   margin: 0;
 //   padding: 0;
@@ -215,4 +223,12 @@ cq.rf-nav {
   a {
     color: $marianne-blue;
   }
+}
+
+// Lines
+
+.line {
+  // position: absolute;
+  width: 80px;
+  border-bottom: 1px solid $g800;
 }

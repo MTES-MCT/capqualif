@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { store } from '../../../../redux/store';
@@ -8,52 +8,55 @@ import { getAllTitles } from '../../../../redux/features/titlesCatalog/titlesSli
 import './NewTitleChoice.scss';
 import SectionHead from '../../../_cq/section/section-head/SectionHead';
 import TitleCard from '../../../_cq/title-card/TitleCard';
-import Header from '../../../_rf/header/Header';
+import CqItem from '../../../_cq/cq-item/CqItem';
 import { NEW_TITLE_APPLICATION_DETAILS_ROUTE } from '../../../../app/routesList';
+import { CATALOG } from '../../../../dictionnary/common';
+import Breadcrumb from '../../../_cq/breadcrumb/Breadcrumb';
 
 const NewTitleChoice = () => {
   const dispatch = useDispatch();
-  const allTitles = useSelector((state) => state.titles.allTitles);
+  const allTitres = useSelector((state) => state.titlesReducer.allTitles);
 
   useEffect(() => {
-    // TO DO : implement dispatch(getSuggestedTitles());
     dispatch(getAllTitles());
   }, [dispatch]);
 
-  const user = store.getState().sailors.sailorBasicData.sailorCivilData;
-  const username = user.firstName + ' ' + user.lastName;
-  const userSailorNumber = user.sailorNumber;
-
   return (
-    <div id="new-title-choice" className="page">
-      <header class="rf-header cq-subheader no-shadow">
-        <div class="rf-container cq-breadcrumb">
-          <a class="cq-simple-link">Retour à l'accueil</a>
+    <Fragment>
+      <Breadcrumb />
+      <div id="new-title-choice" className="rf-container">
+        <div className="rf-grid-row"></div>
+        <div className="rf-grid-row">
+          <div class="rf-col">
+            <SectionHead
+              title="Demande d'un nouveau titre"
+              subtitle="Choisissez le titre"
+            />
+          </div>
         </div>
-      </header>
-
-      <SectionHead
-        title="Demande d'un nouveau titre"
-        subtitle="Choisissez le titre"
-      />
-      <div>
-        <h3>Titres recommandés pour vous</h3>
-        {allTitles.map((title) => (
-          <Link to={NEW_TITLE_APPLICATION_DETAILS_ROUTE}>
-            <TitleCard key={title.id} title={title} titleType="fromCatalog" />
-          </Link>
-        ))}
+        <div className="rf-grid-row">
+          <div class="rf-col">
+            <h3>Titres recommandés pour vous : à venir</h3>
+            <CqItem
+              owner={CATALOG}
+              level={''}
+              capacite={'Sécurité'}
+              itemName={'Certificat de formation de base à la sécurité'}
+            />
+          </div>
+          <div class="rf-col">
+            <h3>Tous les titres : à venir</h3>
+            <input type="text"></input>
+            <CqItem
+              owner={CATALOG}
+              level={''}
+              capacite={'Sécurité'}
+              itemName={'Certificat de formation de base à la sécurité'}
+            />
+          </div>
+        </div>
       </div>
-      <div>
-        <h3>Tous les titres</h3>
-        <input type="text"></input>
-        {allTitles.map((title) => (
-          <Link to={NEW_TITLE_APPLICATION_DETAILS_ROUTE}>
-            <TitleCard key={title.id} title={title} titleType="fromCatalog" />
-          </Link>
-        ))}
-      </div>
-    </div>
+    </Fragment>
   );
 };
 
