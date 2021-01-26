@@ -3,7 +3,7 @@ import { store } from '../../../../redux/store';
 
 import './DashboardContent.scss';
 
-import { MARIN } from '../../../../dictionnary/common';
+import { OWNER } from '../../../../dictionnary/common';
 import { IN_PROGRESS } from '../../../../dictionnary/demandeDeTitre';
 import CqItem from '../../../_cq/cq-item/CqItem';
 
@@ -14,7 +14,7 @@ const DashboardContent = () => {
         Mes <span className="cq-title-big">demandes en cours </span>: à venir
       </div>
       <CqItem
-        owner={MARIN}
+        owner={OWNER.MARIN}
         level={''}
         capacite={'Sécurité'}
         itemName={'Certificat de formation de base à la sécurité'}
@@ -32,6 +32,7 @@ const DashboardContent = () => {
         .getState()
         .marinsReducer.marinBasicData.allTitresOfMarin.map((titre) => (
           <CqItem
+            owner={OWNER.MARIN}
             level={''}
             capacite={titre.capacite}
             itemName={titre.name}

@@ -10,8 +10,9 @@ import SectionHead from '../../../_cq/section/section-head/SectionHead';
 import TitleCard from '../../../_cq/title-card/TitleCard';
 import CqItem from '../../../_cq/cq-item/CqItem';
 import { NEW_TITLE_APPLICATION_DETAILS_ROUTE } from '../../../../app/routesList';
-import { CATALOG } from '../../../../dictionnary/common';
+import { OWNER } from '../../../../dictionnary/common';
 import Breadcrumb from '../../../_cq/breadcrumb/Breadcrumb';
+import { G800, MARIANNE_BLUE } from '../../../../dictionnary/saas/colors';
 
 const NewTitleChoice = () => {
   const dispatch = useDispatch();
@@ -25,30 +26,72 @@ const NewTitleChoice = () => {
     <Fragment>
       <Breadcrumb />
       <div id="new-title-choice" className="rf-container">
-        <div className="rf-grid-row"></div>
         <div className="rf-grid-row">
           <div class="rf-col">
             <SectionHead
-              title="Demande d'un nouveau titre"
-              subtitle="Choisissez le titre"
+              subtitle="Demande d'un nouveau titre"
+              title="Choix du titre"
+              color={MARIANNE_BLUE}
             />
           </div>
         </div>
         <div className="rf-grid-row">
+          <div class="rf-search-bar" id="search-input">
+            <label class="rf-label" for="search-input-input">
+              Rechercher un titre
+            </label>
+            <input
+              class="rf-input"
+              placeholder="Rechercher un titre"
+              type="search"
+              id="search-input-input"
+              name="search-input-input"
+            />
+            <button class="rf-btn" title="Rechercher">
+              <span>Rechercher</span>
+            </button>
+          </div>
+        </div>
+        <div className="rf-grid-row rf-grid-row--gutters">
           <div class="rf-col">
-            <h3>Titres recommandés pour vous : à venir</h3>
+            <SectionHead
+              subtitle="Suggestions pour exercer des"
+              title="Fonctions principales"
+              color={G800}
+            />
             <CqItem
-              owner={CATALOG}
+              owner={OWNER.CATALOG}
+              level={''}
+              capacite={'Sécurité'}
+              itemName={'Certificat de matelot pont'}
+            />
+            <CqItem
+              owner={OWNER.CATALOG}
+              level={''}
+              capacite={'Sécurité'}
+              itemName={'Certificat de formation de base à la sécurité'}
+            />
+            <CqItem
+              owner={OWNER.CATALOG}
               level={''}
               capacite={'Sécurité'}
               itemName={'Certificat de formation de base à la sécurité'}
             />
           </div>
           <div class="rf-col">
-            <h3>Tous les titres : à venir</h3>
-            <input type="text"></input>
+            <SectionHead
+              subtitle="Suggestions pour exercer des"
+              title="Fonctions spécifiques"
+              color={G800}
+            />
             <CqItem
-              owner={CATALOG}
+              owner={OWNER.CATALOG}
+              level={''}
+              capacite={'Médicale'}
+              itemName={'Formation médicale de base '}
+            />
+            <CqItem
+              owner={OWNER.CATALOG}
               level={''}
               capacite={'Sécurité'}
               itemName={'Certificat de formation de base à la sécurité'}

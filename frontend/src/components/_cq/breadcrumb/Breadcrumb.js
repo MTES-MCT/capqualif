@@ -8,10 +8,10 @@ const Breadcrumb = () => {
     <div id="breadcrumb" className="rf-header no-shadow">
       <div className="rf-container">
         <div className="rf-grid-row">
-          <div class="rf-col-2">
-            <a class="rf-link">Retour à l'accueil</a>
+          <div className="rf-col-2">
+            <a className="rf-link">Retour à l'accueil</a>
           </div>
-          <ul class="rf-col-8">
+          <ul className="rf-col-8">
             <li>Choix du titre</li>
 
             <li className="cq-no-bullet">

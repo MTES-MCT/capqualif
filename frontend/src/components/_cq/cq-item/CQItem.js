@@ -1,9 +1,20 @@
 import React from 'react';
+import CqItemHeader from './cq-item-header/CqItemHeader';
 import CqItemStatus from './cq-item-status/CqItemStatus';
 import './CqItem.scss';
 
+import { OWNER } from '../../../dictionnary/common';
+
 // level = Appui, Execution, Direction
 // type = ?
+
+function CqItemLogo({ logo }) {
+  return (
+    <div className="cq-item__document-links">
+      <span className={`rf-fi--lg ${logo}`}></span>
+    </div>
+  );
+}
 
 const CqItem = ({
   owner,
@@ -14,38 +25,24 @@ const CqItem = ({
   expirationDate,
   status,
 }) => {
-  console.log(status);
-
-  const topTitle = () => {
-    if (!level || level === undefined || level === '') {
-      return capacite;
-    } else {
-      return level + ' • ' + capacite;
-    }
-  };
-
   return (
     <div className="cq-item cq-title cq-item--default">
       <div class="cq-item__header">
-        <div class="cq-item__name-container">
-          <div class="cq-item__main-attributes">{topTitle()}</div>
-          <div class="cq-item__name">{itemName}</div>
-        </div>
-        <div class="cq-item__right-header">
-          <CqItemStatus
-            status={status}
-            delivranceDate={delivranceDate}
-            expirationDate={expirationDate}
-          />
-          <div class="cq-item__document-links">
-            <div class="cq-item__document-item">
-              <span class="rf-fi-file-line rf-fi--lg"></span>
+        <CqItemHeader level={level} capacite={capacite} itemName={itemName} />
+        {owner === OWNER.MARIN && (
+          <div class="cq-item__right-header">
+            <CqItemStatus
+              status={status}
+              delivranceDate={delivranceDate}
+              expirationDate={expirationDate}
+            />
+            <CqItemLogo logo="rf-fi-file-line" />
+
+            <div class="cq-item__extend">
+              <span class="rf-fi-arrow-down-s-line rf-fi--lg"></span>
             </div>
           </div>
-          <div class="cq-item__extend">
-            <span class="rf-fi-arrow-down-s-line rf-fi--lg"></span>
-          </div>
-        </div>
+        )}
       </div>
 
       <div class="cq-item__content">{/* TODO */}</div>

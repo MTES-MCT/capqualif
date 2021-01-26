@@ -12,28 +12,28 @@
     justify-content: space-between;
     align-items: center;
 
-    .cq-item__name-container {
-      margin-left: 10px;
-      padding-left: 20px;
-      position: relative;
-      max-width: 40%;
-      &:before {
-        content: '';
-        position: absolute;
-        $lineHeight: 36px;
-        height: $lineHeight;
-        top: calc(50% - #{$lineHeight}/ 2);
-        left: 0px;
-        border-left: 1px solid $marianne-blue;
-      }
-      .cq-item__main-attributes {
-        color: $g500;
-      }
-      .cq-item__name {
-        font-size: $sizeH2;
-        font-weight: $bold;
-      }
-    }
+    // .cq-item__name-container {
+    //   margin-left: 10px;
+    //   padding-left: 20px;
+    //   position: relative;
+    //   max-width: 40%;
+    //   &:before {
+    //     content: '';
+    //     position: absolute;
+    //     $lineHeight: 36px;
+    //     height: $lineHeight;
+    //     top: calc(50% - #{$lineHeight}/ 2);
+    //     left: 0px;
+    //     border-left: 1px solid $marianne-blue;
+    //   }
+    //   .cq-item__main-attributes {
+    //     color: $g500;
+    //   }
+    //   .cq-item__name {
+    //     font-size: $sizeH2;
+    //     font-weight: $bold;
+    //   }
+    // }
 
     .cq-item__right-header {
       display: flex;
@@ -77,13 +77,6 @@
       .cq-item__status-label {
         font-weight: $bold;
         color: $marianne-blue;
-      }
-      .cq-item__document-links {
-        .cq-item__document-item {
-          // Catch any icon that is direct child here
-          > * {
-          }
-        }
       }
     }
   }
