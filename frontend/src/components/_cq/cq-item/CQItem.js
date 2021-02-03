@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CqItemHeader from './cq-item-header/CqItemHeader';
 import CqItemStatus from './cq-item-status/CqItemStatus';
 import './CqItem.scss';
 
 import { OWNER } from '../../../dictionnary/common';
+import CqItemDetails from './cq-item-details/CqItemDetails';
 
 // level = Appui, Execution, Direction
 // type = ?
 
-function CqItemLogo({ logo }) {
+const CqItemLogo = ({ logo }) => {
   return (
     <div className="cq-item__document-links">
       <span className={`rf-fi--lg ${logo}`}></span>
     </div>
   );
-}
+};
 
 const CqItem = ({
   owner,
@@ -25,27 +26,46 @@ const CqItem = ({
   expirationDate,
   status,
 }) => {
-  return (
-    <div className="cq-item cq-title cq-item--default">
-      <div class="cq-item__header">
-        <CqItemHeader level={level} capacite={capacite} itemName={itemName} />
-        {owner === OWNER.MARIN && (
-          <div class="cq-item__right-header">
-            <CqItemStatus
-              status={status}
-              delivranceDate={delivranceDate}
-              expirationDate={expirationDate}
-            />
-            <CqItemLogo logo="rf-fi-file-line" />
+  const [isDetailVisible, setIsDetailVisible] = useState(false);
 
-            <div class="cq-item__extend">
-              <span class="rf-fi-arrow-down-s-line rf-fi--lg"></span>
+  return (
+    <div
+      className="cq-item cq-title cq-item--default rf-container"
+      onClick={() => setIsDetailVisible(!isDetailVisible)}
+    >
+      <div class="cq-item__header">
+        <div className="rf-grid-row">
+          <div className="rf-col">
+            <CqItemHeader
+              level={level}
+              capacite={capacite}
+              itemName={itemName}
+            />
+          </div>
+          {/* === This part is displayed only if the CqItem is a marin's item ===*/}
+          {owner === OWNER.MARIN && (
+            <div className="rf-col">
+              <div class="cq-item__right-header">
+                <CqItemStatus
+                  status={status}
+                  delivranceDate={delivranceDate}
+                  expirationDate={expirationDate}
+                />
+                <CqItemLogo logo="rf-fi-file-line" />
+                <span class="rf-fi-arrow-down-s-line rf-fi--lg"></span>
+              </div>
+            </div>
+          )}
+          {/* ===================================================================*/}
+        </div>
+        {isDetailVisible && (
+          <div className="rf-grid-row">
+            <div className="rf-col">
+              <CqItemDetails isVisible={isDetailVisible} />
             </div>
           </div>
         )}
       </div>
-
-      <div class="cq-item__content">{/* TODO */}</div>
     </div>
   );
 };

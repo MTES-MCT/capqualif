@@ -1,0 +1,11 @@
+@import '../../../../../sass//variables';
+
+.cq-item__detail {
+  background-color: $g200;
+  width: fit-content;
+}
+
+#cq-item-single-detail__details-container {
+  display: flex;
+  flex-direction: column;
+}

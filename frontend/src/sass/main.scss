@@ -97,10 +97,7 @@ body {
 
 body {
   display: block;
-  // margin: 0;
-  // position: absolute;
-  // top: 0;
-  // left: 0;
+
   font-size: $normal;
   background-color: $white;
   overflow-x: hidden;
@@ -112,8 +109,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $g100;
-  // width: 100vw;
-  // min-height: 100vh;
 }
 
 a {
@@ -123,13 +118,6 @@ a {
 li.cq-no-bullet::before {
   content: '';
 }
-
-// section.page-container {
-//   margin: 0;
-//   padding: 0;
-//   width: 100vw;
-//   min-width: 100vh;
-// }
 
 strong {
   font-weight: $bold;
@@ -161,11 +149,6 @@ h4 {
   font-weight: $regular;
   margin: 4px;
 }
-
-//HEADER
-// .page {
-//   width: 100vw;
-// }
 
 //override capqualif > gouvfr
 .rf-header {
@@ -208,11 +191,6 @@ h4 {
   }
 }
 
-//SUB-HEADER
-// .sub-header {
-//   height: 60px;
-// }
-
 // NAV
 .rf-header.no-shadow {
   box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0);
@@ -228,7 +206,25 @@ cq.rf-nav {
 // Lines
 
 .line {
-  // position: absolute;
   width: 80px;
   border-bottom: 1px solid $g800;
 }
+
+// Helpers
+
+.cq-helpers__full-width {
+  width: 100%;
+}
+
+.cq-helpers__no-linebreak {
+  white-space: nowrap;
+}
+
+// .cq-helpers__flex {
+//   display: flex;
+// }
+
+// .cq-helpers__flex-column {
+//   display: flex;
+//   flex-direction: column;
+// }

@@ -1,0 +1,17 @@
+#cq-item-details.hidden {
+  display: none;
+}
+
+#cq-item-details sub {
+  font-size: 0.8rem;
+  line-height: 0.2rem;
+}
+
+#cq-item-details .cq-item-details__small-text {
+  font-size: 0.8rem;
+}
+
+#cq-item-details .cq-item-details-container {
+  display: flex;
+  flex-direction: column;
+}

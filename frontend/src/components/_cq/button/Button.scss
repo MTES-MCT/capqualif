@@ -1,11 +1,17 @@
-.cq-upper {
+@import '../../../sass/variables';
+
+.cq-btn__uppercase {
   text-transform: uppercase;
 }
 
-.cq-btn-success {
+.cq-btn__success {
   background-color: greenyellow;
 }
 
-.cq-btn-danger {
+.cq-btn__danger {
   background-color: red;
+}
+
+.cq-btn__label-size-small {
+  font-size: $small;
 }

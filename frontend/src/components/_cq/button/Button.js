@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 
 import './Button.scss';
 
-const Button = ({ label, route, variantColor }) => {
+const Button = ({ label, labelSize, route }) => {
   return (
     <button>
-      <Link to={route} className={`rf-btn cq-upper ${variantColor}`}>
+      <Link
+        to={route}
+        className={`rf-btn cq-btn__uppercase cq-helpers__no-linebreak ${labelSize}`}
+      >
         {label}
       </Link>
     </button>
