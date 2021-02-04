@@ -2,8 +2,8 @@ package fr.gouv.mte.capqualif.titre.application.ports.in;
 
 import fr.gouv.mte.capqualif.titre.domain.Titre;
 
-public interface GetTitleUseCase {
+public interface GetTitreUseCase {
 
-    Titre getTitle(String titleId);
+    Titre getTitre(String titreId);
 
 }

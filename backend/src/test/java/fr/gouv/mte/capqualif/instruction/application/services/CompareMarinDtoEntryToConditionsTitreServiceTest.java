@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.instruction.application.services;
 
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.titre.adapters.out.api.GetTitleApiAdapter;
+import fr.gouv.mte.capqualif.titre.adapters.out.api.GetTitreApiAdapter;
 import fr.gouv.mte.capqualif.titre.adapters.out.api.mocks.TitresApiMock;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Titre;
@@ -26,7 +26,7 @@ public class CompareMarinDtoEntryToConditionsTitreServiceTest {
     TitresApiMock titresApiMock;
 
     @MockBean
-    GetTitleApiAdapter getTitlePort;
+    GetTitreApiAdapter getTitrePort;
 
     @Before
     public void setUp() throws Exception {
@@ -39,9 +39,9 @@ public class CompareMarinDtoEntryToConditionsTitreServiceTest {
     public void itShouldDetermineThatMarinMatchesAllConditions() {
         // 1. Récupérer le mock d'un titre
         String titreId = "1";
-        titresApiMock.findTitleById(titreId);
+        titresApiMock.findTitreById(titreId);
 
-        Titre titre = titresApiMock.findTitleById(titreId);
+        Titre titre = titresApiMock.findTitreById(titreId);
 
         // 2. Donner les json du marin
         String numeroDeMarin = "123";

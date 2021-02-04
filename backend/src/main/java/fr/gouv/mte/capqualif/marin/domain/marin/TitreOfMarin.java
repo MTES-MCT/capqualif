@@ -8,7 +8,7 @@ public class TitreOfMarin {
     private String numeroOfTitre;
     private String name;
     // TO DO : get these data ASAP from a "titres catalog" module.
-    // These data are generic and attached to a title, not specific for a marin
+    // These data are generic and attached to a titre, not specific for a marin
     // therefore they should not be here!
     private String capacite;
     private String capaciteEnglish;

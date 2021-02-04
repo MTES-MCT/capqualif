@@ -4,8 +4,8 @@ import fr.gouv.mte.capqualif.titre.domain.Titre;
 
 import java.util.List;
 
-public interface GetAllTitlesPort {
+public interface GetAllTitresPort {
 
-    List<Titre> getAllTitles();
+    List<Titre> getAllTitres();
 
 }

@@ -1,21 +1,21 @@
 package fr.gouv.mte.capqualif.titre.adapters.in.web;
 
-import fr.gouv.mte.capqualif.titre.application.ports.in.GetTitleUseCase;
+import fr.gouv.mte.capqualif.titre.application.ports.in.GetTitreUseCase;
 import fr.gouv.mte.capqualif.titre.domain.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/titles")
+@RequestMapping("/titres")
 @CrossOrigin
-public class GetTitleController {
+public class GetTitreController {
 
     @Autowired
-    GetTitleUseCase getTitleUseCase;
+    GetTitreUseCase getTitreUseCase;
 
     @GetMapping("/{titreId}")
-    public Titre getTitle(@PathVariable("titreId") String titreId) {
-        return getTitleUseCase.getTitle(titreId);
+    public Titre getTitre(@PathVariable("titreId") String titreId) {
+        return getTitreUseCase.getTitre(titreId);
     }
 
 }

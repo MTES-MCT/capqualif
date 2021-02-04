@@ -15,13 +15,12 @@ import java.util.List;
 public class TitresApiMock {
 
     public List<Titre> findAll() {
-        List<Titre> titlesList = buildTitresList();
-        return titlesList;
+        return buildTitresList();
     }
 
-    public Titre findTitleById(String id) {
-        List<Titre> titlesList = buildTitresList();
-        for (Titre titre : titlesList) {
+    public Titre findTitreById(String id) {
+        List<Titre> titresList = buildTitresList();
+        for (Titre titre : titresList) {
             if (titre.getId().equals(id)) {
                 return titre;
             }
@@ -44,22 +43,22 @@ public class TitresApiMock {
                 )
             );
 
-        List<String> prerogatives = new ArrayList<String>(Arrays.asList("Préparation de poires Belle Hélène", "Confection de banana splits"));
+        List<String> restrictions = new ArrayList<String>(Arrays.asList("Préparation de poires Belle Hélène", "Confection de banana splits"));
 
         titresList.add(new Titre(
                 "1",
                 "Certificat de matelot pont (CMP9525)",
                 conditions,
-                prerogatives));
+                restrictions));
 
         List<ConditionTitre> conditions2 = new ArrayList<ConditionTitre>(Arrays.asList(
                 new ConditionTitre("aptitude médicale", new Value("Apte TF/TN", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ESCULAPE)));
-        List<String> prerogatives2 = new ArrayList<String>(Arrays.asList("Cuisson de tartes flambées", "Préparation de crèmes brûlées"));
+        List<String> restrictions2 = new ArrayList<String>(Arrays.asList("Cuisson de tartes flambées", "Préparation de crèmes brûlées"));
         titresList.add(new Titre(
                 "2",
                 "Capitaine 200",
                 conditions2,
-                prerogatives2));
+                restrictions2));
 
         return titresList;
     }

@@ -16,7 +16,7 @@ public class CompareMarinDataToConditionsTitreController {
     CompareMarinDataToConditionsTitreUseCase compareMarinDataToConditionsTitreUseCase;
 
     @GetMapping("/{titreId}/{numeroDeMarin}")
-    public List<ComparisonResult> compareMarinDataToTitleConditions(
+    public List<ComparisonResult> compareMarinDataToTitreConditions(
             @PathVariable("titreId") String titreId,
             @PathVariable("numeroDeMarin") String numeroDeMarin) {
         return compareMarinDataToConditionsTitreUseCase.compareMarinDataToConditionsTitre(titreId, numeroDeMarin);

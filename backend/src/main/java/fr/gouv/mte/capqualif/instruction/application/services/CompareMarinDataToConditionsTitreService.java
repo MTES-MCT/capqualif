@@ -5,7 +5,7 @@ import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
 import fr.gouv.mte.capqualif.instruction.domain.Entry;
 import fr.gouv.mte.capqualif.legislateur.mock.ConditionDataSourceToDataToSearchForInExistingDataSourceMapper;
-import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitlePort;
+import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.List;
 public class CompareMarinDataToConditionsTitreService implements CompareMarinDataToConditionsTitreUseCase {
 
     @Autowired
-    GetTitlePort getTitlePort;
+    GetTitrePort getTitrePort;
 
     @Autowired
     GetMarinDataPort getMarinDataPort;
@@ -64,7 +64,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     }
 
     private List<ConditionTitre> getConditionTitre(String titreId) {
-        Titre titre = getTitlePort.getTitle(titreId);
+        Titre titre = getTitrePort.getTitre(titreId);
         return titre.getConditions();
     }
 

@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/titles")
+@RequestMapping("/titres")
 @CrossOrigin
-public class GetSuggestedTitlesController {
+public class GetSuggestedTitresController {
 
-    @GetMapping("/suggested-titles")
-    public List<Titre> getSuggestedTitles() {
+    @GetMapping("/suggested-titres")
+    public List<Titre> getSuggestedTitres() {
         return null;
     }
 
