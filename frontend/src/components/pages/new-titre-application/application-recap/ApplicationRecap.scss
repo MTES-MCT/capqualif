@@ -9,9 +9,13 @@
   margin-left: 1em;
 }
 
-#application-recap .container {
+#application-recap .container,
+#application-recap .not-center-aligning-container {
   display: flex;
-  align-items: flex-start;
+}
+
+#application-recap .container {
+  align-items: center;
 }
 
 #application-recap #identity-container {

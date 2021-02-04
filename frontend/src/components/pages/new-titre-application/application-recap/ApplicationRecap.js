@@ -10,7 +10,10 @@ import { getTitre } from '../../../../redux/features/titresCatalog/titresSlice';
 
 import Breadcrumb from '../../../_cq/breadcrumb/Breadcrumb';
 import SectionHead from '../../../_cq/section/section-head/SectionHead';
+import CqItem from '../../../_cq/cq-item/CqItem';
+
 import SectionFooter from '../../../_cq/section/section-footer/SectionFooter';
+import { OWNER } from '../../../../dictionnary/common';
 
 const ApplicationRecap = ({ match }) => {
   const dispatch = useDispatch();
@@ -53,7 +56,7 @@ const ApplicationRecap = ({ match }) => {
         </div>
         <div className="rf-grid-row rf-grid-row--gutters with-margin">
           <div className="rf-col">
-            <div className="container rf-grid-row">
+            <div className="not-center-aligning-container rf-grid-row">
               <span className="rf-fi-checkbox-line"></span>
               <div id="identity-container" className="rf-pl-2w">
                 <p>Mon identité</p>
@@ -90,7 +93,7 @@ const ApplicationRecap = ({ match }) => {
         </div>
 
         <div className="rf-grid-row rf-grid-row--gutters with-margin">
-          <div className="rf-col-3">
+          <div className="rf-col">
             <div className="container">
               <span className="rf-fi-checkbox-line"></span>
               <div className="rf-pt-1w rf-pl-2w">
@@ -105,7 +108,26 @@ const ApplicationRecap = ({ match }) => {
           </div>
         </div>
 
-        <SectionFooter possibleActions={possibleActions} />
+        <div className="rf-grid-row rf-grid-row--gutters with-margin">
+          <div className="rf-col">
+            <div className="container">
+              <span className="rf-fi-checkbox-line"></span>
+              <div className="rf-pt-1w rf-pl-2w">
+                <p>Mes aptitudes médicales&nbsp;: {''}</p>
+                <CqItem
+                  owner={OWNER.MARIN}
+                  level={''}
+                  capacite={'Visite médicale'}
+                  itemName={'Visite annuelle'}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="rf-grid-row rf-grid-row--gutters with-margin"></div>
+
+        {/* <SectionFooter possibleActions={possibleActions} /> */}
       </div>
     </Fragment>
   );

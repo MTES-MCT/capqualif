@@ -38,7 +38,7 @@ const CqItem = ({
 
   return (
     <div
-      className="cq-item cq-title cq-item--default rf-container"
+      className="cq-item cq-title cq-item--default rf-container rf-my-2w"
       onClick={() => setIsDetailVisible(!isDetailVisible)}
     >
       <div class="cq-item__header">
