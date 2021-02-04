@@ -7,7 +7,7 @@ import SectionFooter from '../../_cq/section/section-footer/SectionFooter';
 import Header from '../../_rf/header/Header';
 
 const AddPiece = () => {
-  const currentTitle = useSelector((state) => state.titles.currentTitle);
+  const currentTitre = useSelector((state) => state.titresReducer.currentTitre);
 
   const possibleActions = [
     {
@@ -23,7 +23,7 @@ const AddPiece = () => {
   return (
     <div id="ajouter-piece" className="page">
       <SectionHead
-        title={currentTitle.titleName}
+        title={currentTitre.titreName}
         subtitle="Compléter votre dossier"
       />
       <div>

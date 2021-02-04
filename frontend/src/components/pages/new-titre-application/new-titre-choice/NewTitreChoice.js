@@ -3,23 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { store } from '../../../../redux/store';
 
-import { getAllTitles } from '../../../../redux/features/titlesCatalog/titlesSlice';
+import { getAllTitres } from '../../../../redux/features/titresCatalog/titresSlice';
 
-import './NewTitleChoice.scss';
+import './NewTitreChoice.scss';
+
 import SectionHead from '../../../_cq/section/section-head/SectionHead';
-import TitleCard from '../../../_cq/title-card/TitleCard';
 import CqItem from '../../../_cq/cq-item/CqItem';
-import { NEW_TITLE_APPLICATION_DETAILS_ROUTE } from '../../../../app/routesList';
 import { OWNER } from '../../../../dictionnary/common';
 import Breadcrumb from '../../../_cq/breadcrumb/Breadcrumb';
 import { G800, MARIANNE_BLUE } from '../../../../dictionnary/saas/colors';
 
 const NewTitleChoice = () => {
   const dispatch = useDispatch();
-  const allTitres = useSelector((state) => state.titlesReducer.allTitles);
+  const allTitres = useSelector((state) => state.titresReducer.allTitres);
 
   useEffect(() => {
-    dispatch(getAllTitles());
+    dispatch(getAllTitres());
   }, [dispatch]);
 
   return (

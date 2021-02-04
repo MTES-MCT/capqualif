@@ -15,11 +15,11 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import marinsReducer from './features/marinData/marinsSlice';
-import titlesReducer from './features/titlesCatalog/titlesSlice';
+import titresReducer from './features/titresCatalog/titresSlice';
 
 const reducers = combineReducers({
   marinsReducer,
-  titlesReducer,
+  titresReducer,
 });
 
 const persistConfig = {

@@ -13,8 +13,8 @@ import SectionFooter from '../../../_cq/section/section-footer/SectionFooter';
 
 const ApplicationRecap = () => {
   const dispatch = useDispatch();
-  const currentTitle = useSelector((state) => state.titles.currentTitle);
-  const marin = useSelector((state) => state.titles.currentTitle);
+  const currentTitle = useSelector((state) => state.titlesReducer.currentTitle);
+  const marin = useSelector((state) => state.marinsReducer.marinBasicData);
 
   useEffect(() => {
     dispatch(getConditions('1'));
@@ -34,9 +34,7 @@ const ApplicationRecap = () => {
   return (
     <div>
       <SectionHead title={currentTitle.libelle} subtitle="Récapitulatif" />
-      <div>
-        {/* Il manque CETTE PIECE <Link to={ADD_PIECE_ROUTE}>Ajouter</Link> */}
-      </div>
+
       <SectionFooter possibleActions={possibleActions} />
     </div>
   );
