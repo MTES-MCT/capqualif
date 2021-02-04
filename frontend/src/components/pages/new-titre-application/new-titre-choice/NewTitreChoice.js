@@ -63,18 +63,58 @@ const NewTitleChoice = () => {
               level={''}
               capacite={'Sécurité'}
               itemName={'Certificat de matelot pont'}
+              itemSlug="certificat-de-matelot-pont"
+              details={{
+                advancedDescriptions: [
+                  {
+                    categoryName: 'Fonctions',
+                    infos: ["Fonctions d'appui au pont"],
+                  },
+                  {
+                    categoryName: 'Tâches spécialisées',
+                    infos: [
+                      'Navigation',
+                      'Manutention et arrimage de la cargaison',
+                      "Contrôle de l'exploitation du navire et assistance aux personnes à bord",
+                      'Entretien et réparation',
+                    ],
+                  },
+                ],
+                arrete: 'Arrêté du 18 août 2015',
+                validityDuration: '5 ans',
+              }}
             />
             <CqItem
               owner={OWNER.CATALOG}
               level={''}
               capacite={'Sécurité'}
               itemName={'Certificat de formation de base à la sécurité'}
+              details={{
+                advancedDescriptions: [
+                  {
+                    categoryName: 'Fonctions',
+                    infos: ["Fonctions d'appui au pont"],
+                  },
+                ],
+                arrete: 'Arrêté du 18 août 2015',
+                validityDuration: '5 ans',
+              }}
             />
             <CqItem
               owner={OWNER.CATALOG}
               level={''}
               capacite={'Sécurité'}
               itemName={'Certificat de formation de base à la sécurité'}
+              details={{
+                advancedDescriptions: [
+                  {
+                    categoryName: 'Fonctions',
+                    infos: ["Fonctions d'appui au pont"],
+                  },
+                ],
+                arrete: 'Arrêté du 18 août 2015',
+                validityDuration: '5 ans',
+              }}
             />
           </div>
           <div class="rf-col">
@@ -88,12 +128,32 @@ const NewTitleChoice = () => {
               level={''}
               capacite={'Médicale'}
               itemName={'Formation médicale de base '}
+              details={{
+                advancedDescriptions: [
+                  {
+                    categoryName: 'Fonctions',
+                    infos: ["Fonctions d'appui au pont"],
+                  },
+                ],
+                arrete: 'Arrêté du 18 août 2015',
+                validityDuration: '5 ans',
+              }}
             />
             <CqItem
               owner={OWNER.CATALOG}
               level={''}
               capacite={'Sécurité'}
               itemName={'Certificat de formation de base à la sécurité'}
+              details={{
+                advancedDescriptions: [
+                  {
+                    categoryName: 'Fonctions',
+                    infos: ["Fonctions d'appui au pont"],
+                  },
+                ],
+                arrete: 'Arrêté du 18 août 2015',
+                validityDuration: '5 ans',
+              }}
             />
           </div>
         </div>

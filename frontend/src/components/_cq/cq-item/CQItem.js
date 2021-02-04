@@ -22,6 +22,8 @@ const CqItem = ({
   level,
   capacite,
   itemName,
+  itemSlug,
+  details,
   delivranceDate,
   expirationDate,
   status,
@@ -61,7 +63,11 @@ const CqItem = ({
         {isDetailVisible && (
           <div className="rf-grid-row">
             <div className="rf-col">
-              <CqItemDetails isVisible={isDetailVisible} />
+              <CqItemDetails
+                isVisible={isDetailVisible}
+                details={details}
+                itemSlug={itemSlug}
+              />
             </div>
           </div>
         )}

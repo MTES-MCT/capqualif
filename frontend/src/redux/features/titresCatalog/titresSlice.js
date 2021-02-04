@@ -13,7 +13,6 @@ export const getAllTitres = createAsyncThunk(
     const response = await axios.get(
       `${CAPQUALIF_URL}/${TITRES_ENDPOINT}/${ALL_TITRES_ENDPOINT}`
     );
-    console.log(response.data);
     return response.data;
   }
 );

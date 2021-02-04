@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './Button.scss';
 
-const Button = ({ label, labelSize, route }) => {
+const Button = ({ label, labelSize, route, onClickAction }) => {
   return (
     <button>
       <Link

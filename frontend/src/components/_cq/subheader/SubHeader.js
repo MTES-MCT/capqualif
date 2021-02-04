@@ -3,7 +3,10 @@ import { store } from '../../../redux/store';
 
 import './SubHeader.scss';
 
-import { NEW_TITRE_APPLICATION_CHOICE_ROUTE } from '../../../app/routesList';
+import {
+  NEW_TITRE_APPLICATION_ROUTE,
+  NEW_TITRE_APPLICATION_CHOICE_ROUTE,
+} from '../../../app/routesList';
 import Button from '../button/Button';
 
 const SubHeader = () => {
@@ -19,7 +22,7 @@ const SubHeader = () => {
       </div>
       <Button
         label="Demander un titre"
-        route={NEW_TITRE_APPLICATION_CHOICE_ROUTE}
+        route={`${NEW_TITRE_APPLICATION_ROUTE}${NEW_TITRE_APPLICATION_CHOICE_ROUTE}`}
       />
     </div>
   );

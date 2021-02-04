@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import {
   DASHBOARD_ROUTE,
+  NEW_TITRE_APPLICATION_ROUTE,
   NEW_TITRE_APPLICATION_CHOICE_ROUTE,
   NEW_TITRE_APPLICATION_RECAP_ROUTE,
   ERROR_ROUTE,
@@ -21,11 +22,11 @@ const Routes = () => {
       <Switch>
         <Route exact path={DASHBOARD_ROUTE} component={Dashboard} />
         <Route
-          path={NEW_TITRE_APPLICATION_CHOICE_ROUTE}
+          path={`${NEW_TITRE_APPLICATION_ROUTE}${NEW_TITRE_APPLICATION_CHOICE_ROUTE}`}
           component={NewTitreChoice}
         />
         <Route
-          path={NEW_TITRE_APPLICATION_RECAP_ROUTE}
+          path={`${NEW_TITRE_APPLICATION_ROUTE}/:itemSlug${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
           component={ApplicationRecap}
         />
         <Route path={ADD_PIECE_ROUTE} component={AddPiece} />
