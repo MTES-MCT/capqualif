@@ -1,0 +1,42 @@
+@import '../../../../sass/variables';
+
+#application-recap .rf-fi-checkbox-line::before {
+  color: $marianne-blue;
+  font-size: $sizeH1;
+}
+
+#application-recap .with-margin {
+  margin-left: 1em;
+}
+
+#application-recap .container {
+  display: flex;
+  align-items: flex-start;
+}
+
+#application-recap #identity-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#application-recap #identity-specifics-container {
+  display: flex;
+}
+
+#application-recap p {
+  font-size: $normal;
+}
+
+#application-recap sub {
+  color: $g800;
+  font-size: $normal;
+  display: block;
+}
+
+#application-recap .dynamic-infos {
+  color: $marianne-blue;
+}
+
+#application-recap .identity-check {
+  display: flex;
+}

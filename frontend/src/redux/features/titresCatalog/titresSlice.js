@@ -11,7 +11,7 @@ export const getAllTitres = createAsyncThunk(
   'titres/getAllTitres',
   async (thunkAPI) => {
     const response = await axios.get(
-      `${CAPQUALIF_URL}/${TITRES_ENDPOINT}/${ALL_TITRES_ENDPOINT}`
+      `${CAPQUALIF_URL}${TITRES_ENDPOINT}${ALL_TITRES_ENDPOINT}`
     );
     return response.data;
   }
@@ -19,9 +19,9 @@ export const getAllTitres = createAsyncThunk(
 
 export const getTitre = createAsyncThunk(
   'titres/getTitre',
-  async (titreId, thunkAPI) => {
+  async (titreSlug, thunkAPI) => {
     const response = await axios.get(
-      `${CAPQUALIF_URL}/${TITRES_ENDPOINT}/${titreId}`
+      `${CAPQUALIF_URL}${TITRES_ENDPOINT}${titreSlug}`
     );
     return response.data;
   }
@@ -35,6 +35,9 @@ export const titresSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
+    [getTitre.fulfilled]: (state, action) => {
+      state.currentTitre = action.payload;
+    },
     [getAllTitres.fulfilled]: (state, action) => {
       state.allTitres = action.payload;
     },

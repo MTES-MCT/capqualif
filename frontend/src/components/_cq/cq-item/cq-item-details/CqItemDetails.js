@@ -4,12 +4,7 @@ import CqItemAdvancedDescription from './cq-items-advanced-description/CqItemAdv
 
 import './CqItemDetails.scss';
 
-import {
-  NEW_TITRE_APPLICATION_ROUTE,
-  NEW_TITRE_APPLICATION_RECAP_ROUTE,
-} from '../../../../app/routesList';
-
-const CqItemDetails = ({ isVisible, itemSlug, details }) => {
+const CqItemDetails = ({ isVisible, details, buttonRoute }) => {
   return (
     <div
       id="cq-item-details"
@@ -40,7 +35,7 @@ const CqItemDetails = ({ isVisible, itemSlug, details }) => {
           <div className="rf-col cq-item-details-container">
             <Button
               label="Demander ce titre"
-              route={`${NEW_TITRE_APPLICATION_ROUTE}/${itemSlug}${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
+              route={buttonRoute}
               labelSize="cq-btn__label-size-small"
             />
           </div>

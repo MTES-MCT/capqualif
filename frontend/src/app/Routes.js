@@ -26,7 +26,7 @@ const Routes = () => {
           component={NewTitreChoice}
         />
         <Route
-          path={`${NEW_TITRE_APPLICATION_ROUTE}/:itemSlug${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
+          path={`${NEW_TITRE_APPLICATION_ROUTE}/:itemId/:itemSlug${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
           component={ApplicationRecap}
         />
         <Route path={ADD_PIECE_ROUTE} component={AddPiece} />

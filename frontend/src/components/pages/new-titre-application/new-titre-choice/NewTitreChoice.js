@@ -26,13 +26,11 @@ const NewTitleChoice = () => {
       <Breadcrumb />
       <div id="new-title-choice" className="rf-container">
         <div className="rf-grid-row">
-          <div class="rf-col">
-            <SectionHead
-              subtitle="Demande d'un nouveau titre"
-              title="Choix du titre"
-              color={MARIANNE_BLUE}
-            />
-          </div>
+          <SectionHead
+            subtitle="Demande d'un nouveau titre"
+            title="Choix du titre"
+            color={MARIANNE_BLUE}
+          />
         </div>
         <div className="rf-grid-row">
           <div class="rf-search-bar" id="search-input">
@@ -63,6 +61,7 @@ const NewTitleChoice = () => {
               level={''}
               capacite={'Sécurité'}
               itemName={'Certificat de matelot pont'}
+              itemId="1"
               itemSlug="certificat-de-matelot-pont"
               details={{
                 advancedDescriptions: [
@@ -89,6 +88,8 @@ const NewTitleChoice = () => {
               level={''}
               capacite={'Sécurité'}
               itemName={'Certificat de formation de base à la sécurité'}
+              itemId="2"
+              itemSlug="certificat-de-formation-de-base-a-la-securite"
               details={{
                 advancedDescriptions: [
                   {
@@ -105,6 +106,8 @@ const NewTitleChoice = () => {
               level={''}
               capacite={'Sécurité'}
               itemName={'Certificat de formation de base à la sécurité'}
+              itemId="3"
+              itemSlug="certificat-de-formation-de-base-a-la-securite"
               details={{
                 advancedDescriptions: [
                   {
@@ -128,6 +131,8 @@ const NewTitleChoice = () => {
               level={''}
               capacite={'Médicale'}
               itemName={'Formation médicale de base '}
+              itemId="4"
+              itemSlug="formation-medicale-de-base"
               details={{
                 advancedDescriptions: [
                   {
@@ -144,6 +149,8 @@ const NewTitleChoice = () => {
               level={''}
               capacite={'Sécurité'}
               itemName={'Certificat de formation de base à la sécurité'}
+              itemId="5"
+              itemSlug="certificat-de-formation-de-base-a-la-securite"
               details={{
                 advancedDescriptions: [
                   {

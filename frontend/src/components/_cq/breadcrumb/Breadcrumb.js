@@ -16,7 +16,7 @@ const Breadcrumb = () => {
 
             <li className="cq-no-bullet">
               <LineBullet />
-              Les pièces à fournir
+              Récapitulatif du dossier
             </li>
             <li className="cq-no-bullet">
               <LineBullet />

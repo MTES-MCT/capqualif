@@ -3,6 +3,11 @@ import CqItemHeader from './cq-item-header/CqItemHeader';
 import CqItemStatus from './cq-item-status/CqItemStatus';
 import './CqItem.scss';
 
+import {
+  NEW_TITRE_APPLICATION_ROUTE,
+  NEW_TITRE_APPLICATION_RECAP_ROUTE,
+} from '../../../app/routesList';
+
 import { OWNER } from '../../../dictionnary/common';
 import CqItemDetails from './cq-item-details/CqItemDetails';
 
@@ -22,6 +27,7 @@ const CqItem = ({
   level,
   capacite,
   itemName,
+  itemId,
   itemSlug,
   details,
   delivranceDate,
@@ -66,7 +72,7 @@ const CqItem = ({
               <CqItemDetails
                 isVisible={isDetailVisible}
                 details={details}
-                itemSlug={itemSlug}
+                buttonRoute={`${NEW_TITRE_APPLICATION_ROUTE}/${itemId}/${itemSlug}${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
               />
             </div>
           </div>
