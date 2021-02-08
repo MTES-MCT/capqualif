@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { DASHBOARD_ROUTE } from '../../../app/routesList';
 import { ReactComponent as LineBullet } from '../../../resources/img/symbols/listBullet.svg';
 
 import './Breadcrumb.scss';
@@ -9,7 +11,9 @@ const Breadcrumb = () => {
       <div className="rf-container">
         <div className="rf-grid-row">
           <div className="rf-col-2">
-            <a className="rf-link">Retour à l'accueil</a>
+            <Link to={DASHBOARD_ROUTE} className="rf-link">
+              Retour à l'accueil
+            </Link>
           </div>
           <ul className="rf-col-8">
             <li>Choix du titre</li>

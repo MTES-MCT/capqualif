@@ -5,13 +5,17 @@ export const STATUS_TITRE = {
   BLOCKED: 'Bloqué',
 };
 
+export const STATUS_APTITUDE_MEDICALE = {
+  APTE: 'Aptitude toutes fonctions, toutes navigations',
+};
+
 export const BUTTON_LABELS = {
   RENEW: 'Renouveler',
   DEMAND: 'Demander',
   ADD_DOCUMENT: 'Ajouter un document',
 };
 
-export const ACTION_TYPE = {
+export const ACTION_TYPES = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
 };

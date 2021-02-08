@@ -5,7 +5,7 @@ import './CqItemBase.scss';
 
 import CqItemHeader from './cq-item-header/CqItemHeader';
 
-const CqItemBase = ({ subtitle, itemName, children }) => {
+const CqItemBase = ({ subtitle, name, children }) => {
   const [isDetailVisible, setIsDetailVisible] = useState(false);
 
   return (
@@ -15,15 +15,16 @@ const CqItemBase = ({ subtitle, itemName, children }) => {
       style={{ cursor: isDetailVisible ? 'default' : 'cursor' }}
     >
       <div class="cq-item__header">
-        <div className="rf-grid-row">
-          <div className="rf-col">
-            <CqItemHeader subtitle={subtitle} itemName={itemName} />
+        <div className="rf-grid-row rf-grid-row--gutters">
+          <div className="rf-col-5">
+            <CqItemHeader subtitle={subtitle} name={name} />
           </div>
-          <div className="rf-col">
-            {/* <div className="cq-item__right-header">{children}</div> */}
+          <div className="rf-col-6">
             <div className="children-container">{children}</div>
           </div>
-          <span class="rf-fi-arrow-down-s-line"></span>
+          <div className="rf-col-1">
+            <span class="rf-fi-arrow-down-s-line"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -32,7 +33,7 @@ const CqItemBase = ({ subtitle, itemName, children }) => {
 
 CqItemBase.propTypes = {
   subtitle: PropTypes.string.isRequired,
-  itemName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
 };
 

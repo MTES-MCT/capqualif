@@ -1,6 +1,10 @@
 @import '../../../sass/gouvfr';
 @import '../../../sass/variables';
 
+.cq-btn a {
+  padding: 0 1em;
+}
+
 .cq-btn .cq-btn__uppercase {
   text-transform: uppercase;
 }

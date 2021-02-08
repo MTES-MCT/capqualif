@@ -1,8 +1,16 @@
 @import '../../../../sass/variables';
 
+#application-recap .rf-fi-checkbox-line::before,
+#application-recap .rf-fi-close-circle-line::before {
+  font-size: $sizeH1;
+}
+
 #application-recap .rf-fi-checkbox-line::before {
   color: $marianne-blue;
-  font-size: $sizeH1;
+}
+
+#application-recap .rf-fi-close-circle-line::before {
+  color: #ff8c09;
 }
 
 #application-recap .with-margin {

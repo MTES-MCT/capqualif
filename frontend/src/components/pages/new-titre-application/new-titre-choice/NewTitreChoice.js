@@ -8,14 +8,66 @@ import { getAllTitres } from '../../../../redux/features/titresCatalog/titresSli
 import './NewTitreChoice.scss';
 
 import SectionHead from '../../../_cq/section/section-head/SectionHead';
-import CqItem from '../../../_cq/cq-item/CqItem';
+// import CqItem from '../../../_cq/cq-item/CqItem';
+import CqItemBase from '../../../_cq/cq-item/elements/CqItemBase';
 import { OWNER } from '../../../../dictionnary/common';
 import Breadcrumb from '../../../_cq/breadcrumb/Breadcrumb';
 import { FONT_COLORS } from '../../../../dictionnary/saas/variables';
+import CqItemAdvancedDescription from '../../../_cq/cq-item/elements/cq-item-details/cq-items-advanced-description/CqItemAdvancedDescription';
+import CqItemCatalog from '../../../_cq/cq-item/catalog/CqItemCatalog';
 
 const NewTitleChoice = () => {
   const dispatch = useDispatch();
   const allTitres = useSelector((state) => state.titresReducer.allTitres);
+
+  const allTitresMock = [
+    {
+      capacite: 'Monovalence Pont',
+      name: 'Certificat de matelot pont',
+      id: '1',
+      slug: 'certificat-de-matelot-pont',
+      details: {
+        advancedDescriptions: [
+          {
+            categoryName: 'Fonctions',
+            infos: ["Fonctions d'appui au pont"],
+          },
+          {
+            categoryName: 'Tâches spécialisées',
+            infos: [
+              'Navigation',
+              'Manutention et arrimage de la cargaison',
+              "Contrôle de l'exploitation du navire et assistance aux personnes à bord",
+              'Entretien et réparation',
+            ],
+          },
+        ],
+        arrete: 'Arrêté du 18 août 2015',
+        validityDuration: '5 ans',
+      },
+    },
+    {
+      capacite: '',
+      name: 'Certificat de formation de base à la sécurité',
+      id: '2',
+      slug: 'certificat-de-formation-de-base-a-la-securite',
+      details: {
+        advancedDescriptions: [
+          {
+            categoryName: 'Enseignement',
+            infos: [
+              'Identifier les situation d’urgence',
+              'Identifier les types d’engins de sauvetages',
+              'Expliquer la fonction des éléments de l’armement des embarcations et radeaux de sauvetage.',
+              'Principes de survie',
+            ],
+          },
+        ],
+        arrete: 'Arrêté du 18 août 2015',
+        validityDuration: '5 ans',
+      },
+    },
+  ];
 
   useEffect(() => {
     dispatch(getAllTitres());
@@ -56,69 +108,14 @@ const NewTitleChoice = () => {
               title="Fonctions principales"
               color={FONT_COLORS.G800}
             />
-            <CqItem
-              owner={OWNER.CATALOG}
-              level={''}
-              capacite={'Sécurité'}
-              itemName={'Certificat de matelot pont'}
-              itemId="1"
-              itemSlug="certificat-de-matelot-pont"
-              details={{
-                advancedDescriptions: [
-                  {
-                    categoryName: 'Fonctions',
-                    infos: ["Fonctions d'appui au pont"],
-                  },
-                  {
-                    categoryName: 'Tâches spécialisées',
-                    infos: [
-                      'Navigation',
-                      'Manutention et arrimage de la cargaison',
-                      "Contrôle de l'exploitation du navire et assistance aux personnes à bord",
-                      'Entretien et réparation',
-                    ],
-                  },
-                ],
-                arrete: 'Arrêté du 18 août 2015',
-                validityDuration: '5 ans',
-              }}
-            />
-            <CqItem
-              owner={OWNER.CATALOG}
-              level={''}
-              capacite={'Sécurité'}
-              itemName={'Certificat de formation de base à la sécurité'}
-              itemId="2"
-              itemSlug="certificat-de-formation-de-base-a-la-securite"
-              details={{
-                advancedDescriptions: [
-                  {
-                    categoryName: 'Fonctions',
-                    infos: ["Fonctions d'appui au pont"],
-                  },
-                ],
-                arrete: 'Arrêté du 18 août 2015',
-                validityDuration: '5 ans',
-              }}
-            />
-            <CqItem
-              owner={OWNER.CATALOG}
-              level={''}
-              capacite={'Sécurité'}
-              itemName={'Certificat de formation de base à la sécurité'}
-              itemId="3"
-              itemSlug="certificat-de-formation-de-base-a-la-securite"
-              details={{
-                advancedDescriptions: [
-                  {
-                    categoryName: 'Fonctions',
-                    infos: ["Fonctions d'appui au pont"],
-                  },
-                ],
-                arrete: 'Arrêté du 18 août 2015',
-                validityDuration: '5 ans',
-              }}
-            />
+            {allTitresMock
+              .filter((titre) => titre.capacite !== '')
+              .map((titre) => (
+                <CqItemCatalog
+                  subtitle={titre.capacite}
+                  name={titre.name}
+                ></CqItemCatalog>
+              ))}
           </div>
           <div class="rf-col">
             <SectionHead
@@ -126,42 +123,14 @@ const NewTitleChoice = () => {
               title="Fonctions spécifiques"
               color={FONT_COLORS.G800}
             />
-            <CqItem
-              owner={OWNER.CATALOG}
-              level={''}
-              capacite={'Médicale'}
-              itemName={'Formation médicale de base '}
-              itemId="4"
-              itemSlug="formation-medicale-de-base"
-              details={{
-                advancedDescriptions: [
-                  {
-                    categoryName: 'Fonctions',
-                    infos: ["Fonctions d'appui au pont"],
-                  },
-                ],
-                arrete: 'Arrêté du 18 août 2015',
-                validityDuration: '5 ans',
-              }}
-            />
-            <CqItem
-              owner={OWNER.CATALOG}
-              level={''}
-              capacite={'Sécurité'}
-              itemName={'Certificat de formation de base à la sécurité'}
-              itemId="5"
-              itemSlug="certificat-de-formation-de-base-a-la-securite"
-              details={{
-                advancedDescriptions: [
-                  {
-                    categoryName: 'Fonctions',
-                    infos: ["Fonctions d'appui au pont"],
-                  },
-                ],
-                arrete: 'Arrêté du 18 août 2015',
-                validityDuration: '5 ans',
-              }}
-            />
+            {allTitresMock
+              .filter((titre) => titre.capacite === '')
+              .map((titre) => (
+                <CqItemCatalog
+                  subtitle={titre.capacite}
+                  name={titre.name}
+                ></CqItemCatalog>
+              ))}
           </div>
         </div>
       </div>

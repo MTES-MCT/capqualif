@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { DASHBOARD_ROUTE } from '../../../app/routesList';
 import { store } from '../../../redux/store';
 import HeaderBrand from '../header-brand/HeaderBrand';
 
@@ -20,9 +22,13 @@ const Header = ({ numeroDeMarin }) => {
 
           <div className="rf-header__navbar">
             <div className="rf-service">
-              <a className="rf-service__title" href="#" title="Nom du service">
+              <Link
+                to={DASHBOARD_ROUTE}
+                className="rf-service__title"
+                title="CapQualif"
+              >
                 CapQualif
-              </a>
+              </Link>
               <p className="rf-service__tagline">
                 Direction des affaires maritimes
               </p>
