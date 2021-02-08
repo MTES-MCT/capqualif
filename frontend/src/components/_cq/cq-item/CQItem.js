@@ -40,6 +40,7 @@ const CqItem = ({
     <div
       className="cq-item cq-title cq-item--default rf-container rf-my-2w"
       onClick={() => setIsDetailVisible(!isDetailVisible)}
+      style={{ cursor: isDetailVisible ? 'default' : 'cursor' }}
     >
       <div class="cq-item__header">
         <div className="rf-grid-row">
