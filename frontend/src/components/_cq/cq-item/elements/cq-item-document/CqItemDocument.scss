@@ -1,0 +1,7 @@
+@import '../../../../../sass/variables';
+
+#cq-item-document span::before {
+  color: $marianne-blue;
+  font-size: $sizeH1;
+  margin: 0.5em 0.5em 0.5em 0;
+}

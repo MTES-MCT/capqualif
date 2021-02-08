@@ -13,11 +13,11 @@ const Dashboard = () => {
       <SubHeader />
       <HorizontalNav />
       <div className="rf-container">
-        <div className="rf-grid-row">
-          <div className="rf-col-3">
+        <div className="rf-grid-row rf-grid-row--gutters">
+          <div className="rf-col-2">
             <SideNav />
           </div>
-          <div className="rf-col-9 cq-right-col-9">
+          <div className="rf-col-9 rf-col-offset-1">
             <DashboardContent />
           </div>
         </div>

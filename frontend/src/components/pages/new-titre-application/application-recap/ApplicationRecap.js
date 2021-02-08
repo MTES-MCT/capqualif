@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './ApplicationRecap.scss';
 
-import { G800, MARIANNE_BLUE } from '../../../../dictionnary/saas/colors';
+import { FONT_COLORS } from '../../../../dictionnary/saas/variables';
 import { ADD_PIECE_ROUTE, DASHBOARD_ROUTE } from '../../../../app/routesList';
 
 import { getTitre } from '../../../../redux/features/titresCatalog/titresSlice';
@@ -51,7 +51,7 @@ const ApplicationRecap = ({ match }) => {
           <SectionHead
             title="Récapitulatif du dossier"
             subtitle="Demande d'un nouveau titre"
-            color={MARIANNE_BLUE}
+            color={FONT_COLORS.MARIANNE_BLUE}
           />
         </div>
         <div className="rf-grid-row rf-grid-row--gutters with-margin">

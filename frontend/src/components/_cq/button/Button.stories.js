@@ -20,10 +20,3 @@ Danger.args = {
   variantColor: 'cq-btn-danger',
   label: 'Danger',
 };
-
-// export const Success = () => <Button variantColor="cq-btn-success">Success</Button>;
-// export const Danger = () => <Button variantColor="cq-btn-danger">Danger</Button>;
-
-// export const Knobs = () => {
-//   <Button>{text('Label', 'Bouton Label')}</Button>;
-// };

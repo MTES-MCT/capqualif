@@ -11,7 +11,7 @@ import SectionHead from '../../../_cq/section/section-head/SectionHead';
 import CqItem from '../../../_cq/cq-item/CqItem';
 import { OWNER } from '../../../../dictionnary/common';
 import Breadcrumb from '../../../_cq/breadcrumb/Breadcrumb';
-import { G800, MARIANNE_BLUE } from '../../../../dictionnary/saas/colors';
+import { FONT_COLORS } from '../../../../dictionnary/saas/variables';
 
 const NewTitleChoice = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const NewTitleChoice = () => {
           <SectionHead
             subtitle="Demande d'un nouveau titre"
             title="Choix du titre"
-            color={MARIANNE_BLUE}
+            color={FONT_COLORS.MARIANNE_BLUE}
           />
         </div>
         <div className="rf-grid-row">
@@ -54,7 +54,7 @@ const NewTitleChoice = () => {
             <SectionHead
               subtitle="Suggestions pour exercer des"
               title="Fonctions principales"
-              color={G800}
+              color={FONT_COLORS.G800}
             />
             <CqItem
               owner={OWNER.CATALOG}
@@ -124,7 +124,7 @@ const NewTitleChoice = () => {
             <SectionHead
               subtitle="Suggestions pour exercer des"
               title="Fonctions spécifiques"
-              color={G800}
+              color={FONT_COLORS.G800}
             />
             <CqItem
               owner={OWNER.CATALOG}

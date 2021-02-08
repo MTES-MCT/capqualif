@@ -1,8 +1,9 @@
 import React from 'react';
-import Button from '../../button/Button';
+import Button from '../../../button/Button';
 import CqItemAdvancedDescription from './cq-items-advanced-description/CqItemAdvancedDescription';
 
 import './CqItemDetails.scss';
+import { FONT_SIZES } from '../../../../../dictionnary/saas/variables';
 
 const CqItemDetails = ({ isVisible, details, buttonRoute }) => {
   return (
@@ -36,7 +37,7 @@ const CqItemDetails = ({ isVisible, details, buttonRoute }) => {
             <Button
               label="Demander ce titre"
               route={buttonRoute}
-              labelSize="cq-btn__label-size-small"
+              labelSize={FONT_SIZES.SMALL}
             />
           </div>
         </div>

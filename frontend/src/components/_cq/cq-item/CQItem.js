@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import CqItemHeader from './cq-item-header/CqItemHeader';
-import CqItemStatus from './cq-item-status/CqItemStatus';
+import CqItemHeader from './elements/cq-item-header/CqItemHeader';
+import CqItemStatus from './elements/cq-item-status/CqItemStatus';
 import './CqItem.scss';
 
 import {
@@ -9,7 +9,7 @@ import {
 } from '../../../app/routesList';
 
 import { OWNER } from '../../../dictionnary/common';
-import CqItemDetails from './cq-item-details/CqItemDetails';
+import CqItemDetails from './elements/cq-item-details/CqItemDetails';
 
 // level = Appui, Execution, Direction
 // type = ?

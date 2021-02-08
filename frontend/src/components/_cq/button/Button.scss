@@ -1,17 +1,20 @@
+@import '../../../sass/gouvfr';
 @import '../../../sass/variables';
 
-.cq-btn__uppercase {
+.cq-btn .cq-btn__uppercase {
   text-transform: uppercase;
 }
 
-.cq-btn__success {
-  background-color: greenyellow;
+.cq-btn .cq-btn__action-primary {
+  background-color: $marianne-blue;
 }
 
-.cq-btn__danger {
-  background-color: red;
+.cq-btn .cq-btn__action-secondary {
+  background-color: var(--w-bf500);
+  color: $marianne-blue;
+  border: 0.1em solid $marianne-blue;
 }
 
-.cq-btn__label-size-small {
+.cq-btn .cq-btn__label-size-small {
   font-size: $small;
 }
