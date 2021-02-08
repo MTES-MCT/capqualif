@@ -3,6 +3,7 @@ package fr.gouv.mte.capqualif.marin.adapters.out.api;
 import fr.gouv.mte.capqualif.marin.adapters.out.api.dto.TitreCapaciteRest;
 import fr.gouv.mte.capqualif.marin.adapters.out.api.dto.TitreOfMarinDto;
 import fr.gouv.mte.capqualif.marin.domain.marin.TitreOfMarin;
+import fr.gouv.mte.capqualif.marin.domain.marin.TitreOfMarinDates;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -37,20 +38,23 @@ class TitreOfMarinMapper {
             capaciteEnglish = titreCapaciteRest.getCodeFrmTitreCapaciteStwcDTO().getLibelleAnglais();
         }
         TitreOfMarin titreOfMarin = new TitreOfMarin(
+                titreOfMarinDto.getIdIteTitreDetenu(),
                 titreOfMarinDto.getNumeroTitre(),
                 titreOfMarinDto.getCodeBrevetMarinDTO().getLibelle(),
-                titreOfMarinDto.getDateDelivrance(),
-                titreOfMarinDto.getDateRevalidation(),
-                titreOfMarinDto.getDateEffet(),
-                titreOfMarinDto.getDateExpiration(),
+                new TitreOfMarinDates(
+                        titreOfMarinDto.getDateDelivrance(),
+                        titreOfMarinDto.getDateRevalidation(),
+                        titreOfMarinDto.getDateEffet(),
+                        titreOfMarinDto.getDateExpiration()
+                ),
+                capacite,
+                capaciteEnglish,
                 titreOfMarinDto.getCodeEtatTitreDTO().getLibelle(),
                 titreOfMarinDto.getCodeAutoriteDelivranceDTO().getLibelle(),
                 restrictionsInStandardFormat,
                 restrictionsInStandardFormatEnglish,
                 restrictionInFreeFormat,
-                restrictionInFreeFormatEnglish,
-                capacite,
-                capaciteEnglish
+                restrictionInFreeFormatEnglish
         );
         return titreOfMarin;
     }

@@ -1,48 +1,39 @@
-
 package fr.gouv.mte.capqualif.marin.domain.marin;
 
 import java.util.List;
 
 public class TitreOfMarin {
 
-    private String numeroOfTitre;
-    private String name;
-    // TO DO : get these data ASAP from a "titres catalog" module.
-    // These data are generic and attached to a titre, not specific for a marin
-    // therefore they should not be here!
-    private String capacite;
-    private String capaciteEnglish;
-    private String delivranceDate;
-    private String revalidationDate;
-    private String effetDate;
-    private String expirationDate;
-    private String validityStatus;
-    private String autoriteDeDelivrance;
-    private List<String> restrictionsInStandardFormat;
-    private List<String> restrictionsInStandardFormatEnglish;
-    private List<String> restrictionInFreeFormat;
-    private List<String> restrictionInFreeFormatEnglish;
+    private final String id;
+    private final String numeroOfTitre;
+    private final String name;
+    private final TitreOfMarinDates dates;
+    private final String capacite;
+    private final String capaciteEnglish;
+    private final String validityStatus;
+    private final String autoriteDeDelivrance;
+    private final List<String> restrictionsInStandardFormat;
+    private final List<String> restrictionsInStandardFormatEnglish;
+    private final List<String> restrictionInFreeFormat;
+    private final List<String> restrictionInFreeFormatEnglish;
 
-
-    public TitreOfMarin(String numeroOfTitre, String name, String delivranceDate, String revalidationDate,
-                        String effetDate, String expirationDate, String validityStatus, String autoriteDeDelivrance,
-                        List<String> restrictionsInStandardFormat, List<String> restrictionsInStandardFormatEnglish,
-                        List<String> restrictionInFreeFormat, List<String> restrictionInFreeFormatEnglish,
-                        String capacite, String capaciteEnglish) {
+    public TitreOfMarin(String id, String numeroOfTitre, String name, TitreOfMarinDates dates, String capacite, String capaciteEnglish, String validityStatus, String autoriteDeDelivrance, List<String> restrictionsInStandardFormat, List<String> restrictionsInStandardFormatEnglish, List<String> restrictionInFreeFormat, List<String> restrictionInFreeFormatEnglish) {
+        this.id = id;
         this.numeroOfTitre = numeroOfTitre;
         this.name = name;
-        this.delivranceDate = delivranceDate;
-        this.revalidationDate = revalidationDate;
-        this.effetDate = effetDate;
-        this.expirationDate = expirationDate;
+        this.dates = dates;
+        this.capacite = capacite;
+        this.capaciteEnglish = capaciteEnglish;
         this.validityStatus = validityStatus;
         this.autoriteDeDelivrance = autoriteDeDelivrance;
         this.restrictionsInStandardFormat = restrictionsInStandardFormat;
         this.restrictionsInStandardFormatEnglish = restrictionsInStandardFormatEnglish;
         this.restrictionInFreeFormat = restrictionInFreeFormat;
         this.restrictionInFreeFormatEnglish = restrictionInFreeFormatEnglish;
-        this.capacite = capacite;
-        this.capaciteEnglish = capaciteEnglish;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getNumeroOfTitre() {
@@ -53,20 +44,16 @@ public class TitreOfMarin {
         return name;
     }
 
-    public String getDelivranceDate() {
-        return delivranceDate;
+    public TitreOfMarinDates getDates() {
+        return dates;
     }
 
-    public String getRevalidationDate() {
-        return revalidationDate;
+    public String getCapacite() {
+        return capacite;
     }
 
-    public String getEffetDate() {
-        return effetDate;
-    }
-
-    public String getExpirationDate() {
-        return expirationDate;
+    public String getCapaciteEnglish() {
+        return capaciteEnglish;
     }
 
     public String getValidityStatus() {
@@ -91,13 +78,5 @@ public class TitreOfMarin {
 
     public List<String> getRestrictionInFreeFormatEnglish() {
         return restrictionInFreeFormatEnglish;
-    }
-
-    public String getCapacite() {
-        return capacite;
-    }
-
-    public String getCapaciteEnglish() {
-        return capaciteEnglish;
     }
 }

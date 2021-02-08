@@ -5,6 +5,7 @@ import java.util.List;
 
 public class TitreOfMarinDto {
 
+    private String idIteTitreDetenu;
     private String numeroTitre;
     private String dateDelivrance;
     private String dateRevalidation;
@@ -15,6 +16,9 @@ public class TitreOfMarinDto {
     private CodeAutoriteDelivrance codeAutoriteDelivrance;
     private List<TitreCapaciteRest> listTitreCapacite;
 
+    public String getIdIteTitreDetenu() {
+        return idIteTitreDetenu;
+    }
 
     public String getNumeroTitre() {
         return numeroTitre;
