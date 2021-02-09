@@ -255,7 +255,10 @@ const ApplicationRecap = ({ match }) => {
           </div>
         </div>
 
-        <div className="rf-grid-row rf-grid-row--gutters with-margin">
+        <div
+          id="ask-for-advice-button-container"
+          className="rf-grid-row rf-grid-row--gutters with-margin"
+        >
           <Button
             label={BUTTON_LABELS.ASK_FOR_ADVICE}
             labelSize={FONT_SIZES.SMALL}

@@ -52,3 +52,10 @@
 #application-recap .identity-check {
   display: flex;
 }
+
+// TO DO : position better
+#application-recap #ask-for-advice-button-container {
+  border-top: 0.08px solid $g600;
+  padding-top: 3em;
+  margin: 0 auto;
+}
