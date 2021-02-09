@@ -26,9 +26,19 @@
   font-size: $normal;
 }
 
-.children-container {
+.infos-container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   text-align: center;
+}
+
+.expand-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.blop {
+  display: flex;
 }

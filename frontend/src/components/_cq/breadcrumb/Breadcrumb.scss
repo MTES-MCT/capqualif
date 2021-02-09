@@ -1,8 +1,11 @@
 @import '../../../sass/variables';
 
 #breadcrumb {
-  //   color: $marianne-blue;
   width: 100%;
+}
+
+#breadcrumb a {
+  font-size: $normal;
 }
 
 #breadcrumb .rf-link {
@@ -17,6 +20,7 @@
 
 #breadcrumb li {
   display: inline;
+  font-size: $normal;
 }
 
 #breadcrumb li svg {
