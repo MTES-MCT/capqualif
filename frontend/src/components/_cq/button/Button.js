@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom';
 
 import './Button.scss';
 
-const Button = ({ label, labelSize, route, actionType }) => {
+const Button = ({ label, labelSize, route, actionType, disabled }) => {
   return (
     <button className="cq-btn rf-mr-1w">
       <Link
         to={route}
-        className={`rf-btn cq-btn__uppercase cq-helpers__no-linebreak cq-btn__action-${actionType}`}
+        className={`rf-btn disabled cq-helpers__no-linebreak 
+          cq-btn__content-action-${actionType}`}
         style={{ fontSize: labelSize }}
+        disabled={disabled}
       >
         {label}
       </Link>

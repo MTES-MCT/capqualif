@@ -223,3 +223,13 @@ cq.rf-nav {
 .cq-helpers__display-inline {
   display: inline;
 }
+
+.cq-helpers__with-footer {
+  // We have to add this padding
+  // so elements at the bottom of the component won't be hidden by footer
+  padding-bottom: $footerHeight + 6vh;
+}
+
+.cq-helpers__dynamic-text {
+  color: $marianne-blue;
+}

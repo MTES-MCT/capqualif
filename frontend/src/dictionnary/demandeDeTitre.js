@@ -13,6 +13,7 @@ export const BUTTON_LABELS = {
   RENEW: 'Renouveler',
   DEMAND: 'Demander',
   ADD_DOCUMENT: 'Ajouter un document',
+  ASK_FOR_ADVICE: "Demander le conseil d'un agent",
 };
 
 export const ACTION_TYPES = {

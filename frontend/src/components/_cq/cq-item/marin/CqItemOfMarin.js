@@ -15,12 +15,13 @@ import CqItemStatus from '../elements/cq-item-status/CqItemStatus';
 import CqItemTimeline from '../elements/cq-item-timeline/CqItemTimeline';
 import CqItemBase from '../elements/CqItemBase';
 
-const CqItemOfMarin = ({ name, subtitle, dates, status }) => {
+const CqItemOfMarin = ({ name, subtitle, dates, status, children }) => {
   return (
     <CqItemBase subtitle={subtitle} name={name}>
       {dates && <CqItemTimeline dates={dates} />}
       <CqItemStatus status={status} />
-      {status !== STATUS_TITRE.VALID &&
+      {children}
+      {/* {status !== STATUS_TITRE.VALID &&
         status !== STATUS_APTITUDE_MEDICALE.APTE && (
           <CqItemAction
             label={BUTTON_LABELS.ADD_DOCUMENT}
@@ -28,7 +29,7 @@ const CqItemOfMarin = ({ name, subtitle, dates, status }) => {
             route=""
             actionType={ACTION_TYPES.SECONDARY}
           />
-        )}
+        )} */}
       <CqItemDocument />
       {/* <CqItemDetails /> */}
     </CqItemBase>
