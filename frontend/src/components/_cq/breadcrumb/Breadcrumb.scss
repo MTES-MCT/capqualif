@@ -1,0 +1,30 @@
+@import '../../../sass/variables';
+
+#breadcrumb {
+  width: 100%;
+}
+
+#breadcrumb a {
+  font-size: $normal;
+}
+
+#breadcrumb .rf-link {
+  color: $g800;
+}
+
+#breadcrumb ul {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+#breadcrumb li {
+  display: inline;
+  font-size: $normal;
+}
+
+#breadcrumb li svg {
+  width: 5em;
+  transform: translateY(-0.1em);
+  margin: 0 1em;
+}

@@ -1,36 +1,34 @@
 import React, { useState } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { DASHBOARD_PATH } from '../../../app/pathes';
-
+import { useHistory } from 'react-router-dom';
+import { DASHBOARD_ROUTE } from '../../../app/routesList';
 
 import HeaderBrand from '../../_rf/header-brand/HeaderBrand';
 
-import { getSailorBasicData } from '../../../redux/features/sailorData/sailorsSlice';
+import { getMarinBasicDataByNumeroDeMarin } from '../../../redux/features/marinData/marinsSlice';
 
 import './Sign.scss';
 
-const Sign = ({ history }) => {
-  const [localSailorNumber, setLocalSailorNumber] = useState('');
+const Sign = () => {
+  const [numeroDeMarin, setNumeroDeMarin] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(getSailorBasicData(localSailorNumber))
+    dispatch(getMarinBasicDataByNumeroDeMarin(numeroDeMarin))
       .then(unwrapResult)
-      .then((originalPromiseResult) => {
-        console.log(originalPromiseResult);
-        history.push(DASHBOARD_PATH);
+      .then(() => {
+        history.push(DASHBOARD_ROUTE);
       })
-      .catch((serializedError) => {
-        console.log(serializedError);
+      .catch(() => {
         history.push('/error');
       });
   };
 
   const handleChange = (event) => {
-    setLocalSailorNumber(event.target.value);
+    setNumeroDeMarin(event.target.value);
   };
 
   return (
@@ -38,6 +36,7 @@ const Sign = ({ history }) => {
       <div class="sign-in__container">
         <div class="sign-in__header">
           <div class="logo_gouvfr">
+            {/* To DO : refactor to have only one label */}
             <HeaderBrand
               administrationLabel1={'Ministère'}
               administrationLabel2={'de la mer'}
@@ -74,4 +73,4 @@ const Sign = ({ history }) => {
   );
 };
 
-export default withRouter(Sign);
+export default Sign;

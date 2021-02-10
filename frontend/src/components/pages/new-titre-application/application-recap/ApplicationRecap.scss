@@ -1,0 +1,61 @@
+@import '../../../../sass/variables';
+
+#application-recap .rf-fi-checkbox-line::before,
+#application-recap .rf-fi-close-circle-line::before {
+  font-size: $sizeH1;
+}
+
+#application-recap .rf-fi-checkbox-line::before {
+  color: $marianne-blue;
+}
+
+#application-recap .rf-fi-close-circle-line::before {
+  color: #ff8c09;
+}
+
+#application-recap .with-margin {
+  margin-left: 1em;
+}
+
+#application-recap .container,
+#application-recap .not-center-aligning-container {
+  display: flex;
+}
+
+#application-recap .container {
+  align-items: center;
+}
+
+#application-recap #identity-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#application-recap #identity-specifics-container {
+  display: flex;
+}
+
+#application-recap p {
+  font-size: $normal;
+}
+
+#application-recap sub {
+  color: $g800;
+  font-size: $normal;
+  display: block;
+}
+
+#application-recap .dynamic-infos {
+  color: $marianne-blue;
+}
+
+#application-recap .identity-check {
+  display: flex;
+}
+
+// TO DO : position better
+#application-recap #ask-for-advice-button-container {
+  border-top: 0.08px solid $g600;
+  padding-top: 3em;
+  margin: 0 auto;
+}

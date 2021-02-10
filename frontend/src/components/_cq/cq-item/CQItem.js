@@ -1,76 +1,86 @@
-import React from 'react';
-import './CQItem.scss';
+import React, { useState } from 'react';
+import CqItemHeader from './elements/cq-item-header/CqItemHeader';
+import CqItemStatus from './elements/cq-item-status/CqItemStatus';
+import './CqItem.scss';
 
+import {
+  NEW_TITRE_APPLICATION_ROUTE,
+  NEW_TITRE_APPLICATION_RECAP_ROUTE,
+} from '../../../app/routesList';
 
-const CQItem = ({level,type,itemName,timeline,startDate,endDate,status}) => {
+import { OWNER } from '../../../dictionnary/common';
+import CqItemDetails from './elements/cq-item-details/CqItemDetails';
 
-    const topTitle = () => {
-        console.log(level);
-        if(!level || level === ""){
-            return (type);
-        } else {
-            return (level+" • "+type);
-        }
-    }
+// level = Appui, Execution, Direction
+// type = ?
 
-    const timelineElement = () => {
-        if(timeline){
-            return (
-                <div class="cq-item__timeline">
-                    <div class="start-date">{startDate}</div>
-                    <div class="timeline-graphic">
-                        <div class="line"></div>
-                        <div class="cursor" ></div>
-                    </div>
-                    <div class="end-date">{endDate}</div>
-                </div>
-            );                                                                             
-                      
-        } else {
-            return ('');
-        }      
-    } 
-    return (
-        <div class="cq-item cq-title cq-item--default">
-        <div class="cq-item__header">
-
-        <div class="cq-item__name-container">
-            <div class="cq-item__main-attributes">
-            {topTitle()}
-            </div>
-            <div class="cq-item__name">
-            {itemName}
-            </div>
-        </div>
-        <div class="cq-item__right-header">
-
-            {timelineElement()}
-
-            <div class="cq-item__status cq-item__status--valid">
-            {status}
-            </div>
-            
-            <div class="cq-item__document-links">
-            <div class="cq-item__document-item">
-                <span class="rf-fi-file-line rf-fi--lg"></span>
-            </div>
-            </div>
-
-            <div class="cq-item__extend">
-            <span class="rf-fi-arrow-down-s-line rf-fi--lg"></span>
-
-            </div>
-
-        </div>
-        </div>
-
-        <div class="cq-item__content">
-            {/* TODO */}
-        </div>
-
+const CqItemLogo = ({ logo }) => {
+  return (
+    <div className="cq-item__document-links">
+      <span className={`rf-fi--lg ${logo}`}></span>
     </div>
-        
-    );
+  );
 };
 
-export default CQItem;
+const CqItem = ({
+  owner,
+  level,
+  capacite,
+  itemName,
+  itemId,
+  itemSlug,
+  details,
+  delivranceDate,
+  expirationDate,
+  status,
+}) => {
+  const [isDetailVisible, setIsDetailVisible] = useState(false);
+
+  return (
+    <div
+      className="cq-item cq-title cq-item--default rf-container rf-my-2w"
+      onClick={() => setIsDetailVisible(!isDetailVisible)}
+      style={{ cursor: isDetailVisible ? 'default' : 'cursor' }}
+    >
+      <div class="cq-item__header">
+        <div className="rf-grid-row">
+          <div className="rf-col">
+            <CqItemHeader
+              level={level}
+              capacite={capacite}
+              itemName={itemName}
+            />
+          </div>
+          {/* === This part is displayed only if the CqItem is a marin's item ===*/}
+          {owner === OWNER.MARIN && (
+            <div className="rf-col">
+              <div class="cq-item__right-header">
+                <CqItemStatus
+                  status={status}
+                  delivranceDate={delivranceDate}
+                  expirationDate={expirationDate}
+                />
+                <CqItemLogo logo="rf-fi-file-line" />
+                <span class="rf-fi-arrow-down-s-line rf-fi--lg"></span>
+              </div>
+            </div>
+          )}
+          {/* ===================================================================*/}
+        </div>
+        {isDetailVisible && (
+          <div className="rf-grid-row">
+            <div className="rf-col">
+              <CqItemDetails
+                isVisible={isDetailVisible}
+                details={details}
+                buttonRoute={`${NEW_TITRE_APPLICATION_ROUTE}/${itemId}/${itemSlug}${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default CqItem;

@@ -96,8 +96,10 @@
 						<phase>prepare-package</phase>
 						<configuration>
 							<arguments>run build</arguments>
+							<arguments>rebuild node-sass</arguments>
 						</configuration>
 					</execution>
+
 				</executions>
 			</plugin>
 			<plugin>

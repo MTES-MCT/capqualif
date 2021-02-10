@@ -1,12 +1,24 @@
+@import '../../../../sass/variables';
+
 #section-footer {
-  background-color: #555555;
-  color: #ffffff;
+  background-color: $white;
+  border-top: 0.08em solid $marianne-blue;
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+  height: $footerHeight;
+  width: 100vw;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
 }
 
-#section-footer button {
-  color: #ffffff;
+#section-footer a {
+  text-decoration: none;
+}
+
+#section-footer .bold {
+  font-weight: $semiBold;
 }

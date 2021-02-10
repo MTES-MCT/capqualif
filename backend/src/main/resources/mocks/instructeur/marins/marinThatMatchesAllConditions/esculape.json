@@ -1,0 +1,74 @@
+{
+  "numIdentification": "20204413",
+  "nom": "BLOP",
+  "nomUsage": null,
+  "prenom": "SAMUEL",
+  "numeroLpm": null,
+  "numeroFixe": null,
+  "numeroPortable": "0652354124",
+  "adresseMessagerie": "sam.blop@gmail.com",
+  "dateNaissance": "31/07/1991",
+  "dateIdentification": "21/10/2018",
+  "dateStatutDelivrance": null,
+  "codeStatutAdm": {
+    "idc": 1,
+    "code": "0",
+    "libelle": "Actif",
+    "libelleAnglais": null,
+    "libelleCourt": "Actif",
+    "dateDebutApplication": null,
+    "dateFinApplication": null,
+    "bloque": false,
+    "codeExport": null
+  },
+  "codeStatutLpm": null,
+  "codeNationalite": {
+    "idc": 1,
+    "code": "000",
+    "libelle": "FRANCE",
+    "libelleAnglais": "FRENCH",
+    "libelleCourt": "FRANCE",
+    "dateDebutApplication": null,
+    "dateFinApplication": null,
+    "bloque": false,
+    "codeExport": null
+  },
+  "codeCivilite": {
+    "idc": 1,
+    "code": "MR",
+    "libelle": "Monsieur",
+    "libelleAnglais": null,
+    "libelleCourt": null,
+    "dateDebutApplication": null,
+    "dateFinApplication": null,
+    "bloque": false,
+    "codeExport": null
+  },
+  "codeServiceRattachement": {
+    "idc": 21,
+    "code": "CH",
+    "libelle": "CHERBOURG",
+    "libelleAnglais": null,
+    "libelleCourt": null,
+    "dateDebutApplication": null,
+    "dateFinApplication": null,
+    "bloque": false,
+    "codeExport": "CH"
+  },
+  "codeRegimeSociale": {
+    "idc": 1,
+    "code": "1",
+    "libelle": "ENIM",
+    "libelleAnglais": null,
+    "libelleCourt": "ENIM",
+    "dateDebutApplication": null,
+    "dateFinApplication": null,
+    "bloque": false,
+    "codeExport": null
+  },
+  "listQualifications": [
+
+  ],
+  "estMarin": true,
+  "villeNaissance": "BLOPVILLE"
+}

@@ -1,0 +1,30 @@
+@import '../../../../../sass/variables';
+
+.cq-item__timeline-alert {
+  color: #ff8c09;
+  font-size: $small;
+}
+
+.cq-item__timeline {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  font-size: $small;
+  .timeline-graphic {
+    position: relative;
+    width: 80px;
+    margin: 0 1em;
+
+    .cursor {
+      position: absolute;
+      $cursorRadius: 4px;
+      top: calc(50% - #{$cursorRadius} + 1px);
+      left: 10%;
+      width: calc(#{$cursorRadius}* 2);
+      height: calc(#{$cursorRadius}* 2);
+      border-radius: $cursorRadius;
+      border: 2px solid $marianne-blue;
+      background-color: $white;
+    }
+  }
+}

@@ -1,32 +1,35 @@
 package fr.gouv.mte.capqualif.titre.domain;
 
+import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
+import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
+
 public class ConditionTitre {
 
-    private String libelle;
-    private String valeur;
-    private String commentComparer;
-    private String existingDataSource;
+    private String juridicalDesignation;
+    private Value value;
+    private ComparisonRule howToCompareValue;
+    private ExistingDataSourceName existingDataSourceName;
 
-    public ConditionTitre(String libelle, String valeur, String commentComparer, String existingDataSource) {
-        this.libelle = libelle;
-        this.valeur = valeur;
-        this.commentComparer = commentComparer;
-        this.existingDataSource = existingDataSource;
+    public ConditionTitre(String juridicalDesignation, Value value, ComparisonRule howToCompareValue, ExistingDataSourceName existingDataSourceName) {
+        this.juridicalDesignation = juridicalDesignation;
+        this.value = value;
+        this.howToCompareValue = howToCompareValue;
+        this.existingDataSourceName = existingDataSourceName;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public String getJuridicalDesignation() {
+        return juridicalDesignation;
     }
 
-    public String getValeur() {
-        return valeur;
+    public Value getValue() {
+        return value;
     }
 
-    public String getCommentComparer() {
-        return commentComparer;
+    public ComparisonRule getHowToCompareValue() {
+        return howToCompareValue;
     }
 
-    public String getExistingDataSource() {
-        return existingDataSource;
+    public ExistingDataSourceName getExistingDataSource() {
+        return existingDataSourceName;
     }
 }

@@ -1,0 +1,51 @@
+@import '../../../../sass/variables';
+
+.cq-item {
+  .cq-item__header {
+    width: 100%;
+    background-color: $white;
+    padding: 20px;
+    .cq-item__right-header {
+      display: flex;
+      align-items: center;
+      .cq-item__status-label {
+        font-weight: $bold;
+        color: $marianne-blue;
+      }
+    }
+  }
+}
+
+.cq-item__lined-element {
+  border-left: 1.4px solid $marianne-blue;
+}
+
+.cq-item__attribute {
+  color: $g500;
+  font-size: $normal;
+}
+
+.infos-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+}
+
+.document-container,
+.status-container,
+.expand-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-container {
+  text-align: center;
+}
+
+.dates-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

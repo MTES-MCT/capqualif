@@ -1,38 +1,18 @@
- [
-   {
-    "dateFinDeValidite": 1606690800000,
-    "rendezVous": 1608073200000,
-    "decisionMedicale": {
-      "idCode": 1,
-      "code": "1",
-      "libelle": "Apte TF/TN",
-      "libelleAnglais": null,
-      "libelleCourt": null,
-      "dateDebutApplication": 1241388000000,
-      "dateFinApplication": null,
-      "bloque": false,
-      "codeExport": null
-    },
-    "restrictionMedicale1": null,
-    "restrictionMedicale2": null,
-    "idMarin": 346575
+{
+  "dateFinDeValidite": 1640905200000,
+  "rendezVous": 1608073200000,
+  "decisionMedicale": {
+    "idCode": 1,
+    "code": "1",
+    "libelle": "Apte TF/TN",
+    "libelleAnglais": null,
+    "libelleCourt": null,
+    "dateDebutApplication": 1241388000000,
+    "dateFinApplication": null,
+    "bloque": false,
+    "codeExport": null
   },
-   {
-     "dateFinDeValidite": 1606690800000,
-     "rendezVous": 1608073200000,
-     "decisionMedicale": {
-       "idCode": 1,
-       "code": "1",
-       "libelle": "Apte TF",
-       "libelleAnglais": null,
-       "libelleCourt": null,
-       "dateDebutApplication": 1241388000000,
-       "dateFinApplication": null,
-       "bloque": false,
-       "codeExport": null
-     },
-     "restrictionMedicale1": null,
-     "restrictionMedicale2": null,
-     "idMarin": 346575
-   }
- ]
+  "restrictionMedicale1": null,
+  "restrictionMedicale2": null,
+  "idMarin": 346575
+}

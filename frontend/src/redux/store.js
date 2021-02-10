@@ -1,12 +1,43 @@
-import { configureStore } from '@reduxjs/toolkit';
-import sailorReducer from './features/sailorData/sailorsSlice';
-import titlesReducer from './features/titlesCatalog/titlesSlice';
+// react-persist is configured according to :
+// https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist
 
-const store = configureStore({
-  reducer: {
-    sailors: sailorReducer,
-    titles: titlesReducer,
-  },
+import { combineReducers } from 'redux';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import marinsReducer from './features/marinData/marinsSlice';
+import titresReducer from './features/titresCatalog/titresSlice';
+
+const reducers = combineReducers({
+  marinsReducer,
+  titresReducer,
 });
 
-export default store;
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+});
+
+let persistor = persistStore(store);
+
+export { store, persistor };

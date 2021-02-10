@@ -1,0 +1,26 @@
+@import '../../../../sass/main.scss';
+
+.cq-dashboard-content {
+  margin-top: 3.5em;
+}
+
+.cq-title-small {
+  font-weight: $regular;
+  font-size: $normal;
+}
+
+.cq-title-big {
+  font-size: 2rem;
+  line-height: 1.25;
+  color: var(--g800);
+  font-weight: bold;
+  font-size: $sizeH2;
+  white-space: pre;
+}
+:root[data-transition] .cq-title-big {
+  transition: color 0.3s;
+}
+
+.cq-title-big:before {
+  content: '\A';
+}
