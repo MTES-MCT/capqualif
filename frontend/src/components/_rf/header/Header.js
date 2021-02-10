@@ -4,6 +4,8 @@ import { DASHBOARD_ROUTE } from '../../../app/routesList';
 import { store } from '../../../redux/store';
 import HeaderBrand from '../header-brand/HeaderBrand';
 
+import sailor from '../../../resources/img/mocks/sailor.png';
+
 const Header = ({ numeroDeMarin }) => {
   const [localMarinData, setLocalMarinData] = useState('');
 
@@ -46,7 +48,9 @@ const Header = ({ numeroDeMarin }) => {
               </div>
             </div>
 
-            <div className="cq-user__picture"></div>
+            <div className="cq-user__picture">
+              <img src={sailor} alt="" />
+            </div>
           </div>
         </div>
       </div>

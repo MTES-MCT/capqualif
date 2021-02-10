@@ -9,28 +9,23 @@ import {
 
 import { FONT_SIZES } from '../../../../../dictionnary/saas/variables';
 
-const ActionableCqItemOfMarin = ({
-  name,
-  subtitle,
-  dates,
-  status,
-  shouldShowAction,
-}) => {
+const ActionableCqItemOfMarin = ({ name, subtitle, dates, status, action }) => {
   return (
     <CqItemOfMarin
       name={name}
       subtitle={subtitle}
       dates={dates}
       status={status}
+      action={action}
     >
-      {shouldShowAction && (
+      {/* {shouldShowAction && (
         <CqItemAction
           label={BUTTON_LABELS.ADD_DOCUMENT}
           labelSize={FONT_SIZES.VERY_SMALL}
           route=""
           actionType={ACTION_TYPES.SECONDARY}
         />
-      )}
+      )} */}
     </CqItemOfMarin>
   );
 };
@@ -40,6 +35,7 @@ ActionableCqItemOfMarin.propTypes = {
   subtitle: PropTypes.string.isRequired,
   dates: PropTypes.array.isRequired,
   status: PropTypes.string.isRequired,
+  action: PropTypes.object.isRequired,
 };
 
 export default ActionableCqItemOfMarin;

@@ -6,7 +6,7 @@ import './Button.scss';
 
 const Button = ({ label, labelSize, route, actionType, disabled }) => {
   return (
-    <button className="cq-btn rf-mr-1w">
+    <button className="cq-btn">
       <Link
         to={route}
         className={`rf-btn disabled cq-helpers__no-linebreak 

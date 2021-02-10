@@ -1,9 +1,10 @@
 import React from 'react';
 import Button from '../../../button/Button';
-import CqItemFlagDetails from './cq-items-advanced-description/CqitemFlagDetails';
+import CqItemMiniDetails from './cq-item-mini-details/CqItemMiniDetails';
 
 import './CqItemDetails.scss';
 import { FONT_SIZES } from '../../../../../dictionnary/saas/variables';
+import { ACTION_TYPES } from '../../../../../dictionnary/demandeDeTitre';
 
 const CqItemDetails = ({ isDetailVisible, details, buttonRoute }) => {
   return (
@@ -12,34 +13,33 @@ const CqItemDetails = ({ isDetailVisible, details, buttonRoute }) => {
       // className={`${isDetailVisible ? '' : 'hidden'} rf-container`}
     >
       <div className="rf-grid-row">
-        {details.map((detail) => (
-          <CqItemFlagDetails
-            categoryName={detail.categoryName}
-            infos={detail.infos}
-          />
-        ))}
+        <div className="rf-px-3w">
+          {details
+            .filter((detail) => Array.isArray(detail.infos))
+            .map((detail) => (
+              <CqItemMiniDetails
+                categoryName={detail.categoryName}
+                infos={detail.infos}
+              />
+            ))}
+        </div>
       </div>
-      <div className="rf-mt-5w">
-        <div className="rf-grid-row rf-grid-row--gutters">
-          {/* <div className="rf-col cq-item-details-container">
-            <sub className="cq-item__attribute rf-mb-2w">
-              Référence réglementaire
-            </sub>
-            <div className="cq-item-details__small-text">{details.arrete}</div>
-          </div> */}
-          {/* <div className="rf-col cq-item-details-container">
-            <sub className="cq-item__attribute rf-mb-2w">Durée de validité</sub>
-            <div className="cq-item-details__small-text">
-              {details.validityDuration}
-            </div>
-          </div> */}
-          <div className="rf-col cq-item-details-container">
-            <Button
-              label="Demander ce titre"
-              route={buttonRoute}
-              labelSize={FONT_SIZES.SMALL}
-            />
-          </div>
+      <div className="rf-grid-row">
+        <div className="rf-px-3w isolated-details-container cq-helpers__full-width">
+          {details
+            .filter((detail) => !Array.isArray(detail.infos))
+            .map((detail) => (
+              <CqItemMiniDetails
+                categoryName={detail.categoryName}
+                infos={detail.infos}
+              />
+            ))}
+          <Button
+            label="Demander ce titre"
+            route={buttonRoute}
+            labelSize={FONT_SIZES.SMALL}
+            actionType={ACTION_TYPES.PRIMARY}
+          />
         </div>
       </div>
     </div>

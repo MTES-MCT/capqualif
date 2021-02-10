@@ -4,6 +4,13 @@ import { useSelector } from 'react-redux';
 import './DashboardContent.scss';
 
 import CqItemOfMarin from '../../../_cq/cq-item/marin/CqItemOfMarin';
+import ActionableCqItemOfMarin from '../../../_cq/cq-item/marin/actionable-cq-item-of-marin/ActionableCqItemOfMarin';
+import {
+  ACTION_TYPES,
+  BUTTON_LABELS,
+  STATUS_TITRE,
+} from '../../../../dictionnary/demandeDeTitre';
+import { FONT_SIZES } from '../../../../dictionnary/saas/variables';
 
 const DashboardContent = () => {
   const allTitresOfMarin = useSelector(
@@ -23,11 +30,14 @@ const DashboardContent = () => {
         {allTitresOfMarin
           .filter((titreOfMarin) => titreOfMarin.capacite !== '')
           .map((titreOfMarin) => (
-            <CqItemOfMarin
+            <ActionableCqItemOfMarin
               subtitle={titreOfMarin.capacite}
               name={titreOfMarin.name}
               dates={titreOfMarin.dates}
               status={titreOfMarin.validityStatus}
+              shouldShowAction={
+                titreOfMarin.validityStatus !== STATUS_TITRE.VALID
+              }
             />
           ))}
       </div>
@@ -41,11 +51,19 @@ const DashboardContent = () => {
         {allTitresOfMarin
           .filter((titreOfMarin) => titreOfMarin.capacite === '')
           .map((titreOfMarin) => (
-            <CqItemOfMarin
+            <ActionableCqItemOfMarin
               subtitle={titreOfMarin.capacite}
               name={titreOfMarin.name}
               dates={titreOfMarin.dates}
               status={titreOfMarin.validityStatus}
+              action={
+                titreOfMarin.validityStatus !== STATUS_TITRE.VALID && {
+                  label: BUTTON_LABELS.RENEW,
+                  labelSize: FONT_SIZES.VERY_SMALL,
+                  route: '',
+                  actionType: ACTION_TYPES.SECONDARY,
+                }
+              }
             />
           ))}
       </div>

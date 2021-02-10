@@ -6,8 +6,9 @@ import CqItemDocument from '../elements/cq-item-document/CqItemDocument';
 import CqItemStatus from '../elements/cq-item-status/CqItemStatus';
 import CqItemTimeline from '../elements/cq-item-timeline/CqItemTimeline';
 import CqItemBase from '../elements/CqItemBase';
+import CqItemAction from '../elements/cq-item-action/CqItemAction';
 
-const CqItemOfMarin = ({ name, subtitle, dates, status, children }) => {
+const CqItemOfMarin = ({ name, subtitle, dates, status, action }) => {
   return (
     <CqItemBase
       subtitle={subtitle}
@@ -16,16 +17,11 @@ const CqItemOfMarin = ({ name, subtitle, dates, status, children }) => {
         <Fragment>
           {dates && <CqItemTimeline dates={dates} />}
           <CqItemStatus status={status} />
+
           <CqItemDocument />
         </Fragment>
       }
-
-      // {dates && <CqItemTimeline dates={dates} />}
-      // <CqItemStatus status={status} />
-      // {/* {children} */}
-      // <CqItemDocument />
-      // {/* <CqItemDetails /> */}
-      // </CqItemBase>
+      action={action && <CqItemAction action={action} />}
     />
   );
 };

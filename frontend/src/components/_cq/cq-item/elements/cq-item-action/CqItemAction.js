@@ -1,25 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../../button/Button';
-import {
-  ACTION_TYPES,
-  BUTTON_LABELS,
-} from '../../../../../dictionnary/demandeDeTitre';
-import { FONT_SIZES } from '../../../../../dictionnary/saas/variables';
 
-const CqItemAction = ({ label, labelSize, route, actionType }) => {
+const CqItemAction = ({ action }) => {
   return (
     <div className="cq-item-action rf-p-1w">
       <Button
-        label={label}
-        labelSize={labelSize}
-        route={route}
-        actionType={actionType}
+        label={action.label}
+        labelSize={action.labelSize}
+        route={action.route}
+        actionType={action.actionType}
       />
     </div>
   );
 };
 
-CqItemAction.propTypes = {};
+CqItemAction.propTypes = {
+  action: PropTypes.object.isRequired,
+};
 
 export default CqItemAction;
