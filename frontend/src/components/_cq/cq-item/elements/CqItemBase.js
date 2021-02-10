@@ -8,7 +8,8 @@ import CqItemHeader from './cq-item-header/CqItemHeader';
 const CqItemBase = ({
   subtitle,
   name,
-  infos,
+  dates,
+  status,
   existingTitreAction,
   details,
   document,
@@ -18,17 +19,17 @@ const CqItemBase = ({
   return (
     <div className="cq-item cq-title cq-item--default rf-container rf-my-2w">
       <div class="cq-item__header">
-        <div className="rf-grid-row rf-grid-row--gutters">
+        <div className="rf-grid-row">
           <div className="rf-col">
             <CqItemHeader subtitle={subtitle} name={name} />
           </div>
-          {/* Infos : timeline & validity status */}
-          {infos && <div className="rf-col-6 infos-container">{infos}</div>}
-          {document && (
-            <div className="rf-col-1 document-container">{document}</div>
-          )}
+          {dates && <div className="rf-col dates-container">{dates}</div>}
+          {status && <div className="rf-col-2 status-container">{status}</div>}
           {existingTitreAction && (
             <div className="rf-col-2">{existingTitreAction}</div>
+          )}
+          {document && (
+            <div className="rf-col-1 document-container">{document}</div>
           )}
           {details && (
             <div className="rf-col-1 expand-container rf-px-2w">

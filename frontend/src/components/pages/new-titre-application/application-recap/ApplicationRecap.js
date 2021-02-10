@@ -20,6 +20,7 @@ import {
   ACTION_TYPES,
   BUTTON_LABELS,
   STATUS_APTITUDE_MEDICALE,
+  STATUS_TITRE,
 } from '../../../../dictionnary/demandeDeTitre';
 import Button from '../../../_cq/button/Button';
 
@@ -283,6 +284,7 @@ const ApplicationRecap = ({ match }) => {
                   <CqItemOfMarin
                     name={formation.name}
                     subtitle={formation.type}
+                    status={formation.validity && STATUS_TITRE.VALID}
                     existingTitreAction={
                       !formation.validity && {
                         label: BUTTON_LABELS.ADD_DOCUMENT,

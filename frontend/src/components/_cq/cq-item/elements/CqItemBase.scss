@@ -32,13 +32,20 @@
   text-align: center;
 }
 
-.document-container {
-  display: flex;
-  align-items: center;
-}
-
+.document-container,
+.status-container,
 .expand-container {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: center;
+}
+
+.status-container {
+  text-align: center;
+}
+
+.dates-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

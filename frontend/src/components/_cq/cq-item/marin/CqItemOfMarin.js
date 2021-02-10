@@ -21,15 +21,8 @@ const CqItemOfMarin = ({
     <CqItemBase
       subtitle={subtitle}
       name={name}
-      infos={
-        dates &&
-        status && (
-          <Fragment>
-            {dates && <CqItemTimeline dates={dates} />}
-            {status && <CqItemStatus status={status} />}
-          </Fragment>
-        )
-      }
+      dates={dates && <CqItemTimeline dates={dates} />}
+      status={status && <CqItemStatus status={status} />}
       document={<CqItemDocument />}
       existingTitreAction={
         existingTitreAction && <CqItemAction action={existingTitreAction} />
