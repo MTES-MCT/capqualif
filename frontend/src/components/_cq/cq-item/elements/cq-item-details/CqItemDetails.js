@@ -5,12 +5,12 @@ import CqItemMiniDetails from './cq-item-mini-details/CqItemMiniDetails';
 
 import './CqItemDetails.scss';
 
-const CqItemDetails = ({ isDetailVisible, details, action }) => {
+const CqItemDetails = ({ isVisible, details, action }) => {
   return (
     <div
       id="cq-item-details"
       className="cq-helpers__full-width"
-      // className={`${isDetailVisible ? '' : 'hidden'} rf-container`}
+      className={`${isVisible ? '' : 'hidden'} rf-container`}
     >
       <div className="rf-grid-row">
         <div className="rf-px-3w">
@@ -42,7 +42,7 @@ const CqItemDetails = ({ isDetailVisible, details, action }) => {
 };
 
 CqItemDetails.propTypes = {
-  isDetailVisible: PropTypes.bool.isRequired,
+  isVisible: PropTypes.bool.isRequired,
   details: PropTypes.array.isRequired,
   action: PropTypes.element.isRequired,
 };

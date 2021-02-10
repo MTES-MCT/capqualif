@@ -32,12 +32,13 @@
   text-align: center;
 }
 
+.document-container {
+  display: flex;
+  align-items: center;
+}
+
 .expand-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
-
-.blop {
-  display: flex;
 }

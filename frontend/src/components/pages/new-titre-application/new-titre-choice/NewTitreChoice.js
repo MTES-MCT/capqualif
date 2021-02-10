@@ -17,6 +17,10 @@ import {
   ACTION_TYPES,
   BUTTON_LABELS,
 } from '../../../../dictionnary/demandeDeTitre';
+import {
+  NEW_TITRE_APPLICATION_RECAP_ROUTE,
+  NEW_TITRE_APPLICATION_ROUTE,
+} from '../../../../app/routesList';
 
 const NewTitleChoice = () => {
   // const allTitres = useSelector((state) => state.titresReducer.allTitres);
@@ -123,7 +127,13 @@ const NewTitleChoice = () => {
                   newTitreAction={{
                     label: BUTTON_LABELS.DEMAND,
                     labelSize: FONT_SIZES.SMALL,
-                    route: '',
+                    route:
+                      NEW_TITRE_APPLICATION_ROUTE +
+                      '/' +
+                      titre.id +
+                      '/' +
+                      titre.slug +
+                      NEW_TITRE_APPLICATION_RECAP_ROUTE,
                     actionType: ACTION_TYPES.PRIMARY,
                   }}
                 />
@@ -142,6 +152,18 @@ const NewTitleChoice = () => {
                   subtitle={titre.capacite}
                   name={titre.name}
                   details={titre.details}
+                  newTitreAction={{
+                    label: BUTTON_LABELS.DEMAND,
+                    labelSize: FONT_SIZES.SMALL,
+                    route:
+                      NEW_TITRE_APPLICATION_ROUTE +
+                      '/' +
+                      titre.id +
+                      '/' +
+                      titre.slug +
+                      NEW_TITRE_APPLICATION_RECAP_ROUTE,
+                    actionType: ACTION_TYPES.PRIMARY,
+                  }}
                 />
               ))}
           </div>

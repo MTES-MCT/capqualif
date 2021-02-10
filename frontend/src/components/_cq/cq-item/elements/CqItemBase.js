@@ -11,44 +11,39 @@ const CqItemBase = ({
   infos,
   existingTitreAction,
   details,
+  document,
 }) => {
   const [isDetailVisible, setIsDetailVisible] = useState(false);
-  const [nbOfElements, setNbOfElements] = useState(2);
-
-  useEffect(() => {
-    adjustHeaderColumns();
-  }, []);
-
-  const adjustHeaderColumns = () => {
-    if (infos) setNbOfElements(3);
-  };
 
   return (
-    <div
-      className="cq-item cq-title cq-item--default rf-container rf-my-2w"
-      onClick={() => setIsDetailVisible(!isDetailVisible)}
-      style={{ cursor: isDetailVisible ? 'default' : 'cursor' }}
-    >
+    <div className="cq-item cq-title cq-item--default rf-container rf-my-2w">
       <div class="cq-item__header">
         <div className="rf-grid-row rf-grid-row--gutters">
-          <div className={`${nbOfElements === 3 ? 'rf-col-4' : 'rf-col-11'}`}>
+          <div className="rf-col">
             <CqItemHeader subtitle={subtitle} name={name} />
           </div>
           {/* Infos : timeline & validity status */}
           {infos && <div className="rf-col-6 infos-container">{infos}</div>}
-          {existingTitreAction && (
-            <div className="rf-col-1">{existingTitreAction}</div>
+          {document && (
+            <div className="rf-col-1 document-container">{document}</div>
           )}
-          <div className="rf-col-1 expand-container rf-px-2w">
-            <span
-              class="rf-fi-arrow-down-s-line cq-helpers__clickable"
-              onClick={() => setIsDetailVisible(!isDetailVisible)}
-            ></span>
+          {existingTitreAction && (
+            <div className="rf-col-2">{existingTitreAction}</div>
+          )}
+          {details && (
+            <div className="rf-col-1 expand-container rf-px-2w">
+              <span
+                class="rf-fi-arrow-down-s-line cq-helpers__clickable"
+                onClick={() => setIsDetailVisible(!isDetailVisible)}
+              ></span>
+            </div>
+          )}
+        </div>
+        {details && (
+          <div className="rf-grid-row rf-grid-row--gutters">
+            {React.cloneElement(details, { isVisible: isDetailVisible })}
           </div>
-        </div>
-        <div className="rf-grid-row rf-grid-row--gutters" id="bipbip">
-          {details}
-        </div>
+        )}
       </div>
     </div>
   );

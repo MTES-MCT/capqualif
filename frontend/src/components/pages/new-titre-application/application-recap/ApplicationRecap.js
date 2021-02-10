@@ -53,7 +53,32 @@ const ApplicationRecap = ({ match }) => {
         marinData: {
           modules: [
             {
-              name: 'UV formation de base à la lutte incendie',
+              name: 'Module',
+              description: 'Formation de base à la lutte incendie',
+              dates: {
+                acquisitionDate: '23/06/2020',
+                expirationDate: '23/06/2025',
+              },
+            },
+            {
+              name: 'Module',
+              description: 'Sécurité des Personnes et Responsabilités Sociales',
+              dates: {
+                acquisitionDate: '23/06/2020',
+                expirationDate: '23/06/2025',
+              },
+            },
+            {
+              name: 'Module',
+              description: 'Médical 1',
+              dates: {
+                acquisitionDate: '23/06/2020',
+                expirationDate: '23/06/2025',
+              },
+            },
+            {
+              name: 'Module',
+              description: 'Technique Individuelle de Survie',
               dates: {
                 acquisitionDate: '23/06/2020',
                 expirationDate: '23/06/2025',
@@ -66,36 +91,42 @@ const ApplicationRecap = ({ match }) => {
         validity: false,
         name: 'Formation pour le certificat de matelot pont',
         type: 'Formation modulaire',
-        modules: [
-          {
-            name: 'Module P1–Appui',
-            validity: true,
-            dates: {
-              acquisitionDate: '23/06/2020',
-              expirationDate: '23/06/2025',
+        marinData: {
+          modules: [
+            {
+              name: 'Module P1–Appui',
+              description: 'Navigation',
+              validity: true,
+              dates: {
+                acquisitionDate: '23/06/2020',
+                expirationDate: '23/06/2025',
+              },
             },
-          },
-          {
-            name: 'Module P2–Appui',
-            validity: true,
-            dates: {
-              acquisitionDate: '23/06/2020',
-              expirationDate: '23/06/2025',
+            {
+              name: 'Module P2–Appui',
+              description: 'Manutention et arrimage de la cargaison, pêche',
+              validity: true,
+              dates: {
+                acquisitionDate: '23/06/2020',
+                expirationDate: '23/06/2025',
+              },
             },
-          },
-          {
-            name: 'Module P3–Appui',
-            validity: false,
-            dates: null,
-          },
-          {
-            name: 'Module NP–Appui',
-            dates: {
-              acquisitionDate: '23/06/2020',
-              expirationDate: '23/06/2025',
+            {
+              name: 'Module P3–Appui',
+              description: 'Exploitation, assistance, entretien, réparation',
+              validity: false,
+              dates: null,
             },
-          },
-        ],
+            {
+              name: 'Module NP–Appui',
+              description: 'Module national pont',
+              dates: {
+                acquisitionDate: '23/06/2020',
+                expirationDate: '23/06/2025',
+              },
+            },
+          ],
+        },
       },
     ],
   };
@@ -252,7 +283,7 @@ const ApplicationRecap = ({ match }) => {
                   <CqItemOfMarin
                     name={formation.name}
                     subtitle={formation.type}
-                    action={
+                    existingTitreAction={
                       !formation.validity && {
                         label: BUTTON_LABELS.ADD_DOCUMENT,
                         labelSize: FONT_SIZES.VERY_SMALL,
@@ -260,6 +291,10 @@ const ApplicationRecap = ({ match }) => {
                         actionType: ACTION_TYPES.SECONDARY,
                       }
                     }
+                    details={formation.marinData.modules.map((module) => ({
+                      categoryName: module.name,
+                      infos: module.description,
+                    }))}
                   />
                 </div>
               </div>

@@ -12,6 +12,7 @@ import './App.scss';
 import Routes from './Routes';
 import Sign from '../components/pages/sign/Sign';
 import Header from '../components/_rf/header/Header';
+import ScrollToTop from '../components/helpers/ScrollToTop';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <PersistGate loading={null} persistor={persistor}>
         <Header />
         <Router>
+          <ScrollToTop />
           <Switch>
             <Route exact path={HOME_ROUTE} component={Sign} />
             <Routes />

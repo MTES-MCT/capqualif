@@ -12,6 +12,4 @@ const Template = (args) => <CqItemStatus {...args} />;
 export const InProgress = Template.bind({});
 InProgress.args = {
   status: 'en cours',
-  // delivranceDate: 'blabla',
-  // expirationDate: 'blopblop',
 };
