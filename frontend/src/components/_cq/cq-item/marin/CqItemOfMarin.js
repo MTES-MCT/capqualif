@@ -17,7 +17,6 @@ const CqItemOfMarin = ({ name, subtitle, dates, status, action }) => {
         <Fragment>
           {dates && <CqItemTimeline dates={dates} />}
           <CqItemStatus status={status} />
-
           <CqItemDocument />
         </Fragment>
       }
@@ -31,6 +30,7 @@ CqItemOfMarin.prototypes = {
   subtitle: PropTypes.string.isRequired,
   dates: PropTypes.array.isRequired,
   status: PropTypes.string.isRequired,
+  action: PropTypes.object.isRequired,
 };
 
 export default CqItemOfMarin;

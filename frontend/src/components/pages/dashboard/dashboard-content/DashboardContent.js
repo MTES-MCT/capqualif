@@ -30,7 +30,7 @@ const DashboardContent = () => {
         {allTitresOfMarin
           .filter((titreOfMarin) => titreOfMarin.capacite !== '')
           .map((titreOfMarin) => (
-            <ActionableCqItemOfMarin
+            <CqItemOfMarin
               subtitle={titreOfMarin.capacite}
               name={titreOfMarin.name}
               dates={titreOfMarin.dates}
@@ -51,7 +51,7 @@ const DashboardContent = () => {
         {allTitresOfMarin
           .filter((titreOfMarin) => titreOfMarin.capacite === '')
           .map((titreOfMarin) => (
-            <ActionableCqItemOfMarin
+            <CqItemOfMarin
               subtitle={titreOfMarin.capacite}
               name={titreOfMarin.name}
               dates={titreOfMarin.dates}
