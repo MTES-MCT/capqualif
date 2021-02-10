@@ -5,7 +5,13 @@ import './CqItemBase.scss';
 
 import CqItemHeader from './cq-item-header/CqItemHeader';
 
-const CqItemBase = ({ subtitle, name, infos, action, detailsComponent }) => {
+const CqItemBase = ({
+  subtitle,
+  name,
+  infos,
+  existingTitreAction,
+  details,
+}) => {
   const [isDetailVisible, setIsDetailVisible] = useState(false);
   const [nbOfElements, setNbOfElements] = useState(2);
 
@@ -29,17 +35,9 @@ const CqItemBase = ({ subtitle, name, infos, action, detailsComponent }) => {
             <CqItemHeader subtitle={subtitle} name={name} />
           </div>
           {/* Infos : timeline & validity status */}
-          {infos && (
-            <div className="rf-col-6 infos-container">
-              {/* {React.cloneElement(children, { isDetailVisible: isDetailVisible })} */}
-              {infos}
-            </div>
-          )}
-          {action && (
-            <div className="rf-col-1">
-              {/* {React.cloneElement(children, { isDetailVisible: isDetailVisible })} */}
-              {action}
-            </div>
+          {infos && <div className="rf-col-6 infos-container">{infos}</div>}
+          {existingTitreAction && (
+            <div className="rf-col-1">{existingTitreAction}</div>
           )}
           <div className="rf-col-1 expand-container rf-px-2w">
             <span
@@ -48,9 +46,8 @@ const CqItemBase = ({ subtitle, name, infos, action, detailsComponent }) => {
             ></span>
           </div>
         </div>
-
-        <div className="rf-grid-row rf-grid-row--gutters">
-          {detailsComponent}
+        <div className="rf-grid-row rf-grid-row--gutters" id="bipbip">
+          {details}
         </div>
       </div>
     </div>
@@ -60,7 +57,9 @@ const CqItemBase = ({ subtitle, name, infos, action, detailsComponent }) => {
 CqItemBase.propTypes = {
   subtitle: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  infos: PropTypes.element.isRequired,
+  details: PropTypes.object.isRequired,
+  existingTitreAction: PropTypes.object.isRequired,
 };
 
 export default CqItemBase;

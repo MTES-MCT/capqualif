@@ -7,6 +7,7 @@ import CqItemOfMarin from '../../../_cq/cq-item/marin/CqItemOfMarin';
 import {
   ACTION_TYPES,
   BUTTON_LABELS,
+  CATEGORY_NAMES,
   STATUS_TITRE,
 } from '../../../../dictionnary/demandeDeTitre';
 import { FONT_SIZES } from '../../../../dictionnary/saas/variables';
@@ -34,7 +35,7 @@ const DashboardContent = () => {
               name={titreOfMarin.name}
               dates={titreOfMarin.dates}
               status={titreOfMarin.validityStatus}
-              action={
+              existingTitreAction={
                 titreOfMarin.validityStatus !== STATUS_TITRE.VALID && {
                   label: BUTTON_LABELS.RENEW,
                   labelSize: FONT_SIZES.VERY_SMALL,
@@ -42,6 +43,24 @@ const DashboardContent = () => {
                   actionType: ACTION_TYPES.SECONDARY,
                 }
               }
+              details={[
+                {
+                  categoryName: CATEGORY_NAMES.CAPACITES,
+                  infos: [titreOfMarin.capacite],
+                },
+                {
+                  categoryName: CATEGORY_NAMES.RESTRICTIONS,
+                  infos: titreOfMarin.restrictionsInStandardFormat,
+                },
+                {
+                  categoryName: CATEGORY_NAMES.DELIVRANCE_AUTORITE,
+                  infos: titreOfMarin.autoriteDeDelivrance,
+                },
+                {
+                  categoryName: CATEGORY_NAMES.DELIVRANCE_DATE,
+                  infos: titreOfMarin.dates.delivranceDate,
+                },
+              ]}
             />
           ))}
       </div>
@@ -60,7 +79,7 @@ const DashboardContent = () => {
               name={titreOfMarin.name}
               dates={titreOfMarin.dates}
               status={titreOfMarin.validityStatus}
-              action={
+              existingTitreAction={
                 titreOfMarin.validityStatus !== STATUS_TITRE.VALID && {
                   label: BUTTON_LABELS.RENEW,
                   labelSize: FONT_SIZES.VERY_SMALL,
@@ -68,6 +87,24 @@ const DashboardContent = () => {
                   actionType: ACTION_TYPES.SECONDARY,
                 }
               }
+              details={[
+                {
+                  categoryName: CATEGORY_NAMES.CAPACITES,
+                  infos: titreOfMarin.capacite,
+                },
+                {
+                  categoryName: CATEGORY_NAMES.RESTRICTIONS,
+                  infos: titreOfMarin.restrictionsInStandardFormat,
+                },
+                {
+                  categoryName: CATEGORY_NAMES.DELIVRANCE_AUTORITE,
+                  infos: titreOfMarin.autoriteDeDelivrance,
+                },
+                {
+                  categoryName: CATEGORY_NAMES.DELIVRANCE_DATE,
+                  infos: titreOfMarin.dates.delivranceDate,
+                },
+              ]}
             />
           ))}
       </div>

@@ -9,3 +9,8 @@
   background-color: $g200;
   width: fit-content;
 }
+
+.cq-item__detail-flagged,
+.cq-item__detail-not-flagged {
+  font-size: $normal;
+}

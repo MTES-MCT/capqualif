@@ -8,8 +8,15 @@ import './NewTitreChoice.scss';
 import SectionHead from '../../../_cq/section/section-head/SectionHead';
 
 import Breadcrumb from '../../../_cq/breadcrumb/Breadcrumb';
-import { FONT_COLORS } from '../../../../dictionnary/saas/variables';
+import {
+  FONT_COLORS,
+  FONT_SIZES,
+} from '../../../../dictionnary/saas/variables';
 import CqItemCatalog from '../../../_cq/cq-item/catalog/CqItemCatalog';
+import {
+  ACTION_TYPES,
+  BUTTON_LABELS,
+} from '../../../../dictionnary/demandeDeTitre';
 
 const NewTitleChoice = () => {
   // const allTitres = useSelector((state) => state.titresReducer.allTitres);
@@ -113,6 +120,12 @@ const NewTitleChoice = () => {
                   subtitle={titre.capacite}
                   name={titre.name}
                   details={titre.details}
+                  newTitreAction={{
+                    label: BUTTON_LABELS.DEMAND,
+                    labelSize: FONT_SIZES.SMALL,
+                    route: '',
+                    actionType: ACTION_TYPES.PRIMARY,
+                  }}
                 />
               ))}
           </div>

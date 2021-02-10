@@ -1,15 +1,15 @@
 import React from 'react';
-import Button from '../../../button/Button';
+import PropTypes from 'prop-types';
+
 import CqItemMiniDetails from './cq-item-mini-details/CqItemMiniDetails';
 
 import './CqItemDetails.scss';
-import { FONT_SIZES } from '../../../../../dictionnary/saas/variables';
-import { ACTION_TYPES } from '../../../../../dictionnary/demandeDeTitre';
 
-const CqItemDetails = ({ isDetailVisible, details, buttonRoute }) => {
+const CqItemDetails = ({ isDetailVisible, details, action }) => {
   return (
     <div
       id="cq-item-details"
+      className="cq-helpers__full-width"
       // className={`${isDetailVisible ? '' : 'hidden'} rf-container`}
     >
       <div className="rf-grid-row">
@@ -25,7 +25,7 @@ const CqItemDetails = ({ isDetailVisible, details, buttonRoute }) => {
         </div>
       </div>
       <div className="rf-grid-row">
-        <div className="rf-px-3w isolated-details-container cq-helpers__full-width">
+        <div className="rf-px-3w rf-pt-2w isolated-details-container cq-helpers__full-width">
           {details
             .filter((detail) => !Array.isArray(detail.infos))
             .map((detail) => (
@@ -34,16 +34,17 @@ const CqItemDetails = ({ isDetailVisible, details, buttonRoute }) => {
                 infos={detail.infos}
               />
             ))}
-          <Button
-            label="Demander ce titre"
-            route={buttonRoute}
-            labelSize={FONT_SIZES.SMALL}
-            actionType={ACTION_TYPES.PRIMARY}
-          />
+          {action && <div className="rf-pt-2w">{action}</div>}
         </div>
       </div>
     </div>
   );
+};
+
+CqItemDetails.propTypes = {
+  isDetailVisible: PropTypes.bool.isRequired,
+  details: PropTypes.array.isRequired,
+  action: PropTypes.element.isRequired,
 };
 
 export default CqItemDetails;

@@ -11,7 +11,7 @@ export const STATUS_APTITUDE_MEDICALE = {
 
 export const BUTTON_LABELS = {
   RENEW: 'Renouveler',
-  DEMAND: 'Demander',
+  DEMAND: 'Demander ce titre',
   ADD_DOCUMENT: 'Ajouter un document',
   ASK_FOR_ADVICE: "Demander le conseil d'un agent",
 };
@@ -19,4 +19,11 @@ export const BUTTON_LABELS = {
 export const ACTION_TYPES = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
+};
+
+export const CATEGORY_NAMES = {
+  DELIVRANCE_AUTORITE: 'Délivré par',
+  DELIVRANCE_DATE: 'Délivré le',
+  CAPACITES: 'Capacités',
+  RESTRICTIONS: 'Restrictions',
 };
