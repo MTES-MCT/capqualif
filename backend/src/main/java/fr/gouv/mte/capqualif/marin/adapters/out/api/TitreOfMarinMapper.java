@@ -33,7 +33,6 @@ class TitreOfMarinMapper {
             restrictionsInStandardFormatEnglish.add(titreCapaciteRest.getCodeFrmTitreCapaciteRestrictionDTO().getLibelleAnglais());
             restrictionInFreeFormat.add(titreCapaciteRest.getRestrictionLibre());
             restrictionInFreeFormatEnglish.add(titreCapaciteRest.getRestrictionLibreAnglais());
-            // TO DO : move from here to a "titres catalog" module
             capacite = titreCapaciteRest.getCodeFrmTitreCapaciteStwcDTO().getLibelle();
             capaciteEnglish = titreCapaciteRest.getCodeFrmTitreCapaciteStwcDTO().getLibelleAnglais();
         }
