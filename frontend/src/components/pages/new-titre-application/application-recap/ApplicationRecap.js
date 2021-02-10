@@ -21,7 +21,6 @@ import {
   BUTTON_LABELS,
   STATUS_APTITUDE_MEDICALE,
 } from '../../../../dictionnary/demandeDeTitre';
-import ActionableCqItemOfMarin from '../../../_cq/cq-item/marin/actionable-cq-item-of-marin/ActionableCqItemOfMarin';
 import Button from '../../../_cq/button/Button';
 
 const ApplicationRecap = ({ match }) => {
@@ -216,13 +215,18 @@ const ApplicationRecap = ({ match }) => {
               ></span>
               <div className="rf-pt-1w rf-pl-2w cq-helpers__full-width">
                 <p>Mes aptitudes médicales</p>
-                <ActionableCqItemOfMarin
+                <CqItemOfMarin
                   name="Visite annuelle"
                   subtitle="Aptitude médicale"
                   dates={conditionsResultsMock.aptitudeMedicale.marinData.dates}
                   status={STATUS_APTITUDE_MEDICALE.APTE}
-                  shouldShowAction={
-                    !conditionsResultsMock.aptitudeMedicale.validity
+                  action={
+                    !conditionsResultsMock.aptitudeMedicale.validity && {
+                      label: BUTTON_LABELS.ADD_DOCUMENT,
+                      labelSize: FONT_SIZES.VERY_SMALL,
+                      route: '',
+                      actionType: ACTION_TYPES.SECONDARY,
+                    }
                   }
                 />
               </div>
@@ -248,6 +252,14 @@ const ApplicationRecap = ({ match }) => {
                   <CqItemOfMarin
                     name={formation.name}
                     subtitle={formation.type}
+                    action={
+                      !formation.validity && {
+                        label: BUTTON_LABELS.ADD_DOCUMENT,
+                        labelSize: FONT_SIZES.VERY_SMALL,
+                        route: '',
+                        actionType: ACTION_TYPES.SECONDARY,
+                      }
+                    }
                   />
                 </div>
               </div>

@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import './DashboardContent.scss';
 
 import CqItemOfMarin from '../../../_cq/cq-item/marin/CqItemOfMarin';
-import ActionableCqItemOfMarin from '../../../_cq/cq-item/marin/actionable-cq-item-of-marin/ActionableCqItemOfMarin';
 import {
   ACTION_TYPES,
   BUTTON_LABELS,
@@ -35,8 +34,13 @@ const DashboardContent = () => {
               name={titreOfMarin.name}
               dates={titreOfMarin.dates}
               status={titreOfMarin.validityStatus}
-              shouldShowAction={
-                titreOfMarin.validityStatus !== STATUS_TITRE.VALID
+              action={
+                titreOfMarin.validityStatus !== STATUS_TITRE.VALID && {
+                  label: BUTTON_LABELS.RENEW,
+                  labelSize: FONT_SIZES.VERY_SMALL,
+                  route: '',
+                  actionType: ACTION_TYPES.SECONDARY,
+                }
               }
             />
           ))}
