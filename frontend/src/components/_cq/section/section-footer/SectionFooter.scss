@@ -17,8 +17,13 @@
 
 #section-footer a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 #section-footer .bold {
   font-weight: $semiBold;
+}
+
+#section-footer .actions-wrapper {
+  display: inline;
 }

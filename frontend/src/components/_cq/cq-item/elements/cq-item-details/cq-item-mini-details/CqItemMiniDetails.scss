@@ -14,3 +14,12 @@
 .cq-item__detail-not-flagged {
   font-size: $normal;
 }
+
+.cq-item__detail-not-flagged {
+  width: 80%;
+}
+
+.warning {
+  color: $warning;
+  font-weight: $semiBold;
+}

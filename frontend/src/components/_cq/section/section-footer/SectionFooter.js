@@ -13,7 +13,7 @@ const SectionFooter = ({ possibleActions }) => {
 
   return (
     <div id="section-footer">
-      <a onClick={history.goBack}>
+      <a className="rf-link" onClick={history.goBack}>
         <span class="rf-fi-arrow-left-s-line">Recommencer</span>
       </a>
       <p>
@@ -22,13 +22,15 @@ const SectionFooter = ({ possibleActions }) => {
       </p>
       <div>
         {possibleActions.map((action) => (
-          <Button
-            route={action.nextPageLink}
-            label={action.label}
-            labelSize={FONT_SIZES.SMALL}
-            actionType={ACTION_TYPES.SECONDARY}
-            disabled={action.disabled}
-          ></Button>
+          <div className="actions-wrapper rf-mx-1w">
+            <Button
+              route={action.nextPageLink}
+              label={action.label}
+              labelSize={FONT_SIZES.SMALL}
+              actionType={ACTION_TYPES.SECONDARY}
+              disabled={action.disabled}
+            />
+          </div>
         ))}
       </div>
     </div>

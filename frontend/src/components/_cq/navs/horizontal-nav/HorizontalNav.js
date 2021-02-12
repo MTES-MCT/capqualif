@@ -18,7 +18,7 @@ const HorizontalNav = () => {
             </li>
             <li className="rf-nav__item">
               <a className="rf-link" href="#" target="_self">
-                Mes informations personelles : à venir
+                Mes informations personnelles : à venir
               </a>
             </li>
           </ul>

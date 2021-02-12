@@ -2,11 +2,17 @@ import React from 'react';
 
 import './CqItemMiniDetails.scss';
 
-const CqItemMiniDetails = ({ categoryName, infos }) => {
+const CqItemMiniDetails = ({ label, labelStatus, infos }) => {
   if (infos && infos !== '' && infos.length > 0) {
     return (
       <div className="cq-item__detail-container">
-        <div class="cq-item__attribute  rf-my-1w">{categoryName}</div>
+        <div
+          class={`cq-item__attribute rf-my-1w ${
+            labelStatus === 'validity-false' ? 'warning' : ''
+          }`}
+        >
+          {label}
+        </div>
 
         {infos && infos !== '' && Array.isArray(infos) ? (
           infos.map((info) => (
