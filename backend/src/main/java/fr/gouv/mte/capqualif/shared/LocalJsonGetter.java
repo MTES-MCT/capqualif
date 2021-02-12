@@ -19,7 +19,6 @@ public class LocalJsonGetter {
 
     private JsonElement buildJson(String resource) {
         String json = fromStreamToString(resource);
-//        System.out.println(json);
         Gson gson = new Gson();
         JsonElement jsonElement = gson.fromJson(json, JsonElement.class);
         return jsonElement;

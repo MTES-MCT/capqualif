@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/titres")
-@CrossOrigin
 public class GetTitreController {
 
     @Autowired

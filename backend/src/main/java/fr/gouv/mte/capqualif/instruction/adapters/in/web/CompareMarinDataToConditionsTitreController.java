@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/instruction/comparaison")
-@CrossOrigin
 public class CompareMarinDataToConditionsTitreController {
 
     @Autowired

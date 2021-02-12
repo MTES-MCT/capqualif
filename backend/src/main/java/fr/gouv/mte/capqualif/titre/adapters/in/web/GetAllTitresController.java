@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/titres")
-@CrossOrigin
 public class GetAllTitresController {
 
     @Autowired
