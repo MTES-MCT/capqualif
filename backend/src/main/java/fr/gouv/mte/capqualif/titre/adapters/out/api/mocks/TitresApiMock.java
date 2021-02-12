@@ -45,7 +45,7 @@ public class TitresApiMock {
 
 
         List<String> restrictions = new ArrayList<String>(Arrays.asList("Préparation de poires Belle Hélène", "Confection de banana splits"));
-//        List<String> restrictions = new ArrayList<String>(Arrays.asList("Préparation de poires Belle Hélène", "Confection de banana splits"));
+
         titresList.add(new Titre(
                 "1",
                 "Certificat de matelot pont (CMP9525)",

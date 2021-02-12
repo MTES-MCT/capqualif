@@ -25,5 +25,3 @@ const CqItemMiniDetails = ({ categoryName, infos }) => {
 };
 
 export default CqItemMiniDetails;
-// export default CqItemMiniDetails;
-// export default CqItemMiniDetails;
