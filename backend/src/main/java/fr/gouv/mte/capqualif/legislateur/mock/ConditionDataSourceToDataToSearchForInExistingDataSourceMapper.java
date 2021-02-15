@@ -80,7 +80,7 @@ public class ConditionDataSourceToDataToSearchForInExistingDataSourceMapper {
 
                 return new DataToExtractFromExistingDataSource(
                         ExistingDataSourceName.ITEM,
-                        "S",
+                        "***REMOVED***",
                         new KeyInExistingDataSource("libelle", DataType.STRING, true, Arrays.asList(new ParentKey(Position.POSITION_1, "codeBrevetMarin"))),
                         itemAdditionalWantedKeyInExistingDataSources);
             default:

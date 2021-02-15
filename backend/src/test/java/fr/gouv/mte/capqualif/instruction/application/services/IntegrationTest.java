@@ -1,42 +1,68 @@
 package fr.gouv.mte.capqualif.instruction.application.services;
 
-import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.titre.adapters.out.api.GetTitreApiAdapter;
-import fr.gouv.mte.capqualif.titre.adapters.out.api.mocks.TitresApiMock;
-import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
-import fr.gouv.mte.capqualif.titre.domain.Titre;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
+import org.springframework.test.web.servlet.MockMvc;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CompareMarinDtoEntryToConditionsTitreServiceTest {
+@AutoConfigureMockMvc
+public class IntegrationTest {
 
     @Autowired
-    TitresApiMock titresApiMock;
+    MockMvc mockMvc;
 
-    @MockBean
-    GetTitreApiAdapter getTitrePort;
+    @Test
+    public void testName() throws Exception {
+        // arrange
 
-    @Before
-    public void setUp() throws Exception {
-//        GetTitlePort getTitlePort = new GetTitleApiAdapter();
-//        titresApiMock = new TitresApiMock();
-//        titresApiMock.setGetTitlePort(getTitlePort);
+        // act
+
+        // https://www.baeldung.com/spring-resttemplate-json-list#3-resttemplate-with-user-list-and-parameterizedtypereference
+//        ParameterizedTypeReference<List<ComparisonResult>> comparisonResults = new ParameterizedTypeReference<List<ComparisonResult>>() {};
+//        ResponseEntity<List<ComparisonResult>> response = restTemplate.exchange("/instruction/comparaison/1/123",
+//                HttpMethod.GET, null, comparisonResults);
+//
+//        // assert
+//        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        Assertions.assertThat(response.getBody()).isEqualTo("[{}]");
     }
 
     @Test
-    public void itShouldDetermineThatMarinMatchesAllConditions() {
+    public void itShouldDetermineThatMarinMatchesAllConditions() throws Exception {
+
+        // Given
+
+        // When
+        mockMvc.perform(get("/instruction/comparaison/1/123"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].conditionJuridicalName").value("Âge"))
+                .andExpect(jsonPath("$[0].validity").value(true))
+                .andExpect(jsonPath("$[1].conditionJuridicalName").value("Aptitude médicale"))
+                .andExpect(jsonPath("$[1].validity").value(true))
+                .andExpect(jsonPath("$[2].conditionJuridicalName").value("Formation de base à la sécurité"))
+                .andExpect(jsonPath("$[2].validity").value(true))
+                .andExpect(jsonPath("$[3].conditionJuridicalName").value("Formation pour le certificat de matelot pont, Module P1-Appui"))
+                .andExpect(jsonPath("$[3].validity").value(true))
+                .andExpect(jsonPath("$[4].conditionJuridicalName").value("Formation pour le certificat de matelot pont, Module P2–Appui"))
+                .andExpect(jsonPath("$[4].validity").value(true))
+                .andExpect(jsonPath("$[5].conditionJuridicalName").value("Formation pour le certificat de matelot pont, Module P3–Appui"))
+                .andExpect(jsonPath("$[5].validity").value(true))
+                .andExpect(jsonPath("$[6].conditionJuridicalName").value("Formation pour le certificat de matelot pont, Module NP–Appui"))
+                .andExpect(jsonPath("$[6].validity").value(true));
+
         // 1. Récupérer le mock d'un titre
 //        String titreId = "1";
 //        titresApiMock.findTitreById(titreId);
