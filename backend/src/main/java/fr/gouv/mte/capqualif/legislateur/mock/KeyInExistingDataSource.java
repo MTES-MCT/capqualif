@@ -4,19 +4,19 @@ import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 
 import java.util.List;
 
-public class Key {
+public class KeyInExistingDataSource {
     private String keyRealNameInExistingDataSource;
     private DataType typeOfAssociatedValue;
     private boolean isNested;
     private List<ParentKey> parentKeys;
 
-    public Key(String keyRealNameInExistingDataSource, DataType typeOfAssociatedValue) {
+    public KeyInExistingDataSource(String keyRealNameInExistingDataSource, DataType typeOfAssociatedValue) {
         this.keyRealNameInExistingDataSource = keyRealNameInExistingDataSource;
         this.typeOfAssociatedValue = typeOfAssociatedValue;
     }
 
-    public Key(String keyRealNameInExistingDataSource, DataType typeOfAssociatedValue, boolean isNested,
-               List<ParentKey> parentKeys) {
+    public KeyInExistingDataSource(String keyRealNameInExistingDataSource, DataType typeOfAssociatedValue, boolean isNested,
+                                   List<ParentKey> parentKeys) {
         this.keyRealNameInExistingDataSource = keyRealNameInExistingDataSource;
         this.typeOfAssociatedValue = typeOfAssociatedValue;
         this.isNested = isNested;

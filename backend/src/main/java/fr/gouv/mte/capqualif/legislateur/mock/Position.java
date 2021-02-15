@@ -7,7 +7,6 @@ public enum Position {
     //
     //      great parent            POSITION_1
     //      parent                  POSITION_2
-    //      kid                     Position_3
 
     POSITION_1,
     POSITION_2,
