@@ -45,19 +45,19 @@ const DashboardContent = () => {
               }
               details={[
                 {
-                  categoryName: CATEGORY_NAMES.CAPACITES,
+                  label: CATEGORY_NAMES.CAPACITES,
                   infos: [titreOfMarin.capacite],
                 },
                 {
-                  categoryName: CATEGORY_NAMES.RESTRICTIONS,
+                  label: CATEGORY_NAMES.RESTRICTIONS,
                   infos: titreOfMarin.restrictionsInStandardFormat,
                 },
                 {
-                  categoryName: CATEGORY_NAMES.DELIVRANCE_AUTORITE,
+                  label: CATEGORY_NAMES.DELIVRANCE_AUTORITE,
                   infos: titreOfMarin.autoriteDeDelivrance,
                 },
                 {
-                  categoryName: CATEGORY_NAMES.DELIVRANCE_DATE,
+                  label: CATEGORY_NAMES.DELIVRANCE_DATE,
                   infos: titreOfMarin.dates.delivranceDate,
                 },
               ]}
@@ -89,19 +89,19 @@ const DashboardContent = () => {
               }
               details={[
                 {
-                  categoryName: CATEGORY_NAMES.CAPACITES,
+                  label: CATEGORY_NAMES.CAPACITES,
                   infos: titreOfMarin.capacite,
                 },
                 {
-                  categoryName: CATEGORY_NAMES.RESTRICTIONS,
+                  label: CATEGORY_NAMES.RESTRICTIONS,
                   infos: titreOfMarin.restrictionsInStandardFormat,
                 },
                 {
-                  categoryName: CATEGORY_NAMES.DELIVRANCE_AUTORITE,
+                  label: CATEGORY_NAMES.DELIVRANCE_AUTORITE,
                   infos: titreOfMarin.autoriteDeDelivrance,
                 },
                 {
-                  categoryName: CATEGORY_NAMES.DELIVRANCE_DATE,
+                  label: CATEGORY_NAMES.DELIVRANCE_DATE,
                   infos: titreOfMarin.dates.delivranceDate,
                 },
               ]}

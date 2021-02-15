@@ -5,7 +5,13 @@ import CqItemBase from '../elements/CqItemBase';
 import CqItemDetails from '../elements/cq-item-details/CqItemDetails';
 import CqItemAction from '../elements/cq-item-action/CqItemAction';
 
-const CqItemCatalog = ({ name, subtitle, details, newTitreAction }) => {
+const CqItemCatalog = ({
+  name,
+  subtitle,
+  details,
+  newTitreAction,
+  isVisibleTEMP,
+}) => {
   return (
     <div>
       <CqItemBase

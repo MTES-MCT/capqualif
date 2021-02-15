@@ -18,7 +18,8 @@ const CqItemDetails = ({ isVisible, details, action }) => {
             .filter((detail) => Array.isArray(detail.infos))
             .map((detail) => (
               <CqItemMiniDetails
-                categoryName={detail.categoryName}
+                label={detail.label}
+                labelStatus={detail.labelStatus}
                 infos={detail.infos}
               />
             ))}
@@ -30,7 +31,8 @@ const CqItemDetails = ({ isVisible, details, action }) => {
             .filter((detail) => !Array.isArray(detail.infos))
             .map((detail) => (
               <CqItemMiniDetails
-                categoryName={detail.categoryName}
+                label={detail.label}
+                labelStatus={detail.labelStatus}
                 infos={detail.infos}
               />
             ))}

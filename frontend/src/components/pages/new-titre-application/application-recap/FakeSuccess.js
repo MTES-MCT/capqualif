@@ -1,13 +1,16 @@
 import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import './ApplicationRecap.scss';
 
 import {
   FONT_COLORS,
   FONT_SIZES,
 } from '../../../../dictionnary/saas/variables';
-import { ADD_PIECE_ROUTE, DASHBOARD_ROUTE } from '../../../../app/routesList';
+import {
+  ADD_PIECE_ROUTE,
+  CONFIRMATION_ROUTE,
+  DASHBOARD_ROUTE,
+} from '../../../../app/routesList';
 
 import { getTitre } from '../../../../redux/features/titresCatalog/titresSlice';
 
@@ -24,7 +27,7 @@ import {
 } from '../../../../dictionnary/demandeDeTitre';
 import Button from '../../../_cq/button/Button';
 
-const ApplicationRecap = ({ match }) => {
+const FakeSuccess = ({ match }) => {
   const dispatch = useDispatch();
   const marin = useSelector((state) => state.marinsReducer.marinBasicData);
 
@@ -56,7 +59,6 @@ const ApplicationRecap = ({ match }) => {
             {
               name: 'Module',
               description: 'Formation de base à la lutte incendie',
-              validity: true,
               dates: {
                 acquisitionDate: '23/06/2020',
                 expirationDate: '23/06/2025',
@@ -65,7 +67,6 @@ const ApplicationRecap = ({ match }) => {
             {
               name: 'Module',
               description: 'Sécurité des Personnes et Responsabilités Sociales',
-              validity: true,
               dates: {
                 acquisitionDate: '23/06/2020',
                 expirationDate: '23/06/2025',
@@ -74,7 +75,6 @@ const ApplicationRecap = ({ match }) => {
             {
               name: 'Module',
               description: 'Technique Individuelle de Survie',
-              validity: true,
               dates: {
                 acquisitionDate: '23/06/2020',
                 expirationDate: '23/06/2025',
@@ -83,7 +83,6 @@ const ApplicationRecap = ({ match }) => {
             {
               name: 'Module',
               description: 'Médical1',
-              validity: true,
               dates: {
                 acquisitionDate: '23/06/2020',
                 expirationDate: '23/06/2025',
@@ -93,7 +92,7 @@ const ApplicationRecap = ({ match }) => {
         },
       },
       {
-        validity: false,
+        validity: true,
         name: 'Formation pour le certificat de matelot pont',
         type: 'Formation modulaire',
         marinData: {
@@ -117,7 +116,7 @@ const ApplicationRecap = ({ match }) => {
               },
             },
             {
-              name: '! Module P3–Appui',
+              name: 'Module P3–Appui',
               description: 'Exploitation, assistance, entretien, réparation',
               validity: false,
               dates: null,
@@ -125,7 +124,6 @@ const ApplicationRecap = ({ match }) => {
             {
               name: 'Module NP–Appui',
               description: 'Module national pont',
-              validity: true,
               dates: {
                 acquisitionDate: '23/06/2020',
                 expirationDate: '23/06/2025',
@@ -149,8 +147,8 @@ const ApplicationRecap = ({ match }) => {
     },
     {
       label: 'Continuer',
-      nextPageLink: DASHBOARD_ROUTE,
-      disabled: true,
+      nextPageLink: CONFIRMATION_ROUTE,
+      disabled: false,
     },
   ];
 
@@ -300,7 +298,6 @@ const ApplicationRecap = ({ match }) => {
                     }
                     details={formation.marinData.modules.map((module) => ({
                       label: module.name,
-                      labelStatus: 'validity-' + module.validity,
                       infos: module.description,
                     }))}
                   />
@@ -328,4 +325,4 @@ const ApplicationRecap = ({ match }) => {
   );
 };
 
-export default ApplicationRecap;
+export default FakeSuccess;

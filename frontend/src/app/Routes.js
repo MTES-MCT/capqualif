@@ -8,13 +8,16 @@ import {
   NEW_TITRE_APPLICATION_RECAP_ROUTE,
   ERROR_ROUTE,
   ADD_PIECE_ROUTE,
+  CONFIRMATION_ROUTE,
 } from './routesList';
 
 import Dashboard from '../components/pages/dashboard/Dashboard';
 import NewTitreChoice from '../components/pages/new-titre-application/new-titre-choice/NewTitreChoice';
 import ApplicationRecap from '../components/pages/new-titre-application/application-recap/ApplicationRecap';
 import Error from '../components/pages/error/Error';
-import AddPiece from '../components/pages/add-piece/AddPiece';
+import AddPiece from '../components/pages/new-titre-application/add-piece/AddPiece';
+import FakeSuccess from '../components/pages/new-titre-application/application-recap/FakeSuccess';
+import Confirmation from '../components/pages/new-titre-application/confirmation/Confirmation';
 
 const Routes = () => {
   return (
@@ -31,6 +34,8 @@ const Routes = () => {
         />
         <Route path={ADD_PIECE_ROUTE} component={AddPiece} />
         <Route exact path={ERROR_ROUTE} component={Error} />
+        <Route exact path="/recap-success" component={FakeSuccess} />
+        <Route exact path={CONFIRMATION_ROUTE} component={Confirmation} />
       </Switch>
     </section>
   );

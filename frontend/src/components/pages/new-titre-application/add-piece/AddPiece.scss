@@ -1,0 +1,54 @@
+@import '../../../../sass/variables';
+
+#modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $marianne-blue;
+  border: solid 1px $marianne-blue;
+  width: 60%;
+  margin: 2em auto;
+  background-color: $white;
+  padding: 0.5em 0.5em 0 0.5em;
+}
+
+#modal-container h2 {
+  color: $marianne-blue;
+  align-self: flex-start;
+  margin: 1em;
+  align-self: center;
+}
+
+#modal-container #square {
+  background-color: $g100;
+  height: 15em;
+  width: 30em;
+  border: solid 1px $marianne-blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-container #content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+#modal-container input {
+  margin-top: 1em;
+}
+
+#modal-container #bordered {
+  padding: 1em;
+  border: solid 1px $marianne-blue;
+  background-color: $white;
+  cursor: pointer;
+}
+
+#modal-container #button-container {
+  align-self: flex-end;
+  margin: 2em;
+}

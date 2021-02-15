@@ -33,11 +33,11 @@ const NewTitleChoice = () => {
       slug: 'certificat-de-matelot-pont',
       details: [
         {
-          categoryName: 'Fonctions',
+          label: 'Fonctions',
           infos: ["Fonctions d'appui au pont"],
         },
         {
-          categoryName: 'Tâches spécialisées',
+          label: 'Tâches spécialisées',
           infos: [
             'Navigation',
             'Manutention et arrimage de la cargaison',
@@ -46,11 +46,11 @@ const NewTitleChoice = () => {
           ],
         },
         {
-          categoryName: 'Référence réglementaire',
+          label: 'Référence réglementaire',
           infos: 'Arrêté du 18 août 2015',
         },
         {
-          categoryName: 'Durée de validité',
+          label: 'Durée de validité',
           infos: '5 ans',
         },
       ],
@@ -62,7 +62,7 @@ const NewTitleChoice = () => {
       slug: 'certificat-de-formation-de-base-a-la-securite',
       details: [
         {
-          categoryName: 'Enseignement',
+          label: 'Enseignement',
           infos: [
             'Identifier les situation d’urgence',
             'Identifier les types d’engins de sauvetages',
@@ -71,11 +71,11 @@ const NewTitleChoice = () => {
           ],
         },
         {
-          categoryName: 'Référence réglementaire',
+          label: 'Référence réglementaire',
           infos: 'Arrêté du 18 août 2015',
         },
         {
-          categoryName: 'Durée de validité',
+          label: 'Durée de validité',
           infos: '5 ans',
         },
       ],
