@@ -32,107 +32,125 @@ const ApplicationRecap = ({ match }) => {
     {
       conditionJuridicalName: 'Âge',
       validity: true,
-      relatedMarinData: {
-        birthDate: marin.dateNaissance,
-      },
+      // relatedMarinData: {
+      //   birthDate: marin.dateNaissance,
+      // },
     },
     {
       conditionJuridicalName: 'Aptitude médicale',
       validity: true,
-      relatedMarinData: {
-        diagnosis: STATUS_APTITUDE_MEDICALE.APTE,
-        dates: {
-          debutApplicationDate: '03/09/2020',
-          expirationDate: '02/09/2022',
-        },
-        medicalRestrictions: [],
-      },
+      // relatedMarinData: {
+      //   diagnosis: STATUS_APTITUDE_MEDICALE.APTE,
+      //   dates: {
+      //     debutApplicationDate: '03/09/2020',
+      //     expirationDate: '02/09/2022',
+      //   },
+      //   medicalRestrictions: [],
+      // },
     },
     {
       conditionJuridicalName: 'Formation de base à la sécurité',
       validity: true,
-      relatedMarinData: {
-        modules: [
-          {
-            name: 'Module',
-            description: 'Formation de base à la lutte incendie',
-            validity: true,
-            dates: {
-              acquisitionDate: '23/06/2020',
-              expirationDate: '23/06/2025',
-            },
-          },
-          {
-            name: 'Module',
-            description: 'Sécurité des Personnes et Responsabilités Sociales',
-            validity: true,
-            dates: {
-              acquisitionDate: '23/06/2020',
-              expirationDate: '23/06/2025',
-            },
-          },
-          {
-            name: 'Module',
-            description: 'Technique Individuelle de Survie',
-            validity: true,
-            dates: {
-              acquisitionDate: '23/06/2020',
-              expirationDate: '23/06/2025',
-            },
-          },
-          {
-            name: 'Module',
-            description: 'Médical1',
-            validity: true,
-            dates: {
-              acquisitionDate: '23/06/2020',
-              expirationDate: '23/06/2025',
-            },
-          },
-        ],
-      },
+      // relatedMarinData: {
+      //   modules: [
+      //     {
+      //       name: 'Module',
+      //       description: 'Formation de base à la lutte incendie',
+      //       validity: true,
+      //       dates: {
+      //         acquisitionDate: '23/06/2020',
+      //         expirationDate: '23/06/2025',
+      //       },
+      //     },
+      //     {
+      //       name: 'Module',
+      //       description: 'Sécurité des Personnes et Responsabilités Sociales',
+      //       validity: true,
+      //       dates: {
+      //         acquisitionDate: '23/06/2020',
+      //         expirationDate: '23/06/2025',
+      //       },
+      //     },
+      //     {
+      //       name: 'Module',
+      //       description: 'Technique Individuelle de Survie',
+      //       validity: true,
+      //       dates: {
+      //         acquisitionDate: '23/06/2020',
+      //         expirationDate: '23/06/2025',
+      //       },
+      //     },
+      //     {
+      //       name: 'Module',
+      //       description: 'Médical1',
+      //       validity: true,
+      //       dates: {
+      //         acquisitionDate: '23/06/2020',
+      //         expirationDate: '23/06/2025',
+      //       },
+      //     },
+      //   ],
+      // },
     },
     {
-      conditionJuridicalName: 'Formation pour le certificat de matelot pont',
+      conditionJuridicalName:
+        'Formation pour le certificat de matelot pont, Module P1-Appui',
       validity: true,
-      relatedMarinData: {
-        modules: [
-          {
-            name: 'Module P1–Appui',
-            description: 'Navigation',
-            validity: true,
-            dates: {
-              acquisitionDate: '23/06/2020',
-              expirationDate: '23/06/2025',
-            },
-          },
-          {
-            name: 'Module P2–Appui',
-            description: 'Manutention et arrimage de la cargaison, pêche',
-            validity: true,
-            dates: {
-              acquisitionDate: '23/06/2020',
-              expirationDate: '23/06/2025',
-            },
-          },
-          {
-            name: '! Module P3–Appui',
-            description: 'Exploitation, assistance, entretien, réparation',
-            validity: false,
-            dates: null,
-          },
-          {
-            name: 'Module NP–Appui',
-            description: 'Module national pont',
-            validity: true,
-            dates: {
-              acquisitionDate: '23/06/2020',
-              expirationDate: '23/06/2025',
-            },
-          },
-        ],
-      },
     },
+    {
+      conditionJuridicalName:
+        'Formation pour le certificat de matelot pont, Module P2–Appui',
+      validity: true,
+    },
+    {
+      conditionJuridicalName:
+        'Formation pour le certificat de matelot pont, Module P3–Appui',
+      validity: true,
+    },
+    {
+      conditionJuridicalName:
+        'Formation pour le certificat de matelot pont, Module NP–Appui',
+      validity: true,
+    },
+
+    // relatedMarinData: {
+    //   modules: [
+    //     {
+    //       name: 'Module P1–Appui',
+    //       description: 'Navigation',
+    //       validity: true,
+    //       dates: {
+    //         acquisitionDate: '23/06/2020',
+    //         expirationDate: '23/06/2025',
+    //       },
+    //     },
+    //     {
+    //       name: 'Module P2–Appui',
+    //       description: 'Manutention et arrimage de la cargaison, pêche',
+    //       validity: true,
+    //       dates: {
+    //         acquisitionDate: '23/06/2020',
+    //         expirationDate: '23/06/2025',
+    //       },
+    //     },
+    //     {
+    //       name: '! Module P3–Appui',
+    //       description: 'Exploitation, assistance, entretien, réparation',
+    //       validity: false,
+    //       dates: null,
+    //     },
+    //     {
+    //       name: 'Module NP–Appui',
+    //       description: 'Module national pont',
+    //       validity: true,
+    //       dates: {
+    //         acquisitionDate: '23/06/2020',
+    //         expirationDate: '23/06/2025',
+    //       },
+    //     },
+    //   ],
+    // },
+    // },
   ];
 
   useEffect(() => {
