@@ -14,7 +14,7 @@ class CapqualifApplicationTests {
 	private CompareMarinDataToConditionsTitreController compareMarinDataToConditionsTitreController;
 
 	@Test
-	public void contextLoads() throws Exception {
+	void contextLoads() throws Exception {
 		assertThat(compareMarinDataToConditionsTitreController).isNotNull();
 	}
 
