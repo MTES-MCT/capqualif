@@ -20,8 +20,8 @@
       $cursorRadius: 4px;
       top: calc(50% - #{$cursorRadius} + 1px);
       left: 10%;
-      width: calc(#{$cursorRadius}* 2);
-      height: calc(#{$cursorRadius}* 2);
+      width: calc(#{$cursorRadius} * 2);
+      height: calc(#{$cursorRadius} * 2);
       border-radius: $cursorRadius;
       border: 2px solid $marianne-blue;
       background-color: $white;

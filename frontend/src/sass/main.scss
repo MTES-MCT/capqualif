@@ -4,80 +4,6 @@
 @import '_grid';
 @import '_gouvfr.scss';
 
-// html,
-// body,
-// body div,
-// span,
-// object,
-// iframe,
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6,
-// p,
-// blockquote,
-// pre,
-// abbr,
-// address,
-// cite,
-// code,
-// del,
-// dfn,
-// em,
-// img,
-// ins,
-// kbd,
-// q,
-// samp,
-// small,
-// strong,
-// sub,
-// sup,
-// var,
-// b,
-// i,
-// dl,
-// dt,
-// dd,
-// ol,
-// ul,
-// li,
-// fieldset,
-// form,
-// label,
-// legend,
-// table,
-// caption,
-// tbody,
-// tfoot,
-// thead,
-// tr,
-// th,
-// td,
-// article,
-// aside,
-// figure,
-// footer,
-// header,
-// hgroup,
-// menu,
-// nav,
-// section,
-// time,
-// mark,
-// audio,
-// video {
-//   margin: 0;
-//   padding: 0;
-//   border: 0;
-//   outline: 0;
-//   font-size: 100%;
-//   vertical-align: baseline;
-//   background: transparent;
-// }
-
 * {
   margin: 0;
   padding: 0;
@@ -97,9 +23,6 @@ body {
 
 body {
   display: block;
-
-  font-size: $normal;
-  background-color: $white;
   overflow-x: hidden;
   font-family: $marianne;
   font-size: $baseFontSize;
@@ -194,13 +117,6 @@ h4 {
 // NAV
 .rf-header.no-shadow {
   box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0);
-}
-cq.rf-nav {
-  color: $marianne-blue;
-
-  a {
-    color: $marianne-blue;
-  }
 }
 
 // Lines
