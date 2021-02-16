@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=elisabethfainstein_capqualif-poc-v1&metric=alert_status)](https://sonarcloud.io/dashboard?id=elisabethfainstein_capqualif-poc-v1)
+
 # Capqualif
 
 Voici la marche à suivre pour faire tourner l'application !
