@@ -12,33 +12,24 @@ import java.util.stream.Collectors;
 @Component
 public class LocalJsonGetter {
 
-    public JsonElement getJson(String resource) {
-        JsonElement jsonElement = buildJson(resource);
-        return jsonElement;
+    public JsonElement getJson(String resource) throws IOException {
+        return buildJson(resource);
     }
 
-    private JsonElement buildJson(String resource) {
+    private JsonElement buildJson(String resource) throws IOException {
         String json = fromStreamToString(resource);
         Gson gson = new Gson();
-        JsonElement jsonElement = gson.fromJson(json, JsonElement.class);
-        return jsonElement;
+        return gson.fromJson(json, JsonElement.class);
     }
 
-    private String fromStreamToString(String resource) {
+    private String fromStreamToString(String resource) throws IOException {
         InputStream stream = loadResource(resource);
         InputStreamReader inputReader = new InputStreamReader(stream);
         BufferedReader bufferedReader = new BufferedReader(inputReader);
-        String json = bufferedReader.lines().collect(Collectors.joining("\n"));
-        return json;
+        return bufferedReader.lines().collect(Collectors.joining("\n"));
     }
 
-    private InputStream loadResource(String resource) {
-        try {
-            InputStream stream = new ClassPathResource(resource).getInputStream();
-            return stream;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    private InputStream loadResource(String resource) throws IOException {
+        return new ClassPathResource(resource).getInputStream();
     }
 }
