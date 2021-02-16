@@ -1,5 +1,7 @@
 package fr.gouv.mte.capqualif.instruction.domain;
 
+import java.util.Objects;
+
 public class ComparisonResult {
 
     private String conditionJuridicalDesignation;
@@ -24,8 +26,13 @@ public class ComparisonResult {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        ComparisonResult result = (ComparisonResult) o;
-        return isValid == result.isValid &&
-                conditionJuridicalDesignation.equals(result.conditionJuridicalDesignation);
+        ComparisonResult that = (ComparisonResult) o;
+        return isValid == that.isValid &&
+                conditionJuridicalDesignation.equals(that.conditionJuridicalDesignation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(conditionJuridicalDesignation, isValid);
     }
 }
