@@ -20,7 +20,7 @@
 		<node.version>v14.15.1</node.version>
 		<yarn.version>v1.22.5</yarn.version>
 		<frontend-maven-plugin.version>1.7.6</frontend-maven-plugin.version>
-		<sonar.projectKey>capqualif_capqualif-poc-v1-backend</sonar.projectKey>
+		<sonar.projectKey>elisabethfainstein_capqualif-poc-v1</sonar.projectKey>
 		<sonar.organization>capqualif</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
