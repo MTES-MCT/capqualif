@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.instruction.application.services;
+package fr.gouv.mte.capqualif.instruction;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,14 +7,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,7 +18,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 public class IntegrationTest {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Test
     public void testName() throws Exception {
@@ -41,12 +37,12 @@ public class IntegrationTest {
     }
 
     @Test
-    public void itShouldDetermineThatMarinMatchesAllConditions() throws Exception {
+    public void itShouldReturnAllConditionsAreMet() throws Exception {
 
         // Given
 
         // When
-        mockMvc.perform(get("/instruction/comparaison/1/123"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/instruction/comparaison/1/123"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].conditionJuridicalName").value("Âge"))
                 .andExpect(jsonPath("$[0].validity").value(true))
