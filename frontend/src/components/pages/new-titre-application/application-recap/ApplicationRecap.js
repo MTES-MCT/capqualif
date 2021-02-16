@@ -165,7 +165,7 @@ const ApplicationRecap = ({ match }) => {
   return (
     <Fragment>
       <Breadcrumb />
-      <div
+      {/* <div
         id="application-recap"
         className="cq-helpers__with-footer rf-container"
       >
@@ -214,7 +214,7 @@ const ApplicationRecap = ({ match }) => {
           </div>
         </div>
 
-        {/* Famille de conditions 1 */}
+
         <div className="rf-grid-row rf-grid-row--gutters with-margin">
           <div className="rf-col">
             <div className="container">
@@ -238,7 +238,7 @@ const ApplicationRecap = ({ match }) => {
           </div>
         </div>
 
-        {/* Famille de conditions 2 */}
+
         <div className="rf-grid-row rf-grid-row--gutters with-margin">
           <div className="rf-col">
             <div className="container">
@@ -271,7 +271,7 @@ const ApplicationRecap = ({ match }) => {
           </div>
         </div>
 
-        {/* Famille de conditions 3 */}
+
         <div className="rf-grid-row rf-grid-row--gutters with-margin">
           <div className="rf-col">
             <p>Mes formations</p>
@@ -322,8 +322,8 @@ const ApplicationRecap = ({ match }) => {
           />
         </div>
 
-        <SectionFooter possibleActions={possibleActions} />
-      </div>
+        <SectionFooter possibleActions={possibleActions} /> */}
+      {/* </div> */}
     </Fragment>
   );
 };
