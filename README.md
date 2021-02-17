@@ -1,4 +1,5 @@
-Backend : [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=capqualif_capqualif-poc-v1-back&metric=alert_status)](https://sonarcloud.io/dashboard?id=capqualif_capqualif-poc-v1-back) Frontend : [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=capqualif_capqualif-poc-v1-front&metric=alert_status)](https://sonarcloud.io/dashboard?id=capqualif_capqualif-poc-v1-front)
+Backend quality scan : [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=capqualif_capqualif-poc-v1-back&metric=alert_status)](https://sonarcloud.io/dashboard?id=capqualif_capqualif-poc-v1-back) 
+Frontend quality scan : [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=capqualif_capqualif-poc-v1-front&metric=alert_status)](https://sonarcloud.io/dashboard?id=capqualif_capqualif-poc-v1-front)
 
 # Capqualif
 
