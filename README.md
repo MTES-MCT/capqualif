@@ -6,7 +6,7 @@ Voici la marche à suivre pour faire tourner l'application !
 
 Pré-requis : pour faire tourner l'application sur votre ordinateur, vous devez installer node et npm (https://phoenixnap.com/kb/install-node-js-npm-on-windows).
 
-1) Cloner le repository sur votre ordinateur
+1) Clonez le repository sur votre ordinateur
 2) Pour commencer, faisons tourner le backend ! Sur votre ordinateur, ouvrez un terminal et accédez au dossier `capqualif-poc-v1 > backend`
 3) Tapez `mvn package` : cette commande permet de créer un fichier `backend-0.0.1-SNAPSHOT.jar`, qui est une version exécutable du backend de l'application
 4) Toujours dans le terminal, accédez au dossier `target`
