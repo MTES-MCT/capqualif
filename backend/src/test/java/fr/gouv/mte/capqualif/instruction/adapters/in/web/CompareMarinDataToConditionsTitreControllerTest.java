@@ -48,7 +48,6 @@ class CompareMarinDataToConditionsTitreControllerTest {
 
     @BeforeEach
     void setup() {
-//        compareMarinDataToConditionsTitreUseCase = mock(CompareMarinDataToConditionsTitreUseCase.class);
         compareMarinDataToConditionsTitreController = new CompareMarinDataToConditionsTitreController(compareMarinDataToConditionsTitreUseCase);
     }
 
