@@ -34,6 +34,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.mockito.Mockito.mock;
 
+// Need some explanations about mocking annotations ?
+// Take a look here https://stackoverflow.com/a/44200907
+
 @WebMvcTest(CompareMarinDataToConditionsTitreController.class)
 @RunWith(MockitoJUnitRunner.class)
 class CompareMarinDataToConditionsTitreControllerTest {
@@ -67,7 +70,7 @@ class CompareMarinDataToConditionsTitreControllerTest {
         // Then
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].conditionJuridicalDesignation").value("Age"))
-                // Wonder why the json is "valid" instead of "isValid" ? Take a look here : https://stackoverflow.com/q/32270422
+                // Wonder why the json is "valid" instead of "isValid" ? Read here : https://stackoverflow.com/q/32270422
                 .andExpect(jsonPath("$[0].valid").value(true));
     }
 }
