@@ -14,44 +14,30 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class CompareMarinDataToConditionsTitreController {
 
-//    @Autowired
-//    private CompareMarinDataToConditionsTitreUseCase compareMarinDataToConditionsTitreUseCase;
-//
-//    public CompareMarinDataToConditionsTitreController(CompareMarinDataToConditionsTitreUseCase compareMarinDataToConditionsTitreUseCase) {
-//        this.compareMarinDataToConditionsTitreUseCase = compareMarinDataToConditionsTitreUseCase;
-//    }
-
-//    @GetMapping("/{titreId}/{numeroDeMarin}")
-//    public List<ComparisonResult> compareMarinDataToTitreConditions(
-//            @PathVariable("titreId") String titreId,
-//            @PathVariable("numeroDeMarin") String numeroDeMarin) {
-//        return compareMarinDataToConditionsTitreUseCase.compareMarinDataToConditionsTitre(titreId, numeroDeMarin);
-
-
-    private BipUseCase bipUseCase;
-
     @Autowired
-    public CompareMarinDataToConditionsTitreController(BipUseCase bipUseCase) {
-        this.bipUseCase = bipUseCase;
+    private CompareMarinDataToConditionsTitreUseCase compareMarinDataToConditionsTitreUseCase;
+
+    public CompareMarinDataToConditionsTitreController(CompareMarinDataToConditionsTitreUseCase compareMarinDataToConditionsTitreUseCase) {
+        this.compareMarinDataToConditionsTitreUseCase = compareMarinDataToConditionsTitreUseCase;
     }
 
-    @GetMapping("/bip")
-    public String returnYes() {
-        return bipUseCase.sayYes();
+    @GetMapping("/{titreId}/{numeroDeMarin}")
+    public List<ComparisonResult> compareMarinDataToTitreConditions(
+            @PathVariable("titreId") String titreId,
+            @PathVariable("numeroDeMarin") String numeroDeMarin) {
+        return compareMarinDataToConditionsTitreUseCase.compareMarinDataToConditionsTitre(titreId, numeroDeMarin);
     }
 
-//    Version simple
-
-//    private BipService bipService;
+//    private BipUseCase bipUseCase;
 //
 //    @Autowired
-//    public CompareMarinDataToConditionsTitreController(BipService bipService) {
-//        this.bipService = bipService;
+//    public CompareMarinDataToConditionsTitreController(BipUseCase bipUseCase) {
+//        this.bipUseCase = bipUseCase;
 //    }
-//
+
 //    @GetMapping("/bip")
 //    public String returnYes() {
-//        return bipService.sayYes();
+//        return bipUseCase.sayYes();
 //    }
 
 }

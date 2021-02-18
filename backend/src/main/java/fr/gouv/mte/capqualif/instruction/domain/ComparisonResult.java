@@ -28,4 +28,12 @@ public class ComparisonResult {
         return isValid == result.isValid &&
                 conditionJuridicalDesignation.equals(result.conditionJuridicalDesignation);
     }
+
+    @Override
+    public String toString() {
+        return "ComparisonResult{" +
+                "conditionJuridicalDesignation='" + conditionJuridicalDesignation + '\'' +
+                ", isValid=" + isValid +
+                '}';
+    }
 }
