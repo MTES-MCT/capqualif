@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 @Component
-public class DataInExistingDataSourceMock {
+public class DataInExistingDataSourceMock implements ExistingDataSource {
 
     public DataToExtractFromExistingDataSource findByConditionValue(String conditionValue) {
         switch (conditionValue) {

@@ -19,13 +19,13 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
 
 
     @Autowired
-    private DataInExistingDataSourceMock dataInExistingDataSourceMock;
+    private ExistingDataSource existingDataSource;
 
     private ConditionTitreToRealDataInExistingDataSourcesMapper mapper;
 
     @BeforeEach
     void setUp() {
-        mapper = new ConditionTitreToRealDataInExistingDataSourcesMapper(dataInExistingDataSourceMock);
+        mapper = new ConditionTitreToRealDataInExistingDataSourcesMapper(existingDataSource);
     }
 
     @Test

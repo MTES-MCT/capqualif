@@ -17,14 +17,14 @@ import java.util.List;
 @Component
 public class ConditionTitreToRealDataInExistingDataSourcesMapper {
 
-    private DataInExistingDataSourceMock dataInExistingDataSourceMock;
+    private ExistingDataSource existingDataSource;
 
-    public ConditionTitreToRealDataInExistingDataSourcesMapper(DataInExistingDataSourceMock dataInExistingDataSourceMock) {
-        this.dataInExistingDataSourceMock = dataInExistingDataSourceMock;
+    public ConditionTitreToRealDataInExistingDataSourcesMapper(ExistingDataSource existingDataSource) {
+        this.existingDataSource = existingDataSource;
     }
 
     public DataToExtractFromExistingDataSource getInfosForSearchInExistingSource(ConditionTitre conditionTitre) {
-        DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource = dataInExistingDataSourceMock.findByConditionValue(conditionTitre.getValueExpressedInLegalTerms());
+        DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource = existingDataSource.findByConditionValue(conditionTitre.getValueExpressedInLegalTerms());
         return dataToExtractFromExistingDataSource;
     }
 }
