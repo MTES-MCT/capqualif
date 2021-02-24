@@ -2,6 +2,8 @@ package fr.gouv.mte.capqualif.instruction.domain;
 
 import fr.gouv.mte.capqualif.titre.domain.Value;
 
+import java.util.Objects;
+
 public class Entry {
 
     private String key;
@@ -26,5 +28,21 @@ public class Entry {
                 "key='" + key + '\'' +
                 ", value='" + value + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Entry entry = (Entry) o;
+        return key.equals(entry.key) &&
+                value.equals(entry.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key, value);
     }
 }

@@ -32,13 +32,13 @@ public class TitresApiMock {
         List<ConditionTitre> conditions = new ArrayList<ConditionTitre>
             (Arrays.asList
                 (
-                    new ConditionTitre("age minimum", "age supérieur ou égal à 16 ans", ComparisonRule.GREATER_THAN, ExistingDataSourceName.ADMINISTRES),
-                    new ConditionTitre("aptitude médicale","Aptitude toutes fonctions, toutes navigations.", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ESCULAPE),
-                    new ConditionTitre("formation modulaire : Module P1-Appui", "Module P1-Appui", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("formation modulaire : Module P2-Appui", "Module P2-Appui", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("formation modulaire : Module P3-Appui", "Module P3-Appui", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("formation modulaire : Module NP-Appui", "Module NP-Appui", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("certificat de formation de base à la sécurité (CFBS)", "certificat de formation de base à la sécurité (CFBS)", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ITEM)
+                    new ConditionTitre("âge minimum", "Âge supérieur ou égal à 16 ans", ComparisonRule.GREATER_THAN),
+                    new ConditionTitre("aptitude médicale","Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
+                    new ConditionTitre("formation modulaire : Module P1-Appui", "Module P1-Appui", ComparisonRule.STRICT_EQUALITY),
+                    new ConditionTitre("formation modulaire : Module P2-Appui", "Module P2-Appui", ComparisonRule.STRICT_EQUALITY),
+                    new ConditionTitre("formation modulaire : Module P3-Appui", "Module P3-Appui", ComparisonRule.STRICT_EQUALITY),
+                    new ConditionTitre("formation modulaire : Module NP-Appui", "Module NP-Appui", ComparisonRule.STRICT_EQUALITY),
+                    new ConditionTitre("certificat de formation de base à la sécurité (CFBS)", "Certificat de formation de base à la sécurité (CFBS)", ComparisonRule.STRICT_EQUALITY)
                 )
             );
 
@@ -52,7 +52,7 @@ public class TitresApiMock {
                 restrictions));
 
         List<ConditionTitre> conditions2 = new ArrayList<ConditionTitre>(Arrays.asList(
-                new ConditionTitre("aptitude médicale", "Aptitude toutes fonctions, toutes navigations.", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ESCULAPE)));
+                new ConditionTitre("aptitude médicale", "Aptitude toutes fonctions, toutes navigations.", ComparisonRule.STRICT_EQUALITY)));
         List<String> restrictions2 = new ArrayList<String>(Arrays.asList("Cuisson de tartes flambées", "Préparation de crèmes brûlées"));
         titresList.add(new Titre(
                 "2",

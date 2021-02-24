@@ -31,42 +31,47 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
 
     @Override
     public List<ComparisonResult> compareMarinDataToConditionsTitre(String titreId, String numeroDeMarin) {
-        List<ConditionTitre> conditions = getConditionTitre(titreId);
-        List<ComparisonResult> results = new ArrayList<ComparisonResult>();
-        for (ConditionTitre condition : conditions) {
-            List<Entry> marinMatchingData = getMarinDataPort.getMarinData(
-                        "123",
-                        conditionTitreToRealDataInExistingDataSourcesMapper.whatExistingDataToSearchFor(condition.getValueExpressedInLegalTerms()));
-
-            // ===== TO DO : for dev logs purposes, remove later =====
-            if (marinMatchingData == null) {
-                System.out.println("No matching data found for " + condition.getJuridicalDesignation() + " = " + condition.getValueExpressedInLegalTerms());
-            } else {
-                for (Entry data : marinMatchingData) {
-                    System.out.println(data.toString());
-                }
-            }
-            // =======================================================
-
-            // Passer chaque matching marinData au dataChecker !
-
-
-
-            //      check all data (minus the main key?) validity values
-
-//            List<Map> allMatchingData = dataFinder.findMatchingMarinData(condition.getExistingDataSource(),
-//            numeroDeMarin);
-//            boolean result = dataChecker.compareDataToCondition(allMatchingData, condition, LocalDate.now());
-//            CompareResult compareResult = new CompareResult(condition.getLibelle(), result);
-//            compareResults.add(compareResult);
-        }
-        return results;
+        return null;
     }
 
-    private List<ConditionTitre> getConditionTitre(String titreId) {
-        Titre titre = getTitrePort.getTitre(titreId);
-        return titre.getConditions();
-    }
+//    @Override
+//    public List<ComparisonResult> compareMarinDataToConditionsTitre(String titreId, String numeroDeMarin) {
+//        List<ConditionTitre> conditions = getConditionTitre(titreId);
+//        List<ComparisonResult> results = new ArrayList<ComparisonResult>();
+////        for (ConditionTitre condition : conditions) {
+////            List<Entry> marinMatchingData = getMarinDataPort.getMarinData(
+////                        "123",
+////                        conditionTitreToRealDataInExistingDataSourcesMapper.whatExistingDataToSearchFor(condition.getValueExpressedInLegalTerms()));
+////
+////            // ===== TO DO : for dev logs purposes, remove later =====
+////            if (marinMatchingData == null) {
+////                System.out.println("No matching data found for " + condition.getJuridicalDesignation() + " = " + condition.getValueExpressedInLegalTerms());
+////            } else {
+////                for (Entry data : marinMatchingData) {
+////                    System.out.println(data.toString());
+////                }
+////            }
+//            // =======================================================
+//
+//            // Passer chaque matching marinData au dataChecker !
+//
+//
+//
+//            //      check all data (minus the main key?) validity values
+//
+////            List<Map> allMatchingData = dataFinder.findMatchingMarinData(condition.getExistingDataSource(),
+////            numeroDeMarin);
+////            boolean result = dataChecker.compareDataToCondition(allMatchingData, condition, LocalDate.now());
+////            CompareResult compareResult = new CompareResult(condition.getLibelle(), result);
+////            compareResults.add(compareResult);
+////        }
+////        return results;
+//    }
+
+//    private List<ConditionTitre> getConditionTitre(String titreId) {
+//        Titre titre = getTitrePort.getTitre(titreId);
+//        return titre.getConditions();
+//    }
 
 
 }

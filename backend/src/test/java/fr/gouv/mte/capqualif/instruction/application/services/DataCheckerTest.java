@@ -54,30 +54,30 @@ public class DataCheckerTest {
     public void testPassIfMarinDataMatchSimpleDateCondition() {
         // Create condition
 
-        LocalDate conditionDate = LocalDate.now().minusYears(16);
-
-        ConditionTitre conditionTitre = new ConditionTitre(
-                                "age minimum",
-                                        new Value(conditionDate.toString(), DataType.DATE),
-                                        ComparisonRule.GREATER_THAN,
-                                        ExistingDataSourceName.ADMINISTRES);
-
-        // Create macthingData
-        String key = "age minimum";
-        String valueContent = "21/09/1991";
-        Value value = new Value(valueContent, DataType.DATE);
-        Entry entry = new Entry(key, value);
-        List<Entry> marinDataList = Collections.singletonList(entry);
-
-        ComparisonResult expected = new ComparisonResult(key, true);
-        DataChecker dataChecker = new DataChecker();
-
-        Mockito.when(timeConverter.convertStringDateToLocalDate(valueContent)).thenReturn(LocalDate.of(1991, 9, 21));
-        Mockito.when(timeConverter.convertStringDateToLocalDate(conditionDate.toString())).thenReturn(LocalDate.now());
-
-        ComparisonResult tested = dataChecker.compareDataToCondition(marinDataList, conditionTitre);
-        assertEquals(expected.getConditionJuridicalDesignation(), tested.getConditionJuridicalDesignation());
-        assertEquals(expected.isValid(), tested.isValid());
+//        LocalDate conditionDate = LocalDate.now().minusYears(16);
+//
+//        ConditionTitre conditionTitre = new ConditionTitre(
+//                                "age minimum",
+//                                        new Value(conditionDate.toString(), DataType.DATE),
+//                                        ComparisonRule.GREATER_THAN,
+//                                        ExistingDataSourceName.ADMINISTRES);
+//
+//        // Create macthingData
+//        String key = "age minimum";
+//        String valueContent = "21/09/1991";
+//        Value value = new Value(valueContent, DataType.DATE);
+//        Entry entry = new Entry(key, value);
+//        List<Entry> marinDataList = Collections.singletonList(entry);
+//
+//        ComparisonResult expected = new ComparisonResult(key, true);
+//        DataChecker dataChecker = new DataChecker();
+//
+//        Mockito.when(timeConverter.convertStringDateToLocalDate(valueContent)).thenReturn(LocalDate.of(1991, 9, 21));
+//        Mockito.when(timeConverter.convertStringDateToLocalDate(conditionDate.toString())).thenReturn(LocalDate.now());
+//
+//        ComparisonResult tested = dataChecker.compareDataToCondition(marinDataList, conditionTitre);
+//        assertEquals(expected.getConditionJuridicalDesignation(), tested.getConditionJuridicalDesignation());
+//        assertEquals(expected.isValid(), tested.isValid());
 
 
         // - l'expirationKey est valide : today is before expirationKey

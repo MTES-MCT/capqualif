@@ -23,11 +23,12 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
     private JsonExtractor jsonExtractor;
 
 
-    @Override
-    public List<Entry> getMarinData(String numeroDeMarin, Value conditionValue, DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource) {
-        JsonElement marinJson = getJson(numeroDeMarin, dataToExtractFromExistingDataSource.getAPIUrl());
-        return jsonExtractor.getWantedData(marinJson, dataToExtractFromExistingDataSource);
-    }
+
+//    @Override
+//    public List<Entry> getMarinData(String numeroDeMarin, List<DataToExtractFromExistingDataSource> dataToExtractFromExistingDataSource) {
+//        JsonElement marinJson = getJson(numeroDeMarin, dataToExtractFromExistingDataSource.getAPIUrl());
+//        return jsonExtractor.getWantedData(marinJson, dataToExtractFromExistingDataSource);
+//    }
 
     private JsonElement getJson(String numeroDeMarin, String existingDataSource) {
 
@@ -44,5 +45,11 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
         Gson gson = new Gson();
         JsonElement json = gson.fromJson(res, JsonElement.class);
         return json;
+    }
+
+    @Override
+    public List<Entry> getMarinData(String numeroDeMarin,
+                                    List<DataToExtractFromExistingDataSource> dataToExtractFromExistingDataSource) {
+        return null;
     }
 }
