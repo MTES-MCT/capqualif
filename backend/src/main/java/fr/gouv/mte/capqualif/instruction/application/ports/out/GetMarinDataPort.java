@@ -7,5 +7,5 @@ import fr.gouv.mte.capqualif.titre.domain.Value;
 import java.util.List;
 
 public interface GetMarinDataPort {
-    List<Entry> getMarinData(String numeroDeMarin, Value mainValue, DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource);
+    List<Entry> getMarinData(String numeroDeMarin, List<DataToExtractFromExistingDataSource> dataToExtractFromExistingDataSource);
 }

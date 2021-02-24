@@ -1,5 +1,6 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
+import fr.gouv.mte.capqualif.instruction.domain.Entry;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 
 import java.util.List;
@@ -7,21 +8,15 @@ import java.util.List;
 public class DataToExtractFromExistingDataSource {
     private ExistingDataSourceName APIName;
     private String APIUrl;
-    private KeyInExistingDataSource keyInExistingDataSourceOfMainWantedData;
-    private List<KeyInExistingDataSource> keysOfAdditionnalWantedData;
+    private Entry entryToSearchFor;
+    private List<KeyInExistingDataSource> keysOfAdditionalWantedData;
 
-    public DataToExtractFromExistingDataSource(ExistingDataSourceName APIName, String APIUrl, KeyInExistingDataSource keyInExistingDataSourceOfMainWantedData,
-                                               List<KeyInExistingDataSource> keysOfAdditionnalWantedData) {
+    public DataToExtractFromExistingDataSource(ExistingDataSourceName APIName, String APIUrl, Entry entryToSearchFor,
+                                               List<KeyInExistingDataSource> keysOfAdditionalWantedData) {
         this.APIName = APIName;
         this.APIUrl = APIUrl;
-        this.keyInExistingDataSourceOfMainWantedData = keyInExistingDataSourceOfMainWantedData;
-        this.keysOfAdditionnalWantedData = keysOfAdditionnalWantedData;
-    }
-
-    public DataToExtractFromExistingDataSource(ExistingDataSourceName APIName, String APIUrl, KeyInExistingDataSource keyInExistingDataSourceOfMainWantedData) {
-        this.APIName = APIName;
-        this.APIUrl = APIUrl;
-        this.keyInExistingDataSourceOfMainWantedData = keyInExistingDataSourceOfMainWantedData;
+        this.entryToSearchFor = entryToSearchFor;
+        this.keysOfAdditionalWantedData = keysOfAdditionalWantedData;
     }
 
     public ExistingDataSourceName getAPIName() {
@@ -32,11 +27,11 @@ public class DataToExtractFromExistingDataSource {
         return APIUrl;
     }
 
-    public KeyInExistingDataSource getKeyOfMainWantedData() {
-        return keyInExistingDataSourceOfMainWantedData;
+    public Entry getEntryToSearchFor() {
+        return entryToSearchFor;
     }
 
-    public List<KeyInExistingDataSource> getKeysOfAdditionnalWantedData() {
-        return keysOfAdditionnalWantedData;
+    public List<KeyInExistingDataSource> getKeysOfAdditionalWantedData() {
+        return keysOfAdditionalWantedData;
     }
 }

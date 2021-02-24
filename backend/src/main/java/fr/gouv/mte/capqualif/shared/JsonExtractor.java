@@ -5,7 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import fr.gouv.mte.capqualif.instruction.domain.Entry;
 import fr.gouv.mte.capqualif.legislateur.mock.DataToExtractFromExistingDataSource;
-import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ParentKey;
 import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
@@ -24,10 +24,9 @@ public class JsonExtractor {
     @Autowired
     TimeConverter timeConverter;
 
-    public List<Entry> getWantedData(JsonElement json, Value conditionValue,
-                                     DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource) {
+    public List<Entry> getWantedData(JsonElement json, DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource) {
         JsonObject jsonPortionMatchingConditionValue = findJsonObjectByEntry(json,
-                new Entry(dataToExtractFromExistingDataSource.getKeyOfMainWantedData().getKeyRealNameInExistingDataSource(), conditionValue)
+                new Entry(dataToExtractFromExistingDataSource.get, dataToExtractFromExistingDataSource.getEntryInExistingDataSourceOfMainWantedData().getValue())
         );
         return extractWantedDataFromJson(jsonPortionMatchingConditionValue, dataToExtractFromExistingDataSource);
     }
@@ -36,7 +35,7 @@ public class JsonExtractor {
 
     public JsonObject findJsonObjectByEntry(JsonElement jsonElement, Entry wantedEntry) {
 
-        // In case you don't know: an entry is a "key:value" pair. Example : for entry "bestMeal:kebab", entry key is
+        // In case you don't know: an entry is a "key:value" pair. Example: for entry "bestMeal:kebab", entry key is
         // "bestMeal" and entry value is "kebab".
         // Here, we are looking for a json object containing a specific entry
 
@@ -110,13 +109,13 @@ public class JsonExtractor {
             List<Entry> allData = new ArrayList<Entry>();
 
             // Let's add the main data!
-            allData.add(findEntryByWantedKey(json, dataToExtractFromExistingDataSource.getKeyOfMainWantedData()));
+            allData.add(findEntryByWantedKey(json, dataToExtractFromExistingDataSource.getEntryInExistingDataSourceOfMainWantedData()));
 
             // Let's add additional data!
-            if (dataToExtractFromExistingDataSource.getKeysOfAdditionnalWantedData() != null) {
-                for (KeyInExistingDataSource keyInExistingDataSourceOfAdditionalWantedData :
-                        dataToExtractFromExistingDataSource.getKeysOfAdditionnalWantedData()) {
-                    allData.add(findEntryByWantedKey(json, keyInExistingDataSourceOfAdditionalWantedData));
+            if (dataToExtractFromExistingDataSource.getKeysOfAdditionalWantedData() != null) {
+                for (EntryInExistingDataSource entryInExistingDataSourceOfAdditionalWantedData :
+                        dataToExtractFromExistingDataSource.getKeysOfAdditionalWantedData()) {
+                    allData.add(findEntryByWantedKey(json, entryInExistingDataSourceOfAdditionalWantedData));
                 }
             }
 
@@ -125,21 +124,21 @@ public class JsonExtractor {
         return Collections.emptyList();
     }
 
-    private Entry findEntryByWantedKey(JsonObject json, KeyInExistingDataSource wantedKeyInExistingDataSource) {
+    private Entry findEntryByWantedKey(JsonObject json, EntryInExistingDataSource wantedEntryInExistingDataSource) {
         JsonObject source = json;
         Entry entry;
-        if (wantedKeyInExistingDataSource.isNested()) {
-            entry = findNestedEntryByWantedKey(source, wantedKeyInExistingDataSource);
+        if (wantedEntryInExistingDataSource.isNested()) {
+            entry = findNestedEntryByWantedKey(source, wantedEntryInExistingDataSource);
             source = json;
         } else {
-            entry = createEntry(json, wantedKeyInExistingDataSource);
+            entry = createEntry(json, wantedEntryInExistingDataSource.getKey(), wantedEntryInExistingDataSource.getValue().getType());
         }
         return entry;
     }
 
     // TO DO : Rewrite to sort positionKey (make them int)
-    private Entry findNestedEntryByWantedKey(JsonObject source, KeyInExistingDataSource wantedKeyInExistingDataSource) {
-        List<ParentKey> parentKeys = wantedKeyInExistingDataSource.getParentKeys();
+    private Entry findNestedEntryByWantedKey(JsonObject source, EntryInExistingDataSource wantedEntryInExistingDataSource) {
+        List<ParentKey> parentKeys = wantedEntryInExistingDataSource.getParentKeys();
         for (ParentKey parentKey : parentKeys) {
             for (int i = 1; i <= parentKeys.size(); i++) {
                 if (parentKey.getPosition().toString().equals("POSITION_" + i) && (source.get(parentKey.getKeyRealNameInExistingDataSource()) instanceof JsonObject)) {
@@ -148,13 +147,13 @@ public class JsonExtractor {
                 }
             }
         }
-        return createEntry(source, wantedKeyInExistingDataSource);
+        return createEntry(source, wantedEntryInExistingDataSource.getKey(), wantedEntryInExistingDataSource.getValue().getType());
     }
 
-    private Entry createEntry(JsonObject source, KeyInExistingDataSource wantedKeyInExistingDataSource) {
+    private Entry createEntry(JsonObject source, String key, DataType valueType) {
         Value value =
-                new Value(source.get(wantedKeyInExistingDataSource.getKeyRealNameInExistingDataSource()).getAsString(), wantedKeyInExistingDataSource.getTypeOfAssociatedValue());
-        Entry entry = new Entry(wantedKeyInExistingDataSource.getKeyRealNameInExistingDataSource(), value);
+                new Value(source.get(key).getAsString(), valueType);
+        Entry entry = new Entry(key, value);
         return entry;
     }
 

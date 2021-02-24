@@ -4,7 +4,7 @@ import fr.gouv.mte.capqualif.instruction.application.ports.in.CompareMarinDataTo
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
 import fr.gouv.mte.capqualif.instruction.domain.Entry;
-import fr.gouv.mte.capqualif.legislateur.mock.ConditionDataSourceToDataToSearchForInExistingDataSourceMapper;
+import fr.gouv.mte.capqualif.legislateur.mock.ConditionTitreToRealDataInExistingDataSourcesMapper;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Titre;
@@ -27,20 +27,20 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     DataChecker dataChecker;
 
     @Autowired
-    ConditionDataSourceToDataToSearchForInExistingDataSourceMapper conditionDataSourceToDataToSearchForInExistingDataSourceMapper;
+    ConditionTitreToRealDataInExistingDataSourcesMapper conditionTitreToRealDataInExistingDataSourcesMapper;
 
     @Override
     public List<ComparisonResult> compareMarinDataToConditionsTitre(String titreId, String numeroDeMarin) {
         List<ConditionTitre> conditions = getConditionTitre(titreId);
         List<ComparisonResult> results = new ArrayList<ComparisonResult>();
         for (ConditionTitre condition : conditions) {
-
-            List<Entry> marinMatchingData = getMarinDataPort.getMarinData("123", condition.getValue(),
-                    conditionDataSourceToDataToSearchForInExistingDataSourceMapper.whatExistingDataToSearchFor(condition.getExistingDataSource()));
+            List<Entry> marinMatchingData = getMarinDataPort.getMarinData(
+                        "123",
+                        conditionTitreToRealDataInExistingDataSourcesMapper.whatExistingDataToSearchFor(condition.getValueExpressedInLegalTerms()));
 
             // ===== TO DO : for dev logs purposes, remove later =====
             if (marinMatchingData == null) {
-                System.out.println("No matching data found for " + condition.getJuridicalDesignation() + " = " + condition.getValue().getContent());
+                System.out.println("No matching data found for " + condition.getJuridicalDesignation() + " = " + condition.getValueExpressedInLegalTerms());
             } else {
                 for (Entry data : marinMatchingData) {
                     System.out.println(data.toString());

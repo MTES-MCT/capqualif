@@ -28,16 +28,5 @@ public class CompareMarinDataToConditionsTitreController {
         return compareMarinDataToConditionsTitreUseCase.compareMarinDataToConditionsTitre(titreId, numeroDeMarin);
     }
 
-//    private BipUseCase bipUseCase;
-//
-//    @Autowired
-//    public CompareMarinDataToConditionsTitreController(BipUseCase bipUseCase) {
-//        this.bipUseCase = bipUseCase;
-//    }
-
-//    @GetMapping("/bip")
-//    public String returnYes() {
-//        return bipUseCase.sayYes();
-//    }
 
 }

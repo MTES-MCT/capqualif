@@ -6,7 +6,6 @@ import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,13 +32,13 @@ public class TitresApiMock {
         List<ConditionTitre> conditions = new ArrayList<ConditionTitre>
             (Arrays.asList
                 (
-                    new ConditionTitre("age minimum", new Value(LocalDate.now().minusYears(16).toString(), DataType.DATE), ComparisonRule.BIGGER_THAN, ExistingDataSourceName.ADMINISTRES),
-                    new ConditionTitre("aptitude médicale", new Value("Apte TF/TN", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ESCULAPE),
-                    new ConditionTitre("formation modulaire : Module P1-Appui", new Value("P1–Appui-Navigation", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("formation modulaire : Module P2-Appui", new Value("P2–Appui-Manutention/arrimage cargaison/pêche", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("formation modulaire : Module P3-Appui", new Value("P3–Appui-Exploitation/assist/entretien/répar", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("formation modulaire : Module NP-Appui", new Value("NP–Appui-Module Nation Pont", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
-                    new ConditionTitre("certificat de formation de base à la sécurité (CFBS)", new Value("Certificat de formation de base à la sécurité (STCW10)", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ITEM)
+                    new ConditionTitre("age minimum", "age supérieur ou égal à 16 ans", ComparisonRule.GREATER_THAN, ExistingDataSourceName.ADMINISTRES),
+                    new ConditionTitre("aptitude médicale","Aptitude toutes fonctions, toutes navigations.", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ESCULAPE),
+                    new ConditionTitre("formation modulaire : Module P1-Appui", "Module P1-Appui", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
+                    new ConditionTitre("formation modulaire : Module P2-Appui", "Module P2-Appui", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
+                    new ConditionTitre("formation modulaire : Module P3-Appui", "Module P3-Appui", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
+                    new ConditionTitre("formation modulaire : Module NP-Appui", "Module NP-Appui", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.AMFORE),
+                    new ConditionTitre("certificat de formation de base à la sécurité (CFBS)", "certificat de formation de base à la sécurité (CFBS)", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ITEM)
                 )
             );
 
@@ -53,7 +52,7 @@ public class TitresApiMock {
                 restrictions));
 
         List<ConditionTitre> conditions2 = new ArrayList<ConditionTitre>(Arrays.asList(
-                new ConditionTitre("aptitude médicale", new Value("Apte TF/TN", DataType.STRING), ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ESCULAPE)));
+                new ConditionTitre("aptitude médicale", "Aptitude toutes fonctions, toutes navigations.", ComparisonRule.STRICT_EQUALITY, ExistingDataSourceName.ESCULAPE)));
         List<String> restrictions2 = new ArrayList<String>(Arrays.asList("Cuisson de tartes flambées", "Préparation de crèmes brûlées"));
         titresList.add(new Titre(
                 "2",

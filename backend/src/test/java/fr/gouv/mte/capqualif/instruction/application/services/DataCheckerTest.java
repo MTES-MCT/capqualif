@@ -59,7 +59,7 @@ public class DataCheckerTest {
         ConditionTitre conditionTitre = new ConditionTitre(
                                 "age minimum",
                                         new Value(conditionDate.toString(), DataType.DATE),
-                                        ComparisonRule.BIGGER_THAN,
+                                        ComparisonRule.GREATER_THAN,
                                         ExistingDataSourceName.ADMINISTRES);
 
         // Create macthingData
