@@ -14,6 +14,6 @@ public class GetTitreService implements GetTitreUseCase {
 
     @Override
     public Titre getTitre(String titreId) {
-        return getTitrePort.getTitre(titreId);
+        return getTitrePort.findTitreById(titreId);
     }
 }

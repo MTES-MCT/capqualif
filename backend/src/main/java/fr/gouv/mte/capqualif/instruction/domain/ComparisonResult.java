@@ -18,6 +18,14 @@ public class ComparisonResult {
         return isValid;
     }
 
+    public void setConditionJuridicalDesignation(String conditionJuridicalDesignation) {
+        this.conditionJuridicalDesignation = conditionJuridicalDesignation;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

@@ -1,6 +1,5 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
-import fr.gouv.mte.capqualif.instruction.domain.Entry;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 
 import java.util.List;

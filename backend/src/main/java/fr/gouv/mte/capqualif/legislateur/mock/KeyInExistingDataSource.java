@@ -6,25 +6,35 @@ import java.util.List;
 import java.util.Objects;
 
 public class KeyInExistingDataSource {
-    private String key;
+    private String name;
     private DataType dataType;
     private boolean isNested;
     private List<ParentKey> parentKeys;
 
-    public KeyInExistingDataSource(String key, DataType dataType) {
-        this.key = key;
+    public KeyInExistingDataSource(String name) {
+        this.name = name;
+    }
+
+    public KeyInExistingDataSource(String name, DataType dataType) {
+        this.name = name;
         this.dataType = dataType;
     }
 
-    public KeyInExistingDataSource(String key, DataType dataType, boolean isNested, List<ParentKey> parentKeys) {
-        this.key = key;
+    public KeyInExistingDataSource(String name, boolean isNested, List<ParentKey> parentKeys) {
+        this.name = name;
+        this.isNested = isNested;
+        this.parentKeys = parentKeys;
+    }
+
+    public KeyInExistingDataSource(String name, DataType dataType, boolean isNested, List<ParentKey> parentKeys) {
+        this.name = name;
         this.dataType = dataType;
         this.isNested = isNested;
         this.parentKeys = parentKeys;
     }
 
-    public String getKey() {
-        return key;
+    public String getName() {
+        return name;
     }
 
     public DataType getDataType() {
@@ -47,20 +57,20 @@ public class KeyInExistingDataSource {
             return false;
         KeyInExistingDataSource that = (KeyInExistingDataSource) o;
         return isNested == that.isNested &&
-                key.equals(that.key) &&
+                name.equals(that.name) &&
                 dataType == that.dataType &&
                 Objects.equals(parentKeys, that.parentKeys);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(key, dataType, isNested, parentKeys);
+        return Objects.hash(name, dataType, isNested, parentKeys);
     }
 
     @Override
     public String toString() {
         return "KeyInExistingDataSource{" +
-                "key='" + key + '\'' +
+                "key='" + name + '\'' +
                 ", dataType=" + dataType +
                 ", isNested=" + isNested +
                 ", parentKeys=" + parentKeys +

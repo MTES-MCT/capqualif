@@ -4,14 +4,17 @@ import fr.gouv.mte.capqualif.instruction.application.ports.in.CompareMarinDataTo
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
 import fr.gouv.mte.capqualif.instruction.domain.Entry;
-import fr.gouv.mte.capqualif.legislateur.mock.ConditionTitreToRealDataInExistingDataSourcesMapper;
+import fr.gouv.mte.capqualif.legislateur.mock.DataToExtractFromExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataSource;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Titre;
+import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -23,15 +26,53 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     @Autowired
     GetMarinDataPort getMarinDataPort;
 
-    @Autowired
-    DataChecker dataChecker;
 
     @Autowired
-    ConditionTitreToRealDataInExistingDataSourcesMapper conditionTitreToRealDataInExistingDataSourcesMapper;
+    ExistingDataSource existingDataSource;
+
+    public CompareMarinDataToConditionsTitreService(GetTitrePort getTitrePort, GetMarinDataPort getMarinDataPort,
+                                                    ExistingDataSource existingDataSource) {
+        this.getTitrePort = getTitrePort;
+        this.getMarinDataPort = getMarinDataPort;
+        this.existingDataSource = existingDataSource;
+    }
 
     @Override
     public List<ComparisonResult> compareMarinDataToConditionsTitre(String titreId, String numeroDeMarin) {
-        return null;
+        Titre titre = getTitrePort.findTitreById(titreId);
+        for (ConditionTitre condition : titre.getConditions()) {
+            compareConditionToMarinData(condition, numeroDeMarin);
+        }
+        String conditionJuridicalDesignation = "Aptitude médicale";
+        boolean isValid = true;
+        ComparisonResult result = new ComparisonResult(conditionJuridicalDesignation,
+                isValid);
+        return Collections.singletonList(result);
+    }
+
+    private void compareConditionToMarinData(ConditionTitre condition, String numeroDeMarin) {
+        DataToExtractFromExistingDataSource realConditionData = existingDataSource.findByConditionValue(condition.getValueExpressedInLegalTerms());
+        List<EntryInExistingDataSource> marinData = getMarinDataPort.getMarinData(numeroDeMarin, realConditionData);
+        ComparisonResult result = null;
+        for (EntryInExistingDataSource entry : marinData) {
+            if (realConditionData.getEntryToSearchFor().getKeyInExistingDataSource().getDataType().equals(DataType.STRING)) {
+//                compareStrings(realConditionData, result, entry);
+            }
+
+        }
+//        realConditionData.getEntryToSearchFor().getValue().getContent()
+
+    }
+
+    private void compareStrings(DataToExtractFromExistingDataSource realConditionData, ComparisonResult result,
+                                Entry entry) {
+        if (entry.getKey().equals(realConditionData.getEntryToSearchFor().getKeyInExistingDataSource().getName())) {
+            if (entry.getValue().equals(realConditionData.getEntryToSearchFor().getValue().getContent())) {
+                result.setValid(true);
+            } else {
+                result.setValid(false);
+            }
+        }
     }
 
 //    @Override
@@ -41,11 +82,13 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
 ////        for (ConditionTitre condition : conditions) {
 ////            List<Entry> marinMatchingData = getMarinDataPort.getMarinData(
 ////                        "123",
-////                        conditionTitreToRealDataInExistingDataSourcesMapper.whatExistingDataToSearchFor(condition.getValueExpressedInLegalTerms()));
+////                        conditionTitreToRealDataInExistingDataSourcesMapper.whatExistingDataToSearchFor(condition
+// .getValueExpressedInLegalTerms()));
 ////
 ////            // ===== TO DO : for dev logs purposes, remove later =====
 ////            if (marinMatchingData == null) {
-////                System.out.println("No matching data found for " + condition.getJuridicalDesignation() + " = " + condition.getValueExpressedInLegalTerms());
+////                System.out.println("No matching data found for " + condition.getJuridicalDesignation() + " = " +
+// condition.getValueExpressedInLegalTerms());
 ////            } else {
 ////                for (Entry data : marinMatchingData) {
 ////                    System.out.println(data.toString());

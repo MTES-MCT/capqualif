@@ -24,9 +24,9 @@ public class Entry {
 
     @Override
     public String toString() {
-        return "Entry{" +
+        return "ComparisonResultEntry{" +
                 "key='" + key + '\'' +
-                ", value='" + value + '\'' +
+                ", value=" + value +
                 '}';
     }
 
@@ -36,9 +36,9 @@ public class Entry {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        Entry entry = (Entry) o;
-        return key.equals(entry.key) &&
-                value.equals(entry.value);
+        Entry that = (Entry) o;
+        return key.equals(that.key) &&
+                value.equals(that.value);
     }
 
     @Override

@@ -5,8 +5,8 @@ import com.google.gson.JsonElement;
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.Entry;
 import fr.gouv.mte.capqualif.legislateur.mock.DataToExtractFromExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.shared.JsonExtractor;
-import fr.gouv.mte.capqualif.titre.domain.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -24,11 +24,12 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
 
 
 
-//    @Override
-//    public List<Entry> getMarinData(String numeroDeMarin, List<DataToExtractFromExistingDataSource> dataToExtractFromExistingDataSource) {
-//        JsonElement marinJson = getJson(numeroDeMarin, dataToExtractFromExistingDataSource.getAPIUrl());
-//        return jsonExtractor.getWantedData(marinJson, dataToExtractFromExistingDataSource);
-//    }
+    @Override
+    public List<EntryInExistingDataSource> getMarinData(String numeroDeMarin, DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource) {
+        JsonElement marinJson = getJson(numeroDeMarin, dataToExtractFromExistingDataSource.getAPIUrl());
+        return jsonExtractor.getWantedData(marinJson, dataToExtractFromExistingDataSource);
+    }
+
 
     private JsonElement getJson(String numeroDeMarin, String existingDataSource) {
 
@@ -45,11 +46,5 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
         Gson gson = new Gson();
         JsonElement json = gson.fromJson(res, JsonElement.class);
         return json;
-    }
-
-    @Override
-    public List<Entry> getMarinData(String numeroDeMarin,
-                                    List<DataToExtractFromExistingDataSource> dataToExtractFromExistingDataSource) {
-        return null;
     }
 }

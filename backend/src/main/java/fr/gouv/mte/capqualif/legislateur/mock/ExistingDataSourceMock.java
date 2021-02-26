@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 @Component
-public class DataInExistingDataSourceMock implements ExistingDataSource {
+public class ExistingDataSourceMock implements ExistingDataSource {
 
     public DataToExtractFromExistingDataSource findByConditionValue(String conditionValue) {
         switch (conditionValue) {
@@ -17,8 +17,8 @@ public class DataInExistingDataSourceMock implements ExistingDataSource {
                 return new DataToExtractFromExistingDataSource(
                         ExistingDataSourceName.ADMINISTRES,
                         "https://run.mocky.io/v3/23493c22-70dd-4b8b-9e54-19aa5108c66b",
-                        new EntryInExistingDataSource(new KeyInExistingDataSource("dateNaissance", DataType.DATE),
-                                null),
+                        new EntryInExistingDataSource(new KeyInExistingDataSource("dateNaissance"),
+                                null, DataType.DATE),
                         null
                 );
             case "Aptitude toutes fonctions, toutes navigations":
@@ -26,18 +26,18 @@ public class DataInExistingDataSourceMock implements ExistingDataSource {
                         ExistingDataSourceName.ESCULAPE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
-                                new KeyInExistingDataSource("libelle", DataType.STRING),
-                                new Value("Apte TF/TN", DataType.STRING)
+                                new KeyInExistingDataSource("libelle"),
+                                new Value("Apte TF/TN"), DataType.STRING
                         ),
-                        Arrays.asList(new KeyInExistingDataSource("dateFinDeValidite", DataType.DATE))
+                        Arrays.asList(new KeyInExistingDataSource("dateFinDeValidite"))
                 );
             case "Module P1-Appui":
                 return new DataToExtractFromExistingDataSource(
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
-                                new KeyInExistingDataSource("libelleModuleUv", DataType.STRING),
-                                new Value("P1–Appui-Navigation", DataType.STRING)
+                                new KeyInExistingDataSource("libelleModuleUv"),
+                                new Value("P1–Appui-Navigation"), DataType.STRING
                         ),
                         Collections.singletonList(
                                 new KeyInExistingDataSource("dateFinValidite", DataType.DATE)
@@ -48,8 +48,8 @@ public class DataInExistingDataSourceMock implements ExistingDataSource {
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
-                                new KeyInExistingDataSource("libelleModuleUv", DataType.STRING),
-                                new Value("P2–Appui-Manutention/arrimage cargaison/pêche", DataType.STRING)
+                                new KeyInExistingDataSource("libelleModuleUv"),
+                                new Value("P2–Appui-Manutention/arrimage cargaison/pêche"), DataType.STRING
                         ),
                         Collections.singletonList(
                                 new KeyInExistingDataSource("dateFinValidite", DataType.DATE)
@@ -60,8 +60,8 @@ public class DataInExistingDataSourceMock implements ExistingDataSource {
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
-                                new KeyInExistingDataSource("libelleModuleUv", DataType.STRING),
-                                new Value("P3–Appui-Exploitation/assist/entretien/répar", DataType.STRING)
+                                new KeyInExistingDataSource("libelleModuleUv"),
+                                new Value("P3–Appui-Exploitation/assist/entretien/répar"), DataType.STRING
                         ),
                         Collections.singletonList(
                                 new KeyInExistingDataSource("dateFinValidite", DataType.DATE)
@@ -72,8 +72,8 @@ public class DataInExistingDataSourceMock implements ExistingDataSource {
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
-                                new KeyInExistingDataSource("libelleModuleUv", DataType.STRING),
-                                new Value("NP–Appui-Module Nation Pont", DataType.STRING)
+                                new KeyInExistingDataSource("libelleModuleUv"),
+                                new Value("NP–Appui-Module Nation Pont"),DataType.STRING
                         ),
                         Collections.singletonList(
                                 new KeyInExistingDataSource("dateFinValidite", DataType.DATE)
@@ -84,13 +84,12 @@ public class DataInExistingDataSourceMock implements ExistingDataSource {
                         ExistingDataSourceName.ITEM,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
-                                new KeyInExistingDataSource("libelle", DataType.STRING, true,
+                                new KeyInExistingDataSource("libelle", true,
                                         Collections.singletonList(new ParentKey(Position.POSITION_1, "codeBrevetMarin"
                                         ))),
                                 new Value(
-                                        "Certificat de matelot pont (2015)",
-                                        DataType.STRING
-                                )
+                                        "Certificat de matelot pont (2015)"
+                                ), DataType.STRING
                         ),
                         Arrays.asList(
                                 new KeyInExistingDataSource("dateExpiration", DataType.DATE),
