@@ -1,14 +1,22 @@
 package fr.gouv.mte.capqualif.shared;
 
+
+import com.google.gson.JsonArray;
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.ReadContext;
 import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ParentKey;
-import fr.gouv.mte.capqualif.legislateur.mock.Position;
 import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
+import net.minidev.json.JSONArray;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 @Component
@@ -20,7 +28,7 @@ public class JsonExtractor {
         List<EntryInExistingDataSource> wantedData = new ArrayList<EntryInExistingDataSource>();
 
         if (mainWantedData.getKeyInExistingDataSource().isNested()) {
-            findByEntry(mainWantedData.getKeyInExistingDataSource().getParentKeys(), mainWantedData.getValue().getContent());
+            findJsonPortionByEntry(json, mainWantedData, mainWantedData.getValue().getContent());
         }
 
 //        EntryInExistingDataSource resultForMainWantedData =
@@ -36,39 +44,61 @@ public class JsonExtractor {
         return wantedData;
     }
 
-    private String findByEntry(List<ParentKey> parentKeys, String value) {
-        String path = buildPath(parentKeys);
+    private String findJsonPortionByEntry(String json, EntryInExistingDataSource mainWantedData, String value) {
+        // query example : $..codeBrevetMarin[?(@.libelle == 'Certificat de formation de base à la sécurité (STCW10)')]
+
+        String path = buildPath(mainWantedData.getKeyInExistingDataSource().getParentKeys());
+        String query = buildQuery(mainWantedData, path);
+        Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
+
+        JSONArray jsonPortion = JsonPath.parse(json).read(query);
+//        List<String> wantedEntry = ctx.read(query);
+//        JsonArray jsonPortion = ctx.read("$..codeBrevetMarin[?(@.libelle == 'Certificat de formation de base à la " +
+//                "sécurité (STCW10)')]");
+
+        System.out.println(jsonPortion);
+
+
         return null;
     }
 
+    private String buildQuery(EntryInExistingDataSource mainWantedData, String path) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("$"); // The root element to query. This starts all path expressions.
+        stringBuilder.append(".."); // Deep scan. Available anywhere a name is required.
+        stringBuilder.append(path); // The key we are looking for.If the key is nested (has parents), it will be
+        // something like : parent1.parent2.key
+        stringBuilder.append("[?(@.");   // [? : Filter expression. Expression must evaluate to a boolean value.
+        // @ : The current node being processed by a filter predicate.
+        // .<name> : Dot-notated child (here, name is the variable in the next line)
+        stringBuilder.append(mainWantedData.getKeyInExistingDataSource().getName());
+        stringBuilder.append("=='");
+        stringBuilder.append(mainWantedData.getValue().getContent());
+        stringBuilder.append("'");
+        stringBuilder.append(")]");
+        System.out.println(stringBuilder.toString());
+        return stringBuilder.toString();
+    }
+
     private String buildPath(List<ParentKey> parentKeys) {
-        // query example : $..codeBrevetMarin.[?(@.libelle == 'Certificat de formation de base à la sécurité (STCW10)')]
 
-        List<ParentKey> testKeys = Arrays.asList(new ParentKey(Position.POSITION_1, "bla"),
-                new ParentKey(Position.POSITION_3, "bli"),
-                new ParentKey(Position.POSITION_2, "ble"));
 
-        for (ParentKey key : testKeys) {
-            System.out.println("testKeys :" + key);
-        }
-        List<ParentKey> sortedTestKeys = testKeys.stream()
+//        List<ParentKey> test = Arrays.asList(new ParentKey(Position.POSITION_1, "bla"), new ParentKey(Position
+//        .POSITION_2, "bli"));
+
+        StringJoiner stringJoiner = new StringJoiner(".");
+
+        List<ParentKey> sortedParentKeys = parentKeys.stream()
                 .sorted(Comparator.comparing(ParentKey::getPosition))
                 .collect(Collectors.toList());
-        for (ParentKey key : sortedTestKeys) {
-            System.out.println("sortedTestKeys :" + key);
+        for (ParentKey key : sortedParentKeys) {
+            System.out.println("sortedParentKeys :" + key);
+            stringJoiner.add(key.getKeyName());
         }
-
-//        for (ParentKey key : parentKeys) {
-//            System.out.println("parentKeys :" + key);
-//        }
-//        List<ParentKey> sortedParentKeys = parentKeys.stream()
-//                .sorted(Comparator.comparing(ParentKey::getPosition))
-//                .collect(Collectors.toList());
-//        for (ParentKey key : sortedParentKeys) {
-//            System.out.println("sortedParentKeys :" + key);
-//        }
-
-        return null;
+        String path = stringJoiner.toString();
+        System.out.println(path);
+        return path;
     }
 
     private EntryInExistingDataSource createResult(String key, String value, DataType dataType) {

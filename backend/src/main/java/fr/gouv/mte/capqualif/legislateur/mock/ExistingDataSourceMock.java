@@ -88,7 +88,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                         Collections.singletonList(new ParentKey(Position.POSITION_1, "codeBrevetMarin"
                                         ))),
                                 new Value(
-                                        "Certificat de matelot pont (2015)"
+                                        "Certificat de formation de base à la sécurité (STCW10)"
                                 ), DataType.STRING
                         ),
                         Arrays.asList(

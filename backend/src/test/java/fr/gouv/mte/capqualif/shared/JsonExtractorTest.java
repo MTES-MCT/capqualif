@@ -401,7 +401,7 @@ public class JsonExtractorTest {
                                 Collections.singletonList(new ParentKey(Position.POSITION_1, "codeBrevetMarin"
                                 ))),
                         new Value(
-                                "Certificat de matelot pont (2015)"
+                                "Certificat de formation de base à la sécurité (STCW10)"
                         ), DataType.STRING
                 ),
                 Arrays.asList(new KeyInExistingDataSource("dateExpiration", DataType.DATE),
@@ -432,7 +432,7 @@ public class JsonExtractorTest {
         List<EntryInExistingDataSource> expectedResult = Arrays.asList(
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource("libelle"),
-                        new Value("Certificat de matelot pont (2015)"),
+                        new Value("Certificat de formation de base à la sécurité (STCW10)"),
                         DataType.STRING
                 ),
                 new EntryInExistingDataSource(
