@@ -24,12 +24,12 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
 
     @Override
     public List<EntryInExistingDataSource> getMarinData(String numeroDeMarin, DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource) {
-        JsonElement marinJson = getJson(numeroDeMarin, dataToExtractFromExistingDataSource.getAPIUrl());
+        String marinJson = getJson(numeroDeMarin, dataToExtractFromExistingDataSource.getAPIUrl());
         return jsonExtractor.getWantedData(marinJson, dataToExtractFromExistingDataSource.getEntryToSearchFor(), dataToExtractFromExistingDataSource.getKeysOfAdditionalWantedData());
     }
 
 
-    private JsonElement getJson(String numeroDeMarin, String existingDataSource) {
+    private String getJson(String numeroDeMarin, String existingDataSource) {
 
         // TO DO : convert numeroDeMarin to ID_ADMINISTRE
 
@@ -42,7 +42,8 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
 
         String res = restTemplate.getForObject(request, String.class);
         Gson gson = new Gson();
-        JsonElement json = gson.fromJson(res, JsonElement.class);
+        String json = gson.fromJson(res, JsonElement.class).toString();
+        System.out.println("Retrieved json is " + json);
         return json;
     }
 }

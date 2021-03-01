@@ -1,21 +1,25 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
+// For reference, see : https://stackoverflow.com/a/8811869
+
 public enum Position {
 
     // Starts from the farthest parent.
     // Real world example :
     //
-    //      great parent            POSITION_1
-    //      parent                  POSITION_2
+    //      great great parent      POSITION_1
+    //      great parent            POSITION_2
+    //      parent                  POSITION_3
 
-    POSITION_1,
-    POSITION_2,
-    POSITION_3,
-    POSITION_4,
-    POSITION_5,
-    POSITION_6,
-    POSITION_7,
-    POSITION_8,
-    POSITION_9,
-    POSITION_10
+    POSITION_1(1),
+    POSITION_2 (2),
+    POSITION_3 (3),
+    POSITION_4 (4),
+    POSITION_5 (5);
+
+    private int numVal;
+
+    Position(int numVal) {
+        this.numVal = numVal;
+    }
 }
