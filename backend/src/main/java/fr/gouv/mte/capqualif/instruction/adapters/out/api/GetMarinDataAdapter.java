@@ -22,12 +22,10 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
     @Autowired
     private JsonExtractor jsonExtractor;
 
-
-
     @Override
     public List<EntryInExistingDataSource> getMarinData(String numeroDeMarin, DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource) {
         JsonElement marinJson = getJson(numeroDeMarin, dataToExtractFromExistingDataSource.getAPIUrl());
-        return jsonExtractor.getWantedData(marinJson, dataToExtractFromExistingDataSource);
+        return jsonExtractor.getWantedData(marinJson, dataToExtractFromExistingDataSource.getEntryToSearchFor(), dataToExtractFromExistingDataSource.getKeysOfAdditionalWantedData());
     }
 
 

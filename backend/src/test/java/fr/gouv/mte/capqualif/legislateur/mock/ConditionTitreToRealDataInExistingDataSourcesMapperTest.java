@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
 
-
     @Autowired
     private ExistingDataSource existingDataSource;
 
@@ -32,7 +31,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
     void shouldReturnTheRightDataToExtractFromExistingDataSource_entryWithValue() {
 
         // Given
-        ConditionTitre conditionTitre = new ConditionTitre("aptitude médicale",
+        ConditionTitre conditionTitre = new ConditionTitre("Aptitude médicale",
                 "Aptitude toutes fonctions, toutes navigations",
                 ComparisonRule.STRICT_EQUALITY);
 
@@ -44,8 +43,8 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
                 ExistingDataSourceName.ESCULAPE,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
-                        new KeyInExistingDataSource("libelle", DataType.STRING),
-                        new Value("Apte TF/TN", DataType.STRING)
+                        new KeyInExistingDataSource("libelle"),
+                        new Value("Apte TF/TN"),DataType.STRING
                 ),
                 Arrays.asList(new KeyInExistingDataSource("dateFinDeValidite", DataType.DATE))
         );
@@ -71,8 +70,8 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
                 ExistingDataSourceName.ADMINISTRES,
                 "https://run.mocky.io/v3/23493c22-70dd-4b8b-9e54-19aa5108c66b",
                 new EntryInExistingDataSource(
-                        new KeyInExistingDataSource("dateNaissance", DataType.DATE),
-                        null
+                        new KeyInExistingDataSource("dateNaissance"),
+                        null, DataType.DATE
                 ),
                 null);
 

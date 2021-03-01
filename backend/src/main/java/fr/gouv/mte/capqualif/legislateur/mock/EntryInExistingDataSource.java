@@ -45,7 +45,7 @@ public class EntryInExistingDataSource {
             return false;
         EntryInExistingDataSource that = (EntryInExistingDataSource) o;
         return keyInExistingDataSource.equals(that.keyInExistingDataSource) &&
-                value.equals(that.value) &&
+                Objects.equals(value, that.value) &&
                 dataType == that.dataType;
     }
 
