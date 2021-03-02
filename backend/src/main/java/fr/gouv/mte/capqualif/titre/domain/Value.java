@@ -1,24 +1,32 @@
 package fr.gouv.mte.capqualif.titre.domain;
 
-import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
+import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
 
 import java.util.Objects;
 
 public class Value {
-    private String content;
 
-    public Value(String content) {
-        this.content = content;
+    private String valueExpressedInLegalTerms;
+    private ComparisonRule howToCompareValue;
+
+    public Value(String valueExpressedInLegalTerms, ComparisonRule howToCompareValue) {
+        this.valueExpressedInLegalTerms = valueExpressedInLegalTerms;
+        this.howToCompareValue = howToCompareValue;
     }
 
-    public String getContent() {
-        return content;
+    public String getValueExpressedInLegalTerms() {
+        return valueExpressedInLegalTerms;
+    }
+
+    public ComparisonRule getHowToCompareValue() {
+        return howToCompareValue;
     }
 
     @Override
     public String toString() {
         return "Value{" +
-                "content='" + content + '\'' +
+                "valueExpressedInLegalTerms='" + valueExpressedInLegalTerms + '\'' +
+                ", howToCompareValue=" + howToCompareValue +
                 '}';
     }
 
@@ -29,11 +37,12 @@ public class Value {
         if (o == null || getClass() != o.getClass())
             return false;
         Value value = (Value) o;
-        return content.equals(value.content);
+        return valueExpressedInLegalTerms.equals(value.valueExpressedInLegalTerms) &&
+                howToCompareValue == value.howToCompareValue;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(content);
+        return Objects.hash(valueExpressedInLegalTerms, howToCompareValue);
     }
 }

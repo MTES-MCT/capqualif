@@ -2,7 +2,6 @@ package fr.gouv.mte.capqualif.shared;
 
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.*;
-import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,31 +46,35 @@ public class JsonExtractorTest {
                 "}";
 
         DataToExtractFromExistingDataSource data = new DataToExtractFromExistingDataSource(
-                "Aptitude médicale",
                 ExistingDataSourceName.ESCULAPE,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
-                        new KeyInExistingDataSource("libelle"),
-                        new Value("Apte TF/TN"), DataType.STRING
+                        new KeyInExistingDataSource(
+                                "Aptitude médicale",
+                                "libelle",
+                                DataType.STRING),
+                        new ValueInExistingDataSource("Apte TF/TN"), DataType.STRING
                 ),
-                Arrays.asList(new KeyInExistingDataSource("dateFinDeValidite"))
+                Arrays.asList(new KeyInExistingDataSource(
+                        "Date de fin de validité",
+                        "dateFinDeValidite",
+                        DataType.DATE))
         );
 
         // When
-        List<EntryInExistingDataSource> actualResult = jsonExtractor.getWantedData(json, data.getEntryToSearchFor(),
-                data.getKeysOfAdditionalWantedData());
+        List<ExtractionResult> actualResult = jsonExtractor.getAllWantedData(json, data);
 
         // Then
 
-        List<EntryInExistingDataSource> expectedResult = Arrays.asList(
-                new EntryInExistingDataSource(
-                        new KeyInExistingDataSource("libelle"),
-                        new Value("Apte TF/TN"),
+        List<ExtractionResult> expectedResult = Arrays.asList(
+                new ExtractionResult(
+                        "Aptitude médicale",
+                        "Apte TF/TN",
                         DataType.STRING
                 ),
-                new EntryInExistingDataSource(
-                        new KeyInExistingDataSource("dateFinDeValidite"),
-                        new Value("1640905200000"),
+                new ExtractionResult(
+                        "Date de fin de validité",
+                        "1640905200000",
                         DataType.DATE
                 )
         );
@@ -396,61 +399,60 @@ public class JsonExtractorTest {
                 "]";
 
         DataToExtractFromExistingDataSource data = new DataToExtractFromExistingDataSource(
-                "Certificat de formation de base à la sécurité (CFBS)",
                 ExistingDataSourceName.ITEM,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
-                        new KeyInExistingDataSource("libelle", true,
-                                Collections.singletonList(new ParentKey(Position.POSITION_1, "codeBrevetMarin"
-                                ))),
-                        new Value(
-                                "Certificat de formation de base à la sécurité (STCW10)"
-                        ), DataType.STRING
-                ),
-                Arrays.asList(new KeyInExistingDataSource("dateExpiration", DataType.DATE),
                         new KeyInExistingDataSource(
+                                "Certificat de formation de base à la sécurité (CFBS)",
+                                "libelle",
+                                true,
+                                Collections.singletonList(new ParentKey(Position.POSITION_1, "codeBrevetMarin")
+                                )
+                        ),
+                        new ValueInExistingDataSource(
+                                "Certificat de formation de base à la sécurité (STCW10)"
+                        ),
+                        DataType.STRING
+                ),
+                Arrays.asList(
+                        new KeyInExistingDataSource(
+                                "Date de fin de validité",
+                                "dateExpiration",
+                                DataType.DATE),
+                        new KeyInExistingDataSource(
+                                "statut",
                                 "libelle",
                                 DataType.STRING,
                                 true,
                                 Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre"))
                         )
-//                        new KeyInExistingDataSource(
-//                                "libelle",
-//                                DataType.STRING,
-//                                true,
-//                                Arrays.asList(new ParentKey(Position.POSITION_1, "codeEtatTitre"),
-//                                        new ParentKey(Position.POSITION_2, "codeExport"),
-//                                        new ParentKey(Position.POSITION_3, "niveau1"),
-//                                        new ParentKey(Position.POSITION_4, "blabl"))
-//                        )
                 )
         );
 
         // When
-        List<ExtractionResult> actualResult = jsonExtractor.getWantedData(json, data.getEntryToSearchFor(),
-                data.getKeysOfAdditionalWantedData());
+        List<ExtractionResult> actualResult = jsonExtractor.getAllWantedData(json, data);
 
         // Then
 
         List<ExtractionResult> expectedResult = Arrays.asList(
                 new ExtractionResult(
-                        new KeyInExistingDataSource("libelle"),
-                        "Certificat de formation de base à la sécurité (STCW10)")
+                        "Certificat de formation de base à la sécurité (CFBS)",
+                        "Certificat de formation de base à la sécurité (STCW10)",
+                        DataType.STRING
                 ),
                 new ExtractionResult(
-                        new KeyInExistingDataSource("libelle"),
-                        "Valide"
+                        "Statut",
+                        "Valide",
+                        DataType.STRING
                 ),
                 new ExtractionResult(
-                        new KeyInExistingDataSource("dateExpiration"),
-                        "11/02/2025"
+                        "Date de fin de validité",
+                        "11/02/2025",
+                        DataType.DATE
                 )
         );
 
         assertEquals(expectedResult, actualResult);
 
     }
-
-
-
 }

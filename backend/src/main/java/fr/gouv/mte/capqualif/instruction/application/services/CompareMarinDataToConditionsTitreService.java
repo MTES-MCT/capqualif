@@ -79,7 +79,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         for (ConditionTitre condition : conditions) {
             List<ExtractionResult> marinMatchingData = getMarinDataPort.getMarinData(
                     "123",
-                    existingDataSource.findByConditionValue(condition.getValueExpressedInLegalTerms()));
+                    existingDataSource.findByConditionValue(condition));
         }
         return null;
     }

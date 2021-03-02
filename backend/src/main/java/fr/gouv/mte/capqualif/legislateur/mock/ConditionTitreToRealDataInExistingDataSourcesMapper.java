@@ -15,7 +15,7 @@ public class ConditionTitreToRealDataInExistingDataSourcesMapper {
     }
 
     public DataToExtractFromExistingDataSource getInfosForSearchInExistingSource(ConditionTitre conditionTitre) {
-        DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource = existingDataSource.findByConditionValue(conditionTitre.getValueExpressedInLegalTerms());
+        DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource = existingDataSource.findByConditionValue(conditionTitre);
         return dataToExtractFromExistingDataSource;
     }
 }

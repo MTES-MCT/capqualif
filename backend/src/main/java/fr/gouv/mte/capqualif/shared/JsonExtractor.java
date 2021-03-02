@@ -4,10 +4,10 @@ package fr.gouv.mte.capqualif.shared;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
+import fr.gouv.mte.capqualif.legislateur.mock.DataToExtractFromExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ParentKey;
-import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import net.minidev.json.JSONArray;
 import org.springframework.stereotype.Component;
@@ -21,78 +21,120 @@ import java.util.stream.Collectors;
 @Component
 public class JsonExtractor {
 
-    public List<ExtractionResult> getWantedData(String json, EntryInExistingDataSource mainWantedData,
-                                                         List<KeyInExistingDataSource> additionalWantedData) {
+    public List<ExtractionResult> getAllWantedData(String json,
+                                                   DataToExtractFromExistingDataSource dataToExtract) {
 
-        List<ExtractionResult> wantedData = new ArrayList<ExtractionResult>();
+        List<ExtractionResult> results = new ArrayList<ExtractionResult>();
+
+        String mainWantedDataFromJson = extractWantedDataFromJson(
+                json,
+                dataToExtract.getMainWantedData(),
+                dataToExtract.getMainWantedData().getKeyInExistingDataSource().getRealNameInExistingDataSource()
+        );
+        results.add(
+                new ExtractionResult(
+                        dataToExtract.getMainWantedData().getKeyInExistingDataSource().getJuridicalName(),
+                        mainWantedDataFromJson,
+                        dataToExtract.getMainWantedData().getDataType()
+                )
+        );
+
+        for (KeyInExistingDataSource key : dataToExtract.getKeysOfAdditionalWantedData()) {
+            String additionalWantedDataFromJson = extractWantedDataFromJson(
+                    json,
+                    dataToExtract.getMainWantedData(),
+                    key.getRealNameInExistingDataSource()
+            );
+            results.add(
+                    new ExtractionResult(
+                            key.getJuridicalName(),
+                            additionalWantedDataFromJson,
+                            key.getDataType()
+                    )
+            );
+        }
 
 
-        findByEntry(json, mainWantedData);
-
-
-        return wantedData;
+        return results;
     }
 
+    private String extractWantedDataFromJson(String json, EntryInExistingDataSource wantedData, String key) {
+        String query = buildQuery(wantedData, key);
+        String wantedDataValue = findInJson(query, json);
+        System.out.println("wanted data is " + wantedDataValue);
+        return wantedDataValue;
+    }
+
+
     private String findByEntry(String json, EntryInExistingDataSource mainWantedData) {
-        String path = buildPath(mainWantedData.getKeyInExistingDataSource().getParentKeys());
-        String mainDataQuery = buildQuery(path, mainWantedData, null);
-        Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
-        JSONArray mainWantedValue = JsonPath.parse(json).read(mainDataQuery);
-        System.out.println(mainWantedValue.toString());
+
         return null;
     }
 
+    private String findInJson(String query, String json) {
+        Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
+        JSONArray wantedValue = JsonPath.parse(json).read(query);
+        return wantedValue.toString();
+    }
+
     /**
+     * Builds the query used to fetch the data we want from a JSON document.
      *
-     * @param keysOfAdditionalWantedData can be null
-     *
-     **/
-    private String buildQuery(String path, EntryInExistingDataSource wantedData,
-                              KeyInExistingDataSource keysOfAdditionalWantedData) {
+     * @param dataUsedAsFilter
+     * @param keyOfWanteData
+     * @return query as a string
+     */
+    private String buildQuery(EntryInExistingDataSource dataUsedAsFilter,
+                              String keyOfWanteData) {
         // query example : $..codeBrevetMarin[?(@.libelle == 'Certificat de formation de base à la sécurité (STCW10)')]
 
-        String keyOfWantedEntry;
-        keyOfWantedEntry = keysOfAdditionalWantedData != null ?
-                keysOfAdditionalWantedData.getName() :
-                wantedData.getKeyInExistingDataSource().getName();
+        String path = buildPath(dataUsedAsFilter.getKeyInExistingDataSource().getParentKeys());
+
+//        String keyOfWantedEntry;
+//        keyOfWantedEntry = keysOfAdditionalWantedData != null ?
+//                keysOfAdditionalWantedData.getRealNameInExistingDataSource() :
+//                wantedData.getKeyInExistingDataSource().getRealNameInExistingDataSource();
 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("$"); // The root element to query. This starts all path expressions.
-        stringBuilder.append(".."); // Deep scan. Available anywhere a name is required.
-        stringBuilder.append(path); // The key we are looking for.If the key is nested (has parents), it will be
-                                    // something like : parent1.parent2.key
+        stringBuilder.append("$");      // The root element to query. This starts all path expressions.
+        stringBuilder.append("..");     // Deep scan. Available anywhere a name is required.
+        stringBuilder.append(path);     // The path is composed of the key we are looking for.
+        // If this key is nested (has parents), it will be something like : parent1.parent2.key
         stringBuilder.append("[?(@.");   // [? : Filter expression. Expression must evaluate to a boolean value.
-                                        // @ : The current node being processed by a filter predicate.
-                                        // .<name> : Dot-notated child (here, name is the variable in the next line)
-        stringBuilder.append(wantedData.getKeyInExistingDataSource().getName());
+        // @ : The current node being processed by a filter predicate.
+        // .<name> : Dot-notated child (here, name is the variable in the next line)
+        stringBuilder.append(dataUsedAsFilter.getKeyInExistingDataSource().getRealNameInExistingDataSource());
         stringBuilder.append("=='");    // Comparison to a value ((here, value is the variable in the next line))
-        stringBuilder.append(wantedData.getValue().getContent());
+        stringBuilder.append(dataUsedAsFilter.getValueInExistingDataSource().getContent());
         stringBuilder.append("'");
         stringBuilder.append(")].");
-        stringBuilder.append(keyOfWantedEntry);
+        stringBuilder.append(keyOfWanteData);
         System.out.println("data query is : " + stringBuilder.toString());
         return stringBuilder.toString();
     }
 
+    /**
+     * Builds a path to access the wanted key using key's parents.
+     *
+     * @param parentKeys Can be null
+     * @return path as a string
+     */
     private String buildPath(List<ParentKey> parentKeys) {
         StringJoiner stringJoiner = new StringJoiner(".");
         List<ParentKey> sortedParentKeys = parentKeys.stream()
                 .sorted(Comparator.comparing(ParentKey::getPosition))
                 .collect(Collectors.toList());
         for (ParentKey key : sortedParentKeys) {
-            System.out.println("sortedParentKeys :" + key);
             stringJoiner.add(key.getKeyName());
         }
-        String path = stringJoiner.toString();
-        System.out.println(path);
-        return path;
+        return stringJoiner.toString();
     }
 
     private ExtractionResult createResult(String key, String value, DataType dataType) {
         return null;
     }
 
-//
+
 //    @Autowired
 //    TimeConverter timeConverter;
 //

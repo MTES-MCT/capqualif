@@ -6,35 +6,46 @@ import java.util.List;
 import java.util.Objects;
 
 public class KeyInExistingDataSource {
-    private String name;
+    private String juridicalName;
+    private String realNameInExistingDataSource;
     private DataType dataType;
     private boolean isNested;
     private List<ParentKey> parentKeys;
 
-    public KeyInExistingDataSource(String name) {
-        this.name = name;
+    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource) {
+        this.juridicalName = juridicalName;
+        this.realNameInExistingDataSource = realNameInExistingDataSource;
     }
 
-    public KeyInExistingDataSource(String name, DataType dataType) {
-        this.name = name;
-        this.dataType = dataType;
-    }
-
-    public KeyInExistingDataSource(String name, boolean isNested, List<ParentKey> parentKeys) {
-        this.name = name;
-        this.isNested = isNested;
-        this.parentKeys = parentKeys;
-    }
-
-    public KeyInExistingDataSource(String name, DataType dataType, boolean isNested, List<ParentKey> parentKeys) {
-        this.name = name;
+    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, DataType dataType,
+                                   boolean isNested, List<ParentKey> parentKeys) {
+        this.juridicalName = juridicalName;
+        this.realNameInExistingDataSource = realNameInExistingDataSource;
         this.dataType = dataType;
         this.isNested = isNested;
         this.parentKeys = parentKeys;
     }
 
-    public String getName() {
-        return name;
+    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, boolean isNested,
+                                   List<ParentKey> parentKeys) {
+        this.juridicalName = juridicalName;
+        this.realNameInExistingDataSource = realNameInExistingDataSource;
+        this.isNested = isNested;
+        this.parentKeys = parentKeys;
+    }
+
+    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, DataType dataType) {
+        this.juridicalName = juridicalName;
+        this.realNameInExistingDataSource = realNameInExistingDataSource;
+        this.dataType = dataType;
+    }
+
+    public String getJuridicalName() {
+        return juridicalName;
+    }
+
+    public String getRealNameInExistingDataSource() {
+        return realNameInExistingDataSource;
     }
 
     public DataType getDataType() {
@@ -50,6 +61,17 @@ public class KeyInExistingDataSource {
     }
 
     @Override
+    public String toString() {
+        return "KeyInExistingDataSource{" +
+                "juridicalName='" + juridicalName + '\'' +
+                ", realNameInExistingDataSource='" + realNameInExistingDataSource + '\'' +
+                ", dataType=" + dataType +
+                ", isNested=" + isNested +
+                ", parentKeys=" + parentKeys +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -57,23 +79,14 @@ public class KeyInExistingDataSource {
             return false;
         KeyInExistingDataSource that = (KeyInExistingDataSource) o;
         return isNested == that.isNested &&
-                name.equals(that.name) &&
+                juridicalName.equals(that.juridicalName) &&
+                realNameInExistingDataSource.equals(that.realNameInExistingDataSource) &&
                 dataType == that.dataType &&
                 Objects.equals(parentKeys, that.parentKeys);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, dataType, isNested, parentKeys);
-    }
-
-    @Override
-    public String toString() {
-        return "KeyInExistingDataSource{" +
-                "key='" + name + '\'' +
-                ", dataType=" + dataType +
-                ", isNested=" + isNested +
-                ", parentKeys=" + parentKeys +
-                '}';
+        return Objects.hash(juridicalName, realNameInExistingDataSource, dataType, isNested, parentKeys);
     }
 }

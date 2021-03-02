@@ -8,7 +8,9 @@ import fr.gouv.mte.capqualif.marin.domain.marin.Marin;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Titre;
+import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
+import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -43,8 +45,9 @@ class CompareMarinDataToConditionsTitreServiceTest {
     void shouldReturnAPositiveComparisonResultWhenMarinDataMeetConditionTitre_stringCondition() {
         // Given
         ConditionTitre conditionTitre = new ConditionTitre("Aptitude médicale",
-                "Aptitude toutes fonctions, toutes navigations",
-                ComparisonRule.STRICT_EQUALITY);
+                new Value("Aptitude toutes fonctions, toutes navigations",
+                        ComparisonRule.STRICT_EQUALITY)
+        );
 
         Titre titre = new Titre(
                 "1",
@@ -72,7 +75,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
         Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), null))
-                .thenReturn(Arrays.asList(new ExtractionResult("Aptitude médicale", "Apte TF/TN")));
+                .thenReturn(Arrays.asList(new ExtractionResult("Aptitude médicale", "Apte TF/TN", DataType.STRING)));
 
         List<ComparisonResult> realResults =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),

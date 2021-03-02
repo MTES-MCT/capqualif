@@ -6,25 +6,20 @@ import java.util.List;
 import java.util.Objects;
 
 public class DataToExtractFromExistingDataSource {
-    private String juridicalDesignation;
     private ExistingDataSourceName APIName;
     private String APIUrl;
-    private EntryInExistingDataSource entryToSearchFor;
+    private EntryInExistingDataSource mainWantedData;
     private List<KeyInExistingDataSource> keysOfAdditionalWantedData;
 
-    public DataToExtractFromExistingDataSource(String juridicalDesignation, ExistingDataSourceName APIName,
-                                               String APIUrl, EntryInExistingDataSource entryToSearchFor,
+    public DataToExtractFromExistingDataSource(ExistingDataSourceName APIName, String APIUrl,
+                                               EntryInExistingDataSource mainWantedData,
                                                List<KeyInExistingDataSource> keysOfAdditionalWantedData) {
-        this.juridicalDesignation = juridicalDesignation;
         this.APIName = APIName;
         this.APIUrl = APIUrl;
-        this.entryToSearchFor = entryToSearchFor;
+        this.mainWantedData = mainWantedData;
         this.keysOfAdditionalWantedData = keysOfAdditionalWantedData;
     }
 
-    public String getJuridicalDesignation() {
-        return juridicalDesignation;
-    }
 
     public ExistingDataSourceName getAPIName() {
         return APIName;
@@ -34,8 +29,8 @@ public class DataToExtractFromExistingDataSource {
         return APIUrl;
     }
 
-    public EntryInExistingDataSource getEntryToSearchFor() {
-        return entryToSearchFor;
+    public EntryInExistingDataSource getMainWantedData() {
+        return mainWantedData;
     }
 
     public List<KeyInExistingDataSource> getKeysOfAdditionalWantedData() {
@@ -45,10 +40,9 @@ public class DataToExtractFromExistingDataSource {
     @Override
     public String toString() {
         return "DataToExtractFromExistingDataSource{" +
-                "juridicalDesignation='" + juridicalDesignation + '\'' +
-                ", APIName=" + APIName +
+                "APIName=" + APIName +
                 ", APIUrl='" + APIUrl + '\'' +
-                ", entryToSearchFor=" + entryToSearchFor +
+                ", mainWantedData=" + mainWantedData +
                 ", keysOfAdditionalWantedData=" + keysOfAdditionalWantedData +
                 '}';
     }
@@ -60,15 +54,14 @@ public class DataToExtractFromExistingDataSource {
         if (o == null || getClass() != o.getClass())
             return false;
         DataToExtractFromExistingDataSource that = (DataToExtractFromExistingDataSource) o;
-        return juridicalDesignation.equals(that.juridicalDesignation) &&
-                APIName == that.APIName &&
+        return APIName == that.APIName &&
                 APIUrl.equals(that.APIUrl) &&
-                entryToSearchFor.equals(that.entryToSearchFor) &&
+                mainWantedData.equals(that.mainWantedData) &&
                 Objects.equals(keysOfAdditionalWantedData, that.keysOfAdditionalWantedData);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(juridicalDesignation, APIName, APIUrl, entryToSearchFor, keysOfAdditionalWantedData);
+        return Objects.hash(APIName, APIUrl, mainWantedData, keysOfAdditionalWantedData);
     }
 }

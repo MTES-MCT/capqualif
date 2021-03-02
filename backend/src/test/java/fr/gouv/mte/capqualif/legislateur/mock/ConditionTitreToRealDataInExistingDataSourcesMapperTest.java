@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,23 +31,25 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
     void shouldReturnTheRightDataToExtractFromExistingDataSource_entryWithValue() {
 
         // Given
-        ConditionTitre conditionTitre = new ConditionTitre("Aptitude médicale",
-                "Aptitude toutes fonctions, toutes navigations",
-                ComparisonRule.STRICT_EQUALITY);
+        ConditionTitre conditionTitre = new ConditionTitre(
+                "Aptitude médicale",
+                new Value(
+                        "Aptitude toutes fonctions, toutes navigations",
+                        ComparisonRule.STRICT_EQUALITY)
+        );
 
         // When
         DataToExtractFromExistingDataSource realData = mapper.getInfosForSearchInExistingSource(conditionTitre);
 
         // Then
         DataToExtractFromExistingDataSource expectedData = new DataToExtractFromExistingDataSource(
-                "Aptitude médicale",
                 ExistingDataSourceName.ESCULAPE,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
-                        new KeyInExistingDataSource("libelle"),
-                        new Value("Apte TF/TN"),DataType.STRING
+                        new KeyInExistingDataSource("Aptitude médicale", "libelle", DataType.STRING),
+                        new ValueInExistingDataSource("Apte TF/TN"), DataType.STRING
                 ),
-                Arrays.asList(new KeyInExistingDataSource("dateFinDeValidite", DataType.DATE))
+                Collections.singletonList(new KeyInExistingDataSource("Date de fin de validité", "dateFinDeValidite", DataType.DATE))
         );
 
         // If you need to know how equality comparison of objects works here :
@@ -59,20 +61,21 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
     void shouldReturnTheRightDataToExtractFromExistingDataSource_entryWithoutValue() {
 
         // Given
-        ConditionTitre conditionTitre = new ConditionTitre("âge minimum",
-                "Âge supérieur ou égal à 16 ans",
-                ComparisonRule.GREATER_THAN);
+        ConditionTitre conditionTitre = new ConditionTitre("Âge minimum",
+                new Value(
+                        "Âge supérieur ou égal à 16 ans",
+                        ComparisonRule.GREATER_THAN)
+        );
 
         // When
         DataToExtractFromExistingDataSource realData = mapper.getInfosForSearchInExistingSource(conditionTitre);
 
         // Then
         DataToExtractFromExistingDataSource expectedData = new DataToExtractFromExistingDataSource(
-                "Âge minimum",
                 ExistingDataSourceName.ADMINISTRES,
                 "https://run.mocky.io/v3/23493c22-70dd-4b8b-9e54-19aa5108c66b",
                 new EntryInExistingDataSource(
-                        new KeyInExistingDataSource("dateNaissance"),
+                        new KeyInExistingDataSource("Âge minimum", "dateNaissance", DataType.DATE),
                         null, DataType.DATE
                 ),
                 null);

@@ -1,18 +1,18 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
-import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 
 import java.util.Objects;
 
 public class EntryInExistingDataSource {
     private KeyInExistingDataSource keyInExistingDataSource;
-    private Value value;
+    private ValueInExistingDataSource valueInExistingDataSource;
     private DataType dataType;
 
-    public EntryInExistingDataSource(KeyInExistingDataSource keyInExistingDataSource, Value value, DataType dataType) {
+    public EntryInExistingDataSource(KeyInExistingDataSource keyInExistingDataSource, ValueInExistingDataSource valueInExistingDataSource
+            , DataType dataType) {
         this.keyInExistingDataSource = keyInExistingDataSource;
-        this.value = value;
+        this.valueInExistingDataSource = valueInExistingDataSource;
         this.dataType = dataType;
     }
 
@@ -20,8 +20,8 @@ public class EntryInExistingDataSource {
         return keyInExistingDataSource;
     }
 
-    public Value getValue() {
-        return value;
+    public ValueInExistingDataSource getValueInExistingDataSource() {
+        return valueInExistingDataSource;
     }
 
     public DataType getDataType() {
@@ -32,7 +32,7 @@ public class EntryInExistingDataSource {
     public String toString() {
         return "EntryInExistingDataSource{" +
                 "keyInExistingDataSource=" + keyInExistingDataSource +
-                ", value=" + value +
+                ", value=" + valueInExistingDataSource +
                 ", dataType=" + dataType +
                 '}';
     }
@@ -45,12 +45,12 @@ public class EntryInExistingDataSource {
             return false;
         EntryInExistingDataSource that = (EntryInExistingDataSource) o;
         return keyInExistingDataSource.equals(that.keyInExistingDataSource) &&
-                Objects.equals(value, that.value) &&
+                Objects.equals(valueInExistingDataSource, that.valueInExistingDataSource) &&
                 dataType == that.dataType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(keyInExistingDataSource, value, dataType);
+        return Objects.hash(keyInExistingDataSource, valueInExistingDataSource, dataType);
     }
 }

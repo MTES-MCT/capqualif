@@ -1,6 +1,7 @@
 package fr.gouv.mte.capqualif.instruction.domain;
 
 import fr.gouv.mte.capqualif.titre.domain.Value;
+import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 
 import java.util.Objects;
 
@@ -8,10 +9,12 @@ public class ExtractionResult {
 
     private String key;
     private String value;
+    private DataType dataType;
 
-    public ExtractionResult(String key, String value) {
+    public ExtractionResult(String key, String value, DataType dataType) {
         this.key = key;
         this.value = value;
+        this.dataType = dataType;
     }
 
     public String getKey() {
@@ -22,11 +25,16 @@ public class ExtractionResult {
         return value;
     }
 
+    public DataType getDataType() {
+        return dataType;
+    }
+
     @Override
     public String toString() {
         return "ExtractionResult{" +
                 "key='" + key + '\'' +
                 ", value='" + value + '\'' +
+                ", dataType=" + dataType +
                 '}';
     }
 
@@ -38,11 +46,12 @@ public class ExtractionResult {
             return false;
         ExtractionResult that = (ExtractionResult) o;
         return key.equals(that.key) &&
-                value.equals(that.value);
+                value.equals(that.value) &&
+                dataType == that.dataType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(key, value);
+        return Objects.hash(key, value, dataType);
     }
 }
