@@ -2,8 +2,6 @@ package fr.gouv.mte.capqualif.instruction.application.services;
 
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.instruction.domain.Entry;
-import fr.gouv.mte.capqualif.legislateur.mock.ConditionTitreToRealDataInExistingDataSourcesMapper;
 import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;

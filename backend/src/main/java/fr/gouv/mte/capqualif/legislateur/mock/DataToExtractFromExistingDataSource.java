@@ -6,18 +6,24 @@ import java.util.List;
 import java.util.Objects;
 
 public class DataToExtractFromExistingDataSource {
+    private String juridicalDesignation;
     private ExistingDataSourceName APIName;
     private String APIUrl;
     private EntryInExistingDataSource entryToSearchFor;
     private List<KeyInExistingDataSource> keysOfAdditionalWantedData;
 
-    public DataToExtractFromExistingDataSource(ExistingDataSourceName APIName, String APIUrl,
-                                               EntryInExistingDataSource entryToSearchFor,
+    public DataToExtractFromExistingDataSource(String juridicalDesignation, ExistingDataSourceName APIName,
+                                               String APIUrl, EntryInExistingDataSource entryToSearchFor,
                                                List<KeyInExistingDataSource> keysOfAdditionalWantedData) {
+        this.juridicalDesignation = juridicalDesignation;
         this.APIName = APIName;
         this.APIUrl = APIUrl;
         this.entryToSearchFor = entryToSearchFor;
         this.keysOfAdditionalWantedData = keysOfAdditionalWantedData;
+    }
+
+    public String getJuridicalDesignation() {
+        return juridicalDesignation;
     }
 
     public ExistingDataSourceName getAPIName() {
@@ -39,7 +45,8 @@ public class DataToExtractFromExistingDataSource {
     @Override
     public String toString() {
         return "DataToExtractFromExistingDataSource{" +
-                "APIName=" + APIName +
+                "juridicalDesignation='" + juridicalDesignation + '\'' +
+                ", APIName=" + APIName +
                 ", APIUrl='" + APIUrl + '\'' +
                 ", entryToSearchFor=" + entryToSearchFor +
                 ", keysOfAdditionalWantedData=" + keysOfAdditionalWantedData +
@@ -53,7 +60,8 @@ public class DataToExtractFromExistingDataSource {
         if (o == null || getClass() != o.getClass())
             return false;
         DataToExtractFromExistingDataSource that = (DataToExtractFromExistingDataSource) o;
-        return APIName == that.APIName &&
+        return juridicalDesignation.equals(that.juridicalDesignation) &&
+                APIName == that.APIName &&
                 APIUrl.equals(that.APIUrl) &&
                 entryToSearchFor.equals(that.entryToSearchFor) &&
                 Objects.equals(keysOfAdditionalWantedData, that.keysOfAdditionalWantedData);
@@ -61,6 +69,6 @@ public class DataToExtractFromExistingDataSource {
 
     @Override
     public int hashCode() {
-        return Objects.hash(APIName, APIUrl, entryToSearchFor, keysOfAdditionalWantedData);
+        return Objects.hash(juridicalDesignation, APIName, APIUrl, entryToSearchFor, keysOfAdditionalWantedData);
     }
 }

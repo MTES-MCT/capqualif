@@ -32,13 +32,13 @@ public class TitresApiMock {
         List<ConditionTitre> conditions = new ArrayList<ConditionTitre>
             (Arrays.asList
                 (
-                    new ConditionTitre("âge minimum", "Âge supérieur ou égal à 16 ans", ComparisonRule.GREATER_THAN),
-                    new ConditionTitre("aptitude médicale","Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
-                    new ConditionTitre("formation modulaire : Module P1-Appui", "Module P1-Appui", ComparisonRule.STRICT_EQUALITY),
-                    new ConditionTitre("formation modulaire : Module P2-Appui", "Module P2-Appui", ComparisonRule.STRICT_EQUALITY),
-                    new ConditionTitre("formation modulaire : Module P3-Appui", "Module P3-Appui", ComparisonRule.STRICT_EQUALITY),
-                    new ConditionTitre("formation modulaire : Module NP-Appui", "Module NP-Appui", ComparisonRule.STRICT_EQUALITY),
-                    new ConditionTitre("certificat de formation de base à la sécurité (CFBS)", "Certificat de formation de base à la sécurité (CFBS)", ComparisonRule.STRICT_EQUALITY)
+                    new ConditionTitre("Âge minimum", "Âge supérieur ou égal à 16 ans", ComparisonRule.GREATER_THAN),
+                    new ConditionTitre("Aptitude médicale","Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
+                    new ConditionTitre("Formation modulaire : Module P1-Appui", "Module P1-Appui", ComparisonRule.STRICT_EQUALITY),
+                    new ConditionTitre("Formation modulaire : Module P2-Appui", "Module P2-Appui", ComparisonRule.STRICT_EQUALITY),
+                    new ConditionTitre("Formation modulaire : Module P3-Appui", "Module P3-Appui", ComparisonRule.STRICT_EQUALITY),
+                    new ConditionTitre("Formation modulaire : Module NP-Appui", "Module NP-Appui", ComparisonRule.STRICT_EQUALITY),
+                    new ConditionTitre("Certificat de formation de base à la sécurité (CFBS)", "Certificat de formation de base à la sécurité (CFBS)", ComparisonRule.STRICT_EQUALITY)
                 )
             );
 

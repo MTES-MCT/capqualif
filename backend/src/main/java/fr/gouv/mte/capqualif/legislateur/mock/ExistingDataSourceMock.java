@@ -15,6 +15,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
         switch (conditionValue) {
             case "Âge supérieur ou égal à 16 ans":
                 return new DataToExtractFromExistingDataSource(
+                        "Âge minimum",
                         ExistingDataSourceName.ADMINISTRES,
                         "https://run.mocky.io/v3/23493c22-70dd-4b8b-9e54-19aa5108c66b",
                         new EntryInExistingDataSource(new KeyInExistingDataSource("dateNaissance"),
@@ -23,6 +24,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                 );
             case "Aptitude toutes fonctions, toutes navigations":
                 return new DataToExtractFromExistingDataSource(
+                        "Aptitude médicale",
                         ExistingDataSourceName.ESCULAPE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
@@ -33,6 +35,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                 );
             case "Module P1-Appui":
                 return new DataToExtractFromExistingDataSource(
+                        "Aptitude médicale",
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
@@ -45,6 +48,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                 );
             case "Module P2-Appui":
                 return new DataToExtractFromExistingDataSource(
+                        "Formation modulaire : Module P2-Appui",
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
@@ -57,6 +61,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                 );
             case "Module P3-Appui":
                 return new DataToExtractFromExistingDataSource(
+                        "Formation modulaire : Module P3-Appui",
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
@@ -69,6 +74,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                 );
             case "Module NP-Appui":
                 return new DataToExtractFromExistingDataSource(
+                        "Formation modulaire : Module NP-Appui",
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
@@ -81,6 +87,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                 );
             case "Certificat de formation de base à la sécurité (CFBS)":
                 return new DataToExtractFromExistingDataSource(
+                        "Certificat de formation de base à la sécurité (CFBS)",
                         ExistingDataSourceName.ITEM,
                         "***REMOVED***",
                         new EntryInExistingDataSource(

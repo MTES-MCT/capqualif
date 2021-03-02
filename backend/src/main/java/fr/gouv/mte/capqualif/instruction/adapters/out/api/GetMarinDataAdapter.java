@@ -3,7 +3,7 @@ package fr.gouv.mte.capqualif.instruction.adapters.out.api;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
-import fr.gouv.mte.capqualif.instruction.domain.Entry;
+import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.DataToExtractFromExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.shared.JsonExtractor;
@@ -23,7 +23,7 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
     private JsonExtractor jsonExtractor;
 
     @Override
-    public List<EntryInExistingDataSource> getMarinData(String numeroDeMarin, DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource) {
+    public List<ExtractionResult> getMarinData(String numeroDeMarin, DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource) {
         String marinJson = getJson(numeroDeMarin, dataToExtractFromExistingDataSource.getAPIUrl());
         return jsonExtractor.getWantedData(marinJson, dataToExtractFromExistingDataSource.getEntryToSearchFor(), dataToExtractFromExistingDataSource.getKeysOfAdditionalWantedData());
     }

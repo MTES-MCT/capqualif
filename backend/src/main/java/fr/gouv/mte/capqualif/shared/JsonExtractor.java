@@ -1,10 +1,9 @@
 package fr.gouv.mte.capqualif.shared;
 
 
-import com.google.gson.JsonArray;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.ReadContext;
+import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ParentKey;
@@ -22,73 +21,61 @@ import java.util.stream.Collectors;
 @Component
 public class JsonExtractor {
 
-    public List<EntryInExistingDataSource> getWantedData(String json, EntryInExistingDataSource mainWantedData,
+    public List<ExtractionResult> getWantedData(String json, EntryInExistingDataSource mainWantedData,
                                                          List<KeyInExistingDataSource> additionalWantedData) {
 
-        List<EntryInExistingDataSource> wantedData = new ArrayList<EntryInExistingDataSource>();
+        List<ExtractionResult> wantedData = new ArrayList<ExtractionResult>();
 
-        if (mainWantedData.getKeyInExistingDataSource().isNested()) {
-            findJsonPortionByEntry(json, mainWantedData, mainWantedData.getValue().getContent());
-        }
 
-//        EntryInExistingDataSource resultForMainWantedData =
-//
-//                createResult(mainWantedData.getKeyInExistingDataSource().getName(), "Apte TF/TN", DataType.STRING);
+        findByEntry(json, mainWantedData);
 
-//        EntryInExistingDataSource resultForAdditionalWantedData = createResult("dateFinDeValidite", "1640905200000",
-//                DataType.DATE);
-//
-//        wantedData.add(resultForMainWantedData);
-//        wantedData.add(resultForAdditionalWantedData);
 
         return wantedData;
     }
 
-    private String findJsonPortionByEntry(String json, EntryInExistingDataSource mainWantedData, String value) {
-        // query example : $..codeBrevetMarin[?(@.libelle == 'Certificat de formation de base à la sécurité (STCW10)')]
-
+    private String findByEntry(String json, EntryInExistingDataSource mainWantedData) {
         String path = buildPath(mainWantedData.getKeyInExistingDataSource().getParentKeys());
-        String query = buildQuery(mainWantedData, path);
+        String mainDataQuery = buildQuery(path, mainWantedData, null);
         Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
-
-        JSONArray jsonPortion = JsonPath.parse(json).read(query);
-//        List<String> wantedEntry = ctx.read(query);
-//        JsonArray jsonPortion = ctx.read("$..codeBrevetMarin[?(@.libelle == 'Certificat de formation de base à la " +
-//                "sécurité (STCW10)')]");
-
-        System.out.println(jsonPortion);
-
-
+        JSONArray mainWantedValue = JsonPath.parse(json).read(mainDataQuery);
+        System.out.println(mainWantedValue.toString());
         return null;
     }
 
-    private String buildQuery(EntryInExistingDataSource mainWantedData, String path) {
-        StringBuilder stringBuilder = new StringBuilder();
+    /**
+     *
+     * @param keysOfAdditionalWantedData can be null
+     *
+     **/
+    private String buildQuery(String path, EntryInExistingDataSource wantedData,
+                              KeyInExistingDataSource keysOfAdditionalWantedData) {
+        // query example : $..codeBrevetMarin[?(@.libelle == 'Certificat de formation de base à la sécurité (STCW10)')]
 
+        String keyOfWantedEntry;
+        keyOfWantedEntry = keysOfAdditionalWantedData != null ?
+                keysOfAdditionalWantedData.getName() :
+                wantedData.getKeyInExistingDataSource().getName();
+
+        StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("$"); // The root element to query. This starts all path expressions.
         stringBuilder.append(".."); // Deep scan. Available anywhere a name is required.
         stringBuilder.append(path); // The key we are looking for.If the key is nested (has parents), it will be
-        // something like : parent1.parent2.key
+                                    // something like : parent1.parent2.key
         stringBuilder.append("[?(@.");   // [? : Filter expression. Expression must evaluate to a boolean value.
-        // @ : The current node being processed by a filter predicate.
-        // .<name> : Dot-notated child (here, name is the variable in the next line)
-        stringBuilder.append(mainWantedData.getKeyInExistingDataSource().getName());
-        stringBuilder.append("=='");
-        stringBuilder.append(mainWantedData.getValue().getContent());
+                                        // @ : The current node being processed by a filter predicate.
+                                        // .<name> : Dot-notated child (here, name is the variable in the next line)
+        stringBuilder.append(wantedData.getKeyInExistingDataSource().getName());
+        stringBuilder.append("=='");    // Comparison to a value ((here, value is the variable in the next line))
+        stringBuilder.append(wantedData.getValue().getContent());
         stringBuilder.append("'");
-        stringBuilder.append(")]");
-        System.out.println(stringBuilder.toString());
+        stringBuilder.append(")].");
+        stringBuilder.append(keyOfWantedEntry);
+        System.out.println("data query is : " + stringBuilder.toString());
         return stringBuilder.toString();
     }
 
     private String buildPath(List<ParentKey> parentKeys) {
-
-
-//        List<ParentKey> test = Arrays.asList(new ParentKey(Position.POSITION_1, "bla"), new ParentKey(Position
-//        .POSITION_2, "bli"));
-
         StringJoiner stringJoiner = new StringJoiner(".");
-
         List<ParentKey> sortedParentKeys = parentKeys.stream()
                 .sorted(Comparator.comparing(ParentKey::getPosition))
                 .collect(Collectors.toList());
@@ -101,12 +88,8 @@ public class JsonExtractor {
         return path;
     }
 
-    private EntryInExistingDataSource createResult(String key, String value, DataType dataType) {
-        return new EntryInExistingDataSource(
-                new KeyInExistingDataSource(key),
-                new Value(value),
-                dataType
-        );
+    private ExtractionResult createResult(String key, String value, DataType dataType) {
+        return null;
     }
 
 //

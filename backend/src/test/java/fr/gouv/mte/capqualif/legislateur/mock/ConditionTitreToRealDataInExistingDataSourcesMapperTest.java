@@ -40,6 +40,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
 
         // Then
         DataToExtractFromExistingDataSource expectedData = new DataToExtractFromExistingDataSource(
+                "Aptitude médicale",
                 ExistingDataSourceName.ESCULAPE,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
@@ -67,6 +68,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
 
         // Then
         DataToExtractFromExistingDataSource expectedData = new DataToExtractFromExistingDataSource(
+                "Âge minimum",
                 ExistingDataSourceName.ADMINISTRES,
                 "https://run.mocky.io/v3/23493c22-70dd-4b8b-9e54-19aa5108c66b",
                 new EntryInExistingDataSource(

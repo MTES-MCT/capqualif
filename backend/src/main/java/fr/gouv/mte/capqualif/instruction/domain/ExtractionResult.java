@@ -4,12 +4,12 @@ import fr.gouv.mte.capqualif.titre.domain.Value;
 
 import java.util.Objects;
 
-public class Entry {
+public class ExtractionResult {
 
     private String key;
     private Value value;
 
-    public Entry(String key, Value value) {
+    public ExtractionResult(String key, Value value) {
         this.key = key;
         this.value = value;
     }
@@ -36,7 +36,7 @@ public class Entry {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        Entry that = (Entry) o;
+        ExtractionResult that = (ExtractionResult) o;
         return key.equals(that.key) &&
                 value.equals(that.value);
     }

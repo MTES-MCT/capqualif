@@ -46,6 +46,7 @@ public class JsonExtractorTest {
                 "}";
 
         DataToExtractFromExistingDataSource data = new DataToExtractFromExistingDataSource(
+                "Aptitude médicale",
                 ExistingDataSourceName.ESCULAPE,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
@@ -394,6 +395,7 @@ public class JsonExtractorTest {
                 "]";
 
         DataToExtractFromExistingDataSource data = new DataToExtractFromExistingDataSource(
+                "Certificat de formation de base à la sécurité (CFBS)",
                 ExistingDataSourceName.ITEM,
                 "***REMOVED***",
                 new EntryInExistingDataSource(

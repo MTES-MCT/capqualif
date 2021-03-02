@@ -3,19 +3,14 @@ package fr.gouv.mte.capqualif.instruction.application.services;
 import fr.gouv.mte.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.instruction.domain.Entry;
-import fr.gouv.mte.capqualif.legislateur.mock.DataToExtractFromExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataSource;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
-import fr.gouv.mte.capqualif.titre.domain.Titre;
-import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Component
