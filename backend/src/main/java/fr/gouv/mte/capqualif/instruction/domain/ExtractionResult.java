@@ -7,9 +7,9 @@ import java.util.Objects;
 public class ExtractionResult {
 
     private String key;
-    private Value value;
+    private String value;
 
-    public ExtractionResult(String key, Value value) {
+    public ExtractionResult(String key, String value) {
         this.key = key;
         this.value = value;
     }
@@ -18,15 +18,15 @@ public class ExtractionResult {
         return key;
     }
 
-    public Value getValue() {
+    public String getValue() {
         return value;
     }
 
     @Override
     public String toString() {
-        return "ComparisonResultEntry{" +
+        return "ExtractionResult{" +
                 "key='" + key + '\'' +
-                ", value=" + value +
+                ", value='" + value + '\'' +
                 '}';
     }
 

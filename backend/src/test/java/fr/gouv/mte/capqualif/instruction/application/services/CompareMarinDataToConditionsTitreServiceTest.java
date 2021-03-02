@@ -2,16 +2,13 @@ package fr.gouv.mte.capqualif.instruction.application.services;
 
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
+import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataSource;
-import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.marin.domain.marin.Marin;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Titre;
-import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
-import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -28,15 +25,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class CompareMarinDataToConditionsTitreServiceTest {
 
-    @MockBean
-    private GetTitrePort getTitrePort;
-
-    @MockBean
-    private GetMarinDataPort getMarinDataPort;
-
     @Autowired
     ExistingDataSource existingDataSource;
-
+    @MockBean
+    private GetTitrePort getTitrePort;
+    @MockBean
+    private GetMarinDataPort getMarinDataPort;
     private CompareMarinDataToConditionsTitreService compareMarinDataToConditionsTitreService;
 
     @BeforeEach
@@ -78,7 +72,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
         Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), null))
-                .thenReturn(Arrays.asList(new EntryInExistingDataSource(new KeyInExistingDataSource("libelle"), new Value("Apte TF/TN"), DataType.STRING)));
+                .thenReturn(Arrays.asList(new ExtractionResult("Aptitude médicale", "Apte TF/TN")));
 
         List<ComparisonResult> realResults =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),

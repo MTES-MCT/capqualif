@@ -3,6 +3,7 @@ package fr.gouv.mte.capqualif.instruction.application.services;
 import fr.gouv.mte.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
+import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataSource;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
@@ -76,7 +77,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         List<ConditionTitre> conditions = getTitrePort.findTitreById(titreId).getConditions();
         List<ComparisonResult> results = new ArrayList<ComparisonResult>();
         for (ConditionTitre condition : conditions) {
-            List<EntryInExistingDataSource> marinMatchingData = getMarinDataPort.getMarinData(
+            List<ExtractionResult> marinMatchingData = getMarinDataPort.getMarinData(
                     "123",
                     existingDataSource.findByConditionValue(condition.getValueExpressedInLegalTerms()));
         }

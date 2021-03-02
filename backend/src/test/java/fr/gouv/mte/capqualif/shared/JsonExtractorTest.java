@@ -1,5 +1,6 @@
 package fr.gouv.mte.capqualif.shared;
 
+import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.*;
 import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
@@ -426,26 +427,23 @@ public class JsonExtractorTest {
         );
 
         // When
-        List<EntryInExistingDataSource> actualResult = jsonExtractor.getWantedData(json, data.getEntryToSearchFor(),
+        List<ExtractionResult> actualResult = jsonExtractor.getWantedData(json, data.getEntryToSearchFor(),
                 data.getKeysOfAdditionalWantedData());
 
         // Then
 
-        List<EntryInExistingDataSource> expectedResult = Arrays.asList(
-                new EntryInExistingDataSource(
+        List<ExtractionResult> expectedResult = Arrays.asList(
+                new ExtractionResult(
                         new KeyInExistingDataSource("libelle"),
-                        new Value("Certificat de formation de base à la sécurité (STCW10)"),
-                        DataType.STRING
+                        "Certificat de formation de base à la sécurité (STCW10)")
                 ),
-                new EntryInExistingDataSource(
+                new ExtractionResult(
                         new KeyInExistingDataSource("libelle"),
-                        new Value("Valide"),
-                        DataType.STRING
+                        "Valide"
                 ),
-                new EntryInExistingDataSource(
+                new ExtractionResult(
                         new KeyInExistingDataSource("dateExpiration"),
-                        new Value("11/02/2025"),
-                        DataType.DATE
+                        "11/02/2025"
                 )
         );
 
