@@ -6,6 +6,7 @@ import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -77,9 +78,7 @@ public class JsonExtractorTest {
                         DataType.DATE
                 )
         );
-
         assertEquals(expectedResult, actualResult);
-
     }
 
     @Test
