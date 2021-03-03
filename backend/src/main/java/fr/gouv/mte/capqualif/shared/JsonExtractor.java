@@ -29,7 +29,7 @@ public class JsonExtractor {
         String mainWantedDataFromJson = extractWantedDataFromJson(
                 json,
                 dataToExtract.getMainWantedData(),
-                dataToExtract.getMainWantedData().getKeyInExistingDataSource().getRealNameInExistingDataSource()
+                dataToExtract.getMainWantedData().getKeyInExistingDataSource()
         );
         results.add(
                 createResult(
@@ -42,7 +42,7 @@ public class JsonExtractor {
             String additionalWantedDataFromJson = extractWantedDataFromJson(
                     json,
                     dataToExtract.getMainWantedData(),
-                    key.getRealNameInExistingDataSource()
+                    key
             );
             results.add(
                     createResult(key.getJuridicalName(), additionalWantedDataFromJson, key.getDataType())
@@ -51,7 +51,7 @@ public class JsonExtractor {
         return results;
     }
 
-    private String extractWantedDataFromJson(String json, EntryInExistingDataSource wantedData, String key) {
+    private String extractWantedDataFromJson(String json, EntryInExistingDataSource wantedData, KeyInExistingDataSource key) {
         String query = buildQuery(wantedData, key);
         String wantedDataValue = findInJson(query, json);
         System.out.println("For the query ------ " + query + " ------ wanted data is " + wantedDataValue);
@@ -63,34 +63,44 @@ public class JsonExtractor {
      *
      * @param dataUsedAsFilter
      *                  filter to select the json object that contains the wanted data
-     * @param keyOfWanteData
+     * @param keyOfWantedData
      * @return query as a string
      */
-    private String buildQuery(EntryInExistingDataSource dataUsedAsFilter,
-                              String keyOfWanteData) {
-        // query example : $..codeBrevetMarin[?(@.libelle == 'Certificat de formation de base à la sécurité (STCW10)')]
+    private String buildQuery(EntryInExistingDataSource dataUsedAsFilter, KeyInExistingDataSource keyOfWantedData) {
+        // query examples:
+            // $..[*][?(@.codeBrevetMarin.libelle == "Certificat de formation de base à la sécurité (STCW10)")].dateEffet
+            // $..[*][?(@.codeBrevetMarin.libelle == "Certificat de formation de base à la sécurité (STCW10)")].codeBrevetMarin.libelle
 
-        String path = buildPath(dataUsedAsFilter.getKeyInExistingDataSource().getParentKeys());
+        String path;
+        if (dataUsedAsFilter.getKeyInExistingDataSource().isNested()) {
+            path = buildPath(dataUsedAsFilter.getKeyInExistingDataSource().getParentKeys());
+        } else {
+            path = dataUsedAsFilter.getKeyInExistingDataSource().getRealNameInExistingDataSource();
+        }
 
-//        String keyOfWantedEntry;
-//        keyOfWantedEntry = keysOfAdditionalWantedData != null ?
-//                keysOfAdditionalWantedData.getRealNameInExistingDataSource() :
-//                wantedData.getKeyInExistingDataSource().getRealNameInExistingDataSource();
+        String key;
+        if (keyOfWantedData.getParentKeys() != null) {
+            key = buildPath(keyOfWantedData.getParentKeys()) + keyOfWantedData.getRealNameInExistingDataSource();
+        } else {
+            key = keyOfWantedData.getRealNameInExistingDataSource();
+        }
+
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("$");      // The root element to query. This starts all path expressions.
         stringBuilder.append("..");     // Deep scan. Available anywhere a name is required.
-        stringBuilder.append(path);     // The path is composed of the key we are looking for.
-        // If this key is nested (has parents), it will be something like : parent1.parent2.key
+        stringBuilder.append("[*]");
         stringBuilder.append("[?(@.");   // [? : Filter expression. Expression must evaluate to a boolean value.
-        // @ : The current node being processed by a filter predicate.
-        // .<name> : Dot-notated child (here, name is the variable in the next line)
+                                        // @ : The current node being processed by a filter predicate.
+                                        // .<name> : Dot-notated child (here, name is the variable in the next line)
+        stringBuilder.append(path);     // The path is composed of the key we are looking for and its possible parents.
+                                        // If this key is nested (has parents), it will be something like : parent1.parent2.key
         stringBuilder.append(dataUsedAsFilter.getKeyInExistingDataSource().getRealNameInExistingDataSource());
         stringBuilder.append("=='");    // Comparison to a value ((here, value is the variable in the next line))
         stringBuilder.append(dataUsedAsFilter.getValueInExistingDataSource().getContent());
         stringBuilder.append("'");
         stringBuilder.append(")].");
-        stringBuilder.append(keyOfWanteData);
+        stringBuilder.append(key);
         System.out.println("data query is : " + stringBuilder.toString());
         return stringBuilder.toString();
     }
@@ -109,7 +119,8 @@ public class JsonExtractor {
         for (ParentKey key : sortedParentKeys) {
             stringJoiner.add(key.getKeyName());
         }
-        return stringJoiner.toString();
+//        return stringJoiner.length() < 2 ? stringJoiner.toString() : stringJoiner.toString() + ".";
+        return stringJoiner.toString() + ".";
     }
 
     private String findInJson(String query, String json) {
