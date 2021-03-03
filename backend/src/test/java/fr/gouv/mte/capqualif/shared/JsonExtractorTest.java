@@ -25,7 +25,6 @@ public class JsonExtractorTest {
     @Test
     void getData_notNested() {
         // Given
-
         String json = "{\n" +
                 "  \"dateFinDeValidite\": 1640905200000,\n" +
                 "  \"rendezVous\": 1608073200000,\n" +
