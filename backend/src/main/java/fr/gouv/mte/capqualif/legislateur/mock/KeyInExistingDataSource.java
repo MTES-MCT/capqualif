@@ -17,8 +17,8 @@ public class KeyInExistingDataSource {
         this.realNameInExistingDataSource = realNameInExistingDataSource;
     }
 
-    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, DataType dataType,
-                                   boolean isNested, List<ParentKey> parentKeys) {
+    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, boolean isNested,
+                                   List<ParentKey> parentKeys, DataType dataType) {
         this.juridicalName = juridicalName;
         this.realNameInExistingDataSource = realNameInExistingDataSource;
         this.dataType = dataType;

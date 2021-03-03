@@ -6,7 +6,6 @@ import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,7 +51,10 @@ public class JsonExtractorTest {
                         new KeyInExistingDataSource(
                                 "Aptitude médicale",
                                 "libelle",
-                                DataType.STRING),
+                                true,
+                                Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale")
+                                )
+                        ),
                         new ValueInExistingDataSource("Apte TF/TN"), DataType.STRING
                 ),
                 Arrays.asList(new KeyInExistingDataSource(
@@ -405,7 +407,8 @@ public class JsonExtractorTest {
                                 "libelle",
                                 true,
                                 Collections.singletonList(new ParentKey(Position.POSITION_1, "codeBrevetMarin")
-                                )
+                                ),
+                                DataType.STRING
                         ),
                         new ValueInExistingDataSource(
                                 "Certificat de formation de base à la sécurité (STCW10)"
@@ -414,16 +417,16 @@ public class JsonExtractorTest {
                 ),
                 Arrays.asList(
                         new KeyInExistingDataSource(
+                                "Statut",
+                                "libelle",
+                                true,
+                                Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre")),
+                                DataType.STRING
+                        ),
+                        new KeyInExistingDataSource(
                                 "Date de fin de validité",
                                 "dateExpiration",
-                                DataType.DATE),
-                        new KeyInExistingDataSource(
-                                "statut",
-                                "libelle",
-                                DataType.STRING,
-                                true,
-                                Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre"))
-                        )
+                                DataType.DATE)
                 )
         );
 

@@ -127,11 +127,11 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                 new KeyInExistingDataSource(
                                         conditionTitre.getJuridicalDesignation(),
                                         "libelle",
-                                        DataType.STRING,
                                         true,
                                         Collections.singletonList(
                                                 new ParentKey(Position.POSITION_1, "codeBrevetMarin")
-                                        )
+                                        ),
+                                        DataType.STRING
                                 ),
                                 new ValueInExistingDataSource(
                                         "Certificat de formation de base à la sécurité (STCW10)"
@@ -141,9 +141,9 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                 new KeyInExistingDataSource(
                                         "Statut",
                                         "libelle",
-                                        DataType.STRING,
                                         true,
-                                        Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre"))
+                                        Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre")),
+                                        DataType.STRING
                                 ),
                                 new KeyInExistingDataSource(
                                         "Date de fin de validité",

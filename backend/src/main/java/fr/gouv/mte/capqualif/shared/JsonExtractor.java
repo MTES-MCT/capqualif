@@ -1,6 +1,5 @@
 package fr.gouv.mte.capqualif.shared;
 
-
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
@@ -51,7 +50,8 @@ public class JsonExtractor {
         return results;
     }
 
-    private String extractWantedDataFromJson(String json, EntryInExistingDataSource wantedData, KeyInExistingDataSource key) {
+    private String extractWantedDataFromJson(String json, EntryInExistingDataSource wantedData,
+                                             KeyInExistingDataSource key) {
         String query = buildQuery(wantedData, key);
         String wantedDataValue = findInJson(query, json);
         System.out.println("For the query ------ " + query + " ------ wanted data is " + wantedDataValue);
@@ -61,21 +61,21 @@ public class JsonExtractor {
     /**
      * Builds the query used to fetch the data we want from a JSON document.
      *
-     * @param dataUsedAsFilter
-     *                  filter to select the json object that contains the wanted data
+     * @param dataUsedAsFilter filter to select the json object that contains the wanted data
      * @param keyOfWantedData
      * @return query as a string
      */
     private String buildQuery(EntryInExistingDataSource dataUsedAsFilter, KeyInExistingDataSource keyOfWantedData) {
         // query examples:
-            // $..[*][?(@.codeBrevetMarin.libelle == "Certificat de formation de base à la sécurité (STCW10)")].dateEffet
-            // $..[*][?(@.codeBrevetMarin.libelle == "Certificat de formation de base à la sécurité (STCW10)")].codeBrevetMarin.libelle
+        // $..[?(@.codeBrevetMarin.libelle == "Certificat de formation de base à la sécurité (STCW10)")].dateEffet
+        // $..[?(@.codeBrevetMarin.libelle == "Certificat de formation de base à la sécurité (STCW10)")].codeBrevetMarin.libelle
 
-        String path;
+        String keyOfFilterData;
         if (dataUsedAsFilter.getKeyInExistingDataSource().isNested()) {
-            path = buildPath(dataUsedAsFilter.getKeyInExistingDataSource().getParentKeys());
+            keyOfFilterData =
+                    buildPath(dataUsedAsFilter.getKeyInExistingDataSource().getParentKeys()) + dataUsedAsFilter.getKeyInExistingDataSource().getRealNameInExistingDataSource();
         } else {
-            path = dataUsedAsFilter.getKeyInExistingDataSource().getRealNameInExistingDataSource();
+            keyOfFilterData = dataUsedAsFilter.getKeyInExistingDataSource().getRealNameInExistingDataSource();
         }
 
         String key;
@@ -89,13 +89,12 @@ public class JsonExtractor {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("$");      // The root element to query. This starts all path expressions.
         stringBuilder.append("..");     // Deep scan. Available anywhere a name is required.
-        stringBuilder.append("[*]");
         stringBuilder.append("[?(@.");   // [? : Filter expression. Expression must evaluate to a boolean value.
                                         // @ : The current node being processed by a filter predicate.
                                         // .<name> : Dot-notated child (here, name is the variable in the next line)
-        stringBuilder.append(path);     // The path is composed of the key we are looking for and its possible parents.
-                                        // If this key is nested (has parents), it will be something like : parent1.parent2.key
-        stringBuilder.append(dataUsedAsFilter.getKeyInExistingDataSource().getRealNameInExistingDataSource());
+        stringBuilder.append(keyOfFilterData);     // The path is composed of the key we are looking for and its
+                                                // possible parents.
+                                                // If this key is nested (has parents), it will be something like : parent1.parent2.key
         stringBuilder.append("=='");    // Comparison to a value ((here, value is the variable in the next line))
         stringBuilder.append(dataUsedAsFilter.getValueInExistingDataSource().getContent());
         stringBuilder.append("'");
@@ -119,14 +118,12 @@ public class JsonExtractor {
         for (ParentKey key : sortedParentKeys) {
             stringJoiner.add(key.getKeyName());
         }
-//        return stringJoiner.length() < 2 ? stringJoiner.toString() : stringJoiner.toString() + ".";
         return stringJoiner.toString() + ".";
     }
 
     private String findInJson(String query, String json) {
-        Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
-        JSONArray wantedValue = JsonPath.parse(json).read(query);
-        return wantedValue.toString();
+        JSONArray wantedValueAsJSONArray = JsonPath.parse(json).read(query);
+        return wantedValueAsJSONArray.get(0).toString();
     }
 
     private ExtractionResult createResult(String key, String value, DataType dataType) {
