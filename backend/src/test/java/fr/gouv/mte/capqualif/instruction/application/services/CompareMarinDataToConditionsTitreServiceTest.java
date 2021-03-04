@@ -39,28 +39,30 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
     private CompareMarinDataToConditionsTitreService compareMarinDataToConditionsTitreService;
 
+    ConditionTitre conditionTitre;
+    Titre titre;
+    Marin marin;
+    CorrespondingDataInExistingDataSource data;
+
+
     @BeforeEach
     void setUp() {
         compareMarinDataToConditionsTitreService =
                 new CompareMarinDataToConditionsTitreService(getTitrePort, getMarinDataPort, existingDataSource);
-    }
 
-    @Test
-    void shouldReturnAPositiveComparisonResultWhenMarinDataMeetConditionTitre_stringCondition() {
-        // Given
-        ConditionTitre conditionTitre = new ConditionTitre(
+        conditionTitre = new ConditionTitre(
                 "Aptitude médicale",
                 new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY)
         );
 
-        Titre titre = new Titre(
+        titre = new Titre(
                 "1",
                 "Certificat de matelot pont (CMP9525)",
                 Collections.singletonList(conditionTitre),
                 null
         );
 
-        Marin marin = new Marin(
+        marin = new Marin(
                 "0",
                 null,
                 null,
@@ -76,7 +78,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                 null
         );
 
-        CorrespondingDataInExistingDataSource data = new CorrespondingDataInExistingDataSource(
+        data = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ESCULAPE,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
@@ -93,24 +95,42 @@ class CompareMarinDataToConditionsTitreServiceTest {
                         DataType.DATE))
         );
 
-        // When
+    }
+
+    @Test
+    void shouldReturnAPositiveComparisonResultWhenMarinDataMeetConditionTitre_stringCondition_strictEquality() {
+        // Given :
+        // Set up made in @BeforeEach
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
-
-        List<ExtractionResult> mockResult = Arrays.asList(new ExtractionResult("Aptitude médicale", "Apte TF/TN", DataType.STRING));
-
         Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), data))
-                .thenReturn(mockResult);
+                .thenReturn(Arrays.asList(new ExtractionResult("Aptitude médicale", "Apte TF/TN", DataType.STRING)));
 
-
-//        Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), null))
-//                .thenReturn(Arrays.asList(new ExtractionResult("Aptitude médicale", "Apte TF/TN", DataType.STRING)));
-
+        // When
         List<ComparisonResult> actualResultats =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(), marin.getNumeroDeMarin());
 
         // Then
         List<ComparisonResult> expectedResults = Collections.singletonList(new ComparisonResult("Aptitude médicale",
                 true));
+
+        assertEquals(expectedResults, actualResultats);
+    }
+
+    @Test
+    void shouldReturnAFalseComparisonResultWhenMarinDataDoNotMeetConditionTitre_stringCondition_strictEquality() {
+        // Given :
+        // Set up made in @BeforeEach
+        Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
+        Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), data))
+                .thenReturn(Arrays.asList(new ExtractionResult("Aptitude médicale", "Apte TF/TN sf C/V avec restriction", DataType.STRING)));
+
+        // When
+        List<ComparisonResult> actualResultats =
+                compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(), marin.getNumeroDeMarin());
+
+        // Then
+        List<ComparisonResult> expectedResults = Collections.singletonList(new ComparisonResult("Aptitude médicale",
+                false));
 
         assertEquals(expectedResults, actualResultats);
     }

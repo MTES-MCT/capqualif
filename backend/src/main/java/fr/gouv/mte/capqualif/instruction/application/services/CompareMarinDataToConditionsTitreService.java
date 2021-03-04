@@ -50,6 +50,11 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                                 correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName(),
                                 true);
                         results.add(comparisonResult);
+                    } else {
+                        comparisonResult = new ComparisonResult(
+                                correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName(),
+                                false);
+                        results.add(comparisonResult);
                     }
                 }
             }
