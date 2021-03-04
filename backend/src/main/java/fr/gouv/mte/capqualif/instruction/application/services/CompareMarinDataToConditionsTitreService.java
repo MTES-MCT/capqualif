@@ -4,7 +4,7 @@ import fr.gouv.mte.capqualif.instruction.application.ports.in.CompareMarinDataTo
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
-import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.CorrespondingDataInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataSource;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
@@ -34,54 +34,27 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         this.existingDataSource = existingDataSource;
     }
 
-//    @Override
-//    public List<ComparisonResult> compareMarinDataToConditionsTitre(String titreId, String numeroDeMarin) {
-//        Titre titre = getTitrePort.findTitreById(titreId);
-//        for (ConditionTitre condition : titre.getConditions()) {
-//            compareConditionToMarinData(condition, numeroDeMarin);
-//        }
-//        String conditionJuridicalDesignation = "Aptitude médicale";
-//        boolean isValid = true;
-//        ComparisonResult result = new ComparisonResult(conditionJuridicalDesignation,
-//                isValid);
-//        return Collections.singletonList(result);
-//    }
-//
-//    private void compareConditionToMarinData(ConditionTitre condition, String numeroDeMarin) {
-//        DataToExtractFromExistingDataSource realConditionData = existingDataSource.findByConditionValue(condition.getValueExpressedInLegalTerms());
-//        List<EntryInExistingDataSource> marinData = getMarinDataPort.getMarinData(numeroDeMarin, realConditionData);
-//        ComparisonResult result = null;
-//        for (EntryInExistingDataSource entry : marinData) {
-//            if (realConditionData.getEntryToSearchFor().getKeyInExistingDataSource().getDataType().equals(DataType.STRING)) {
-////                compareStrings(realConditionData, result, entry);
-//            }
-//
-//        }
-////        realConditionData.getEntryToSearchFor().getValue().getContent()
-//
-//    }
-//
-//    private void compareStrings(DataToExtractFromExistingDataSource realConditionData, ComparisonResult result,
-//                                Entry entry) {
-//        if (entry.getKey().equals(realConditionData.getEntryToSearchFor().getKeyInExistingDataSource().getName())) {
-//            if (entry.getValue().equals(realConditionData.getEntryToSearchFor().getValue().getContent())) {
-//                result.setValid(true);
-//            } else {
-//                result.setValid(false);
-//            }
-//        }
-//    }
-
     @Override
     public List<ComparisonResult> compareMarinDataToConditionsTitre(String titreId, String numeroDeMarin) {
         List<ConditionTitre> conditions = getTitrePort.findTitreById(titreId).getConditions();
         List<ComparisonResult> results = new ArrayList<ComparisonResult>();
         for (ConditionTitre condition : conditions) {
-            List<ExtractionResult> marinMatchingData = getMarinDataPort.getMarinData(
-                    "123",
-                    existingDataSource.findByConditionValue(condition));
+            CorrespondingDataInExistingDataSource correspondingData =
+                    existingDataSource.findByConditionValue(condition);
+            List<ExtractionResult> marinMatchingData = getMarinDataPort.getMarinData(numeroDeMarin, correspondingData);
+            ComparisonResult comparisonResult;
+            for (ExtractionResult marinData : marinMatchingData) {
+                if (marinData.getKey().equals(correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName())) {
+                    if (marinData.getValue().equals(correspondingData.getMainWantedData().getValueInExistingDataSource().getContent())) {
+                        comparisonResult = new ComparisonResult(
+                                correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName(),
+                                true);
+                        results.add(comparisonResult);
+                    }
+                }
+            }
         }
-        return null;
+        return results;
     }
 }
 //
@@ -94,13 +67,12 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
 //                    System.out.println(data.toString());
 //                }
 //            }
-            // =======================================================
+// =======================================================
 
-            // Passer chaque matching marinData au dataChecker !
+// Passer chaque matching marinData au dataChecker !
 
 
-
-            //      check all data (minus the main key?) validity values
+//      check all data (minus the main key?) validity values
 
 //            List<Map> allMatchingData = dataFinder.findMatchingMarinData(condition.getExistingDataSource(),
 //            numeroDeMarin);

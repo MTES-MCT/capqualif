@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
-import fr.gouv.mte.capqualif.legislateur.mock.DataToExtractFromExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.CorrespondingDataInExistingDataSource;
 import fr.gouv.mte.capqualif.shared.JsonExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,9 +22,9 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
     private JsonExtractor jsonExtractor;
 
     @Override
-    public List<ExtractionResult> getMarinData(String numeroDeMarin, DataToExtractFromExistingDataSource dataToExtractFromExistingDataSource) {
-        String marinJson = getJson(numeroDeMarin, dataToExtractFromExistingDataSource.getAPIUrl());
-        return jsonExtractor.getAllWantedData(marinJson, dataToExtractFromExistingDataSource);
+    public List<ExtractionResult> getMarinData(String numeroDeMarin, CorrespondingDataInExistingDataSource correspondingDataInExistingDataSource) {
+        String marinJson = getJson(numeroDeMarin, correspondingDataInExistingDataSource.getAPIUrl());
+        return jsonExtractor.getAllWantedData(marinJson, correspondingDataInExistingDataSource);
     }
 
 

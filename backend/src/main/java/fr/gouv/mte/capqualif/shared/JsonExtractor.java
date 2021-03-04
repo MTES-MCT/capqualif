@@ -1,9 +1,8 @@
 package fr.gouv.mte.capqualif.shared;
 
-import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
-import fr.gouv.mte.capqualif.legislateur.mock.DataToExtractFromExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.CorrespondingDataInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ParentKey;
@@ -21,7 +20,7 @@ import java.util.stream.Collectors;
 public class JsonExtractor {
 
     public List<ExtractionResult> getAllWantedData(String json,
-                                                   DataToExtractFromExistingDataSource dataToExtract) {
+                                                   CorrespondingDataInExistingDataSource dataToExtract) {
 
         List<ExtractionResult> results = new ArrayList<ExtractionResult>();
 
@@ -89,11 +88,11 @@ public class JsonExtractor {
         stringBuilder.append("$");      // The root element to query. This starts all path expressions.
         stringBuilder.append("..");     // Deep scan. Available anywhere a name is required.
         stringBuilder.append("[?(@.");   // [? : Filter expression. Expression must evaluate to a boolean value.
-                                        // @ : The current node being processed by a filter predicate.
-                                        // .<name> : Dot-notated child (here, name is the variable in the next line)
+        // @ : The current node being processed by a filter predicate.
+        // .<name> : Dot-notated child (here, name is the variable in the next line)
         stringBuilder.append(keyOfFilterData);     // The path is composed of the key we are looking for and its
-                                                // possible parents.
-                                                // If this key is nested (has parents), it will be something like : parent1.parent2.key
+        // possible parents.
+        // If this key is nested (has parents), it will be something like : parent1.parent2.key
         stringBuilder.append("=='");    // Comparison to a value ((here, value is the variable in the next line))
         stringBuilder.append(dataUsedAsFilter.getValueInExistingDataSource().getContent());
         stringBuilder.append("'");

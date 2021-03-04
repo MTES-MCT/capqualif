@@ -39,10 +39,10 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
         );
 
         // When
-        DataToExtractFromExistingDataSource realData = mapper.getInfosForSearchInExistingSource(conditionTitre);
+        CorrespondingDataInExistingDataSource realData = mapper.getInfosForSearchInExistingSource(conditionTitre);
 
         // Then
-        DataToExtractFromExistingDataSource expectedData = new DataToExtractFromExistingDataSource(
+        CorrespondingDataInExistingDataSource expectedData = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ESCULAPE,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
@@ -68,10 +68,10 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
         );
 
         // When
-        DataToExtractFromExistingDataSource realData = mapper.getInfosForSearchInExistingSource(conditionTitre);
+        CorrespondingDataInExistingDataSource realData = mapper.getInfosForSearchInExistingSource(conditionTitre);
 
         // Then
-        DataToExtractFromExistingDataSource expectedData = new DataToExtractFromExistingDataSource(
+        CorrespondingDataInExistingDataSource expectedData = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ADMINISTRES,
                 "https://run.mocky.io/v3/23493c22-70dd-4b8b-9e54-19aa5108c66b",
                 new EntryInExistingDataSource(

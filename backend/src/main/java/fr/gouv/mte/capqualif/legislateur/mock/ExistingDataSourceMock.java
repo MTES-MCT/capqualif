@@ -11,10 +11,10 @@ import java.util.Collections;
 @Component
 public class ExistingDataSourceMock implements ExistingDataSource {
 
-    public DataToExtractFromExistingDataSource findByConditionValue(ConditionTitre conditionTitre) {
+    public CorrespondingDataInExistingDataSource findByConditionValue(ConditionTitre conditionTitre) {
         switch (conditionTitre.getMainValueToCheck().getValueExpressedInLegalTerms()) {
             case "Âge supérieur ou égal à 16 ans":
-                return new DataToExtractFromExistingDataSource(
+                return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.ADMINISTRES,
                         "https://run.mocky.io/v3/23493c22-70dd-4b8b-9e54-19aa5108c66b",
                         new EntryInExistingDataSource(
@@ -26,7 +26,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                         null
                 );
             case "Aptitude toutes fonctions, toutes navigations":
-                return new DataToExtractFromExistingDataSource(
+                return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.ESCULAPE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
@@ -43,7 +43,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                 DataType.DATE))
                 );
             case "Module P1-Appui":
-                return new DataToExtractFromExistingDataSource(
+                return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
@@ -61,7 +61,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                         )
                 );
             case "Module P2-Appui":
-                return new DataToExtractFromExistingDataSource(
+                return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
@@ -80,7 +80,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                         )
                 );
             case "Module P3-Appui":
-                return new DataToExtractFromExistingDataSource(
+                return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
@@ -100,7 +100,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                         )
                 );
             case "Module NP-Appui":
-                return new DataToExtractFromExistingDataSource(
+                return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.AMFORE,
                         "***REMOVED***",
                         new EntryInExistingDataSource(
@@ -120,7 +120,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                         )
                 );
             case "Certificat de formation de base à la sécurité (CFBS)":
-                return new DataToExtractFromExistingDataSource(
+                return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.ITEM,
                         "***REMOVED***",
                         new EntryInExistingDataSource(

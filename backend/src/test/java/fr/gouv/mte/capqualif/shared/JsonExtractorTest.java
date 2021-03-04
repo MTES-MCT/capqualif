@@ -117,7 +117,7 @@ public class JsonExtractorTest {
                 "  }\n" +
                 "]";
 
-        DataToExtractFromExistingDataSource data = new DataToExtractFromExistingDataSource(
+        CorrespondingDataInExistingDataSource data = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.AMFORE,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
@@ -177,7 +177,7 @@ public class JsonExtractorTest {
                 "  \"idMarin\": 123\n" +
                 "}";
 
-        DataToExtractFromExistingDataSource data = new DataToExtractFromExistingDataSource(
+        CorrespondingDataInExistingDataSource data = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ESCULAPE,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
@@ -531,7 +531,7 @@ public class JsonExtractorTest {
                 "  }\n" +
                 "]";
 
-        DataToExtractFromExistingDataSource data = new DataToExtractFromExistingDataSource(
+        CorrespondingDataInExistingDataSource data = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ITEM,
                 "***REMOVED***",
                 new EntryInExistingDataSource(

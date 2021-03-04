@@ -3,7 +3,7 @@ package fr.gouv.mte.capqualif.instruction.application.services;
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
-import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.*;
 import fr.gouv.mte.capqualif.marin.domain.marin.Marin;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
@@ -11,6 +11,7 @@ import fr.gouv.mte.capqualif.titre.domain.Titre;
 import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
+import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -29,10 +30,13 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
     @Autowired
     ExistingDataSource existingDataSource;
+
     @MockBean
     private GetTitrePort getTitrePort;
+
     @MockBean
     private GetMarinDataPort getMarinDataPort;
+
     private CompareMarinDataToConditionsTitreService compareMarinDataToConditionsTitreService;
 
     @BeforeEach
@@ -44,16 +48,17 @@ class CompareMarinDataToConditionsTitreServiceTest {
     @Test
     void shouldReturnAPositiveComparisonResultWhenMarinDataMeetConditionTitre_stringCondition() {
         // Given
-        ConditionTitre conditionTitre = new ConditionTitre("Aptitude médicale",
-                new Value("Aptitude toutes fonctions, toutes navigations",
-                        ComparisonRule.STRICT_EQUALITY)
+        ConditionTitre conditionTitre = new ConditionTitre(
+                "Aptitude médicale",
+                new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY)
         );
 
         Titre titre = new Titre(
                 "1",
                 "Certificat de matelot pont (CMP9525)",
                 Collections.singletonList(conditionTitre),
-                null);
+                null
+        );
 
         Marin marin = new Marin(
                 "0",
@@ -71,21 +76,42 @@ class CompareMarinDataToConditionsTitreServiceTest {
                 null
         );
 
+        CorrespondingDataInExistingDataSource data = new CorrespondingDataInExistingDataSource(
+                ExistingDataSourceName.ESCULAPE,
+                "***REMOVED***",
+                new EntryInExistingDataSource(
+                        new KeyInExistingDataSource(
+                                conditionTitre.getJuridicalDesignation(),
+                                "libelle",
+                                DataType.STRING),
+                        new ValueInExistingDataSource("Apte TF/TN"), DataType.STRING
+                ),
+                Arrays.asList(new KeyInExistingDataSource(
+                        // TO DO : I don't like the juridicalName being hard coded. Replace.
+                        "Date de fin de validité",
+                        "dateFinDeValidite",
+                        DataType.DATE))
+        );
+
         // When
-
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
-        Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), null))
-                .thenReturn(Arrays.asList(new ExtractionResult("Aptitude médicale", "Apte TF/TN", DataType.STRING)));
 
-        List<ComparisonResult> realResults =
-                compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),
-                        marin.getNumeroDeMarin());
+        List<ExtractionResult> mockResult = Arrays.asList(new ExtractionResult("Aptitude médicale", "Apte TF/TN", DataType.STRING));
+
+        Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), data))
+                .thenReturn(mockResult);
+
+
+//        Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), null))
+//                .thenReturn(Arrays.asList(new ExtractionResult("Aptitude médicale", "Apte TF/TN", DataType.STRING)));
+
+        List<ComparisonResult> actualResultats =
+                compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(), marin.getNumeroDeMarin());
 
         // Then
         List<ComparisonResult> expectedResults = Collections.singletonList(new ComparisonResult("Aptitude médicale",
                 true));
 
-        assertEquals(expectedResults, realResults);
-
+        assertEquals(expectedResults, actualResultats);
     }
 }
