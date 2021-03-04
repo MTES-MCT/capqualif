@@ -22,8 +22,141 @@ public class JsonExtractorTest {
         jsonExtractor = new JsonExtractor();
     }
 
+
     @Test
-    void getData_notNested() {
+    void getNotNestedDataFromJson_WithOneAdditionalData() {
+        // Given
+        String json = "[\n" +
+                "  {\n" +
+                "    \"libelleVersionFormation\": \"Formation de base à la sécurité\",\n" +
+                "    \"dateAcquisition\": \"2020-02-12\",\n" +
+                "    \"dateFinValidite\": \"2025-02-11\",\n" +
+                "    \"libelleModeAcquisition\": \"Formation\",\n" +
+                "    \"libelleModuleUv\": \"UV formation de base à la lutte incendie\",\n" +
+                "    \"libelleTypeFormation\": \"Formation spécifique\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"libelleVersionFormation\": \"Formation de base à la sécurité\",\n" +
+                "    \"dateAcquisition\": \"2020-02-12\",\n" +
+                "    \"dateFinValidite\": null,\n" +
+                "    \"libelleModeAcquisition\": \"Formation\",\n" +
+                "    \"libelleModuleUv\": \"UV Sécurité personnes / responsabilités sociales\",\n" +
+                "    \"libelleTypeFormation\": \"Formation spécifique\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"libelleVersionFormation\": \"Formation de base à la sécurité\",\n" +
+                "    \"dateAcquisition\": \"2020-02-12\",\n" +
+                "    \"dateFinValidite\": \"2025-02-11\",\n" +
+                "    \"libelleModeAcquisition\": \"Formation\",\n" +
+                "    \"libelleModuleUv\": \"UV Techniques individuelles de survie\",\n" +
+                "    \"libelleTypeFormation\": \"Formation spécifique\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"libelleVersionFormation\": \"Enseignement médical niveau I\",\n" +
+                "    \"dateAcquisition\": \"2020-02-13\",\n" +
+                "    \"dateFinValidite\": \"2025-02-12\",\n" +
+                "    \"libelleModeAcquisition\": \"Formation\",\n" +
+                "    \"libelleModuleUv\": \"UV HPR\",\n" +
+                "    \"libelleTypeFormation\": \"Formation spécifique\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"libelleVersionFormation\": \"Enseignement médical niveau I\",\n" +
+                "    \"dateAcquisition\": \"2020-02-13\",\n" +
+                "    \"dateFinValidite\": \"2025-02-12\",\n" +
+                "    \"libelleModeAcquisition\": \"Formation\",\n" +
+                "    \"libelleModuleUv\": \"UV PSC1\",\n" +
+                "    \"libelleTypeFormation\": \"Formation spécifique\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"libelleVersionFormation\": \"Enseignement médical niveau I\",\n" +
+                "    \"dateAcquisition\": \"2020-02-13\",\n" +
+                "    \"dateFinValidite\": null,\n" +
+                "    \"libelleModeAcquisition\": \"Formation\",\n" +
+                "    \"libelleModuleUv\": \"UV AMMCT1\",\n" +
+                "    \"libelleTypeFormation\": \"Formation spécifique\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"libelleVersionFormation\": \"Formation de matelot Pont\",\n" +
+                "    \"dateAcquisition\": \"2020-06-24\",\n" +
+                "    \"dateFinValidite\": \"2025-06-23\",\n" +
+                "    \"libelleModeAcquisition\": \"Evaluation\",\n" +
+                "    \"libelleModuleUv\": \"P1–Appui-Navigation\",\n" +
+                "    \"libelleTypeFormation\": \"Formation modulaire\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"libelleVersionFormation\": \"Formation de matelot Pont\",\n" +
+                "    \"dateAcquisition\": \"2020-06-24\",\n" +
+                "    \"dateFinValidite\": \"2025-06-23\",\n" +
+                "    \"libelleModeAcquisition\": \"Evaluation\",\n" +
+                "    \"libelleModuleUv\": \"P3–Appui-Exploitation/assist/entretien/répar\",\n" +
+                "    \"libelleTypeFormation\": \"Formation modulaire\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"libelleVersionFormation\": \"Formation de sensibilisation à la sûreté\",\n" +
+                "    \"dateAcquisition\": \"2020-02-06\",\n" +
+                "    \"dateFinValidite\": null,\n" +
+                "    \"libelleModeAcquisition\": \"Formation\",\n" +
+                "    \"libelleModuleUv\": \"UV sensibilisation à la sûreté\",\n" +
+                "    \"libelleTypeFormation\": \"Formation spécifique\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"libelleVersionFormation\": \"Formation de matelot Pont\",\n" +
+                "    \"dateAcquisition\": \"2020-06-24\",\n" +
+                "    \"dateFinValidite\": \"2025-06-23\",\n" +
+                "    \"libelleModeAcquisition\": \"Evaluation\",\n" +
+                "    \"libelleModuleUv\": \"NP–Appui-Module Nation Pont\",\n" +
+                "    \"libelleTypeFormation\": \"Formation modulaire\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"libelleVersionFormation\": \"Formation de matelot Pont\",\n" +
+                "    \"dateAcquisition\": \"2020-06-24\",\n" +
+                "    \"dateFinValidite\": \"2025-06-23\",\n" +
+                "    \"libelleModeAcquisition\": \"Evaluation\",\n" +
+                "    \"libelleModuleUv\": \"P2–Appui-Manutention/arrimage cargaison/pêche\",\n" +
+                "    \"libelleTypeFormation\": \"Formation modulaire\"\n" +
+                "  }\n" +
+                "]";
+
+        DataToExtractFromExistingDataSource data = new DataToExtractFromExistingDataSource(
+                ExistingDataSourceName.AMFORE,
+                "***REMOVED***",
+                new EntryInExistingDataSource(
+                        new KeyInExistingDataSource(
+                                "Formation modulaire : Module P1-Appui",
+                                "libelleModuleUv",
+                                DataType.STRING),
+                        new ValueInExistingDataSource("P1–Appui-Navigation"), DataType.STRING
+                ),
+                Collections.singletonList(
+                        new KeyInExistingDataSource(
+                                "Date de fin de validité",
+                                "dateFinValidite",
+                                DataType.DATE)
+                )
+        );
+
+        // When
+        List<ExtractionResult> actualResult = jsonExtractor.getAllWantedData(json, data);
+
+        // Then
+        List<ExtractionResult> expectedResult = Arrays.asList(
+                new ExtractionResult(
+                        "Formation modulaire : Module P1-Appui",
+                        "P1–Appui-Navigation",
+                        DataType.STRING
+                ),
+                new ExtractionResult(
+                        "Date de fin de validité",
+                        "2025-06-23",
+                        DataType.DATE
+                )
+        );
+        assertEquals(expectedResult, actualResult);
+    }
+
+
+    @Test
+    void getNestedDataFromJson_WithSingleAdditionalData() {
         // Given
         String json = "{\n" +
                 "  \"dateFinDeValidite\": 1640905200000,\n" +
@@ -84,7 +217,7 @@ public class JsonExtractorTest {
     }
 
     @Test
-    void getData_nested() {
+    void getNestedDataFromJson_WithManyAdditionalData() {
         // Given
 
         String json = "[\n" +

@@ -78,13 +78,12 @@ public class JsonExtractor {
             keyOfFilterData = dataUsedAsFilter.getKeyInExistingDataSource().getRealNameInExistingDataSource();
         }
 
-        String key;
+        String key;                       // Will be the key in the Json we want to read value of.
         if (keyOfWantedData.getParentKeys() != null) {
             key = buildPath(keyOfWantedData.getParentKeys()) + keyOfWantedData.getRealNameInExistingDataSource();
         } else {
             key = keyOfWantedData.getRealNameInExistingDataSource();
         }
-
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("$");      // The root element to query. This starts all path expressions.
@@ -99,7 +98,7 @@ public class JsonExtractor {
         stringBuilder.append(dataUsedAsFilter.getValueInExistingDataSource().getContent());
         stringBuilder.append("'");
         stringBuilder.append(")].");
-        stringBuilder.append(key);
+        stringBuilder.append(key);          // The key in the Json we want to read value of.
         System.out.println("data query is : " + stringBuilder.toString());
         return stringBuilder.toString();
     }
@@ -130,5 +129,4 @@ public class JsonExtractor {
         ExtractionResult result = new ExtractionResult(key, value, dataType);
         return result;
     }
-
 }
