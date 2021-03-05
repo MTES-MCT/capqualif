@@ -4,14 +4,17 @@ import fr.gouv.mte.capqualif.instruction.application.ports.in.CompareMarinDataTo
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
-import fr.gouv.mte.capqualif.legislateur.mock.CorrespondingDataInExistingDataSource;
-import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataSource;
-import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.*;
+import fr.gouv.mte.capqualif.shared.TimeConverter;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
+import fr.gouv.mte.capqualif.titre.domain.Value;
+import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
+import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +27,11 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     @Autowired
     GetMarinDataPort getMarinDataPort;
 
-
     @Autowired
     ExistingDataSource existingDataSource;
+
+    @Autowired
+    TimeConverter timeConverter;
 
     public CompareMarinDataToConditionsTitreService(GetTitrePort getTitrePort, GetMarinDataPort getMarinDataPort,
                                                     ExistingDataSource existingDataSource) {
@@ -40,11 +45,10 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         List<ConditionTitre> conditions = getTitrePort.findTitreById(titreId).getConditions();
         List<ComparisonResult> results = new ArrayList<ComparisonResult>();
         for (ConditionTitre condition : conditions) {
-            CorrespondingDataInExistingDataSource conditionRealData =
-                    existingDataSource.findByConditionValue(condition);
+            CorrespondingDataInExistingDataSource conditionRealData = existingDataSource.findByConditionValue(condition);
             List<ExtractionResult> marinMatchingData = getMarinDataPort.getMarinData(numeroDeMarin, conditionRealData);
-            compareMarinDataToConditionCriteria(numeroDeMarin, results, condition, conditionRealData,
-                    marinMatchingData);
+            if (marinMatchingData.size() > 0)
+                compareMarinDataToConditionCriteria(numeroDeMarin, results, condition, conditionRealData, marinMatchingData);
         }
         return results;
     }
@@ -53,24 +57,18 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                                                      ConditionTitre condition,
                                                      CorrespondingDataInExistingDataSource conditionRealData,
                                                      List<ExtractionResult> marinMatchingData) {
-        isMarinDataMeetingMainConditionCriterion(results, marinMatchingData, conditionRealData);
-        isMarinDataMeetingAdditionalConditionCriteria(results, marinMatchingData, conditionRealData);
+        isMarinDataMeetingMainConditionCriterion(results, marinMatchingData, conditionRealData, condition);
+        isMarinDataMeetingAdditionalConditionCriteria(results, marinMatchingData, conditionRealData, condition);
     }
 
     private void isMarinDataMeetingMainConditionCriterion(List<ComparisonResult> results,
                                                           List<ExtractionResult> marinMatchingData,
-                                                          CorrespondingDataInExistingDataSource correspondingData) {
-
+                                                          CorrespondingDataInExistingDataSource conditionRealData,
+                                                          ConditionTitre condition) {
         ComparisonResult comparisonResult;
         for (ExtractionResult marinData : marinMatchingData) {
-            if (marinData.getKey().equals(correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName())) {
-                if (marinData.getValue().equals(correspondingData.getMainWantedData().getValueInExistingDataSource().getContent())) {
-                    comparisonResult =
-                            buildComparisonResult(correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName(), true);
-                } else {
-                    comparisonResult =
-                            buildComparisonResult(correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName(), false);
-                }
+            if (marinData.getKey().equals(conditionRealData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName())) {
+                comparisonResult = compare()
                 results.add(comparisonResult);
             }
         }
@@ -78,21 +76,54 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
 
     private void isMarinDataMeetingAdditionalConditionCriteria(List<ComparisonResult> results,
                                                                List<ExtractionResult> marinMatchingData,
-                                                               CorrespondingDataInExistingDataSource correspondingData) {
+                                                               CorrespondingDataInExistingDataSource correspondingData,
+                                                               ConditionTitre condition) {
         ComparisonResult comparisonResult;
-
         for (KeyInExistingDataSource key : correspondingData.getKeysOfAdditionalWantedData()) {
             for (ExtractionResult marinData : marinMatchingData) {
-                if (marinData.getKey().equals(key.getRealNameInExistingDataSource())) {
-                    // vérifier la validité de la date
-                    comparisonResult = buildComparisonResult(key.getJuridicalName(), true);
-                } else {
-                    comparisonResult = buildComparisonResult(key.getJuridicalName(), false);
+                if (marinData.getKey().equals(key.getJuridicalName())) {
+                    comparisonResult = compare()
+                    results.add(comparisonResult);
                 }
-                results.add(comparisonResult);
             }
         }
+    }
 
+    private ComparisonResult compare(ExtractionResult comparedData, EntryInExistingDataSource referenceData, ConditionTitre condition) {
+        ComparisonResult comparisonResult;
+        switch(referenceData.getDataType()) {
+            case STRING:
+                return comparisonResult = compareStrings(comparedData, referenceData, condition.get);
+            case DATE :
+                comparisonResult = compareDates(comparedData, referenceData, howToCompare);
+                return comparisonResult;
+        }
+    }
+
+    private ComparisonResult compareStrings(ExtractionResult comparedData, EntryInExistingDataSource referenceData, ComparisonRule howToCompare) {
+        ComparisonResult comparisonResult;
+        if (comparedData.getValue().equals(referenceData.getValueInExistingDataSource().getContent())) {
+            return comparisonResult =
+                    buildComparisonResult(referenceData.getKeyInExistingDataSource().getJuridicalName(), true);
+        } else {
+            return comparisonResult =
+                    buildComparisonResult(referenceData.getKeyInExistingDataSource().getJuridicalName(), false);
+        }
+    }
+
+    private ComparisonResult compareDates(ExtractionResult comparedData, EntryInExistingDataSource referenceData, ComparisonRule howToCompare) {
+        ComparisonResult comparisonResult;
+        return null;
+    }
+
+
+
+
+    private boolean isDataDateValid(String dataDate) {
+        LocalDate date = timeConverter.convertToLocalDate(dataDate); // what is Local dataDate ?
+
+        if(date.isAfter())
+        return true;
     }
 
     private ComparisonResult buildComparisonResult(String key,

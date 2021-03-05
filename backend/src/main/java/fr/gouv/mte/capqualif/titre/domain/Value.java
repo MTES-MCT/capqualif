@@ -2,31 +2,44 @@ package fr.gouv.mte.capqualif.titre.domain;
 
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Value {
 
     private String valueExpressedInLegalTerms;
-    private ComparisonRule howToCompareValue;
+    private ComparisonRule howToCompare;
+    private LocalDate referenceDate;
 
-    public Value(String valueExpressedInLegalTerms, ComparisonRule howToCompareValue) {
+    public Value(String valueExpressedInLegalTerms, ComparisonRule howToCompare) {
         this.valueExpressedInLegalTerms = valueExpressedInLegalTerms;
-        this.howToCompareValue = howToCompareValue;
+        this.howToCompare = howToCompare;
+    }
+
+    public Value(String valueExpressedInLegalTerms, ComparisonRule howToCompare, LocalDate referenceDate) {
+        this.valueExpressedInLegalTerms = valueExpressedInLegalTerms;
+        this.howToCompare = howToCompare;
+        this.referenceDate = referenceDate;
     }
 
     public String getValueExpressedInLegalTerms() {
         return valueExpressedInLegalTerms;
     }
 
-    public ComparisonRule getHowToCompareValue() {
-        return howToCompareValue;
+    public ComparisonRule getHowToCompare() {
+        return howToCompare;
+    }
+
+    public LocalDate getReferenceDate() {
+        return referenceDate;
     }
 
     @Override
     public String toString() {
         return "Value{" +
                 "valueExpressedInLegalTerms='" + valueExpressedInLegalTerms + '\'' +
-                ", howToCompareValue=" + howToCompareValue +
+                ", howToCompare=" + howToCompare +
+                ", referenceDate=" + referenceDate +
                 '}';
     }
 
@@ -38,11 +51,12 @@ public class Value {
             return false;
         Value value = (Value) o;
         return valueExpressedInLegalTerms.equals(value.valueExpressedInLegalTerms) &&
-                howToCompareValue == value.howToCompareValue;
+                howToCompare == value.howToCompare &&
+                Objects.equals(referenceDate, value.referenceDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(valueExpressedInLegalTerms, howToCompareValue);
+        return Objects.hash(valueExpressedInLegalTerms, howToCompare, referenceDate);
     }
 }

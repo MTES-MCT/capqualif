@@ -6,6 +6,7 @@ import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Component
@@ -27,7 +28,7 @@ public class TitresApiMock {
 
     private List<Titre> buildTitresList() {
 
-        Date today = new Date(); // A temporary mock until we know what reference event we should use
+        LocalDate today = LocalDate.now(); // A temporary mock until we know what reference event we should use
 
         List<Titre> titresList = new ArrayList<>();
         List<ConditionTitre> conditions = new ArrayList<ConditionTitre>
@@ -40,31 +41,31 @@ public class TitresApiMock {
                     new ConditionTitre(
                             "Aptitude médicale",
                             new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
-                            Collections.singletonList(new DateValue("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
+                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
                     ),
                     new ConditionTitre(
                             "Formation modulaire : Module P1-Appui",
                             new Value("Module P1-Appui",ComparisonRule.STRICT_EQUALITY),
-                            Collections.singletonList(new DateValue("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
+                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
                     ),
                     new ConditionTitre(
                             "Formation modulaire : Module P2-Appui",
                             new Value("Module P2-Appui",ComparisonRule.STRICT_EQUALITY),
-                            Collections.singletonList(new DateValue("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
+                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
                     ),
                     new ConditionTitre("Formation modulaire : Module P3-Appui",
                             new Value("Module P3-Appui",ComparisonRule.STRICT_EQUALITY),
-                            Collections.singletonList(new DateValue("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
+                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
                     ),
                     new ConditionTitre("Formation modulaire : Module NP-Appui",
                             new Value("Module NP-Appui",ComparisonRule.STRICT_EQUALITY),
-                            Collections.singletonList(new DateValue("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
+                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
                     ),
                     new ConditionTitre("Certificat de formation de base à la sécurité (CFBS)",
                             new Value("Certificat de formation de base à la sécurité (CFBS)", ComparisonRule.STRICT_EQUALITY),
                             Arrays.asList(
                                     new Value("Statut", ComparisonRule.STRICT_EQUALITY),
-                                    new DateValue("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today)
+                                    new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today)
                             )
                     )
                 )
@@ -83,7 +84,7 @@ public class TitresApiMock {
                 new ConditionTitre(
                         "Aptitude médicale",
                         new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
-                        Collections.singletonList(new DateValue("Date de fin de validité",
+                        Collections.singletonList(new Value("Date de fin de validité",
                                 ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
                 )
         ));

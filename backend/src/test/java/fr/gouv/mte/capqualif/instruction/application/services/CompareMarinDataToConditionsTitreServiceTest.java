@@ -105,7 +105,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
         Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), data))
                 .thenReturn(Arrays.asList(
-                        new ExtractionResult("Aptitude médicale", "Apte TF/TN sf C/V avec restriction",
+                        new ExtractionResult("Aptitude médicale", "Apte TF/TN",
                                 DataType.STRING),
                         new ExtractionResult("Date de fin de validité", "1640905200000", DataType.DATE)
                 ));
@@ -118,9 +118,8 @@ class CompareMarinDataToConditionsTitreServiceTest {
         // Then
         List<ComparisonResult> expectedResults = Arrays.asList(
                 new ComparisonResult("Aptitude médicale", true),
-                new ComparisonResult("Date de fin de validité", false)
+                new ComparisonResult("Date de fin de validité", true)
         );
-
         assertEquals(expectedResults, actualResultats);
     }
 
