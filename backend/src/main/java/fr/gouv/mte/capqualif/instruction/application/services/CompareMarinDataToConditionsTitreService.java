@@ -6,6 +6,7 @@ import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.CorrespondingDataInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,58 +40,67 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         List<ConditionTitre> conditions = getTitrePort.findTitreById(titreId).getConditions();
         List<ComparisonResult> results = new ArrayList<ComparisonResult>();
         for (ConditionTitre condition : conditions) {
-            CorrespondingDataInExistingDataSource correspondingData =
+            CorrespondingDataInExistingDataSource conditionRealData =
                     existingDataSource.findByConditionValue(condition);
-            List<ExtractionResult> marinMatchingData = getMarinDataPort.getMarinData(numeroDeMarin, correspondingData);
-            ComparisonResult comparisonResult;
-            for (ExtractionResult marinData : marinMatchingData) {
-                if (marinData.getKey().equals(correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName())) {
-                    if (marinData.getValue().equals(correspondingData.getMainWantedData().getValueInExistingDataSource().getContent())) {
-                        comparisonResult = new ComparisonResult(
-                                correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName(),
-                                true);
-                        results.add(comparisonResult);
-                    } else {
-                        comparisonResult = new ComparisonResult(
-                                correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName(),
-                                false);
-                        results.add(comparisonResult);
-                    }
-                }
-            }
+            List<ExtractionResult> marinMatchingData = getMarinDataPort.getMarinData(numeroDeMarin, conditionRealData);
+            compareMarinDataToConditionCriteria(numeroDeMarin, results, condition, conditionRealData,
+                    marinMatchingData);
         }
         return results;
     }
+
+    private void compareMarinDataToConditionCriteria(String numeroDeMarin, List<ComparisonResult> results,
+                                                     ConditionTitre condition,
+                                                     CorrespondingDataInExistingDataSource conditionRealData,
+                                                     List<ExtractionResult> marinMatchingData) {
+        isMarinDataMeetingMainConditionCriterion(results, marinMatchingData, conditionRealData);
+        isMarinDataMeetingAdditionalConditionCriteria(results, marinMatchingData, conditionRealData);
+    }
+
+    private void isMarinDataMeetingMainConditionCriterion(List<ComparisonResult> results,
+                                                          List<ExtractionResult> marinMatchingData,
+                                                          CorrespondingDataInExistingDataSource correspondingData) {
+
+        ComparisonResult comparisonResult;
+        for (ExtractionResult marinData : marinMatchingData) {
+            if (marinData.getKey().equals(correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName())) {
+                if (marinData.getValue().equals(correspondingData.getMainWantedData().getValueInExistingDataSource().getContent())) {
+                    comparisonResult =
+                            buildComparisonResult(correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName(), true);
+                } else {
+                    comparisonResult =
+                            buildComparisonResult(correspondingData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName(), false);
+                }
+                results.add(comparisonResult);
+            }
+        }
+    }
+
+    private void isMarinDataMeetingAdditionalConditionCriteria(List<ComparisonResult> results,
+                                                               List<ExtractionResult> marinMatchingData,
+                                                               CorrespondingDataInExistingDataSource correspondingData) {
+        ComparisonResult comparisonResult;
+
+        for (KeyInExistingDataSource key : correspondingData.getKeysOfAdditionalWantedData()) {
+            for (ExtractionResult marinData : marinMatchingData) {
+                if (marinData.getKey().equals(key.getRealNameInExistingDataSource())) {
+                    // vérifier la validité de la date
+                    comparisonResult = buildComparisonResult(key.getJuridicalName(), true);
+                } else {
+                    comparisonResult = buildComparisonResult(key.getJuridicalName(), false);
+                }
+                results.add(comparisonResult);
+            }
+        }
+
+    }
+
+    private ComparisonResult buildComparisonResult(String key,
+                                                   boolean isMarinDataMeetingConditionCriterion) {
+        ComparisonResult comparisonResult;
+        comparisonResult = new ComparisonResult(
+                key,
+                isMarinDataMeetingConditionCriterion);
+        return comparisonResult;
+    }
 }
-//
-//            // ===== TO DO : for dev logs purposes, remove later =====
-//            if (marinMatchingData == null) {
-//                System.out.println("No matching data found for " + condition.getJuridicalDesignation() + " = " +
-// condition.getValueExpressedInLegalTerms());
-//            } else {
-//                for (Entry data : marinMatchingData) {
-//                    System.out.println(data.toString());
-//                }
-//            }
-// =======================================================
-
-// Passer chaque matching marinData au dataChecker !
-
-
-//      check all data (minus the main key?) validity values
-
-//            List<Map> allMatchingData = dataFinder.findMatchingMarinData(condition.getExistingDataSource(),
-//            numeroDeMarin);
-//            boolean result = dataChecker.compareDataToCondition(allMatchingData, condition, LocalDate.now());
-//            CompareResult compareResult = new CompareResult(condition.getLibelle(), result);
-//            compareResults.add(compareResult);
-//        }
-//        return results;
-//    }
-
-//    private List<ConditionTitre> getConditionTitre(String titreId) {
-//        Titre titre = getTitrePort.getTitre(titreId);
-//        return titre.getConditions();
-//    }
-
-
