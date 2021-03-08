@@ -29,7 +29,7 @@ public class ValueInExistingDataSource {
         if (o == null || getClass() != o.getClass())
             return false;
         ValueInExistingDataSource that = (ValueInExistingDataSource) o;
-        return content.equals(that.content);
+        return Objects.equals(content, that.content);
     }
 
     @Override

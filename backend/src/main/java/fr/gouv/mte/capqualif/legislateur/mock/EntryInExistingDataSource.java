@@ -32,7 +32,7 @@ public class EntryInExistingDataSource {
     public String toString() {
         return "EntryInExistingDataSource{" +
                 "keyInExistingDataSource=" + keyInExistingDataSource +
-                ", value=" + valueInExistingDataSource +
+                ", valueInExistingDataSource=" + valueInExistingDataSource +
                 ", dataType=" + dataType +
                 '}';
     }

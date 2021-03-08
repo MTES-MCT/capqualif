@@ -55,7 +55,7 @@ public class CorrespondingDataInExistingDataSource {
 
     @Override
     public String toString() {
-        return "DataToExtractFromExistingDataSource{" +
+        return "CorrespondingDataInExistingDataSource{" +
                 "APIName=" + APIName +
                 ", APIUrl='" + APIUrl + '\'' +
                 ", mainWantedData=" + mainWantedData +

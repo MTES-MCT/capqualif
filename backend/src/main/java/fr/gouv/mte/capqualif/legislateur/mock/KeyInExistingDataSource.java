@@ -1,5 +1,6 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
+import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 
 import java.util.List;
@@ -9,35 +10,26 @@ public class KeyInExistingDataSource {
     private String juridicalName;
     private String realNameInExistingDataSource;
     private DataType dataType;
+    private ComparisonRule comparisonRule;
     private boolean isNested;
     private List<ParentKey> parentKeys;
 
-    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource) {
-        this.juridicalName = juridicalName;
-        this.realNameInExistingDataSource = realNameInExistingDataSource;
-    }
-
-    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, boolean isNested,
-                                   List<ParentKey> parentKeys, DataType dataType) {
+    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, DataType dataType,
+                                   ComparisonRule comparisonRule) {
         this.juridicalName = juridicalName;
         this.realNameInExistingDataSource = realNameInExistingDataSource;
         this.dataType = dataType;
-        this.isNested = isNested;
-        this.parentKeys = parentKeys;
+        this.comparisonRule = comparisonRule;
     }
 
-    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, boolean isNested,
-                                   List<ParentKey> parentKeys) {
-        this.juridicalName = juridicalName;
-        this.realNameInExistingDataSource = realNameInExistingDataSource;
-        this.isNested = isNested;
-        this.parentKeys = parentKeys;
-    }
-
-    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, DataType dataType) {
+    public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, DataType dataType,
+                                   ComparisonRule comparisonRule, boolean isNested, List<ParentKey> parentKeys) {
         this.juridicalName = juridicalName;
         this.realNameInExistingDataSource = realNameInExistingDataSource;
         this.dataType = dataType;
+        this.comparisonRule = comparisonRule;
+        this.isNested = isNested;
+        this.parentKeys = parentKeys;
     }
 
     public String getJuridicalName() {
@@ -50,6 +42,10 @@ public class KeyInExistingDataSource {
 
     public DataType getDataType() {
         return dataType;
+    }
+
+    public ComparisonRule getComparisonRule() {
+        return comparisonRule;
     }
 
     public boolean isNested() {
@@ -66,6 +62,7 @@ public class KeyInExistingDataSource {
                 "juridicalName='" + juridicalName + '\'' +
                 ", realNameInExistingDataSource='" + realNameInExistingDataSource + '\'' +
                 ", dataType=" + dataType +
+                ", comparisonRule=" + comparisonRule +
                 ", isNested=" + isNested +
                 ", parentKeys=" + parentKeys +
                 '}';
@@ -82,11 +79,12 @@ public class KeyInExistingDataSource {
                 juridicalName.equals(that.juridicalName) &&
                 realNameInExistingDataSource.equals(that.realNameInExistingDataSource) &&
                 dataType == that.dataType &&
+                comparisonRule == that.comparisonRule &&
                 Objects.equals(parentKeys, that.parentKeys);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(juridicalName, realNameInExistingDataSource, dataType, isNested, parentKeys);
+        return Objects.hash(juridicalName, realNameInExistingDataSource, dataType, comparisonRule, isNested, parentKeys);
     }
 }

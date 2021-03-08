@@ -10,7 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,21 +24,22 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
     private ExistingDataSource existingDataSource;
 
     private ConditionTitreToRealDataInExistingDataSourcesMapper mapper;
+    LocalDate today;
 
     @BeforeEach
     void setUp() {
+        today = LocalDate.now(); // A temporary mock until we know what reference event we should use
         mapper = new ConditionTitreToRealDataInExistingDataSourcesMapper(existingDataSource);
     }
 
     @Test
-    void shouldReturnTheRightDataToExtractFromExistingDataSource_entryWithValue() {
+    void shouldReturnTheRightDataFromExistingDataSource_entryWithValue() {
 
         // Given
         ConditionTitre conditionTitre = new ConditionTitre(
                 "Aptitude médicale",
-                new Value(
-                        "Aptitude toutes fonctions, toutes navigations",
-                        ComparisonRule.STRICT_EQUALITY)
+                new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
+                Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
         );
 
         // When
@@ -46,11 +50,27 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
                 ExistingDataSourceName.ESCULAPE,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
-                        new KeyInExistingDataSource("Aptitude médicale", "libelle", DataType.STRING),
+                        new KeyInExistingDataSource(
+                                conditionTitre.getJuridicalDesignation(),
+                                "libelle",
+                                DataType.STRING,
+                                conditionTitre.getMainValueToCheck().getHowToCompare(),
+                                true,
+                                Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))
+                        ),
                         new ValueInExistingDataSource("Apte TF/TN"), DataType.STRING
                 ),
-                Collections.singletonList(new KeyInExistingDataSource("Date de fin de validité", "dateFinDeValidite", DataType.DATE))
+                Arrays.asList(
+                        new KeyInExistingDataSource(
+                                // TO DO : I don't like the juridicalName being hard coded. Replace.
+                                "Date de fin de validité",
+                                "dateFinDeValidite",
+                                DataType.DATE,
+                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream().filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms())).findFirst().orElse(null)).getHowToCompare())
+                )
         );
+
+        System.out.println(expectedData.equals(realData));
 
         // If you need to know how equality comparison of objects works here :
         // https://www.arhohuttunen.com/junit-5-assertions/
@@ -58,7 +78,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
     }
 
     @Test
-    void shouldReturnTheRightDataToExtractFromExistingDataSource_entryWithoutValue() {
+    void shouldReturnTheRightDataFromExistingDataSource_entryWithoutValue() {
 
         // Given
         ConditionTitre conditionTitre = new ConditionTitre("Âge minimum",
@@ -75,12 +95,15 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
                 ExistingDataSourceName.ADMINISTRES,
                 "https://run.mocky.io/v3/23493c22-70dd-4b8b-9e54-19aa5108c66b",
                 new EntryInExistingDataSource(
-                        new KeyInExistingDataSource("Âge minimum", "dateNaissance", DataType.DATE),
-                        null, DataType.DATE
-                ),
-                null);
+                        new KeyInExistingDataSource(
+                                conditionTitre.getJuridicalDesignation(),
+                                "dateNaissance", DataType.DATE, conditionTitre.getMainValueToCheck().getHowToCompare()),
+                        null,
+                        DataType.DATE),
+                null
+        );
 
-        // If you need to know how equality comparison of objects works here :
+        // If you need to know how equality comparison of objects works here, read:
         // https://www.arhohuttunen.com/junit-5-assertions/
         assertEquals(expectedData, realData);
     }

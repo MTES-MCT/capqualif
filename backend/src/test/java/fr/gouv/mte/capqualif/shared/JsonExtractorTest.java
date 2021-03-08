@@ -2,11 +2,13 @@ package fr.gouv.mte.capqualif.shared;
 
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.*;
+import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -16,9 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class JsonExtractorTest {
 
     JsonExtractor jsonExtractor;
+    LocalDate today;
 
     @BeforeEach
     void setUp() {
+        today = LocalDate.now(); // A temporary mock until we know what reference event we should use
         jsonExtractor = new JsonExtractor();
     }
 
@@ -124,14 +128,17 @@ public class JsonExtractorTest {
                         new KeyInExistingDataSource(
                                 "Formation modulaire : Module P1-Appui",
                                 "libelleModuleUv",
-                                DataType.STRING),
+                                DataType.STRING,
+                                ComparisonRule.STRICT_EQUALITY),
                         new ValueInExistingDataSource("P1–Appui-Navigation"), DataType.STRING
                 ),
                 Collections.singletonList(
                         new KeyInExistingDataSource(
                                 "Date de fin de validité",
                                 "dateFinValidite",
-                                DataType.DATE)
+                                DataType.DATE,
+                                ComparisonRule.EQUAL_TO_OR_POSTERIOR
+                        )
                 )
         );
 
@@ -184,16 +191,20 @@ public class JsonExtractorTest {
                         new KeyInExistingDataSource(
                                 "Aptitude médicale",
                                 "libelle",
+                                DataType.STRING,
+                                ComparisonRule.STRICT_EQUALITY,
                                 true,
-                                Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale")
-                                )
-                        ),
+                                Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))),
                         new ValueInExistingDataSource("Apte TF/TN"), DataType.STRING
                 ),
-                Arrays.asList(new KeyInExistingDataSource(
-                        "Date de fin de validité",
-                        "dateFinDeValidite",
-                        DataType.DATE))
+                Arrays.asList(
+                        new KeyInExistingDataSource(
+                                // TO DO : I don't like the juridicalName being hard coded. Replace.
+                                "Date de fin de validité",
+                                "dateFinDeValidite",
+                                DataType.DATE,
+                                ComparisonRule.EQUAL_TO_OR_POSTERIOR
+                        ))
         );
 
         // When
@@ -538,28 +549,32 @@ public class JsonExtractorTest {
                         new KeyInExistingDataSource(
                                 "Certificat de formation de base à la sécurité (CFBS)",
                                 "libelle",
+                                DataType.STRING,
+                                ComparisonRule.STRICT_EQUALITY,
                                 true,
-                                Collections.singletonList(new ParentKey(Position.POSITION_1, "codeBrevetMarin")
-                                ),
-                                DataType.STRING
+                                Collections.singletonList(
+                                        new ParentKey(Position.POSITION_1, "codeBrevetMarin")
+                                )
                         ),
                         new ValueInExistingDataSource(
                                 "Certificat de formation de base à la sécurité (STCW10)"
-                        ),
-                        DataType.STRING
+                        ), DataType.STRING
                 ),
                 Arrays.asList(
                         new KeyInExistingDataSource(
                                 "Statut",
                                 "libelle",
+                                DataType.STRING,
+                                ComparisonRule.STRICT_EQUALITY,
                                 true,
-                                Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre")),
-                                DataType.STRING
+                                Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre"))
                         ),
                         new KeyInExistingDataSource(
                                 "Date de fin de validité",
                                 "dateExpiration",
-                                DataType.DATE)
+                                DataType.DATE,
+                                ComparisonRule.EQUAL_TO_OR_POSTERIOR
+                        )
                 )
         );
 

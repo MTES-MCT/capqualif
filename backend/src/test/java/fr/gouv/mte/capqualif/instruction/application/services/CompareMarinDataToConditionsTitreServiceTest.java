@@ -86,14 +86,17 @@ class CompareMarinDataToConditionsTitreServiceTest {
                         new KeyInExistingDataSource(
                                 conditionTitre.getJuridicalDesignation(),
                                 "libelle",
-                                DataType.STRING),
+                                DataType.STRING,
+                                conditionTitre.getMainValueToCheck().getHowToCompare()),
                         new ValueInExistingDataSource("Apte TF/TN"), DataType.STRING
                 ),
                 Arrays.asList(new KeyInExistingDataSource(
                         // TO DO : I don't like the juridicalName being hard coded. Replace.
                         "Date de fin de validité",
                         "dateFinDeValidite",
-                        DataType.DATE))
+                        DataType.DATE,
+                        conditionTitre.getAdditionalValuesToCheck().stream().filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms())).findFirst().orElse(null).getHowToCompare())
+                )
         );
 
     }
