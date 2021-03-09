@@ -16,6 +16,7 @@ import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.print.DocFlavor;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,8 +76,13 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         ComparisonResult comparisonResult;
         for (ExtractionResult marinData : marinMatchingData) {
             if (marinData.getKey().equals(conditionRealData.getMainWantedData().getKeyInExistingDataSource().getJuridicalName())) {
-                comparisonResult = compareToEntry(marinData, conditionRealData.getMainWantedData());
-                results.add(comparisonResult);
+                switch(conditionRealData.getMainWantedData().getKeyInExistingDataSource().getDataType()){
+                    case STRING:
+                        compareStrings(marinData.getValue(), conditionRealData.getMainWantedData().getValueInExistingDataSource().getContent(), conditionRealData.getMainWantedData().getKeyInExistingDataSource().getComparisonRule());
+                }
+
+//                comparisonResult = compareToEntry(marinData, conditionRealData.getMainWantedData());
+//                results.add(comparisonResult);
             }
         }
     }
@@ -89,28 +95,28 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         for (KeyInExistingDataSource key : conditionRealData.getKeysOfAdditionalWantedData()) {
             for (ExtractionResult marinData : marinMatchingData) {
                 if (marinData.getKey().equals(key.getJuridicalName())) {
-                    comparisonResult = compareToEntry(marinData, key);
-                    results.add(comparisonResult);
+//                    comparisonResult = compareToEntry(marinData, key);
+//                    results.add(comparisonResult);
                 }
             }
         }
     }
 
-    private ComparisonResult compareToEntry(ExtractionResult comparedData, EntryInExistingDataSource referenceEntry) {
-        ComparisonResult comparisonResult;
-        switch (referenceEntry.getDataType()) {
-            case STRING:
-                comparisonResult = new ComparisonResult(compareStrings(comparedData.getValue(),
-                        referenceEntry.getValueInExistingDataSource().getContent(),
-                        referenceEntry.getKeyInExistingDataSource().getComparisonRule()))
-                return comparisonResult;
-            case DATE:
-                comparisonResult = compareDates(comparedData, referenceEntry);
-                return comparisonResult;
-            default:
-                return null;
-        }
-    }
+//    private ComparisonResult compareToEntry(ExtractionResult comparedData, EntryInExistingDataSource referenceEntry) {
+//        ComparisonResult comparisonResult;
+//        switch (referenceEntry.getDataType()) {
+//            case STRING:
+//                comparisonResult = new ComparisonResult(compareStrings(comparedData.getValue(),
+//                        referenceEntry.getValueInExistingDataSource().getContent(),
+//                        referenceEntry.getKeyInExistingDataSource().getComparisonRule()))
+//                return comparisonResult;
+//            case DATE:
+//                comparisonResult = compareDates(comparedData, referenceEntry);
+//                return comparisonResult;
+//            default:
+//                return null;
+//        }
+//    }
 
 //    private ComparisonResult compareStrings(ExtractionResult comparedData, EntryInExistingDataSource referenceData) {
 //        ComparisonResult comparisonResult;

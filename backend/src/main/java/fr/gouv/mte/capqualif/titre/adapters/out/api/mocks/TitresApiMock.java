@@ -2,8 +2,7 @@ package fr.gouv.mte.capqualif.titre.adapters.out.api.mocks;
 
 import fr.gouv.mte.capqualif.titre.domain.*;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
-import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
-import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
+import fr.gouv.mte.capqualif.titre.domain.enums.Status;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -64,7 +63,7 @@ public class TitresApiMock {
                     new ConditionTitre("Certificat de formation de base à la sécurité (CFBS)",
                             new Value("Certificat de formation de base à la sécurité (CFBS)", ComparisonRule.STRICT_EQUALITY),
                             Arrays.asList(
-                                    new Value("Statut", ComparisonRule.STRICT_EQUALITY),
+                                    new Value("Statut", ComparisonRule.STRICT_EQUALITY, Status.VALID),
                                     new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today)
                             )
                     )

@@ -7,7 +7,6 @@ import fr.gouv.mte.capqualif.legislateur.mock.*;
 import fr.gouv.mte.capqualif.marin.domain.marin.Marin;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
-import fr.gouv.mte.capqualif.titre.domain.DateValue;
 import fr.gouv.mte.capqualif.titre.domain.Titre;
 import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
@@ -20,9 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,12 +46,12 @@ class CompareMarinDataToConditionsTitreServiceTest {
         compareMarinDataToConditionsTitreService =
                 new CompareMarinDataToConditionsTitreService(getTitrePort, getMarinDataPort, existingDataSource);
 
-        Date today = new Date(); // A temporary mock until we know what reference event we should use
+        LocalDate today = LocalDate.now(); // A temporary mock until we know what reference event we should use
 
         conditionTitre = new ConditionTitre(
                 "Aptitude médicale",
                 new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
-                Collections.singletonList(new DateValue("Date de fin de validité",
+                Collections.singletonList(new Value("Date de fin de validité",
                         ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
         );
 
