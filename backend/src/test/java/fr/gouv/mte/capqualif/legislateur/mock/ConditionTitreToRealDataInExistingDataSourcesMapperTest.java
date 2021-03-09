@@ -2,9 +2,7 @@ package fr.gouv.mte.capqualif.legislateur.mock;
 
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Value;
-import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
-import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
-import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
+import fr.gouv.mte.capqualif.titre.domain.enums.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +37,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
         ConditionTitre conditionTitre = new ConditionTitre(
                 "Aptitude médicale",
                 new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
-                Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
+                Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ReferenceDate(LocalDate.now())))
         );
 
         // When
@@ -55,6 +53,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
                                 "libelle",
                                 DataType.STRING,
                                 conditionTitre.getMainValueToCheck().getHowToCompare(),
+                                new ReferenceString("Apte TF/TN"),
                                 true,
                                 Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))
                         ),
@@ -66,11 +65,15 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
                                 "Date de fin de validité",
                                 "dateFinDeValidite",
                                 DataType.DATE,
-                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream().filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms())).findFirst().orElse(null)).getHowToCompare())
+                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
+                                        .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
+                                        .findFirst().orElse(null)).getHowToCompare(),
+                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
+                                        .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
+                                        .findFirst().orElse(null)).getReferenceData()
+                        )
                 )
         );
-
-        System.out.println(expectedData.equals(realData));
 
         // If you need to know how equality comparison of objects works here :
         // https://www.arhohuttunen.com/junit-5-assertions/
@@ -97,7 +100,11 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
                                 conditionTitre.getJuridicalDesignation(),
-                                "dateNaissance", DataType.DATE, conditionTitre.getMainValueToCheck().getHowToCompare()),
+                                "dateNaissance",
+                                DataType.DATE,
+                                conditionTitre.getMainValueToCheck().getHowToCompare(),
+                                new ReferenceDate(LocalDate.now())
+                        ),
                         null,
                         DataType.DATE),
                 null

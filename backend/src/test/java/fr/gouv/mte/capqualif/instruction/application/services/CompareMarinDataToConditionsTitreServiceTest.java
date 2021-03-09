@@ -5,12 +5,14 @@ import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.*;
 import fr.gouv.mte.capqualif.marin.domain.marin.Marin;
+import fr.gouv.mte.capqualif.shared.TimeConverter;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Titre;
 import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
+import fr.gouv.mte.capqualif.titre.domain.enums.ReferenceDate;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +25,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,14 +34,24 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
     @Autowired
     ExistingDataSource existingDataSource;
+
+    @Autowired
+    TimeConverter timeConverter;
+
     ConditionTitre conditionTitre;
+
     Titre titre;
+
     Marin marin;
+
     CorrespondingDataInExistingDataSource data;
+
     @MockBean
     private GetTitrePort getTitrePort;
+
     @MockBean
     private GetMarinDataPort getMarinDataPort;
+
     private CompareMarinDataToConditionsTitreService compareMarinDataToConditionsTitreService;
 
     @BeforeEach
@@ -52,7 +65,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                 "Aptitude médicale",
                 new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
                 Collections.singletonList(new Value("Date de fin de validité",
-                        ComparisonRule.EQUAL_TO_OR_POSTERIOR, today))
+                        ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ReferenceDate(LocalDate.now())))
         );
 
         titre = new Titre(
@@ -86,15 +99,26 @@ class CompareMarinDataToConditionsTitreServiceTest {
                                 conditionTitre.getJuridicalDesignation(),
                                 "libelle",
                                 DataType.STRING,
-                                conditionTitre.getMainValueToCheck().getHowToCompare()),
+                                conditionTitre.getMainValueToCheck().getHowToCompare(),
+                                conditionTitre.getMainValueToCheck().getReferenceData(),
+                                true,
+                                Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))
+                        ),
                         new ValueInExistingDataSource("Apte TF/TN"), DataType.STRING
                 ),
-                Arrays.asList(new KeyInExistingDataSource(
-                        // TO DO : I don't like the juridicalName being hard coded. Replace.
-                        "Date de fin de validité",
-                        "dateFinDeValidite",
-                        DataType.DATE,
-                        conditionTitre.getAdditionalValuesToCheck().stream().filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms())).findFirst().orElse(null).getHowToCompare())
+                Arrays.asList(
+                        new KeyInExistingDataSource(
+                                // TO DO : I don't like the juridicalName being hard coded. Replace.
+                                "Date de fin de validité",
+                                "dateFinDeValidite",
+                                DataType.DATE,
+                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
+                                        .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
+                                        .findFirst().orElse(null)).getHowToCompare(),
+                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
+                                        .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
+                                        .findFirst().orElse(null)).getReferenceData()
+                        )
                 )
         );
 

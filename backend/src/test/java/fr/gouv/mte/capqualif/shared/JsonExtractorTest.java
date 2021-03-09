@@ -2,9 +2,7 @@ package fr.gouv.mte.capqualif.shared;
 
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.*;
-import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
-import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
-import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
+import fr.gouv.mte.capqualif.titre.domain.enums.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +10,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -126,10 +125,12 @@ public class JsonExtractorTest {
                 "***REMOVED***",
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
-                                "Formation modulaire : Module P1-Appui",
-                                "libelleModuleUv",
-                                DataType.STRING,
-                                ComparisonRule.STRICT_EQUALITY),
+                            "Formation modulaire : Module P1-Appui",
+                            "libelleModuleUv",
+                            DataType.STRING,
+                            ComparisonRule.STRICT_EQUALITY,
+                            new ReferenceString("P1–Appui-Navigation")
+                        ),
                         new ValueInExistingDataSource("P1–Appui-Navigation"), DataType.STRING
                 ),
                 Collections.singletonList(
@@ -137,7 +138,8 @@ public class JsonExtractorTest {
                                 "Date de fin de validité",
                                 "dateFinValidite",
                                 DataType.DATE,
-                                ComparisonRule.EQUAL_TO_OR_POSTERIOR
+                                ComparisonRule.EQUAL_TO_OR_POSTERIOR,
+                                new ReferenceDate(today)
                         )
                 )
         );
@@ -193,8 +195,10 @@ public class JsonExtractorTest {
                                 "libelle",
                                 DataType.STRING,
                                 ComparisonRule.STRICT_EQUALITY,
+                                new ReferenceString("Apte TF/TN"),
                                 true,
-                                Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))),
+                                Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))
+                        ),
                         new ValueInExistingDataSource("Apte TF/TN"), DataType.STRING
                 ),
                 Arrays.asList(
@@ -203,8 +207,10 @@ public class JsonExtractorTest {
                                 "Date de fin de validité",
                                 "dateFinDeValidite",
                                 DataType.DATE,
-                                ComparisonRule.EQUAL_TO_OR_POSTERIOR
-                        ))
+                                ComparisonRule.EQUAL_TO_OR_POSTERIOR,
+                                new ReferenceDate(today)
+                        )
+                )
         );
 
         // When
@@ -547,14 +553,15 @@ public class JsonExtractorTest {
                 "***REMOVED***",
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
-                                "Certificat de formation de base à la sécurité (CFBS)",
-                                "libelle",
-                                DataType.STRING,
-                                ComparisonRule.STRICT_EQUALITY,
-                                true,
-                                Collections.singletonList(
-                                        new ParentKey(Position.POSITION_1, "codeBrevetMarin")
-                                )
+                            "Certificat de formation de base à la sécurité (CFBS)",
+                            "libelle",
+                            DataType.STRING,
+                            ComparisonRule.STRICT_EQUALITY,
+                            new ReferenceString("Certificat de formation de base à la sécurité (STCW10)"),
+                            true,
+                            Collections.singletonList(
+                                    new ParentKey(Position.POSITION_1, "codeBrevetMarin")
+                            )
                         ),
                         new ValueInExistingDataSource(
                                 "Certificat de formation de base à la sécurité (STCW10)"
@@ -566,6 +573,7 @@ public class JsonExtractorTest {
                                 "libelle",
                                 DataType.STRING,
                                 ComparisonRule.STRICT_EQUALITY,
+                                new ReferenceString("Valide"),
                                 true,
                                 Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre"))
                         ),
@@ -573,7 +581,8 @@ public class JsonExtractorTest {
                                 "Date de fin de validité",
                                 "dateExpiration",
                                 DataType.DATE,
-                                ComparisonRule.EQUAL_TO_OR_POSTERIOR
+                                ComparisonRule.EQUAL_TO_OR_POSTERIOR,
+                                new ReferenceDate(today)
                         )
                 )
         );
