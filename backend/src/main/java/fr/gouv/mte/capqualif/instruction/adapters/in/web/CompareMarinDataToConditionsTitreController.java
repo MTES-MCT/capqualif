@@ -1,8 +1,6 @@
 package fr.gouv.mte.capqualif.instruction.adapters.in.web;
 
-import fr.gouv.mte.capqualif.instruction.application.ports.in.BipUseCase;
 import fr.gouv.mte.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
-import fr.gouv.mte.capqualif.instruction.application.services.BipService;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
