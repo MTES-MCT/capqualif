@@ -11,15 +11,13 @@ import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.shared.TimeConverter;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
-import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
-import fr.gouv.mte.capqualif.titre.domain.enums.IReferenceData;
+import fr.gouv.mte.capqualif.titre.domain.enums.ReferenceDate;
 import fr.gouv.mte.capqualif.titre.domain.enums.ReferenceString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,10 +37,12 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     TimeConverter timeConverter;
 
     public CompareMarinDataToConditionsTitreService(GetTitrePort getTitrePort, GetMarinDataPort getMarinDataPort,
-                                                    ExistingDataSource existingDataSource) {
+                                                    ExistingDataSource existingDataSource,
+                                                    TimeConverter timeConverter) {
         this.getTitrePort = getTitrePort;
         this.getMarinDataPort = getMarinDataPort;
         this.existingDataSource = existingDataSource;
+        this.timeConverter = timeConverter;
     }
 
     @Override
@@ -83,17 +83,30 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                                 conditionData.getKeyInExistingDataSource().getComparisonRule()
                         );
                         comparisonResult =
-                                buildComparisonResult(conditionData.getKeyInExistingDataSource().getJuridicalName(), stringComparisonResult);
+                                buildComparisonResult(conditionData.getKeyInExistingDataSource().getJuridicalName(), stringComparisonResult,
+                                        buildCommentForString(
+                                                marinData.getValue(),
+                                                new ReferenceString(conditionData.getValueInExistingDataSource().getContent()),
+                                                conditionData.getKeyInExistingDataSource().getComparisonRule()
+                                        )
+                                );
                         results.add(comparisonResult);
+                        break;
                     case DATE:
                         boolean dateComparisonResult = compareDates(
                                 timeConverter.convertToLocalDate(marinData.getValue()),
-                                conditionData.getKeyInExistingDataSource().getReferenceData(),
+                                (ReferenceDate) conditionData.getKeyInExistingDataSource().getComparisonReference(),
                                 conditionData.getKeyInExistingDataSource().getComparisonRule()
                         );
                         comparisonResult =
-                                buildComparisonResult(conditionData.getKeyInExistingDataSource().getJuridicalName(), dateComparisonResult);
+                                buildComparisonResult(conditionData.getKeyInExistingDataSource().getJuridicalName(), dateComparisonResult,
+                                        buildCommentForDate(
+                                                timeConverter.convertToLocalDate(marinData.getValue()),
+                                                (ReferenceDate) conditionData.getKeyInExistingDataSource().getComparisonReference(),
+                                                conditionData.getKeyInExistingDataSource().getComparisonRule()
+                                        ));
                         results.add(comparisonResult);
+                        break;
                 }
             }
         }
@@ -110,73 +123,89 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                         case STRING:
                             boolean stringComparisonResult = compareStrings(
                                     marinData.getValue(),
-                                    key.getReferenceData(),
+                                    (ReferenceString) key.getComparisonReference(),
                                     key.getComparisonRule()
                             );
                             comparisonResult =
-                                    buildComparisonResult(key.getJuridicalName(), stringComparisonResult);
+                                    buildComparisonResult(key.getJuridicalName(), stringComparisonResult,
+                                            buildCommentForString(marinData.getValue(), (ReferenceString) key.getComparisonReference(), key.getComparisonRule()));
                             results.add(comparisonResult);
+                            break;
                         case DATE:
                             boolean dateComparisonResult = compareDates(
                                     timeConverter.convertToLocalDate(marinData.getValue()),
-                                    key.getReferenceData(),
+                                    (ReferenceDate) key.getComparisonReference(),
                                     key.getComparisonRule()
                             );
                             comparisonResult =
-                                    buildComparisonResult(key.getJuridicalName(), dateComparisonResult);
+                                    buildComparisonResult(key.getJuridicalName(), dateComparisonResult,
+                                            buildCommentForDate(timeConverter.convertToLocalDate(marinData.getValue()), (ReferenceDate) key.getComparisonReference(), key.getComparisonRule()));
                             results.add(comparisonResult);
+                            break;
                     }
                 }
             }
         }
     }
 
-    private boolean compareStrings(String comparedData, IReferenceData IReferenceData, ComparisonRule comparisonRule) {
+    private boolean compareStrings(String comparedData, ReferenceString referenceString, ComparisonRule comparisonRule) {
         // TO DO : add more cases if needed
         boolean result = false;
         switch (comparisonRule) {
             case STRICT_EQUALITY:
-                if (comparedData.equals(IReferenceData)) {
+                if (comparedData.equals(referenceString.getReference())) {
                     result = true;
                 }
+                break;
             default:
                 return result;
         }
-    }
+        return result;
+    };
 
-    ;
-
-    private boolean compareDates(LocalDate comparedData, IReferenceData IReferenceData, ComparisonRule comparisonRule) {
-        ChronoLocalDate refDate = (ChronoLocalDate) IReferenceData;
+    private boolean compareDates(LocalDate comparedDate, ReferenceDate referenceDate, ComparisonRule comparisonRule) {
+        LocalDate refDate = referenceDate.getReferenceDate();
         boolean result = false;
         switch (comparisonRule) {
             case EQUAL_TO_OR_POSTERIOR:
-                if (comparedData.isAfter(refDate) || comparedData.isEqual(refDate)) {
+                if (comparedDate.isAfter(refDate) || comparedDate.isEqual(refDate)) {
                     result = true;
                 }
+                break;
             case EQUAL_TO_OR_ANTERIOR:
-                if (comparedData.isBefore(refDate) || comparedData.isEqual(refDate)) {
+                if (comparedDate.isBefore(refDate) || comparedDate.isEqual(refDate)) {
                     result = true;
                 }
+                break;
             case STRICTLY_ANTERIOR:
-                if (comparedData.isBefore(refDate)) {
+                if (comparedDate.isBefore(refDate)) {
                     result = true;
                 }
+                break;
             case STRICTLY_POSTERIOR:
-                if (comparedData.isAfter(refDate)) {
+                if (comparedDate.isAfter(refDate)) {
                     result = true;
                 }
+                break;
             default:
                 return result;
         }
+        return result;
     }
 
-    private ComparisonResult buildComparisonResult(String key,
-                                                   boolean isMarinDataMeetingConditionCriterion) {
+    private ComparisonResult buildComparisonResult(String key, boolean isMarinDataMeetingConditionCriterion, String comment) {
         ComparisonResult comparisonResult;
-        comparisonResult = new ComparisonResult(
-                key,
-                isMarinDataMeetingConditionCriterion);
+        comparisonResult = new ComparisonResult(key, isMarinDataMeetingConditionCriterion, comment);
         return comparisonResult;
     }
+
+
+    private String buildCommentForDate(LocalDate comparedData, ReferenceDate referenceData, ComparisonRule comparisonRule) {
+        return "Marin's data '" + comparedData + "' does not meet " + comparisonRule.toString() + " rule when compared to " + referenceData.getReferenceDate();
+    }
+
+    private String buildCommentForString(String comparedData, ReferenceString referenceData, ComparisonRule comparisonRule) {
+        return "Marin's data '" + comparedData + "' does not meet " + comparisonRule.toString() + " rule when compared to " + referenceData.getReference();
+    }
+
 }

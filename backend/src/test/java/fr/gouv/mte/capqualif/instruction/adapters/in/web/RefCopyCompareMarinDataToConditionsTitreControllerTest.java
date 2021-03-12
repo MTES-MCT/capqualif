@@ -35,7 +35,7 @@ class RefCopyCompareMarinDataToConditionsTitreControllerTest {
     public void itShouldReturnAllConditionsAreMet() throws Exception {
 
         List<ComparisonResult> results = new ArrayList<ComparisonResult>();
-        results.add(new ComparisonResult("Âge", true));
+        results.add(new ComparisonResult("Âge", true, ""));
 
         when(compareMarinDataToConditionsTitreUseCase
                 .compareMarinDataToConditionsTitre("0", "0"))

@@ -12,29 +12,29 @@ public class KeyInExistingDataSource {
     private String realNameInExistingDataSource;
     private DataType dataType;
     private ComparisonRule comparisonRule;
-    private IReferenceData referenceData;
+    private IReferenceData comparisonReference;
     private boolean isNested;
     private List<ParentKey> parentKeys;
 
     public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, DataType dataType,
-                                   ComparisonRule comparisonRule, IReferenceData referenceData) {
+                                   ComparisonRule comparisonRule, IReferenceData comparisonReference) {
         this.juridicalName = juridicalName;
         this.realNameInExistingDataSource = realNameInExistingDataSource;
         this.dataType = dataType;
         this.comparisonRule = comparisonRule;
-        this.referenceData = referenceData;
+        this.comparisonReference = comparisonReference;
     }
 
 
 
     public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, DataType dataType,
-                                   ComparisonRule comparisonRule, IReferenceData referenceData, boolean isNested,
+                                   ComparisonRule comparisonRule, IReferenceData comparisonReference, boolean isNested,
                                    List<ParentKey> parentKeys) {
         this.juridicalName = juridicalName;
         this.realNameInExistingDataSource = realNameInExistingDataSource;
         this.dataType = dataType;
         this.comparisonRule = comparisonRule;
-        this.referenceData = referenceData;
+        this.comparisonReference = comparisonReference;
         this.isNested = isNested;
         this.parentKeys = parentKeys;
     }
@@ -55,8 +55,8 @@ public class KeyInExistingDataSource {
         return comparisonRule;
     }
 
-    public IReferenceData getReferenceData() {
-        return referenceData;
+    public IReferenceData getComparisonReference() {
+        return comparisonReference;
     }
 
     public boolean isNested() {
@@ -74,7 +74,7 @@ public class KeyInExistingDataSource {
                 ", realNameInExistingDataSource='" + realNameInExistingDataSource + '\'' +
                 ", dataType=" + dataType +
                 ", comparisonRule=" + comparisonRule +
-                ", referenceData=" + referenceData +
+                ", referenceData=" + comparisonReference +
                 ", isNested=" + isNested +
                 ", parentKeys=" + parentKeys +
                 '}';
@@ -92,12 +92,12 @@ public class KeyInExistingDataSource {
                 realNameInExistingDataSource.equals(that.realNameInExistingDataSource) &&
                 dataType == that.dataType &&
                 comparisonRule == that.comparisonRule &&
-                referenceData.equals(that.referenceData) &&
+                comparisonReference.equals(that.comparisonReference) &&
                 Objects.equals(parentKeys, that.parentKeys);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(juridicalName, realNameInExistingDataSource, dataType, comparisonRule, referenceData, isNested, parentKeys);
+        return Objects.hash(juridicalName, realNameInExistingDataSource, dataType, comparisonRule, comparisonReference, isNested, parentKeys);
     }
 }

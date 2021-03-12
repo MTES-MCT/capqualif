@@ -42,7 +42,7 @@ class CompareMarinDataToConditionsTitreControllerTest {
 
         // Given
         List<ComparisonResult> results = new ArrayList<ComparisonResult>();
-        results.add(new ComparisonResult("Age", true));
+        results.add(new ComparisonResult("Age", true, ""));
 
         // When
         when(compareMarinDataToConditionsTitreUseCase

@@ -10,10 +10,7 @@ import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.Titre;
 import fr.gouv.mte.capqualif.titre.domain.Value;
-import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
-import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
-import fr.gouv.mte.capqualif.titre.domain.enums.ReferenceDate;
-import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
+import fr.gouv.mte.capqualif.titre.domain.enums.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -28,23 +25,24 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
 
 @SpringBootTest
 class CompareMarinDataToConditionsTitreServiceTest {
 
     @Autowired
-    ExistingDataSource existingDataSource;
+    private ExistingDataSource existingDataSource;
 
-    @Autowired
-    TimeConverter timeConverter;
+    @MockBean
+    private TimeConverter timeConverter;
 
-    ConditionTitre conditionTitre;
+    private ConditionTitre conditionTitre;
 
-    Titre titre;
+    private Titre titre;
 
-    Marin marin;
+    private Marin marin;
 
-    CorrespondingDataInExistingDataSource data;
+    private CorrespondingDataInExistingDataSource data;
 
     @MockBean
     private GetTitrePort getTitrePort;
@@ -54,12 +52,15 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
     private CompareMarinDataToConditionsTitreService compareMarinDataToConditionsTitreService;
 
+    private LocalDate referenceDate;
+
     @BeforeEach
     void setUp() {
         compareMarinDataToConditionsTitreService =
-                new CompareMarinDataToConditionsTitreService(getTitrePort, getMarinDataPort, existingDataSource);
+                new CompareMarinDataToConditionsTitreService(getTitrePort, getMarinDataPort, existingDataSource,
+                        timeConverter);
 
-        LocalDate today = LocalDate.now(); // A temporary mock until we know what reference event we should use
+        referenceDate = LocalDate.now(); // A temporary mock until we know what reference event we should use
 
         conditionTitre = new ConditionTitre(
                 "Aptitude médicale",
@@ -100,7 +101,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                                 "libelle",
                                 DataType.STRING,
                                 conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                conditionTitre.getMainValueToCheck().getReferenceData(),
+                                new ReferenceString("Apte TF/TN"),
                                 true,
                                 Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))
                         ),
@@ -128,35 +129,75 @@ class CompareMarinDataToConditionsTitreServiceTest {
     void shouldReturnAllTrueComparisonResultsWhenMarinDataMeetAllConditionCriteria_stringMainCriterion_strictEqualityComparisonRule_dateAdditionalCriterion_equalToOrPosteriorComparisonRule() {
         // Given :
         // Set up made in @BeforeEach
+
+        String aptitudeInAPI = "Apte TF/TN";
+        String aptitudeComparisonReference = "Apte TF/TN";
+
+        String dateinAPI = "1640905200000";
+
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
         Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), data))
                 .thenReturn(Arrays.asList(
-                        new ExtractionResult("Aptitude médicale", "Apte TF/TN",
+                        new ExtractionResult("Aptitude médicale", aptitudeInAPI,
                                 DataType.STRING),
-                        new ExtractionResult("Date de fin de validité", "1640905200000", DataType.DATE)
+                        new ExtractionResult("Date de fin de validité", dateinAPI, DataType.DATE)
                 ));
 
+        LocalDate convertedDateInAPI = LocalDate.of(2021, 12, 31);
+        Mockito.when(timeConverter.convertToLocalDate(anyString())).thenReturn(convertedDateInAPI);
+
         // When
-        List<ComparisonResult> actualResultats =
+        List<ComparisonResult> actualResults =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),
                         marin.getNumeroDeMarin());
 
         // Then
         List<ComparisonResult> expectedResults = Arrays.asList(
-                new ComparisonResult("Aptitude médicale", true),
-                new ComparisonResult("Date de fin de validité", true)
+                new ComparisonResult(
+                        "Aptitude médicale",
+                        true,
+                        buildCommentForString(
+                                aptitudeInAPI,
+                                new ReferenceString(aptitudeComparisonReference),
+                                conditionTitre.getMainValueToCheck().getHowToCompare()
+                        )
+                ),
+                new ComparisonResult(
+                        "Date de fin de validité",
+                        true,
+                        buildCommentForDate(
+                                convertedDateInAPI,
+                                new ReferenceDate(referenceDate),
+                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
+                                        .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
+                                        .findFirst().orElse(null)).getHowToCompare()
+                        )
+                )
         );
-        assertEquals(expectedResults, actualResultats);
+        assertEquals(expectedResults, actualResults);
     }
 
     @Test
-    void shouldReturnAFalseComparisonResultWhenMarinDataDoNotMeetConditionTitre_stringCondition_strictEquality() {
+    void shouldReturnAllFalseComparisonResultWhenMarinDataDoNotMeetConditionTitre_stringMainCriterion_strictEqualityComparisonRule_dateAdditionalCriterion_equalToOrPosteriorComparisonRule() {
         // Given :
         // Set up made in @BeforeEach
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
+
+        String aptitudeInAPI = "Apte TF/TN sf C/V avec restriction";
+        String aptitudeComparisonReference = "Apte TF/TN";
+
+        String dateinAPI = "1584346631";
+
         Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), data))
-                .thenReturn(Arrays.asList(new ExtractionResult("Aptitude médicale", "Apte TF/TN sf C/V avec " +
-                        "restriction", DataType.STRING)));
+                .thenReturn(
+                        Arrays.asList(
+                                new ExtractionResult("Aptitude médicale", aptitudeInAPI, DataType.STRING),
+                                new ExtractionResult("Date de fin de validité", dateinAPI, DataType.DATE)
+                        )
+                );
+
+        LocalDate convertedDateInAPI = LocalDate.of(2020, 03, 16);
+        Mockito.when(timeConverter.convertToLocalDate(anyString())).thenReturn(convertedDateInAPI);
 
         // When
         List<ComparisonResult> actualResultats =
@@ -167,10 +208,40 @@ class CompareMarinDataToConditionsTitreServiceTest {
         List<ComparisonResult> expectedResults = Arrays.asList(
                 new ComparisonResult(
                         "Aptitude médicale",
-                        false
+                        false,
+                        buildCommentForString(
+                                aptitudeInAPI,
+                                new ReferenceString(aptitudeComparisonReference),
+                                conditionTitre.getMainValueToCheck().getHowToCompare()
+                        )
+                ),
+                new ComparisonResult(
+                        "Date de fin de validité",
+                        false,
+                        buildCommentForDate(
+                                convertedDateInAPI,
+                                new ReferenceDate(referenceDate),
+                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
+                                        .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
+                                        .findFirst().orElse(null)).getHowToCompare()
+                        )
                 )
         );
 
         assertEquals(expectedResults, actualResultats);
     }
+
+    private String buildCommentForDate(LocalDate comparedData, ReferenceDate referenceData,
+                                       ComparisonRule comparisonRule) {
+        return "Marin's data '" + comparedData + "' does not meet " + comparisonRule.toString() + " rule when " +
+                "compared to " + referenceData.getReferenceDate();
+    }
+
+    private String buildCommentForString(String comparedData, ReferenceString referenceData,
+                                         ComparisonRule comparisonRule) {
+        return "Marin's data '" + comparedData + "' does not meet " + comparisonRule.toString() + " rule when " +
+                "compared to " + referenceData.getReference();
+    }
+
+
 }

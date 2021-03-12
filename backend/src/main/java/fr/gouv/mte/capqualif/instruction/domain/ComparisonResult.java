@@ -1,13 +1,17 @@
 package fr.gouv.mte.capqualif.instruction.domain;
 
+import java.util.Objects;
+
 public class ComparisonResult {
 
     private String conditionJuridicalDesignation;
     private boolean isValid;
+    private String comment;
 
-    public ComparisonResult(String conditionJuridicalDesignation, boolean isValid) {
+    public ComparisonResult(String conditionJuridicalDesignation, boolean isValid, String comment) {
         this.conditionJuridicalDesignation = conditionJuridicalDesignation;
         this.isValid = isValid;
+        this.comment = comment;
     }
 
     public String getConditionJuridicalDesignation() {
@@ -18,12 +22,26 @@ public class ComparisonResult {
         return isValid;
     }
 
-    public void setConditionJuridicalDesignation(String conditionJuridicalDesignation) {
-        this.conditionJuridicalDesignation = conditionJuridicalDesignation;
+    public String getComment() {
+        return comment;
     }
 
-    public void setValid(boolean valid) {
-        isValid = valid;
+//    public void setConditionJuridicalDesignation(String conditionJuridicalDesignation) {
+//        this.conditionJuridicalDesignation = conditionJuridicalDesignation;
+//    }
+//
+//    public void setValid(boolean valid) {
+//        isValid = valid;
+//    }
+
+
+    @Override
+    public String toString() {
+        return "ComparisonResult{" +
+                "conditionJuridicalDesignation='" + conditionJuridicalDesignation + '\'' +
+                ", isValid=" + isValid +
+                ", comment='" + comment + '\'' +
+                '}';
     }
 
     @Override
@@ -32,16 +50,14 @@ public class ComparisonResult {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        ComparisonResult result = (ComparisonResult) o;
-        return isValid == result.isValid &&
-                conditionJuridicalDesignation.equals(result.conditionJuridicalDesignation);
+        ComparisonResult that = (ComparisonResult) o;
+        return isValid == that.isValid &&
+                conditionJuridicalDesignation.equals(that.conditionJuridicalDesignation) &&
+                comment.equals(that.comment);
     }
 
     @Override
-    public String toString() {
-        return "ComparisonResult{" +
-                "conditionJuridicalDesignation='" + conditionJuridicalDesignation + '\'' +
-                ", isValid=" + isValid +
-                '}';
+    public int hashCode() {
+        return Objects.hash(conditionJuridicalDesignation, isValid, comment);
     }
 }
