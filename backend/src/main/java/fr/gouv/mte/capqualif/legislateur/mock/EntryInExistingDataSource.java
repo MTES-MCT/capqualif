@@ -9,8 +9,7 @@ public class EntryInExistingDataSource {
     private ValueInExistingDataSource valueInExistingDataSource;
     private DataType dataType;
 
-    public EntryInExistingDataSource(KeyInExistingDataSource keyInExistingDataSource, ValueInExistingDataSource valueInExistingDataSource
-            , DataType dataType) {
+    public EntryInExistingDataSource(KeyInExistingDataSource keyInExistingDataSource, ValueInExistingDataSource valueInExistingDataSource, DataType dataType) {
         this.keyInExistingDataSource = keyInExistingDataSource;
         this.valueInExistingDataSource = valueInExistingDataSource;
         this.dataType = dataType;

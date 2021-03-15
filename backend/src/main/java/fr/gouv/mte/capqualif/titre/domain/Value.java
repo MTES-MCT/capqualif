@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.titre.domain;
 
+import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonData;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
-import fr.gouv.mte.capqualif.titre.domain.enums.IReferenceData;
 
 import java.util.Objects;
 
@@ -9,7 +9,7 @@ public class Value {
 
     private String valueExpressedInLegalTerms;
     private ComparisonRule howToCompare;
-    private IReferenceData IReferenceData;
+    private ComparisonData comparisonData;
 
     /**
      * This constructor is for values that are used in comparisons to value expressed in legal terms
@@ -21,19 +21,21 @@ public class Value {
         this.howToCompare = howToCompare;
     }
 
-
     /**
      * This constructor is for values that are used in comparisons to references other than value expressed in legal terms
      * @param valueExpressedInLegalTerms
      * @param howToCompare
-     * @param IReferenceData
+     * @param comparisonData
      *              can be string or date
      */
-    public Value(String valueExpressedInLegalTerms, ComparisonRule howToCompare, IReferenceData IReferenceData) {
+    public Value(String valueExpressedInLegalTerms, ComparisonRule howToCompare, ComparisonData comparisonData) {
         this.valueExpressedInLegalTerms = valueExpressedInLegalTerms;
         this.howToCompare = howToCompare;
-        this.IReferenceData = IReferenceData;
+        this.comparisonData = comparisonData;
     }
+
+
+
 
     public String getValueExpressedInLegalTerms() {
         return valueExpressedInLegalTerms;
@@ -43,8 +45,8 @@ public class Value {
         return howToCompare;
     }
 
-    public IReferenceData getReferenceData() {
-        return IReferenceData;
+    public ComparisonData getComparisonData() {
+        return comparisonData;
     }
 
     @Override
@@ -52,7 +54,7 @@ public class Value {
         return "Value{" +
                 "valueExpressedInLegalTerms='" + valueExpressedInLegalTerms + '\'' +
                 ", howToCompare=" + howToCompare +
-                ", referenceData=" + IReferenceData +
+                ", comparisonData=" + comparisonData +
                 '}';
     }
 
@@ -65,11 +67,11 @@ public class Value {
         Value value = (Value) o;
         return valueExpressedInLegalTerms.equals(value.valueExpressedInLegalTerms) &&
                 howToCompare == value.howToCompare &&
-                Objects.equals(IReferenceData, value.IReferenceData);
+                comparisonData.equals(value.comparisonData);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(valueExpressedInLegalTerms, howToCompare, IReferenceData);
+        return Objects.hash(valueExpressedInLegalTerms, howToCompare, comparisonData);
     }
 }

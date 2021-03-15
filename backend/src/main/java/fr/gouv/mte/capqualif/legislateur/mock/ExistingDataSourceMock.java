@@ -3,8 +3,8 @@ package fr.gouv.mte.capqualif.legislateur.mock;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
-import fr.gouv.mte.capqualif.titre.domain.enums.ReferenceDate;
-import fr.gouv.mte.capqualif.titre.domain.enums.ReferenceString;
+import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonDate;
+import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonString;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -26,7 +26,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                     conditionTitre.getJuridicalDesignation(),
                                     "dateNaissance", DataType.DATE,
                                     conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                    new ReferenceDate(LocalDate.now())
+                                    new ComparisonDate(LocalDate.now())
                                 ),
                                 null,
                                 DataType.DATE),
@@ -42,7 +42,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                         "libelle",
                                         DataType.STRING,
                                         conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                        new ReferenceString("Apte TF/TN"),
+                                        new ComparisonString("Apte TF/TN"),
                                         true,
                                         Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))
                                 ),
@@ -59,7 +59,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                                 .findFirst().orElse(null)).getHowToCompare(),
                                         Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
                                                 .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
-                                                .findFirst().orElse(null)).getReferenceData()
+                                                .findFirst().orElse(null)).getComparisonData()
                                         )
                         )
                 );
@@ -73,7 +73,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                     "libelleModuleUv",
                                     DataType.STRING,
                                     conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                    new ReferenceString("P1–Appui-Navigation")
+                                    new ComparisonString("P1–Appui-Navigation")
                                 ),
                                 new ValueInExistingDataSource("P1–Appui-Navigation"), DataType.STRING
                         ),
@@ -87,7 +87,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                                 .findFirst().orElse(null)).getHowToCompare(),
                                         Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
                                                 .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
-                                                .findFirst().orElse(null)).getReferenceData()
+                                                .findFirst().orElse(null)).getComparisonData()
                                 )
                         )
                 );
@@ -101,7 +101,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                         "libelleModuleUv",
                                         DataType.STRING,
                                         conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                        new ReferenceString("P2–Appui-Manutention/arrimage cargaison/pêche")
+                                        new ComparisonString("P2–Appui-Manutention/arrimage cargaison/pêche")
                                 ),
                                 new ValueInExistingDataSource("P2–Appui-Manutention/arrimage cargaison/pêche"),
                                 DataType.STRING
@@ -116,7 +116,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                                 .findFirst().orElse(null)).getHowToCompare(),
                                         Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
                                                 .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
-                                                .findFirst().orElse(null)).getReferenceData()
+                                                .findFirst().orElse(null)).getComparisonData()
                                 )
                         )
                 );
@@ -130,7 +130,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                         "libelleModuleUv",
                                         DataType.STRING,
                                         conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                        new ReferenceString("P3–Appui-Exploitation/assist/entretien/répar")
+                                        new ComparisonString("P3–Appui-Exploitation/assist/entretien/répar")
                                 ),
                                 new ValueInExistingDataSource("P3–Appui-Exploitation/assist/entretien/répar"),
                                 DataType.STRING
@@ -145,7 +145,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                                 .findFirst().orElse(null)).getHowToCompare(),
                                         Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
                                                 .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
-                                                .findFirst().orElse(null)).getReferenceData())
+                                                .findFirst().orElse(null)).getComparisonData())
                         )
                 );
             case "Module NP-Appui":
@@ -158,7 +158,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                         "libelleModuleUv",
                                         DataType.STRING,
                                         conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                        new ReferenceString("NP–Appui-Module Nation Pont")
+                                        new ComparisonString("NP–Appui-Module Nation Pont")
                                 ),
                                 new ValueInExistingDataSource("NP–Appui-Module Nation Pont"),
                                 DataType.STRING
@@ -173,7 +173,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                                 .findFirst().orElse(null)).getHowToCompare(),
                                 Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
                                         .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
-                                        .findFirst().orElse(null)).getReferenceData())
+                                        .findFirst().orElse(null)).getComparisonData())
                         )
                 );
             case "Certificat de formation de base à la sécurité (CFBS)":
@@ -186,7 +186,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                         "libelle",
                                         DataType.STRING,
                                         conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                        new ReferenceString("Certificat de formation de base à la sécurité (STCW10)"),
+                                        new ComparisonString("Certificat de formation de base à la sécurité (STCW10)"),
                                         true,
                                         Collections.singletonList(
                                                 new ParentKey(Position.POSITION_1, "codeBrevetMarin")
@@ -206,7 +206,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                                 .findFirst().orElse(null)).getHowToCompare(),
                                         Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
                                                 .filter(additionalValue -> "Statut".equals(additionalValue.getValueExpressedInLegalTerms()))
-                                                .findFirst().orElse(null)).getReferenceData(),
+                                                .findFirst().orElse(null)).getComparisonData(),
                                         true,
                                         Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre"))
                                 ),
@@ -219,7 +219,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                                 .findFirst().orElse(null)).getHowToCompare(),
                                         Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
                                                 .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
-                                                .findFirst().orElse(null)).getReferenceData()
+                                                .findFirst().orElse(null)).getComparisonData()
                                 )
                         )
                 );

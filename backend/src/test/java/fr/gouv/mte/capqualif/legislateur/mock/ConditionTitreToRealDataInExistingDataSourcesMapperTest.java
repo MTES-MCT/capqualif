@@ -37,7 +37,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
         ConditionTitre conditionTitre = new ConditionTitre(
                 "Aptitude médicale",
                 new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
-                Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ReferenceDate(LocalDate.now())))
+                Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ComparisonDate(LocalDate.now())))
         );
 
         // When
@@ -53,7 +53,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
                                 "libelle",
                                 DataType.STRING,
                                 conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                new ReferenceString("Apte TF/TN"),
+                                new ComparisonString("Apte TF/TN"),
                                 true,
                                 Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))
                         ),
@@ -70,7 +70,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
                                         .findFirst().orElse(null)).getHowToCompare(),
                                 Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
                                         .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
-                                        .findFirst().orElse(null)).getReferenceData()
+                                        .findFirst().orElse(null)).getComparisonData()
                         )
                 )
         );
@@ -103,7 +103,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
                                 "dateNaissance",
                                 DataType.DATE,
                                 conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                new ReferenceDate(LocalDate.now())
+                                new ComparisonDate(LocalDate.now())
                         ),
                         null,
                         DataType.DATE),

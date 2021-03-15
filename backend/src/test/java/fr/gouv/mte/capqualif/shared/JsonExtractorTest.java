@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -129,7 +128,7 @@ public class JsonExtractorTest {
                             "libelleModuleUv",
                             DataType.STRING,
                             ComparisonRule.STRICT_EQUALITY,
-                            new ReferenceString("P1–Appui-Navigation")
+                            new ComparisonString("P1–Appui-Navigation")
                         ),
                         new ValueInExistingDataSource("P1–Appui-Navigation"), DataType.STRING
                 ),
@@ -139,7 +138,7 @@ public class JsonExtractorTest {
                                 "dateFinValidite",
                                 DataType.DATE,
                                 ComparisonRule.EQUAL_TO_OR_POSTERIOR,
-                                new ReferenceDate(today)
+                                new ComparisonDate(today)
                         )
                 )
         );
@@ -195,7 +194,7 @@ public class JsonExtractorTest {
                                 "libelle",
                                 DataType.STRING,
                                 ComparisonRule.STRICT_EQUALITY,
-                                new ReferenceString("Apte TF/TN"),
+                                new ComparisonString("Apte TF/TN"),
                                 true,
                                 Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))
                         ),
@@ -208,7 +207,7 @@ public class JsonExtractorTest {
                                 "dateFinDeValidite",
                                 DataType.DATE,
                                 ComparisonRule.EQUAL_TO_OR_POSTERIOR,
-                                new ReferenceDate(today)
+                                new ComparisonDate(today)
                         )
                 )
         );
@@ -557,7 +556,7 @@ public class JsonExtractorTest {
                             "libelle",
                             DataType.STRING,
                             ComparisonRule.STRICT_EQUALITY,
-                            new ReferenceString("Certificat de formation de base à la sécurité (STCW10)"),
+                            new ComparisonString("Certificat de formation de base à la sécurité (STCW10)"),
                             true,
                             Collections.singletonList(
                                     new ParentKey(Position.POSITION_1, "codeBrevetMarin")
@@ -573,7 +572,7 @@ public class JsonExtractorTest {
                                 "libelle",
                                 DataType.STRING,
                                 ComparisonRule.STRICT_EQUALITY,
-                                new ReferenceString("Valide"),
+                                new ComparisonString("Valide"),
                                 true,
                                 Collections.singletonList(new ParentKey(Position.POSITION_1, "codeEtatTitre"))
                         ),
@@ -582,7 +581,7 @@ public class JsonExtractorTest {
                                 "dateExpiration",
                                 DataType.DATE,
                                 ComparisonRule.EQUAL_TO_OR_POSTERIOR,
-                                new ReferenceDate(today)
+                                new ComparisonDate(today)
                         )
                 )
         );

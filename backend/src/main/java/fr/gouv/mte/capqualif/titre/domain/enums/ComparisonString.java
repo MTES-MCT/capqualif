@@ -2,15 +2,20 @@ package fr.gouv.mte.capqualif.titre.domain.enums;
 
 import java.util.Objects;
 
-public class ReferenceString implements IReferenceString {
+public class ComparisonString implements ComparisonData {
 
     private String reference;
 
-    public ReferenceString(String reference) {
+    public ComparisonString(String reference) {
         this.reference = reference;
     }
 
     public String getReference() {
+        return reference;
+    }
+
+    @Override
+    public String getValue() {
         return reference;
     }
 
@@ -27,7 +32,7 @@ public class ReferenceString implements IReferenceString {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        ReferenceString that = (ReferenceString) o;
+        ComparisonString that = (ComparisonString) o;
         return reference.equals(that.reference);
     }
 
@@ -35,4 +40,5 @@ public class ReferenceString implements IReferenceString {
     public int hashCode() {
         return Objects.hash(reference);
     }
+
 }

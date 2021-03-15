@@ -1,8 +1,8 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
+import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonData;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
-import fr.gouv.mte.capqualif.titre.domain.enums.IReferenceData;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,12 +12,12 @@ public class KeyInExistingDataSource {
     private String realNameInExistingDataSource;
     private DataType dataType;
     private ComparisonRule comparisonRule;
-    private IReferenceData comparisonReference;
+    private ComparisonData comparisonReference;
     private boolean isNested;
     private List<ParentKey> parentKeys;
 
     public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, DataType dataType,
-                                   ComparisonRule comparisonRule, IReferenceData comparisonReference) {
+                                   ComparisonRule comparisonRule, ComparisonData comparisonReference) {
         this.juridicalName = juridicalName;
         this.realNameInExistingDataSource = realNameInExistingDataSource;
         this.dataType = dataType;
@@ -28,7 +28,7 @@ public class KeyInExistingDataSource {
 
 
     public KeyInExistingDataSource(String juridicalName, String realNameInExistingDataSource, DataType dataType,
-                                   ComparisonRule comparisonRule, IReferenceData comparisonReference, boolean isNested,
+                                   ComparisonRule comparisonRule, ComparisonData comparisonReference, boolean isNested,
                                    List<ParentKey> parentKeys) {
         this.juridicalName = juridicalName;
         this.realNameInExistingDataSource = realNameInExistingDataSource;
@@ -55,7 +55,7 @@ public class KeyInExistingDataSource {
         return comparisonRule;
     }
 
-    public IReferenceData getComparisonReference() {
+    public ComparisonData getComparisonReference() {
         return comparisonReference;
     }
 

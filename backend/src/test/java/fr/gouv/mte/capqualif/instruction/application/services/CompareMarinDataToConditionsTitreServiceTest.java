@@ -72,7 +72,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                 "Aptitude médicale",
                 new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
                 Collections.singletonList(new Value("Date de fin de validité",
-                        ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ReferenceDate(LocalDate.now())))
+                        ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ComparisonDate(LocalDate.now())))
         );
 
         titre = new Titre(
@@ -107,7 +107,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                                 "libelle",
                                 DataType.STRING,
                                 conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare(),
-                                new ReferenceString("Apte TF/TN"),
+                                new ComparisonString("Apte TF/TN"),
                                 true,
                                 Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))
                         ),
@@ -124,7 +124,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                                         .findFirst().orElse(null)).getHowToCompare(),
                                 Objects.requireNonNull(conditionTitreAptitudeMedicale.getAdditionalValuesToCheck().stream()
                                         .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
-                                        .findFirst().orElse(null)).getReferenceData()
+                                        .findFirst().orElse(null)).getComparisonData()
                         )
                 )
         );
@@ -137,7 +137,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                                 conditionTitreAptitudeMedicale.getJuridicalDesignation(),
                                 "dateNaissance", DataType.DATE,
                                 conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare(),
-                                new ReferenceDate(LocalDate.now())
+                                new ComparisonDate(LocalDate.now())
                         ),
                         null,
                         DataType.DATE),
@@ -177,21 +177,23 @@ class CompareMarinDataToConditionsTitreServiceTest {
                 new ComparisonResult(
                         "Aptitude médicale",
                         true,
-                        buildCommentForString(
-                                aptitudeInAPI,
-                                new ReferenceString(aptitudeComparisonReference),
-                                conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare()
+                        buildComment(
+                                new ComparisonString(aptitudeInAPI),
+                                new ComparisonString(aptitudeComparisonReference),
+                                conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare(),
+                                true
                         )
                 ),
                 new ComparisonResult(
                         "Date de fin de validité",
                         true,
-                        buildCommentForDate(
-                                convertedDateInAPI,
-                                new ReferenceDate(referenceDate),
+                        buildComment(
+                                new ComparisonDate(convertedDateInAPI),
+                                new ComparisonDate(referenceDate),
                                 Objects.requireNonNull(conditionTitreAptitudeMedicale.getAdditionalValuesToCheck().stream()
                                         .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
-                                        .findFirst().orElse(null)).getHowToCompare()
+                                        .findFirst().orElse(null)).getHowToCompare(),
+                                true
                         )
                 )
         );
@@ -230,21 +232,23 @@ class CompareMarinDataToConditionsTitreServiceTest {
                 new ComparisonResult(
                         "Aptitude médicale",
                         false,
-                        buildCommentForString(
-                                aptitudeInAPI,
-                                new ReferenceString(aptitudeComparisonReference),
-                                conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare()
+                        buildComment(
+                                new ComparisonString(aptitudeInAPI),
+                                new ComparisonString(aptitudeComparisonReference),
+                                conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare(),
+                                false
                         )
                 ),
                 new ComparisonResult(
                         "Date de fin de validité",
                         false,
-                        buildCommentForDate(
-                                convertedDateInAPI,
-                                new ReferenceDate(referenceDate),
+                        buildComment(
+                                new ComparisonDate(convertedDateInAPI),
+                                new ComparisonDate(referenceDate),
                                 Objects.requireNonNull(conditionTitreAptitudeMedicale.getAdditionalValuesToCheck().stream()
                                         .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
-                                        .findFirst().orElse(null)).getHowToCompare()
+                                        .findFirst().orElse(null)).getHowToCompare(),
+                                false
                         )
                 )
         );
@@ -279,26 +283,23 @@ class CompareMarinDataToConditionsTitreServiceTest {
                 new ComparisonResult(
                         "Âge minimum",
                         true,
-                        buildCommentForDate(
-                                convertedDateInAPI,
-                                new ReferenceDate(birthDateComparisonReference),
-                                conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare()
+                        buildComment(
+                                new ComparisonDate(convertedDateInAPI),
+                                new ComparisonDate(birthDateComparisonReference),
+                                conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare(),
+                                true
                         )
                 )
         );
         assertEquals(expectedResults, actualResults);
     }
 
-    private String buildCommentForDate(LocalDate comparedData, ReferenceDate referenceData,
-                                       ComparisonRule comparisonRule) {
-        return "Marin's data '" + comparedData + "' does not meet " + comparisonRule.toString() + " rule when " +
-                "compared to " + referenceData.getReferenceDate();
-    }
 
-    private String buildCommentForString(String comparedData, ReferenceString referenceData,
-                                         ComparisonRule comparisonRule) {
-        return "Marin's data '" + comparedData + "' does not meet " + comparisonRule.toString() + " rule when " +
-                "compared to " + referenceData.getReference();
+    private String buildComment(ComparisonData comparedData, ComparisonData comparisonData,
+                                ComparisonRule comparisonRule, boolean comparisonResult) {
+        return "Marin's data '" + comparedData
+                + (comparisonResult ? "meets" : "does not meet ")
+                + comparisonRule.toString() + " rule when compared to " + comparisonData.getValue();
     }
 
 

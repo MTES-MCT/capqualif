@@ -37,31 +37,31 @@ public class TitresApiMock {
                     new ConditionTitre(
                             "Aptitude médicale",
                             new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
-                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ReferenceDate(LocalDate.now())))
+                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ComparisonDate(LocalDate.now())))
                     ),
                     new ConditionTitre(
                             "Formation modulaire : Module P1-Appui",
                             new Value("Module P1-Appui",ComparisonRule.STRICT_EQUALITY),
-                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ReferenceDate(LocalDate.now())))
+                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ComparisonDate(LocalDate.now())))
                     ),
                     new ConditionTitre(
                             "Formation modulaire : Module P2-Appui",
                             new Value("Module P2-Appui",ComparisonRule.STRICT_EQUALITY),
-                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ReferenceDate(LocalDate.now())))
+                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ComparisonDate(LocalDate.now())))
                     ),
                     new ConditionTitre("Formation modulaire : Module P3-Appui",
                             new Value("Module P3-Appui",ComparisonRule.STRICT_EQUALITY),
-                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ReferenceDate(LocalDate.now())))
+                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ComparisonDate(LocalDate.now())))
                     ),
                     new ConditionTitre("Formation modulaire : Module NP-Appui",
                             new Value("Module NP-Appui",ComparisonRule.STRICT_EQUALITY),
-                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ReferenceDate(LocalDate.now())))
+                            Collections.singletonList(new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ComparisonDate(LocalDate.now())))
                     ),
                     new ConditionTitre("Certificat de formation de base à la sécurité (CFBS)",
                             new Value("Certificat de formation de base à la sécurité (CFBS)", ComparisonRule.STRICT_EQUALITY),
                             Arrays.asList(
                                     new Value("Statut", ComparisonRule.STRICT_EQUALITY, Status.VALID),
-                                    new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ReferenceDate(LocalDate.now()))
+                                    new Value("Date de fin de validité", ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ComparisonDate(LocalDate.now()))
                             )
                     )
                 )
@@ -81,7 +81,7 @@ public class TitresApiMock {
                         "Aptitude médicale",
                         new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
                         Collections.singletonList(new Value("Date de fin de validité",
-                                ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ReferenceDate(LocalDate.now())))
+                                ComparisonRule.EQUAL_TO_OR_POSTERIOR, new ComparisonDate(LocalDate.now())))
                 )
         ));
         List<String> restrictions2 = new ArrayList<String>(Arrays.asList("Cuisson de tartes flambées", "Préparation de crèmes brûlées"));
