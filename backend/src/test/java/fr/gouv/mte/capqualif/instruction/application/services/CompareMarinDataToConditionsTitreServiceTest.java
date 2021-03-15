@@ -36,19 +36,21 @@ class CompareMarinDataToConditionsTitreServiceTest {
     @MockBean
     private TimeConverter timeConverter;
 
-    private ConditionTitre conditionTitre;
-
-    private Titre titre;
-
-    private Marin marin;
-
-    private CorrespondingDataInExistingDataSource data;
-
     @MockBean
     private GetTitrePort getTitrePort;
 
     @MockBean
     private GetMarinDataPort getMarinDataPort;
+
+
+    private Titre titre;
+
+    private Marin marin;
+
+    private ConditionTitre conditionTitreAptitudeMedicale;
+    private ConditionTitre conditionTitreAge;
+    private CorrespondingDataInExistingDataSource administresData;
+    private CorrespondingDataInExistingDataSource esculapeData;
 
     private CompareMarinDataToConditionsTitreService compareMarinDataToConditionsTitreService;
 
@@ -62,7 +64,11 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
         referenceDate = LocalDate.now(); // A temporary mock until we know what reference event we should use
 
-        conditionTitre = new ConditionTitre(
+        conditionTitreAge = new ConditionTitre(
+                "Âge minimum",
+                new Value("Âge supérieur ou égal à 16 ans", ComparisonRule.EQUAL_TO_OR_GREATER_THAN));
+
+        conditionTitreAptitudeMedicale = new ConditionTitre(
                 "Aptitude médicale",
                 new Value("Aptitude toutes fonctions, toutes navigations", ComparisonRule.STRICT_EQUALITY),
                 Collections.singletonList(new Value("Date de fin de validité",
@@ -72,7 +78,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
         titre = new Titre(
                 "1",
                 "Certificat de matelot pont (CMP9525)",
-                Collections.singletonList(conditionTitre),
+                Arrays.asList(conditionTitreAptitudeMedicale, conditionTitreAge),
                 null
         );
 
@@ -92,15 +98,15 @@ class CompareMarinDataToConditionsTitreServiceTest {
                 null
         );
 
-        data = new CorrespondingDataInExistingDataSource(
+        esculapeData = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ESCULAPE,
                 "***REMOVED***",
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
-                                conditionTitre.getJuridicalDesignation(),
+                                conditionTitreAptitudeMedicale.getJuridicalDesignation(),
                                 "libelle",
                                 DataType.STRING,
-                                conditionTitre.getMainValueToCheck().getHowToCompare(),
+                                conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare(),
                                 new ReferenceString("Apte TF/TN"),
                                 true,
                                 Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))
@@ -113,14 +119,29 @@ class CompareMarinDataToConditionsTitreServiceTest {
                                 "Date de fin de validité",
                                 "dateFinDeValidite",
                                 DataType.DATE,
-                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
+                                Objects.requireNonNull(conditionTitreAptitudeMedicale.getAdditionalValuesToCheck().stream()
                                         .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
                                         .findFirst().orElse(null)).getHowToCompare(),
-                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
+                                Objects.requireNonNull(conditionTitreAptitudeMedicale.getAdditionalValuesToCheck().stream()
                                         .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
                                         .findFirst().orElse(null)).getReferenceData()
                         )
                 )
+        );
+
+        administresData = new CorrespondingDataInExistingDataSource(
+                ExistingDataSourceName.ADMINISTRES,
+                "***REMOVED***",
+                new EntryInExistingDataSource(
+                        new KeyInExistingDataSource(
+                                conditionTitreAptitudeMedicale.getJuridicalDesignation(),
+                                "dateNaissance", DataType.DATE,
+                                conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare(),
+                                new ReferenceDate(LocalDate.now())
+                        ),
+                        null,
+                        DataType.DATE),
+                null
         );
 
     }
@@ -136,7 +157,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
         String dateinAPI = "1640905200000";
 
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
-        Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), data))
+        Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), esculapeData))
                 .thenReturn(Arrays.asList(
                         new ExtractionResult("Aptitude médicale", aptitudeInAPI,
                                 DataType.STRING),
@@ -159,7 +180,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                         buildCommentForString(
                                 aptitudeInAPI,
                                 new ReferenceString(aptitudeComparisonReference),
-                                conditionTitre.getMainValueToCheck().getHowToCompare()
+                                conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare()
                         )
                 ),
                 new ComparisonResult(
@@ -168,7 +189,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                         buildCommentForDate(
                                 convertedDateInAPI,
                                 new ReferenceDate(referenceDate),
-                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
+                                Objects.requireNonNull(conditionTitreAptitudeMedicale.getAdditionalValuesToCheck().stream()
                                         .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
                                         .findFirst().orElse(null)).getHowToCompare()
                         )
@@ -188,7 +209,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
         String dateinAPI = "1584346631";
 
-        Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), data))
+        Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), esculapeData))
                 .thenReturn(
                         Arrays.asList(
                                 new ExtractionResult("Aptitude médicale", aptitudeInAPI, DataType.STRING),
@@ -212,7 +233,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                         buildCommentForString(
                                 aptitudeInAPI,
                                 new ReferenceString(aptitudeComparisonReference),
-                                conditionTitre.getMainValueToCheck().getHowToCompare()
+                                conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare()
                         )
                 ),
                 new ComparisonResult(
@@ -221,7 +242,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                         buildCommentForDate(
                                 convertedDateInAPI,
                                 new ReferenceDate(referenceDate),
-                                Objects.requireNonNull(conditionTitre.getAdditionalValuesToCheck().stream()
+                                Objects.requireNonNull(conditionTitreAptitudeMedicale.getAdditionalValuesToCheck().stream()
                                         .filter(additionalValue -> "Date de fin de validité".equals(additionalValue.getValueExpressedInLegalTerms()))
                                         .findFirst().orElse(null)).getHowToCompare()
                         )
@@ -229,6 +250,43 @@ class CompareMarinDataToConditionsTitreServiceTest {
         );
 
         assertEquals(expectedResults, actualResultats);
+    }
+
+    @Test
+    void shouldReturnAllTrueComparisonResultsWhenMarinDataMeetAllConditionCriteria_ageMainCriterion_equalToOrGreaterThanComparisonRule_noAdditionalCriterion() {
+        // Given :
+        // Set up made in @BeforeEach
+
+        String birthDateInAPI = "25/05/1985";
+        LocalDate birthDateComparisonReference = referenceDate;
+
+        Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
+        Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), administresData))
+                .thenReturn(Arrays.asList(
+                        new ExtractionResult("Âge minimum", birthDateInAPI,
+                                DataType.DATE)
+                ));
+
+        LocalDate convertedDateInAPI = LocalDate.of(1985, 05, 25);
+        Mockito.when(timeConverter.convertToLocalDate(anyString())).thenReturn(convertedDateInAPI);
+
+        // When
+        List<ComparisonResult> actualResults =
+                compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(), marin.getNumeroDeMarin());
+
+        // Then
+        List<ComparisonResult> expectedResults = Arrays.asList(
+                new ComparisonResult(
+                        "Âge minimum",
+                        true,
+                        buildCommentForDate(
+                                convertedDateInAPI,
+                                new ReferenceDate(birthDateComparisonReference),
+                                conditionTitreAptitudeMedicale.getMainValueToCheck().getHowToCompare()
+                        )
+                )
+        );
+        assertEquals(expectedResults, actualResults);
     }
 
     private String buildCommentForDate(LocalDate comparedData, ReferenceDate referenceData,

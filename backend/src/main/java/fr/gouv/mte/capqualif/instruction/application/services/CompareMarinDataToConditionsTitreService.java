@@ -12,6 +12,7 @@ import fr.gouv.mte.capqualif.shared.TimeConverter;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
+import fr.gouv.mte.capqualif.titre.domain.enums.IReferenceData;
 import fr.gouv.mte.capqualif.titre.domain.enums.ReferenceDate;
 import fr.gouv.mte.capqualif.titre.domain.enums.ReferenceString;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,7 +129,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                             );
                             comparisonResult =
                                     buildComparisonResult(key.getJuridicalName(), stringComparisonResult,
-                                            buildCommentForString(marinData.getValue(), (ReferenceString) key.getComparisonReference(), key.getComparisonRule()));
+                                            buildCommentForString(marinData.getValue(), (ReferenceString) key.getComparisonReference(), key.getComparisonRule(), stringComparisonResult));
                             results.add(comparisonResult);
                             break;
                         case DATE:
@@ -139,7 +140,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                             );
                             comparisonResult =
                                     buildComparisonResult(key.getJuridicalName(), dateComparisonResult,
-                                            buildCommentForDate(timeConverter.convertToLocalDate(marinData.getValue()), (ReferenceDate) key.getComparisonReference(), key.getComparisonRule()));
+                                            buildCommentForDate(timeConverter.convertToLocalDate(marinData.getValue()), (ReferenceDate) key.getComparisonReference(), key.getComparisonRule(), dateComparisonResult));
                             results.add(comparisonResult);
                             break;
                     }
@@ -158,7 +159,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                 }
                 break;
             default:
-                return result;
+                return false;
         }
         return result;
     };
@@ -188,7 +189,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                 }
                 break;
             default:
-                return result;
+                return false;
         }
         return result;
     }
@@ -199,13 +200,20 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         return comparisonResult;
     }
 
-
-    private String buildCommentForDate(LocalDate comparedData, ReferenceDate referenceData, ComparisonRule comparisonRule) {
-        return "Marin's data '" + comparedData + "' does not meet " + comparisonRule.toString() + " rule when compared to " + referenceData.getReferenceDate();
+    private String buildCommentForDate(LocalDate comparedData, ReferenceDate referenceData, ComparisonRule comparisonRule, boolean comparisonResult) {
+        return "Marin's data '" + comparedData
+                + (comparisonResult? "meets" : "does not meet ")
+                + comparisonRule.toString() + " rule when compared to " + referenceData.getReferenceDate();
     }
 
-    private String buildCommentForString(String comparedData, ReferenceString referenceData, ComparisonRule comparisonRule) {
+    private String buildCommentForString(String comparedData, ReferenceString referenceData, ComparisonRule comparisonRule, boolean comparisonResult) {
         return "Marin's data '" + comparedData + "' does not meet " + comparisonRule.toString() + " rule when compared to " + referenceData.getReference();
+    }
+
+    private String buildComment(String comparedData, IReferenceData referenceData, ComparisonRule comparisonRule, boolean comparisonResult) {
+        return "Marin's data '" + comparedData
+                + (comparisonResult? "meets" : "does not meet ")
+                + comparisonRule.toString() + " rule when compared to " + referenceData.getReferenceDate();
     }
 
 }

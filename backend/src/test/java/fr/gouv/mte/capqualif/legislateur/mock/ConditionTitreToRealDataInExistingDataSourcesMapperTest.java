@@ -96,7 +96,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
         // Then
         CorrespondingDataInExistingDataSource expectedData = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ADMINISTRES,
-                "https://run.mocky.io/v3/23493c22-70dd-4b8b-9e54-19aa5108c66b",
+                "***REMOVED***",
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
                                 conditionTitre.getJuridicalDesignation(),
