@@ -32,7 +32,7 @@ public class TitresApiMock {
                 (
                     new ConditionTitre(
                             "Âge minimum",
-                            new Value("Âge supérieur ou égal à 16 ans", ComparisonRule.EQUAL_TO_OR_GREATER_THAN) // TO DO : think
+                            new Value("Âge supérieur ou égal à 16 ans", ComparisonRule.EQUAL_TO_OR_ANTERIOR)
                     ),
                     new ConditionTitre(
                             "Aptitude médicale",

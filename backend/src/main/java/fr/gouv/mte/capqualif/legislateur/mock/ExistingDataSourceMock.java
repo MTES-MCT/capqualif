@@ -26,7 +26,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                     conditionTitre.getJuridicalDesignation(),
                                     "dateNaissance", DataType.DATE,
                                     conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                    new ComparisonDate(LocalDate.now())
+                                    new ComparisonDate(LocalDate.now().minusYears(16))
                                 ),
                                 null,
                                 DataType.DATE),
@@ -227,16 +227,4 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                 return null;
         }
     }
-
-//    private List<KeyInExistingDataSource> buildAdditionalKeysList(List<Value> additionalValuesToCheck) {
-//        List<KeyInExistingDataSource> additionalKeys = new ArrayList<KeyInExistingDataSource>();
-//        for (Value additionalValue : additionalValuesToCheck) {
-//            return new KeyInExistingDataSource(
-//                    additionalValue.getValueExpressedInLegalTerms(),
-//                    additionalValue.
-//            )
-//        }
-//        return additionalKeys;
-//    }
-
 }

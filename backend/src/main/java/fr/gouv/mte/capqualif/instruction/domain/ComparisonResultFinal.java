@@ -2,13 +2,13 @@ package fr.gouv.mte.capqualif.instruction.domain;
 
 import java.util.Objects;
 
-public class ComparisonResult {
+public class ComparisonResultFinal {
 
     private String conditionJuridicalDesignation;
     private boolean isValid;
     private String comment;
 
-    public ComparisonResult(String conditionJuridicalDesignation, boolean isValid, String comment) {
+    public ComparisonResultFinal(String conditionJuridicalDesignation, boolean isValid, String comment) {
         this.conditionJuridicalDesignation = conditionJuridicalDesignation;
         this.isValid = isValid;
         this.comment = comment;
@@ -26,15 +26,6 @@ public class ComparisonResult {
         return comment;
     }
 
-//    public void setConditionJuridicalDesignation(String conditionJuridicalDesignation) {
-//        this.conditionJuridicalDesignation = conditionJuridicalDesignation;
-//    }
-//
-//    public void setValid(boolean valid) {
-//        isValid = valid;
-//    }
-
-
     @Override
     public String toString() {
         return "ComparisonResult{" +
@@ -50,7 +41,7 @@ public class ComparisonResult {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        ComparisonResult that = (ComparisonResult) o;
+        ComparisonResultFinal that = (ComparisonResultFinal) o;
         return isValid == that.isValid &&
                 conditionJuridicalDesignation.equals(that.conditionJuridicalDesignation) &&
                 comment.equals(that.comment);

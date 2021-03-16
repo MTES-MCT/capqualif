@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.instruction.adapters.in.web;
 
 import fr.gouv.mte.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
-import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
+import fr.gouv.mte.capqualif.instruction.domain.ComparisonResultFinal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +41,8 @@ class CompareMarinDataToConditionsTitreControllerTest {
     public void itShouldReturnComparaisonResultList() throws Exception {
 
         // Given
-        List<ComparisonResult> results = new ArrayList<ComparisonResult>();
-        results.add(new ComparisonResult("Age", true, ""));
+        List<ComparisonResultFinal> results = new ArrayList<ComparisonResultFinal>();
+        results.add(new ComparisonResultFinal("Age", true, ""));
 
         // When
         when(compareMarinDataToConditionsTitreUseCase

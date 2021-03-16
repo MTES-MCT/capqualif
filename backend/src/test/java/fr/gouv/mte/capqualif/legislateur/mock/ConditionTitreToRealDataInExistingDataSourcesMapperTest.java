@@ -103,7 +103,7 @@ class ConditionTitreToRealDataInExistingDataSourcesMapperTest {
                                 "dateNaissance",
                                 DataType.DATE,
                                 conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                new ComparisonDate(LocalDate.now())
+                                new ComparisonDate(LocalDate.now().minusYears(16))
                         ),
                         null,
                         DataType.DATE),

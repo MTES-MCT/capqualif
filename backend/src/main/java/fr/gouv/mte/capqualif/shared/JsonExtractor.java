@@ -36,16 +36,17 @@ public class JsonExtractor {
                         dataToExtract.getMainWantedData().getDataType())
         );
 
-        for (KeyInExistingDataSource key : dataToExtract.getKeysOfAdditionalWantedData()) {
-            String additionalWantedDataFromJson = extractWantedDataFromJson(
-                    json,
-                    dataToExtract.getMainWantedData(),
-                    key
-            );
-            results.add(
-                    createResult(key.getJuridicalName(), additionalWantedDataFromJson, key.getDataType())
-            );
-        }
+        if (dataToExtract.getKeysOfAdditionalWantedData() != null)
+            for (KeyInExistingDataSource key : dataToExtract.getKeysOfAdditionalWantedData()) {
+                String additionalWantedDataFromJson = extractWantedDataFromJson(
+                        json,
+                        dataToExtract.getMainWantedData(),
+                        key
+                );
+                results.add(
+                        createResult(key.getJuridicalName(), additionalWantedDataFromJson, key.getDataType())
+                );
+            }
         return results;
     }
 
@@ -67,7 +68,8 @@ public class JsonExtractor {
     private String buildQuery(EntryInExistingDataSource dataUsedAsFilter, KeyInExistingDataSource keyOfWantedData) {
         // query examples:
         // $..[?(@.codeBrevetMarin.libelle == "Certificat de formation de base à la sécurité (STCW10)")].dateEffet
-        // $..[?(@.codeBrevetMarin.libelle == "Certificat de formation de base à la sécurité (STCW10)")].codeBrevetMarin.libelle
+        // $..[?(@.codeBrevetMarin.libelle == "Certificat de formation de base à la sécurité (STCW10)")]
+        // .codeBrevetMarin.libelle
 
         String keyOfFilterData;
         if (dataUsedAsFilter.getKeyInExistingDataSource().isNested()) {
@@ -93,9 +95,11 @@ public class JsonExtractor {
         stringBuilder.append(keyOfFilterData);     // The path is composed of the key we are looking for and its
         // possible parents.
         // If this key is nested (has parents), it will be something like : parent1.parent2.key
-        stringBuilder.append("=='");    // Comparison to a value ((here, value is the variable in the next line))
-        stringBuilder.append(dataUsedAsFilter.getValueInExistingDataSource().getContent());
-        stringBuilder.append("'");
+        if (dataUsedAsFilter.getValueInExistingDataSource() != null) {
+            stringBuilder.append("=='");    // Comparison to a value ((here, value is the variable in the next line))
+            stringBuilder.append(dataUsedAsFilter.getValueInExistingDataSource().getContent());
+            stringBuilder.append("'");
+        }
         stringBuilder.append(")].");
         stringBuilder.append(key);          // The key in the Json we want to read value of.
         System.out.println("data query is : " + stringBuilder.toString());

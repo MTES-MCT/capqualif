@@ -1,12 +1,11 @@
 package fr.gouv.mte.capqualif.instruction.adapters.in.web;
 
 import fr.gouv.mte.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
-import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
+import fr.gouv.mte.capqualif.instruction.domain.ComparisonResultFinal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +33,8 @@ class RefCopyCompareMarinDataToConditionsTitreControllerTest {
     @Test
     public void itShouldReturnAllConditionsAreMet() throws Exception {
 
-        List<ComparisonResult> results = new ArrayList<ComparisonResult>();
-        results.add(new ComparisonResult("Âge", true, ""));
+        List<ComparisonResultFinal> results = new ArrayList<ComparisonResultFinal>();
+        results.add(new ComparisonResultFinal("Âge", true, ""));
 
         when(compareMarinDataToConditionsTitreUseCase
                 .compareMarinDataToConditionsTitre("0", "0"))

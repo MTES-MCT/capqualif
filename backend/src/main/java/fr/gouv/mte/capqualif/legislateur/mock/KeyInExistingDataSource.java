@@ -92,7 +92,7 @@ public class KeyInExistingDataSource {
                 realNameInExistingDataSource.equals(that.realNameInExistingDataSource) &&
                 dataType == that.dataType &&
                 comparisonRule == that.comparisonRule &&
-                comparisonReference.equals(that.comparisonReference) &&
+                Objects.equals(comparisonReference, that.comparisonReference) &&
                 Objects.equals(parentKeys, that.parentKeys);
     }
 

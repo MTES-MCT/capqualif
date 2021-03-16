@@ -39,48 +39,22 @@ public class IntegrationTest {
     @Test
     public void itShouldReturnAllConditionsAreMet() throws Exception {
 
-        // Given
-
-        // When
         mockMvc.perform(MockMvcRequestBuilders.get("/instruction/comparaison/1/123"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].conditionJuridicalName").value("Âge"))
-                .andExpect(jsonPath("$[0].validity").value(true))
-                .andExpect(jsonPath("$[1].conditionJuridicalName").value("Aptitude médicale"))
-                .andExpect(jsonPath("$[1].validity").value(true))
-                .andExpect(jsonPath("$[2].conditionJuridicalName").value("Formation de base à la sécurité"))
-                .andExpect(jsonPath("$[2].validity").value(true))
-                .andExpect(jsonPath("$[3].conditionJuridicalName").value("Formation pour le certificat de matelot pont, Module P1-Appui"))
-                .andExpect(jsonPath("$[3].validity").value(true))
-                .andExpect(jsonPath("$[4].conditionJuridicalName").value("Formation pour le certificat de matelot pont, Module P2–Appui"))
-                .andExpect(jsonPath("$[4].validity").value(true))
-                .andExpect(jsonPath("$[5].conditionJuridicalName").value("Formation pour le certificat de matelot pont, Module P3–Appui"))
-                .andExpect(jsonPath("$[5].validity").value(true))
-                .andExpect(jsonPath("$[6].conditionJuridicalName").value("Formation pour le certificat de matelot pont, Module NP–Appui"))
-                .andExpect(jsonPath("$[6].validity").value(true));
-
-        // 1. Récupérer le mock d'un titre
-//        String titreId = "1";
-//        titresApiMock.findTitreById(titreId);
-//
-//        Titre titre = titresApiMock.findTitreById(titreId);
-//
-//        // 2. Donner les json du marin
-//        String numeroDeMarin = "123";
-//
-//        // 3. Avoir une liste de ComparisonResult avec CompareResult(condition.getLibelle(), result de dataChecker)
-//
-//        // 4. Résultat espéré
-//        List<ComparisonResult> expectedResult = new ArrayList<>();
-//        for (ConditionTitre condition : titre.getConditions()) {
-//            expectedResult.add(new ComparisonResult(condition.getJuridicalDesignation(), true));
-//        }
-//
-//        // 5. Résultat réel
-//        CompareMarinDataToConditionsTitreService service = new CompareMarinDataToConditionsTitreService();
-//        List<ComparisonResult> testedResult = service.compareMarinDataToConditionsTitre(titreId, numeroDeMarin);
-//        assertEquals(expectedResult, testedResult);
-////        assertEquals("123", "12");
+                .andExpect(jsonPath("$[0].conditionJuridicalDesignation").value("Âge minimum"))
+                .andExpect(jsonPath("$[0].valid").value(true))
+                .andExpect(jsonPath("$[1].conditionJuridicalDesignation").value("Aptitude médicale"))
+                .andExpect(jsonPath("$[1].valid").value(true))
+                .andExpect(jsonPath("$[2].conditionJuridicalDesignation").value("Formation modulaire : Module P1-Appui"))
+                .andExpect(jsonPath("$[2].valid").value(true))
+                .andExpect(jsonPath("$[3].conditionJuridicalDesignation").value("Formation modulaire : Module P2-Appui"))
+                .andExpect(jsonPath("$[3].valid").value(true))
+                .andExpect(jsonPath("$[4].conditionJuridicalDesignation").value("Formation modulaire : Module P3-Appui"))
+                .andExpect(jsonPath("$[4].valid").value(true))
+                .andExpect(jsonPath("$[5].conditionJuridicalDesignation").value("Formation modulaire : Module NP-Appui"))
+                .andExpect(jsonPath("$[5].valid").value(true))
+                .andExpect(jsonPath("$[6].conditionJuridicalDesignation").value("Certificat de formation de base à la sécurité (CFBS)"))
+                .andExpect(jsonPath("$[6].valid").value(true));
 
     }
 

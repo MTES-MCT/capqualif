@@ -2,6 +2,7 @@ package fr.gouv.mte.capqualif.instruction.domain;
 
 import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
+import org.springframework.lang.NonNull;
 
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ public class ExtractionResult {
 
     public ExtractionResult(String key, String value, DataType dataType) {
         this.key = key;
-        this.value = value;
+        this.value = Objects.requireNonNullElse(value, "null");
         this.dataType = dataType;
     }
 

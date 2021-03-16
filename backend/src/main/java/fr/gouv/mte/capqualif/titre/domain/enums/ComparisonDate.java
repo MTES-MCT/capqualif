@@ -22,8 +22,8 @@ public class ComparisonDate implements ComparisonData {
 
     @Override
     public String toString() {
-        return "Date{" +
-                "date=" + data +
+        return "ComparisonDate{" +
+                "data=" + data +
                 '}';
     }
 
@@ -33,13 +33,12 @@ public class ComparisonDate implements ComparisonData {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        ComparisonDate referenceDate1 = (ComparisonDate) o;
-        return data.equals(referenceDate1.data);
+        ComparisonDate that = (ComparisonDate) o;
+        return Objects.equals(data, that.data);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(data);
     }
-
 }
