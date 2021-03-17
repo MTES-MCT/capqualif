@@ -6,10 +6,12 @@ public class ComparisonResult {
 
     private String conditionJuridicalDesignation;
     private boolean isValid;
+    private String comment;
 
-    public ComparisonResult(String conditionJuridicalDesignation, boolean isValid) {
+    public ComparisonResult(String conditionJuridicalDesignation, boolean isValid, String comment) {
         this.conditionJuridicalDesignation = conditionJuridicalDesignation;
         this.isValid = isValid;
+        this.comment = comment;
     }
 
     public String getConditionJuridicalDesignation() {
@@ -20,6 +22,19 @@ public class ComparisonResult {
         return isValid;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    @Override
+    public String toString() {
+        return "ComparisonResult{" +
+                "conditionJuridicalDesignation='" + conditionJuridicalDesignation + '\'' +
+                ", isValid=" + isValid +
+                ", comment='" + comment + '\'' +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -28,11 +43,12 @@ public class ComparisonResult {
             return false;
         ComparisonResult that = (ComparisonResult) o;
         return isValid == that.isValid &&
-                conditionJuridicalDesignation.equals(that.conditionJuridicalDesignation);
+                conditionJuridicalDesignation.equals(that.conditionJuridicalDesignation) &&
+                comment.equals(that.comment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(conditionJuridicalDesignation, isValid);
+        return Objects.hash(conditionJuridicalDesignation, isValid, comment);
     }
 }

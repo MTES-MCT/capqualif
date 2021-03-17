@@ -1,35 +1,33 @@
 package fr.gouv.mte.capqualif.titre.domain;
 
-import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
-import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
+import java.util.List;
 
 public class ConditionTitre {
 
     private String juridicalDesignation;
-    private Value value;
-    private ComparisonRule howToCompareValue;
-    private ExistingDataSourceName existingDataSourceName;
+    private Value mainValueToCheck;
+    private List<Value> additionalValuesToCheck;
 
-    public ConditionTitre(String juridicalDesignation, Value value, ComparisonRule howToCompareValue, ExistingDataSourceName existingDataSourceName) {
+    public ConditionTitre(String juridicalDesignation, Value mainValueToCheck) {
         this.juridicalDesignation = juridicalDesignation;
-        this.value = value;
-        this.howToCompareValue = howToCompareValue;
-        this.existingDataSourceName = existingDataSourceName;
+        this.mainValueToCheck = mainValueToCheck;
+    }
+
+    public ConditionTitre(String juridicalDesignation, Value mainValueToCheck, List<Value> additionalValuesToCheck) {
+        this.juridicalDesignation = juridicalDesignation;
+        this.mainValueToCheck = mainValueToCheck;
+        this.additionalValuesToCheck = additionalValuesToCheck;
     }
 
     public String getJuridicalDesignation() {
         return juridicalDesignation;
     }
 
-    public Value getValue() {
-        return value;
+    public Value getMainValueToCheck() {
+        return mainValueToCheck;
     }
 
-    public ComparisonRule getHowToCompareValue() {
-        return howToCompareValue;
-    }
-
-    public ExistingDataSourceName getExistingDataSource() {
-        return existingDataSourceName;
+    public List<Value> getAdditionalValuesToCheck() {
+        return additionalValuesToCheck;
     }
 }

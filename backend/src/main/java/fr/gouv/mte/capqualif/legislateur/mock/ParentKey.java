@@ -1,20 +1,45 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
+import java.util.Objects;
+
 public class ParentKey {
     private Position position;
-    private String keyRealNameInExistingDataSource;
+    private String keyName;
 
-    public ParentKey(Position position, String keyRealNameInExistingDataSource) {
+    public ParentKey(Position position, String keyName) {
         this.position = position;
-        this.keyRealNameInExistingDataSource = keyRealNameInExistingDataSource;
+        this.keyName = keyName;
     }
 
     public Position getPosition() {
         return position;
     }
 
-    public String getKeyRealNameInExistingDataSource() {
-        return keyRealNameInExistingDataSource;
+    public String getKeyName() {
+        return keyName;
     }
 
+    @Override
+    public String toString() {
+        return "ParentKey{" +
+                "position=" + position +
+                ", keyName='" + keyName + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        ParentKey parentKey = (ParentKey) o;
+        return position == parentKey.position &&
+                keyName.equals(parentKey.keyName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, keyName);
+    }
 }

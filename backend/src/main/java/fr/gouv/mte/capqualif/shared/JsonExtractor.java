@@ -1,144 +1,135 @@
 package fr.gouv.mte.capqualif.shared;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import fr.gouv.mte.capqualif.instruction.domain.Entry;
-import fr.gouv.mte.capqualif.legislateur.mock.Key;
-import fr.gouv.mte.capqualif.legislateur.mock.DataToSearchForInExistingDataSource;
+import com.jayway.jsonpath.JsonPath;
+import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
+import fr.gouv.mte.capqualif.legislateur.mock.CorrespondingDataInExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
+import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.ParentKey;
-import fr.gouv.mte.capqualif.titre.domain.Value;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
-import org.springframework.beans.factory.annotation.Autowired;
+import net.minidev.json.JSONArray;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 @Component
 public class JsonExtractor {
 
-    @Autowired
-    TimeConverter timeConverter;
+    public List<ExtractionResult> getAllWantedData(String json,
+                                                   CorrespondingDataInExistingDataSource dataToExtract) {
 
-    public List<Entry> getWantedData(JsonElement json, Value conditionValue, DataToSearchForInExistingDataSource dataToSearchForInExistingDataSource) {
-        JsonObject jsonPortionMatchingConditionValue = findJsonObjectByEntryValue(json, conditionValue, dataToSearchForInExistingDataSource.getKeyOfMainWantedData());
-        return extractWantedDataFromJson(jsonPortionMatchingConditionValue, dataToSearchForInExistingDataSource);
+        List<ExtractionResult> results = new ArrayList<ExtractionResult>();
+
+        String mainWantedDataFromJson = extractWantedDataFromJson(
+                json,
+                dataToExtract.getMainWantedData(),
+                dataToExtract.getMainWantedData().getKeyInExistingDataSource()
+        );
+        results.add(
+                createResult(
+                        dataToExtract.getMainWantedData().getKeyInExistingDataSource().getJuridicalName(),
+                        mainWantedDataFromJson,
+                        dataToExtract.getMainWantedData().getDataType())
+        );
+
+        if (dataToExtract.getKeysOfAdditionalWantedData() != null)
+            for (KeyInExistingDataSource key : dataToExtract.getKeysOfAdditionalWantedData()) {
+                String additionalWantedDataFromJson = extractWantedDataFromJson(
+                        json,
+                        dataToExtract.getMainWantedData(),
+                        key
+                );
+                results.add(
+                        createResult(key.getJuridicalName(), additionalWantedDataFromJson, key.getDataType())
+                );
+            }
+        return results;
     }
 
-    // TO DO : peut être que je peux remplacer Value valueOfMainWantedData, Key keyOfMainWantedData par l'objet Entry ?
-    public JsonObject findJsonObjectByEntryValue(JsonElement jsonElement, Value valueOfMainWantedData, Key keyOfMainWantedData) {
-
-        // In case you don't know: an entry is a "key:value" pair. Example : for entry "bestMeal:kebab", entry value is "kebab".
-
-        if (jsonElement instanceof JsonArray) {
-            JsonArray jsonArray = (JsonArray) jsonElement;
-            for (JsonElement element : jsonArray) {
-                if (element instanceof JsonObject) {
-                    JsonObject matchingJsonObject = findMatchingJsonObject((JsonObject) element, keyOfMainWantedData.getKeyRealNameInExistingDataSource(), valueOfMainWantedData);
-                    if (matchingJsonObject != null) return findMatchingJsonObject((JsonObject) element, keyOfMainWantedData.getKeyRealNameInExistingDataSource(), valueOfMainWantedData);
-                }
-            }
-        }
-        if (jsonElement instanceof JsonObject) {
-//            return (JsonObject) jsonElement;
-            return findMatchingJsonObject((JsonObject) jsonElement, keyOfMainWantedData.getKeyRealNameInExistingDataSource(), valueOfMainWantedData);
-        }
-        return null;
+    private String extractWantedDataFromJson(String json, EntryInExistingDataSource wantedData,
+                                             KeyInExistingDataSource key) {
+        String query = buildQuery(wantedData, key);
+        String wantedDataValue = findInJson(query, json);
+        System.out.println("For the query ------ " + query + " ------ wanted data is " + wantedDataValue);
+        return wantedDataValue;
     }
 
-    private JsonObject findMatchingJsonObject(JsonObject jsonObject, String wantedKey, Value wantedValue) {
-        if (jsonObject.has(wantedKey)) {
-            if (hasWantedValue(jsonObject, wantedKey, wantedValue)) {
-                return jsonObject;
-            }
+    /**
+     * Builds the query used to fetch the data we want from a JSON document.
+     *
+     * @param dataUsedAsFilter filter to select the json object that contains the wanted data
+     * @param keyOfWantedData
+     * @return query as a string
+     */
+    private String buildQuery(EntryInExistingDataSource dataUsedAsFilter, KeyInExistingDataSource keyOfWantedData) {
+        // query examples:
+        // $..[?(@.codeBrevetMarin.libelle == "Certificat de formation de base à la sécurité (STCW10)")].dateEffet
+        // $..[?(@.codeBrevetMarin.libelle == "Certificat de formation de base à la sécurité (STCW10)")]
+        // .codeBrevetMarin.libelle
+
+        String keyOfFilterData;
+        if (dataUsedAsFilter.getKeyInExistingDataSource().isNested()) {
+            keyOfFilterData =
+                    buildPath(dataUsedAsFilter.getKeyInExistingDataSource().getParentKeys()) + dataUsedAsFilter.getKeyInExistingDataSource().getRealNameInExistingDataSource();
         } else {
-            return findMatchingNestedJsonObject(jsonObject, wantedKey, wantedValue);
+            keyOfFilterData = dataUsedAsFilter.getKeyInExistingDataSource().getRealNameInExistingDataSource();
         }
-        return null;
-    }
 
-    private JsonObject findMatchingNestedJsonObject(JsonObject jsonObject, String wantedKey, Value wantedValue) {
-        for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
-            if (entry.getValue() instanceof JsonObject) {
-                JsonObject nestedJsonObject = (JsonObject) entry.getValue();
-                if (nestedJsonObject.has(wantedKey)) {
-                    if (hasWantedValue(nestedJsonObject, wantedKey, wantedValue)) {
-                        return jsonObject;
-                    } else {
-                        findMatchingNestedJsonObject(nestedJsonObject, wantedKey, wantedValue);
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    private boolean hasWantedValue(JsonObject jsonObject, String wantedKey, Value wantedValue) {
-        if (wantedValue.getType() == DataType.DATE) {
-            return checkDate(jsonObject, wantedKey, wantedValue.getContent());
-        }
-        if (wantedValue.getType() == DataType.STRING) {
-            return jsonObject.get(wantedKey).getAsString().equals(wantedValue.getContent());
-        }
-        return false;
-    }
-
-
-    private List<Entry> extractWantedDataFromJson(JsonObject json, DataToSearchForInExistingDataSource dataToSearchForInExistingDataSource) {
-        if (json != null) {
-            List<Entry> allData = new ArrayList<Entry>();
-
-            // Let's add the main data!
-            allData.add(findEntryByWantedKey(json, dataToSearchForInExistingDataSource.getKeyOfMainWantedData()));
-
-            // Let's add additional data!
-            if (dataToSearchForInExistingDataSource.getKeysOfAdditionnalWantedData() != null) {
-                for (Key keyOfAdditionnalWantedData : dataToSearchForInExistingDataSource.getKeysOfAdditionnalWantedData()) {
-                    allData.add(findEntryByWantedKey(json, keyOfAdditionnalWantedData));
-                }
-            }
-
-            return allData;
-        }
-        return Collections.emptyList();
-    }
-
-    private Entry findEntryByWantedKey(JsonObject json, Key wantedKey) {
-        JsonObject source = json;
-        Entry entry;
-        if (wantedKey.isNested()) {
-            entry = findNestedEntryByWantedKey(source, wantedKey);
-            source = json;
+        String key;                       // Will be the key in the Json we want to read value of.
+        if (keyOfWantedData.getParentKeys() != null) {
+            key = buildPath(keyOfWantedData.getParentKeys()) + keyOfWantedData.getRealNameInExistingDataSource();
         } else {
-            entry = createEntry(json, wantedKey);
+            key = keyOfWantedData.getRealNameInExistingDataSource();
         }
-        return entry;
-    }
 
-    // TO DO : Rewrite to sort positionKey (make them int)
-    private Entry findNestedEntryByWantedKey(JsonObject source, Key wantedKey) {
-        List<ParentKey> parentKeys = wantedKey.getParentKeys();
-        for (ParentKey parentKey : parentKeys) {
-            for (int i = 1; i <= parentKeys.size(); i++) {
-                if (parentKey.getPosition().toString().equals("POSITION_" + i) && (source.get(parentKey.getKeyRealNameInExistingDataSource()) instanceof JsonObject)) {
-                    JsonObject jsonSource = (JsonObject) source.get(parentKey.getKeyRealNameInExistingDataSource());
-                    source = jsonSource;
-                }
-            }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("$");      // The root element to query. This starts all path expressions.
+        stringBuilder.append("..");     // Deep scan. Available anywhere a name is required.
+        stringBuilder.append("[?(@.");   // [? : Filter expression. Expression must evaluate to a boolean value.
+        // @ : The current node being processed by a filter predicate.
+        // .<name> : Dot-notated child (here, name is the variable in the next line)
+        stringBuilder.append(keyOfFilterData);     // The path is composed of the key we are looking for and its
+        // possible parents.
+        // If this key is nested (has parents), it will be something like : parent1.parent2.key
+        if (dataUsedAsFilter.getValueInExistingDataSource() != null) {
+            stringBuilder.append("=='");    // Comparison to a value ((here, value is the variable in the next line))
+            stringBuilder.append(dataUsedAsFilter.getValueInExistingDataSource().getContent());
+            stringBuilder.append("'");
         }
-        return createEntry(source, wantedKey);
+        stringBuilder.append(")].");
+        stringBuilder.append(key);          // The key in the Json we want to read value of.
+        System.out.println("data query is : " + stringBuilder.toString());
+        return stringBuilder.toString();
     }
 
-    private Entry createEntry(JsonObject source, Key wantedKey) {
-        Value value = new Value(source.get(wantedKey.getKeyRealNameInExistingDataSource()).getAsString(), wantedKey.getTypeOfAssociatedValue());
-        Entry entry = new Entry(wantedKey.getKeyRealNameInExistingDataSource(), value);
-        return entry;
+    /**
+     * Builds a path to access the wanted key using key's parents.
+     *
+     * @param parentKeys Can be null
+     * @return path as a string
+     */
+    private String buildPath(List<ParentKey> parentKeys) {
+        StringJoiner stringJoiner = new StringJoiner(".");
+        List<ParentKey> sortedParentKeys = parentKeys.stream()
+                .sorted(Comparator.comparing(ParentKey::getPosition))
+                .collect(Collectors.toList());
+        for (ParentKey key : sortedParentKeys) {
+            stringJoiner.add(key.getKeyName());
+        }
+        return stringJoiner.toString() + ".";
     }
 
-    private boolean checkDate(JsonObject jsonObject, String wantedKey, String wantedValue) {
-        LocalDate wantedDate = timeConverter.convertToLocalDate(wantedValue);
-        LocalDate testedDate = timeConverter.convertToLocalDate(jsonObject.get(wantedKey).getAsString());
-        return testedDate.isBefore(wantedDate);
+    private String findInJson(String query, String json) {
+        JSONArray wantedValueAsJSONArray = JsonPath.parse(json).read(query);
+        return wantedValueAsJSONArray.get(0).toString();
+    }
+
+    private ExtractionResult createResult(String key, String value, DataType dataType) {
+        ExtractionResult result = new ExtractionResult(key, value, dataType);
+        return result;
     }
 }

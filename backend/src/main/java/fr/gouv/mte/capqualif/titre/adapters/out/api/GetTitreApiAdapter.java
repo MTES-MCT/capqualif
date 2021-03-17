@@ -12,7 +12,7 @@ public class GetTitreApiAdapter implements GetTitrePort {
     TitresApiMock titresApiMock;
 
     @Override
-    public Titre getTitre(String titreId) {
+    public Titre findTitreById(String titreId) {
         return titresApiMock.findTitreById(titreId);
     }
 }
