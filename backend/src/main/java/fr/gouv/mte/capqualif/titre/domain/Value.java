@@ -1,8 +1,5 @@
 package fr.gouv.mte.capqualif.titre.domain;
 
-import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonData;
-import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
-
 import java.util.Objects;
 
 public class Value {

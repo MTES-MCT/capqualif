@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.titre.domain.enums;
+package fr.gouv.mte.capqualif.titre.domain;
 
 import java.time.LocalDate;
 import java.util.Objects;

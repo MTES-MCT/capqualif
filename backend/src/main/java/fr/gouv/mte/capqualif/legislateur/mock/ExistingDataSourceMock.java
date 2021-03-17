@@ -3,8 +3,8 @@ package fr.gouv.mte.capqualif.legislateur.mock;
 import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
-import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonDate;
-import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonString;
+import fr.gouv.mte.capqualif.titre.domain.ComparisonDate;
+import fr.gouv.mte.capqualif.titre.domain.ComparisonString;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -194,7 +194,8 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                 ),
                                 new ValueInExistingDataSource(
                                         "Certificat de formation de base à la sécurité (STCW10)"
-                                ), DataType.STRING
+                                ),
+                                DataType.STRING
                         ),
                         Arrays.asList(
                                 new KeyInExistingDataSource(

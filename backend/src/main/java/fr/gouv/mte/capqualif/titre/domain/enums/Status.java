@@ -1,5 +1,7 @@
 package fr.gouv.mte.capqualif.titre.domain.enums;
 
+import fr.gouv.mte.capqualif.titre.domain.ComparisonData;
+
 public enum Status implements ComparisonData {
     // TO DO : check with experts
 

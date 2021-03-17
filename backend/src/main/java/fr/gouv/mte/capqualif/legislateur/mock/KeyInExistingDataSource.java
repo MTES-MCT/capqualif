@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.legislateur.mock;
 
-import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonData;
-import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
+import fr.gouv.mte.capqualif.titre.domain.ComparisonData;
+import fr.gouv.mte.capqualif.titre.domain.ComparisonRule;
 import fr.gouv.mte.capqualif.titre.domain.enums.DataType;
 
 import java.util.List;

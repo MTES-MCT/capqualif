@@ -1,8 +1,5 @@
 package fr.gouv.mte.capqualif.titre.domain;
 
-import fr.gouv.mte.capqualif.titre.domain.enums.ComparisonRule;
-import fr.gouv.mte.capqualif.titre.domain.enums.ExistingDataSourceName;
-
 import java.util.List;
 
 public class ConditionTitre {

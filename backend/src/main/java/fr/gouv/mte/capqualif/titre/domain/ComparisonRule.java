@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.titre.domain.enums;
+package fr.gouv.mte.capqualif.titre.domain;
 
 public enum ComparisonRule {
     STRICT_EQUALITY,
