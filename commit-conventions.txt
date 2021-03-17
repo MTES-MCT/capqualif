@@ -1,5 +1,5 @@
 # ----------------------------------------------------------
-# Header - (type): Brief description
+# Header - (type): Brief description. You can combine them!
 # ----------------------------------------------------------
 #   * feat         A new feature
 #   * fix          A bug fix

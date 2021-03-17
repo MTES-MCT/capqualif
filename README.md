@@ -1,4 +1,6 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=elisabethfainstein_capqualif-poc-v1&metric=alert_status)](https://sonarcloud.io/dashboard?id=elisabethfainstein_capqualif-poc-v1)
+Backend quality scan : [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=capqualif_capqualif-poc-v1-back&metric=alert_status)](https://sonarcloud.io/dashboard?id=capqualif_capqualif-poc-v1-back)
+
+Frontend quality scan : [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=capqualif_capqualif-poc-v1-front&metric=alert_status)](https://sonarcloud.io/dashboard?id=capqualif_capqualif-poc-v1-front)
 
 # Capqualif
 
@@ -6,7 +8,7 @@ Voici la marche à suivre pour faire tourner l'application !
 
 Pré-requis : pour faire tourner l'application sur votre ordinateur, vous devez installer node et npm (https://phoenixnap.com/kb/install-node-js-npm-on-windows).
 
-1) Cloner le repository sur votre ordinateur
+1) Clonez le repository sur votre ordinateur
 2) Pour commencer, faisons tourner le backend ! Sur votre ordinateur, ouvrez un terminal et accédez au dossier `capqualif-poc-v1 > backend`
 3) Tapez `mvn package` : cette commande permet de créer un fichier `backend-0.0.1-SNAPSHOT.jar`, qui est une version exécutable du backend de l'application
 4) Toujours dans le terminal, accédez au dossier `target`
