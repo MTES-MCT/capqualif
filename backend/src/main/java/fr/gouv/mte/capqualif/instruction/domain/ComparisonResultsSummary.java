@@ -5,24 +5,31 @@ import java.util.Objects;
 
 public class ComparisonResultsSummary {
 
+    private boolean isConditionMet;
     private ComparisonResult comparisonResultForMainCriterion;
     private List<ComparisonResult> comparisonResultsForAdditionalCriteria;
 
-    public ComparisonResultsSummary(ComparisonResult comparisonResultForMainCriterion, List<ComparisonResult> comparisonResultsForAdditionalCriteria) {
+    public ComparisonResultsSummary(boolean isConditionMet, ComparisonResult comparisonResultForMainCriterion,
+                                    List<ComparisonResult> comparisonResultsForAdditionalCriteria) {
+        this.isConditionMet = isConditionMet;
         this.comparisonResultForMainCriterion = comparisonResultForMainCriterion;
         this.comparisonResultsForAdditionalCriteria = comparisonResultsForAdditionalCriteria;
+    }
+
+    public void setConditionMet(boolean conditionMet) {
+        isConditionMet = conditionMet;
     }
 
     public ComparisonResult getComparisonResultForMainCriterion() {
         return comparisonResultForMainCriterion;
     }
 
-    public List<ComparisonResult> getComparisonResultsForAdditionalCriteria() {
-        return comparisonResultsForAdditionalCriteria;
-    }
-
     public void setComparisonResultForMainCriterion(ComparisonResult comparisonResultForMainCriterion) {
         this.comparisonResultForMainCriterion = comparisonResultForMainCriterion;
+    }
+
+    public List<ComparisonResult> getComparisonResultsForAdditionalCriteria() {
+        return comparisonResultsForAdditionalCriteria;
     }
 
     public void setComparisonResultsForAdditionalCriteria(List<ComparisonResult> comparisonResultsForAdditionalCriteria) {
@@ -31,8 +38,9 @@ public class ComparisonResultsSummary {
 
     @Override
     public String toString() {
-        return "AllComparisonResults{" +
-                "comparisonResultForMainCriterion=" + comparisonResultForMainCriterion +
+        return "ComparisonResultsSummary{" +
+                "isConditionMet=" + isConditionMet +
+                ", comparisonResultForMainCriterion=" + comparisonResultForMainCriterion +
                 ", comparisonResultsForAdditionalCriteria=" + comparisonResultsForAdditionalCriteria +
                 '}';
     }
@@ -44,12 +52,13 @@ public class ComparisonResultsSummary {
         if (o == null || getClass() != o.getClass())
             return false;
         ComparisonResultsSummary that = (ComparisonResultsSummary) o;
-        return comparisonResultForMainCriterion.equals(that.comparisonResultForMainCriterion) &&
+        return isConditionMet == that.isConditionMet &&
+                comparisonResultForMainCriterion.equals(that.comparisonResultForMainCriterion) &&
                 Objects.equals(comparisonResultsForAdditionalCriteria, that.comparisonResultsForAdditionalCriteria);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(comparisonResultForMainCriterion, comparisonResultsForAdditionalCriteria);
+        return Objects.hash(isConditionMet, comparisonResultForMainCriterion, comparisonResultsForAdditionalCriteria);
     }
 }

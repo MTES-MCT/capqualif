@@ -11,11 +11,7 @@ import fr.gouv.mte.capqualif.legislateur.mock.ExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.shared.TimeConverter;
 import fr.gouv.mte.capqualif.titre.application.ports.out.GetTitrePort;
-import fr.gouv.mte.capqualif.titre.domain.ConditionTitre;
-import fr.gouv.mte.capqualif.titre.domain.ComparisonData;
-import fr.gouv.mte.capqualif.titre.domain.ComparisonDate;
-import fr.gouv.mte.capqualif.titre.domain.ComparisonRule;
-import fr.gouv.mte.capqualif.titre.domain.ComparisonString;
+import fr.gouv.mte.capqualif.titre.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -54,16 +50,17 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         List<ComparisonResultsSummary> allComparisonResultSummaries = new ArrayList<>();
 
         for (ConditionTitre condition : conditions) {
-
             CorrespondingDataInExistingDataSource conditionRealData =
                     existingDataSource.findByConditionValue(condition);
 
-            List<ExtractionResult> marinMatchingData = getMarinDataPort.getMarinData(numeroDeMarin, conditionRealData);
+            List<ExtractionResult> marinDataThatMatchCondition = getMarinDataPort.getMarinData(numeroDeMarin,
+                    conditionRealData);
 
-            ComparisonResultsSummary comparisonResultsSummary = new ComparisonResultsSummary(null, null);
+            ComparisonResultsSummary comparisonResultsSummary = new ComparisonResultsSummary(false, null, null);
 
-            if (marinMatchingData.size() > 0) {
-                compareMarinDataToConditionCriteria(comparisonResultsSummary, condition, conditionRealData, marinMatchingData);
+            if (marinDataThatMatchCondition.size() > 0) {
+                compareMarinDataToConditionCriteria(comparisonResultsSummary, condition, conditionRealData,
+                        marinDataThatMatchCondition);
                 allComparisonResultSummaries.add(comparisonResultsSummary);
             }
         }
@@ -75,10 +72,34 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                                                      CorrespondingDataInExistingDataSource conditionRealData,
                                                      List<ExtractionResult> marinMatchingData) {
         if (conditionRealData.getMainWantedData() != null)
-            isMarinDataMeetingMainConditionCriterion(comparisonResultsSummary, conditionRealData.getMainWantedData(), marinMatchingData);
+            isMarinDataMeetingMainConditionCriterion(comparisonResultsSummary, conditionRealData.getMainWantedData(),
+                    marinMatchingData);
         if (conditionRealData.getKeysOfAdditionalWantedData() != null)
-            isMarinDataMeetingAdditionalConditionCriteria(comparisonResultsSummary, conditionRealData.getKeysOfAdditionalWantedData(), marinMatchingData);
+            isMarinDataMeetingAdditionalConditionCriteria(comparisonResultsSummary,
+                    conditionRealData.getKeysOfAdditionalWantedData(), marinMatchingData);
+        comparisonResultsSummary.setConditionMet(isConditionMet(comparisonResultsSummary));
     }
+
+    private boolean isConditionMet(ComparisonResultsSummary comparisonResultsSummary) {
+        if (comparisonResultsSummary.getComparisonResultForMainCriterion().isValid()
+                && computeValidityFromMultipleResults(comparisonResultsSummary)
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean computeValidityFromMultipleResults(ComparisonResultsSummary comparisonResultsSummary) {
+        if (comparisonResultsSummary.getComparisonResultsForAdditionalCriteria() != null)
+            for (ComparisonResult comparisonResult :
+                    comparisonResultsSummary.getComparisonResultsForAdditionalCriteria()) {
+                if (!comparisonResult.isValid())
+                    return false;
+            }
+        return true;
+    }
+
+    ;
 
     private void isMarinDataMeetingMainConditionCriterion(ComparisonResultsSummary comparisonResultsSummary,
                                                           EntryInExistingDataSource conditionData,
@@ -176,16 +197,18 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                                 dateComparisonResult,
                                 buildComment(
                                         new ComparisonDate(
-                                            timeConverter.convertToLocalDate(marinData.getValue())),
-                                            key.getComparisonReference(),
-                                            key.getComparisonRule(),
-                                            dateComparisonResult
+                                                timeConverter.convertToLocalDate(marinData.getValue())),
+                                        key.getComparisonReference(),
+                                        key.getComparisonRule(),
+                                        dateComparisonResult
                                 )
                         );
                 additionalCriteriaComparisonResults.add(comparisonResult);
                 break;
         }
-    };
+    }
+
+    ;
 
     private boolean marinDataKeyEqualReferenceKey(ExtractionResult marinData,
                                                   KeyInExistingDataSource keyInExistingDataSource) {
