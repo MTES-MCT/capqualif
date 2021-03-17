@@ -72,21 +72,15 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                                                      CorrespondingDataInExistingDataSource conditionRealData,
                                                      List<ExtractionResult> marinMatchingData) {
         if (conditionRealData.getMainWantedData() != null)
-            isMarinDataMeetingMainConditionCriterion(comparisonResultsSummary, conditionRealData.getMainWantedData(),
-                    marinMatchingData);
+            isMarinDataMeetingMainConditionCriterion(comparisonResultsSummary, conditionRealData.getMainWantedData(), marinMatchingData);
         if (conditionRealData.getKeysOfAdditionalWantedData() != null)
-            isMarinDataMeetingAdditionalConditionCriteria(comparisonResultsSummary,
-                    conditionRealData.getKeysOfAdditionalWantedData(), marinMatchingData);
+            isMarinDataMeetingAdditionalConditionCriteria(comparisonResultsSummary, conditionRealData.getKeysOfAdditionalWantedData(), marinMatchingData);
         comparisonResultsSummary.setConditionMet(isConditionMet(comparisonResultsSummary));
     }
 
     private boolean isConditionMet(ComparisonResultsSummary comparisonResultsSummary) {
-        if (comparisonResultsSummary.getComparisonResultForMainCriterion().isValid()
-                && computeValidityFromMultipleResults(comparisonResultsSummary)
-        ) {
-            return true;
-        }
-        return false;
+        return comparisonResultsSummary.getComparisonResultForMainCriterion().isValid()
+                && computeValidityFromMultipleResults(comparisonResultsSummary);
     }
 
     private boolean computeValidityFromMultipleResults(ComparisonResultsSummary comparisonResultsSummary) {
@@ -98,8 +92,6 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
             }
         return true;
     }
-
-    ;
 
     private void isMarinDataMeetingMainConditionCriterion(ComparisonResultsSummary comparisonResultsSummary,
                                                           EntryInExistingDataSource conditionData,
@@ -208,8 +200,6 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         }
     }
 
-    ;
-
     private boolean marinDataKeyEqualReferenceKey(ExtractionResult marinData,
                                                   KeyInExistingDataSource keyInExistingDataSource) {
         return marinData.getKey().equals(keyInExistingDataSource.getJuridicalName());
@@ -230,8 +220,6 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         }
         return result;
     }
-
-    ;
 
     private boolean compareDates(LocalDate comparedDate, ComparisonDate referenceDate, ComparisonRule comparisonRule) {
         LocalDate refDate = referenceDate.getData();
@@ -263,8 +251,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         return result;
     }
 
-    private ComparisonResult buildComparisonResult(String key, boolean isMarinDataMeetingConditionCriterion,
-                                                   String comment) {
+    private ComparisonResult buildComparisonResult(String key, boolean isMarinDataMeetingConditionCriterion, String comment) {
         return new ComparisonResult(key, isMarinDataMeetingConditionCriterion, comment);
     }
 
