@@ -20,6 +20,10 @@ public class ComparisonResultsSummary {
         isConditionMet = conditionMet;
     }
 
+    public boolean isConditionMet() {
+        return isConditionMet;
+    }
+
     public ComparisonResult getComparisonResultForMainCriterion() {
         return comparisonResultForMainCriterion;
     }
