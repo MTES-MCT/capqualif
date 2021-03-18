@@ -4,8 +4,8 @@ import java.util.List;
 
 public class ConditionTitre {
 
-    private String juridicalDesignation;
-    private Value mainValueToCheck;
+    private final String juridicalDesignation;
+    private final Value mainValueToCheck;
     private List<Value> additionalValuesToCheck;
 
     public ConditionTitre(String juridicalDesignation, Value mainValueToCheck) {

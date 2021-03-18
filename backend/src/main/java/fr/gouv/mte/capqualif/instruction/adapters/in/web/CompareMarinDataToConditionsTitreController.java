@@ -13,18 +13,15 @@ import java.util.List;
 public class CompareMarinDataToConditionsTitreController {
 
     @Autowired
-    private CompareMarinDataToConditionsTitreUseCase compareMarinDataToConditionsTitreUseCase;
+    private final CompareMarinDataToConditionsTitreUseCase compareMarinDataToConditionsTitreUseCase;
 
     public CompareMarinDataToConditionsTitreController(CompareMarinDataToConditionsTitreUseCase compareMarinDataToConditionsTitreUseCase) {
         this.compareMarinDataToConditionsTitreUseCase = compareMarinDataToConditionsTitreUseCase;
     }
 
     @GetMapping("/{titreId}/{numeroDeMarin}")
-    public List<ComparisonResultsSummary> compareMarinDataToTitreConditions(
-            @PathVariable("titreId") String titreId,
-            @PathVariable("numeroDeMarin") String numeroDeMarin) {
+    public List<ComparisonResultsSummary> compareMarinDataToTitreConditions(@PathVariable("titreId") String titreId, @PathVariable("numeroDeMarin") String numeroDeMarin) {
         return compareMarinDataToConditionsTitreUseCase.compareMarinDataToConditionsTitre(titreId, numeroDeMarin);
     }
-
 
 }
