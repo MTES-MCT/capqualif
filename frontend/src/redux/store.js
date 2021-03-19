@@ -16,10 +16,12 @@ import {
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import marinsReducer from './features/marinData/marinsSlice';
 import titresReducer from './features/titresCatalog/titresSlice';
+import conditionsReducer from './features/conditions/conditionsSlice';
 
 const reducers = combineReducers({
   marinsReducer,
   titresReducer,
+  conditionsReducer,
 });
 
 const persistConfig = {

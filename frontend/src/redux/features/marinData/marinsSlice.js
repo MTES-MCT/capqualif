@@ -7,7 +7,7 @@ export const getMarinBasicDataByNumeroDeMarin = createAsyncThunk(
   'marins/getMarinBasicDataByNumeroDeMarin',
   async (numeroDeMarin) => {
     const response = await axios.get(
-      `${CAPQUALIF_URL}${MARINS_ENDPOINT}/${numeroDeMarin}`
+      `${CAPQUALIF_URL}/${MARINS_ENDPOINT}/${numeroDeMarin}`
     );
     return response.data;
   }

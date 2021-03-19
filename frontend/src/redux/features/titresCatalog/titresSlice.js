@@ -11,7 +11,7 @@ export const getAllTitres = createAsyncThunk(
   'titres/getAllTitres',
   async (thunkAPI) => {
     const response = await axios.get(
-      `${CAPQUALIF_URL}${TITRES_ENDPOINT}${ALL_TITRES_ENDPOINT}`
+      `${CAPQUALIF_URL}/${TITRES_ENDPOINT}/${ALL_TITRES_ENDPOINT}`
     );
     return response.data;
   }
@@ -19,9 +19,9 @@ export const getAllTitres = createAsyncThunk(
 
 export const getTitre = createAsyncThunk(
   'titres/getTitre',
-  async (titreSlug, thunkAPI) => {
+  async (titreSlug) => {
     const response = await axios.get(
-      `${CAPQUALIF_URL}${TITRES_ENDPOINT}${titreSlug}`
+      `${CAPQUALIF_URL}/${TITRES_ENDPOINT}/${titreSlug}`
     );
     return response.data;
   }

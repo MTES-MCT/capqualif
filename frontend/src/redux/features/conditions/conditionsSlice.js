@@ -5,8 +5,11 @@ import { CAPQUALIF_URL, CONDITIONS_ENDPOINT } from '../../../api/apiList';
 
 export const getConditions = createAsyncThunk(
   'conditions/getConditions',
-  async (thunkAPI) => {
-    const response = await axios.get(`${CAPQUALIF_URL}/${CONDITIONS_ENDPOINT}`);
+  async (requestData, numeroDeMarin) => {
+    console.log(requestData);
+    const response = await axios.get(
+      `${CAPQUALIF_URL}/${CONDITIONS_ENDPOINT}/${requestData.titreId}/${requestData.numeroDeMarin}`
+    );
     console.log(response.data);
     return response.data;
   }
@@ -25,4 +28,4 @@ export const conditionsSlice = createSlice({
   },
 });
 
-export default getConditions.reducer;
+export default conditionsSlice.reducer;
