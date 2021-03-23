@@ -241,7 +241,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
      * returns true comparison results when marin's aptitude médicale is valid ans is not expired
      */
     @Test
-    void shouldReturnTrueComparisonResultWhenMarinDataMeetAllConditionCriteria_aptitudeMedicale_stringMainCriterion_strictEqualityComparisonRule_dateAdditionalCriterion_equalToOrPosteriorComparisonRule() {
+    void shouldReturnMarinMeetsAptitudeMedicaleCondition() {
         // Given :
         // Set up made in @BeforeEach
 
@@ -306,7 +306,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
      */
     @Test
     void
-    shouldReturnAllTrueComparisonResultsWhenMarinDataMeetAllConditionCriteria_formation_stringMainCriterion_strictEqualityComparisonRule_dateAdditionalCriterion_equalToOrPosteriorComparisonRule() {
+    shouldReturnMarinMeetsFormationMeetCondition() {
         // Given :
         // Set up made in @BeforeEach
 
@@ -371,7 +371,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
      */
     @Test
     void
-    shouldReturnAllTrueComparisonResultsWhenMarinDataMeetAllConditionCriteria_titres_stringMainCriterion_strictEqualityComparisonRule_dateAdditionalCriterion_equalToOrPosteriorComparisonRule() {
+    shouldReturnMarinMeetsTitreCondition() {
         // Given :
         // Set up made in @BeforeEach
 
@@ -450,7 +450,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
      */
     @Test
     void
-    shouldReturnAllFalseComparisonResultWhenMarinDataDoNotMeetConditionTitre_aptitudeMedicale_stringMainCriterionIsNotAsExpected_strictEqualityComparisonRule_dateAdditionalCriterion_equalToOrPosteriorComparisonRule() {
+    shouldReturnMarinFailsConditionWhenMarinAptitudeMedicaleIsNotTheExpectedOne() {
         // Given :
         // Set up made in @BeforeEach
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
@@ -517,7 +517,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
      */
     @Test
     void
-    shouldReturnFalseComparisonResultWhenMarinDataDoNotMeetConditionTitre_aptitudeMedicale_stringMainCriterionIsNull_strictEqualityComparisonRule_dateAdditionalCriterionIsExpired_equalToOrPosteriorComparisonRule() {
+    shouldReturnMarinFailsConditionWhenMarinAptitudeMedicaleIsNull() {
         // Given :
         // Set up made in @BeforeEach
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
@@ -584,7 +584,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
      */
     @Test
     void
-    shouldReturnFalseComparisonResultWhenMarinDataMeetMainCriterionButNotAdditionalCriteria_aptitudeMedicale_stringMainCriterion_strictEqualityComparisonRule_dateAdditionalCriterion_equalToOrPosteriorComparisonRule() {
+    shouldReturnMarinFailsConditionWhenMarinAptitudeMedicaleIsExpired() {
         // Given :
         // Set up made in @BeforeEach
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
@@ -651,7 +651,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
      */
     @Test
     void
-    shouldReturnTrueComparisonResultsWhenMarinDataMeetAllConditionCriteria_ageMainCriterion_equalToOrGreaterThanComparisonRule_noAdditionalCriterion() {
+    shouldReturnMarinMeetsAgeCondition() {
         // Given :
         // Set up made in @BeforeEach
 
@@ -660,7 +660,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
         Mockito.when(getTitrePort.findTitreById(titre.getId())).thenReturn(titre);
         Mockito.when(getMarinDataPort.getMarinData(marin.getNumeroDeMarin(), administresData))
-                .thenReturn(Arrays.asList(
+                .thenReturn(Collections.singletonList(
                         new ExtractionResult("Âge minimum", birthDateInAPI, DataType.DATE)
                 ));
 
@@ -673,7 +673,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
                         marin.getNumeroDeMarin());
 
         // Then
-        List<ComparisonResultsSummary> expected = Arrays.asList(
+        List<ComparisonResultsSummary> expected = Collections.singletonList(
                 new ComparisonResultsSummary(
                         true,
                         new ComparisonResult(
@@ -697,7 +697,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
      */
     @Test
     void
-    shouldReturnFalseComparisonResultsWhenMarinDataDontMeetAllConditionCriteria_ageMainCriterion_equalToOrGreaterThanComparisonRule_noAdditionalCriterion() {
+    shouldReturnMarinFailsAgeCondition() {
         // Given :
         // Set up made in @BeforeEach
 
