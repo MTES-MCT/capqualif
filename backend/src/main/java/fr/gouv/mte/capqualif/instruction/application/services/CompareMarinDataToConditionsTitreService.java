@@ -3,7 +3,7 @@ package fr.gouv.mte.capqualif.instruction.application.services;
 import fr.gouv.mte.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.instruction.domain.ComparisonResultsSummary;
+import fr.gouv.mte.capqualif.instruction.domain.ComparisonsSummary;
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.CorrespondingDataInExistingDataSource;
 import fr.gouv.mte.capqualif.legislateur.mock.EntryInExistingDataSource;
@@ -44,10 +44,10 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     }
 
     @Override
-    public List<ComparisonResultsSummary> compareMarinDataToConditionsTitre(String titreId, String numeroDeMarin) {
+    public List<ComparisonsSummary> compareMarinDataToConditionsTitre(String titreId, String numeroDeMarin) {
 
         List<ConditionTitre> conditions = getTitrePort.findTitreById(titreId).getConditions();
-        List<ComparisonResultsSummary> allComparisonsSummary = new ArrayList<>();
+        List<ComparisonsSummary> allComparisonsSummaries = new ArrayList<>();
 
         for (ConditionTitre condition : conditions) {
             CorrespondingDataInExistingDataSource conditionRealData =
@@ -56,53 +56,52 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
             List<ExtractionResult> marinDataThatMatchCondition = getMarinDataPort.getMarinData(numeroDeMarin,
                     conditionRealData);
 
-            ComparisonResultsSummary comparisonSummary = new ComparisonResultsSummary(false, null, null);
+            ComparisonsSummary comparisonsSummary = new ComparisonsSummary(false, null, null);
 
             if (marinDataThatMatchCondition.size() > 0) {
-                compareMarinDataToConditionCriteria(comparisonSummary, condition, conditionRealData,
-                        marinDataThatMatchCondition);
-                allComparisonsSummary.add(comparisonSummary);
+                compareMarinDataToConditionCriteria(comparisonsSummary, condition, conditionRealData, marinDataThatMatchCondition);
+                allComparisonsSummaries.add(comparisonsSummary);
             }
         }
-        return allComparisonsSummary;
+        return allComparisonsSummaries;
     }
 
-    private void compareMarinDataToConditionCriteria(ComparisonResultsSummary comparisonResultsSummary,
+    private void compareMarinDataToConditionCriteria(ComparisonsSummary comparisonsSummary,
                                                      ConditionTitre condition,
                                                      CorrespondingDataInExistingDataSource conditionRealData,
                                                      List<ExtractionResult> marinMatchingData) {
         if (conditionRealData.getMainWantedData() != null)
-            doesMarinMeetMainCriterion(comparisonResultsSummary, conditionRealData.getMainWantedData(), marinMatchingData);
+            doesMarinMeetMainCriterion(comparisonsSummary, conditionRealData.getMainWantedData(), marinMatchingData);
         if (conditionRealData.getKeysOfAdditionalWantedData() != null)
-            doesMarinMeetAdditionalCriteria(comparisonResultsSummary, conditionRealData.getKeysOfAdditionalWantedData(), marinMatchingData);
-        comparisonResultsSummary.setConditionMet(isConditionMet(comparisonResultsSummary));
+            doesMarinMeetAdditionalCriteria(comparisonsSummary, conditionRealData.getKeysOfAdditionalWantedData(), marinMatchingData);
+        comparisonsSummary.setConditionMet(isConditionMet(comparisonsSummary));
     }
 
-    private boolean isConditionMet(ComparisonResultsSummary comparisonResultsSummary) {
-        return comparisonResultsSummary.getComparisonResultForMainCriterion().isValid() && additionalCriteriaAreMet(comparisonResultsSummary);
+    private boolean isConditionMet(ComparisonsSummary comparisonsSummary) {
+        return comparisonsSummary.getComparisonResultForMainCriterion().isValid() && additionalCriteriaAreMet(comparisonsSummary);
     }
 
-    private boolean additionalCriteriaAreMet(ComparisonResultsSummary comparisonResultsSummary) {
-        if (comparisonResultsSummary.getComparisonResultsForAdditionalCriteria() != null)
+    private boolean additionalCriteriaAreMet(ComparisonsSummary comparisonsSummary) {
+        if (comparisonsSummary.getComparisonResultsForAdditionalCriteria() != null)
             for (ComparisonResult comparisonResult :
-                    comparisonResultsSummary.getComparisonResultsForAdditionalCriteria()) {
+                    comparisonsSummary.getComparisonResultsForAdditionalCriteria()) {
                 if (!comparisonResult.isValid())
                     return false;
             }
         return true;
     }
 
-    private void doesMarinMeetMainCriterion(ComparisonResultsSummary comparisonResultsSummary,
+    private void doesMarinMeetMainCriterion(ComparisonsSummary comparisonsSummary,
                                             EntryInExistingDataSource conditionData,
                                             List<ExtractionResult> marinMatchingData) {
         for (ExtractionResult marinData : marinMatchingData) {
             if (marinDataKeyEqualsReferenceKey(marinData, conditionData.getKeyInExistingDataSource())) {
-                compareForMainCriterion(comparisonResultsSummary, conditionData, marinData);
+                compareForMainCriterion(comparisonsSummary, conditionData, marinData);
             }
         }
     }
 
-    private void compareForMainCriterion(ComparisonResultsSummary comparisonResultsSummary,
+    private void compareForMainCriterion(ComparisonsSummary comparisonsSummary,
                                          EntryInExistingDataSource conditionData, ExtractionResult marinData) {
         ComparisonResult comparisonResult;
         switch (conditionData.getKeyInExistingDataSource().getDataType()) {
@@ -123,7 +122,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                                         stringComparisonResult
                                 )
                         );
-                comparisonResultsSummary.setComparisonResultForMainCriterion(comparisonResult);
+                comparisonsSummary.setComparisonResultForMainCriterion(comparisonResult);
                 break;
             case DATE:
                 boolean dateComparisonResult = compareDates(
@@ -141,12 +140,12 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                                         conditionData.getKeyInExistingDataSource().getComparisonRule(),
                                         dateComparisonResult
                                 ));
-                comparisonResultsSummary.setComparisonResultForMainCriterion(comparisonResult);
+                comparisonsSummary.setComparisonResultForMainCriterion(comparisonResult);
                 break;
         }
     }
 
-    private void doesMarinMeetAdditionalCriteria(ComparisonResultsSummary comparisonResultsSummary,
+    private void doesMarinMeetAdditionalCriteria(ComparisonsSummary comparisonsSummary,
                                                  List<KeyInExistingDataSource> additionalData,
                                                  List<ExtractionResult> marinMatchingData) {
         List<ComparisonResult> additionalCriteriaComparisonResults = new ArrayList<>();
@@ -157,7 +156,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                 }
             }
         }
-        comparisonResultsSummary.setComparisonResultsForAdditionalCriteria(additionalCriteriaComparisonResults);
+        comparisonsSummary.setComparisonResultsForAdditionalCriteria(additionalCriteriaComparisonResults);
     }
 
     private void compareForAdditionalCriterion(List<ComparisonResult> additionalCriteriaComparisonResults,

@@ -2,7 +2,7 @@ package fr.gouv.mte.capqualif.instruction.application.services;
 
 import fr.gouv.mte.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.instruction.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.instruction.domain.ComparisonResultsSummary;
+import fr.gouv.mte.capqualif.instruction.domain.ComparisonsSummary;
 import fr.gouv.mte.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.legislateur.mock.*;
 import fr.gouv.mte.capqualif.marin.domain.marin.Marin;
@@ -261,13 +261,13 @@ class CompareMarinDataToConditionsTitreServiceTest {
         Mockito.when(timeConverter.convertToLocalDate(anyString())).thenReturn(convertedDateInAPI);
 
         // When
-        List<ComparisonResultsSummary> actual =
+        List<ComparisonsSummary> actual =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),
                         marin.getNumeroDeMarin());
 
         // Then
-        List<ComparisonResultsSummary> expected = Collections.singletonList(
-                new ComparisonResultsSummary(
+        List<ComparisonsSummary> expected = Collections.singletonList(
+                new ComparisonsSummary(
                         true,
                         new ComparisonResult(
                                 "Aptitude médicale",
@@ -327,13 +327,13 @@ class CompareMarinDataToConditionsTitreServiceTest {
         Mockito.when(timeConverter.convertToLocalDate(anyString())).thenReturn(convertedDateInAPI);
 
         // When
-        List<ComparisonResultsSummary> actual =
+        List<ComparisonsSummary> actual =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),
                         marin.getNumeroDeMarin());
 
         // Then
-        List<ComparisonResultsSummary> expected = Arrays.asList(
-                new ComparisonResultsSummary(
+        List<ComparisonsSummary> expected = Arrays.asList(
+                new ComparisonsSummary(
                         true,
                         new ComparisonResult(
                                 "Formation modulaire : Module P1-Appui",
@@ -394,13 +394,13 @@ class CompareMarinDataToConditionsTitreServiceTest {
         Mockito.when(timeConverter.convertToLocalDate(anyString())).thenReturn(convertedDateInAPI);
 
         // When
-        List<ComparisonResultsSummary> actual =
+        List<ComparisonsSummary> actual =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),
                         marin.getNumeroDeMarin());
 
         // Then
-        List<ComparisonResultsSummary> expected = Arrays.asList(
-                new ComparisonResultsSummary(
+        List<ComparisonsSummary> expected = Arrays.asList(
+                new ComparisonsSummary(
                         true,
                         new ComparisonResult(
                                 "Certificat de formation de base à la sécurité (CFBS)",
@@ -472,13 +472,13 @@ class CompareMarinDataToConditionsTitreServiceTest {
         Mockito.when(timeConverter.convertToLocalDate(anyString())).thenReturn(convertedDateInAPI);
 
         // When
-        List<ComparisonResultsSummary> actual =
+        List<ComparisonsSummary> actual =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),
                         marin.getNumeroDeMarin());
 
         // Then
-        List<ComparisonResultsSummary> expected = Collections.singletonList(
-                new ComparisonResultsSummary(
+        List<ComparisonsSummary> expected = Collections.singletonList(
+                new ComparisonsSummary(
                         false,
                         new ComparisonResult(
                                 "Aptitude médicale",
@@ -539,13 +539,13 @@ class CompareMarinDataToConditionsTitreServiceTest {
         Mockito.when(timeConverter.convertToLocalDate(anyString())).thenReturn(convertedDateInAPI);
 
         // When
-        List<ComparisonResultsSummary> actual =
+        List<ComparisonsSummary> actual =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),
                         marin.getNumeroDeMarin());
 
         // Then
-        List<ComparisonResultsSummary> expected = Arrays.asList(
-                new ComparisonResultsSummary(
+        List<ComparisonsSummary> expected = Arrays.asList(
+                new ComparisonsSummary(
                         false,
                         new ComparisonResult(
                                 "Aptitude médicale",
@@ -606,13 +606,13 @@ class CompareMarinDataToConditionsTitreServiceTest {
         Mockito.when(timeConverter.convertToLocalDate(anyString())).thenReturn(convertedDateInAPI);
 
         // When
-        List<ComparisonResultsSummary> actual =
+        List<ComparisonsSummary> actual =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),
                         marin.getNumeroDeMarin());
 
         // Then
-        List<ComparisonResultsSummary> expected = Arrays.asList(
-                new ComparisonResultsSummary(
+        List<ComparisonsSummary> expected = Arrays.asList(
+                new ComparisonsSummary(
                         false,
                         new ComparisonResult(
                                 "Aptitude médicale",
@@ -668,13 +668,13 @@ class CompareMarinDataToConditionsTitreServiceTest {
         Mockito.when(timeConverter.convertToLocalDate(anyString())).thenReturn(convertedDateInAPI);
 
         // When
-        List<ComparisonResultsSummary> actual =
+        List<ComparisonsSummary> actual =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),
                         marin.getNumeroDeMarin());
 
         // Then
-        List<ComparisonResultsSummary> expected = Collections.singletonList(
-                new ComparisonResultsSummary(
+        List<ComparisonsSummary> expected = Collections.singletonList(
+                new ComparisonsSummary(
                         true,
                         new ComparisonResult(
                                 "Âge minimum",
@@ -714,13 +714,13 @@ class CompareMarinDataToConditionsTitreServiceTest {
         Mockito.when(timeConverter.convertToLocalDate(anyString())).thenReturn(convertedDateInAPI);
 
         // When
-        List<ComparisonResultsSummary> actual =
+        List<ComparisonsSummary> actual =
                 compareMarinDataToConditionsTitreService.compareMarinDataToConditionsTitre(titre.getId(),
                         marin.getNumeroDeMarin());
 
         // Then
-        List<ComparisonResultsSummary> expected = Arrays.asList(
-                new ComparisonResultsSummary(
+        List<ComparisonsSummary> expected = Arrays.asList(
+                new ComparisonsSummary(
                         false,
                         new ComparisonResult(
                                 "Âge minimum",

@@ -3,14 +3,14 @@ package fr.gouv.mte.capqualif.instruction.domain;
 import java.util.List;
 import java.util.Objects;
 
-public class ComparisonResultsSummary {
+public class ComparisonsSummary {
 
     private boolean isConditionMet;
     private ComparisonResult comparisonResultForMainCriterion;
     private List<ComparisonResult> comparisonResultsForAdditionalCriteria;
 
-    public ComparisonResultsSummary(boolean isConditionMet, ComparisonResult comparisonResultForMainCriterion,
-                                    List<ComparisonResult> comparisonResultsForAdditionalCriteria) {
+    public ComparisonsSummary(boolean isConditionMet, ComparisonResult comparisonResultForMainCriterion,
+                              List<ComparisonResult> comparisonResultsForAdditionalCriteria) {
         this.isConditionMet = isConditionMet;
         this.comparisonResultForMainCriterion = comparisonResultForMainCriterion;
         this.comparisonResultsForAdditionalCriteria = comparisonResultsForAdditionalCriteria;
@@ -55,7 +55,7 @@ public class ComparisonResultsSummary {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        ComparisonResultsSummary that = (ComparisonResultsSummary) o;
+        ComparisonsSummary that = (ComparisonsSummary) o;
         return isConditionMet == that.isConditionMet &&
                 comparisonResultForMainCriterion.equals(that.comparisonResultForMainCriterion) &&
                 Objects.equals(comparisonResultsForAdditionalCriteria, that.comparisonResultsForAdditionalCriteria);
