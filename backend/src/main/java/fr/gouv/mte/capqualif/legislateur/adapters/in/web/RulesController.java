@@ -56,13 +56,11 @@ public class RulesController {
     }
 
     private boolean evaluateIntermediateOrFinalOperation(Operation operation, List<Operation> operations) {
-        // 1. Choper les résultats des atomic opérations
         List<Operation> wantdOperations = findOperationsById(operation.getComparedIntermediateResultsOfOperations(), operations);
         List<Boolean> operationsResults = new ArrayList<Boolean>();
         for (Operation op : wantdOperations) {
             operationsResults.add(op.getResult());
         }
-        // 2. Faire le AND et le OR
         switch (operation.getOperator()) {
             case "AND":
                 return andChecker(operationsResults);
