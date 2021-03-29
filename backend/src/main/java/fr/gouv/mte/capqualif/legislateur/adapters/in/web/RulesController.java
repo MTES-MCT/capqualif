@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "http://localhost:3000")
 public class RulesController {
 
+    // blablabla
+
     @PostMapping("/conditions")
     public void createConditions(@RequestBody Operations operations) {
         List<Operation> sortedOperations = sort(operations);
@@ -105,5 +107,4 @@ public class RulesController {
                 .sorted(Comparator.comparing(Operation::getOrder))
                 .collect(Collectors.toList());
     }
-
 }
