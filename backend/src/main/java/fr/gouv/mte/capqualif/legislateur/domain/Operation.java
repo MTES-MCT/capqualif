@@ -3,18 +3,28 @@ package fr.gouv.mte.capqualif.legislateur.domain;
 import java.util.List;
 
 public class Operation {
+    private String id;
     private int order;
     private OperationType operationType;
     private String operator;
-    private List<Condition> conditions;
+    private List<SubOperation> subOperations;
+    private List<String> comparedIntermediateResultsOfOperations;
     private boolean result;
+
+    public String getId() {
+        return id;
+    }
 
     public String getOperator() {
         return operator;
     }
 
-    public List<Condition> getRules() {
-        return conditions;
+    public List<SubOperation> getComparedConditions() {
+        return subOperations;
+    }
+
+    public List<String> getComparedIntermediateResultsOfOperations() {
+        return comparedIntermediateResultsOfOperations;
     }
 
     public int getOrder() {
@@ -33,12 +43,20 @@ public class Operation {
         return operationType;
     }
 
+    public List<SubOperation> getSubOperations() {
+        return subOperations;
+    }
+
     @Override
     public String toString() {
         return "Operation{" +
-                "operationOrder=" + order +
+                "id='" + id + '\'' +
+                ", order=" + order +
+                ", operationType=" + operationType +
                 ", operator='" + operator + '\'' +
-                ", subRules=" + conditions +
+                ", comparedConditions=" + subOperations +
+                ", comparedOperations=" + comparedIntermediateResultsOfOperations +
+                ", result=" + result +
                 '}';
     }
 }

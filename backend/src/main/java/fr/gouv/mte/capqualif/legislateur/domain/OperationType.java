@@ -1,12 +1,10 @@
 package fr.gouv.mte.capqualif.legislateur.domain;
 
 public enum OperationType {
+    ATOMIC("atomic"),
     INTERMEDIATE("intermediate"),
     FINAL("final");
 
-    private String typeValue;
-
     OperationType(String typeValue) {
-        this.typeValue = typeValue;
     }
 }

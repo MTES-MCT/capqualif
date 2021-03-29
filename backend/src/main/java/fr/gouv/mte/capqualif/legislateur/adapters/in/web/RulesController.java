@@ -3,7 +3,7 @@ package fr.gouv.mte.capqualif.legislateur.adapters.in.web;
 import fr.gouv.mte.capqualif.legislateur.domain.Operation;
 import fr.gouv.mte.capqualif.legislateur.domain.OperationType;
 import fr.gouv.mte.capqualif.legislateur.domain.Operations;
-import fr.gouv.mte.capqualif.legislateur.domain.Condition;
+import fr.gouv.mte.capqualif.legislateur.domain.SubOperation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -19,77 +19,93 @@ public class RulesController {
     @PostMapping("/conditions")
     public void createConditions(@RequestBody Operations operations) {
         List<Operation> sortedOperations = sort(operations);
+        List<Operation> atomicOperations =
+                sortedOperations.stream().filter(operation -> operation.getOperationType().equals(OperationType.ATOMIC)).collect(Collectors.toList());
         List<Operation> intermediateOperations =
                 sortedOperations.stream().filter(operation -> operation.getOperationType().equals(OperationType.INTERMEDIATE)).collect(Collectors.toList());
         Operation finalOperation =
                 sortedOperations.stream().filter(operation -> operation.getOperationType().equals(OperationType.FINAL)).collect(Collectors.toList()).get(0);
-        for (Operation operation : intermediateOperations) {
-            operation.setResult(evaluateOperation(operation));
-            System.out.println("operation " + operation.getOrder() + " passing: " + operation.getResult());
+        // Process atomic operations
+        for (Operation atomicOperation : atomicOperations) {
+            atomicOperation.setResult(evaluateAtomicOperation(atomicOperation));
         }
-        System.out.println(evaluateGlobalOperation(finalOperation, intermediateOperations));
+        // Process intermediate operations
+        for (Operation intermediateOperation : intermediateOperations) {
+            intermediateOperation.setResult(evaluateIntermediateOrFinalOperation(intermediateOperation, sortedOperations));
+        }
+        finalOperation.setResult(evaluateIntermediateOrFinalOperation(finalOperation, sortedOperations));
+        System.out.println(finalOperation);
     }
 
-    private boolean evaluateGlobalOperation(Operation operation, List<Operation> intermediateOperations) {
+    private boolean evaluateAtomicOperation(Operation operation) {
+        List<Boolean> subOperationsResults = new ArrayList<Boolean>();
+        for (SubOperation subOperation : operation.getSubOperations()) {
+            subOperation.setResult(evaluateSubOperation(subOperation));
+            subOperationsResults.add(subOperation.getResult());
+        }
         switch (operation.getOperator()) {
             case "AND":
-                List<Boolean> resultsAND = new ArrayList<Boolean>();
-                for (Operation op : intermediateOperations) {
-                    resultsAND.add(op.getResult());
-                }
-                System.out.println("resultsAND are " + resultsAND);
-                if (resultsAND.contains(Boolean.FALSE)) {
-                    return false;
-                }
-                break;
+                return andChecker(subOperationsResults);
             case "OR":
-                List<Boolean> resultsOR = new ArrayList<Boolean>();
-                for (Operation op : intermediateOperations) {
-                    resultsOR.add(op.getResult());
-                }
-                System.out.println("resultsOR are " + resultsOR);
-                if (resultsOR.contains(Boolean.TRUE)) {
-                    return true;
-                }
-                break;
+                return orChecker(subOperationsResults);
             default:
-                System.out.println("Aouch.");
+                System.out.println("evaluateAtomicOperation aouch.");
+                break;
+        }
+        return true;
+    }
+
+    private boolean evaluateIntermediateOrFinalOperation(Operation operation, List<Operation> operations) {
+        // 1. Choper les résultats des atomic opérations
+        List<Operation> wantdOperations = findOperationsById(operation.getComparedIntermediateResultsOfOperations(), operations);
+        List<Boolean> operationsResults = new ArrayList<Boolean>();
+        for (Operation op : wantdOperations) {
+            operationsResults.add(op.getResult());
+        }
+        // 2. Faire le AND et le OR
+        switch (operation.getOperator()) {
+            case "AND":
+                return andChecker(operationsResults);
+            case "OR":
+                return orChecker(operationsResults);
+            default:
+                System.out.println("evaluateIntermediateOperation aouch.");
+                break;
         }
         return false;
+    }
+
+    private boolean evaluateSubOperation(SubOperation subOperation) {
+        switch (subOperation.getOperator()) {
+            case "==":
+                return subOperation.getLeftOp().equals(subOperation.getRightOp());
+            default:
+                System.out.println("evaluateSubOperation aouch");
+                break;
+        }
+        return true;
+    }
+
+    private List<Operation> findOperationsById(List<String> ids, List<Operation> operations) {
+        List<Operation> results = new ArrayList<>();
+        for (String id : ids) {
+            results.add((Operation) operations.stream().filter(operation -> operation.getId().equals(id)));
+        }
+        return results;
+    }
+
+    private boolean orChecker(List<Boolean> results) {
+        return results.contains(Boolean.TRUE);
+    }
+
+    private Boolean andChecker(List<Boolean> results) {
+        return !results.contains(Boolean.FALSE);
     }
 
     private List<Operation> sort(Operations operations) {
         return operations.getOperations().stream()
                 .sorted(Comparator.comparing(Operation::getOrder))
                 .collect(Collectors.toList());
-    }
-
-    private boolean evaluateOperation(Operation operation) {
-        switch (operation.getOperator()) {
-            case "AND":
-                for (Condition condition : operation.getRules()) {
-                    return rule(operation, condition);
-                }
-            case "OR":
-            // TO DO
-        }
-        return true;
-    }
-
-    private boolean rule(Operation operation, Condition condition) {
-        switch (condition.getOperator()) {
-            case "==":
-                if (condition.getLeftOp().equals(condition.getRightOp())) {
-                    System.out.println("subRule " + condition.getRightOp() + " " + condition.getOperator() + " " + condition.getRightOp() + " of operation " + operation.getOrder() + " passes.");
-                } else {
-                    System.out.println("subRule of operation " + operation.getOrder() + " does not pass because of " + condition.getError());
-                    return false;
-                }
-                break;
-            default:
-                System.out.println("nothing to show");
-        }
-        return true;
     }
 
 }
