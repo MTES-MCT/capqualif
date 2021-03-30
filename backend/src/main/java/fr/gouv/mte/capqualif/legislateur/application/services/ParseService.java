@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Component
 public class ParseService {
 
-    public void createConditions(Operations operations) {
+    public boolean createConditions(Operations operations) {
         List<Operation> sortedOperations = sort(operations);
         List<Operation> atomicOperations =
                 sortedOperations.stream().filter(operation -> operation.getOperationType().equals(OperationType.ATOMIC)).collect(Collectors.toList());
@@ -36,6 +36,7 @@ public class ParseService {
         }
         finalOperation.setResult(evaluateIntermediateOrFinalOperation(finalOperation, sortedOperations));
         System.out.println(finalOperation.getId() + " is " + finalOperation.getResult());
+        return finalOperation.getResult();
 
     }
 
