@@ -19,7 +19,9 @@ public class ParseService {
         System.out.println(operations);
         for (Operation operation : operations.getOperations()) {
             System.out.println(operation.getOperator() + " is " + operation.validate());
-            System.out.println(operation.getErrors());
+            if (!operation.validate()) {
+                System.out.println(operation.getErrors());
+            }
         }
 
 
