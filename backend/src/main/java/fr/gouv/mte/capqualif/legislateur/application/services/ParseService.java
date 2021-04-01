@@ -16,12 +16,9 @@ import java.util.stream.Collectors;
 public class ParseService {
 
     public void createConditions(Operations operations) {
-        System.out.println(operations);
+        System.out.println("\n" + operations);
         for (Operation operation : operations.getOperations()) {
-            System.out.println(operation.getOperator() + " is " + operation.validate());
-            if (!operation.validate()) {
-                System.out.println(operation.getErrors());
-            }
+            operation.validate();
         }
 
 

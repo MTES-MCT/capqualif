@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Operation {
 
+    private String id;
     private String operator;
     private String leftOp;
     private String rightOp;
@@ -36,48 +37,45 @@ public class Operation {
         return errors;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public boolean validate() {
         switch (operator) {
             case "AND":
-                for (Operation op : subOperations) {
-                    if (!op.validate()) {
-                        errors.add(op.getOperator() + " is errored 1");
-                        if (op.getLeftOp() != null) {
-                            System.out.println(op.getLeftOp() + " is errored 1");
-                        } else {
-                            System.out.println(op.getOperator() + " is errored 1");
-                        }
+                for (Operation subOp : subOperations) {
+                    if (!subOp.validate()) {
+//                        errors.add(subOp.getOperator() + " is errored 1");
+//                        System.out.println(subOp.getId() + " is errored 1");
+                        System.out.println(getId() + " " + getOperator() + " is errored 1");
                         return false;
                     }
                     ;
                 }
+                System.out.println(getId() + " " + getOperator() + " is OK 2");
                 return true;
             case "OR":
                 for (Operation op : subOperations) {
                     if (op.validate()) {
+                        System.out.println(getId() + " " + getOperator() + " is OK 2");
                         return true;
-                    } else {
-                        if (op.getLeftOp() != null) {
-                            System.out.println(op.getLeftOp() + " is errored 2");
-                        } else {
-                            System.out.println(op.getOperator() + " is errored 2");
-                        }
-                        errors.add(op.getLeftOp() + " is errored 2");
                     }
                 }
+                System.out.println(getId() + " " + getOperator() + " is errored 2");
                 return false;
             case "==":
                 if (!leftOp.equals(rightOp)) {
-                    System.out.println(leftOp + " is errored 3");
-                    errors.add(leftOp + " is errored 3");
+                    System.out.println(getId() + " is errored 3");
+                    errors.add(getId() + " is errored 3");
                     return false;
                 } else {
                     return true;
                 }
             case ">=":
                 if (!(Integer.parseInt(leftOp) >= Integer.parseInt(rightOp))) {
-                    System.out.println(leftOp + " is errored 4");
-                    errors.add(leftOp + " is errored 4");
+                    System.out.println(getId() + " is errored 4");
+                    errors.add(getId() + " is errored 4");
                     return false;
                 } else {
                     return true;
