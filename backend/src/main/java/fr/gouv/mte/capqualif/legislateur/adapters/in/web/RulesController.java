@@ -20,7 +20,7 @@ public class RulesController {
     @PostMapping("/conditions")
     public void createConditions(@RequestBody Titre titre) {
 
-        parseService.parseTitre(titre);
+        parseService.processTitre(titre);
     }
 
 }

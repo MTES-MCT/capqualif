@@ -13,7 +13,6 @@ public class Condition {
     private String rightOp;
     private List<Condition> subConditions;
     private boolean result;
-    private List<String> errors;
 
     public String getOperator() {
         return operator;
@@ -35,46 +34,42 @@ public class Condition {
         return result;
     }
 
-    public List<String> getErrors() {
-        return errors;
-    }
-
-    public void setErrors(List<String> errors) {
-        this.errors = errors;
-    }
-
     public String getId() {
         return id;
     }
 
-    public boolean validate() {
+    public boolean validate(List<String> errorsList) {
         switch (operator) {
             case "AND":
                 Map<String, Boolean> andResults = new HashMap<>();
                 for (Condition subCondition : subConditions) {
-                    andResults.put(subCondition.getId(), subCondition.validate());
+                    boolean validationResult = subCondition.validate(errorsList);
+                    andResults.put(subCondition.getId(), validationResult);
                 }
                 System.out.println("andResults : " + andResults);
-                if (andResults.containsValue(Boolean.FALSE)) return false;
+                if (andResults.containsValue(Boolean.FALSE)) {
+                    return false;
+                }
                 return true;
             case "OR":
                 Map<String, Boolean> orResults = new HashMap<>();
                 for (Condition subCondition : subConditions) {
-                    orResults.put(subCondition.getId(), subCondition.validate());
+                    boolean validationResult = subCondition.validate(errorsList);
+                    orResults.put(subCondition.getId(), validationResult);
                 }
                 System.out.println("orResults : " + orResults);
                 if (orResults.containsValue(Boolean.TRUE)) return true;
                 return false;
             case "==":
                 if (!leftOp.equals(rightOp)) {
-//                    System.out.println(getId() + " is errored 3");
+                    errorsList.add(id);
                     return false;
                 } else {
                     return true;
                 }
             case ">=":
                 if (!(Integer.parseInt(leftOp) >= Integer.parseInt(rightOp))) {
-//                    System.out.println(getId() + " is errored 4");
+                    errorsList.add(id);
                     return false;
                 } else {
                     return true;
