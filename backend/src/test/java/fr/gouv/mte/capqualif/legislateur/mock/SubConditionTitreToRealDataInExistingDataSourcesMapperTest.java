@@ -15,7 +15,7 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-class SubOperationTitreToRealDataInExistingDataSourcesMapperTest {
+class SubConditionTitreToRealDataInExistingDataSourcesMapperTest {
 
     @Autowired
     private ExistingDataSource existingDataSource;

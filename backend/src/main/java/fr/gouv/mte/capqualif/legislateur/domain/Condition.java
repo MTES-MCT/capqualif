@@ -3,13 +3,13 @@ package fr.gouv.mte.capqualif.legislateur.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Operation {
+public class Condition {
 
     private String id;
     private String operator;
     private String leftOp;
     private String rightOp;
-    private List<Operation> subOperations;
+    private List<Condition> subConditions;
     private boolean result;
     private List<String> errors = new ArrayList<>();
 
@@ -25,8 +25,8 @@ public class Operation {
         return rightOp;
     }
 
-    public List<Operation> getSubOperations() {
-        return subOperations;
+    public List<Condition> getSubConditions() {
+        return subConditions;
     }
 
     public boolean isResult() {
@@ -44,19 +44,16 @@ public class Operation {
     public boolean validate() {
         switch (operator) {
             case "AND":
-                for (Operation subOp : subOperations) {
+                for (Condition subOp : subConditions) {
                     if (!subOp.validate()) {
-//                        errors.add(subOp.getOperator() + " is errored 1");
-//                        System.out.println(subOp.getId() + " is errored 1");
                         System.out.println(getId() + " " + getOperator() + " is errored 1");
                         return false;
                     }
-                    ;
                 }
                 System.out.println(getId() + " " + getOperator() + " is OK 2");
                 return true;
             case "OR":
-                for (Operation op : subOperations) {
+                for (Condition op : subConditions) {
                     if (op.validate()) {
                         System.out.println(getId() + " " + getOperator() + " is OK 2");
                         return true;
@@ -94,7 +91,7 @@ public class Operation {
                 "operator='" + operator + '\'' +
                 ", leftOp='" + leftOp + '\'' +
                 ", rightOp='" + rightOp + '\'' +
-                ", subOperations=" + subOperations +
+                ", subOperations=" + subConditions +
                 ", result=" + result +
                 ", errors=" + errors +
                 '}';

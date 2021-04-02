@@ -1,17 +1,5 @@
 package fr.gouv.mte.capqualif.legislateur.application.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.gouv.mte.capqualif.legislateur.application.services.ParseService;
-import fr.gouv.mte.capqualif.legislateur.domain.Operations;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.io.File;
-import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class ParseServiceTest {
 
 //    ParseService parseService;
@@ -23,7 +11,7 @@ class ParseServiceTest {
 //
 //    @Test
 //    void shouldEvaluate() throws IOException {
-//        assertTrue(parseService.createConditions(jsonToOperations("src/test/resources/mocks/capAdmin/conditions/allTrue.json")));
+//        assertTrue(parseService.createConditions(jsonToOperations("src/test/resources/mocks/capAdmin/conditions/trueAll.json")));
 //    }
 //
 //
