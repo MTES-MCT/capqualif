@@ -10,14 +10,14 @@ public class ParseService {
     public boolean parseTitre(Titre titre) {
         System.out.println("\n" + titre);
 
-        int i = 0;
-        for (Condition condition : titre.getConditions()) {
-           boolean result = condition.validate();
-            if (i++ == titre.getConditions().size() - 1)
-                System.out.println("Finally, " + condition.getId() + " is " + result);
-            return result;
-        }
-        System.out.println("outside conditions loop");
-        return false;
+        // There is only one condition in the list
+        // (the list is only used for deserialization purposes)
+        // TO DO : move to controller ?
+        Condition condition = titre.getConditions().get(0);
+        boolean result = condition.validate();
+
+//        if (!result) System.out.println("error of parseTitre " + condition.getError());
+        System.out.println("Finally, " + condition.getId() + " is " + result + ".");
+        return result;
     }
 }

@@ -20,7 +20,7 @@ class ConditionTest {
     }
 
     @Test
-    void shouldEvaluate() throws IOException {
+    void shouldEvaluateCorrectly() throws IOException {
         assertTrue(parseService.parseTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueAll.json")));
         assertTrue(parseService.parseTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueFormationModulaire.json")));
         assertTrue(parseService.parseTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueEquivFormationModulaire.json")));
@@ -30,6 +30,14 @@ class ConditionTest {
         assertFalse(parseService.parseTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseAgeWrong.json")));
         assertFalse(parseService.parseTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseFormationWrong.json")));
         assertFalse(parseService.parseTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseCFBSWrong.json")));
+    }
+
+    @Test
+    void shouldHaveTheRightErrors() {
+        // Given
+
+        // When
+        // Then
     }
 
 

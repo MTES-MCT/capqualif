@@ -32,7 +32,7 @@
                   "rightOp": "Module P1-Appui navigation"
                 },
                 {
-                  "id": "module de formation modulaire",
+                  "id": "module de formation modulaire P2",
                   "operator": "==",
                   "leftOp": "",
                   "rightOp": "Module P2-Appui manutention et arrimage de la cargaison, pêche"
@@ -44,13 +44,13 @@
               "operator": "OR",
               "subConditions": [
                 {
-                  "id": "titre reconnu équivalent à la formation modulaire",
+                  "id": "titre reconnu équivalent à la formation modulaire 2006",
                   "operator": "==",
                   "leftOp": "Certificat de fin d’études maritimes de matelot, de marin du commerce ou “pêche” délivré conformément à l’arrêté du 12 décembre 2006 susvisé",
                   "rightOp": "Certificat de fin d’études maritimes de matelot, de marin du commerce ou “pêche” délivré conformément à l’arrêté du 12 décembre 2006 susvisé"
                 },
                 {
-                  "id": "titre reconnu équivalent à la formation modulaire",
+                  "id": "titre reconnu équivalent à la formation modulaire 2005",
                   "operator": "==",
                   "leftOp": "",
                   "rightOp": "Certificat d’aptitude professionnelle maritime de matelot délivré conformément à l’arrêté du 8 septembre 2005 susvisé"
@@ -64,19 +64,19 @@
           "operator": "OR",
           "subConditions": [
             {
-              "id": "titre mainstream",
+              "id": "titre CFBS mainstream",
               "operator": "==",
               "leftOp": "CFBS",
               "rightOp": "CFBS"
             },
             {
-              "id": "document reconnu équivalent au CFBS",
+              "id": "document reconnu équivalent au CFBS 2014",
               "operator": "==",
               "leftOp": "Attestation de suivi de la formation à la sécurité dispensée avant le 1er janvier 2014 aux marins pêcheurs et approuvée par le ministre chargé de la mer",
               "rightOp": "Attestation de suivi de la formation à la sécurité dispensée avant le 1er janvier 2014 aux marins pêcheurs et approuvée par le ministre chargé de la mer"
             },
             {
-              "id": "document reconnu équivalent au CFBS",
+              "id": "document reconnu équivalent au CFBS 2015",
               "operator": "==",
               "leftOp": "Attestation de suivi de la formation à la sécurité dispensée après le 1er septembre 2015 aux personnels appelés à servir à bord des navires armés à la petite pêche ou à la pêche côtière de moins de 12 mètres et approuvée par le ministre chargé de la mer",
               "rightOp": "Attestation de suivi de la formation à la sécurité dispensée après le 1er septembre 2015 aux personnels appelés à servir à bord des navires armés à la petite pêche ou à la pêche côtière de moins de 12 mètres et approuvée par le ministre chargé de la mer"

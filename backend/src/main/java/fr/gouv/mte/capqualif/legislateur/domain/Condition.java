@@ -1,7 +1,9 @@
 package fr.gouv.mte.capqualif.legislateur.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Condition {
 
@@ -11,7 +13,7 @@ public class Condition {
     private String rightOp;
     private List<Condition> subConditions;
     private boolean result;
-    private List<String> errors = new ArrayList<>();
+    private List<String> errors;
 
     public String getOperator() {
         return operator;
@@ -37,6 +39,10 @@ public class Condition {
         return errors;
     }
 
+    public void setErrors(List<String> errors) {
+        this.errors = errors;
+    }
+
     public String getId() {
         return id;
     }
@@ -44,35 +50,31 @@ public class Condition {
     public boolean validate() {
         switch (operator) {
             case "AND":
-                for (Condition subOp : subConditions) {
-                    if (!subOp.validate()) {
-                        System.out.println(getId() + " " + getOperator() + " is errored 1");
-                        return false;
-                    }
+                Map<String, Boolean> andResults = new HashMap<>();
+                for (Condition subCondition : subConditions) {
+                    andResults.put(subCondition.getId(), subCondition.validate());
                 }
-                System.out.println(getId() + " " + getOperator() + " is OK 2");
+                System.out.println("andResults : " + andResults);
+                if (andResults.containsValue(Boolean.FALSE)) return false;
                 return true;
             case "OR":
-                for (Condition op : subConditions) {
-                    if (op.validate()) {
-                        System.out.println(getId() + " " + getOperator() + " is OK 2");
-                        return true;
-                    }
+                Map<String, Boolean> orResults = new HashMap<>();
+                for (Condition subCondition : subConditions) {
+                    orResults.put(subCondition.getId(), subCondition.validate());
                 }
-                System.out.println(getId() + " " + getOperator() + " is errored 2");
+                System.out.println("orResults : " + orResults);
+                if (orResults.containsValue(Boolean.TRUE)) return true;
                 return false;
             case "==":
                 if (!leftOp.equals(rightOp)) {
-                    System.out.println(getId() + " is errored 3");
-                    errors.add(getId() + " is errored 3");
+//                    System.out.println(getId() + " is errored 3");
                     return false;
                 } else {
                     return true;
                 }
             case ">=":
                 if (!(Integer.parseInt(leftOp) >= Integer.parseInt(rightOp))) {
-                    System.out.println(getId() + " is errored 4");
-                    errors.add(getId() + " is errored 4");
+//                    System.out.println(getId() + " is errored 4");
                     return false;
                 } else {
                     return true;
@@ -83,17 +85,5 @@ public class Condition {
         }
         System.out.println("Falling out of switch !");
         return false;
-    }
-
-    @Override
-    public String toString() {
-        return "Operation{" +
-                "operator='" + operator + '\'' +
-                ", leftOp='" + leftOp + '\'' +
-                ", rightOp='" + rightOp + '\'' +
-                ", subOperations=" + subConditions +
-                ", result=" + result +
-                ", errors=" + errors +
-                '}';
     }
 }
