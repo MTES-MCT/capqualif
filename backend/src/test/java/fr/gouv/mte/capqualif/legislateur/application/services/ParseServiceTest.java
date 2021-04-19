@@ -35,7 +35,7 @@ class ParseServiceTest {
     }
 
     @Test
-    void shouldReturnCFBSError() throws IOException {
+    void shouldReturnCompetenceEnSecuriteError() throws IOException {
         // When
         List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseCFBSWrong.json")).getErrors();
 

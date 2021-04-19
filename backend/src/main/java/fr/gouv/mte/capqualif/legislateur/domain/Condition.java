@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Condition {
 
@@ -58,7 +59,10 @@ public class Condition {
                     orResults.put(subCondition.getId(), validationResult);
                 }
                 System.out.println("orResults : " + orResults);
-                if (orResults.containsValue(Boolean.TRUE)) return true;
+                if (orResults.containsValue(Boolean.TRUE)) {
+                    removeOtherFalseErrors(errorsList, orResults);
+                    return true;
+                }
                 return false;
             case "==":
                 if (!leftOp.equals(rightOp)) {
@@ -80,5 +84,15 @@ public class Condition {
         }
         System.out.println("Falling out of switch !");
         return false;
+    }
+
+    private void removeOtherFalseErrors(List<String> errorsList, Map<String, Boolean> orResults) {
+        List<String> ids = new ArrayList<>();
+        for (Map.Entry<String, Boolean> entry : orResults.entrySet()) {
+            if (entry.getValue().equals(Boolean.FALSE)) {
+                ids.add(entry.getKey());
+            }
+        }
+        errorsList.removeAll(ids);
     }
 }
