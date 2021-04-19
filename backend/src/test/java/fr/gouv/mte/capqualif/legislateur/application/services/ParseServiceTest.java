@@ -1,16 +1,17 @@
 package fr.gouv.mte.capqualif.legislateur.application.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.gouv.mte.capqualif.legislateur.domain.ParseResult;
 import fr.gouv.mte.capqualif.legislateur.domain.Titre;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParseServiceTest {
 
@@ -24,7 +25,8 @@ class ParseServiceTest {
     @Test
     void shouldReturnAgeError() throws IOException {
         // When
-        List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseAgeWrong.json")).getErrors();
+        List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
+                "/falseAgeWrong.json")).getErrors();
 
         // Then
         List<String> expected = Arrays.asList(
@@ -37,7 +39,8 @@ class ParseServiceTest {
     @Test
     void shouldReturnCompetenceEnSecuriteError() throws IOException {
         // When
-        List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseCFBSWrong.json")).getErrors();
+        List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
+                "/falseCFBSWrong.json")).getErrors();
 
         // Then
         List<String> expected = Arrays.asList(
@@ -52,7 +55,8 @@ class ParseServiceTest {
     @Test
     void shouldReturnAllFormationsError() throws IOException {
         // When
-        List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseFormationWrong.json")).getErrors();
+        List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
+                "/falseFormationWrong.json")).getErrors();
 
         // Then
         List<String> expected = Arrays.asList(
@@ -68,13 +72,15 @@ class ParseServiceTest {
     @Test
     void shouldReturnNoErrorsForCompetencesEnSecurite() throws IOException {
         // When
-        List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueEquivCFBS.json")).getErrors();
+        List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
+                "/trueEquivCFBS.json")).getErrors();
 
         // Then
         List<String> expected = Collections.emptyList();
 
         assertEquals(expected, actual);
     }
+
 
     private Titre jsonToTitre(String location) throws IOException, IOException {
         ObjectMapper objectMapper = new ObjectMapper();

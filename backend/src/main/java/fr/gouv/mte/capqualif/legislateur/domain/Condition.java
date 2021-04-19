@@ -1,9 +1,6 @@
 package fr.gouv.mte.capqualif.legislateur.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Condition {
@@ -94,5 +91,37 @@ public class Condition {
             }
         }
         errorsList.removeAll(ids);
+    }
+
+    @Override
+    public String toString() {
+        return "Condition{" +
+                "id='" + id + '\'' +
+                ", operator='" + operator + '\'' +
+                ", leftOp='" + leftOp + '\'' +
+                ", rightOp='" + rightOp + '\'' +
+                ", subConditions=" + subConditions +
+                ", result=" + result +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Condition condition = (Condition) o;
+        return result == condition.result &&
+                id.equals(condition.id) &&
+                operator.equals(condition.operator) &&
+                Objects.equals(leftOp, condition.leftOp) &&
+                Objects.equals(rightOp, condition.rightOp) &&
+                Objects.equals(subConditions, condition.subConditions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, operator, leftOp, rightOp, subConditions, result);
     }
 }

@@ -13,7 +13,6 @@ import java.util.List;
 public class ParseService {
 
     public ParseResult processTitre(Titre titre) {
-        System.out.println("\n" + titre);
 
         // There is only one condition in the list
         // (the list is only used for deserialization purposes)
@@ -31,5 +30,4 @@ public class ParseService {
         System.out.println(errors);
         return errors;
     }
-
 }
