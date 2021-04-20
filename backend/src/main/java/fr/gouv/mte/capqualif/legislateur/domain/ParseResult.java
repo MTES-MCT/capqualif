@@ -3,16 +3,16 @@ package fr.gouv.mte.capqualif.legislateur.domain;
 import java.util.List;
 
 public class ParseResult {
-    private final boolean areConditionsSatisfied;
+    private final boolean conditionsSatisfied;
     private final List<String> errors;
 
-    public ParseResult(boolean areConditionsSatisfied, List<String> errors) {
-        this.areConditionsSatisfied = areConditionsSatisfied;
+    public ParseResult(boolean conditionsSatisfied, List<String> errors) {
+        this.conditionsSatisfied = conditionsSatisfied;
         this.errors = errors;
     }
 
-    public boolean isAreConditionsSatisfied() {
-        return areConditionsSatisfied;
+    public boolean areConditionsSatisfied() {
+        return conditionsSatisfied;
     }
 
     public List<String> getErrors() {

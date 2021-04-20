@@ -30,13 +30,13 @@ class PopulateJsonServiceTest {
         Map<String, String> data = new HashMap<>();
         data.put("age condition", "21");
         data.put("aptitude condition", "apte");
-        Titre notPopulatedYet = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/ageToPopulate.json");
+        Titre notPopulatedYet = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json");
 
         // When
         Titre actual = populateJsonService.populate(notPopulatedYet, data);
 
         // Then
-        Titre expected = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/expectedAgeToPopulate.json");
+        Titre expected = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulateExpected.json");
 
         assertEquals(expected, actual);
 

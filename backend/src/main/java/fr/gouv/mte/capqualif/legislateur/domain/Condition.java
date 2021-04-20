@@ -6,6 +6,7 @@ public class Condition {
 
     private String id;
     private String operator;
+    private List<String> leftOpList;
     private String leftOp;
     private String rightOp;
     private List<Condition> subConditions;
@@ -13,6 +14,14 @@ public class Condition {
 
     public String getOperator() {
         return operator;
+    }
+
+    public List<String> getLeftOpList() {
+        return leftOpList;
+    }
+
+    public void setLeftOpList(List<String> leftOpList) {
+        this.leftOpList = leftOpList;
     }
 
     public String getLeftOp() {
@@ -41,24 +50,25 @@ public class Condition {
 
     public void populateWithData(Map<String, String> data) {
         for (Map.Entry<String, String> entry : data.entrySet()) {
-            boolean isValueReplaced = false;
-            replaceWithValue(entry.getKey(), entry.getValue(), isValueReplaced);
+            boolean valueIsNotReplacedYet = false;
+            replaceWithValue(entry.getKey(), entry.getValue(), valueIsNotReplacedYet);
         }
     }
 
+    // TO DO : change to make it work with list
     public boolean replaceWithValue(String key, String value, boolean isValueReplaced) {
         if (key.equals(id)) {
             System.out.println(id);
-            System.out.println(leftOp);
-            setLeftOp(value);
-            System.out.println(leftOp);
+            System.out.println(leftOpList);
+            setLeftOpList(Arrays.asList(value));
+            System.out.println(leftOpList);
             return true;
         } else {
             if (subConditions != null) {
                 for (Condition subCondition : subConditions) {
                     isValueReplaced = subCondition.replaceWithValue(key, value, isValueReplaced);
                     System.out.println(isValueReplaced);
-                    if(isValueReplaced) break;
+                    if (isValueReplaced) break;
                 }
             }
         }
@@ -90,7 +100,7 @@ public class Condition {
                 }
                 System.out.println("orResults : " + orResults);
                 if (orResults.containsValue(Boolean.TRUE)) {
-                    removeOtherFalseErrors(errorsList, orResults);
+                    removeErrorsFromOtherFalseSubconditions(errorsList, orResults);
                     return true;
                 }
                 return false;
@@ -108,6 +118,8 @@ public class Condition {
                 } else {
                     return true;
                 }
+            case "contains":
+                return leftOpList.contains(rightOp);
             default:
                 System.out.println("validate aouch.");
                 break;
@@ -116,7 +128,7 @@ public class Condition {
         return false;
     }
 
-    private void removeOtherFalseErrors(List<String> errorsList, Map<String, Boolean> orResults) {
+    private void removeErrorsFromOtherFalseSubconditions(List<String> errorsList, Map<String, Boolean> orResults) {
         List<String> ids = new ArrayList<>();
         for (Map.Entry<String, Boolean> entry : orResults.entrySet()) {
             if (entry.getValue().equals(Boolean.FALSE)) {
@@ -132,7 +144,7 @@ public class Condition {
         return "Condition{" +
                 "id='" + id + '\'' +
                 ", operator='" + operator + '\'' +
-                ", leftOp='" + leftOp + '\'' +
+                ", leftOp='" + leftOpList + '\'' +
                 ", rightOp='" + rightOp + '\'' +
                 ", subConditions=" + subConditions +
                 ", result=" + result +
@@ -149,13 +161,13 @@ public class Condition {
         return result == condition.result &&
                 id.equals(condition.id) &&
                 operator.equals(condition.operator) &&
-                Objects.equals(leftOp, condition.leftOp) &&
+                Objects.equals(leftOpList, condition.leftOpList) &&
                 Objects.equals(rightOp, condition.rightOp) &&
                 Objects.equals(subConditions, condition.subConditions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, operator, leftOp, rightOp, subConditions, result);
+        return Objects.hash(id, operator, leftOpList, rightOp, subConditions, result);
     }
 }

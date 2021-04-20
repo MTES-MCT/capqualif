@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,15 +21,16 @@ class ConditionTest {
 
     @Test
     void shouldEvaluateCorrectly() throws IOException {
-        assertTrue(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueAll.json")).isAreConditionsSatisfied());
-        assertTrue(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueFormationModulaire.json")).isAreConditionsSatisfied());
-        assertTrue(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueEquivFormationModulaire.json")).isAreConditionsSatisfied());
-        assertTrue(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueCFBS.json")).isAreConditionsSatisfied());
-        assertTrue(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueEquivCFBS.json")).isAreConditionsSatisfied());
+        assertTrue(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueAll.json")).areConditionsSatisfied());
+        assertTrue(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueFormationModulaire.json")).areConditionsSatisfied());
+        assertTrue(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueEquivFormationModulaire.json")).areConditionsSatisfied());
+        assertTrue(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueCFBS.json")).areConditionsSatisfied());
+        assertTrue(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueEquivCFBS.json")).areConditionsSatisfied());
+        assertTrue(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueBecauseFormationsContainsAllFormationsModulaires.json")).areConditionsSatisfied());
 
-        assertFalse(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseAgeWrong.json")).isAreConditionsSatisfied());
-        assertFalse(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseFormationWrong.json")).isAreConditionsSatisfied());
-        assertFalse(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseCFBSWrong.json")).isAreConditionsSatisfied());
+        assertFalse(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseAgeWrong.json")).areConditionsSatisfied());
+        assertFalse(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseFormationWrong.json")).areConditionsSatisfied());
+        assertFalse(parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseCFBSWrong.json")).areConditionsSatisfied());
     }
 
     private Titre jsonToTitre(String location) throws IOException, IOException {
