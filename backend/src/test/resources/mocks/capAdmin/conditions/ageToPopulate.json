@@ -6,8 +6,8 @@
       "operator": "AND",
       "subConditions": [
         {
-          "operator": ">=",
           "id": "age condition",
+          "operator": ">=",
           "leftOp": "age",
           "rightOp": "16"
         },

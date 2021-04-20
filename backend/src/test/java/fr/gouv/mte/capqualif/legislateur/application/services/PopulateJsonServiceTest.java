@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,14 +23,17 @@ class PopulateJsonServiceTest {
     }
 
     @Test
-    public void shouldPopulateWithAge() throws IOException {
+    public void shouldPopulateWithData() throws IOException {
 
         // Given
-        Marin marin = new Marin("21");
+//        Marin marin = new Marin("21");
+        Map<String, String> data = new HashMap<>();
+        data.put("age condition", "21");
+        data.put("aptitude condition", "apte");
         Titre notPopulatedYet = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/ageToPopulate.json");
 
         // When
-        Titre actual = populateJsonService.populate(notPopulatedYet);
+        Titre actual = populateJsonService.populate(notPopulatedYet, data);
 
         // Then
         Titre expected = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/expectedAgeToPopulate.json");

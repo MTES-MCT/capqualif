@@ -1,7 +1,6 @@
 package fr.gouv.mte.capqualif.legislateur.domain;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Condition {
 
@@ -20,6 +19,10 @@ public class Condition {
         return leftOp;
     }
 
+    public void setLeftOp(String leftOp) {
+        this.leftOp = leftOp;
+    }
+
     public String getRightOp() {
         return rightOp;
     }
@@ -36,13 +39,41 @@ public class Condition {
         return id;
     }
 
+    public void populateWithData(Map<String, String> data) {
+        for (Map.Entry<String, String> entry : data.entrySet()) {
+            boolean isValueReplaced = false;
+            replaceWithValue(entry.getKey(), entry.getValue(), isValueReplaced);
+        }
+    }
+
+    public boolean replaceWithValue(String key, String value, boolean isValueReplaced) {
+        if (key.equals(id)) {
+            System.out.println(id);
+            System.out.println(leftOp);
+            setLeftOp(value);
+            System.out.println(leftOp);
+            return true;
+        } else {
+            if (subConditions != null) {
+                for (Condition subCondition : subConditions) {
+                    isValueReplaced = subCondition.replaceWithValue(key, value, isValueReplaced);
+                    System.out.println(isValueReplaced);
+                    if(isValueReplaced) break;
+                }
+            }
+        }
+        return false;
+    }
+
     public boolean validate(List<String> errorsList) {
         switch (operator) {
             case "AND":
                 Map<String, Boolean> andResults = new HashMap<>();
-                for (Condition subCondition : subConditions) {
-                    boolean validationResult = subCondition.validate(errorsList);
-                    andResults.put(subCondition.getId(), validationResult);
+                if (subConditions != null) {
+                    for (Condition subCondition : subConditions) {
+                        boolean validationResult = subCondition.validate(errorsList);
+                        andResults.put(subCondition.getId(), validationResult);
+                    }
                 }
                 System.out.println("andResults : " + andResults);
                 if (andResults.containsValue(Boolean.FALSE)) {
@@ -51,9 +82,11 @@ public class Condition {
                 return true;
             case "OR":
                 Map<String, Boolean> orResults = new HashMap<>();
-                for (Condition subCondition : subConditions) {
-                    boolean validationResult = subCondition.validate(errorsList);
-                    orResults.put(subCondition.getId(), validationResult);
+                if (subConditions != null) {
+                    for (Condition subCondition : subConditions) {
+                        boolean validationResult = subCondition.validate(errorsList);
+                        orResults.put(subCondition.getId(), validationResult);
+                    }
                 }
                 System.out.println("orResults : " + orResults);
                 if (orResults.containsValue(Boolean.TRUE)) {
@@ -92,6 +125,7 @@ public class Condition {
         }
         errorsList.removeAll(ids);
     }
+
 
     @Override
     public String toString() {
