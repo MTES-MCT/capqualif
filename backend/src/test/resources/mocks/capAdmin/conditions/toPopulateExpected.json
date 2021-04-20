@@ -6,35 +6,35 @@
       "operator": "AND",
       "subConditions": [
         {
+          "id": "age",
           "operator": ">=",
-          "id": "age condition",
           "leftOp": "21",
           "rightOp": "16"
         },
         {
-          "id": "aptitude condition",
+          "id": "aptitude",
           "operator": "==",
           "leftOp": "apte",
           "rightOp": "aptitude"
         },
         {
-          "id": "formation condition",
+          "id": "formations",
           "operator": "OR",
           "subConditions": [
             {
-              "id": "formation condition",
+              "id": "formations modulaires",
               "operator": "AND",
               "subConditions": [
                 {
                   "id": "module de formation modulaire P1",
-                  "operator": "==",
-                  "leftOp": "Module P1-Appui navigation",
+                  "operator": "contains",
+                  "leftOpList": ["Module P1-Appui navigation"],
                   "rightOp": "Module P1-Appui navigation"
                 },
                 {
                   "id": "module de formation modulaire P2",
-                  "operator": "==",
-                  "leftOp": "Module P2-Appui manutention et arrimage de la cargaison, pêche",
+                  "operator": "contains",
+                  "leftOpList": ["Module P2-Appui manutention et arrimage de la cargaison, pêche"],
                   "rightOp": "Module P2-Appui manutention et arrimage de la cargaison, pêche"
                 }
               ]
@@ -60,7 +60,7 @@
           ]
         },
         {
-          "id": "compétence en sécurité",
+          "id": "compétences en sécurité",
           "operator": "OR",
           "subConditions": [
             {

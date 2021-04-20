@@ -27,14 +27,14 @@
               "subConditions": [
                 {
                   "id": "module de formation modulaire P1",
-                  "operator": "==",
-                  "leftOp": "",
+                  "operator": "contains",
+                  "leftOpList": [""],
                   "rightOp": "Module P1-Appui navigation"
                 },
                 {
                   "id": "module de formation modulaire P2",
-                  "operator": "==",
-                  "leftOp": "",
+                  "operator": "contains",
+                  "leftOpList": [""],
                   "rightOp": "Module P2-Appui manutention et arrimage de la cargaison, pêche"
                 }
               ]

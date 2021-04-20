@@ -1,6 +1,7 @@
 package fr.gouv.mte.capqualif.legislateur.application.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.gouv.mte.capqualif.legislateur.domain.Data;
 import fr.gouv.mte.capqualif.legislateur.domain.Marin;
 import fr.gouv.mte.capqualif.legislateur.domain.Titre;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,10 +9,11 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PopulateJsonServiceTest {
 
@@ -26,14 +28,12 @@ class PopulateJsonServiceTest {
     public void shouldPopulateWithData() throws IOException {
 
         // Given
-//        Marin marin = new Marin("21");
-        Map<String, String> data = new HashMap<>();
-        data.put("age condition", "21");
-        data.put("aptitude condition", "apte");
+
+        Marin marin = new Marin(Arrays.asList(new Data("age", "21"), new Data("aptitude", "apte")));
         Titre notPopulatedYet = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json");
 
         // When
-        Titre actual = populateJsonService.populate(notPopulatedYet, data);
+        Titre actual = populateJsonService.populate(notPopulatedYet, marin);
 
         // Then
         Titre expected = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulateExpected.json");

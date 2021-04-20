@@ -48,25 +48,24 @@ public class Condition {
         return id;
     }
 
-    public void populateWithData(Map<String, String> data) {
-        for (Map.Entry<String, String> entry : data.entrySet()) {
+    public void populateWithData(Marin marin) {
+        for (Data data : marin.getData()) {
             boolean valueIsNotReplacedYet = false;
-            replaceWithValue(entry.getKey(), entry.getValue(), valueIsNotReplacedYet);
+            replaceWithValue(data, valueIsNotReplacedYet);
         }
     }
 
-    // TO DO : change to make it work with list
-    public boolean replaceWithValue(String key, String value, boolean isValueReplaced) {
-        if (key.equals(id)) {
+    public boolean replaceWithValue(Data data, boolean isValueReplaced) {
+        if (data.getJuridicalDesignation().equals(id)) {
             System.out.println(id);
-            System.out.println(leftOpList);
-            setLeftOpList(Arrays.asList(value));
-            System.out.println(leftOpList);
+            System.out.println(leftOp);
+            setLeftOp(data.getValue());
+            System.out.println(leftOp);
             return true;
         } else {
             if (subConditions != null) {
                 for (Condition subCondition : subConditions) {
-                    isValueReplaced = subCondition.replaceWithValue(key, value, isValueReplaced);
+                    isValueReplaced = subCondition.replaceWithValue(data, isValueReplaced);
                     System.out.println(isValueReplaced);
                     if (isValueReplaced) break;
                 }
@@ -106,20 +105,25 @@ public class Condition {
                 return false;
             case "==":
                 if (!leftOp.equals(rightOp)) {
-                    errorsList.add(id);
+                    addToErrors(errorsList, id);
                     return false;
                 } else {
                     return true;
                 }
             case ">=":
                 if (!(Integer.parseInt(leftOp) >= Integer.parseInt(rightOp))) {
-                    errorsList.add(id);
+                    addToErrors(errorsList, id);
                     return false;
                 } else {
                     return true;
                 }
             case "contains":
-                return leftOpList.contains(rightOp);
+                if (leftOpList.contains(rightOp)) {
+                    return true;
+                } else {
+                    addToErrors(errorsList, id);
+                    return false;
+                }
             default:
                 System.out.println("validate aouch.");
                 break;
@@ -128,11 +132,15 @@ public class Condition {
         return false;
     }
 
+    private void addToErrors(List<String> errorsList, String id) {
+        errorsList.add(id);
+    }
+
     private void removeErrorsFromOtherFalseSubconditions(List<String> errorsList, Map<String, Boolean> orResults) {
         List<String> ids = new ArrayList<>();
         for (Map.Entry<String, Boolean> entry : orResults.entrySet()) {
             if (entry.getValue().equals(Boolean.FALSE)) {
-                ids.add(entry.getKey());
+                addToErrors(ids, entry.getKey());
             }
         }
         errorsList.removeAll(ids);

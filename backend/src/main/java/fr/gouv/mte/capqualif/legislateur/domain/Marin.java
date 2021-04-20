@@ -1,17 +1,15 @@
 package fr.gouv.mte.capqualif.legislateur.domain;
 
+import java.util.List;
+
 public class Marin {
-    private String age;
+    private final List<Data> data;
 
-    public Marin(String age) {
-        this.age = age;
+    public Marin(List<Data> data) {
+        this.data = data;
     }
 
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
+    public List<Data> getData() {
+        return data;
     }
 }
