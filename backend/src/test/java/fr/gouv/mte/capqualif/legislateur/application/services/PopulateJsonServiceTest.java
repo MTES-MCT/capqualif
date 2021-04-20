@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -28,8 +27,14 @@ class PopulateJsonServiceTest {
     public void shouldPopulateWithData() throws IOException {
 
         // Given
-
-        Marin marin = new Marin(Arrays.asList(new Data("age", "21"), new Data("aptitude", "apte")));
+        Marin marin = new Marin(Arrays.asList(
+                new Data<String>("age", "21"),
+                new Data<String>("aptitude", "apte"),
+                new Data<List<String>>("formations modulaires",
+                        Arrays.asList(
+                                "Module P1-Appui navigation",
+                                "Module P2-Appui manutention et arrimage de la cargaison, pêche"
+                        ))));
         Titre notPopulatedYet = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json");
 
         // When

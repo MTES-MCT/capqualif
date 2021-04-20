@@ -58,9 +58,16 @@ public class Condition {
     public boolean replaceWithValue(Data data, boolean isValueReplaced) {
         if (data.getJuridicalDesignation().equals(id)) {
             System.out.println(id);
-            System.out.println(leftOp);
-            setLeftOp(data.getValue());
-            System.out.println(leftOp);
+            System.out.println("leftOp is " + leftOp);
+            System.out.println("leftOpList is " + leftOpList);
+            if (data.getValue() instanceof String) {
+                setLeftOp((String) data.getValue());
+                System.out.println(leftOp);
+            }
+            if (data.getValue() instanceof List) {
+                setLeftOpList((List<String>) data.getValue());
+                System.out.println(leftOpList);
+            }
             return true;
         } else {
             if (subConditions != null) {

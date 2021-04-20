@@ -1,10 +1,11 @@
 package fr.gouv.mte.capqualif.legislateur.domain;
 
-public class Data {
-    private final String juridicalDesignation;
-    private final String value;
+public class Data<T> {
 
-    public Data(String juridicalDesignation, String value) {
+    private final String juridicalDesignation;
+    private final T value;
+
+    public Data(String juridicalDesignation, T value) {
         this.juridicalDesignation = juridicalDesignation;
         this.value = value;
     }
@@ -13,7 +14,7 @@ public class Data {
         return juridicalDesignation;
     }
 
-    public String getValue() {
+    public T getValue() {
         return value;
     }
 }
