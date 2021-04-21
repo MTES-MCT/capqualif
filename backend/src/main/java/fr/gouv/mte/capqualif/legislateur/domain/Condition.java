@@ -159,7 +159,8 @@ public class Condition {
         return "Condition{" +
                 "id='" + id + '\'' +
                 ", operator='" + operator + '\'' +
-                ", leftOp='" + leftOpList + '\'' +
+                ", leftOpList=" + leftOpList +
+                ", leftOp='" + leftOp + '\'' +
                 ", rightOp='" + rightOp + '\'' +
                 ", subConditions=" + subConditions +
                 ", result=" + result +

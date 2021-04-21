@@ -28,13 +28,13 @@
                 {
                   "id": "module de formation modulaire P1",
                   "operator": "contains",
-                  "leftOpList": ["Module P1-Appui navigation"],
+                  "leftOpList": [""],
                   "rightOp": "Module P1-Appui navigation"
                 },
                 {
                   "id": "module de formation modulaire P2",
                   "operator": "contains",
-                  "leftOpList": ["Module P2-Appui manutention et arrimage de la cargaison, pêche"],
+                  "leftOpList": [""],
                   "rightOp": "Module P2-Appui manutention et arrimage de la cargaison, pêche"
                 }
               ]
