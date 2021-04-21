@@ -14,13 +14,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PopulateJsonServiceTest {
+class JsonPopulatorTest {
 
-    PopulateJsonService populateJsonService;
+    JsonPopulator jsonPopulator;
 
     @BeforeEach
     void init() {
-        populateJsonService = new PopulateJsonService();
+        jsonPopulator = new JsonPopulator();
     }
 
     @Test
@@ -38,7 +38,7 @@ class PopulateJsonServiceTest {
         Titre notPopulatedYet = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json");
 
         // When
-        Titre actual = populateJsonService.populate(notPopulatedYet, marin);
+        Titre actual = jsonPopulator.populate(notPopulatedYet, marin);
 
         // Then
         Titre expected = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulateExpected.json");

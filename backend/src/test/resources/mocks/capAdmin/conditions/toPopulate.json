@@ -17,7 +17,7 @@
           "operator": "==",
           "leftOpId": "aptitude",
           "leftOp": "",
-          "rightOp": "aptitude"
+          "rightOp": "apte"
         },
         {
           "id": "formations",
@@ -49,14 +49,14 @@
               "subConditions": [
                 {
                   "id": "titre reconnu équivalent à la formation modulaire 2006",
-                  "operator": "==",
+                  "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
                   "rightOp": "Certificat de fin d’études maritimes de matelot, de marin du commerce ou “pêche” délivré conformément à l’arrêté du 12 décembre 2006 susvisé"
                 },
                 {
                   "id": "titre reconnu équivalent à la formation modulaire 2005",
-                  "operator": "==",
+                  "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
                   "rightOp": "Certificat d’aptitude professionnelle maritime de matelot délivré conformément à l’arrêté du 8 septembre 2005 susvisé"

@@ -17,10 +17,15 @@ public class RulesController {
         this.parseService = parseService;
     }
 
-    @PostMapping("/conditions")
-    public void createConditions(@RequestBody Titre titre) {
+//    @PostMapping("/conditions")
+//    public void createConditions(@RequestBody Titre titre) {
+//
+////        parseService.processTitre(titre);
+//    }
 
-        parseService.processTitre(titre);
+    @PostMapping("/conditions")
+    public void testEvaluation(@RequestBody Titre titre) {
+        parseService.processTitre(titre, null);
     }
 
 }

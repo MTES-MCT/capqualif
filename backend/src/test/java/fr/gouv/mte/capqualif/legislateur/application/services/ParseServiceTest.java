@@ -16,17 +16,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ParseServiceTest {
 
     ParseService parseService;
+    JsonPopulator jsonPopulator;
 
     @BeforeEach
     void init() {
-        parseService = new ParseService();
+        parseService = new ParseService(new JsonPopulator());
     }
 
     @Test
     void shouldReturnAgeError() throws IOException {
         // When
         List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
-                "/falseAgeWrong.json")).getErrors();
+                "/falseAgeWrong.json"), null).getErrors();
 
         // Then
         List<String> expected = Arrays.asList(
@@ -40,7 +41,7 @@ class ParseServiceTest {
     void shouldReturnCompetenceEnSecuriteError() throws IOException {
         // When
         List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
-                "/falseCFBSWrong.json")).getErrors();
+                "/falseCFBSWrong.json"), null).getErrors();
 
         // Then
         List<String> expected = Arrays.asList(
@@ -56,7 +57,7 @@ class ParseServiceTest {
     void shouldReturnAllFormationsError() throws IOException {
         // When
         List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
-                "/falseFormationWrong.json")).getErrors();
+                "/falseFormationWrong.json"), null).getErrors();
 
         // Then
         List<String> expected = Arrays.asList(
@@ -73,7 +74,7 @@ class ParseServiceTest {
     void shouldReturnNoErrorsForCompetencesEnSecurite() throws IOException {
         // When
         List<String> actual = parseService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
-                "/trueEquivCFBS.json")).getErrors();
+                "/trueEquivCFBS.json"), null).getErrors();
 
         // Then
         List<String> expected = Collections.emptyList();
