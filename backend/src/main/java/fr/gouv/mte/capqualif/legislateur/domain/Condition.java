@@ -11,7 +11,6 @@ public class Condition {
     private String leftOp;
     private String rightOp;
     private List<Condition> subConditions;
-    private boolean result;
 
     public String getOperator() {
         return operator;
@@ -39,10 +38,6 @@ public class Condition {
 
     public List<Condition> getSubConditions() {
         return subConditions;
-    }
-
-    public boolean isResult() {
-        return result;
     }
 
     public String getId() {
@@ -75,12 +70,12 @@ public class Condition {
 
     private void replace(Data data) {
         if (data.getValue() instanceof String) {
+            System.out.println(leftOpId + " of " + id + " will be replaced with " + data.getValue());
             setLeftOp((String) data.getValue());
-            System.out.println(leftOp);
         }
         if (data.getValue() instanceof List) {
+            System.out.println(leftOpId + " of " + id + " will be replaced with " + data.getValue());
             setLeftOpList((List<String>) data.getValue());
-            System.out.println(leftOpList);
         }
     }
 
@@ -94,30 +89,6 @@ public class Condition {
             System.out.println(condition.leftOpList);
         }
     }
-
-//        if (data.getJuridicalDesignation().equals(id)) {
-//            System.out.println(id);
-//            System.out.println("leftOp is " + leftOp);
-//            System.out.println("leftOpList is " + leftOpList);
-//            if (data.getValue() instanceof String) {
-//                setLeftOp((String) data.getValue());
-//                System.out.println(leftOp);
-//                done = true;
-//            }
-//            if (data.getValue() instanceof List) {
-//                setLeftOpList((List<String>) data.getValue());
-//                System.out.println(leftOpList);
-//                done = true;
-//            }
-//        } else {
-//            if (subConditions != null) {
-
-//                for (Condition subcondition : subConditions) {
-//                    System.out.println("before done is " + done);
-//                    subcondition.replaceWithValue(data, done);
-//                    System.out.println("after done is " + done);
-//                }
-
 
     public boolean validate(List<String> errorsList) {
         switch (operator) {
@@ -201,7 +172,6 @@ public class Condition {
                 ", leftOp='" + leftOp + '\'' +
                 ", rightOp='" + rightOp + '\'' +
                 ", subConditions=" + subConditions +
-                ", result=" + result +
                 '}';
     }
 
@@ -212,8 +182,7 @@ public class Condition {
         if (o == null || getClass() != o.getClass())
             return false;
         Condition condition = (Condition) o;
-        return result == condition.result &&
-                Objects.equals(id, condition.id) &&
+        return Objects.equals(id, condition.id) &&
                 Objects.equals(operator, condition.operator) &&
                 Objects.equals(leftOpId, condition.leftOpId) &&
                 Objects.equals(leftOpList, condition.leftOpList) &&
@@ -224,6 +193,6 @@ public class Condition {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, operator, leftOpId, leftOpList, leftOp, rightOp, subConditions, result);
+        return Objects.hash(id, operator, leftOpId, leftOpList, leftOp, rightOp, subConditions);
     }
 }
