@@ -61,22 +61,15 @@ public class Condition {
         }
     }
 
-    public boolean replaceWithValue(Data data) {
+    public void replaceWithValue(Data data) {
         if (data.getJuridicalDesignation().equals(leftOpId)) {
             replace(data);
-            return true;
         } else {
             if (subConditions != null) {
                 for (Condition subcondition : subConditions) {
-                    boolean done = subcondition.replaceWithValue(data);
-                    System.out.println("\n" + subcondition.getId() + "\n is " + done + "\n for " + data.getJuridicalDesignation());
-                    if (done) {
-                        System.out.println("just before the true return");
-                        return true;
-                    }
+                    subcondition.replaceWithValue(data);
                 }
             }
-            return false;
         }
     }
 
