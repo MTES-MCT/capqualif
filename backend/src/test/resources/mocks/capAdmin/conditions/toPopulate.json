@@ -8,12 +8,14 @@
         {
           "id": "age",
           "operator": ">=",
+          "leftOpId": "age",
           "leftOp": "",
           "rightOp": "16"
         },
         {
           "id": "aptitude",
           "operator": "==",
+          "leftOpId": "aptitude",
           "leftOp": "",
           "rightOp": "aptitude"
         },
@@ -28,12 +30,14 @@
                 {
                   "id": "module de formation modulaire P1",
                   "operator": "contains",
+                  "leftOpId": "formations",
                   "leftOpList": [""],
                   "rightOp": "Module P1-Appui navigation"
                 },
                 {
                   "id": "module de formation modulaire P2",
                   "operator": "contains",
+                  "leftOpId": "formations",
                   "leftOpList": [""],
                   "rightOp": "Module P2-Appui manutention et arrimage de la cargaison, pêche"
                 }
@@ -46,13 +50,15 @@
                 {
                   "id": "titre reconnu équivalent à la formation modulaire 2006",
                   "operator": "==",
-                  "leftOp": "Certificat de fin d’études maritimes de matelot, de marin du commerce ou “pêche” délivré conformément à l’arrêté du 12 décembre 2006 susvisé",
+                  "leftOpId": "formations",
+                  "leftOpList": [""],
                   "rightOp": "Certificat de fin d’études maritimes de matelot, de marin du commerce ou “pêche” délivré conformément à l’arrêté du 12 décembre 2006 susvisé"
                 },
                 {
                   "id": "titre reconnu équivalent à la formation modulaire 2005",
                   "operator": "==",
-                  "leftOp": "Certificat d’aptitude professionnelle maritime de matelot délivré conformément à l’arrêté du 8 septembre 2005 susvisé",
+                  "leftOpId": "formations",
+                  "leftOpList": [""],
                   "rightOp": "Certificat d’aptitude professionnelle maritime de matelot délivré conformément à l’arrêté du 8 septembre 2005 susvisé"
                 }
               ]

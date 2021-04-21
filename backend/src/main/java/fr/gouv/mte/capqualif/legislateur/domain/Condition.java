@@ -6,6 +6,7 @@ public class Condition {
 
     private String id;
     private String operator;
+    private String leftOpId;
     private List<String> leftOpList;
     private String leftOp;
     private String rightOp;
@@ -48,6 +49,10 @@ public class Condition {
         return id;
     }
 
+    public String getLeftOpId() {
+        return leftOpId;
+    }
+
     public void populateWithData(Marin marin) {
         for (Data data : marin.getData()) {
             boolean done = false;
@@ -57,7 +62,7 @@ public class Condition {
     }
 
     public boolean replaceWithValue(Data data) {
-        if (data.getJuridicalDesignation().equals(id)) {
+        if (data.getJuridicalDesignation().equals(leftOpId)) {
             replace(data);
             return true;
         } else {
@@ -71,7 +76,6 @@ public class Condition {
                     }
                 }
             }
-            System.out.println("hehe " + id);
             return false;
         }
     }
@@ -194,12 +198,12 @@ public class Condition {
         errorsList.removeAll(ids);
     }
 
-
     @Override
     public String toString() {
         return "Condition{" +
                 "id='" + id + '\'' +
                 ", operator='" + operator + '\'' +
+                ", leftOpId='" + leftOpId + '\'' +
                 ", leftOpList=" + leftOpList +
                 ", leftOp='" + leftOp + '\'' +
                 ", rightOp='" + rightOp + '\'' +
@@ -216,15 +220,17 @@ public class Condition {
             return false;
         Condition condition = (Condition) o;
         return result == condition.result &&
-                id.equals(condition.id) &&
-                operator.equals(condition.operator) &&
+                Objects.equals(id, condition.id) &&
+                Objects.equals(operator, condition.operator) &&
+                Objects.equals(leftOpId, condition.leftOpId) &&
                 Objects.equals(leftOpList, condition.leftOpList) &&
+                Objects.equals(leftOp, condition.leftOp) &&
                 Objects.equals(rightOp, condition.rightOp) &&
                 Objects.equals(subConditions, condition.subConditions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, operator, leftOpList, rightOp, subConditions, result);
+        return Objects.hash(id, operator, leftOpId, leftOpList, leftOp, rightOp, subConditions, result);
     }
 }
