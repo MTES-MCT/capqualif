@@ -50,36 +50,77 @@ public class Condition {
 
     public void populateWithData(Marin marin) {
         for (Data data : marin.getData()) {
-            boolean valueIsNotReplacedYet = false;
-            replaceWithValue(data, valueIsNotReplacedYet);
+            boolean done = false;
+            System.out.println("\n ok, let'ds go for " + data.getJuridicalDesignation());
+            replaceWithValue(data);
         }
     }
 
-    public boolean replaceWithValue(Data data, boolean isValueReplaced) {
+    public boolean replaceWithValue(Data data) {
         if (data.getJuridicalDesignation().equals(id)) {
-            System.out.println(id);
-            System.out.println("leftOp is " + leftOp);
-            System.out.println("leftOpList is " + leftOpList);
-            if (data.getValue() instanceof String) {
-                setLeftOp((String) data.getValue());
-                System.out.println(leftOp);
-            }
-            if (data.getValue() instanceof List) {
-                setLeftOpList((List<String>) data.getValue());
-                System.out.println(leftOpList);
-            }
+            replace(data);
             return true;
         } else {
             if (subConditions != null) {
-                for (Condition subCondition : subConditions) {
-                    isValueReplaced = subCondition.replaceWithValue(data, isValueReplaced);
-                    System.out.println(isValueReplaced);
-                    if (isValueReplaced) break;
+                for (Condition subcondition : subConditions) {
+                    boolean done = subcondition.replaceWithValue(data);
+                    System.out.println("\n" + subcondition.getId() + "\n is " + done + "\n for " + data.getJuridicalDesignation());
+                    if (done) {
+                        System.out.println("just before the true return");
+                        return true;
+                    }
                 }
             }
+            System.out.println("hehe " + id);
+            return false;
         }
-        return false;
     }
+
+    private void replace(Data data) {
+        if (data.getValue() instanceof String) {
+            setLeftOp((String) data.getValue());
+            System.out.println(leftOp);
+        }
+        if (data.getValue() instanceof List) {
+            setLeftOpList((List<String>) data.getValue());
+            System.out.println(leftOpList);
+        }
+    }
+
+    private void replace(Condition condition, Data data) {
+        if (data.getValue() instanceof String) {
+            condition.setLeftOp((String) data.getValue());
+            System.out.println(condition.leftOp);
+        }
+        if (data.getValue() instanceof List) {
+            condition.setLeftOpList((List<String>) data.getValue());
+            System.out.println(condition.leftOpList);
+        }
+    }
+
+//        if (data.getJuridicalDesignation().equals(id)) {
+//            System.out.println(id);
+//            System.out.println("leftOp is " + leftOp);
+//            System.out.println("leftOpList is " + leftOpList);
+//            if (data.getValue() instanceof String) {
+//                setLeftOp((String) data.getValue());
+//                System.out.println(leftOp);
+//                done = true;
+//            }
+//            if (data.getValue() instanceof List) {
+//                setLeftOpList((List<String>) data.getValue());
+//                System.out.println(leftOpList);
+//                done = true;
+//            }
+//        } else {
+//            if (subConditions != null) {
+
+//                for (Condition subcondition : subConditions) {
+//                    System.out.println("before done is " + done);
+//                    subcondition.replaceWithValue(data, done);
+//                    System.out.println("after done is " + done);
+//                }
+
 
     public boolean validate(List<String> errorsList) {
         switch (operator) {

@@ -30,7 +30,6 @@ class PopulateJsonServiceTest {
         Marin marin = new Marin(Arrays.asList(
                 new Data<String>("age", "21"),
                 new Data<String>("aptitude", "apte"),
-                new Data<String>("aptitude", "apte"),
                 new Data<List<String>>("module de formation modulaire P1", Arrays.asList("Module P1-Appui navigation"
                         , "Module P2-Appui manutention et arrimage de la cargaison, pêche")),
                 new Data<List<String>>("module de formation modulaire P2", Arrays.asList("Module P1-Appui navigation"
