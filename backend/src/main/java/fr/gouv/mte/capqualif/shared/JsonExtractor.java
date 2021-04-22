@@ -1,12 +1,12 @@
 package fr.gouv.mte.capqualif.shared;
 
 import com.jayway.jsonpath.JsonPath;
-import fr.gouv.mte.capqualif.domain.capQualif.instruction.domain.ExtractionResult;
-import fr.gouv.mte.capqualif.domain.capAdmin.mock.CorrespondingDataInExistingDataSource;
-import fr.gouv.mte.capqualif.domain.capAdmin.mock.EntryInExistingDataSource;
-import fr.gouv.mte.capqualif.domain.capAdmin.mock.KeyInExistingDataSource;
-import fr.gouv.mte.capqualif.domain.capAdmin.mock.ParentKey;
-import fr.gouv.mte.capqualif.domain.capAdmin.titre.domain.enums.DataType;
+import fr.gouv.mte.capqualif.capQualif.instruction.domain.ExtractionResult;
+import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.CorrespondingDataInExistingDataSource;
+import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.EntryInExistingDataSource;
+import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.KeyInExistingDataSource;
+import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.ParentKey;
+import fr.gouv.mte.capqualif.capAdmin.titre.domain.enums.DataType;
 import net.minidev.json.JSONArray;
 import org.springframework.stereotype.Component;
 

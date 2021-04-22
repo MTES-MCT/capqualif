@@ -73,21 +73,21 @@
               "id": "titre mainstream",
               "operator": "contains",
               "leftOpId": "titres",
-              "leftOp": "CFBS",
+              "leftOpList": ["CFBS"],
               "rightOp": "CFBS"
             },
             {
               "id": "document reconnu équivalent au CFBS 2014",
               "operator": "contains",
-              "leftOpId": "titres",
-              "leftOp": "Attestation de suivi de la formation à la sécurité dispensée avant le 1er janvier 2014 aux marins pêcheurs et approuvée par le ministre chargé de la mer",
+              "leftOpId": "formations",
+              "leftOpList": ["Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche"],
               "rightOp": "Attestation de suivi de la formation à la sécurité dispensée avant le 1er janvier 2014 aux marins pêcheurs et approuvée par le ministre chargé de la mer"
             },
             {
               "id": "document reconnu équivalent au CFBS 2015",
               "operator": "contains",
-              "leftOpId": "titres",
-              "leftOp": "Attestation de suivi de la formation à la sécurité dispensée après le 1er septembre 2015 aux personnels appelés à servir à bord des navires armés à la petite pêche ou à la pêche côtière de moins de 12 mètres et approuvée par le ministre chargé de la mer",
+              "leftOpId": "formations",
+              "leftOpList": ["Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche"],
               "rightOp": "Attestation de suivi de la formation à la sécurité dispensée après le 1er septembre 2015 aux personnels appelés à servir à bord des navires armés à la petite pêche ou à la pêche côtière de moins de 12 mètres et approuvée par le ministre chargé de la mer"
             }
           ]

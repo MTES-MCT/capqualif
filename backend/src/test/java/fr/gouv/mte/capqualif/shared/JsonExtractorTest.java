@@ -1,11 +1,11 @@
 package fr.gouv.mte.capqualif.shared;
 
-import fr.gouv.mte.capqualif.domain.capQualif.instruction.domain.ExtractionResult;
-import fr.gouv.mte.capqualif.domain.capAdmin.mock.*;
-import fr.gouv.mte.capqualif.domain.capAdmin.titre.domain.ComparisonDate;
-import fr.gouv.mte.capqualif.domain.capAdmin.titre.domain.ComparisonRule;
-import fr.gouv.mte.capqualif.domain.capAdmin.titre.domain.ComparisonString;
-import fr.gouv.mte.capqualif.domain.capAdmin.titre.domain.enums.*;
+import fr.gouv.mte.capqualif.capQualif.instruction.domain.ExtractionResult;
+import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.*;
+import fr.gouv.mte.capqualif.capAdmin.titre.domain.ComparisonDate;
+import fr.gouv.mte.capqualif.capAdmin.titre.domain.ComparisonRule;
+import fr.gouv.mte.capqualif.capAdmin.titre.domain.ComparisonString;
+import fr.gouv.mte.capqualif.capAdmin.titre.domain.enums.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
