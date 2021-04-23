@@ -49,11 +49,9 @@ class JsonPopulatorTest {
 
     }
 
-
     private Titre jsonToTitre(String location) throws IOException, IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        Titre titre = objectMapper.readValue(new File(location), Titre.class);
-        return titre;
+        return objectMapper.readValue(new File(location), Titre.class);
     }
 
 }

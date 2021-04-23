@@ -10,8 +10,8 @@ import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.EntryInExistingDataSourc
 import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.ExistingDataSource;
 import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.shared.TimeConverter;
-import fr.gouv.mte.capqualif.capAdmin.titre.application.ports.out.GetTitrePort;
-import fr.gouv.mte.capqualif.capAdmin.titre.domain.*;
+import fr.gouv.mte.capqualif.capAdmin.titreTemp.application.ports.out.GetTitrePort;
+import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
 package fr.gouv.mte.capqualif.capAdmin.adapters.out.mock;
 
-import fr.gouv.mte.capqualif.capAdmin.titre.domain.enums.DataType;
+import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.enums.DataType;
 
 import java.util.Objects;
 

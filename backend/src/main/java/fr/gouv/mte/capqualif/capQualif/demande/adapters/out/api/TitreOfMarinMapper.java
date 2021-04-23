@@ -36,7 +36,8 @@ class TitreOfMarinMapper {
             capacite = titreCapaciteRest.getCodeFrmTitreCapaciteStwcDTO().getLibelle();
             capaciteEnglish = titreCapaciteRest.getCodeFrmTitreCapaciteStwcDTO().getLibelleAnglais();
         }
-        TitreOfMarin titreOfMarin = new TitreOfMarin(
+
+        return new TitreOfMarin(
                 titreOfMarinDto.getIdIteTitreDetenu(),
                 titreOfMarinDto.getNumeroTitre(),
                 titreOfMarinDto.getCodeBrevetMarinDTO().getLibelle(),
@@ -55,6 +56,5 @@ class TitreOfMarinMapper {
                 restrictionInFreeFormat,
                 restrictionInFreeFormatEnglish
         );
-        return titreOfMarin;
     }
 }

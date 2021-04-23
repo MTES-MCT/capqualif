@@ -1,12 +1,18 @@
 package fr.gouv.mte.capqualif.capAdmin.adapters.in.web;
 
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.ConditionEntity;
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.ConditionRepository;
-import fr.gouv.mte.capqualif.capAdmin.application.services.ParseService;
+
+//import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.ConditionJpaEntity;
+import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.ConditionJpaEntity;
+import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.ConditionMapper;
+//import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.TitreJpaEntity;
+//import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.TitreRepository;
+import fr.gouv.mte.capqualif.capAdmin.application.services.EvaluationService;
+import fr.gouv.mte.capqualif.capAdmin.domain.Condition;
 import fr.gouv.mte.capqualif.capAdmin.domain.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -15,28 +21,42 @@ import java.util.List;
 public class ConditionsController {
 
     @Autowired
-    private ParseService parseService;
+    private EvaluationService evaluationService;
 
     @Autowired
-    private ConditionRepository conditionRepository;
+    private ConditionMapper conditionMapper;
 
-    public ConditionsController(ParseService parseService) {
-        this.parseService = parseService;
+//    @Autowired
+//    private TitreRepository titreRepository;
+
+    public ConditionsController(EvaluationService evaluationService) {
+        this.evaluationService = evaluationService;
     }
 
-    @GetMapping
-    public List<ConditionEntity> getAllConditions() {
-        return this.conditionRepository.findAll();
-    }
+//    @GetMapping
+//    public List<TitreJpaEntity> getAllTitres() {
+//        return this.titreRepository.findAll();
+//    }
 
-    @PostMapping("/conditions")
-    public void createTitreConditions(@RequestBody Titre titre) {
+//    @PostMapping("/titres-conditions")
+//    public TitreJpaEntity createTitreConditions() {
+//        ConditionJpaEntity condition = new ConditionJpaEntity(
+//                ""
+//        )
+//        return this.titreRepository.save(new TitreJpaEntity("titre de mangeur de patates"));
+//    }
 
-    }
-
-    @PostMapping("/conditions")
+    @PostMapping("/evaluate")
     public void testEvaluation(@RequestBody Titre titre) {
-        parseService.processTitre(titre, null);
+        evaluationService.processTitre(titre, null);
     }
+
+    @PostMapping("/map")
+    public void map(@RequestBody Condition condition) {
+
+        ConditionJpaEntity conditions = conditionMapper.mapToJpaEntity(condition);
+        System.out.println(conditions);
+    }
+
 
 }

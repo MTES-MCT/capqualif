@@ -4,13 +4,28 @@ import java.util.*;
 
 public class Condition {
 
-    private String id;
+    private String name;
     private String operator;
     private String leftOpId;
     private List<String> leftOpList;
     private String leftOp;
     private String rightOp;
     private List<Condition> subConditions;
+
+    // Needed for deserialization
+    public Condition() {
+    }
+
+    public Condition(String name, String operator, String leftOpId, List<String> leftOpList, String leftOp,
+                     String rightOp, List<Condition> subConditions) {
+        this.name = name;
+        this.operator = operator;
+        this.leftOpId = leftOpId;
+        this.leftOpList = leftOpList;
+        this.leftOp = leftOp;
+        this.rightOp = rightOp;
+        this.subConditions = subConditions;
+    }
 
     public String getOperator() {
         return operator;
@@ -40,8 +55,8 @@ public class Condition {
         return subConditions;
     }
 
-    public String getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
     public String getLeftOpId() {
@@ -49,14 +64,14 @@ public class Condition {
     }
 
     public void populateWithData(Marin marin) {
-        for (Data data : marin.getData()) {
+        for (Data<?> data : marin.getData()) {
             boolean done = false;
-            System.out.println("\n ok, let'ds go for " + data.getJuridicalDesignation());
+            System.out.println("\n ok, let's go for " + data.getJuridicalDesignation());
             replaceWithValue(data);
         }
     }
 
-    public void replaceWithValue(Data data) {
+    public void replaceWithValue(Data<?> data) {
         if (data.getJuridicalDesignation().equals(leftOpId)) {
             replace(data);
         } else {
@@ -70,11 +85,11 @@ public class Condition {
 
     private void replace(Data<?> data) {
         if (data.getValue() instanceof String) {
-            System.out.println(leftOpId + " of " + id + " will be replaced with " + data.getValue());
+            System.out.println(leftOpId + " of " + name + " will be replaced with " + data.getValue());
             setLeftOp((String) data.getValue());
         }
         if (data.getValue() instanceof List) {
-            System.out.println(leftOpId + " of " + id + " will be replaced with " + data.getValue());
+            System.out.println(leftOpId + " of " + name + " will be replaced with " + data.getValue());
             setLeftOpList((List<String>) data.getValue());
         }
     }
@@ -97,7 +112,7 @@ public class Condition {
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
                         boolean validationResult = subCondition.validate(errorsList);
-                        andResults.put(subCondition.getId(), validationResult);
+                        andResults.put(subCondition.getName(), validationResult);
                     }
                 }
                 System.out.println("andResults : " + andResults);
@@ -110,7 +125,7 @@ public class Condition {
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
                         boolean validationResult = subCondition.validate(errorsList);
-                        orResults.put(subCondition.getId(), validationResult);
+                        orResults.put(subCondition.getName(), validationResult);
                     }
                 }
                 System.out.println("orResults : " + orResults);
@@ -121,25 +136,22 @@ public class Condition {
                 return false;
             case "==":
                 if (!leftOp.equals(rightOp)) {
-                    addToErrors(errorsList, id);
+                    addToErrors(errorsList, name);
                     return false;
-                } else {
-                    return true;
                 }
+                return true;
             case ">=":
                 if (!(Integer.parseInt(leftOp) >= Integer.parseInt(rightOp))) {
-                    addToErrors(errorsList, id);
+                    addToErrors(errorsList, name);
                     return false;
-                } else {
-                    return true;
                 }
+                return true;
             case "contains":
-                if (leftOpList.contains(rightOp)) {
-                    return true;
-                } else {
-                    addToErrors(errorsList, id);
+                if (!leftOpList.contains(rightOp)) {
+                    addToErrors(errorsList, name);
                     return false;
                 }
+                return true;
             default:
                 System.out.println("validate aouch.");
                 break;
@@ -165,7 +177,7 @@ public class Condition {
     @Override
     public String toString() {
         return "Condition{" +
-                "id='" + id + '\'' +
+                "name='" + name + '\'' +
                 ", operator='" + operator + '\'' +
                 ", leftOpId='" + leftOpId + '\'' +
                 ", leftOpList=" + leftOpList +
@@ -182,7 +194,7 @@ public class Condition {
         if (o == null || getClass() != o.getClass())
             return false;
         Condition condition = (Condition) o;
-        return Objects.equals(id, condition.id) &&
+        return Objects.equals(name, condition.name) &&
                 Objects.equals(operator, condition.operator) &&
                 Objects.equals(leftOpId, condition.leftOpId) &&
                 Objects.equals(leftOpList, condition.leftOpList) &&
@@ -193,6 +205,6 @@ public class Condition {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, operator, leftOpId, leftOpList, leftOp, rightOp, subConditions);
+        return Objects.hash(name, operator, leftOpId, leftOpList, leftOp, rightOp, subConditions);
     }
 }

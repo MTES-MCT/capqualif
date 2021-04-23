@@ -6,7 +6,7 @@ import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.CorrespondingDataInExist
 import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.ParentKey;
-import fr.gouv.mte.capqualif.capAdmin.titre.domain.enums.DataType;
+import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.enums.DataType;
 import net.minidev.json.JSONArray;
 import org.springframework.stereotype.Component;
 
