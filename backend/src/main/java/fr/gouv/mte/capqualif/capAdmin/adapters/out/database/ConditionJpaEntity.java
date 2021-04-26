@@ -9,13 +9,11 @@ import java.util.Set;
 public class ConditionJpaEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     private String name;
-
-    //    @ManyToMany(mappedBy = "conditions")
-//    private Set<TitreJpaEntity> titreJpaEntity;
 
     @Column(name = "operator")
     private String operator;
@@ -33,13 +31,9 @@ public class ConditionJpaEntity {
     @Column(name = "right_operator")
     private String rightOp;
 
-    //    @OneToMany(mappedBy = "parentCondition")
-//    @Column(name = "subconditions")
+
     @ElementCollection
     private List<ConditionJpaEntity> subConditions;
-//
-//    @ManyToOne
-//    private Condition parentCondition;
 
     public ConditionJpaEntity() {
     }
@@ -69,14 +63,6 @@ public class ConditionJpaEntity {
     public void setName(String name) {
         this.name = name;
     }
-
-//    public Set<TitreJpaEntity> getTitreEntity() {
-//        return titreJpaEntity;
-//    }
-//
-//    public void setTitreEntity(Set<TitreJpaEntity> titreJpaEntity) {
-//        this.titreJpaEntity = titreJpaEntity;
-//    }
 
     public String getOperator() {
         return operator;

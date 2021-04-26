@@ -2,18 +2,15 @@ package fr.gouv.mte.capqualif.capAdmin.adapters.in.web;
 
 
 //import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.ConditionJpaEntity;
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.ConditionJpaEntity;
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.ConditionMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.*;
 //import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.TitreJpaEntity;
-//import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.TitreRepository;
 import fr.gouv.mte.capqualif.capAdmin.application.services.EvaluationService;
 import fr.gouv.mte.capqualif.capAdmin.domain.Condition;
 import fr.gouv.mte.capqualif.capAdmin.domain.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
-import java.util.List;
 
 @RestController
 @RequestMapping("/capadmin")
@@ -21,13 +18,19 @@ import java.util.List;
 public class ConditionsController {
 
     @Autowired
-    private EvaluationService evaluationService;
+    private final EvaluationService evaluationService;
+
+    @Autowired
+    private TitreMapper titreMapper;
 
     @Autowired
     private ConditionMapper conditionMapper;
 
-//    @Autowired
-//    private TitreRepository titreRepository;
+    @Autowired
+    private TitreRepository titreRepository;
+
+    @Autowired
+    private ConditionRepository conditionRepository;
 
     public ConditionsController(EvaluationService evaluationService) {
         this.evaluationService = evaluationService;
@@ -51,12 +54,28 @@ public class ConditionsController {
         evaluationService.processTitre(titre, null);
     }
 
-    @PostMapping("/map")
-    public void map(@RequestBody Condition condition) {
+    @PostMapping("/reserialize")
+    public void testRes(@RequestBody Titre titre) {
+        Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+        String json = gson.toJson(titre.getConditions());
+        System.out.println("------------------------ " + json);
+        this.titreRepository.save(new TitreJpaEntity(titre.getName(), json));
 
-        ConditionJpaEntity conditions = conditionMapper.mapToJpaEntity(condition);
-        System.out.println(conditions);
     }
+
+    @PostMapping("/map-conditions")
+    public void map(@RequestBody Condition condition) {
+        ConditionJpaEntity conditions = conditionMapper.mapToJpaEntity(condition);
+//        System.out.println(conditions);
+//        return this.conditionRepository.save(conditions);
+    }
+
+//    @PostMapping("/map-titre")
+//    public TitreJpaEntity map(@RequestBody Titre titre) {
+//        TitreJpaEntity titreJpaEntity = titreMapper.mapToJpaEntity(titre);
+//        System.out.println(titreJpaEntity);
+//        return this.titreRepository.save(titreJpaEntity);
+//    }
 
 
 }
