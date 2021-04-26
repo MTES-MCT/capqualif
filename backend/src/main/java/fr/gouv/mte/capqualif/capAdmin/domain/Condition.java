@@ -5,6 +5,7 @@ import java.util.*;
 public class Condition {
 
     private String name;
+    private String group;
     private String operator;
     private String leftOpId;
     private List<String> leftOpList;
@@ -16,9 +17,10 @@ public class Condition {
     public Condition() {
     }
 
-    public Condition(String name, String operator, String leftOpId, List<String> leftOpList, String leftOp,
-                     String rightOp, List<Condition> subConditions) {
+    public Condition(String name, String group, String operator, String leftOpId, List<String> leftOpList,
+                     String leftOp, String rightOp, List<Condition> subConditions) {
         this.name = name;
+        this.group = group;
         this.operator = operator;
         this.leftOpId = leftOpId;
         this.leftOpList = leftOpList;
@@ -63,6 +65,10 @@ public class Condition {
         return leftOpId;
     }
 
+    public String getGroup() {
+        return group;
+    }
+
     public void populateWithData(Marin marin) {
         for (Data<?> data : marin.getData()) {
             boolean done = false;
@@ -105,7 +111,7 @@ public class Condition {
         }
     }
 
-    public boolean validate(List<String> errorsList) {
+    public boolean validate(List<ConditionIdentity> errorsList) {
         switch (operator) {
             case "AND":
                 Map<String, Boolean> andResults = new HashMap<>();
@@ -121,11 +127,13 @@ public class Condition {
                 }
                 return true;
             case "OR":
-                Map<String, Boolean> orResults = new HashMap<>();
+//                Map<Map.Entry<String, String>, Boolean> orResults = new HashMap<>();
+                Map<ConditionIdentity, Boolean> orResults = new HashMap<>();
+//                List<ValidationTempResult> orResults = new ArrayList<>();
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
                         boolean validationResult = subCondition.validate(errorsList);
-                        orResults.put(subCondition.getName(), validationResult);
+                        orResults.put(new ConditionIdentity(subCondition.getName(), subCondition.getGroup()), validationResult);
                     }
                 }
                 System.out.println("orResults : " + orResults);
@@ -136,19 +144,19 @@ public class Condition {
                 return false;
             case "==":
                 if (leftOp.isEmpty() || !leftOp.equals(rightOp)) {
-                    addToErrors(errorsList, name);
+                    addToErrors(errorsList, name, group);
                     return false;
                 }
                 return true;
             case ">=":
                 if (leftOp.isEmpty() || !(Integer.parseInt(leftOp) >= Integer.parseInt(rightOp))) {
-                    addToErrors(errorsList, name);
+                    addToErrors(errorsList, name, group);
                     return false;
                 }
                 return true;
             case "contains":
                 if (!leftOpList.contains(rightOp)) {
-                    addToErrors(errorsList, name);
+                    addToErrors(errorsList, name, group);
                     return false;
                 }
                 return true;
@@ -160,24 +168,27 @@ public class Condition {
         return false;
     }
 
-    private void addToErrors(List<String> errorsList, String name) {
-        errorsList.add(name);
+    private void addToErrors(List<ConditionIdentity> errorsList, String name, String group) {
+        errorsList.add(new ConditionIdentity(name, group));
     }
 
-    private void removeErrorsFromOtherFalseSubconditions(List<String> errorsList, Map<String, Boolean> orResults) {
-        List<String> errorsToRemove = new ArrayList<>();
-        for (Map.Entry<String, Boolean> entry : orResults.entrySet()) {
+    private void removeErrorsFromOtherFalseSubconditions(List<ConditionIdentity> errorsList, Map<ConditionIdentity, Boolean> orResults) {
+        List<String> errorGroupsToRemove = new ArrayList<>();
+        for (Map.Entry<ConditionIdentity, Boolean> entry : orResults.entrySet()) {
             if (entry.getValue().equals(Boolean.FALSE)) {
-                errorsToRemove.add(entry.getKey());
+                errorGroupsToRemove.add(entry.getKey().getGroup());
             }
         }
-        errorsList.removeAll(errorsToRemove);
+        for (String group : errorGroupsToRemove) {
+            errorsList.removeIf(error -> error.getGroup().equals(group));
+        }
     }
 
     @Override
     public String toString() {
         return "Condition{" +
                 "name='" + name + '\'' +
+                ", group='" + group + '\'' +
                 ", operator='" + operator + '\'' +
                 ", leftOpId='" + leftOpId + '\'' +
                 ", leftOpList=" + leftOpList +
@@ -194,8 +205,9 @@ public class Condition {
         if (o == null || getClass() != o.getClass())
             return false;
         Condition condition = (Condition) o;
-        return Objects.equals(name, condition.name) &&
-                Objects.equals(operator, condition.operator) &&
+        return name.equals(condition.name) &&
+                Objects.equals(group, condition.group) &&
+                operator.equals(condition.operator) &&
                 Objects.equals(leftOpId, condition.leftOpId) &&
                 Objects.equals(leftOpList, condition.leftOpList) &&
                 Objects.equals(leftOp, condition.leftOp) &&
@@ -208,3 +220,21 @@ public class Condition {
         return Objects.hash(name, operator, leftOpId, leftOpList, leftOp, rightOp, subConditions);
     }
 }
+
+//class TempResultInfos {
+//    private String name;
+//    private String group;
+//
+//    public TempResultInfos(String name, String group) {
+//        this.name = name;
+//        this.group = group;
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public String getGroup() {
+//        return group;
+//    }
+//}

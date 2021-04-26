@@ -7,13 +7,15 @@
       "subConditions": [
         {
           "name": "age",
+          "group": "age",
           "operator": ">=",
           "leftOpId": "age",
           "leftOp": "",
           "rightOp": "16"
         },
         {
-          "name": "aptitude",
+          "name": "aptitude médicale",
+          "group": "aptitude",
           "operator": "==",
           "leftOpId": "aptitude",
           "leftOp": "",
@@ -21,14 +23,17 @@
         },
         {
           "name": "formations",
+          "group": "formations",
           "operator": "OR",
           "subConditions": [
             {
               "name": "formations modulaires",
+              "group": "formations modulaires",
               "operator": "AND",
               "subConditions": [
                 {
                   "name": "module de formation modulaire P1",
+                  "group": "formations modulaires",
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
@@ -36,6 +41,7 @@
                 },
                 {
                   "name": "module de formation modulaire P2",
+                  "group": "formations modulaires",
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
@@ -44,11 +50,13 @@
               ]
             },
             {
-              "name": "titres reconnus équivalent à la formation modulaire",
+              "name": "titres reconnus équivalents à la formation modulaire",
+              "group": "titres reconnus équivalents à la formation modulaire",
               "operator": "OR",
               "subConditions": [
                 {
-                  "name": "titre reconnu équivalent à la formation modulaire 2006",
+                  "name": "titre reconnu équivalents à la formation modulaire 2006",
+                  "group": "titres reconnus équivalents à la formation modulaire",
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
@@ -56,6 +64,7 @@
                 },
                 {
                   "name": "titre reconnu équivalent à la formation modulaire 2005",
+                  "group": "titres reconnus équivalents à la formation modulaire",
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
@@ -67,10 +76,12 @@
         },
         {
           "name": "compétences en sécurité",
+          "group": "compétences en sécurité",
           "operator": "OR",
           "subConditions": [
             {
               "name": "titre mainstream",
+              "group": "compétences en sécurité",
               "operator": "contains",
               "leftOpId": "titres",
               "leftOpList": [""],
@@ -78,6 +89,7 @@
             },
             {
               "name": "document reconnu équivalent au CFBS 2014",
+              "group": "compétences en sécurité",
               "operator": "contains",
               "leftOpId": "formations",
               "leftOpList": [""],
@@ -85,6 +97,7 @@
             },
             {
               "name": "document reconnu équivalent au CFBS 2015",
+              "group": "compétences en sécurité",
               "operator": "contains",
               "leftOpId": "formations",
               "leftOpList": [""],

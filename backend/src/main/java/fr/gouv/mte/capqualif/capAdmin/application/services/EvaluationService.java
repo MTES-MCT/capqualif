@@ -1,6 +1,7 @@
 package fr.gouv.mte.capqualif.capAdmin.application.services;
 
 import fr.gouv.mte.capqualif.capAdmin.domain.Condition;
+import fr.gouv.mte.capqualif.capAdmin.domain.ConditionIdentity;
 import fr.gouv.mte.capqualif.capAdmin.domain.Marin;
 import fr.gouv.mte.capqualif.capAdmin.domain.ParseResult;
 import fr.gouv.mte.capqualif.capAdmin.domain.Titre;
@@ -33,16 +34,16 @@ public class EvaluationService {
             }
         }
         Condition condition = titre.getConditions().get(0);
-        List<String> errors = new ArrayList<>();
-        return new ParseResult(areConditionsSatisfied(condition, errors), getErrors(errors));
+        List<ConditionIdentity> conditionIdentities = new ArrayList<>();
+        return new ParseResult(areConditionsSatisfied(condition, conditionIdentities), getErrors(conditionIdentities));
     }
 
-    private boolean areConditionsSatisfied(Condition condition, List<String> errors) {
-        return condition.validate(errors);
+    private boolean areConditionsSatisfied(Condition condition, List<ConditionIdentity> conditionIdentities) {
+        return condition.validate(conditionIdentities);
     }
 
-    private List<String> getErrors(List<String> errors) {
-        return errors;
+    private List<ConditionIdentity> getErrors(List<ConditionIdentity> conditionIdentities) {
+        return conditionIdentities;
     }
 
 

@@ -1,6 +1,7 @@
 package fr.gouv.mte.capqualif.capAdmin.application.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.gouv.mte.capqualif.capAdmin.domain.ConditionIdentity;
 import fr.gouv.mte.capqualif.capAdmin.domain.Titre;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,12 +29,12 @@ class EvaluationServiceErrorsTest {
     @Test
     void shouldReturnAgeError() throws IOException {
         // When
-        List<String> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
+        List<ConditionIdentity> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
                 "/falseAgeWrong.json"), null).getErrors();
 
         // Then
-        List<String> expected = Collections.singletonList(
-                "age condition"
+        List<ConditionIdentity> expected = Collections.singletonList(
+                new ConditionIdentity("age","age")
         );
 
         assertEquals(expected, actual);
@@ -42,14 +43,14 @@ class EvaluationServiceErrorsTest {
     @Test
     void shouldReturnCompetenceEnSecuriteError() throws IOException {
         // When
-        List<String> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
+        List<ConditionIdentity> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
                 "/falseCFBSWrong.json"), null).getErrors();
 
         // Then
-        List<String> expected = Arrays.asList(
-                "titre CFBS mainstream",
-                "document reconnu équivalent au CFBS 2014",
-                "document reconnu équivalent au CFBS 2015"
+        List<ConditionIdentity> expected = Arrays.asList(
+                new ConditionIdentity("titre mainstream", "compétences en sécurité"),
+                new ConditionIdentity("document reconnu équivalent au CFBS 2014", "compétences en sécurité"),
+                new ConditionIdentity("document reconnu équivalent au CFBS 2015", "compétences en sécurité")
         );
 
         assertEquals(expected, actual);
@@ -58,15 +59,15 @@ class EvaluationServiceErrorsTest {
     @Test
     void shouldReturnAllFormationsError() throws IOException {
         // When
-        List<String> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
+        List<ConditionIdentity> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
                 "/falseFormationWrong.json"), null).getErrors();
 
         // Then
-        List<String> expected = Arrays.asList(
-                "module de formation modulaire P1",
-                "module de formation modulaire P2",
-                "titre reconnu équivalent à la formation modulaire 2006",
-                "titre reconnu équivalent à la formation modulaire 2005"
+        List<ConditionIdentity> expected = Arrays.asList(
+                new ConditionIdentity("module de formation modulaire P1", "formations modulaires"),
+                new ConditionIdentity("module de formation modulaire P2", "formations modulaires"),
+                new ConditionIdentity("titre reconnu équivalent à la formation modulaire 2006", "titres reconnus équivalents à la formation modulaire"),
+                new ConditionIdentity("titre reconnu équivalent à la formation modulaire 2005", "titres reconnus équivalents à la formation modulaire")
         );
 
         assertEquals(expected, actual);
@@ -75,14 +76,14 @@ class EvaluationServiceErrorsTest {
     @Test
     void shouldReturnErrorsForCompetenceSecuButNotForFormation() throws IOException {
         // When
-        List<String> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
+        List<ConditionIdentity> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
                 "/falseBecauseCompetenceSecuIsMissingButFormationsModulairesOk.json"), null).getErrors();
 
         // Then
-        List<String> expected = Arrays.asList(
-                "titre mainstream",
-                "document reconnu équivalent au CFBS 2014",
-                "document reconnu équivalent au CFBS 2015"
+        List<ConditionIdentity> expected = Arrays.asList(
+                new ConditionIdentity("titre mainstream", "compétences en sécurité"),
+                new ConditionIdentity("document reconnu équivalent au CFBS 2014", "compétences en sécurité"),
+                new ConditionIdentity("document reconnu équivalent au CFBS 2015", "compétences en sécurité")
         );
 
         assertEquals(expected, actual);
@@ -91,11 +92,11 @@ class EvaluationServiceErrorsTest {
     @Test
     void shouldReturnNoErrorsForCompetencesEnSecurite() throws IOException {
         // When
-        List<String> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
+        List<ConditionIdentity> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
                 "/trueEquivCFBS.json"), null).getErrors();
 
         // Then
-        List<String> expected = Collections.emptyList();
+        List<ConditionIdentity> expected = Collections.emptyList();
 
         assertEquals(expected, actual);
     }

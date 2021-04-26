@@ -4,9 +4,9 @@ import java.util.List;
 
 public class ParseResult {
     private final boolean conditionsSatisfied;
-    private final List<String> errors;
+    private final List<ConditionIdentity> errors;
 
-    public ParseResult(boolean conditionsSatisfied, List<String> errors) {
+    public ParseResult(boolean conditionsSatisfied, List<ConditionIdentity> errors) {
         this.conditionsSatisfied = conditionsSatisfied;
         this.errors = errors;
     }
@@ -15,7 +15,7 @@ public class ParseResult {
         return conditionsSatisfied;
     }
 
-    public List<String> getErrors() {
+    public List<ConditionIdentity> getErrors() {
         return errors;
     }
 
