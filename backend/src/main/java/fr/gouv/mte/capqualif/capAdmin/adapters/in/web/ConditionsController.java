@@ -7,10 +7,15 @@ import com.google.gson.GsonBuilder;
 import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.*;
 //import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.TitreJpaEntity;
 import fr.gouv.mte.capqualif.capAdmin.application.services.EvaluationService;
+import fr.gouv.mte.capqualif.capAdmin.application.services.Test;
 import fr.gouv.mte.capqualif.capAdmin.domain.Condition;
 import fr.gouv.mte.capqualif.capAdmin.domain.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @RestController
 @RequestMapping("/capadmin")
@@ -31,6 +36,9 @@ public class ConditionsController {
 
     @Autowired
     private ConditionRepository conditionRepository;
+
+    @Autowired
+    Test test;
 
     public ConditionsController(EvaluationService evaluationService) {
         this.evaluationService = evaluationService;
@@ -56,11 +64,12 @@ public class ConditionsController {
 
     @PostMapping("/reserialize")
     public void testRes(@RequestBody Titre titre) {
-        Gson gson = new GsonBuilder().disableHtmlEscaping().create();
-        String json = gson.toJson(titre.getConditions());
-        System.out.println("------------------------ " + json);
-        this.titreRepository.save(new TitreJpaEntity(titre.getName(), json));
+        test.save(titre);
+    }
 
+    @GetMapping("/deserialize/{id}")
+    public void desAndEv(@PathVariable Long id) {
+        test.find(id);
     }
 
     @PostMapping("/map-conditions")

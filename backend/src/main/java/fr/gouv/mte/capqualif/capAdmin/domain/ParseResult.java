@@ -18,4 +18,12 @@ public class ParseResult {
     public List<String> getErrors() {
         return errors;
     }
+
+    @Override
+    public String toString() {
+        return "ParseResult{" +
+                "conditionsSatisfied=" + conditionsSatisfied +
+                ", errors=" + errors +
+                '}';
+    }
 }

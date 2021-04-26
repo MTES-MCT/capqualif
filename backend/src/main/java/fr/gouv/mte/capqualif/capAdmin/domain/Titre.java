@@ -7,6 +7,14 @@ public class Titre {
     private String name;
     private List<Condition> conditions;
 
+    public Titre() {
+    }
+
+    public Titre(String name, List<Condition> conditions) {
+        this.name = name;
+        this.conditions = conditions;
+    }
+
     public String getName() {
         return name;
     }

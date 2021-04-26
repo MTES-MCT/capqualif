@@ -1,11 +1,17 @@
 package fr.gouv.mte.capqualif.capAdmin.adapters.out.database;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "titres")
+@TypeDef(
+        name = "jsonb",
+        typeClass = JsonBinaryType.class
+)
 public class TitreJpaEntity {
 
     @Id
@@ -14,6 +20,9 @@ public class TitreJpaEntity {
 
     private String name;
 
+        @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+//    @Column(length = 100000)
     private String conditions;
 
     //    @ManyToMany
@@ -78,4 +87,14 @@ public class TitreJpaEntity {
 //                ", conditions=" + conditions +
 //                '}';
 //    }
+
+
+    @Override
+    public String toString() {
+        return "TitreJpaEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", conditions='" + conditions + '\'' +
+                '}';
+    }
 }
