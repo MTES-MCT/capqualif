@@ -135,13 +135,13 @@ public class Condition {
                 }
                 return false;
             case "==":
-                if (!leftOp.equals(rightOp)) {
+                if (leftOp.isEmpty() || !leftOp.equals(rightOp)) {
                     addToErrors(errorsList, name);
                     return false;
                 }
                 return true;
             case ">=":
-                if (!(Integer.parseInt(leftOp) >= Integer.parseInt(rightOp))) {
+                if (leftOp.isEmpty() || !(Integer.parseInt(leftOp) >= Integer.parseInt(rightOp))) {
                     addToErrors(errorsList, name);
                     return false;
                 }
@@ -160,18 +160,18 @@ public class Condition {
         return false;
     }
 
-    private void addToErrors(List<String> errorsList, String id) {
-        errorsList.add(id);
+    private void addToErrors(List<String> errorsList, String name) {
+        errorsList.add(name);
     }
 
     private void removeErrorsFromOtherFalseSubconditions(List<String> errorsList, Map<String, Boolean> orResults) {
-        List<String> ids = new ArrayList<>();
+        List<String> errorsToRemove = new ArrayList<>();
         for (Map.Entry<String, Boolean> entry : orResults.entrySet()) {
             if (entry.getValue().equals(Boolean.FALSE)) {
-                addToErrors(ids, entry.getKey());
+                errorsToRemove.add(entry.getKey());
             }
         }
-        errorsList.removeAll(ids);
+        errorsList.removeAll(errorsToRemove);
     }
 
     @Override

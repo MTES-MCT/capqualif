@@ -2,20 +2,14 @@ package fr.gouv.mte.capqualif.capAdmin.adapters.in.web;
 
 
 //import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.ConditionJpaEntity;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.*;
 //import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.TitreJpaEntity;
 import fr.gouv.mte.capqualif.capAdmin.application.services.EvaluationService;
-import fr.gouv.mte.capqualif.capAdmin.application.services.Test;
+import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.DatabaseActions;
 import fr.gouv.mte.capqualif.capAdmin.domain.Condition;
 import fr.gouv.mte.capqualif.capAdmin.domain.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 @RestController
 @RequestMapping("/capadmin")
@@ -38,7 +32,7 @@ public class ConditionsController {
     private ConditionRepository conditionRepository;
 
     @Autowired
-    Test test;
+    DatabaseActions databaseActions;
 
     public ConditionsController(EvaluationService evaluationService) {
         this.evaluationService = evaluationService;
@@ -64,12 +58,12 @@ public class ConditionsController {
 
     @PostMapping("/reserialize")
     public void testRes(@RequestBody Titre titre) {
-        test.save(titre);
+        databaseActions.save(titre);
     }
 
     @GetMapping("/deserialize/{id}")
     public void desAndEv(@PathVariable Long id) {
-        test.find(id);
+        databaseActions.find(id);
     }
 
     @PostMapping("/map-conditions")

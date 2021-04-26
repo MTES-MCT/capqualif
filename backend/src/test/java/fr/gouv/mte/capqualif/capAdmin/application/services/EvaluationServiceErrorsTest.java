@@ -73,6 +73,22 @@ class EvaluationServiceErrorsTest {
     }
 
     @Test
+    void shouldReturnErrorsForCompetenceSecuButNotForFormation() throws IOException {
+        // When
+        List<String> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
+                "/falseBecauseCompetenceSecuIsMissingButFormationsModulairesOk.json"), null).getErrors();
+
+        // Then
+        List<String> expected = Arrays.asList(
+                "titre mainstream",
+                "document reconnu équivalent au CFBS 2014",
+                "document reconnu équivalent au CFBS 2015"
+        );
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void shouldReturnNoErrorsForCompetencesEnSecurite() throws IOException {
         // When
         List<String> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
@@ -85,7 +101,7 @@ class EvaluationServiceErrorsTest {
     }
 
     //===============================================================================================================================//
-    //====================== Tests on conditions populated with hardcoded values ====================================================//
+    //====================== Tests on conditions populated with marin values ====================================================//
 
 
 

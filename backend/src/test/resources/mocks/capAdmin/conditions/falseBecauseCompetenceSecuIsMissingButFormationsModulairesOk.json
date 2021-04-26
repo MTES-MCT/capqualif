@@ -1,0 +1,98 @@
+{
+  "name": "Certificat de Matelot Pont",
+  "conditions": [
+    {
+      "name": "all conditions",
+      "operator": "AND",
+      "subConditions": [
+        {
+          "name": "age",
+          "operator": ">=",
+          "leftOpId": "age",
+          "leftOp": "21",
+          "rightOp": "16"
+        },
+        {
+          "name": "aptitude",
+          "operator": "==",
+          "leftOpId": "aptitude",
+          "leftOp": "apte",
+          "rightOp": "apte"
+        },
+        {
+          "name": "formations",
+          "operator": "OR",
+          "subConditions": [
+            {
+              "name": "formations modulaires",
+              "operator": "AND",
+              "subConditions": [
+                {
+                  "name": "module de formation modulaire P1",
+                  "operator": "contains",
+                  "leftOpId": "formations",
+                  "leftOpList": ["Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche"],
+                  "rightOp": "Module P1-Appui navigation"
+                },
+                {
+                  "name": "module de formation modulaire P2",
+                  "operator": "contains",
+                  "leftOpId": "formations",
+                  "leftOpList": ["Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche"],
+                  "rightOp": "Module P2-Appui manutention et arrimage de la cargaison, pêche"
+                }
+              ]
+            },
+            {
+              "name": "titres reconnus équivalent à la formation modulaire",
+              "operator": "OR",
+              "subConditions": [
+                {
+                  "name": "titre reconnu équivalent à la formation modulaire 2006",
+                  "operator": "contains",
+                  "leftOpId": "formations",
+                  "leftOpList": [""],
+                  "rightOp": "Certificat de fin d’études maritimes de matelot, de marin du commerce ou “pêche” délivré conformément à l’arrêté du 12 décembre 2006 susvisé"
+                },
+                {
+                  "name": "titre reconnu équivalent à la formation modulaire 2005",
+                  "operator": "contains",
+                  "leftOpId": "formations",
+                  "leftOpList": [""],
+                  "rightOp": "Certificat d’aptitude professionnelle maritime de matelot délivré conformément à l’arrêté du 8 septembre 2005 susvisé"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "compétences en sécurité",
+          "operator": "OR",
+          "subConditions": [
+            {
+              "name": "titre mainstream",
+              "operator": "contains",
+              "leftOpId": "titres",
+              "leftOpList": [""],
+              "rightOp": "CFBS"
+            },
+            {
+              "name": "document reconnu équivalent au CFBS 2014",
+              "operator": "contains",
+              "leftOpId": "formations",
+              "leftOpList": [""],
+              "rightOp": "Attestation de suivi de la formation à la sécurité dispensée avant le 1er janvier 2014 aux marins pêcheurs et approuvée par le ministre chargé de la mer"
+            },
+            {
+              "name": "document reconnu équivalent au CFBS 2015",
+              "operator": "contains",
+              "leftOpId": "formations",
+              "leftOpList": [""],
+              "rightOp": "Attestation de suivi de la formation à la sécurité dispensée après le 1er septembre 2015 aux personnels appelés à servir à bord des navires armés à la petite pêche ou à la pêche côtière de moins de 12 mètres et approuvée par le ministre chargé de la mer"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
