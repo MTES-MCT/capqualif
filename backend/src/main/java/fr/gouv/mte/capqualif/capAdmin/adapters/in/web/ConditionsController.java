@@ -1,9 +1,6 @@
 package fr.gouv.mte.capqualif.capAdmin.adapters.in.web;
 
-
-//import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.ConditionJpaEntity;
 import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.*;
-//import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.TitreJpaEntity;
 import fr.gouv.mte.capqualif.capAdmin.application.services.EvaluationService;
 import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.DatabaseActions;
 import fr.gouv.mte.capqualif.capAdmin.domain.Condition;
@@ -20,16 +17,8 @@ public class ConditionsController {
     private final EvaluationService evaluationService;
 
     @Autowired
-    private TitreMapper titreMapper;
-
-    @Autowired
-    private ConditionMapper conditionMapper;
-
-    @Autowired
     private TitreRepository titreRepository;
 
-    @Autowired
-    private ConditionRepository conditionRepository;
 
     @Autowired
     DatabaseActions databaseActions;
@@ -65,20 +54,6 @@ public class ConditionsController {
     public void desAndEv(@PathVariable Long id) {
         databaseActions.find(id);
     }
-
-    @PostMapping("/map-conditions")
-    public void map(@RequestBody Condition condition) {
-        ConditionJpaEntity conditions = conditionMapper.mapToJpaEntity(condition);
-//        System.out.println(conditions);
-//        return this.conditionRepository.save(conditions);
-    }
-
-//    @PostMapping("/map-titre")
-//    public TitreJpaEntity map(@RequestBody Titre titre) {
-//        TitreJpaEntity titreJpaEntity = titreMapper.mapToJpaEntity(titre);
-//        System.out.println(titreJpaEntity);
-//        return this.titreRepository.save(titreJpaEntity);
-//    }
 
 
 }

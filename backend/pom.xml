@@ -82,6 +82,16 @@
 			<artifactId>hibernate-types-52</artifactId>
 			<version>2.10.4</version>
 		</dependency>
+		<dependency>
+			<groupId>com.mikesamuel</groupId>
+			<artifactId>json-sanitizer</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.owasp.encoder</groupId>
+			<artifactId>encoder</artifactId>
+			<version>1.2.3</version>
+		</dependency>
 
 	</dependencies>
 
