@@ -55,7 +55,7 @@
               "operator": "OR",
               "subConditions": [
                 {
-                  "name": "titre reconnu équivalents à la formation modulaire 2006",
+                  "name": "titre reconnu équivalent à la formation modulaire 2006",
                   "group": "titres reconnus équivalents à la formation modulaire",
                   "operator": "contains",
                   "leftOpId": "formations",

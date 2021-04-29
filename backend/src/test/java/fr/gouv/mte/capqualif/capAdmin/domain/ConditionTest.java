@@ -2,7 +2,8 @@ package fr.gouv.mte.capqualif.capAdmin.domain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.gouv.mte.capqualif.capAdmin.application.services.JsonPopulator;
-import fr.gouv.mte.capqualif.capAdmin.application.services.EvaluationService;
+import fr.gouv.mte.capqualif.capAdmin.application.services.temp.EvaluationService;
+import fr.gouv.mte.capqualif.capAdmin.domain.temp.Marin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

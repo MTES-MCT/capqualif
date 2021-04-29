@@ -15,6 +15,12 @@ public class Titre {
         this.conditions = conditions;
     }
 
+    // This is a copy constructor. See http://www.javapractices.com/topic/TopicAction.do?Id=12.
+    public Titre(Titre titre) {
+        this(titre.getName(), titre.getConditions());
+    }
+
+
     public String getName() {
         return name;
     }

@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class ConditionIdentity {
     private String name;
-    private String group;
+    private Group group;
 
-    public ConditionIdentity(String name, String group) {
+    public ConditionIdentity(String name, Group group) {
         this.name = name;
         this.group = group;
     }
@@ -15,7 +15,7 @@ public class ConditionIdentity {
         return name;
     }
 
-    public String getGroup() {
+    public Group getGroup() {
         return group;
     }
 
@@ -23,7 +23,7 @@ public class ConditionIdentity {
     public String toString() {
         return "ConditionIdentity{" +
                 "name='" + name + '\'' +
-                ", group='" + group + '\'' +
+                ", group=" + group +
                 '}';
     }
 

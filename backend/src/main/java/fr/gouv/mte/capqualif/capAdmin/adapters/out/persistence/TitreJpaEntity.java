@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capAdmin.adapters.out.database;
+package fr.gouv.mte.capqualif.capAdmin.adapters.out.persistence;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import org.hibernate.annotations.Type;
@@ -7,7 +7,7 @@ import org.hibernate.annotations.TypeDef;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "titres")
+@Table(name = "titre")
 @TypeDef(
         name = "jsonb",
         typeClass = JsonBinaryType.class

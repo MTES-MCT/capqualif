@@ -34,6 +34,7 @@
                 {
                   "name": "module de formation modulaire P1",
                   "group": "formations modulaires",
+                  "groupOperator": "AND",
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
@@ -42,6 +43,7 @@
                 {
                   "name": "module de formation modulaire P2",
                   "group": "formations modulaires",
+                  "groupOperator": "AND",
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
@@ -55,8 +57,9 @@
               "operator": "OR",
               "subConditions": [
                 {
-                  "name": "titre reconnu équivalents à la formation modulaire 2006",
+                  "name": "titre reconnu équivalent à la formation modulaire 2006",
                   "group": "titres reconnus équivalents à la formation modulaire",
+                  "groupOperator": "OR",
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
@@ -65,6 +68,7 @@
                 {
                   "name": "titre reconnu équivalent à la formation modulaire 2005",
                   "group": "titres reconnus équivalents à la formation modulaire",
+                  "groupOperator": "OR",
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
@@ -82,6 +86,7 @@
             {
               "name": "titre mainstream",
               "group": "compétences en sécurité",
+              "groupOperator": "OR",
               "operator": "contains",
               "leftOpId": "titres",
               "leftOpList": [""],
@@ -90,6 +95,7 @@
             {
               "name": "document reconnu équivalent au CFBS 2014",
               "group": "compétences en sécurité",
+              "groupOperator": "OR",
               "operator": "contains",
               "leftOpId": "formations",
               "leftOpList": [""],
@@ -98,6 +104,7 @@
             {
               "name": "document reconnu équivalent au CFBS 2015",
               "group": "compétences en sécurité",
+              "groupOperator": "OR",
               "operator": "contains",
               "leftOpId": "formations",
               "leftOpList": [""],

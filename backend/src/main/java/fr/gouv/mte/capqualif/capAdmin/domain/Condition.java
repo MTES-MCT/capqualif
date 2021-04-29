@@ -1,11 +1,14 @@
 package fr.gouv.mte.capqualif.capAdmin.domain;
 
+import fr.gouv.mte.capqualif.capAdmin.domain.temp.Marin;
+
 import java.util.*;
 
 public class Condition {
 
     private String name;
     private String group;
+    private String groupOperator;
     private String operator;
     private String leftOpId;
     private List<String> leftOpList;
@@ -17,10 +20,11 @@ public class Condition {
     public Condition() {
     }
 
-    public Condition(String name, String group, String operator, String leftOpId, List<String> leftOpList,
-                     String leftOp, String rightOp, List<Condition> subConditions) {
+    public Condition(String name, String group, String groupOperator, String operator, String leftOpId,
+                     List<String> leftOpList, String leftOp, String rightOp, List<Condition> subConditions) {
         this.name = name;
         this.group = group;
+        this.groupOperator = groupOperator;
         this.operator = operator;
         this.leftOpId = leftOpId;
         this.leftOpList = leftOpList;
@@ -69,10 +73,13 @@ public class Condition {
         return group;
     }
 
+    public String getGroupOperator() {
+        return groupOperator;
+    }
+
     public void populateWithData(Marin marin) {
         for (Data<?> data : marin.getData()) {
             boolean done = false;
-            System.out.println("\n ok, let's go for " + data.getJuridicalDesignation());
             replaceWithValue(data);
         }
     }
@@ -91,11 +98,9 @@ public class Condition {
 
     private void replace(Data<?> data) {
         if (data.getValue() instanceof String) {
-            System.out.println(leftOpId + " of " + name + " will be replaced with " + data.getValue());
             setLeftOp((String) data.getValue());
         }
         if (data.getValue() instanceof List) {
-            System.out.println(leftOpId + " of " + name + " will be replaced with " + data.getValue());
             setLeftOpList((List<String>) data.getValue());
         }
     }
@@ -127,9 +132,7 @@ public class Condition {
                 }
                 return true;
             case "OR":
-//                Map<Map.Entry<String, String>, Boolean> orResults = new HashMap<>();
                 Map<ConditionIdentity, Boolean> orResults = new HashMap<>();
-//                List<ValidationTempResult> orResults = new ArrayList<>();
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
                         boolean validationResult = subCondition.validate(errorsList);
@@ -220,21 +223,3 @@ public class Condition {
         return Objects.hash(name, operator, leftOpId, leftOpList, leftOp, rightOp, subConditions);
     }
 }
-
-//class TempResultInfos {
-//    private String name;
-//    private String group;
-//
-//    public TempResultInfos(String name, String group) {
-//        this.name = name;
-//        this.group = group;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public String getGroup() {
-//        return group;
-//    }
-//}

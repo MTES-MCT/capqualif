@@ -1,9 +1,7 @@
 package fr.gouv.mte.capqualif.capAdmin.adapters.in.web;
 
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.*;
-import fr.gouv.mte.capqualif.capAdmin.application.services.EvaluationService;
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.database.DatabaseActions;
-import fr.gouv.mte.capqualif.capAdmin.domain.Condition;
+import fr.gouv.mte.capqualif.capAdmin.application.ports.in.CreateTitreUseCase;
+import fr.gouv.mte.capqualif.capAdmin.application.services.temp.EvaluationService;
 import fr.gouv.mte.capqualif.capAdmin.domain.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,45 +12,22 @@ import org.springframework.web.bind.annotation.*;
 public class ConditionsController {
 
     @Autowired
-    private final EvaluationService evaluationService;
-
-    @Autowired
-    private TitreRepository titreRepository;
+    CreateTitreUseCase createTitreUseCase;
 
 
-    @Autowired
-    DatabaseActions databaseActions;
-
-    public ConditionsController(EvaluationService evaluationService) {
-        this.evaluationService = evaluationService;
+    @PostMapping("/titres")
+    public void testRes(@RequestBody Titre titre) {
+        createTitreUseCase.createTitre(titre);
     }
 
-//    @GetMapping
-//    public List<TitreJpaEntity> getAllTitres() {
-//        return this.titreRepository.findAll();
-//    }
 
-//    @PostMapping("/titres-conditions")
-//    public TitreJpaEntity createTitreConditions() {
-//        ConditionJpaEntity condition = new ConditionJpaEntity(
-//                ""
-//        )
-//        return this.titreRepository.save(new TitreJpaEntity("titre de mangeur de patates"));
-//    }
+    // TO DO : temp, remove later
+    @Autowired
+    private EvaluationService evaluationService;
 
     @PostMapping("/evaluate")
     public void testEvaluation(@RequestBody Titre titre) {
         evaluationService.processTitre(titre, null);
-    }
-
-    @PostMapping("/reserialize")
-    public void testRes(@RequestBody Titre titre) {
-        databaseActions.save(titre);
-    }
-
-    @GetMapping("/deserialize/{id}")
-    public void desAndEv(@PathVariable Long id) {
-        databaseActions.find(id);
     }
 
 
