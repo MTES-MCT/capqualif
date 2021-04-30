@@ -7,7 +7,10 @@
       "subConditions": [
         {
           "name": "age",
-          "group": "age",
+          "group": {
+            "name": "age",
+            "operator": "AND"
+          },
           "operator": ">=",
           "leftOpId": "age",
           "leftOp": "21",
@@ -15,7 +18,10 @@
         },
         {
           "name": "aptitude médicale",
-          "group": "aptitude",
+          "group": {
+            "name": "aptitude",
+            "operator": "AND"
+          },
           "operator": "==",
           "leftOpId": "aptitude",
           "leftOp": "apte",
@@ -23,17 +29,26 @@
         },
         {
           "name": "formations",
-          "group": "formations",
+          "group": {
+            "name": "formations",
+            "operator": "AND"
+          },
           "operator": "OR",
           "subConditions": [
             {
               "name": "formations modulaires",
-              "group": "formations modulaires",
+              "group": {
+                "name": "formations modulaires",
+                "operator": "OR"
+              },
               "operator": "AND",
               "subConditions": [
                 {
                   "name": "module de formation modulaire P1",
-                  "group": "formations modulaires",
+                  "group": {
+                    "name": "formations modulaires",
+                    "operator": "AND"
+                  },
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": ["Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche"],
@@ -41,7 +56,10 @@
                 },
                 {
                   "name": "module de formation modulaire P2",
-                  "group": "formations modulaires",
+                  "group": {
+                    "name": "formations modulaires",
+                    "operator": "AND"
+                  },
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": ["Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche"],
@@ -51,12 +69,18 @@
             },
             {
               "name": "titres reconnus équivalents à la formation modulaire",
-              "group": "titres reconnus équivalents à la formation modulaire",
+              "group": {
+                "name": "titres reconnus équivalents à la formation modulaire",
+                "operator": "OR"
+              },
               "operator": "OR",
               "subConditions": [
                 {
                   "name": "titre reconnu équivalent à la formation modulaire 2006",
-                  "group": "titres reconnus équivalents à la formation modulaire",
+                  "group": {
+                    "name": "titres reconnus équivalents à la formation modulaire",
+                    "operator": "OR"
+                  },
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": ["Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche"],
@@ -64,7 +88,10 @@
                 },
                 {
                   "name": "titre reconnu équivalent à la formation modulaire 2005",
-                  "group": "titres reconnus équivalents à la formation modulaire",
+                  "group": {
+                    "name": "titres reconnus équivalents à la formation modulaire",
+                    "operator": "OR"
+                  },
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": ["Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche"],
@@ -81,7 +108,10 @@
           "subConditions": [
             {
               "name": "titre mainstream",
-              "group": "compétences en sécurité",
+              "group": {
+                "name": "compétences en sécurité",
+                "operator": "OR"
+              },
               "operator": "contains",
               "leftOpId": "titres",
               "leftOpList": ["CFBS"],
@@ -89,7 +119,10 @@
             },
             {
               "name": "document reconnu équivalent au CFBS 2014",
-              "group": "compétences en sécurité",
+              "group": {
+                "name": "compétences en sécurité",
+                "operator": "OR"
+              },
               "operator": "contains",
               "leftOpId": "formations",
               "leftOpList": ["Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche"],
@@ -97,7 +130,10 @@
             },
             {
               "name": "document reconnu équivalent au CFBS 2015",
-              "group": "compétences en sécurité",
+              "group": {
+                "name": "compétences en sécurité",
+                "operator": "OR"
+              },
               "operator": "contains",
               "leftOpId": "formations",
               "leftOpList": ["Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche"],

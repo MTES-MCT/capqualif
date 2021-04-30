@@ -7,8 +7,7 @@ import java.util.*;
 public class Condition {
 
     private String name;
-    private String group;
-    private String groupOperator;
+    private Group group;
     private String operator;
     private String leftOpId;
     private List<String> leftOpList;
@@ -20,11 +19,10 @@ public class Condition {
     public Condition() {
     }
 
-    public Condition(String name, String group, String groupOperator, String operator, String leftOpId,
-                     List<String> leftOpList, String leftOp, String rightOp, List<Condition> subConditions) {
+    public Condition(String name, Group group, String operator, String leftOpId, List<String> leftOpList,
+                     String leftOp, String rightOp, List<Condition> subConditions) {
         this.name = name;
         this.group = group;
-        this.groupOperator = groupOperator;
         this.operator = operator;
         this.leftOpId = leftOpId;
         this.leftOpList = leftOpList;
@@ -69,12 +67,8 @@ public class Condition {
         return leftOpId;
     }
 
-    public String getGroup() {
+    public Group getGroup() {
         return group;
-    }
-
-    public String getGroupOperator() {
-        return groupOperator;
     }
 
     public void populateWithData(Marin marin) {
@@ -119,11 +113,11 @@ public class Condition {
     public boolean validate(List<ConditionIdentity> errorsList) {
         switch (operator) {
             case "AND":
-                Map<String, Boolean> andResults = new HashMap<>();
+                Map<ConditionIdentity, Boolean> andResults = new HashMap<>();
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
                         boolean validationResult = subCondition.validate(errorsList);
-                        andResults.put(subCondition.getName(), validationResult);
+                        andResults.put(buildConditionIdentity(subCondition.getName(), subCondition.getGroup().getName(), subCondition.getGroup().getOperator()), validationResult);
                     }
                 }
                 System.out.println("andResults : " + andResults);
@@ -136,7 +130,7 @@ public class Condition {
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
                         boolean validationResult = subCondition.validate(errorsList);
-                        orResults.put(new ConditionIdentity(subCondition.getName(), subCondition.getGroup()), validationResult);
+                        orResults.put(buildConditionIdentity(subCondition.getName(), subCondition.getGroup().getName(), subCondition.getGroup().getOperator()), validationResult);
                     }
                 }
                 System.out.println("orResults : " + orResults);
@@ -171,7 +165,11 @@ public class Condition {
         return false;
     }
 
-    private void addToErrors(List<ConditionIdentity> errorsList, String name, String group) {
+    private ConditionIdentity buildConditionIdentity(String name, String groupName, Operator groupOperator) {
+        return new ConditionIdentity(name, new Group(groupName, groupOperator));
+    }
+
+    private void addToErrors(List<ConditionIdentity> errorsList, String name, Group group) {
         errorsList.add(new ConditionIdentity(name, group));
     }
 
@@ -179,11 +177,11 @@ public class Condition {
         List<String> errorGroupsToRemove = new ArrayList<>();
         for (Map.Entry<ConditionIdentity, Boolean> entry : orResults.entrySet()) {
             if (entry.getValue().equals(Boolean.FALSE)) {
-                errorGroupsToRemove.add(entry.getKey().getGroup());
+                errorGroupsToRemove.add(entry.getKey().getGroup().getName());
             }
         }
         for (String group : errorGroupsToRemove) {
-            errorsList.removeIf(error -> error.getGroup().equals(group));
+            errorsList.removeIf(error -> error.getGroup().getName().equals(group));
         }
     }
 

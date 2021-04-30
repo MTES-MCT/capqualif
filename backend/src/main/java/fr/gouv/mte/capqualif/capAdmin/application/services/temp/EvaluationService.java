@@ -1,16 +1,17 @@
 package fr.gouv.mte.capqualif.capAdmin.application.services.temp;
 
 import fr.gouv.mte.capqualif.capAdmin.application.services.JsonPopulator;
-import fr.gouv.mte.capqualif.capAdmin.domain.Condition;
-import fr.gouv.mte.capqualif.capAdmin.domain.ConditionIdentity;
+import fr.gouv.mte.capqualif.capAdmin.domain.*;
 import fr.gouv.mte.capqualif.capAdmin.domain.temp.Marin;
-import fr.gouv.mte.capqualif.capAdmin.domain.ParseResult;
-import fr.gouv.mte.capqualif.capAdmin.domain.Titre;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 @Component
 public class EvaluationService {
@@ -53,9 +54,19 @@ public class EvaluationService {
     private void logResults(ParseResult result) {
         System.out.println("\n *************** Evaluation result is " + result.areConditionsSatisfied() + " ***************");
         if (!result.areConditionsSatisfied()) {
+//            Map errorsByGroup = result.getErrors().stream().collect(groupingBy(ConditionIdentity::getGroup, toList()));
+//            System.out.println(errorsByGroup);
+//            for (Object error : errorsByGroup.entrySet()) {
+//                if (error.get)
+//            }
+//            List<ConditionIdentity> errors = result.getErrors();
+//            for (ConditionIdentity error : errors) {
+//                if ()
+//            }
 
             for (ConditionIdentity error : result.getErrors()) {
-                System.out.println(error.getGroup());
+
+//                if (error.getGroup().getOperator().equals(Operator.OR))
                 System.out.println("*************** \uD83D\uDE3F Avez-vous un document pour " + error.getName() + " \uD83D\uDE3F ? ***************");
             }
         }
