@@ -1,142 +1,46 @@
 import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import './ApplicationRecap.scss';
 
 import {
   FONT_COLORS,
   FONT_SIZES,
-} from '../../../../dictionnary/saas/variables';
+} from '../../../../../dictionnary/saas/variables';
 import {
   ADD_PIECE_ROUTE,
-  CONFIRMATION_ROUTE,
   DASHBOARD_ROUTE,
-} from '../../../../app/routesList';
+} from '../../../../../app/routesList';
 
-import { getTitre } from '../../../../redux/features/titresCatalog/titresSlice';
+import { getTitre } from '../../../../../redux/features/titresCatalog/titresSlice';
 
-import Breadcrumb from '../../../_cq/breadcrumb/Breadcrumb';
-import SectionHead from '../../../_cq/section/section-head/SectionHead';
+import Breadcrumb from '../../../../_cq/breadcrumb/Breadcrumb';
+import SectionHead from '../../../../_cq/section/section-head/SectionHead';
 
-import SectionFooter from '../../../_cq/section/section-footer/SectionFooter';
-import CqItemOfMarin from '../../../_cq/cq-item/marin/CqItemOfMarin';
+import SectionFooter from '../../../../_cq/section/section-footer/SectionFooter';
+import CqItemOfMarin from '../../../../_cq/cq-item/marin/CqItemOfMarin';
 import {
   ACTION_TYPES,
   BUTTON_LABELS,
   STATUS_APTITUDE_MEDICALE,
   STATUS_TITRE,
-} from '../../../../dictionnary/demandeDeTitre';
-import Button from '../../../_cq/button/Button';
+} from '../../../../../dictionnary/demandeDeTitre';
+import Button from '../../../../_cq/button/Button';
 
-const FakeSuccess = ({ match }) => {
+import { getConditions } from '../../../../../redux/features/conditions/conditionsSlice';
+
+const ApplicationRecap = () => {
   const dispatch = useDispatch();
   const marin = useSelector((state) => state.marinsReducer.marinBasicData);
-
-  const conditionsResultsMock = {
-    age: {
-      validity: true,
-      marinData: {
-        birthDate: marin.dateNaissance,
-      },
-    },
-    aptitudeMedicale: {
-      validity: true,
-      marinData: {
-        diagnosis: STATUS_APTITUDE_MEDICALE.APTE,
-        dates: {
-          debutApplicationDate: '03/09/2020',
-          expirationDate: '02/09/2022',
-        },
-        medicalRestrictions: [],
-      },
-    },
-    formations: [
-      {
-        validity: true,
-        name: 'Formation de base à la sécurité',
-        type: 'Formation spécifique',
-        marinData: {
-          modules: [
-            {
-              name: 'Module',
-              description: 'Formation de base à la lutte incendie',
-              dates: {
-                acquisitionDate: '23/06/2020',
-                expirationDate: '23/06/2025',
-              },
-            },
-            {
-              name: 'Module',
-              description: 'Sécurité des Personnes et Responsabilités Sociales',
-              dates: {
-                acquisitionDate: '23/06/2020',
-                expirationDate: '23/06/2025',
-              },
-            },
-            {
-              name: 'Module',
-              description: 'Technique Individuelle de Survie',
-              dates: {
-                acquisitionDate: '23/06/2020',
-                expirationDate: '23/06/2025',
-              },
-            },
-            {
-              name: 'Module',
-              description: 'Médical1',
-              dates: {
-                acquisitionDate: '23/06/2020',
-                expirationDate: '23/06/2025',
-              },
-            },
-          ],
-        },
-      },
-      {
-        validity: true,
-        name: 'Formation pour le certificat de matelot pont',
-        type: 'Formation modulaire',
-        marinData: {
-          modules: [
-            {
-              name: 'Module P1–Appui',
-              description: 'Navigation',
-              validity: true,
-              dates: {
-                acquisitionDate: '23/06/2020',
-                expirationDate: '23/06/2025',
-              },
-            },
-            {
-              name: 'Module P2–Appui',
-              description: 'Manutention et arrimage de la cargaison, pêche',
-              validity: true,
-              dates: {
-                acquisitionDate: '23/06/2020',
-                expirationDate: '23/06/2025',
-              },
-            },
-            {
-              name: 'Module P3–Appui',
-              description: 'Exploitation, assistance, entretien, réparation',
-              validity: false,
-              dates: null,
-            },
-            {
-              name: 'Module NP–Appui',
-              description: 'Module national pont',
-              dates: {
-                acquisitionDate: '23/06/2020',
-                expirationDate: '23/06/2025',
-              },
-            },
-          ],
-        },
-      },
-    ],
-  };
+  const conditions = useSelector((state) => state.conditionsReducer.conditions);
 
   useEffect(() => {
-    dispatch(getTitre(match.params.itemSlug));
+    dispatch(
+      getConditions({
+        titreId: '1',
+        numeroDeMarin: '123',
+      })
+    );
   }, []);
 
   const possibleActions = [
@@ -147,8 +51,8 @@ const FakeSuccess = ({ match }) => {
     },
     {
       label: 'Continuer',
-      nextPageLink: CONFIRMATION_ROUTE,
-      disabled: false,
+      nextPageLink: DASHBOARD_ROUTE,
+      disabled: true,
     },
   ];
 
@@ -211,33 +115,11 @@ const FakeSuccess = ({ match }) => {
             </div>
           </div>
         </div>
+        {conditions.map((condition) => renderCondition(condition))}
 
-        {/* Famille de conditions 1 */}
-        <div className="rf-grid-row rf-grid-row--gutters with-margin">
-          <div className="rf-col">
-            <div className="container">
-              <span
-                className={`
-                ${
-                  conditionsResultsMock.age.validity
-                    ? 'rf-fi-checkbox-line'
-                    : 'rf-fi-close-circle-line'
-                }`}
-              ></span>
-              <div className="rf-pt-1w rf-pl-2w">
-                <p>
-                  Mon âge&nbsp;: {''}
-                  <span className="dynamic-infos cq-helpers__display-inline">
-                    {computeAge(conditionsResultsMock.age.marinData.birthDate)}
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* 
 
-        {/* Famille de conditions 2 */}
-        <div className="rf-grid-row rf-grid-row--gutters with-margin">
+        < className="rf-grid-row rf-grid-row--gutters with-margin">
           <div className="rf-col">
             <div className="container">
               <span
@@ -267,9 +149,8 @@ const FakeSuccess = ({ match }) => {
               </div>
             </div>
           </div>
-        </div>
+        </>
 
-        {/* Famille de conditions 3 */}
         <div className="rf-grid-row rf-grid-row--gutters with-margin">
           <div className="rf-col">
             <p>Mes formations</p>
@@ -298,6 +179,7 @@ const FakeSuccess = ({ match }) => {
                     }
                     details={formation.marinData.modules.map((module) => ({
                       label: module.name,
+                      labelStatus: 'validity-' + module.validity,
                       infos: module.description,
                     }))}
                   />
@@ -305,8 +187,7 @@ const FakeSuccess = ({ match }) => {
               </div>
             ))}
           </div>
-        </div>
-
+        </div> */}
         <div
           id="ask-for-advice-button-container"
           className="rf-grid-row rf-grid-row--gutters with-margin"
@@ -318,11 +199,82 @@ const FakeSuccess = ({ match }) => {
             actionType={ACTION_TYPES.SECONDARY}
           />
         </div>
-
         <SectionFooter possibleActions={possibleActions} />
       </div>
     </Fragment>
   );
 };
 
-export default FakeSuccess;
+export default ApplicationRecap;
+
+const renderCondition = (condition) => {
+  const result = condition.conditionMet;
+  const conditionName =
+    condition.comparisonResultForMainCriterion.conditionJuridicalDesignation;
+  const conditionNameLowercased = condition.comparisonResultForMainCriterion.conditionJuridicalDesignation.toLowerCase();
+  if (conditionNameLowercased.includes('âge')) {
+    return renderBasicCondition(conditionName, result);
+  }
+  if (
+    conditionNameLowercased.includes('aptitude médicale') ||
+    conditionNameLowercased.includes('formation') ||
+    conditionNameLowercased.includes('certificat')
+  ) {
+    return renderComplexCondition(conditionName, result);
+  }
+};
+
+const renderBasicCondition = (conditionName, result) => {
+  return (
+    <div className="rf-grid-row rf-grid-row--gutters with-margin">
+      <div className="rf-col">
+        <div className="container">
+          <span
+            className={`
+              ${result ? 'rf-fi-checkbox-line' : 'rf-fi-close-circle-line'}`}
+          ></span>
+          <div className="rf-pt-1w rf-pl-2w">
+            <p>
+              {conditionName}
+              <span className="dynamic-infos cq-helpers__display-inline">
+                {''} ma donnée
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const renderComplexCondition = (conditionName, result) => {
+  return (
+    <div className="rf-grid-row rf-grid-row--gutters with-margin">
+      <div className="rf-col">
+        <div className="container">
+          <span
+            className={`
+        ${result ? 'rf-fi-checkbox-line' : 'rf-fi-close-circle-line'}`}
+          ></span>
+          <div className="rf-pt-1w rf-pl-2w cq-helpers__full-width">
+            <p>Nom de la famille de condition</p>
+            <CqItemOfMarin
+              name={''}
+              subtitle={conditionName}
+              dates={''}
+              status={''}
+              action={
+                !result && {
+                  label: BUTTON_LABELS.ADD_DOCUMENT,
+                  labelSize: FONT_SIZES.VERY_SMALL,
+                  route: '',
+                  actionType: ACTION_TYPES.SECONDARY,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

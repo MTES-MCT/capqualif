@@ -1,26 +1,26 @@
 import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getAllTitres } from '../../../../redux/features/titresCatalog/titresSlice';
+import { getAllTitres } from '../../../../../redux/features/titresCatalog/titresSlice';
 
 import './NewTitreChoice.scss';
 
-import SectionHead from '../../../_cq/section/section-head/SectionHead';
+import SectionHead from '../../../../_cq/section/section-head/SectionHead';
 
-import Breadcrumb from '../../../_cq/breadcrumb/Breadcrumb';
+import Breadcrumb from '../../../../_cq/breadcrumb/Breadcrumb';
 import {
   FONT_COLORS,
   FONT_SIZES,
-} from '../../../../dictionnary/saas/variables';
-import CqItemCatalog from '../../../_cq/cq-item/catalog/CqItemCatalog';
+} from '../../../../../dictionnary/saas/variables';
+import CqItemCatalog from '../../../../_cq/cq-item/catalog/CqItemCatalog';
 import {
   ACTION_TYPES,
   BUTTON_LABELS,
-} from '../../../../dictionnary/demandeDeTitre';
+} from '../../../../../dictionnary/demandeDeTitre';
 import {
   NEW_TITRE_APPLICATION_RECAP_ROUTE,
   NEW_TITRE_APPLICATION_ROUTE,
-} from '../../../../app/routesList';
+} from '../../../../../app/routesList';
 
 const NewTitleChoice = () => {
   // const allTitres = useSelector((state) => state.titresReducer.allTitres);

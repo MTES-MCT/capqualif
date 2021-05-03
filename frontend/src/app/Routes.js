@@ -9,15 +9,18 @@ import {
   ERROR_ROUTE,
   ADD_PIECE_ROUTE,
   CONFIRMATION_ROUTE,
+  CAPADMIN_ROUTE,
+  EDITOR_ROUTE,
 } from './routesList';
 
-import Dashboard from '../components/pages/dashboard/Dashboard';
-import NewTitreChoice from '../components/pages/new-titre-application/new-titre-choice/NewTitreChoice';
-import ApplicationRecap from '../components/pages/new-titre-application/application-recap/ApplicationRecap';
-import Error from '../components/pages/error/Error';
-import AddPiece from '../components/pages/new-titre-application/add-piece/AddPiece';
-import FakeSuccess from '../components/pages/new-titre-application/application-recap/FakeSuccess';
-import Confirmation from '../components/pages/new-titre-application/confirmation/Confirmation';
+import Dashboard from '../components/pages/capqualif/dashboard/Dashboard';
+import NewTitreChoice from '../components/pages/capqualif/new-titre-application/new-titre-choice/NewTitreChoice';
+import ApplicationRecap from '../components/pages/capqualif/new-titre-application/application-recap/ApplicationRecap';
+import Error from '../components/pages/capqualif/error/Error';
+import AddPiece from '../components/pages/capqualif/new-titre-application/add-piece/AddPiece';
+import FakeSuccess from '../components/pages/capqualif/new-titre-application/application-recap/FakeSuccess';
+import Confirmation from '../components/pages/capqualif/new-titre-application/confirmation/Confirmation';
+import Editor from '../components/pages/capadmin/editor/Editor';
 
 const Routes = () => {
   return (
@@ -36,6 +39,7 @@ const Routes = () => {
         <Route exact path={ERROR_ROUTE} component={Error} />
         <Route exact path="/recap-success" component={FakeSuccess} />
         <Route exact path={CONFIRMATION_ROUTE} component={Confirmation} />
+        <Route exact path={CAPADMIN_ROUTE / EDITOR_ROUTE} component={Editor} />
       </Switch>
     </section>
   );

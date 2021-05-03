@@ -10,7 +10,7 @@ import { HOME_ROUTE } from './routesList';
 import './App.scss';
 
 import Routes from './Routes';
-import Sign from '../components/pages/sign/Sign';
+import Sign from '../components/pages/capqualif/sign/Sign';
 import Header from '../components/_rf/header/Header';
 import ScrollToTop from '../components/helpers/ScrollToTop';
 

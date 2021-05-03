@@ -51,7 +51,6 @@ public class EvaluationService {
     }
 
     // TO DO : temp, remove later
-
     private void logResults(ParseResult result) {
         if (result.areConditionsSatisfied()) {
             System.out.println("\nxxxxxxxxxxxx C'est parfait, vous remplissez les conditions pour obtenir ce titre. xxxxxxxxxxxx\n");
