@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
@@ -26,7 +27,7 @@ public class EvaluationService {
     public ParseResult processTitre(Titre titre, Marin marin) {
         if (marin != null) {
             try {
-                jsonPopulator.populate(titre, marin);
+                titre = jsonPopulator.populate(titre, marin);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -54,20 +55,20 @@ public class EvaluationService {
     private void logResults(ParseResult result) {
         System.out.println("\n *************** Evaluation result is " + result.areConditionsSatisfied() + " ***************");
         if (!result.areConditionsSatisfied()) {
-//            Map errorsByGroup = result.getErrors().stream().collect(groupingBy(ConditionIdentity::getGroup, toList()));
-//            System.out.println(errorsByGroup);
-//            for (Object error : errorsByGroup.entrySet()) {
-//                if (error.get)
-//            }
-//            List<ConditionIdentity> errors = result.getErrors();
-//            for (ConditionIdentity error : errors) {
-//                if ()
-//            }
-
-            for (ConditionIdentity error : result.getErrors()) {
-
-//                if (error.getGroup().getOperator().equals(Operator.OR))
-                System.out.println("*************** \uD83D\uDE3F Avez-vous un document pour " + error.getName() + " \uD83D\uDE3F ? ***************");
+            Map<Group, List<ConditionIdentity>> errorsByGroup = result.getErrors().stream().collect(groupingBy(ConditionIdentity::getGroup, toList()));
+            for (Map.Entry<Group, List<ConditionIdentity>> errorGroup : errorsByGroup.entrySet()) {
+                if (errorGroup.getKey().getOperator().equals(Operator.OR)) {
+                    System.out.println("*************** Avez-vous l'un de ces documents ? ***************");
+                    for (ConditionIdentity error : errorGroup.getValue()) {
+                        System.out.println("****************************** " + error.getName() + " ? ***************");
+                    }
+                }
+                if (errorGroup.getKey().getOperator().equals(Operator.AND)) {
+                    System.out.println("*************** Avez-vous ces documents ? ***************");
+                    for (ConditionIdentity error : errorGroup.getValue()) {
+                        System.out.println("****************************** " + error.getName() + " ? ***************");
+                    }
+                }
             }
         }
     }

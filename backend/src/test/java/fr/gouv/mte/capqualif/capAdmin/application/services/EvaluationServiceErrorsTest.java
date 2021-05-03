@@ -111,11 +111,11 @@ class EvaluationServiceErrorsTest {
 
         // Given
         Marin marin = new Marin(Arrays.asList(
-                new Data<String>("age", "20"),
-                new Data<String>("aptitude", "inapte"),
+                new Data<String>("age", "12"),
+                new Data<String>("aptitude", "apte"),
                 new Data<List<String>>("formations", Arrays.asList(
                         "Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche")),
-                new Data<List<String>>("titres", Collections.emptyList())
+                new Data<List<String>>("titres", Collections.singletonList("CFBS"))
             )
         );
 
@@ -124,7 +124,7 @@ class EvaluationServiceErrorsTest {
 
         // Then
         List<ConditionIdentity> expected = Collections.singletonList(
-                new ConditionIdentity("age",new Group("age"))
+                new ConditionIdentity("age", new Group("age", Operator.AND))
         );
 
         assertEquals(expected, actual);
@@ -156,33 +156,33 @@ class EvaluationServiceErrorsTest {
         assertEquals(expected, actual);
     }
 
-//    @Test
-//    void shouldReturnAllFormationsError_dynamicallyPopulated() throws IOException {
-//
-//        // Given
-//        Marin marin = new Marin(Arrays.asList(
-//                new Data<String>("age", "26"),
-//                new Data<String>("aptitude", "apte"),
-//                new Data<List<String>>("formations", Collections.emptyList()),
-//                new Data<List<String>>("titres", Collections.singletonList("CFBS"))
-//            )
-//        );
-//
-//        // When
-//        List<ConditionIdentity> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getErrors();
-//
-//
-//        // Then
-//        List<ConditionIdentity> expected = Arrays.asList(
-//                new ConditionIdentity("module de formation modulaire P1", "formations modulaires"),
-//                new ConditionIdentity("module de formation modulaire P2", "formations modulaires"),
-//                new ConditionIdentity("titre reconnu équivalent à la formation modulaire 2006", "titres reconnus équivalents à la formation modulaire"),
-//                new ConditionIdentity("titre reconnu équivalent à la formation modulaire 2005", "titres reconnus équivalents à la formation modulaire")
-//        );
-//
-//        assertEquals(expected, actual);
-//    }
-//
+    @Test
+    void shouldReturnAllFormationsError_dynamicallyPopulated() throws IOException {
+
+        // Given
+        Marin marin = new Marin(Arrays.asList(
+                new Data<String>("age", "26"),
+                new Data<String>("aptitude", "apte"),
+                new Data<List<String>>("formations", Collections.emptyList()),
+                new Data<List<String>>("titres", Arrays.asList("CFBS"))
+        )
+        );
+
+        // When
+        List<ConditionIdentity> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getErrors();
+
+
+        // Then
+        List<ConditionIdentity> expected = Arrays.asList(
+                new ConditionIdentity("module de formation modulaire P1", new Group("formations modulaires", Operator.AND)),
+                new ConditionIdentity("module de formation modulaire P2", new Group("formations modulaires", Operator.AND)),
+                new ConditionIdentity("titre reconnu équivalent à la formation modulaire 2006", new Group("titres reconnus équivalents à la formation modulaire", Operator.OR)),
+                new ConditionIdentity("titre reconnu équivalent à la formation modulaire 2005", new Group("titres reconnus équivalents à la formation modulaire", Operator.OR))
+        );
+
+        assertEquals(expected, actual);
+    }
+
 //    @Test
 //    void shouldReturnErrorsForCompetenceSecuButNotForFormation_dynamicallyPopulated() throws IOException {
 //
