@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 import './Editor.scss';
 
 const Editor = () => {
+  const generateJson = () => {
+    return '';
+  };
+
   return (
     <div>
-      <div>Blabla</div>
+      <button onClick={() => generateJson()}>Génerer</button>
     </div>
   );
 };
