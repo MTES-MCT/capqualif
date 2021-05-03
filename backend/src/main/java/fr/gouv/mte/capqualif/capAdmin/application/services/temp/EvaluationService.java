@@ -53,7 +53,12 @@ public class EvaluationService {
     // TO DO : temp, remove later
 
     private void logResults(ParseResult result) {
-        System.out.println("\n *************** Evaluation result is " + result.areConditionsSatisfied() + " ***************");
+        if (result.areConditionsSatisfied()) {
+            System.out.println("\nxxxxxxxxxxxx C'est parfait, vous remplissez les conditions pour obtenir ce titre. xxxxxxxxxxxx\n");
+        } else {
+            System.out.println("\nxxxxxxxxxxxx Vous ne remplissez les conditions pour obtenir ce titre. xxxxxxxxxxxx\n");
+        }
+
         if (!result.areConditionsSatisfied()) {
             Map<Group, List<ConditionIdentity>> errorsByGroup = result.getErrors().stream().collect(groupingBy(ConditionIdentity::getGroup, toList()));
             for (Map.Entry<Group, List<ConditionIdentity>> errorGroup : errorsByGroup.entrySet()) {
