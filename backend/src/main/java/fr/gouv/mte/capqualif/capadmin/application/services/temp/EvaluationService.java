@@ -3,8 +3,11 @@ package fr.gouv.mte.capqualif.capadmin.application.services.temp;
 import fr.gouv.mte.capqualif.capadmin.application.services.JsonPopulator;
 import fr.gouv.mte.capqualif.capadmin.domain.*;
 import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
+import javassist.bytecode.stackmap.TypeData;
 import org.springframework.stereotype.Component;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,8 @@ import static java.util.stream.Collectors.toList;
 public class EvaluationService {
 
     private final JsonPopulator jsonPopulator;
+    private final static Logger LOGGER = Logger.getLogger(EvaluationService.class.getName());
+
 
     public EvaluationService(JsonPopulator jsonPopulator) {
         this.jsonPopulator = jsonPopulator;
@@ -28,7 +33,7 @@ public class EvaluationService {
             try {
                 titre = jsonPopulator.populate(titre, marin);
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.log(Level.WARNING, e.toString());
             }
         }
 
