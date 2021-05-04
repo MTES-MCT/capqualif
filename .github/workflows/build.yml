@@ -1,4 +1,4 @@
-name: Build
+name: Pre-push
 on:
   push:
     branches:
@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   sonarcloud:
-    name: SonarCloud
+    name: SonarCloudFront
     runs-on: ubuntu-latest
     defaults:
         run:
@@ -23,7 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
   build:
-    name: Build
+    name: SonarCloudBack
     runs-on: ubuntu-latest
     defaults:
       run:
