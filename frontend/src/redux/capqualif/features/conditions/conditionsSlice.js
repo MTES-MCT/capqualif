@@ -1,16 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { CAPQUALIF_URL, CONDITIONS_ENDPOINT } from '../../../api/apiList';
+import { CAPQUALIF_URL, CONDITIONS_ENDPOINT } from '../../../../api/apiList';
 
 export const getConditions = createAsyncThunk(
   'conditions/getConditions',
-  async (requestData, numeroDeMarin) => {
-    console.log(requestData);
+  async (requestData) => {
     const response = await axios.get(
       `${CAPQUALIF_URL}/${CONDITIONS_ENDPOINT}/${requestData.titreId}/${requestData.numeroDeMarin}`
     );
-    console.log(response.data);
     return response.data;
   }
 );

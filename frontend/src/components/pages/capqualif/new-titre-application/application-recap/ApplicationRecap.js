@@ -7,12 +7,7 @@ import {
   FONT_COLORS,
   FONT_SIZES,
 } from '../../../../../dictionnary/saas/variables';
-import {
-  ADD_PIECE_ROUTE,
-  DASHBOARD_ROUTE,
-} from '../../../../../app/routesList';
-
-import { getTitre } from '../../../../../redux/features/titresCatalog/titresSlice';
+import { DASHBOARD_ROUTE } from '../../../../../app/routesList';
 
 import Breadcrumb from '../../../../_cq/breadcrumb/Breadcrumb';
 import SectionHead from '../../../../_cq/section/section-head/SectionHead';
@@ -22,12 +17,10 @@ import CqItemOfMarin from '../../../../_cq/cq-item/marin/CqItemOfMarin';
 import {
   ACTION_TYPES,
   BUTTON_LABELS,
-  STATUS_APTITUDE_MEDICALE,
-  STATUS_TITRE,
 } from '../../../../../dictionnary/demandeDeTitre';
 import Button from '../../../../_cq/button/Button';
 
-import { getConditions } from '../../../../../redux/features/conditions/conditionsSlice';
+import { getConditions } from '../../../../../redux/capqualif/features/conditions/conditionsSlice';
 
 const ApplicationRecap = () => {
   const dispatch = useDispatch();

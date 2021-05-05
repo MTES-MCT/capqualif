@@ -1,7 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { getAllTitres } from '../../../../../redux/features/titresCatalog/titresSlice';
+import React, { Fragment } from 'react';
 
 import './NewTitreChoice.scss';
 

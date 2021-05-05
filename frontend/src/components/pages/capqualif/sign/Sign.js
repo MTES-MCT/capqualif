@@ -6,7 +6,7 @@ import { DASHBOARD_ROUTE } from '../../../../app/routesList';
 
 import HeaderBrand from '../../../_rf/header-brand/HeaderBrand';
 
-import { getMarinBasicDataByNumeroDeMarin } from '../../../../redux/features/marinData/marinsSlice';
+import { getMarinBasicDataByNumeroDeMarin } from '../../../../redux/capqualif/features/marinData/marinsSlice';
 
 import './Sign.scss';
 
