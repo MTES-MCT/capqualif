@@ -1,6 +1,6 @@
-package fr.gouv.mte.capqualif.capQualif.instruction.application.ports.in;
+package fr.gouv.mte.capqualif.capqualif.instruction.application.ports.in;
 
-import fr.gouv.mte.capqualif.capQualif.instruction.domain.ComparisonsSummary;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.ComparisonsSummary;
 
 import java.util.List;
 

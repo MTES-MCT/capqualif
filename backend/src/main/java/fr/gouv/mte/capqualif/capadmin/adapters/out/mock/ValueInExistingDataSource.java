@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capAdmin.adapters.out.mock;
+package fr.gouv.mte.capqualif.capadmin.adapters.out.mock;
 
 import java.util.Objects;
 

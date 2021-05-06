@@ -1,8 +1,8 @@
-package fr.gouv.mte.capqualif.capAdmin.adapters.in.web;
+package fr.gouv.mte.capqualif.capadmin.adapters.in.web;
 
-import fr.gouv.mte.capqualif.capAdmin.application.ports.in.CreateTitreUseCase;
-import fr.gouv.mte.capqualif.capAdmin.application.services.temp.EvaluationService;
-import fr.gouv.mte.capqualif.capAdmin.domain.Titre;
+import fr.gouv.mte.capqualif.capadmin.application.ports.in.CreateTitreUseCase;
+import fr.gouv.mte.capqualif.capadmin.application.services.temp.EvaluationService;
+import fr.gouv.mte.capqualif.capadmin.domain.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

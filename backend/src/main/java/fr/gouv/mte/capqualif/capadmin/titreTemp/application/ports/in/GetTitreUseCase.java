@@ -1,6 +1,6 @@
-package fr.gouv.mte.capqualif.capAdmin.titreTemp.application.ports.in;
+package fr.gouv.mte.capqualif.capadmin.titreTemp.application.ports.in;
 
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.Titre;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.Titre;
 
 public interface GetTitreUseCase {
 

@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capAdmin.adapters.out.persistence;
+package fr.gouv.mte.capqualif.capadmin.adapters.out.persistence;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import org.hibernate.annotations.Type;
@@ -18,7 +18,7 @@ public class TitreJpaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String titre;
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
@@ -28,17 +28,17 @@ public class TitreJpaEntity {
     public TitreJpaEntity() {
     }
 
-    public TitreJpaEntity(String name, String conditions) {
-        this.name = name;
+    public TitreJpaEntity(String titre, String conditions) {
+        this.titre = titre;
         this.conditions = conditions;
     }
 
-    public String getName() {
-        return name;
+    public String getTitre() {
+        return titre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public String getConditions() {
@@ -53,7 +53,7 @@ public class TitreJpaEntity {
     public String toString() {
         return "TitreJpaEntity{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", titre='" + titre + '\'' +
                 ", conditions='" + conditions + '\'' +
                 '}';
     }

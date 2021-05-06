@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.enums;
+package fr.gouv.mte.capqualif.capadmin.titreTemp.domain.enums;
 
 public enum DataType {
     DATE,

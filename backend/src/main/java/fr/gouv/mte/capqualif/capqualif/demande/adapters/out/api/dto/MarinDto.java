@@ -1,5 +1,5 @@
 
-package fr.gouv.mte.capqualif.capQualif.demande.adapters.out.api.dto;
+package fr.gouv.mte.capqualif.capqualif.demande.adapters.out.api.dto;
 
 // DOC : This object is not a 100% fidelity mapping to the API JSON response.
 // Fields that seem unnecessary for our app (ex : codeStatutAdm) are not included in this object.

@@ -1,8 +1,8 @@
-package fr.gouv.mte.capqualif.capAdmin.titreTemp.adapters.out.api;
+package fr.gouv.mte.capqualif.capadmin.titreTemp.adapters.out.api;
 
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.adapters.out.api.mocks.TitresApiMock;
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.application.ports.out.GetTitrePort;
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.Titre;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.adapters.out.api.mocks.TitresApiMock;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.application.ports.out.GetTitrePort;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

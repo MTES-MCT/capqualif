@@ -1,7 +1,7 @@
-package fr.gouv.mte.capqualif.capAdmin.titreTemp.adapters.out.api.mocks;
+package fr.gouv.mte.capqualif.capadmin.titreTemp.adapters.out.api.mocks;
 
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.*;
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.enums.*;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.*;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.enums.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

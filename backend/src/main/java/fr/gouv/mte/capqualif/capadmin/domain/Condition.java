@@ -1,6 +1,6 @@
-package fr.gouv.mte.capqualif.capAdmin.domain;
+package fr.gouv.mte.capqualif.capadmin.domain;
 
-import fr.gouv.mte.capqualif.capAdmin.domain.temp.Marin;
+import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
 
 import java.util.*;
 

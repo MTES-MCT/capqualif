@@ -1,8 +1,8 @@
-package fr.gouv.mte.capqualif.capAdmin.application.services;
+package fr.gouv.mte.capqualif.capadmin.application.services;
 
-import fr.gouv.mte.capqualif.capAdmin.domain.Condition;
-import fr.gouv.mte.capqualif.capAdmin.domain.temp.Marin;
-import fr.gouv.mte.capqualif.capAdmin.domain.Titre;
+import fr.gouv.mte.capqualif.capadmin.domain.Condition;
+import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
+import fr.gouv.mte.capqualif.capadmin.domain.Titre;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

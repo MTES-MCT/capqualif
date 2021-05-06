@@ -1,6 +1,6 @@
-package fr.gouv.mte.capqualif.capAdmin.adapters.out.mock;
+package fr.gouv.mte.capqualif.capadmin.adapters.out.mock;
 
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.ConditionTitre;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.ConditionTitre;
 import org.springframework.stereotype.Component;
 
 // NOTE : in the future, this infos will be built in the DAM module

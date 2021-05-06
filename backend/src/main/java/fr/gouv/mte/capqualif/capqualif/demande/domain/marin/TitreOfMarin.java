@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capQualif.demande.domain.marin;
+package fr.gouv.mte.capqualif.capqualif.demande.domain.marin;
 
 import java.util.List;
 

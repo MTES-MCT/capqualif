@@ -1,7 +1,7 @@
-package fr.gouv.mte.capqualif.capQualif.demande.adapters.in.web;
+package fr.gouv.mte.capqualif.capqualif.demande.adapters.in.web;
 
-import fr.gouv.mte.capqualif.capQualif.demande.application.ports.in.GetMarinBasicDataUseCase;
-import fr.gouv.mte.capqualif.capQualif.demande.domain.marin.Marin;
+import fr.gouv.mte.capqualif.capqualif.demande.application.ports.in.GetMarinBasicDataUseCase;
+import fr.gouv.mte.capqualif.capqualif.demande.domain.marin.Marin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

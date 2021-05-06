@@ -1,10 +1,10 @@
-package fr.gouv.mte.capqualif.capQualif.demande.adapters.out.api;
+package fr.gouv.mte.capqualif.capqualif.demande.adapters.out.api;
 
-import fr.gouv.mte.capqualif.capQualif.demande.adapters.out.api.dto.MarinDto;
-import fr.gouv.mte.capqualif.capQualif.demande.adapters.out.api.dto.TitreOfMarinDto;
-import fr.gouv.mte.capqualif.capQualif.demande.application.ports.out.GetMarinDataPort;
-import fr.gouv.mte.capqualif.capQualif.demande.domain.marin.Marin;
-import fr.gouv.mte.capqualif.capQualif.demande.domain.marin.TitreOfMarin;
+import fr.gouv.mte.capqualif.capqualif.demande.adapters.out.api.dto.MarinDto;
+import fr.gouv.mte.capqualif.capqualif.demande.adapters.out.api.dto.TitreOfMarinDto;
+import fr.gouv.mte.capqualif.capqualif.demande.application.ports.out.GetMarinDataPort;
+import fr.gouv.mte.capqualif.capqualif.demande.domain.marin.Marin;
+import fr.gouv.mte.capqualif.capqualif.demande.domain.marin.TitreOfMarin;
 import fr.gouv.mte.capqualif.shared.JsonGetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

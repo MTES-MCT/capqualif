@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capAdmin.titreTemp.domain;
+package fr.gouv.mte.capqualif.capadmin.titreTemp.domain;
 
 public interface ComparisonData {
     String getValue();

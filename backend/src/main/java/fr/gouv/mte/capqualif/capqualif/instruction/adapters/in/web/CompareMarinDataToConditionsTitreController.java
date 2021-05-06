@@ -1,7 +1,7 @@
-package fr.gouv.mte.capqualif.capQualif.instruction.adapters.in.web;
+package fr.gouv.mte.capqualif.capqualif.instruction.adapters.in.web;
 
-import fr.gouv.mte.capqualif.capQualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
-import fr.gouv.mte.capqualif.capQualif.instruction.domain.ComparisonsSummary;
+import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.ComparisonsSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

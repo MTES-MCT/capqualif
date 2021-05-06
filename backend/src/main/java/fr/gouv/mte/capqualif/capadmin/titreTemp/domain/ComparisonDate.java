@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capAdmin.titreTemp.domain;
+package fr.gouv.mte.capqualif.capadmin.titreTemp.domain;
 
 import java.time.LocalDate;
 import java.util.Objects;

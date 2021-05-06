@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capQualif.instruction.application.services;
+package fr.gouv.mte.capqualif.capqualif.instruction.application.services;
 
 public class AltCompareMarinDataToConditionsTitre {
 

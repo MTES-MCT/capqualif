@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capQualif.instruction;
+package fr.gouv.mte.capqualif.capqualif.instruction;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

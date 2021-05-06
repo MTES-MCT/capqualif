@@ -1,7 +1,7 @@
-package fr.gouv.mte.capqualif.capQualif.demande.adapters.out.api;
+package fr.gouv.mte.capqualif.capqualif.demande.adapters.out.api;
 
-import fr.gouv.mte.capqualif.capQualif.demande.adapters.out.api.dto.MarinDto;
-import fr.gouv.mte.capqualif.capQualif.demande.domain.marin.Marin;
+import fr.gouv.mte.capqualif.capqualif.demande.adapters.out.api.dto.MarinDto;
+import fr.gouv.mte.capqualif.capqualif.demande.domain.marin.Marin;
 import org.springframework.stereotype.Component;
 
 @Component

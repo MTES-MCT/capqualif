@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capAdmin.domain;
+package fr.gouv.mte.capqualif.capadmin.domain;
 
 import java.util.List;
 

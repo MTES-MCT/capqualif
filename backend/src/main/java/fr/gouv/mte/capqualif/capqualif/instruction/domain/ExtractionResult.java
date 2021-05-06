@@ -1,6 +1,6 @@
-package fr.gouv.mte.capqualif.capQualif.instruction.domain;
+package fr.gouv.mte.capqualif.capqualif.instruction.domain;
 
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.enums.DataType;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.enums.DataType;
 
 import java.util.Objects;
 

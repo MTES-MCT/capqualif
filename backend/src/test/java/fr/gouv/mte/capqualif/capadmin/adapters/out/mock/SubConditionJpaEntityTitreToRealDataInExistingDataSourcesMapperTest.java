@@ -1,7 +1,7 @@
-package fr.gouv.mte.capqualif.capAdmin.adapters.out.mock;
+package fr.gouv.mte.capqualif.capadmin.adapters.out.mock;
 
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.*;
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.enums.*;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.*;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.enums.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

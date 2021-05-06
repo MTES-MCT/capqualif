@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capQualif.demande.adapters.out.api;
+package fr.gouv.mte.capqualif.capqualif.demande.adapters.out.api;
 
 public class ConvertNumeroDeMarinToTechnicalId {
 

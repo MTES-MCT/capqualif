@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capQualif.demande.application.services;
+package fr.gouv.mte.capqualif.capqualif.demande.application.services;
 
 class ConvertNumeroDeMarinToTechnicalIdServiceTest {
 

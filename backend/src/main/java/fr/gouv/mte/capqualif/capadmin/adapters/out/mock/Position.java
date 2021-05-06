@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capAdmin.adapters.out.mock;
+package fr.gouv.mte.capqualif.capadmin.adapters.out.mock;
 
 // For reference, see : https://stackoverflow.com/a/8811869
 

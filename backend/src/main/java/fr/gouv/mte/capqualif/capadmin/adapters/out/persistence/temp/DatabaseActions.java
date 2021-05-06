@@ -1,13 +1,13 @@
-package fr.gouv.mte.capqualif.capAdmin.adapters.out.persistence.temp;
+package fr.gouv.mte.capqualif.capadmin.adapters.out.persistence.temp;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.persistence.TitreJpaEntity;
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.persistence.TitreRepository;
-import fr.gouv.mte.capqualif.capAdmin.application.services.temp.EvaluationService;
-import fr.gouv.mte.capqualif.capAdmin.domain.*;
-import fr.gouv.mte.capqualif.capAdmin.domain.temp.Marin;
+import fr.gouv.mte.capqualif.capadmin.adapters.out.persistence.TitreJpaEntity;
+import fr.gouv.mte.capqualif.capadmin.adapters.out.persistence.TitreRepository;
+import fr.gouv.mte.capqualif.capadmin.application.services.temp.EvaluationService;
+import fr.gouv.mte.capqualif.capadmin.domain.*;
+import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,7 +40,7 @@ public class DatabaseActions {
         Type listType = new TypeToken<ArrayList<Condition>>(){}.getType();
         List<Condition> list = new Gson().fromJson(titreJpa.getConditions(), listType);
 
-        Titre titre = new Titre(titreJpa.getName(), list);
+        Titre titre = new Titre(titreJpa.getTitre(), list);
         System.out.println(titre);
 
         Marin marin = new Marin(Arrays.asList(

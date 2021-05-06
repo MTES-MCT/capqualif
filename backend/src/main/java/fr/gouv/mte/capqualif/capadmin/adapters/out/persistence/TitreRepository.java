@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capAdmin.adapters.out.persistence;
+package fr.gouv.mte.capqualif.capadmin.adapters.out.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

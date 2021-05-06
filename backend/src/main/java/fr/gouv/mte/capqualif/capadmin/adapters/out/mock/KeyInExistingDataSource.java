@@ -1,8 +1,8 @@
-package fr.gouv.mte.capqualif.capAdmin.adapters.out.mock;
+package fr.gouv.mte.capqualif.capadmin.adapters.out.mock;
 
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.ComparisonData;
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.ComparisonRule;
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.enums.DataType;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.ComparisonData;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.ComparisonRule;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.enums.DataType;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,15 +1,14 @@
-package fr.gouv.mte.capqualif.capAdmin.application.services.temp;
+package fr.gouv.mte.capqualif.capadmin.application.services.temp;
 
-import fr.gouv.mte.capqualif.capAdmin.application.services.JsonPopulator;
-import fr.gouv.mte.capqualif.capAdmin.domain.*;
-import fr.gouv.mte.capqualif.capAdmin.domain.temp.Marin;
+import fr.gouv.mte.capqualif.capadmin.application.services.JsonPopulator;
+import fr.gouv.mte.capqualif.capadmin.domain.*;
+import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;

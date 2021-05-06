@@ -1,6 +1,6 @@
-package fr.gouv.mte.capqualif.capQualif.demande.application.ports.out;
+package fr.gouv.mte.capqualif.capqualif.demande.application.ports.out;
 
-import fr.gouv.mte.capqualif.capQualif.demande.domain.marin.Marin;
+import fr.gouv.mte.capqualif.capqualif.demande.domain.marin.Marin;
 
 public interface GetMarinDataPort {
 

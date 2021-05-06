@@ -1,8 +1,8 @@
-package fr.gouv.mte.capqualif.capAdmin.adapters.out.mock;
+package fr.gouv.mte.capqualif.capadmin.adapters.out.mock;
 
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.*;
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.enums.DataType;
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.enums.ExistingDataSourceName;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.*;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.enums.DataType;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.enums.ExistingDataSourceName;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

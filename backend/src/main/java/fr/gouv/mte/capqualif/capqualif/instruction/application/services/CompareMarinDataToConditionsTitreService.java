@@ -1,17 +1,17 @@
-package fr.gouv.mte.capqualif.capQualif.instruction.application.services;
+package fr.gouv.mte.capqualif.capqualif.instruction.application.services;
 
-import fr.gouv.mte.capqualif.capQualif.instruction.domain.ComparisonResult;
-import fr.gouv.mte.capqualif.capQualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
-import fr.gouv.mte.capqualif.capQualif.instruction.application.ports.out.GetMarinDataPort;
-import fr.gouv.mte.capqualif.capQualif.instruction.domain.ComparisonsSummary;
-import fr.gouv.mte.capqualif.capQualif.instruction.domain.ExtractionResult;
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.CorrespondingDataInExistingDataSource;
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.EntryInExistingDataSource;
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.ExistingDataSource;
-import fr.gouv.mte.capqualif.capAdmin.adapters.out.mock.KeyInExistingDataSource;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.ComparisonResult;
+import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
+import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.out.GetMarinDataPort;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.ComparisonsSummary;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.ExtractionResult;
+import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.CorrespondingDataInExistingDataSource;
+import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.EntryInExistingDataSource;
+import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.ExistingDataSource;
+import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.KeyInExistingDataSource;
 import fr.gouv.mte.capqualif.shared.TimeConverter;
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.application.ports.out.GetTitrePort;
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.*;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.application.ports.out.GetTitrePort;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

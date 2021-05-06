@@ -1,6 +1,6 @@
-package fr.gouv.mte.capqualif.capAdmin.application.ports.out;
+package fr.gouv.mte.capqualif.capadmin.application.ports.out;
 
-import fr.gouv.mte.capqualif.capAdmin.domain.Titre;
+import fr.gouv.mte.capqualif.capadmin.domain.Titre;
 
 public interface CreateTitrePort {
 

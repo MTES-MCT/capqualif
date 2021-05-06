@@ -1,6 +1,6 @@
-package fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.enums;
+package fr.gouv.mte.capqualif.capadmin.titreTemp.domain.enums;
 
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.ComparisonData;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.ComparisonData;
 
 public enum Status implements ComparisonData {
     // TO DO : check with experts

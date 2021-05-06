@@ -1,7 +1,7 @@
-package fr.gouv.mte.capqualif.capAdmin.titreTemp.adapters.in.web;
+package fr.gouv.mte.capqualif.capadmin.titreTemp.adapters.in.web;
 
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.application.ports.in.GetTitreUseCase;
-import fr.gouv.mte.capqualif.capAdmin.titreTemp.domain.Titre;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.application.ports.in.GetTitreUseCase;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

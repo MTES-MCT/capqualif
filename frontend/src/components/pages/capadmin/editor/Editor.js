@@ -10,7 +10,7 @@ import { createConditions } from '../../../../redux/capadmin/features/conditions
 const Editor = () => {
   const [formData, setFormData] = useState({
     name: '',
-    conditions: '',
+    conditions: [],
   });
 
   const dispatch = useDispatch();
@@ -33,6 +33,33 @@ const Editor = () => {
             value={formData.name || ''}
             aria-label="name-input"
             name="name"
+            onChange={(e) => handleChange(e)}
+          />
+        </label>
+        <label>
+          Intitulé de la condition :
+          <input
+            value={formData.name || ''}
+            aria-label="condition-name-input"
+            name="name"
+            onChange={(e) => handleChange(e)}
+          />
+        </label>
+        <label>
+          Operateur
+          <input
+            value={formData.name || ''}
+            aria-label="condition-operator-input"
+            name="operator"
+            onChange={(e) => handleChange(e)}
+          />
+        </label>
+        <label>
+          Intitulé de la condition :
+          <input
+            value={formData.name || ''}
+            aria-label="condition-name-input"
+            name="condition-name"
             onChange={(e) => handleChange(e)}
           />
         </label>

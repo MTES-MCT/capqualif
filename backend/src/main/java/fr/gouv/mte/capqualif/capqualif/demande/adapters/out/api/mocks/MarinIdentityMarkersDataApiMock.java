@@ -1,6 +1,6 @@
-package fr.gouv.mte.capqualif.capQualif.demande.adapters.out.api.mocks;
+package fr.gouv.mte.capqualif.capqualif.demande.adapters.out.api.mocks;
 
-import fr.gouv.mte.capqualif.capQualif.demande.domain.marin.MarinIdentityMarkersData;
+import fr.gouv.mte.capqualif.capqualif.demande.domain.marin.MarinIdentityMarkersData;
 import org.springframework.stereotype.Component;
 
 @Component
