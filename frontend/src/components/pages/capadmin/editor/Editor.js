@@ -1,16 +1,19 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
 import './Editor.scss';
+
 import { generateConditions } from './logic';
-import ResultDisplayer from '../result-displayer/ResultDisplayer';
+import { createConditions } from '../../../../redux/capadmin/features/conditions/conditionsSlice';
 
 const Editor = () => {
   const [formData, setFormData] = useState({
     name: '',
     conditions: '',
   });
-  const [finalData, setFinalData] = useState(null);
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,7 +21,7 @@ const Editor = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFinalData(formData);
+    dispatch(createConditions(formData));
   };
 
   return (
@@ -35,7 +38,6 @@ const Editor = () => {
         </label>
         <input type="submit" value="Génerer" data-testid="submit-input" />
       </form>
-      <div aria-label="result">{JSON.stringify(finalData)}</div>
     </Fragment>
   );
 };

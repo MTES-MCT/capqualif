@@ -16,7 +16,8 @@ import {
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import marinsReducer from './capqualif/features/marinData/marinsSlice';
 import titresReducer from './capqualif/features/titresCatalog/titresSlice';
-import conditionsReducer from './capqualif/features/conditions/conditionsSlice';
+// import conditionsReducer from './capqualif/features/conditions/conditionsSlice';
+import conditionsReducer from './capadmin/features/conditions/conditionsSlice';
 
 const reducers = combineReducers({
   marinsReducer,
