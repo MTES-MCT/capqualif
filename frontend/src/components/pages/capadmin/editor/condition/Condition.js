@@ -18,8 +18,11 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
     }
   }, [shouldISendCondition]);
 
-  const handleChange = (e) => {
-    setConditionData({ ...conditionData, [e.target.name]: e.target.value });
+  const handleChange = (event) => {
+    setConditionData({
+      ...conditionData,
+      [event.target.name]: event.target.value,
+    });
   };
 
   return (
@@ -30,7 +33,7 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
           value={conditionData.name || ''}
           aria-label="condition-name-input"
           name="name"
-          onChange={(e) => handleChange(e)}
+          onChange={(event) => handleChange(event)}
         />
       </label>
       <label>
@@ -39,7 +42,7 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
           value={conditionData.operator || ''}
           aria-label="condition-operator-input"
           name="operator"
-          onChange={(e) => handleChange(e)}
+          onChange={(event) => handleChange(event)}
         />
       </label>
       <label>
@@ -48,7 +51,7 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
           value={conditionData.leftOpId || ''}
           aria-label="condition-name-input"
           name="leftOpId"
-          onChange={(e) => handleChange(e)}
+          onChange={(event) => handleChange(event)}
         />
       </label>
       <label>
@@ -57,7 +60,7 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
           value={conditionData.rightOp || ''}
           aria-label="condition-name-input"
           name="rightOp"
-          onChange={(e) => handleChange(e)}
+          onChange={(event) => handleChange(event)}
         />
       </label>
     </Fragment>

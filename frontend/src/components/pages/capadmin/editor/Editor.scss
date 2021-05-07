@@ -1,8 +1,17 @@
-form {
+#editor form {
   display: flex;
   flex-direction: column;
 }
 
-input {
+#editor input {
   margin: 1rem;
+}
+
+#editor input[type='submit'],
+#editor button,
+#editor #add {
+  cursor: pointer;
+  border: solid 1px pink;
+  width: 5rem;
+  margin: 5rem;
 }

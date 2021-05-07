@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Children, Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
@@ -8,33 +8,48 @@ import { createConditions } from '../../../../redux/capadmin/features/conditions
 import Condition from './condition/Condition';
 
 const Editor = () => {
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     titre: '',
     conditions: [],
   });
 
   const [shouldSendCondition, setShouldSendCondition] = useState(false);
+  const [conditionsList, setConditionsList] = useState([]);
 
-  const dispatch = useDispatch();
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     setShouldSendCondition(true);
-    dispatch(createConditions(formData));
+    // dispatch(createConditions(formData));
   };
+
+  const conditionsToAdd = [];
 
   const handleConditionFromChild = (condition) => {
-    const updatedConditions = formData.conditions.concat(condition);
+    collectConditions(condition);
+    const updatedConditions = formData.conditions.concat(conditionsToAdd);
+    console.log(updatedConditions);
     setFormData({ ...formData, conditions: updatedConditions });
   };
 
+  const collectConditions = (condition) => {
+    conditionsToAdd.push(condition);
+  };
+
+  const addCondition = () => {
+    setConditionsList(conditionsList.concat('condition'));
+  };
+
+  let i = 0;
+
   return (
-    <Fragment>
-      <form onSubmit={(e) => handleSubmit(e)}>
+    <div id="editor">
+      <form onSubmit={handleSubmit}>
         <label>
           Intitulé du titre :
           <input
@@ -44,13 +59,23 @@ const Editor = () => {
             onChange={(e) => handleChange(e)}
           />
         </label>
-        <Condition
-          sendConditionToParent={handleConditionFromChild}
-          shouldISendCondition={shouldSendCondition}
-        />
+        {conditionsList.map((condition) => {
+          i++;
+          return (
+            <Condition
+              sendConditionToParent={handleConditionFromChild}
+              shouldISendCondition={shouldSendCondition}
+              key={i}
+            />
+          );
+        })}
+        <button type="button" id="add" onClick={() => addCondition()}>
+          Ajouter une condition
+        </button>
+        {/* <button onClick={() => addCondition()}>Ajouter une condition</button> */}
         <input type="submit" value="Génerer" data-testid="submit-input" />
       </form>
-    </Fragment>
+    </div>
   );
 };
 
