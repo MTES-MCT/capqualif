@@ -4,14 +4,16 @@ import { useDispatch } from 'react-redux';
 
 import './Editor.scss';
 
-import { generateConditions } from './logic';
 import { createConditions } from '../../../../redux/capadmin/features/conditions/conditionsSlice';
+import Condition from './condition/Condition';
 
 const Editor = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    titre: '',
     conditions: [],
   });
+
+  const [shouldSendCondition, setShouldSendCondition] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -21,7 +23,13 @@ const Editor = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShouldSendCondition(true);
     dispatch(createConditions(formData));
+  };
+
+  const handleConditionFromChild = (condition) => {
+    const updatedConditions = formData.conditions.concat(condition);
+    setFormData({ ...formData, conditions: updatedConditions });
   };
 
   return (
@@ -30,39 +38,16 @@ const Editor = () => {
         <label>
           Intitulé du titre :
           <input
-            value={formData.name || ''}
+            value={formData.titre || ''}
             aria-label="name-input"
-            name="name"
+            name="titre"
             onChange={(e) => handleChange(e)}
           />
         </label>
-        <label>
-          Intitulé de la condition :
-          <input
-            value={formData.name || ''}
-            aria-label="condition-name-input"
-            name="name"
-            onChange={(e) => handleChange(e)}
-          />
-        </label>
-        <label>
-          Operateur
-          <input
-            value={formData.name || ''}
-            aria-label="condition-operator-input"
-            name="operator"
-            onChange={(e) => handleChange(e)}
-          />
-        </label>
-        <label>
-          Intitulé de la condition :
-          <input
-            value={formData.name || ''}
-            aria-label="condition-name-input"
-            name="condition-name"
-            onChange={(e) => handleChange(e)}
-          />
-        </label>
+        <Condition
+          sendConditionToParent={handleConditionFromChild}
+          shouldISendCondition={shouldSendCondition}
+        />
         <input type="submit" value="Génerer" data-testid="submit-input" />
       </form>
     </Fragment>
