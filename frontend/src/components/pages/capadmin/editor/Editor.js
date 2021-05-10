@@ -1,5 +1,6 @@
-import React, { Children, Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
 
 import './Editor.scss';
@@ -45,8 +46,6 @@ const Editor = () => {
     setConditionsList(conditionsList.concat('condition'));
   };
 
-  let i = 0;
-
   return (
     <div id="editor">
       <form onSubmit={handleSubmit}>
@@ -60,19 +59,17 @@ const Editor = () => {
           />
         </label>
         {conditionsList.map((condition) => {
-          i++;
           return (
             <Condition
               sendConditionToParent={handleConditionFromChild}
               shouldISendCondition={shouldSendCondition}
-              key={i}
+              key={uuid()}
             />
           );
         })}
         <button type="button" id="add" onClick={() => addCondition()}>
           Ajouter une condition
         </button>
-        {/* <button onClick={() => addCondition()}>Ajouter une condition</button> */}
         <input type="submit" value="Génerer" data-testid="submit-input" />
       </form>
     </div>
