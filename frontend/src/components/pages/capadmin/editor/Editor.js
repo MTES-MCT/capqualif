@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
 
 import './Editor.scss';
 
-import { createConditions } from '../../../../redux/capadmin/features/conditions/conditionsSlice';
 import Condition from './condition/Condition';
 
 const Editor = () => {
@@ -15,9 +13,10 @@ const Editor = () => {
     titre: '',
     conditions: [],
   });
-
   const [shouldSendCondition, setShouldSendCondition] = useState(false);
-  const [conditionsList, setConditionsList] = useState([]);
+  const [conditionsBlocks, setConditionsBlocks] = useState([]);
+  let conditionsListUICounter = 0;
+  const conditionsToAdd = [];
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -25,25 +24,32 @@ const Editor = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setShouldSendCondition(true);
+    resetConditionsList();
+    tellChildrenToSendTheirConditions(); // this will trigger handleConditionFromChild()
     // dispatch(createConditions(formData));
   };
 
-  const conditionsToAdd = [];
-
   const handleConditionFromChild = (condition) => {
-    collectConditions(condition);
-    const updatedConditions = formData.conditions.concat(conditionsToAdd);
-    console.log(updatedConditions);
-    setFormData({ ...formData, conditions: updatedConditions });
-  };
-
-  const collectConditions = (condition) => {
     conditionsToAdd.push(condition);
+    setFormData({ ...formData, conditions: conditionsToAdd });
+    tellChildrenToStopSending();
   };
 
-  const addCondition = () => {
-    setConditionsList(conditionsList.concat('condition'));
+  const tellChildrenToSendTheirConditions = () => {
+    setShouldSendCondition(true);
+  };
+
+  const tellChildrenToStopSending = () => {
+    setShouldSendCondition(false);
+  };
+
+  const resetConditionsList = () => {
+    conditionsToAdd.length = 0;
+  };
+
+  // TO DO : refactor to a more elegant solution
+  const displayNewConditionBlock = () => {
+    setConditionsBlocks(conditionsBlocks.concat('condition'));
   };
 
   return (
@@ -58,16 +64,20 @@ const Editor = () => {
             onChange={(e) => handleChange(e)}
           />
         </label>
-        {conditionsList.map((condition) => {
+        {conditionsBlocks.map((condition) => {
           return (
             <Condition
               sendConditionToParent={handleConditionFromChild}
               shouldISendCondition={shouldSendCondition}
-              key={uuid()}
+              key={conditionsListUICounter++}
             />
           );
         })}
-        <button type="button" id="add" onClick={() => addCondition()}>
+        <button
+          type="button"
+          id="add"
+          onClick={() => displayNewConditionBlock()}
+        >
           Ajouter une condition
         </button>
         <input type="submit" value="Génerer" data-testid="submit-input" />

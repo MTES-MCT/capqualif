@@ -1,5 +1,7 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+import './Condition.scss';
 
 const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
   const condition = {
@@ -26,7 +28,7 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
   };
 
   return (
-    <Fragment>
+    <div className="condition">
       <label>
         Intitulé de la condition :
         <input
@@ -63,7 +65,7 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
           onChange={(event) => handleChange(event)}
         />
       </label>
-    </Fragment>
+    </div>
   );
 };
 
