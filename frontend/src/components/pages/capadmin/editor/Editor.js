@@ -75,10 +75,10 @@ const Editor = () => {
         })}
         <button
           type="button"
-          id="add"
+          className="add"
           onClick={() => displayNewConditionBlock()}
         >
-          Ajouter une condition
+          Ajouter des conditions
         </button>
         <input type="submit" value="Génerer" data-testid="submit-input" />
       </form>

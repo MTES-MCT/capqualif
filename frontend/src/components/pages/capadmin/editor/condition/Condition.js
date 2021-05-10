@@ -13,6 +13,9 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
   };
 
   const [conditionData, setConditionData] = useState(condition);
+  const [conditionsBlocks, setConditionsBlocks] = useState([]);
+  let conditionsListUICounter = 0;
+  const conditionsToAdd = [];
 
   useEffect(() => {
     if (shouldISendCondition) {
@@ -25,6 +28,11 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
       ...conditionData,
       [event.target.name]: event.target.value,
     });
+  };
+
+  // TO DO : refactor to a more elegant solution
+  const displayNewConditionBlock = () => {
+    setConditionsBlocks(conditionsBlocks.concat('condition'));
   };
 
   return (
@@ -65,6 +73,22 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
           onChange={(event) => handleChange(event)}
         />
       </label>
+      {conditionsBlocks.map((condition) => {
+        return (
+          <Condition
+            // sendConditionToParent={handleConditionFromChild}
+            // shouldISendCondition={shouldSendCondition}
+            key={conditionsListUICounter++}
+          />
+        );
+      })}
+      <button
+        type="button"
+        className="add"
+        onClick={() => displayNewConditionBlock()}
+      >
+        Ajouter une sous-condition à {conditionData.name}
+      </button>
     </div>
   );
 };
