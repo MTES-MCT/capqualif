@@ -9,19 +9,19 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
     operator: '',
     leftOpId: '',
     rightOp: '',
-    subConditions: [],
+    subconditions: [],
   };
 
   const [conditionData, setConditionData] = useState(condition);
-  const [conditionsBlocks, setConditionsBlocks] = useState([]);
-  let conditionsListUICounter = 0;
-  const conditionsToAdd = [];
+  const [subconditionsBlocks, setSubconditionsBlocks] = useState([]);
+  let subconditionsListUICounter = 0;
+  const subconditionsToAdd = [];
 
-  useEffect(() => {
-    if (shouldISendCondition) {
-      sendConditionToParent(conditionData);
-    }
-  }, [shouldISendCondition]);
+  // useEffect(() => {
+  //   if (shouldISendCondition) {
+  //     sendConditionToParent(conditionData);
+  //   }
+  // }, [shouldISendCondition]);
 
   const handleChange = (event) => {
     setConditionData({
@@ -32,7 +32,22 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
 
   // TO DO : refactor to a more elegant solution
   const displayNewConditionBlock = () => {
-    setConditionsBlocks(conditionsBlocks.concat('condition'));
+    setSubconditionsBlocks(subconditionsBlocks.concat('condition'));
+  };
+
+  // useEffect(() => {
+
+  // }, [conditionData]);
+
+  const addSubconditionFromChild = (subcondition) => {
+    const joined = conditionData.subconditions.concat(subcondition);
+    setConditionData({ ...conditionData, subconditions: joined });
+  };
+
+  const removeSubcondition = (subcondition) => {};
+
+  const validate = () => {
+    sendConditionToParent(conditionData);
   };
 
   return (
@@ -73,22 +88,27 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
           onChange={(event) => handleChange(event)}
         />
       </label>
-      {conditionsBlocks.map((condition) => {
+      {subconditionsBlocks.map((condition) => {
         return (
           <Condition
-            // sendConditionToParent={handleConditionFromChild}
+            sendConditionToParent={addSubconditionFromChild}
             // shouldISendCondition={shouldSendCondition}
-            key={conditionsListUICounter++}
+            key={subconditionsListUICounter++}
           />
         );
       })}
-      <button
-        type="button"
-        className="add"
-        onClick={() => displayNewConditionBlock()}
-      >
-        Ajouter une sous-condition à {conditionData.name}
-      </button>
+      <div className="buttons">
+        <button
+          type="button"
+          className="add"
+          onClick={() => displayNewConditionBlock()}
+        >
+          Ajouter une sous-condition à {conditionData.name}
+        </button>
+        <button type="button" className="validate" onClick={() => validate()}>
+          Valider
+        </button>
+      </div>
     </div>
   );
 };
