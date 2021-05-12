@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
+import { findFirst } from 'obj-traverse/lib/obj-traverse';
 import PropTypes from 'prop-types';
 
 import './Condition.scss';
@@ -35,9 +36,20 @@ const Condition = ({ allConditions, parentId, onChange }) => {
     console.log('before adding, allConditions is ');
     console.log(allConditions);
     if (allConditions.length > 0) {
-      allConditions
-        .find((condition) => condition.id === parentId)
-        .subconditions.push(conditionData);
+      if (
+        allConditions.find((condition) => condition.id === parentId) !==
+        undefined
+      ) {
+        allConditions
+          .find((condition) => condition.id === parentId)
+          .subconditions.push(conditionData);
+      } else {
+        // TO DO : refactor
+        const motherCondition = allConditions[0];
+        findFirst(motherCondition, 'subconditions', {
+          id: parentId,
+        }).subconditions.push(conditionData);
+      }
     } else {
       allConditions.push(conditionData);
     }
@@ -62,8 +74,6 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   const displayNewConditionBlock = () => {
     setSubconditionsBlocks(subconditionsBlocks.concat('condition'));
   };
-
-  // Act as a child
 
   return (
     <div className="condition">
