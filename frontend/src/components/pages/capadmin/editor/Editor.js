@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import './Editor.scss';
 
@@ -14,10 +15,8 @@ const Editor = () => {
     titre: '',
     conditions: [],
   });
-  const [shouldSendCondition, setShouldSendCondition] = useState(false);
   const [conditionsBlocks, setConditionsBlocks] = useState([]);
   let conditionsListUICounter = 0;
-  const conditionsToAdd = [];
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -25,27 +24,6 @@ const Editor = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    resetConditionsList();
-    tellChildToSendConditions(); // this will trigger handleConditionFromChild()
-    dispatch(createConditions(formData));
-  };
-
-  const addSubconditionFromChild = (condition) => {
-    conditionsToAdd.push(condition);
-    setFormData({ ...formData, conditions: conditionsToAdd });
-    tellChildrenToStopSending();
-  };
-
-  const tellChildToSendConditions = () => {
-    setShouldSendCondition(true);
-  };
-
-  const tellChildrenToStopSending = () => {
-    setShouldSendCondition(false);
-  };
-
-  const resetConditionsList = () => {
-    conditionsToAdd.length = 0;
   };
 
   // TO DO : refactor to a more elegant solution
@@ -68,8 +46,13 @@ const Editor = () => {
         {conditionsBlocks.map((condition) => {
           return (
             <Condition
-              tellParentToAddSubcondition={addSubconditionFromChild}
-              shouldISendCondition={shouldSendCondition}
+              parentId={uuid()}
+              allConditions={formData.conditions}
+              onChange={(conditions) => {
+                console.log('final action !');
+                console.log(conditions);
+                setFormData({ ...formData, conditions: conditions });
+              }}
               key={conditionsListUICounter++}
             />
           );

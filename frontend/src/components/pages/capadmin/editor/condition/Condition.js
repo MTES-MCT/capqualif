@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import uuid from 'react-uuid';
 import PropTypes from 'prop-types';
 
 import './Condition.scss';
 
-const Condition = ({
-  shouldISendCondition,
-  tellParentToAddSubcondition,
-  tellParentToRemoveSubcondition,
-}) => {
-  const condition = {
+const Condition = ({ allConditions, parentId, onChange }) => {
+  const initialCondition = {
+    id: uuid(),
     name: '',
     operator: '',
     leftOpId: '',
@@ -16,17 +14,12 @@ const Condition = ({
     subconditions: [],
   };
 
-  const [conditionData, setConditionData] = useState(condition);
+  const [conditionData, setConditionData] = useState(initialCondition);
   const [subconditionsBlocks, setSubconditionsBlocks] = useState([]);
   let subconditionsListUICounter = 0;
 
-  // TO DO : REMOVE ?
-  useEffect(() => {
-    if (shouldISendCondition) {
-      tellParentToAddSubcondition(conditionData);
-    }
-  }, [shouldISendCondition]);
-
+  // Act as a child
+  // 1) save my condition data in my state
   const handleChange = (event) => {
     setConditionData({
       ...conditionData,
@@ -34,54 +27,51 @@ const Condition = ({
     });
   };
 
+  const validate = () => {
+    console.log('my parent id is ');
+    console.log(parentId);
+    console.log('my id is ');
+    console.log(conditionData.id);
+    console.log('before adding, allConditions is ');
+    console.log(allConditions);
+    if (allConditions.length > 0) {
+      allConditions
+        .find((condition) => condition.id === parentId)
+        .subconditions.push(conditionData);
+    } else {
+      allConditions.push(conditionData);
+    }
+    console.log('now, allConditions is ');
+    console.log(allConditions);
+    // 2) send my condition data to my parent (onChange) by triggering the function it gave me
+    onChange(allConditions);
+  };
+
+  // Act as a parent
+  // 1) receive subcondition, add it to my subconditions and give it to my own parent
+  const handleConditionFromChild = (allConditionsWithNewCondition) => {
+    console.log('received data are');
+    console.log(allConditionsWithNewCondition);
+    allConditions = allConditionsWithNewCondition;
+    console.log("let's send this to my parent :");
+    console.log(allConditions);
+    onChange(allConditionsWithNewCondition);
+  };
+
   // TO DO : refactor to a more elegant solution
   const displayNewConditionBlock = () => {
     setSubconditionsBlocks(subconditionsBlocks.concat('condition'));
   };
 
-  useEffect(() => {
-    console.log('inside 1');
-    console.log(conditionData.subconditions);
-  }, []);
-
-  useEffect(() => {
-    console.log('inside 2');
-    console.log(conditionData.subconditions);
-    tellParentToAddSubcondition(conditionData);
-  }, [conditionData.subconditions]);
-
-  const addSubconditionFromChild = (subcondition) => {
-    const joined = conditionData.subconditions.concat(subcondition);
-    setConditionData({ ...conditionData, subconditions: joined });
-    // setConditionData({ ...conditionData, subconditions: subcondition });
-  };
-
-  const removeSubconditionFromChild = (subcondition) => {
-    console.log(conditionData.subconditions);
-    const newValue = conditionData.subconditions.filter(
-      (subcond) => subcond !== subcondition
-    );
-    setConditionData({ ...conditionData, subconditions: newValue });
-    // setSubconditionsBlocks(subconditionsBlocks.filter())
-  };
-
-  const validate = () => {
-    tellParentToAddSubcondition(conditionData);
-  };
-
-  const update = () => {};
-
-  const remove = () => {
-    tellParentToRemoveSubcondition(conditionData);
-  };
+  // Act as a child
 
   return (
     <div className="condition">
       <div className="buttons">
-        <button type="button" className="update" onClick={() => update()}>
+        <button type="button" className="update">
           Modifier
         </button>
-        <button type="button" className="delete" onClick={() => remove()}>
+        <button type="button" className="delete">
           X
         </button>
       </div>
@@ -124,9 +114,9 @@ const Condition = ({
       {subconditionsBlocks.map((condition) => {
         return (
           <Condition
-            tellParentToAddSubcondition={addSubconditionFromChild}
-            tellParentToRemoveSubcondition={removeSubconditionFromChild}
-            // shouldISendCondition={shouldSendCondition}
+            allConditions={allConditions}
+            onChange={(subcondition) => handleConditionFromChild(subcondition)}
+            parentId={conditionData.id}
             key={subconditionsListUICounter++}
           />
         );
