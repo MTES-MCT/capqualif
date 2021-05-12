@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import './Editor.scss';
 
 import Condition from './condition/Condition';
+import { createConditions } from '../../../../redux/capadmin/features/conditions/conditionsSlice';
 
 const Editor = () => {
   const dispatch = useDispatch();
@@ -25,17 +26,17 @@ const Editor = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     resetConditionsList();
-    tellChildrenToSendTheirConditions(); // this will trigger handleConditionFromChild()
-    // dispatch(createConditions(formData));
+    tellChildToSendConditions(); // this will trigger handleConditionFromChild()
+    dispatch(createConditions(formData));
   };
 
-  const handleConditionFromChild = (condition) => {
+  const addSubconditionFromChild = (condition) => {
     conditionsToAdd.push(condition);
     setFormData({ ...formData, conditions: conditionsToAdd });
     tellChildrenToStopSending();
   };
 
-  const tellChildrenToSendTheirConditions = () => {
+  const tellChildToSendConditions = () => {
     setShouldSendCondition(true);
   };
 
@@ -67,7 +68,7 @@ const Editor = () => {
         {conditionsBlocks.map((condition) => {
           return (
             <Condition
-              sendConditionToParent={handleConditionFromChild}
+              tellParentToAddSubcondition={addSubconditionFromChild}
               shouldISendCondition={shouldSendCondition}
               key={conditionsListUICounter++}
             />

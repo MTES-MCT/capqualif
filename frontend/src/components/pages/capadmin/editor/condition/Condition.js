@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 import './Condition.scss';
 
-const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
+const Condition = ({
+  shouldISendCondition,
+  tellParentToAddSubcondition,
+  tellParentToRemoveSubcondition,
+}) => {
   const condition = {
     name: '',
     operator: '',
@@ -15,13 +19,13 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
   const [conditionData, setConditionData] = useState(condition);
   const [subconditionsBlocks, setSubconditionsBlocks] = useState([]);
   let subconditionsListUICounter = 0;
-  const subconditionsToAdd = [];
 
-  // useEffect(() => {
-  //   if (shouldISendCondition) {
-  //     sendConditionToParent(conditionData);
-  //   }
-  // }, [shouldISendCondition]);
+  // TO DO : REMOVE ?
+  useEffect(() => {
+    if (shouldISendCondition) {
+      tellParentToAddSubcondition(conditionData);
+    }
+  }, [shouldISendCondition]);
 
   const handleChange = (event) => {
     setConditionData({
@@ -35,23 +39,52 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
     setSubconditionsBlocks(subconditionsBlocks.concat('condition'));
   };
 
-  // useEffect(() => {
+  useEffect(() => {
+    console.log('inside 1');
+    console.log(conditionData.subconditions);
+  }, []);
 
-  // }, [conditionData]);
+  useEffect(() => {
+    console.log('inside 2');
+    console.log(conditionData.subconditions);
+    tellParentToAddSubcondition(conditionData);
+  }, [conditionData.subconditions]);
 
   const addSubconditionFromChild = (subcondition) => {
     const joined = conditionData.subconditions.concat(subcondition);
     setConditionData({ ...conditionData, subconditions: joined });
+    // setConditionData({ ...conditionData, subconditions: subcondition });
   };
 
-  const removeSubcondition = (subcondition) => {};
+  const removeSubconditionFromChild = (subcondition) => {
+    console.log(conditionData.subconditions);
+    const newValue = conditionData.subconditions.filter(
+      (subcond) => subcond !== subcondition
+    );
+    setConditionData({ ...conditionData, subconditions: newValue });
+    // setSubconditionsBlocks(subconditionsBlocks.filter())
+  };
 
   const validate = () => {
-    sendConditionToParent(conditionData);
+    tellParentToAddSubcondition(conditionData);
+  };
+
+  const update = () => {};
+
+  const remove = () => {
+    tellParentToRemoveSubcondition(conditionData);
   };
 
   return (
     <div className="condition">
+      <div className="buttons">
+        <button type="button" className="update" onClick={() => update()}>
+          Modifier
+        </button>
+        <button type="button" className="delete" onClick={() => remove()}>
+          X
+        </button>
+      </div>
       <label>
         Intitulé de la condition :
         <input
@@ -91,7 +124,8 @@ const Condition = ({ shouldISendCondition, sendConditionToParent }) => {
       {subconditionsBlocks.map((condition) => {
         return (
           <Condition
-            sendConditionToParent={addSubconditionFromChild}
+            tellParentToAddSubcondition={addSubconditionFromChild}
+            tellParentToRemoveSubcondition={removeSubconditionFromChild}
             // shouldISendCondition={shouldSendCondition}
             key={subconditionsListUICounter++}
           />
