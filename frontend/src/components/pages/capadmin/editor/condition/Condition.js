@@ -3,7 +3,7 @@ import uuid from 'react-uuid';
 import {
   findFirst,
   findAndModifyFirst,
-  findAndDeleteFirst,
+  findAndDeleteAll,
 } from 'obj-traverse/lib/obj-traverse';
 import PropTypes from 'prop-types';
 
@@ -87,10 +87,14 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   const deleteCondition = (conditionsList, childrenKey, id) => {
     deleteFromList(conditionsList, childrenKey, id);
     deleteConditionBlock();
+    onChange(conditionsList);
   };
 
   const deleteFromList = (conditionList, childrenKey, id) => {
-    findAndDeleteFirst(conditionList, childrenKey, { id: id });
+    // For some unkown reason, findAndDeleteFirst does not work, so we have to use findAndDeleteAll.
+    // This should not be problem since each condition has a unique id, therefore all = first in our case.
+    findAndDeleteAll(conditionList[0], childrenKey, { id: id });
+    if (conditionList.length === 1) conditionList.pop();
   };
 
   const conditionListIsEmpty = (conditionList) => {
