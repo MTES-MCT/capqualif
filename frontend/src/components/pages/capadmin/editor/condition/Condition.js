@@ -91,8 +91,9 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   };
 
   const deleteFromList = (conditionList, childrenKey, id) => {
-    // For some unkown reason, findAndDeleteFirst does not work, so we have to use findAndDeleteAll.
-    // This should not be problem since each condition has a unique id, therefore all = first in our case.
+    // For some unkown reason, findAndDeleteFirst does not work in case we only have one condition,
+    // so we have to use findAndDeleteAll.
+    // This should not be a problem since each condition has a unique id, therefore all = first in our case.
     findAndDeleteAll(conditionList[0], childrenKey, { id: id });
     if (conditionList.length === 1) conditionList.pop();
   };
