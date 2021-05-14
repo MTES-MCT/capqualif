@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import uuid from 'react-uuid';
-import { findFirst, findAndModifyFirst } from 'obj-traverse/lib/obj-traverse';
+import {
+  findFirst,
+  findAndModifyFirst,
+  findAndDeleteFirst,
+} from 'obj-traverse/lib/obj-traverse';
 import PropTypes from 'prop-types';
 
 import './Condition.scss';
 
-const Condition = ({ allConditions: conditionsList, parentId, onChange }) => {
+const Condition = ({ allConditions, parentId, onChange }) => {
   // ============= Data ==================
 
   const initialCondition = {
@@ -48,24 +52,29 @@ const Condition = ({ allConditions: conditionsList, parentId, onChange }) => {
     if (conditionListIsEmpty(conditionsList)) {
       conditionsList.push(conditionToCreate);
     } else {
-      findConditionById(parentId).subconditions.push(conditionToCreate);
+      findConditionById(conditionsList, parentId).subconditions.push(
+        conditionToCreate
+      );
     }
     onChange(conditionsList);
   };
 
-  const findConditionById = (id) => {
-    const condition = conditionsList.find((condition) => condition.id === id);
-    if (condition !== undefined) return condition;
+  const findConditionById = (conditionsList, id) => {
     return findFirst(conditionsList[0], 'subconditions', {
       id: id,
     });
   };
 
-  const updateCondition = (conditionsList, id, updatedCondition) => {
+  const updateCondition = (
+    conditionsList,
+    childrenKey,
+    id,
+    updatedCondition
+  ) => {
     if (!conditionListIsEmpty(conditionsList)) {
       findAndModifyFirst(
         conditionsList[0],
-        'subconditions',
+        childrenKey,
         {
           id: id,
         },
@@ -75,12 +84,14 @@ const Condition = ({ allConditions: conditionsList, parentId, onChange }) => {
     onChange(conditionsList);
   };
 
-  const deleteCondition = (id) => {
-    deleteFromList(id);
+  const deleteCondition = (conditionsList, childrenKey, id) => {
+    deleteFromList(conditionsList, childrenKey, id);
     deleteConditionBlock();
   };
 
-  const deleteFromList = (conditionList, id) => {};
+  const deleteFromList = (conditionList, childrenKey, id) => {
+    findAndDeleteFirst(conditionList, childrenKey, { id: id });
+  };
 
   const conditionListIsEmpty = (conditionList) => {
     return !conditionList.length > 0;
@@ -91,7 +102,7 @@ const Condition = ({ allConditions: conditionsList, parentId, onChange }) => {
   // ============= Act as a parent =============
   // 1) receive subcondition, add it to my subconditions and give it to my own parent
   const handleConditionFromChild = (allConditionsWithNewCondition) => {
-    conditionsList = allConditionsWithNewCondition;
+    allConditions = allConditionsWithNewCondition;
     onChange(allConditionsWithNewCondition);
   };
 
@@ -105,7 +116,8 @@ const Condition = ({ allConditions: conditionsList, parentId, onChange }) => {
           className="update"
           onClick={() =>
             updateCondition(
-              conditionsList,
+              allConditions,
+              'subconditions',
               conditionToCreate.id,
               conditionToCreate
             )
@@ -116,7 +128,13 @@ const Condition = ({ allConditions: conditionsList, parentId, onChange }) => {
         <button
           type="button"
           className="delete"
-          onClick={() => deleteCondition(conditionToCreate.id)}
+          onClick={() =>
+            deleteCondition(
+              allConditions,
+              'subconditions',
+              conditionToCreate.id
+            )
+          }
         >
           X
         </button>
@@ -160,7 +178,7 @@ const Condition = ({ allConditions: conditionsList, parentId, onChange }) => {
       {subconditionsBlocks.map((condition) => {
         return (
           <Condition
-            allConditions={conditionsList}
+            allConditions={allConditions}
             onChange={(subcondition) => handleConditionFromChild(subcondition)}
             parentId={conditionToCreate.id}
             key={subconditionsListUICounter++}
@@ -179,7 +197,7 @@ const Condition = ({ allConditions: conditionsList, parentId, onChange }) => {
           type="button"
           className="validate"
           onClick={() =>
-            createCondition(conditionsList, conditionToCreate, parentId)
+            createCondition(allConditions, conditionToCreate, parentId)
           }
         >
           Valider
