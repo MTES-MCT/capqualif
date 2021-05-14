@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import './Condition.scss';
 
 const Condition = ({ allConditions, parentId, onChange }) => {
+  // ============= Data ==================
+
   const initialCondition = {
     id: uuid(),
     name: '',
@@ -17,12 +19,22 @@ const Condition = ({ allConditions, parentId, onChange }) => {
 
   const [conditionData, setConditionData] = useState(initialCondition);
 
-  // UI
+  // =======================================
+
+  // ============= UI =======================
+
   const [subconditionsBlocks, setSubconditionsBlocks] = useState([]);
   let subconditionsListUICounter = 0;
 
-  // Act as a child
-  // 1) save my condition data in my state
+  // TO DO : refactor to a more elegant solution
+  const displayNewConditionBlock = () => {
+    setSubconditionsBlocks(subconditionsBlocks.concat('condition'));
+  };
+
+  // =========================================
+
+  // ============= Act as a child ============
+
   const handleChange = (event) => {
     setConditionData({
       ...conditionData,
@@ -30,7 +42,7 @@ const Condition = ({ allConditions, parentId, onChange }) => {
     });
   };
 
-  const validate = () => {
+  const createCondition = () => {
     if (conditionListIsEmpty(allConditions)) {
       allConditions.push(conditionData);
     } else {
@@ -39,30 +51,52 @@ const Condition = ({ allConditions, parentId, onChange }) => {
     onChange(allConditions);
   };
 
-  const update = (id, updatedCondition) => {
-    if (conditionListIsNotEmpty(allConditions)) {
+  const updateCondition = (id, updatedCondition) => {
+    if (!conditionListIsEmpty(allConditions)) {
       const conditionToUpdate = allConditions.find(
         (condition) => condition.id === id
       );
-      console.log(conditionData);
       if (conditionToUpdate !== undefined) {
-        const indexOfConditionToUpdate = allConditions.indexOf(
-          conditionToUpdate
-        );
-        allConditions[indexOfConditionToUpdate] = updatedCondition;
-      } else {
-        findAndModifyFirst(
-          allConditions[0],
-          'subconditions',
-          {
-            id: id,
-          },
+        updateNotNestedCondition(
+          allConditions,
+          conditionToUpdate,
           updatedCondition
         );
+      } else {
+        updateNestedCondition(allConditions, id, updatedCondition);
       }
     }
     onChange(allConditions);
   };
+
+  function updateNotNestedCondition(
+    conditionsList,
+    conditionToUpdate,
+    updatedCondition
+  ) {
+    const indexOfConditionToUpdate = conditionsList.indexOf(conditionToUpdate);
+    conditionsList[indexOfConditionToUpdate] = updatedCondition;
+  }
+
+  const updateNestedCondition = (conditionsList, id, updatedCondition) => {
+    findAndModifyFirst(
+      conditionsList[0],
+      'subconditions',
+      {
+        id: id,
+      },
+      updatedCondition
+    );
+  };
+
+  const deleteCondition = (id) => {
+    deleteFromList(id);
+    deleteFromUI();
+  };
+
+  const deleteFromList = (conditionList, id) => {};
+
+  const deleteFromUI = () => {};
 
   const findConditionById = (id) => {
     const condition = allConditions.find((condition) => condition.id === id);
@@ -72,25 +106,20 @@ const Condition = ({ allConditions, parentId, onChange }) => {
     });
   };
 
-  const conditionListIsNotEmpty = (conditionList) => {
-    return conditionList.length > 0;
-  };
-
   const conditionListIsEmpty = (conditionList) => {
     return !conditionList.length > 0;
   };
 
-  // Act as a parent
+  // =========================================
+
+  // ============= Act as a parent =============
   // 1) receive subcondition, add it to my subconditions and give it to my own parent
   const handleConditionFromChild = (allConditionsWithNewCondition) => {
     allConditions = allConditionsWithNewCondition;
     onChange(allConditionsWithNewCondition);
   };
 
-  // TO DO : refactor to a more elegant solution
-  const displayNewConditionBlock = () => {
-    setSubconditionsBlocks(subconditionsBlocks.concat('condition'));
-  };
+  // =========================================
 
   return (
     <div className="condition">
@@ -98,11 +127,15 @@ const Condition = ({ allConditions, parentId, onChange }) => {
         <button
           type="button"
           className="update"
-          onClick={() => update(conditionData.id, conditionData)}
+          onClick={() => updateCondition(conditionData.id, conditionData)}
         >
           Modifier
         </button>
-        <button type="button" className="delete">
+        <button
+          type="button"
+          className="delete"
+          onClick={() => deleteCondition(conditionData.id)}
+        >
           X
         </button>
       </div>
@@ -160,7 +193,11 @@ const Condition = ({ allConditions, parentId, onChange }) => {
         >
           Ajouter une sous-condition à {conditionData.name}
         </button>
-        <button type="button" className="validate" onClick={() => validate()}>
+        <button
+          type="button"
+          className="validate"
+          onClick={() => createCondition()}
+        >
           Valider
         </button>
       </div>
