@@ -61,6 +61,10 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   };
 
   const findConditionById = (conditionsList, id) => {
+    const condition = allConditions.find(
+      (condition) => condition.id === parentId
+    );
+    if (condition !== undefined) return condition;
     return findFirst(conditionsList[0], 'subconditions', {
       id: id,
     });
@@ -96,6 +100,7 @@ const Condition = ({ allConditions, parentId, onChange }) => {
     // so we have to imlplement this use case ourselves.
 
     // TO DO : implement delete for not nested conditions
+    const conditionToDelete = findConditionById(conditionList, id);
     findAndDeleteFirst(conditionList[0], childrenKey, { id: id });
     // if (conditionList.length === 1) conditionList.pop();
   };
