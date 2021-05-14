@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import uuid from 'react-uuid';
-import { findFirst } from 'obj-traverse/lib/obj-traverse';
+import { findFirst, findAndModifyFirst } from 'obj-traverse/lib/obj-traverse';
 import PropTypes from 'prop-types';
 
 import './Condition.scss';
@@ -31,46 +31,59 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   };
 
   const validate = () => {
-    // console.log('my parent id is ');
-    // console.log(parentId);
-    // console.log('my id is ');
-    // console.log(conditionData.id);
-    // console.log('before adding, allConditions is ');
-    // console.log(allConditions);
-    if (allConditions.length > 0) {
-      findConditionById(conditionData.id).subconditions.push(conditionData);
-    } else {
+    if (conditionListIsEmpty(allConditions)) {
       allConditions.push(conditionData);
+    } else {
+      findConditionById(parentId).subconditions.push(conditionData);
     }
-    // console.log('now, allConditions is ');
-    // console.log(allConditions);
-    // 2) send my condition data to my parent (onChange) by triggering the function it gave me
     onChange(allConditions);
   };
 
-  const update = () => {};
+  const update = (id, updatedCondition) => {
+    if (conditionListIsNotEmpty(allConditions)) {
+      const conditionToUpdate = allConditions.find(
+        (condition) => condition.id === id
+      );
+      console.log(conditionData);
+      if (conditionToUpdate !== undefined) {
+        const indexOfConditionToUpdate = allConditions.indexOf(
+          conditionToUpdate
+        );
+        allConditions[indexOfConditionToUpdate] = updatedCondition;
+      } else {
+        findAndModifyFirst(
+          allConditions[0],
+          'subconditions',
+          {
+            id: id,
+          },
+          updatedCondition
+        );
+      }
+    }
+    onChange(allConditions);
+  };
 
   const findConditionById = (id) => {
-    const condition = allConditions.find(
-      (condition) => condition.id === parentId
-    );
-    if (condition !== undefined) {
-      return condition;
-    } else {
-      return findFirst(allConditions[0], 'subconditions', {
-        id: parentId,
-      });
-    }
+    const condition = allConditions.find((condition) => condition.id === id);
+    if (condition !== undefined) return condition;
+    return findFirst(allConditions[0], 'subconditions', {
+      id: id,
+    });
+  };
+
+  const conditionListIsNotEmpty = (conditionList) => {
+    return conditionList.length > 0;
+  };
+
+  const conditionListIsEmpty = (conditionList) => {
+    return !conditionList.length > 0;
   };
 
   // Act as a parent
   // 1) receive subcondition, add it to my subconditions and give it to my own parent
   const handleConditionFromChild = (allConditionsWithNewCondition) => {
-    // console.log('received data are');
-    // console.log(allConditionsWithNewCondition);
     allConditions = allConditionsWithNewCondition;
-    // console.log("let's send this to my parent :");
-    // console.log(allConditions);
     onChange(allConditionsWithNewCondition);
   };
 
@@ -82,7 +95,11 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   return (
     <div className="condition">
       <div className="buttons">
-        <button type="button" className="update" onClick={() => update()}>
+        <button
+          type="button"
+          className="update"
+          onClick={() => update(conditionData.id, conditionData)}
+        >
           Modifier
         </button>
         <button type="button" className="delete">

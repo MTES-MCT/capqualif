@@ -49,8 +49,6 @@ const Editor = () => {
               parentId={uuid()}
               allConditions={formData.conditions}
               onChange={(conditions) => {
-                console.log('final action !');
-                console.log(conditions);
                 setFormData({ ...formData, conditions: conditions });
               }}
               key={conditionsListUICounter++}
