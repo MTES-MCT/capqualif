@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import './Condition.scss';
 
-const Condition = ({ allConditions, parentId, onChange }) => {
+const Condition = ({ allConditions: conditionsList, parentId, onChange }) => {
   // ============= Data ==================
 
   const initialCondition = {
@@ -17,7 +17,7 @@ const Condition = ({ allConditions, parentId, onChange }) => {
     subconditions: [],
   };
 
-  const [conditionData, setConditionData] = useState(initialCondition);
+  const [conditionToCreate, setConditionData] = useState(initialCondition);
 
   // =======================================
 
@@ -27,9 +27,11 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   let subconditionsListUICounter = 0;
 
   // TO DO : refactor to a more elegant solution
-  const displayNewConditionBlock = () => {
+  const createNewConditionBlock = () => {
     setSubconditionsBlocks(subconditionsBlocks.concat('condition'));
   };
+
+  const deleteConditionBlock = () => {};
 
   // =========================================
 
@@ -37,74 +39,48 @@ const Condition = ({ allConditions, parentId, onChange }) => {
 
   const handleChange = (event) => {
     setConditionData({
-      ...conditionData,
+      ...conditionToCreate,
       [event.target.name]: event.target.value,
     });
   };
 
-  const createCondition = () => {
-    if (conditionListIsEmpty(allConditions)) {
-      allConditions.push(conditionData);
+  const createCondition = (conditionsList, conditionToCreate, parentId) => {
+    if (conditionListIsEmpty(conditionsList)) {
+      conditionsList.push(conditionToCreate);
     } else {
-      findConditionById(parentId).subconditions.push(conditionData);
+      findConditionById(parentId).subconditions.push(conditionToCreate);
     }
-    onChange(allConditions);
+    onChange(conditionsList);
   };
 
-  const updateCondition = (id, updatedCondition) => {
-    if (!conditionListIsEmpty(allConditions)) {
-      const conditionToUpdate = allConditions.find(
-        (condition) => condition.id === id
+  const findConditionById = (id) => {
+    const condition = conditionsList.find((condition) => condition.id === id);
+    if (condition !== undefined) return condition;
+    return findFirst(conditionsList[0], 'subconditions', {
+      id: id,
+    });
+  };
+
+  const updateCondition = (conditionsList, id, updatedCondition) => {
+    if (!conditionListIsEmpty(conditionsList)) {
+      findAndModifyFirst(
+        conditionsList[0],
+        'subconditions',
+        {
+          id: id,
+        },
+        updatedCondition
       );
-      if (conditionToUpdate !== undefined) {
-        updateNotNestedCondition(
-          allConditions,
-          conditionToUpdate,
-          updatedCondition
-        );
-      } else {
-        updateNestedCondition(allConditions, id, updatedCondition);
-      }
     }
-    onChange(allConditions);
-  };
-
-  function updateNotNestedCondition(
-    conditionsList,
-    conditionToUpdate,
-    updatedCondition
-  ) {
-    const indexOfConditionToUpdate = conditionsList.indexOf(conditionToUpdate);
-    conditionsList[indexOfConditionToUpdate] = updatedCondition;
-  }
-
-  const updateNestedCondition = (conditionsList, id, updatedCondition) => {
-    findAndModifyFirst(
-      conditionsList[0],
-      'subconditions',
-      {
-        id: id,
-      },
-      updatedCondition
-    );
+    onChange(conditionsList);
   };
 
   const deleteCondition = (id) => {
     deleteFromList(id);
-    deleteFromUI();
+    deleteConditionBlock();
   };
 
   const deleteFromList = (conditionList, id) => {};
-
-  const deleteFromUI = () => {};
-
-  const findConditionById = (id) => {
-    const condition = allConditions.find((condition) => condition.id === id);
-    if (condition !== undefined) return condition;
-    return findFirst(allConditions[0], 'subconditions', {
-      id: id,
-    });
-  };
 
   const conditionListIsEmpty = (conditionList) => {
     return !conditionList.length > 0;
@@ -115,7 +91,7 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   // ============= Act as a parent =============
   // 1) receive subcondition, add it to my subconditions and give it to my own parent
   const handleConditionFromChild = (allConditionsWithNewCondition) => {
-    allConditions = allConditionsWithNewCondition;
+    conditionsList = allConditionsWithNewCondition;
     onChange(allConditionsWithNewCondition);
   };
 
@@ -127,14 +103,20 @@ const Condition = ({ allConditions, parentId, onChange }) => {
         <button
           type="button"
           className="update"
-          onClick={() => updateCondition(conditionData.id, conditionData)}
+          onClick={() =>
+            updateCondition(
+              conditionsList,
+              conditionToCreate.id,
+              conditionToCreate
+            )
+          }
         >
           Modifier
         </button>
         <button
           type="button"
           className="delete"
-          onClick={() => deleteCondition(conditionData.id)}
+          onClick={() => deleteCondition(conditionToCreate.id)}
         >
           X
         </button>
@@ -142,7 +124,7 @@ const Condition = ({ allConditions, parentId, onChange }) => {
       <label>
         Intitulé de la condition :
         <input
-          value={conditionData.name || ''}
+          value={conditionToCreate.name || ''}
           aria-label="condition-name-input"
           name="name"
           onChange={(event) => handleChange(event)}
@@ -151,7 +133,7 @@ const Condition = ({ allConditions, parentId, onChange }) => {
       <label>
         Operateur :
         <input
-          value={conditionData.operator || ''}
+          value={conditionToCreate.operator || ''}
           aria-label="condition-operator-input"
           name="operator"
           onChange={(event) => handleChange(event)}
@@ -160,7 +142,7 @@ const Condition = ({ allConditions, parentId, onChange }) => {
       <label>
         Left Op Id :
         <input
-          value={conditionData.leftOpId || ''}
+          value={conditionToCreate.leftOpId || ''}
           aria-label="condition-name-input"
           name="leftOpId"
           onChange={(event) => handleChange(event)}
@@ -169,7 +151,7 @@ const Condition = ({ allConditions, parentId, onChange }) => {
       <label>
         Right Op :
         <input
-          value={conditionData.rightOp || ''}
+          value={conditionToCreate.rightOp || ''}
           aria-label="condition-name-input"
           name="rightOp"
           onChange={(event) => handleChange(event)}
@@ -178,9 +160,9 @@ const Condition = ({ allConditions, parentId, onChange }) => {
       {subconditionsBlocks.map((condition) => {
         return (
           <Condition
-            allConditions={allConditions}
+            allConditions={conditionsList}
             onChange={(subcondition) => handleConditionFromChild(subcondition)}
-            parentId={conditionData.id}
+            parentId={conditionToCreate.id}
             key={subconditionsListUICounter++}
           />
         );
@@ -189,14 +171,16 @@ const Condition = ({ allConditions, parentId, onChange }) => {
         <button
           type="button"
           className="add"
-          onClick={() => displayNewConditionBlock()}
+          onClick={() => createNewConditionBlock()}
         >
-          Ajouter une sous-condition à {conditionData.name}
+          Ajouter une sous-condition à {conditionToCreate.name}
         </button>
         <button
           type="button"
           className="validate"
-          onClick={() => createCondition()}
+          onClick={() =>
+            createCondition(conditionsList, conditionToCreate, parentId)
+          }
         >
           Valider
         </button>
