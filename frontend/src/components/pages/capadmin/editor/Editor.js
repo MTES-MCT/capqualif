@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import './Editor.scss';
+import { findInArray } from '../utils';
 
 import Condition from './condition/Condition';
 
@@ -16,17 +17,25 @@ const Editor = () => {
   });
   const [conditionsBlocks, setConditionsBlocks] = useState([]);
 
+  // ============= UI =======================
+
+  const createNewConditionBlock = () => {
+    setConditionsBlocks(conditionsBlocks.concat({ id: uuid() }));
+  };
+
+  const handleDeleteOfConditionBlock = (uiId) => {
+    const conditionToDelete = findInArray(conditionsBlocks, 'id', uiId);
+    conditionsBlocks.splice(conditionsBlocks.indexOf(conditionToDelete), 1);
+  };
+
+  // =======================================
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  };
-
-  // TO DO : refactor to a more elegant solution
-  const displayNewConditionBlock = () => {
-    setConditionsBlocks(conditionsBlocks.concat({ id: uuid() }));
   };
 
   return (
@@ -46,17 +55,19 @@ const Editor = () => {
             <Condition
               parentId={uuid()}
               allConditions={formData.conditions}
-              onChange={(conditions) => {
+              onChangeData={(conditions) => {
                 setFormData({ ...formData, conditions: conditions });
               }}
+              onChangeUI={(uiId) => handleDeleteOfConditionBlock(uiId)}
               key={conditionBlock.id}
+              uiId={conditionBlock.id}
             />
           );
         })}
         <button
           type="button"
           className="add"
-          onClick={() => displayNewConditionBlock()}
+          onClick={() => createNewConditionBlock()}
         >
           Ajouter des conditions
         </button>

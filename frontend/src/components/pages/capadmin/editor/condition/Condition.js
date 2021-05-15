@@ -4,13 +4,19 @@ import {
   findFirst,
   findAndModifyFirst,
   findAndDeleteFirst,
-  findAndDeleteAll,
 } from 'obj-traverse/lib/obj-traverse';
 import PropTypes from 'prop-types';
 
 import './Condition.scss';
+import { findInArray } from '../../utils';
 
-const Condition = ({ allConditions, parentId, onChange }) => {
+const Condition = ({
+  allConditions,
+  parentId,
+  onChangeData,
+  onChangeUI,
+  uiId,
+}) => {
   // ============= Data ==================
 
   const initialCondition = {
@@ -28,17 +34,32 @@ const Condition = ({ allConditions, parentId, onChange }) => {
 
   // ============= UI =======================
 
+  // ============= Act as myself ============
+
   const [subconditionsBlocks, setSubconditionsBlocks] = useState([]);
 
   const createNewConditionBlock = () => {
     setSubconditionsBlocks(subconditionsBlocks.concat({ id: uuid() }));
   };
 
-  const deleteConditionBlock = () => {};
+  const tellParentToDeleteMyBlock = () => {
+    onChangeUI(uiId);
+  };
+
+  // =======================================
+  // ============= Act as parent ============
+
+  const handleDeleteOfSubconditionBlock = (uiId) => {
+    const subconditionToDelete = findInArray(subconditionsBlocks, 'id', uiId);
+    subconditionsBlocks.splice(
+      subconditionsBlocks.indexOf(subconditionToDelete),
+      1
+    );
+  };
 
   // =========================================
 
-  // ============= Act as a child ============
+  // ============= Act as myself ============
 
   const handleChange = (event) => {
     setConditionData({
@@ -48,14 +69,14 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   };
 
   const createCondition = (conditionsList, conditionToCreate, parentId) => {
-    if (conditionListIsEmpty(conditionsList)) {
+    if (isConditionListEmpty(conditionsList)) {
       conditionsList.push(conditionToCreate);
     } else {
       findConditionById(conditionsList, parentId).subconditions.push(
         conditionToCreate
       );
     }
-    onChange(conditionsList);
+    onChangeData(conditionsList);
   };
 
   const findConditionById = (conditionsList, id) => {
@@ -63,7 +84,7 @@ const Condition = ({ allConditions, parentId, onChange }) => {
       ? findFirst(conditionsList[0], 'subconditions', {
           id: id,
         })
-      : conditionsList.find((condition) => condition.id === id);
+      : findInArray(conditionsList, 'id', id);
   };
 
   const isConditionNested = (conditionsList, id) => {
@@ -77,7 +98,7 @@ const Condition = ({ allConditions, parentId, onChange }) => {
     id,
     updatedCondition
   ) => {
-    if (!conditionListIsEmpty(conditionsList)) {
+    if (!isConditionListEmpty(conditionsList)) {
       findAndModifyFirst(
         conditionsList[0],
         childrenKey,
@@ -87,26 +108,30 @@ const Condition = ({ allConditions, parentId, onChange }) => {
         updatedCondition
       );
     }
-    onChange(conditionsList);
+    onChangeData(conditionsList);
   };
 
   const deleteCondition = (conditionsList, childrenKey, id) => {
     deleteFromList(conditionsList, childrenKey, id);
-    deleteConditionBlock();
-    onChange(conditionsList);
+    onChangeData(conditionsList);
+    tellParentToDeleteMyBlock();
   };
 
   const deleteFromList = (conditionList, childrenKey, id) => {
-    if (isConditionNested(conditionList, id)) {
-      findAndDeleteFirst(conditionList[0], childrenKey, { id: id });
-    } else {
-      const conditionToDelete = findConditionById(conditionList, id);
-      conditionList.splice([conditionList.indexOf(conditionToDelete)]);
+    if (!isConditionListEmpty(conditionList)) {
+      if (isConditionNested(conditionList, id)) {
+        findAndDeleteFirst(conditionList[0], childrenKey, { id: id });
+      } else {
+        const conditionToDelete = findConditionById(conditionList, id);
+        if (conditionToDelete && conditionToDelete !== undefined)
+          conditionList.splice([conditionList.indexOf(conditionToDelete)]);
+      }
     }
   };
 
-  const conditionListIsEmpty = (conditionList) => {
-    return !conditionList.length > 0;
+  const isConditionListEmpty = (conditionList) => {
+    if (conditionList && conditionList !== undefined)
+      return !conditionList.length > 0;
   };
 
   // =========================================
@@ -115,7 +140,7 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   // 1) receive subcondition, add it to my subconditions and give it to my own parent
   const handleConditionFromChild = (allConditionsWithNewCondition) => {
     allConditions = allConditionsWithNewCondition;
-    onChange(allConditionsWithNewCondition);
+    onChangeData(allConditionsWithNewCondition);
   };
 
   // =========================================
@@ -187,9 +212,13 @@ const Condition = ({ allConditions, parentId, onChange }) => {
         return (
           <Condition
             allConditions={allConditions}
-            onChange={(subcondition) => handleConditionFromChild(subcondition)}
+            onChangeData={(subcondition) =>
+              handleConditionFromChild(subcondition)
+            }
+            onChangeUI={(uiId) => handleDeleteOfSubconditionBlock(uiId)}
             parentId={conditionData.id}
             key={conditionBlock.id}
+            uiId={conditionBlock.id}
           />
         );
       })}
