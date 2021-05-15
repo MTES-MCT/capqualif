@@ -61,13 +61,16 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   };
 
   const findConditionById = (conditionsList, id) => {
-    const condition = allConditions.find(
-      (condition) => condition.id === parentId
-    );
-    if (condition !== undefined) return condition;
-    return findFirst(conditionsList[0], 'subconditions', {
-      id: id,
-    });
+    return isConditionNested(conditionsList, id)
+      ? findFirst(conditionsList[0], 'subconditions', {
+          id: id,
+        })
+      : conditionsList.find((condition) => condition.id === id);
+  };
+
+  const isConditionNested = (conditionsList, id) => {
+    const condition = conditionsList.find((condition) => condition.id === id);
+    if (condition === undefined) return true;
   };
 
   const updateCondition = (
@@ -96,13 +99,12 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   };
 
   const deleteFromList = (conditionList, childrenKey, id) => {
-    // For some unkown reason, findAndDeleteFirst does not work in case we only have one condition,
-    // so we have to imlplement this use case ourselves.
-
-    // TO DO : implement delete for not nested conditions
-    const conditionToDelete = findConditionById(conditionList, id);
-    findAndDeleteFirst(conditionList[0], childrenKey, { id: id });
-    // if (conditionList.length === 1) conditionList.pop();
+    if (isConditionNested(conditionList, id)) {
+      findAndDeleteFirst(conditionList[0], childrenKey, { id: id });
+    } else {
+      const conditionToDelete = findConditionById(conditionList, id);
+      conditionList.splice([conditionList.indexOf(conditionToDelete)]);
+    }
   };
 
   const conditionListIsEmpty = (conditionList) => {
