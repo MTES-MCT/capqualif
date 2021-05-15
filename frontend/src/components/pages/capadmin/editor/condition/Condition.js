@@ -29,11 +29,9 @@ const Condition = ({ allConditions, parentId, onChange }) => {
   // ============= UI =======================
 
   const [subconditionsBlocks, setSubconditionsBlocks] = useState([]);
-  let subconditionsListUICounter = 0;
 
-  // TO DO : refactor to a more elegant solution
   const createNewConditionBlock = () => {
-    setSubconditionsBlocks(subconditionsBlocks.concat('condition'));
+    setSubconditionsBlocks(subconditionsBlocks.concat({ id: uuid() }));
   };
 
   const deleteConditionBlock = () => {};
@@ -185,13 +183,13 @@ const Condition = ({ allConditions, parentId, onChange }) => {
           onChange={(event) => handleChange(event)}
         />
       </label>
-      {subconditionsBlocks.map((condition) => {
+      {subconditionsBlocks.map((conditionBlock) => {
         return (
           <Condition
             allConditions={allConditions}
             onChange={(subcondition) => handleConditionFromChild(subcondition)}
             parentId={conditionData.id}
-            key={subconditionsListUICounter++}
+            key={conditionBlock.id}
           />
         );
       })}

@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import './Editor.scss';
 
 import Condition from './condition/Condition';
-import { createConditions } from '../../../../redux/capadmin/features/conditions/conditionsSlice';
 
 const Editor = () => {
   const dispatch = useDispatch();
@@ -16,7 +15,6 @@ const Editor = () => {
     conditions: [],
   });
   const [conditionsBlocks, setConditionsBlocks] = useState([]);
-  let conditionsListUICounter = 0;
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -28,7 +26,7 @@ const Editor = () => {
 
   // TO DO : refactor to a more elegant solution
   const displayNewConditionBlock = () => {
-    setConditionsBlocks(conditionsBlocks.concat('condition'));
+    setConditionsBlocks(conditionsBlocks.concat({ id: uuid() }));
   };
 
   return (
@@ -43,7 +41,7 @@ const Editor = () => {
             onChange={(e) => handleChange(e)}
           />
         </label>
-        {conditionsBlocks.map((condition) => {
+        {conditionsBlocks.map((conditionBlock) => {
           return (
             <Condition
               parentId={uuid()}
@@ -51,7 +49,7 @@ const Editor = () => {
               onChange={(conditions) => {
                 setFormData({ ...formData, conditions: conditions });
               }}
-              key={conditionsListUICounter++}
+              key={conditionBlock.id}
             />
           );
         })}
