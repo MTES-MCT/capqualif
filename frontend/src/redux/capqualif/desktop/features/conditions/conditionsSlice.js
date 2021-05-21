@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { CAPQUALIF_URL, CONDITIONS_ENDPOINT } from '../../../../api/apiList';
+import { CAPQUALIF_URL, CONDITIONS_ENDPOINT } from '../../../../../api/apiList';
 
 export const getConditions = createAsyncThunk(
   'conditions/getConditions',

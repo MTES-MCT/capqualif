@@ -6,21 +6,21 @@ import './ApplicationRecap.scss';
 import {
   FONT_COLORS,
   FONT_SIZES,
-} from '../../../../../dictionnary/saas/variables';
-import { DASHBOARD_ROUTE } from '../../../../../app/routesList';
+} from '../../../../../../dictionnary/saas/variables';
+import { DASHBOARD_ROUTE } from '../../../../../../app/routesList';
 
-import Breadcrumb from '../../../../_cq/breadcrumb/Breadcrumb';
-import SectionHead from '../../../../_cq/section/section-head/SectionHead';
+import Breadcrumb from '../../../../../_cq/breadcrumb/Breadcrumb';
+import SectionHead from '../../../../../_cq/section/section-head/SectionHead';
 
-import SectionFooter from '../../../../_cq/section/section-footer/SectionFooter';
-import CqItemOfMarin from '../../../../_cq/cq-item/marin/CqItemOfMarin';
+import SectionFooter from '../../../../../_cq/section/section-footer/SectionFooter';
+import CqItemOfMarin from '../../../../../_cq/cq-item/marin/CqItemOfMarin';
 import {
   ACTION_TYPES,
   BUTTON_LABELS,
-} from '../../../../../dictionnary/demandeDeTitre';
-import Button from '../../../../_cq/button/Button';
+} from '../../../../../../dictionnary/demandeDeTitre';
+import Button from '../../../../../_cq/button/Button';
 
-import { getConditions } from '../../../../../redux/capqualif/features/conditions/conditionsSlice';
+import { getConditions } from '../../../../../../redux/capqualif/desktop/features/conditions/conditionsSlice';
 
 const ApplicationRecap = () => {
   const dispatch = useDispatch();

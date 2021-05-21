@@ -5,7 +5,7 @@ import {
   CAPQUALIF_URL,
   TITRES_ENDPOINT,
   ALL_TITRES_ENDPOINT,
-} from '../../../../api/apiList';
+} from '../../../../../api/apiList';
 
 export const getAllTitres = createAsyncThunk(
   'titres/getAllTitres',

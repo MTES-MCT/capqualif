@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { DASHBOARD_ROUTE } from '../../../../app/routesList';
+import { DASHBOARD_ROUTE } from '../../../../../app/routesList';
 
-import HeaderBrand from '../../../_rf/header-brand/HeaderBrand';
+import HeaderBrand from '../../../../_rf/header-brand/HeaderBrand';
 
-import { getMarinBasicDataByNumeroDeMarin } from '../../../../redux/capqualif/features/marinData/marinsSlice';
+import { getMarinBasicDataByNumeroDeMarin } from '../../../../../redux/capqualif/desktop/features/marinData/marinsSlice';
 
 import './Sign.scss';
 
