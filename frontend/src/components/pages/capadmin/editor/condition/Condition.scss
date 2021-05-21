@@ -1,0 +1,14 @@
+@import '../../../../../sass/gouvfr';
+@import '../../../../../sass/variables';
+
+.condition {
+  border: 1px solid $marianne-blue;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.condition input {
+  border: 2px solid $marianne-blue;
+}

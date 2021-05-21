@@ -19,7 +19,7 @@ public class Mapper {
         // https://stackoverflow.com/a/5554296
         Type listType = new TypeToken<ArrayList<Condition>>(){}.getType();
         List<Condition> list = new Gson().fromJson(titreJpaEntity.getConditions(), listType);
-        return new Titre(titreJpaEntity.getName(), list);
+        return new Titre(titreJpaEntity.getTitre(), list);
     }
 
 }

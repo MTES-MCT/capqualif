@@ -4,29 +4,29 @@ import java.util.List;
 import java.util.Objects;
 
 public class Titre {
-    private String name;
+    private String titre;
     private List<Condition> conditions;
 
     public Titre() {
     }
 
-    public Titre(String name, List<Condition> conditions) {
-        this.name = name;
+    public Titre(String titre, List<Condition> conditions) {
+        this.titre = titre;
         this.conditions = conditions;
     }
 
     // This is a copy constructor. See http://www.javapractices.com/topic/TopicAction.do?Id=12.
     public Titre(Titre titre) {
-        this(titre.getName(), titre.getConditions());
+        this(titre.getTitre(), titre.getConditions());
     }
 
 
-    public String getName() {
-        return name;
+    public String getTitre() {
+        return titre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public List<Condition> getConditions() {
@@ -40,7 +40,7 @@ public class Titre {
     @Override
     public String toString() {
         return "Titre{" +
-                "name='" + name + '\'' +
+                "name='" + titre + '\'' +
                 ", conditions=" + conditions +
                 '}';
     }
@@ -52,12 +52,12 @@ public class Titre {
         if (o == null || getClass() != o.getClass())
             return false;
         Titre titre = (Titre) o;
-        return name.equals(titre.name) &&
+        return this.titre.equals(titre.titre) &&
                 conditions.equals(titre.conditions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, conditions);
+        return Objects.hash(titre, conditions);
     }
 }

@@ -3,7 +3,6 @@ package fr.gouv.mte.capqualif.capadmin.application.services.temp;
 import fr.gouv.mte.capqualif.capadmin.application.services.JsonPopulator;
 import fr.gouv.mte.capqualif.capadmin.domain.*;
 import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
-import javassist.bytecode.stackmap.TypeData;
 import org.springframework.stereotype.Component;
 
 import java.util.logging.Level;

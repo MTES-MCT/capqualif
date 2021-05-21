@@ -20,7 +20,7 @@ public class CreateTitreAdapter implements CreateTitrePort {
     public Titre createTitre(Titre titre) {
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         String json = gson.toJson(titre.getConditions());
-        return mapper.toDomainEntity(this.titreRepository.save(new TitreJpaEntity(titre.getName(), json)));
+        return mapper.toDomainEntity(this.titreRepository.save(new TitreJpaEntity(titre.getTitre(), json)));
     }
 
 }
