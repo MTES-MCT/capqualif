@@ -139,7 +139,8 @@ const Condition = ({
   // ============= Act as a parent =============
   // 1) receive subcondition, add it to my subconditions and give it to my own parent
   const handleConditionFromChild = (allConditionsWithNewCondition) => {
-    allConditions = allConditionsWithNewCondition;
+    const replacement = allConditionsWithNewCondition;
+    allConditions = replacement;
     onChangeData(allConditionsWithNewCondition);
   };
 
