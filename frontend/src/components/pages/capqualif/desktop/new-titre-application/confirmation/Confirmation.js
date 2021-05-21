@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SectionFooter from '../../../../_cq/section/section-footer/SectionFooter';
+import SectionFooter from '../../../../../_cq/section/section-footer/SectionFooter';
 
 import './Confirmation.scss';
 
@@ -8,13 +8,8 @@ import {
   DASHBOARD_ROUTE,
   NEW_TITRE_APPLICATION_RECAP_ROUTE,
   NEW_TITRE_APPLICATION_ROUTE,
-} from '../../../../../app/routesList';
-import CqItemCatalog from '../../../../_cq/cq-item/catalog/CqItemCatalog';
-import {
-  ACTION_TYPES,
-  BUTTON_LABELS,
-} from '../../../../../dictionnary/demandeDeTitre';
-import { FONT_SIZES } from '../../../../../dictionnary/saas/variables';
+} from '../../../../../../app/routesList';
+import CqItemCatalog from '../../../../../_cq/cq-item/catalog/CqItemCatalog';
 
 const Confirmation = (props) => {
   const possibleActions = [

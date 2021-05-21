@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 
 import './DashboardContent.scss';
 
-import CqItemOfMarin from '../../../_cq/cq-item/marin/CqItemOfMarin';
+import CqItemOfMarin from '../../../../../_cq/cq-item/marin/CqItemOfMarin';
 import {
   ACTION_TYPES,
   BUTTON_LABELS,
   CATEGORY_NAMES,
   STATUS_TITRE,
-} from '../../../../dictionnary/demandeDeTitre';
-import { FONT_SIZES } from '../../../../dictionnary/saas/variables';
+} from '../../../../../../dictionnary/demandeDeTitre';
+import { FONT_SIZES } from '../../../../../../dictionnary/saas/variables';
 
 const DashboardContent = () => {
   const allTitresOfMarin = useSelector(

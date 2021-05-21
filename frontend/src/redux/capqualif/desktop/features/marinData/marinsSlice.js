@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { CAPQUALIF_URL, MARINS_ENDPOINT } from '../../../../api/apiList';
+import { CAPQUALIF_URL, MARINS_ENDPOINT } from '../../../../../api/apiList';
 
 export const getMarinBasicDataByNumeroDeMarin = createAsyncThunk(
   'marins/getMarinBasicDataByNumeroDeMarin',
