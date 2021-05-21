@@ -1,3 +1,6 @@
+@import '../../../../sass/gouvfr';
+@import '../../../../sass/variables';
+
 #editor {
   display: flex;
   flex-direction: column;
@@ -17,7 +20,8 @@
 #editor button,
 #editor #add {
   cursor: pointer;
-  border: solid 1px pink;
+  border: 1px solid $marianne-blue;
+  border-radius: 1rem;
   width: fit-content;
   margin: 1rem;
   padding: 1rem;
