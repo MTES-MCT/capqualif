@@ -1,7 +1,14 @@
+/* ------------------------------------ *\
+   This stylesheet has been modified by CapQualif team to suit our app needs.
+   All modifications are labelled with the comment "Modified by CapQualif Team".
+ \* ------------------------------------ */
+
+@import '../variables';
+
 /*
  * DSFR v1.0.0-rc1.0 | restricted use
  */
-@charset "UTF-8";
+// @charset "UTF-8"; Modified by CapQualif Team
 
 /* ------------------------------------ *\
    CORE
@@ -514,9 +521,11 @@ h3 {
 
 h2 {
   font-weight: 700;
-  font-size: 1.75rem;
+  // font-size: 1.75rem;
+  font-size: $sizeH2; // Modified by CapQualif Team
   line-height: 2.25rem;
   margin: 0 0 1rem;
+  color: $g600; // Modified by CapQualif Team
 }
 
 h1 {

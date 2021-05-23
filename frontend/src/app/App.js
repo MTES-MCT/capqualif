@@ -7,7 +7,8 @@ import { store } from '../redux/store';
 
 import { HOME_ROUTE } from './routesList';
 
-import './App.scss';
+import './App.scss'; // CapQualif
+import '../sass/style/core-sde.scss'; // design system
 
 import Routes from './Routes';
 import Sign from '../components/pages/capqualif/desktop/sign/Sign';

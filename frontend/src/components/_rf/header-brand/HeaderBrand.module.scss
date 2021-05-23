@@ -1,3 +1,13 @@
+@import '../../../sass/variables';
+
+// CapQualif
+
+.cq-logo-text {
+  width: 60%;
+}
+
+// Système Design de l'État
+
 /*
  * DSFR v1.0.0-rc1.0 | restricted use
  */
@@ -16,7 +26,8 @@
   vertical-align: middle;
   text-indent: -0.1em;
   color: var(--g800);
-  font-size: 1.05rem;
+  // font-size: 1.05rem;
+  font-size: $small; // Modified by CapQualif Team
   margin-bottom: 0;
 }
 

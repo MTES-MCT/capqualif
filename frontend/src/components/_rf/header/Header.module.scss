@@ -1,11 +1,20 @@
 /*
+ * CapQualif
+ */
+
+.cq-header__container {
+  display: flex;
+  align-items: center;
+}
+
+/*
  * DSFR v1.0.0-rc1.0 | restricted use
  */
 @charset "UTF-8";
 
 /* ------------------------------------ *\
-   HEADER
- \* ------------------------------------ */
+    HEADER
+  \* ------------------------------------ */
 
 .fr-header {
   --is-link: false;
@@ -42,7 +51,7 @@
 }
 
 .fr-header__logo {
-  order: 1;
+  // order: 1; // Modified by CapQualif Team
   flex: 0 0 auto;
   padding: 0.75rem;
 }

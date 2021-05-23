@@ -1,11 +1,10 @@
 import React from 'react';
 
-import './HeaderBrand.scss';
-import './logo.scss';
+import styles from './HeaderBrand.module.scss';
 
 const HeaderBrand = ({ administrationLabel }) => {
   return (
-    <p id="header-brand" class="fr-logo">
+    <p className={`${styles['cq-logo-text']} ${styles['fr-logo']}`}>
       {administrationLabel}
     </p>
   );

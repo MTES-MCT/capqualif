@@ -1,155 +1,156 @@
-// @import '_font';
-@import '_variables';
-@import '_normalize';
-@import '_grid';
-// @import '_gouvfr.scss';
+// // @import '_font';
+// @import '_variables';
+// @import '_normalize';
+// @import '_grid';
+// // @import '_gouvfr.scss';
 
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
-}
+// * {
+//   margin: 0;
+//   padding: 0;
+//   border: 0;
+//   outline: 0;
+//   font-size: 100%;
+//   vertical-align: baseline;
+//   background: transparent;
+// }
 
-html,
-body {
-  display: block;
-  width: 100vw;
-  min-height: 100vh;
-}
-
-body {
-  display: block;
-  overflow-x: hidden;
-  font-family: $marianne;
-  font-size: $baseFontSize;
-  font-weight: $regular;
-  color: $g800;
-  line-height: 1.4;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: $g100;
-}
-
-a {
-  color: $g800;
-}
-
-li.cq-no-bullet::before {
-  content: '';
-}
-
-strong {
-  font-weight: $bold;
-}
-
-i {
-  font-style: italic;
-}
-
-p {
-  margin-bottom: 0.6em;
-}
-
-h1 {
-  font-size: $sizeH1;
-  margin: 0 0 0.1em 0.05em;
-}
-
-h2 {
-  font-size: $sizeH2;
-}
-
-h3 {
-  font-size: $sizeH3;
-}
-
-h4 {
-  font-size: $normal;
-  font-weight: $regular;
-  margin: 4px;
-}
-
-//override capqualif > gouvfr
-// .rf-header {
+// html,
+// body {
+//   display: block;
 //   width: 100vw;
-//   position: relative;
-//   left: 0;
-
-//   box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.03);
-
-//   .rf-header__tools {
-//     width: 300px;
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: flex-end;
-//     align-items: center;
-//     position: relative;
-//     color: $marianne-blue;
-//     .cq-user {
-//       margin-right: 10px;
-//       display: block;
-//       .cq-user__name {
-//         font-weight: $bold;
-//       }
-//       .cq-user__sailor-number {
-//         .label {
-//           color: $g500;
-//           margin-right: 6px;
-//         }
-//       }
-//     }
-//     .cq-user__picture {
-//       display: block;
-//       width: 30px;
-//       height: 30px;
-//       border-radius: 15px;
-//       //background-color:#EEE;
-//       border: 1px solid $marianne-blue;
-//       margin-left: 10px;
-//     }
-//   }
+//   min-height: 100vh;
 // }
 
-// // NAV
-// .rf-header.no-shadow {
-//   box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0);
+// body {
+//   display: block;
+//   overflow-x: hidden;
+//   font-family: $marianne;
+//   font-size: $baseFontSize;
+//   font-weight: $regular;
+//   color: $g800;
+//   line-height: 1.4;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   background-color: $g100;
 // }
 
-// Lines
+// a {
+//   color: $g800;
+// }
 
-.line {
-  width: 80px;
-  border-bottom: 1px solid $g800;
-}
+// li.cq-no-bullet::before {
+//   content: '';
+// }
 
-// Helpers
+// strong {
+//   font-weight: $bold;
+// }
 
-.cq-helpers__full-width {
-  width: 100%;
-}
+// i {
+//   font-style: italic;
+// }
 
-.cq-helpers__no-linebreak {
-  white-space: nowrap;
-}
+// p {
+//   margin-bottom: 0.6em;
+// }
 
-.cq-helpers__display-inline {
-  display: inline;
-}
+// h1 {
+//   font-size: $sizeH1;
+//   margin: 0 0 0.1em 0.05em;
+// }
 
-.cq-helpers__with-footer {
-  // We have to add this padding
-  // so elements at the bottom of the component won't be hidden by footer
-  padding-bottom: $footerHeight + 6vh;
-}
+// h2 {
+//   font-size: $sizeH2;
+//   color: $g600;
+// }
 
-.cq-helpers__dynamic-text {
-  color: $marianne-blue;
-}
+// h3 {
+//   font-size: $sizeH3;
+// }
 
-.cq-helpers__clickable {
-  cursor: pointer;
-}
+// h4 {
+//   font-size: $normal;
+//   font-weight: $regular;
+//   margin: 4px;
+// }
+
+// //override capqualif > gouvfr
+// // .rf-header {
+// //   width: 100vw;
+// //   position: relative;
+// //   left: 0;
+
+// //   box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.03);
+
+// //   .rf-header__tools {
+// //     width: 300px;
+// //     display: flex;
+// //     flex-direction: row;
+// //     justify-content: flex-end;
+// //     align-items: center;
+// //     position: relative;
+// //     color: $marianne-blue;
+// //     .cq-user {
+// //       margin-right: 10px;
+// //       display: block;
+// //       .cq-user__name {
+// //         font-weight: $bold;
+// //       }
+// //       .cq-user__sailor-number {
+// //         .label {
+// //           color: $g500;
+// //           margin-right: 6px;
+// //         }
+// //       }
+// //     }
+// //     .cq-user__picture {
+// //       display: block;
+// //       width: 30px;
+// //       height: 30px;
+// //       border-radius: 15px;
+// //       //background-color:#EEE;
+// //       border: 1px solid $marianne-blue;
+// //       margin-left: 10px;
+// //     }
+// //   }
+// // }
+
+// // // NAV
+// // .rf-header.no-shadow {
+// //   box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0);
+// // }
+
+// // Lines
+
+// .line {
+//   width: 80px;
+//   border-bottom: 1px solid $g800;
+// }
+
+// // Helpers
+
+// .cq-helpers__full-width {
+//   width: 100%;
+// }
+
+// .cq-helpers__no-linebreak {
+//   white-space: nowrap;
+// }
+
+// .cq-helpers__display-inline {
+//   display: inline;
+// }
+
+// .cq-helpers__with-footer {
+//   // We have to add this padding
+//   // so elements at the bottom of the component won't be hidden by footer
+//   padding-bottom: $footerHeight + 6vh;
+// }
+
+// .cq-helpers__dynamic-text {
+//   color: $marianne-blue;
+// }
+
+// .cq-helpers__clickable {
+//   cursor: pointer;
+// }
