@@ -15,6 +15,7 @@ import {
   BUTTON_LABELS,
 } from '../../../../../../dictionnary/demandeDeTitre';
 import {
+  DESKTOP,
   NEW_TITRE_APPLICATION_RECAP_ROUTE,
   NEW_TITRE_APPLICATION_ROUTE,
 } from '../../../../../../app/routesList';
@@ -125,11 +126,15 @@ const NewTitleChoice = () => {
                     label: BUTTON_LABELS.DEMAND,
                     labelSize: FONT_SIZES.SMALL,
                     route:
+                      '/' +
+                      DESKTOP +
+                      '/' +
                       NEW_TITRE_APPLICATION_ROUTE +
                       '/' +
                       titre.id +
                       '/' +
                       titre.slug +
+                      '/' +
                       NEW_TITRE_APPLICATION_RECAP_ROUTE,
                     actionType: ACTION_TYPES.PRIMARY,
                   }}
@@ -153,11 +158,15 @@ const NewTitleChoice = () => {
                     label: BUTTON_LABELS.DEMAND,
                     labelSize: FONT_SIZES.SMALL,
                     route:
+                      '/' +
+                      DESKTOP +
+                      '/' +
                       NEW_TITRE_APPLICATION_ROUTE +
                       '/' +
                       titre.id +
                       '/' +
                       titre.slug +
+                      '/' +
                       NEW_TITRE_APPLICATION_RECAP_ROUTE,
                     actionType: ACTION_TYPES.PRIMARY,
                   }}

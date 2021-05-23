@@ -6,6 +6,7 @@ import './Confirmation.scss';
 
 import {
   DASHBOARD_ROUTE,
+  DESKTOP,
   NEW_TITRE_APPLICATION_RECAP_ROUTE,
   NEW_TITRE_APPLICATION_ROUTE,
 } from '../../../../../../app/routesList';
@@ -15,12 +16,12 @@ const Confirmation = (props) => {
   const possibleActions = [
     {
       label: 'Sauvegarder la demande',
-      nextPageLink: DASHBOARD_ROUTE,
+      nextPageLink: `/${DESKTOP}/${DASHBOARD_ROUTE}`,
       disabled: false,
     },
     {
       label: 'Continuer',
-      nextPageLink: DASHBOARD_ROUTE,
+      nextPageLink: `/${DESKTOP}/${DASHBOARD_ROUTE}`,
       disabled: false,
     },
   ];

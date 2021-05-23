@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { DASHBOARD_ROUTE } from '../../../../../app/routesList';
+import { DASHBOARD_ROUTE, DESKTOP } from '../../../../../app/routesList';
 
 import HeaderBrand from '../../../../_rf/header-brand/HeaderBrand';
 
@@ -20,7 +20,7 @@ const Sign = () => {
     dispatch(getMarinBasicDataByNumeroDeMarin(numeroDeMarin))
       .then(unwrapResult)
       .then(() => {
-        history.push(DASHBOARD_ROUTE);
+        history.push(`${DESKTOP}/${DASHBOARD_ROUTE}`);
       })
       .catch(() => {
         history.push('/error');

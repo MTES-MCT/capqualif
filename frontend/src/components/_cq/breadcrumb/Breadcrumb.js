@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DASHBOARD_ROUTE } from '../../../app/routesList';
+import { DASHBOARD_ROUTE, DESKTOP } from '../../../app/routesList';
 import { ReactComponent as LineBullet } from '../../../resources/img/symbols/listBullet.svg';
 
 import './Breadcrumb.scss';
@@ -11,7 +11,7 @@ const Breadcrumb = () => {
       <div className="rf-container">
         <div className="rf-grid-row">
           <div className="rf-col-2">
-            <Link to={DASHBOARD_ROUTE} className="rf-link">
+            <Link to={`${DESKTOP}/${DASHBOARD_ROUTE}`} className="rf-link">
               Retour à l'accueil
             </Link>
           </div>

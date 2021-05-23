@@ -11,6 +11,7 @@ import {
   CONFIRMATION_ROUTE,
   CAPADMIN_ROUTE,
   EDITOR_ROUTE,
+  DESKTOP,
 } from './routesList';
 
 import Dashboard from '../components/pages/capqualif/desktop/dashboard/Dashboard';
@@ -26,20 +27,32 @@ const Routes = () => {
   return (
     <section>
       <Switch>
-        <Route exact path={DASHBOARD_ROUTE} component={Dashboard} />
         <Route
-          path={`${NEW_TITRE_APPLICATION_ROUTE}${NEW_TITRE_APPLICATION_CHOICE_ROUTE}`}
+          exact
+          path={`/${DESKTOP}/${DASHBOARD_ROUTE}`}
+          component={Dashboard}
+        />
+        <Route
+          path={`/${DESKTOP}/${NEW_TITRE_APPLICATION_ROUTE}/${NEW_TITRE_APPLICATION_CHOICE_ROUTE}`}
           component={NewTitreChoice}
         />
         <Route
-          path={`${NEW_TITRE_APPLICATION_ROUTE}/:itemId/:itemSlug${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
+          path={`/${DESKTOP}/${NEW_TITRE_APPLICATION_ROUTE}/:itemId/:itemSlug/${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
           component={ApplicationRecap}
         />
-        <Route path={ADD_PIECE_ROUTE} component={AddPiece} />
-        <Route exact path={ERROR_ROUTE} component={Error} />
+        <Route path={`/${DESKTOP}/${ADD_PIECE_ROUTE}`} component={AddPiece} />
+        <Route exact path={`/${DESKTOP}/${ERROR_ROUTE}`} component={Error} />
         <Route exact path="/recap-success" component={FakeSuccess} />
-        <Route exact path={CONFIRMATION_ROUTE} component={Confirmation} />
-        <Route exact path={CAPADMIN_ROUTE / EDITOR_ROUTE} component={Editor} />
+        <Route
+          exact
+          path={`/${DESKTOP}/${CONFIRMATION_ROUTE}`}
+          component={Confirmation}
+        />
+        <Route
+          exact
+          path={`/${CAPADMIN_ROUTE}/${EDITOR_ROUTE}`}
+          component={Editor}
+        />
       </Switch>
     </section>
   );

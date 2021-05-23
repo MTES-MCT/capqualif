@@ -6,6 +6,7 @@ import './CqItem.scss';
 import {
   NEW_TITRE_APPLICATION_ROUTE,
   NEW_TITRE_APPLICATION_RECAP_ROUTE,
+  DESKTOP,
 } from '../../../app/routesList';
 
 import { OWNER } from '../../../dictionnary/common';
@@ -73,7 +74,7 @@ const CqItem = ({
               <CqItemDetails
                 isVisible={isDetailVisible}
                 details={details}
-                buttonRoute={`${NEW_TITRE_APPLICATION_ROUTE}/${itemId}/${itemSlug}${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
+                buttonRoute={`/${DESKTOP}/${NEW_TITRE_APPLICATION_ROUTE}/${itemId}/${itemSlug}/${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
               />
             </div>
           </div>

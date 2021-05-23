@@ -7,7 +7,7 @@ import {
   FONT_COLORS,
   FONT_SIZES,
 } from '../../../../../../dictionnary/saas/variables';
-import { DASHBOARD_ROUTE } from '../../../../../../app/routesList';
+import { DASHBOARD_ROUTE, DESKTOP } from '../../../../../../app/routesList';
 
 import Breadcrumb from '../../../../../_cq/breadcrumb/Breadcrumb';
 import SectionHead from '../../../../../_cq/section/section-head/SectionHead';
@@ -39,12 +39,12 @@ const ApplicationRecap = () => {
   const possibleActions = [
     {
       label: 'Sauvegarder la demande',
-      nextPageLink: DASHBOARD_ROUTE,
+      nextPageLink: `/${DESKTOP}/${DASHBOARD_ROUTE}`,
       disabled: false,
     },
     {
       label: 'Continuer',
-      nextPageLink: DASHBOARD_ROUTE,
+      nextPageLink: `/${DESKTOP}/${DASHBOARD_ROUTE}`,
       disabled: true,
     },
   ];
