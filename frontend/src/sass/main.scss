@@ -1,8 +1,8 @@
-@import '_font';
+// @import '_font';
 @import '_variables';
 @import '_normalize';
 @import '_grid';
-@import '_gouvfr.scss';
+// @import '_gouvfr.scss';
 
 * {
   margin: 0;
@@ -74,50 +74,50 @@ h4 {
 }
 
 //override capqualif > gouvfr
-.rf-header {
-  width: 100vw;
-  position: relative;
-  left: 0;
+// .rf-header {
+//   width: 100vw;
+//   position: relative;
+//   left: 0;
 
-  box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.03);
+//   box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.03);
 
-  .rf-header__tools {
-    width: 300px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    position: relative;
-    color: $marianne-blue;
-    .cq-user {
-      margin-right: 10px;
-      display: block;
-      .cq-user__name {
-        font-weight: $bold;
-      }
-      .cq-user__sailor-number {
-        .label {
-          color: $g500;
-          margin-right: 6px;
-        }
-      }
-    }
-    .cq-user__picture {
-      display: block;
-      width: 30px;
-      height: 30px;
-      border-radius: 15px;
-      //background-color:#EEE;
-      border: 1px solid $marianne-blue;
-      margin-left: 10px;
-    }
-  }
-}
+//   .rf-header__tools {
+//     width: 300px;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: flex-end;
+//     align-items: center;
+//     position: relative;
+//     color: $marianne-blue;
+//     .cq-user {
+//       margin-right: 10px;
+//       display: block;
+//       .cq-user__name {
+//         font-weight: $bold;
+//       }
+//       .cq-user__sailor-number {
+//         .label {
+//           color: $g500;
+//           margin-right: 6px;
+//         }
+//       }
+//     }
+//     .cq-user__picture {
+//       display: block;
+//       width: 30px;
+//       height: 30px;
+//       border-radius: 15px;
+//       //background-color:#EEE;
+//       border: 1px solid $marianne-blue;
+//       margin-left: 10px;
+//     }
+//   }
+// }
 
-// NAV
-.rf-header.no-shadow {
-  box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0);
-}
+// // NAV
+// .rf-header.no-shadow {
+//   box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0);
+// }
 
 // Lines
 

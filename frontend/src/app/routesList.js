@@ -1,6 +1,6 @@
+// ===================================================
 // ========= CapQualif (marin application) ===========
 // ===================================================
-
 export const DESKTOP = 'desktop';
 export const MOBILE = 'mobile';
 
@@ -13,8 +13,8 @@ export const ERROR_ROUTE = 'erreur';
 export const ADD_PIECE_ROUTE = 'ajouter-une-piece';
 export const CONFIRMATION_ROUTE = 'confirmation';
 // ===================================================
-// ===================================================
 
+// ===================================================
 // ========= CapAdmin (titre configuration) =========
 // ==================================================
 export const CAPADMIN_ROUTE = '/capadmin';

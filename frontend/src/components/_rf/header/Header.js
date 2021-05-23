@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { DASHBOARD_ROUTE, DESKTOP } from '../../../app/routesList';
 import { store } from '../../../redux/store';
 import HeaderBrand from '../header-brand/HeaderBrand';
 
+import './Header.scss'; // component
+import '../../../sass/style/core.scss';
+import './header-sde.scss'; // design system
+
 import sailor from '../../../resources/img/mocks/sailor.png';
+import { ReactComponent as CapQualifLogo } from '../../../resources/img/logo/capqualif-logo.svg';
 
 const Header = ({ numeroDeMarin }) => {
   const [localMarinData, setLocalMarinData] = useState('');
@@ -14,42 +18,18 @@ const Header = ({ numeroDeMarin }) => {
   }, []);
 
   return (
-    <header className="rf-header">
-      <div className="rf-container rf-container__header">
-        <div className="rf-header__body">
-          <HeaderBrand
-            administrationLabel1={'Ministère'}
-            administrationLabel2={'de la mer'}
-          />
-
-          <div className="rf-header__navbar">
-            <div className="rf-service">
-              <Link
-                to={`${DESKTOP}/${DASHBOARD_ROUTE}`}
-                className="rf-service__title"
-                title="CapQualif"
-              >
-                CapQualif
-              </Link>
-              <p className="rf-service__tagline">
-                Direction des affaires maritimes
-              </p>
-            </div>
-          </div>
-
-          <div class="rf-header__tools">
-            <div class="cq-user">
-              <div class="cq-user__name">
-                {localMarinData.prenom} {localMarinData.nom}
+    <header role="banner" class="fr-header">
+      <div class="fr-header__body">
+        <div class="fr-container">
+          <div class="fr-header__body-row">
+            <div class="fr-header__brand fr-enlarge-link">
+              <div class="fr-header__brand-top">
+                <div class="fr-header__logo">
+                  <a href="/" title="">
+                    <HeaderBrand administrationLabel={'Ministère de la Mer'} />
+                  </a>
+                </div>
               </div>
-              <div class="cq-user__sailor-number">
-                <span class="label">identifiant :</span>
-                <span class="nb">{localMarinData.numeroDeMarin}</span>
-              </div>
-            </div>
-
-            <div className="cq-user__picture">
-              <img src={sailor} alt="" />
             </div>
           </div>
         </div>

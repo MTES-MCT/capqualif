@@ -12,47 +12,79 @@ import {
   CAPADMIN_ROUTE,
   EDITOR_ROUTE,
   DESKTOP,
+  MOBILE,
 } from './routesList';
 
-import Dashboard from '../components/pages/capqualif/desktop/dashboard/Dashboard';
-import NewTitreChoice from '../components/pages/capqualif/desktop/new-titre-application/new-titre-choice/NewTitreChoice';
-import ApplicationRecap from '../components/pages/capqualif/desktop/new-titre-application/application-recap/ApplicationRecap';
-import Error from '../components/pages/capqualif/desktop/error/Error';
-import AddPiece from '../components/pages/capqualif/desktop/new-titre-application/add-piece/AddPiece';
-import FakeSuccess from '../components/pages/capqualif/desktop/new-titre-application/application-recap/FakeSuccess';
-import Confirmation from '../components/pages/capqualif/desktop/new-titre-application/confirmation/Confirmation';
+import MobileDashboard from '../components/pages/capqualif/mobile/dashboard/Dashboard';
+
+import DesktopDashboard from '../components/pages/capqualif/desktop/dashboard/Dashboard';
+import DesktopNewTitreChoice from '../components/pages/capqualif/desktop/new-titre-application/new-titre-choice/NewTitreChoice';
+import DesktopApplicationRecap from '../components/pages/capqualif/desktop/new-titre-application/application-recap/ApplicationRecap';
+import DesktopError from '../components/pages/capqualif/desktop/error/Error';
+import DesktopAddPiece from '../components/pages/capqualif/desktop/new-titre-application/add-piece/AddPiece';
+import DesktopFakeSuccess from '../components/pages/capqualif/desktop/new-titre-application/application-recap/FakeSuccess';
+import DesktopConfirmation from '../components/pages/capqualif/desktop/new-titre-application/confirmation/Confirmation';
 import Editor from '../components/pages/capadmin/editor/Editor';
 
 const Routes = () => {
   return (
     <section>
       <Switch>
+        {/* ==================================================================== */}
+        {/* ========= CapQualif (marin application) : mobile routes =========== */}
+        {/* ==================================================================== */}
+        <Route
+          exact
+          path={`/${MOBILE}/${DASHBOARD_ROUTE}`}
+          component={MobileDashboard}
+        />
+        {/* ==================================================================== */}
+        {/* ==================================================================== */}
+
+        {/* ==================================================================== */}
+        {/* ========= CapQualif (marin application) : desktop routes =========== */}
+        {/* ==================================================================== */}
         <Route
           exact
           path={`/${DESKTOP}/${DASHBOARD_ROUTE}`}
-          component={Dashboard}
+          component={DesktopDashboard}
         />
         <Route
           path={`/${DESKTOP}/${NEW_TITRE_APPLICATION_ROUTE}/${NEW_TITRE_APPLICATION_CHOICE_ROUTE}`}
-          component={NewTitreChoice}
+          component={DesktopNewTitreChoice}
         />
         <Route
           path={`/${DESKTOP}/${NEW_TITRE_APPLICATION_ROUTE}/:itemId/:itemSlug/${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
-          component={ApplicationRecap}
+          component={DesktopApplicationRecap}
         />
-        <Route path={`/${DESKTOP}/${ADD_PIECE_ROUTE}`} component={AddPiece} />
-        <Route exact path={`/${DESKTOP}/${ERROR_ROUTE}`} component={Error} />
-        <Route exact path="/recap-success" component={FakeSuccess} />
+        <Route
+          path={`/${DESKTOP}/${ADD_PIECE_ROUTE}`}
+          component={DesktopAddPiece}
+        />
+        <Route
+          exact
+          path={`/${DESKTOP}/${ERROR_ROUTE}`}
+          component={DesktopError}
+        />
+        <Route exact path="/recap-success" component={DesktopFakeSuccess} />
         <Route
           exact
           path={`/${DESKTOP}/${CONFIRMATION_ROUTE}`}
-          component={Confirmation}
+          component={DesktopConfirmation}
         />
+        {/* ==================================================================== */}
+        {/* ==================================================================== */}
+
+        {/* ==================================================================== */}
+        {/* ========= CapAdmin (titre configuration) =========== */}
+        {/* ==================================================================== */}
         <Route
           exact
           path={`/${CAPADMIN_ROUTE}/${EDITOR_ROUTE}`}
           component={Editor}
         />
+        {/* ==================================================================== */}
+        {/* ==================================================================== */}
       </Switch>
     </section>
   );

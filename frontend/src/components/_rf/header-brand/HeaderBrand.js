@@ -1,16 +1,13 @@
 import React from 'react';
-//import { Header} from '@gouvfr/header/src/scripts';
 
-const HeaderBrand = ({ administrationLabel1, administrationLabel2 }) => {
+import './HeaderBrand.scss';
+import './logo.scss';
+
+const HeaderBrand = ({ administrationLabel }) => {
   return (
-    <div className="rf-header__brand">
-      <a className="rf-logo" href="#" title="République française">
-        <span className="rf-logo__title">
-          {/* To DO : refactor to have only one label */}
-          {administrationLabel1} <br /> {administrationLabel2}
-        </span>
-      </a>
-    </div>
+    <p id="header-brand" class="fr-logo">
+      {administrationLabel}
+    </p>
   );
 };
 
