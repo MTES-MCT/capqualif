@@ -2,21 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import './Button.scss';
+import styles from './Button.module.scss';
 
-const Button = ({ label, labelSize, route, actionType, disabled }) => {
+const Button = ({ label, route }) => {
   return (
-    <button className="cq-btn">
-      <Link
-        to={route}
-        className={`rf-btn disabled cq-helpers__no-linebreak 
-          cq-btn__content-action-${actionType}`}
-        style={{ fontSize: labelSize }}
-        disabled={disabled}
-      >
-        {label}
-      </Link>
+    <button className={styles['fr-btn']}>
+      <Link to={route}>{label}</Link>
     </button>
+    // <button className="cq-btn">
+    //   <Link
+    //     to={route}
+    //     className={`fr-btn disabled cq-helpers__no-linebreak
+    //       cq-btn__content-action-${actionType}`}
+    //     style={{ fontSize: labelSize }}
+    //     disabled={disabled}
+    //   >
+    //     {label}
+    //   </Link>
+    // </button>
   );
 };
 
