@@ -10,6 +10,10 @@ import {
 } from '../../../../../dictionnary/demandeDeTitre';
 import { FONT_SIZES } from '../../../../../dictionnary/saas/variables';
 import { Fragment } from 'react';
+import {
+  MOBILE,
+  NEW_TITRE_REQUEST_CHOICE_ROUTE,
+} from '../../../../../app/routesDictionnary';
 
 const Dashboard = (props) => {
   return (
@@ -21,7 +25,10 @@ const Dashboard = (props) => {
         </p>
       </div>
       <div className={styles['cq-dashboard-action-container']}>
-        <Button label={BUTTON_LABELS.DEMAND_ONE} />
+        <Button
+          label={BUTTON_LABELS.DEMAND_ONE}
+          route={`/${MOBILE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
+        />
       </div>
     </Fragment>
   );

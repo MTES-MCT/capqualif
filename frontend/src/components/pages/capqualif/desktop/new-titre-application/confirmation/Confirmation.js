@@ -7,9 +7,9 @@ import './Confirmation.scss';
 import {
   DASHBOARD_ROUTE,
   DESKTOP,
-  NEW_TITRE_APPLICATION_RECAP_ROUTE,
-  NEW_TITRE_APPLICATION_ROUTE,
-} from '../../../../../../app/routesList';
+  NEW_TITRE_REQUEST_RECAP_ROUTE,
+  NEW_TITRE_REQUEST_ROUTE,
+} from '../../../../../../app/routesDictionnary';
 import CqItemCatalog from '../../../../../_cq/cq-item/catalog/CqItemCatalog';
 
 const Confirmation = (props) => {

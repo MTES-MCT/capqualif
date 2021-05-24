@@ -16,9 +16,9 @@ import {
 } from '../../../../../../dictionnary/demandeDeTitre';
 import {
   DESKTOP,
-  NEW_TITRE_APPLICATION_RECAP_ROUTE,
-  NEW_TITRE_APPLICATION_ROUTE,
-} from '../../../../../../app/routesList';
+  NEW_TITRE_REQUEST_RECAP_ROUTE,
+  NEW_TITRE_REQUEST_ROUTE,
+} from '../../../../../../app/routesDictionnary';
 
 const NewTitleChoice = () => {
   // const allTitres = useSelector((state) => state.titresReducer.allTitres);
@@ -129,13 +129,13 @@ const NewTitleChoice = () => {
                       '/' +
                       DESKTOP +
                       '/' +
-                      NEW_TITRE_APPLICATION_ROUTE +
+                      NEW_TITRE_REQUEST_ROUTE +
                       '/' +
                       titre.id +
                       '/' +
                       titre.slug +
                       '/' +
-                      NEW_TITRE_APPLICATION_RECAP_ROUTE,
+                      NEW_TITRE_REQUEST_RECAP_ROUTE,
                     actionType: ACTION_TYPES.PRIMARY,
                   }}
                 />
@@ -161,13 +161,13 @@ const NewTitleChoice = () => {
                       '/' +
                       DESKTOP +
                       '/' +
-                      NEW_TITRE_APPLICATION_ROUTE +
+                      NEW_TITRE_REQUEST_ROUTE +
                       '/' +
                       titre.id +
                       '/' +
                       titre.slug +
                       '/' +
-                      NEW_TITRE_APPLICATION_RECAP_ROUTE,
+                      NEW_TITRE_REQUEST_RECAP_ROUTE,
                     actionType: ACTION_TYPES.PRIMARY,
                   }}
                 />

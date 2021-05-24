@@ -4,10 +4,10 @@ import { store } from '../../../redux/store';
 import './SubHeader.scss';
 
 import {
-  NEW_TITRE_APPLICATION_ROUTE,
-  NEW_TITRE_APPLICATION_CHOICE_ROUTE,
+  NEW_TITRE_REQUEST_ROUTE,
+  NEW_TITRE_REQUEST_CHOICE_ROUTE,
   DESKTOP,
-} from '../../../app/routesList';
+} from '../../../app/routesDictionnary';
 import Button from '../button/Button';
 
 const SubHeader = () => {
@@ -23,7 +23,7 @@ const SubHeader = () => {
       </div>
       <Button
         label="Demander un titre"
-        route={`/${DESKTOP}/${NEW_TITRE_APPLICATION_ROUTE}/${NEW_TITRE_APPLICATION_CHOICE_ROUTE}`}
+        route={`/${DESKTOP}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
       />
     </div>
   );

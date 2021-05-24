@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from '../redux/store';
 import { store } from '../redux/store';
 
-import { HOME_ROUTE } from './routesList';
+import { HOME_ROUTE } from './routesDictionnary';
 
 import './App.scss'; // CapQualif
 import '../sass/style/core-sde.scss'; // design system

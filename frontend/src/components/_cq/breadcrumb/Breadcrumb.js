@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DASHBOARD_ROUTE, DESKTOP } from '../../../app/routesList';
+import { DASHBOARD_ROUTE, DESKTOP } from '../../../app/routesDictionnary';
 import { ReactComponent as LineBullet } from '../../../resources/img/symbols/listBullet.svg';
 
 import './Breadcrumb.scss';

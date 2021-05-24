@@ -3,9 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 
 import {
   DASHBOARD_ROUTE,
-  NEW_TITRE_APPLICATION_ROUTE,
-  NEW_TITRE_APPLICATION_CHOICE_ROUTE,
-  NEW_TITRE_APPLICATION_RECAP_ROUTE,
+  NEW_TITRE_REQUEST_ROUTE,
+  NEW_TITRE_REQUEST_CHOICE_ROUTE,
+  NEW_TITRE_REQUEST_RECAP_ROUTE,
   ERROR_ROUTE,
   ADD_PIECE_ROUTE,
   CONFIRMATION_ROUTE,
@@ -13,9 +13,10 @@ import {
   EDITOR_ROUTE,
   DESKTOP,
   MOBILE,
-} from './routesList';
+} from './routesDictionnary';
 
 import MobileDashboard from '../components/pages/capqualif/mobile/dashboard/Dashboard';
+import MobileRequestChooseTitre from '../components/pages/capqualif/mobile/request/choose-titre/ChooseTitre';
 
 import DesktopDashboard from '../components/pages/capqualif/desktop/dashboard/Dashboard';
 import DesktopNewTitreChoice from '../components/pages/capqualif/desktop/new-titre-application/new-titre-choice/NewTitreChoice';
@@ -38,6 +39,11 @@ const Routes = () => {
           path={`/${MOBILE}/${DASHBOARD_ROUTE}`}
           component={MobileDashboard}
         />
+        <Route
+          exact
+          path={`/${MOBILE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
+          component={MobileRequestChooseTitre}
+        />
         {/* ==================================================================== */}
         {/* ==================================================================== */}
 
@@ -50,11 +56,11 @@ const Routes = () => {
           component={DesktopDashboard}
         />
         <Route
-          path={`/${DESKTOP}/${NEW_TITRE_APPLICATION_ROUTE}/${NEW_TITRE_APPLICATION_CHOICE_ROUTE}`}
+          path={`/${DESKTOP}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
           component={DesktopNewTitreChoice}
         />
         <Route
-          path={`/${DESKTOP}/${NEW_TITRE_APPLICATION_ROUTE}/:itemId/:itemSlug/${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
+          path={`/${DESKTOP}/${NEW_TITRE_REQUEST_ROUTE}/:itemId/:itemSlug/${NEW_TITRE_REQUEST_RECAP_ROUTE}`}
           component={DesktopApplicationRecap}
         />
         <Route

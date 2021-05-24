@@ -7,7 +7,10 @@ import {
   FONT_COLORS,
   FONT_SIZES,
 } from '../../../../../../dictionnary/saas/variables';
-import { DASHBOARD_ROUTE, DESKTOP } from '../../../../../../app/routesList';
+import {
+  DASHBOARD_ROUTE,
+  DESKTOP,
+} from '../../../../../../app/routesDictionnary';
 
 import Breadcrumb from '../../../../../_cq/breadcrumb/Breadcrumb';
 import SectionHead from '../../../../../_cq/section/section-head/SectionHead';
