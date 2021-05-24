@@ -11,7 +11,8 @@ export const STATUS_APTITUDE_MEDICALE = {
 
 export const BUTTON_LABELS = {
   RENEW: 'Renouveler',
-  DEMAND: 'Demander ce titre',
+  DEMAND_ONE: 'Demander un titre',
+  DEMAND_THIS: 'Demander ce titre',
   ADD_DOCUMENT: 'Ajouter un document',
   ASK_FOR_ADVICE: "Demander le conseil d'un agent",
 };

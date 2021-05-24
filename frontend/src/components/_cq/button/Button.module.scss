@@ -4,6 +4,11 @@
  * CapQualif
  */
 
+.cq-button {
+  display: flex;
+  justify-content: center;
+}
+
 // .cq-btn a {
 //   padding: 0 1em;
 // }
@@ -454,7 +459,7 @@
 
 .fr-btn {
   // background-color: var(--bf500);  // Modified by CapQualif Team
-  background-color: $marianne-blue; // Modified by CapQualif Team
+  background-color: $marianne-blue__dark1; // Modified by CapQualif Team
   // color: var(--w-bf500);           // Modified by CapQualif Team
   color: $white; // Modified by CapQualif Team
 }

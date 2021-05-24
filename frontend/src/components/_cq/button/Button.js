@@ -6,7 +6,7 @@ import styles from './Button.module.scss';
 
 const Button = ({ label, route }) => {
   return (
-    <button className={styles['fr-btn']}>
+    <button className={`${styles['cq-button']} ${styles['fr-btn']}`}>
       <Link to={route}>{label}</Link>
     </button>
     // <button className="cq-btn">

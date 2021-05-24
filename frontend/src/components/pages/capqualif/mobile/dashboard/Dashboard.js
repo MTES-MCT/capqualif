@@ -9,16 +9,21 @@ import {
   BUTTON_LABELS,
 } from '../../../../../dictionnary/demandeDeTitre';
 import { FONT_SIZES } from '../../../../../dictionnary/saas/variables';
+import { Fragment } from 'react';
 
 const Dashboard = (props) => {
   return (
-    <div className={styles['cq-container']}>
-      <h2>Mes titres</h2>
-      <p className={styles['cq-no-titles']}>
-        Vous n'avez aucun titre pour le moment.
-      </p>
-      <Button label={BUTTON_LABELS.DEMAND} />
-    </div>
+    <Fragment>
+      <div className={styles['cq-titres-container']}>
+        <h2>Mes titres</h2>
+        <p className={styles['cq-dashboard-no-titles']}>
+          Vous n'avez aucun titre pour le moment.
+        </p>
+      </div>
+      <div className={styles['cq-dashboard-action-container']}>
+        <Button label={BUTTON_LABELS.DEMAND_ONE} />
+      </div>
+    </Fragment>
   );
 };
 
