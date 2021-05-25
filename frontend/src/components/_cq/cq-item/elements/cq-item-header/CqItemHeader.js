@@ -1,12 +1,15 @@
 import React from 'react';
 
-import './CqItemHeader.scss';
+import commonStyles from '../../common.scss';
+import styles from './CqItemHeader.module.scss';
 
 const CqItemHeader = ({ subtitle, name }) => {
   return (
-    <div id="cq-item-header" class="cq-item__lined-element rf-pl-1w">
-      <div class="cq-item__attribute">{subtitle}</div>
-      <div class="cq-item__name">{name}</div>
+    <div className={`${commonStyles['cq-item__lined-element']} fr-pl-1w`}>
+      <div className={`${commonStyles['cq-item__attribute']} fr-pl-1w`}>
+        {subtitle}
+      </div>
+      <div className={`${styles['cq-item__name']} fr-pl-1w`}>{name}</div>
     </div>
   );
 };

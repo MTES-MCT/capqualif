@@ -4,7 +4,38 @@ import { Fragment } from 'react';
 
 import styles from './ChooseTitre.module.scss';
 
+import CqItemCatalog from '../../../../../_cq/cq-item/catalog/CqItemCatalog';
+import {
+  ACTION_TYPES,
+  BUTTON_LABELS,
+} from '../../../../../../dictionnary/demandeDeTitre';
+import { FONT_SIZES } from '../../../../../../dictionnary/saas/variables';
+import {
+  DESKTOP,
+  MOBILE,
+  NEW_TITRE_REQUEST_RECAP_ROUTE,
+  NEW_TITRE_REQUEST_ROUTE,
+} from '../../../../../../app/routesDictionnary';
+import CqItemTitre from '../../../../../_cq/cq-item/mobile/cq-item-titre/CqItemTitre';
+
 const ChooseTitre = (props) => {
+  const allTitresMock = [
+    {
+      capacite: 'Monovalence Pont',
+      name: 'Certificat de matelot pont',
+      id: '1',
+      slug: 'certificat-de-matelot-pont',
+      details: [],
+    },
+    {
+      capacite: '',
+      name: 'Certificat de formation de base à la sécurité',
+      id: '2',
+      slug: 'certificat-de-formation-de-base-a-la-securite',
+      details: [],
+    },
+  ];
+
   return (
     <Fragment>
       <div>
@@ -15,8 +46,40 @@ const ChooseTitre = (props) => {
       </div>
       <div>
         <h3>Choix du titre</h3>
-        <div>Case titre</div>
-        <div>Case titre</div>
+        {allTitresMock.map((titre) => (
+          <CqItemTitre
+            subtitle={titre.capacite}
+            name={titre.name}
+            details={titre.details}
+            action={{
+              label: BUTTON_LABELS.DEMAND_THIS,
+              labelSize: FONT_SIZES.SMALL,
+              route:
+                '/' +
+                MOBILE +
+                '/' +
+                NEW_TITRE_REQUEST_ROUTE +
+                '/' +
+                titre.id +
+                '/' +
+                titre.slug +
+                '/' +
+                NEW_TITRE_REQUEST_RECAP_ROUTE,
+              actionType: ACTION_TYPES.PRIMARY,
+            }}
+          />
+        ))}
+        {/* <CqItemTitre
+          subtitle={'Monovalence Pont'}
+          name={'Certificat de Matelot Pont'}
+          status={'status'}
+          action={{
+            label: BUTTON_LABELS.DEMAND_THIS,
+            labelSize: FONT_SIZES.VERY_SMALL,
+            route: '',
+            actionType: ACTION_TYPES.SECONDARY,
+          }}
+        /> */}
         <p>CapQualif bêta ne propose que ces deux titres pour le moment.</p>
       </div>
     </Fragment>

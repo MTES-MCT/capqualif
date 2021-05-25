@@ -1,0 +1,29 @@
+@import '../variables';
+
+// Helpers created by CapQualif Team
+
+.cq-helpers__full-width {
+  width: 100%;
+}
+
+.cq-helpers__no-linebreak {
+  white-space: nowrap;
+}
+
+.cq-helpers__display-inline {
+  display: inline;
+}
+
+.cq-helpers__with-footer {
+  // We have to add this padding
+  // so elements at the bottom of the component won't be hidden by footer
+  padding-bottom: $footerHeight + 6vh;
+}
+
+.cq-helpers__dynamic-text {
+  color: $marianne-blue;
+}
+
+.cq-helpers__clickable {
+  cursor: pointer;
+}

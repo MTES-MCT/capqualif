@@ -8,6 +8,7 @@ import { store } from '../redux/store';
 import { HOME_ROUTE } from './routesDictionnary';
 
 import './App.scss'; // CapQualif
+import '../sass/style/cq-utils.scss'; // CapQualif
 import '../sass/style/core-sde.scss'; // design system
 
 import Routes from './Routes';
