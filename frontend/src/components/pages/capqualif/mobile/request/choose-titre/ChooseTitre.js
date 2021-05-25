@@ -26,6 +26,7 @@ const ChooseTitre = (props) => {
       id: '1',
       slug: 'certificat-de-matelot-pont',
       details: [],
+      status: 'Dossier complet',
     },
     {
       capacite: 'Sécurité',
@@ -33,25 +34,26 @@ const ChooseTitre = (props) => {
       id: '2',
       slug: 'certificat-de-formation-de-base-a-la-securite',
       details: [],
+      status: 'Dossier complet',
     },
   ];
 
   return (
     <Fragment>
-      <div>
-        <h2 className={styles['cq-choose-titre-h2']}>
+      <div className={styles['cq-choose-titre-h2-container']}>
+        <h2 className={`${styles['cq-choose-titre-h2']} fr-m-2w`}>
           Demander un nouveau titre
         </h2>
-        x
+        <span class="fr-fi-close-line" aria-hidden="true"></span>
       </div>
-      <div>
+      <div className="fr-m-2w">
         <h3>Choix du titre</h3>
         <div className={styles['cq-choose-titre-titres-container']}>
           {allTitresMock.map((titre) => (
             <CqItemTitre
               subtitle={titre.capacite}
               name={titre.name}
-              status={'Dossier complet'}
+              status={titre.status}
               details={titre.details}
               action={{
                 label: BUTTON_LABELS.DEMAND_THIS,

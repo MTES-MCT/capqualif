@@ -1,8 +1,15 @@
 @import '../../../../../../sass/_variables';
 
-.cq-choose-titre-h2 {
+.cq-choose-titre-h2-container {
+  border-bottom: 1px solid $g300;
+  display: flex;
+  align-items: center;
 }
 
+.cq-choose-titre-h2 {
+  color: $marianne-blue__dark1;
+  font-size: $sizeH2Bis;
+}
 .cq-choose-titre-titres-container {
   margin: 1rem;
   display: flex;

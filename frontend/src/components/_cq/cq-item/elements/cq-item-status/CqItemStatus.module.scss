@@ -3,7 +3,6 @@
 .cq-item-status-container {
   display: flex;
   align-items: center;
-  font-size: $small;
   color: $function-green-success-clear;
 }
 
@@ -12,4 +11,8 @@
   color: $function-green-success-clear;
   line-height: normal;
   text-align: right;
+}
+
+.cq-item-status-container-icon {
+  font-size: $sizeH2;
 }

@@ -8,10 +8,6 @@ import { store } from '../redux/store';
 import { HOME_ROUTE } from './routesDictionnary';
 
 import './App.scss'; // CapQualif
-import '../sass/style/cq-utils.scss'; // CapQualif
-import '../sass/style/core-sde.scss'; // design system
-import '../sass/style/utilities-sde.scss'; // design system
-import 'semantic-ui-css/semantic.min.css';
 
 import Routes from './Routes';
 import Sign from '../components/pages/capqualif/desktop/sign/Sign';

@@ -1,3 +1,71 @@
-// src/index.scss
+@import './sass/variables';
 
-// @import 'sass/main';
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+html,
+body {
+  display: block;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+body {
+  display: block;
+  overflow-x: hidden;
+  font-family: $marianne;
+  font-size: $baseFontSize;
+  font-weight: $regular;
+  color: $g800;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $white;
+}
+
+a {
+  color: $g800;
+}
+
+li.cq-no-bullet::before {
+  content: '';
+}
+
+strong {
+  font-weight: $bold;
+}
+
+i {
+  font-style: italic;
+}
+
+p {
+  margin-bottom: 0.6em;
+}
+
+h1 {
+  font-size: $sizeH1;
+  margin: 0 0 0.1em 0.05em;
+}
+
+h2 {
+  font-size: $sizeH2;
+  color: $g600;
+}
+
+h3 {
+  font-size: $sizeH3;
+}
+
+h4 {
+  font-size: $normal;
+  font-weight: $regular;
+  margin: 4px;
+}

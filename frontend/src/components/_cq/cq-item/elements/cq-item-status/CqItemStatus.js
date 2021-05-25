@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { VscCircleFilled } from 'react-icons/vsc';
 
-import { Icon } from 'semantic-ui-react';
 import styles from './CqItemStatus.module.scss';
 
 const CqItemStatus = ({ status }) => {
@@ -10,7 +10,9 @@ const CqItemStatus = ({ status }) => {
       <span className={`${styles['cq-item-status-container-text']} fr-pr-1w`}>
         {status}
       </span>
-      <Icon name="circle thin" />
+      <span className={`${styles['cq-item-status-container-icon']}`}>
+        <VscCircleFilled />
+      </span>
     </div>
   );
 };
