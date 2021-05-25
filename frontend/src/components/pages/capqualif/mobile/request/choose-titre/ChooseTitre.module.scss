@@ -10,9 +10,20 @@
   color: $marianne-blue__dark1;
   font-size: $sizeH2Bis;
 }
+
+.cq-choose-titre-h3 {
+  color: $g800;
+}
+
 .cq-choose-titre-titres-container {
   margin: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.cq-choose-titre-warning-text {
+  color: $g500;
+  font-size: $normal;
 }

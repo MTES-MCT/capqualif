@@ -21,7 +21,7 @@ import CqItemTitre from '../../../../../_cq/cq-item/mobile/cq-item-titre/CqItemT
 const ChooseTitre = (props) => {
   const allTitresMock = [
     {
-      capacite: 'Monovalence Pont',
+      capacite: 'Monovalence · Pont',
       name: 'Certificat de matelot pont',
       id: '1',
       slug: 'certificat-de-matelot-pont',
@@ -47,7 +47,7 @@ const ChooseTitre = (props) => {
         <span class="fr-fi-close-line" aria-hidden="true"></span>
       </div>
       <div className="fr-m-2w">
-        <h3>Choix du titre</h3>
+        <h3 className={styles['cq-choose-titre-h3']}>Choix du titre</h3>
         <div className={styles['cq-choose-titre-titres-container']}>
           {allTitresMock.map((titre) => (
             <CqItemTitre
@@ -75,7 +75,9 @@ const ChooseTitre = (props) => {
           ))}
         </div>
 
-        <p>CapQualif bêta ne propose que ces deux titres pour le moment.</p>
+        <p className={styles['cq-choose-titre-warning-text']}>
+          CapQualif bêta ne propose que ces deux titres pour le moment.
+        </p>
       </div>
     </Fragment>
   );

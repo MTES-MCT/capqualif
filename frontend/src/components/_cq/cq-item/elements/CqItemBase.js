@@ -18,7 +18,7 @@ const CqItemBase = ({
   const [isDetailVisible, setIsDetailVisible] = useState(false);
 
   return (
-    <div className={`${styles['cq-item']} fr-container fr-my-2w fr-py-3w`}>
+    <div className={`${styles['cq-item']} fr-container fr-mb-2w fr-py-3w`}>
       <div className="fr-grid-row fr-grid-row--middle">
         <div className="fr-col fr-pr-4w">
           <CqItemHeader subtitle={subtitle} name={name} />
