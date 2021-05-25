@@ -11,6 +11,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
       } cq-helpers__full-width fr-container`}
     >
       <div className="fr-grid-row">Blablabla</div>
+      {action && <div className="fr-pt-2w">{action}</div>}
     </div>
   );
 };

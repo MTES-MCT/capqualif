@@ -1,0 +1,15 @@
+@import '../../../../../sass/variables';
+
+.cq-item-status-container {
+  display: flex;
+  align-items: center;
+  font-size: $small;
+  color: $function-green-success-clear;
+}
+
+.cq-item-status-container-text {
+  font-size: $small;
+  color: $function-green-success-clear;
+  line-height: normal;
+  text-align: right;
+}

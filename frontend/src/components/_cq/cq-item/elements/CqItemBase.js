@@ -4,58 +4,41 @@ import { PropTypes } from 'prop-types';
 import styles from './CqItemBase.module.scss';
 
 import CqItemHeader from './cq-item-header/CqItemHeader';
+import CqItemStatus from './cq-item-status/CqItemStatus';
 
 const CqItemBase = ({
   subtitle,
   name,
-  dates,
+  // dates,
   status,
-  existingTitreAction,
+  action,
   details,
-  document,
+  // document,
 }) => {
   const [isDetailVisible, setIsDetailVisible] = useState(false);
 
   return (
-    <div
-      className={`${styles['cq-item']} ${styles['cq-item']} ${styles['cq-item--default']} fr-container fr-my-2w`}
-    >
-      <div className={`${styles['cq-item__header']}`}>
-        <div className="fr-grid-row">
-          <div className="fr-col">
-            <CqItemHeader subtitle={subtitle} name={name} />
-          </div>
-          {dates && (
-            <div className={`${styles['dates-container']} fr-col`}>{dates}</div>
-          )}
-          {status && (
-            <div className={`${styles['status-container']} fr-col-2`}>
-              {status}
-            </div>
-          )}
-          {existingTitreAction && (
-            <div className="fr-col-2">{existingTitreAction}</div>
-          )}
-          {document && (
-            <div className={`${styles['document-container']} fr-col-1`}>
-              {document}
-            </div>
-          )}
-          {details && (
-            <div className={`${styles['expand-container']} fr-col-1 fr-px-2w`}>
-              <span
-                class={`${styles['expand-container']} fr-fi-arrow-down-s-line cq-helpers__clickable`}
-                onClick={() => setIsDetailVisible(!isDetailVisible)}
-              ></span>
-            </div>
-          )}
+    <div className={`${styles['cq-item']} fr-container fr-my-2w fr-py-3w`}>
+      <div className="fr-grid-row fr-grid-row--middle">
+        <div className="fr-col fr-pr-4w">
+          <CqItemHeader subtitle={subtitle} name={name} />
         </div>
+        {status && <div className={`fr-col-3 fr-mr-1w`}>{status}</div>}
+        {action && <div className="fr-col-2">{action}</div>}
         {details && (
-          <div className="fr-grid-row fr-grid-row--gutters">
-            {React.cloneElement(details, { isVisible: isDetailVisible })}
+          <div className={`${styles['expand-container']} fr-col-1 fr-px-2w`}>
+            <span
+              class={`${styles['expand-container']} fr-fi-arrow-up-s-line cq-helpers__clickable`}
+              onClick={() => setIsDetailVisible(!isDetailVisible)}
+            ></span>
           </div>
         )}
       </div>
+      {details && (
+        <div className="fr-grid-row">
+          {React.cloneElement(details, { isVisible: isDetailVisible })}
+        </div>
+      )}
     </div>
   );
 };

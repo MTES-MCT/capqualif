@@ -28,7 +28,7 @@ const ChooseTitre = (props) => {
       details: [],
     },
     {
-      capacite: '',
+      capacite: 'Sécurité',
       name: 'Certificat de formation de base à la sécurité',
       id: '2',
       slug: 'certificat-de-formation-de-base-a-la-securite',
@@ -46,40 +46,33 @@ const ChooseTitre = (props) => {
       </div>
       <div>
         <h3>Choix du titre</h3>
-        {allTitresMock.map((titre) => (
-          <CqItemTitre
-            subtitle={titre.capacite}
-            name={titre.name}
-            details={titre.details}
-            action={{
-              label: BUTTON_LABELS.DEMAND_THIS,
-              labelSize: FONT_SIZES.SMALL,
-              route:
-                '/' +
-                MOBILE +
-                '/' +
-                NEW_TITRE_REQUEST_ROUTE +
-                '/' +
-                titre.id +
-                '/' +
-                titre.slug +
-                '/' +
-                NEW_TITRE_REQUEST_RECAP_ROUTE,
-              actionType: ACTION_TYPES.PRIMARY,
-            }}
-          />
-        ))}
-        {/* <CqItemTitre
-          subtitle={'Monovalence Pont'}
-          name={'Certificat de Matelot Pont'}
-          status={'status'}
-          action={{
-            label: BUTTON_LABELS.DEMAND_THIS,
-            labelSize: FONT_SIZES.VERY_SMALL,
-            route: '',
-            actionType: ACTION_TYPES.SECONDARY,
-          }}
-        /> */}
+        <div className={styles['cq-choose-titre-titres-container']}>
+          {allTitresMock.map((titre) => (
+            <CqItemTitre
+              subtitle={titre.capacite}
+              name={titre.name}
+              status={'Dossier complet'}
+              details={titre.details}
+              action={{
+                label: BUTTON_LABELS.DEMAND_THIS,
+                labelSize: FONT_SIZES.SMALL,
+                route:
+                  '/' +
+                  MOBILE +
+                  '/' +
+                  NEW_TITRE_REQUEST_ROUTE +
+                  '/' +
+                  titre.id +
+                  '/' +
+                  titre.slug +
+                  '/' +
+                  NEW_TITRE_REQUEST_RECAP_ROUTE,
+                actionType: ACTION_TYPES.PRIMARY,
+              }}
+            />
+          ))}
+        </div>
+
         <p>CapQualif bêta ne propose que ces deux titres pour le moment.</p>
       </div>
     </Fragment>
