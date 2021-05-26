@@ -41,8 +41,8 @@ public class EvaluationService {
         return result;
     }
 
-    private boolean areConditionsSatisfied(Condition condition, List<ConditionIdentity> conditionIdentities) {
-        return condition.validate(conditionIdentities);
+    private boolean areConditionsSatisfied(Condition condition, List<ConditionIdentity> errors) {
+        return condition.validate(errors);
     }
 
     private List<ConditionIdentity> getErrors(List<ConditionIdentity> errors) {
