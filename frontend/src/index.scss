@@ -30,10 +30,6 @@ body {
   background-color: $white;
 }
 
-a {
-  color: $g800;
-}
-
 li.cq-no-bullet::before {
   content: '';
 }
