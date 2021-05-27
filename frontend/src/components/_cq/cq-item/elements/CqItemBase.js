@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { PropTypes } from 'prop-types';
 
 import styles from './CqItemBase.module.scss';
@@ -27,9 +27,9 @@ const CqItemBase = ({ subtitle, name, status, action, details }) => {
         )}
       </div>
       {details && (
-        <div className="fr-grid-row">
+        <Fragment>
           {React.cloneElement(details, { isVisible: isDetailVisible })}
-        </div>
+        </Fragment>
       )}
     </div>
   );

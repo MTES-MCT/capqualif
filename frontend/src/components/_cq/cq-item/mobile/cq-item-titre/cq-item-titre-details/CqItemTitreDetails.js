@@ -3,21 +3,19 @@ import PropTypes from 'prop-types';
 
 import styles from './CqItemTitreDetails.module.scss';
 import CqItemCondition from './cq-item-condition/CqItemCondition';
+import { Fragment } from 'react';
 
 const CqItemTitreDetails = ({ isVisible, details, action }) => {
   return (
-    <div
-      className={`${
-        isVisible ? '' : styles.hidden
-      } cq-helpers__full-width fr-container`}
-    >
-      <div className="fr-grid-row">
+    <div className={`${isVisible ? '' : styles.hidden}`}>
+      <div className={`${styles.section} fr-py-2w fr-mt-3w`}>
         {details.marinIdentity.basicInfos.firstName}
         {details.marinIdentity.basicInfos.lastName}
-        {details.marinIdentity.basicInfos.numeroDeMarin}
-        {details.marinIdentity.identityMarkers.isPhotoValid}
-        {details.marinIdentity.identityMarkers.isSignatureValid}
       </div>
+      <div className="">{details.marinIdentity.basicInfos.numeroDeMarin}</div>
+
+      {details.marinIdentity.identityMarkers.isPhotoValid}
+      {details.marinIdentity.identityMarkers.isSignatureValid}
 
       {details.results.details.conditions.map((condition) => (
         <CqItemCondition condition={condition} />
