@@ -12,7 +12,7 @@ const CqItemTitre = ({ name, subtitle, status, action, details }) => {
     <CqItemBase
       subtitle={subtitle}
       name={name}
-      status={status && <CqItemStatus status={status} />}
+      status={<CqItemStatus status={status} />}
       details={
         <CqItemTitreDetails
           details={details}

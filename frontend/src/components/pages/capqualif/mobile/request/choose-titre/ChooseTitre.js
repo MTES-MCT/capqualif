@@ -21,21 +21,89 @@ import CqItemTitre from '../../../../../_cq/cq-item/mobile/cq-item-titre/CqItemT
 const ChooseTitre = (props) => {
   const allTitresMock = [
     {
-      capacite: 'Monovalence · Pont',
-      name: 'Certificat de matelot pont',
-      id: '1',
-      slug: 'certificat-de-matelot-pont',
-      details: [],
-      status: 'Dossier complet',
+      titre: {
+        capacite: 'Monovalence · Pont',
+        name: 'Certificat de matelot pont',
+        id: '1',
+        slug: 'certificat-de-matelot-pont',
+      },
+      details: {
+        marinIdentity: {
+          basicInfos: {
+            firstName: 'Thomas',
+            lastName: 'Laval',
+            numeroDeMarin: '1234945',
+          },
+          identityMarkers: {
+            isPhotoValid: true,
+            isSignatureValid: true,
+          },
+        },
+        results: {
+          finalResult: false,
+          details: {
+            conditions: [
+              {
+                group: 'Âge',
+                conditions: [
+                  {
+                    name: 'Âge',
+                    isSatisfied: true,
+                  },
+                ],
+              },
+              {
+                group: 'Aptitude médicale',
+                conditions: [
+                  {
+                    name: 'Aptitude médicale',
+                    isSatisfied: true,
+                  },
+                ],
+              },
+              {
+                group: 'Qualifications principales',
+                conditions: [
+                  {
+                    name: 'Module P1-Appui',
+                    isSatisfied: true,
+                  },
+                  {
+                    name: 'Module P2-Appui',
+                    isSatisfied: true,
+                  },
+                  {
+                    name: 'Module P3-Appui',
+                    isSatisfied: false,
+                  },
+                  {
+                    name: 'Module NP-Appui',
+                    isSatisfied: true,
+                  },
+                ],
+              },
+              {
+                group: 'Qualifications spécifiques',
+                conditions: [
+                  {
+                    name: 'Certificat de Formation de Base à la Sécurité',
+                    isSatisfied: true,
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      },
     },
-    {
-      capacite: 'Sécurité',
-      name: 'Certificat de formation de base à la sécurité',
-      id: '2',
-      slug: 'certificat-de-formation-de-base-a-la-securite',
-      details: [],
-      status: 'Dossier complet',
-    },
+    // {
+    //   capacite: 'Sécurité',
+    //   name: 'Certificat de formation de base à la sécurité',
+    //   id: '2',
+    //   slug: 'certificat-de-formation-de-base-a-la-securite',
+    //   details: [],
+    //   status: 'Dossier complet',
+    // },
   ];
 
   return (
@@ -51,9 +119,9 @@ const ChooseTitre = (props) => {
         <div className={styles['cq-choose-titre-titres-container']}>
           {allTitresMock.map((titre) => (
             <CqItemTitre
-              subtitle={titre.capacite}
-              name={titre.name}
-              status={titre.status}
+              subtitle={titre.titre.capacite}
+              name={titre.titre.name}
+              status={titre.details.results.finalResult}
               details={titre.details}
               action={{
                 label: BUTTON_LABELS.DEMAND_THIS,
@@ -64,9 +132,9 @@ const ChooseTitre = (props) => {
                   '/' +
                   NEW_TITRE_REQUEST_ROUTE +
                   '/' +
-                  titre.id +
+                  titre.titre.id +
                   '/' +
-                  titre.slug +
+                  titre.titre.slug +
                   '/' +
                   NEW_TITRE_REQUEST_RECAP_ROUTE,
                 actionType: ACTION_TYPES.PRIMARY,

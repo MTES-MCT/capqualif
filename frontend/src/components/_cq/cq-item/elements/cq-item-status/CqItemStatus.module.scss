@@ -3,14 +3,20 @@
 .cq-item-status-container {
   display: flex;
   align-items: center;
-  color: $function-green-success-clear;
 }
 
 .cq-item-status-container-text {
   font-size: $small;
-  color: $function-green-success-clear;
   line-height: normal;
   text-align: right;
+}
+
+.success {
+  color: $function-green-success-clear;
+}
+
+.failure {
+  color: $function-red-error;
 }
 
 .cq-item-status-container-icon {
