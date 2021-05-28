@@ -158,14 +158,6 @@ const ChooseTitre = (props) => {
         },
       },
     },
-    // {
-    //   capacite: 'Sécurité',
-    //   name: 'Certificat de formation de base à la sécurité',
-    //   id: '2',
-    //   slug: 'certificat-de-formation-de-base-a-la-securite',
-    //   details: [],
-    //   status: 'Dossier complet',
-    // },
   ];
 
   return (
@@ -175,7 +167,7 @@ const ChooseTitre = (props) => {
           Demander un nouveau titre
         </h2>
         <span
-          class="fr-fi-close-line"
+          class="fr-fi-close-line fr-mr-2w"
           aria-hidden="true"
           onClick={history.goBack}
         ></span>
