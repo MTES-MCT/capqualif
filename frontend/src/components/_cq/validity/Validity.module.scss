@@ -1,0 +1,23 @@
+@import '../../../sass/variables';
+
+.icon {
+  font-size: $normal;
+}
+
+.add-icon {
+  font-size: $normal;
+  border: 1px solid $marianne-blue__dark1;
+  display: inline-flex;
+  background-color: $white;
+  align-self: flex-end;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.highlight {
+  background-color: $warning-salmon;
+}

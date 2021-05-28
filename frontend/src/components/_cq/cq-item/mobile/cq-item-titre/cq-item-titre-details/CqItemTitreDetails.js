@@ -6,6 +6,7 @@ import commonStyles from './common.module.scss';
 import styles from './CqItemTitreDetails.module.scss';
 import CqItemCondition from './cq-item-condition/CqItemCondition';
 import { Fragment } from 'react';
+import Validity from '../../../../validity/Validity';
 
 const CqItemTitreDetails = ({ isVisible, details, action }) => {
   return (
@@ -25,29 +26,16 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
         <p className={`${styles.identity}`}>
           {details.marinIdentity.basicInfos.numeroDeMarin}
         </p>
-        {details.marinIdentity.identityMarkers.isPhotoValid ? (
-          <p>
-            <span
-              className="cq-helpers-success fr-fi-check-line"
-              aria-hidden="true"
-            ></span>
-            Photo d'identité valide
-          </p>
-        ) : (
-          <Fragment>
-            <p>
-              <span
-                className={`${commonStyles['icon']} cq-helpers-failure fr-fi-close-line`}
-                aria-hidden="true"
-              ></span>
-              Photo d'identité non valide
-              <span className={`${commonStyles['add-icon']} fr-ml-1w fr-p-1w`}>
-                <GrAdd />
-              </span>
-            </p>
-          </Fragment>
-        )}
-        <p>{details.marinIdentity.identityMarkers.isSignatureValid}</p>
+        <Validity
+          isValid={details.marinIdentity.identityMarkers.isPhotoValid}
+          validLabel={"Photo d'identité valide"}
+          notValidLabel={"Photo d'identité non valide"}
+        />
+        <Validity
+          isValid={details.marinIdentity.identityMarkers.isSignatureValid}
+          validLabel={'Signature valide'}
+          notValidLabel={'Signature non valide'}
+        />
       </div>
 
       {details.results.details.conditions.map((condition) => (
