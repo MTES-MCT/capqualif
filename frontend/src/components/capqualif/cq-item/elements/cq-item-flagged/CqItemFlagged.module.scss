@@ -1,0 +1,10 @@
+@import '../../../../../sass/variables';
+
+.cq-item-lined-element {
+  border-right: 1px solid $marianne-blue;
+}
+
+.cq-item__detail-flagged {
+  background-color: $g200;
+  width: fit-content;
+}

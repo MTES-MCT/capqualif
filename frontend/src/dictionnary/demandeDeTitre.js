@@ -25,6 +25,7 @@ export const BUTTON_LABELS = {
   DEMAND_THIS: 'Demander ce titre',
   ADD_DOCUMENT: 'Ajouter un document',
   ASK_FOR_ADVICE: "Demander le conseil d'un agent",
+  CONFIRM: 'Confirmer ma demande de titre',
 };
 
 export const STEPS = {
@@ -50,4 +51,12 @@ export const VALIDITY = {
   DURATION: 'Durée de validité',
   START_DATE: 'Début de validité prévue',
   END_DATE: 'Fin de validité prévue',
+};
+
+export const VARIOUS = {
+  RECAPITULATIF: 'Récapitulatif',
+};
+
+export const RESTRICTIONS = {
+  NO_RESTRICTION: 'Aucune restriction',
 };
