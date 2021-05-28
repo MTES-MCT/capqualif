@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './Dashboard.module.scss';
 
-import Button from '../../../../_cq/button/Button';
+import Button from '../../../../capqualif/button/Button';
 import {
   ACTION_TYPES,
   BUTTON_LABELS,

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import './DashboardContent.scss';
 
-import CqItemOfMarin from '../../../../../_cq/cq-item/marin/CqItemOfMarin';
+import CqItemOfMarin from '../../../../../capqualif/cq-item/marin/CqItemOfMarin';
 import {
   ACTION_TYPES,
   BUTTON_LABELS,

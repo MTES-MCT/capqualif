@@ -1,0 +1,14 @@
+@import '../../../sass/variables';
+
+.step-container {
+  border-bottom: 1px solid $g300;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $marianne-blue__dark1;
+}
+
+.step-h2 {
+  color: $marianne-blue__dark1;
+  font-size: $sizeH2Bis;
+}

@@ -20,8 +20,9 @@
   --is-link: false;
   --is-list: false;
   width: 100%;
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.1),
-    0 8px 16px -16px rgba(0, 0, 0, 0.32);
+  // box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.1),
+  //   0 8px 16px -16px rgba(0, 0, 0, 0.32);
+  box-shadow: (0px 0px 20px rgba(0, 0, 0, 0.1)); // Modified by Capqualif Team
   position: relative;
 }
 

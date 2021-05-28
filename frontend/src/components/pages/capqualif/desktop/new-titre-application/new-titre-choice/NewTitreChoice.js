@@ -2,14 +2,14 @@ import React, { Fragment } from 'react';
 
 import './NewTitreChoice.scss';
 
-import SectionHead from '../../../../../_cq/section/section-head/SectionHead';
+import SectionHead from '../../../../../capqualif/section/section-head/SectionHead';
 
-import Breadcrumb from '../../../../../_cq/breadcrumb/Breadcrumb';
+import Breadcrumb from '../../../../../capqualif/breadcrumb/Breadcrumb';
 import {
   FONT_COLORS,
   FONT_SIZES,
 } from '../../../../../../dictionnary/saas/variables';
-import CqItemCatalog from '../../../../../_cq/cq-item/catalog/CqItemCatalog';
+import CqItemCatalog from '../../../../../capqualif/cq-item/catalog/CqItemCatalog';
 import {
   ACTION_TYPES,
   BUTTON_LABELS,

@@ -17,6 +17,7 @@ import {
 
 import MobileDashboard from '../components/pages/capqualif/mobile/dashboard/Dashboard';
 import MobileRequestChooseTitre from '../components/pages/capqualif/mobile/request/choose-titre/ChooseTitre';
+import MobileRequestRecap from '../components/pages/capqualif/mobile/request/recap/Recap';
 
 import DesktopDashboard from '../components/pages/capqualif/desktop/dashboard/Dashboard';
 import DesktopNewTitreChoice from '../components/pages/capqualif/desktop/new-titre-application/new-titre-choice/NewTitreChoice';
@@ -43,6 +44,11 @@ const Routes = () => {
           exact
           path={`/${MOBILE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
           component={MobileRequestChooseTitre}
+        />
+        <Route
+          exact
+          path={`/${MOBILE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`}
+          component={MobileRequestRecap}
         />
         {/* ==================================================================== */}
         {/* ==================================================================== */}

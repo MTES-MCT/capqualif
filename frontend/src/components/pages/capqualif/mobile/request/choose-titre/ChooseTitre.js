@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import styles from './ChooseTitre.module.scss';
 
-import { BUTTON_LABELS } from '../../../../../../dictionnary/demandeDeTitre';
+import {
+  BUTTON_LABELS,
+  STEPS,
+} from '../../../../../../dictionnary/demandeDeTitre';
 import {
   BUTTON_WIDTH,
   FONT_SIZES,
@@ -15,11 +16,10 @@ import {
   NEW_TITRE_REQUEST_RECAP_ROUTE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../../app/routesDictionnary';
-import CqItemTitre from '../../../../../_cq/cq-item/mobile/cq-item-titre/CqItemTitre';
+import CqItemTitre from '../../../../../capqualif/cq-item/mobile/cq-item-titre/CqItemTitre';
+import Step from '../../../../../capqualif/step/Step';
 
 const ChooseTitre = (props) => {
-  let history = useHistory();
-
   const allTitresMock = [
     {
       titre: {
@@ -162,16 +162,7 @@ const ChooseTitre = (props) => {
 
   return (
     <div>
-      <div className={styles['cq-choose-titre-h2-container']}>
-        <h2 className={`${styles['cq-choose-titre-h2']} fr-m-2w`}>
-          Demander un nouveau titre
-        </h2>
-        <span
-          class="fr-fi-close-line fr-mr-2w"
-          aria-hidden="true"
-          onClick={history.goBack}
-        ></span>
-      </div>
+      <Step label={STEPS.REQUEST_NEW} />
       <div className="fr-m-2w">
         <h3 className={styles['cq-choose-titre-h3']}>Choix du titre</h3>
         <div className={styles['cq-choose-titre-titres-container']}>

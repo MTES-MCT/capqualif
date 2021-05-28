@@ -27,6 +27,11 @@ export const BUTTON_LABELS = {
   ASK_FOR_ADVICE: "Demander le conseil d'un agent",
 };
 
+export const STEPS = {
+  REQUEST_NEW: 'Demander un nouveau titre',
+  CONFIRM: 'Confirmer votre demande',
+};
+
 export const ACTION_TYPES = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
@@ -37,4 +42,12 @@ export const CATEGORY_NAMES = {
   DELIVRANCE_DATE: 'Délivré le',
   CAPACITES: 'Capacités',
   RESTRICTIONS: 'Restrictions',
+};
+
+// RECAP
+
+export const VALIDITY = {
+  DURATION: 'Durée de validité',
+  START_DATE: 'Début de validité prévue',
+  END_DATE: 'Fin de validité prévue',
 };

@@ -12,16 +12,16 @@ import {
   DESKTOP,
 } from '../../../../../../app/routesDictionnary';
 
-import Breadcrumb from '../../../../../_cq/breadcrumb/Breadcrumb';
-import SectionHead from '../../../../../_cq/section/section-head/SectionHead';
+import Breadcrumb from '../../../../../capqualif/breadcrumb/Breadcrumb';
+import SectionHead from '../../../../../capqualif/section/section-head/SectionHead';
 
-import SectionFooter from '../../../../../_cq/section/section-footer/SectionFooter';
-import CqItemOfMarin from '../../../../../_cq/cq-item/marin/CqItemOfMarin';
+import SectionFooter from '../../../../../capqualif/section/section-footer/SectionFooter';
+import CqItemOfMarin from '../../../../../capqualif/cq-item/marin/CqItemOfMarin';
 import {
   ACTION_TYPES,
   BUTTON_LABELS,
 } from '../../../../../../dictionnary/demandeDeTitre';
-import Button from '../../../../../_cq/button/Button';
+import Button from '../../../../../capqualif/button/Button';
 
 import { getConditions } from '../../../../../../redux/capqualif/desktop/features/conditions/conditionsSlice';
 

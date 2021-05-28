@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ACTION_TYPES } from '../../../../../../dictionnary/demandeDeTitre';
 import { FONT_SIZES } from '../../../../../../dictionnary/saas/variables';
-import Button from '../../../../../_cq/button/Button';
+import Button from '../../../../../capqualif/button/Button';
 import './AddPiece.scss';
 
 const AddPiece = () => {

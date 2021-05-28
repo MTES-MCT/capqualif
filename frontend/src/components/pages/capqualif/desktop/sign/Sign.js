@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { DASHBOARD_ROUTE, DESKTOP } from '../../../../../app/routesDictionnary';
 
-import HeaderBrand from '../../../../_rf/header-brand/HeaderBrand';
+import HeaderBrand from '../../../../system-design-etat/header-brand/HeaderBrand';
 
 import { getMarinBasicDataByNumeroDeMarin } from '../../../../../redux/capqualif/desktop/features/marinData/marinsSlice';
 

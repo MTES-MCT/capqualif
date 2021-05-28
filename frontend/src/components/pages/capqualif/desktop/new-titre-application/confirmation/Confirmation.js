@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SectionFooter from '../../../../../_cq/section/section-footer/SectionFooter';
+import SectionFooter from '../../../../../capqualif/section/section-footer/SectionFooter';
 
 import './Confirmation.scss';
 
@@ -10,7 +10,7 @@ import {
   NEW_TITRE_REQUEST_RECAP_ROUTE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../../app/routesDictionnary';
-import CqItemCatalog from '../../../../../_cq/cq-item/catalog/CqItemCatalog';
+import CqItemCatalog from '../../../../../capqualif/cq-item/catalog/CqItemCatalog';
 
 const Confirmation = (props) => {
   const possibleActions = [
