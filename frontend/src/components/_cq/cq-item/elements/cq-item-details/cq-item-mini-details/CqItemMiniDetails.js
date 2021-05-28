@@ -7,7 +7,7 @@ const CqItemMiniDetails = ({ label, labelStatus, infos }) => {
     return (
       <div className="cq-item__detail-container">
         <div
-          class={`cq-item__attribute rf-my-1w ${
+          class={`cq-item-attribute rf-my-1w ${
             labelStatus === 'validity-false' ? 'warning' : ''
           }`}
         >
@@ -16,7 +16,7 @@ const CqItemMiniDetails = ({ label, labelStatus, infos }) => {
 
         {infos && infos !== '' && Array.isArray(infos) ? (
           infos.map((info) => (
-            <div class="cq-item__lined-element cq-item__detail-flagged rf-p-1w rf-mb-2w">
+            <div class="cq-item-lined-element cq-item__detail-flagged rf-p-1w rf-mb-2w">
               {info}
             </div>
           ))

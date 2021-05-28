@@ -2,19 +2,19 @@
 
 // Helpers created by CapQualif Team
 
-.cq-helpers__full-width {
+.cq-helpers-full-width {
   width: 100%;
 }
 
-.cq-helpers__no-linebreak {
+.cq-helpers-no-linebreak {
   white-space: nowrap;
 }
 
-.cq-helpers__display-inline {
+.cq-helpers-display-inline {
   display: inline;
 }
 
-.cq-helpers__with-footer {
+.cq-helpers-with-footer {
   // We have to add this padding
   // so elements at the bottom of the component won't be hidden by footer
   padding-bottom: $footerHeight + 6vh;
@@ -24,6 +24,18 @@
   color: $marianne-blue;
 }
 
-.cq-helpers__clickable {
+.cq-helpers-clickable {
   cursor: pointer;
+}
+
+.cq-helpers-bordered-section {
+  border-top: 1px solid $g300;
+}
+
+.cq-helpers-success {
+  color: $function-green-success-light;
+}
+
+.cq-helpers-failure {
+  color: $function-red-error;
 }

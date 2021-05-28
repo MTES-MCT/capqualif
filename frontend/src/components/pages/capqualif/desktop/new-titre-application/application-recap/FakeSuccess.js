@@ -165,7 +165,7 @@
 //       <Breadcrumb />
 //       <div
 //         id="application-recap"
-//         className="cq-helpers__with-footer rf-container"
+//         className="cq-helpers-with-footer rf-container"
 //       >
 //         <div className="rf-grid-row">
 //           <SectionHead
@@ -187,7 +187,7 @@
 //                     </p>
 //                     <p>
 //                       Identification&nbsp;: {''}
-//                       <span className="dynamic-infos cq-helpers__display-inline">
+//                       <span className="dynamic-infos cq-helpers-display-inline">
 //                         {marin.numeroDeMarin}
 //                       </span>
 //                     </p>
@@ -227,7 +227,7 @@
 //               <div className="rf-pt-1w rf-pl-2w">
 //                 <p>
 //                   Mon âge&nbsp;: {''}
-//                   <span className="dynamic-infos cq-helpers__display-inline">
+//                   <span className="dynamic-infos cq-helpers-display-inline">
 //                     {computeAge(conditionsResultsMock.age.marinData.birthDate)}
 //                   </span>
 //                 </p>
@@ -248,7 +248,7 @@
 //                     : 'rf-fi-close-circle-line'
 //                 }`}
 //               ></span>
-//               <div className="rf-pt-1w rf-pl-2w cq-helpers__full-width">
+//               <div className="rf-pt-1w rf-pl-2w cq-helpers-full-width">
 //                 <p>Mes aptitudes médicales</p>
 //                 <CqItemOfMarin
 //                   name="Visite annuelle"
@@ -283,7 +283,7 @@
 //                     : 'rf-fi-close-circle-line'
 //                 }`}
 //                 ></span>
-//                 <div className="rf-pt-1w rf-pl-2w cq-helpers__full-width">
+//                 <div className="rf-pt-1w rf-pl-2w cq-helpers-full-width">
 //                   <CqItemOfMarin
 //                     name={formation.name}
 //                     subtitle={formation.type}

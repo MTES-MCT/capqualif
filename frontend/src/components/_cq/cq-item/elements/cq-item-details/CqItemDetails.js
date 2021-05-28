@@ -9,7 +9,7 @@ const CqItemDetails = ({ isVisible, details, action }) => {
   return (
     <div
       id="cq-item-details"
-      className="cq-helpers__full-width"
+      className="cq-helpers-full-width"
       className={`${isVisible ? '' : 'hidden'} rf-container`}
     >
       <div className="rf-grid-row">
@@ -26,7 +26,7 @@ const CqItemDetails = ({ isVisible, details, action }) => {
         </div>
       </div>
       <div className="rf-grid-row">
-        <div className="rf-px-3w rf-pt-2w isolated-details-container cq-helpers__full-width">
+        <div className="rf-px-3w rf-pt-2w isolated-details-container cq-helpers-full-width">
           {details
             .filter((detail) => !Array.isArray(detail.infos))
             .map((detail) => (

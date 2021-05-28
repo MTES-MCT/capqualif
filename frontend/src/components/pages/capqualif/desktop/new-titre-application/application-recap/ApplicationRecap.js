@@ -65,7 +65,7 @@ const ApplicationRecap = () => {
       <Breadcrumb />
       <div
         id="application-recap"
-        className="cq-helpers__with-footer rf-container"
+        className="cq-helpers-with-footer rf-container"
       >
         <div className="rf-grid-row">
           <SectionHead
@@ -87,7 +87,7 @@ const ApplicationRecap = () => {
                     </p>
                     <p>
                       Identification&nbsp;: {''}
-                      <span className="dynamic-infos cq-helpers__display-inline">
+                      <span className="dynamic-infos cq-helpers-display-inline">
                         {marin.numeroDeMarin}
                       </span>
                     </p>
@@ -126,7 +126,7 @@ const ApplicationRecap = () => {
                     : 'rf-fi-close-circle-line'
                 }`}
               ></span>
-              <div className="rf-pt-1w rf-pl-2w cq-helpers__full-width">
+              <div className="rf-pt-1w rf-pl-2w cq-helpers-full-width">
                 <p>Mes aptitudes médicales</p>
                 <CqItemOfMarin
                   name="Visite annuelle"
@@ -160,7 +160,7 @@ const ApplicationRecap = () => {
                     : 'rf-fi-close-circle-line'
                 }`}
                 ></span>
-                <div className="rf-pt-1w rf-pl-2w cq-helpers__full-width">
+                <div className="rf-pt-1w rf-pl-2w cq-helpers-full-width">
                   <CqItemOfMarin
                     name={formation.name}
                     subtitle={formation.type}
@@ -232,7 +232,7 @@ const renderBasicCondition = (conditionName, result) => {
           <div className="rf-pt-1w rf-pl-2w">
             <p>
               {conditionName}
-              <span className="dynamic-infos cq-helpers__display-inline">
+              <span className="dynamic-infos cq-helpers-display-inline">
                 {''} ma donnée
               </span>
             </p>
@@ -252,7 +252,7 @@ const renderComplexCondition = (conditionName, result) => {
             className={`
         ${result ? 'rf-fi-checkbox-line' : 'rf-fi-close-circle-line'}`}
           ></span>
-          <div className="rf-pt-1w rf-pl-2w cq-helpers__full-width">
+          <div className="rf-pt-1w rf-pl-2w cq-helpers-full-width">
             <p>Nom de la famille de condition</p>
             <CqItemOfMarin
               name={''}

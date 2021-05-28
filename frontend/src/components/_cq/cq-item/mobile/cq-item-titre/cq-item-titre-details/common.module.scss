@@ -1,0 +1,16 @@
+@import '../../../../../../sass/variables';
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  font-size: $normal;
+}
+
+.add-icon {
+  font-size: $sizeH3;
+  border: 1px solid $marianne-blue__dark1;
+  display: inline-flex;
+}

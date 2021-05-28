@@ -35,7 +35,7 @@ const ChooseTitre = (props) => {
             numeroDeMarin: '1234945',
           },
           identityMarkers: {
-            isPhotoValid: true,
+            isPhotoValid: false,
             isSignatureValid: true,
           },
         },
@@ -142,7 +142,6 @@ const ChooseTitre = (props) => {
             />
           ))}
         </div>
-
         <p className={styles['cq-choose-titre-warning-text']}>
           CapQualif bêta ne propose que ces deux titres pour le moment.
         </p>

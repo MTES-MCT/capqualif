@@ -10,12 +10,12 @@ const CqItemStatus = ({ status }) => {
       {status ? (
         <Fragment>
           <span
-            className={`${styles['cq-item-status-container-text']} ${styles.success} fr-pr-1w`}
+            className={`${styles['cq-item-status-container-text']} cq-helpers-success fr-pr-1w`}
           >
             Dossier complet
           </span>
           <span
-            className={`${styles['cq-item-status-container-icon']} ${styles.success}`}
+            className={`${styles['cq-item-status-container-icon']} cq-helpers-success`}
           >
             <VscCircleFilled />
           </span>
@@ -23,12 +23,12 @@ const CqItemStatus = ({ status }) => {
       ) : (
         <Fragment>
           <span
-            className={`${styles['cq-item-status-container-text']} ${styles.failure} fr-pr-1w`}
+            className={`${styles['cq-item-status-container-text']} cq-helpers-failure fr-pr-1w`}
           >
             Dossier incomplet
           </span>
           <span
-            className={`${styles['cq-item-status-container-icon']} ${styles.failure}`}
+            className={`${styles['cq-item-status-container-icon']} cq-helpers-failure`}
           >
             <VscCircleFilled />
           </span>

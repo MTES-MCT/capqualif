@@ -12,7 +12,7 @@ const Button = ({ label, route }) => {
     // <button className="cq-btn">
     //   <Link
     //     to={route}
-    //     className={`fr-btn disabled cq-helpers__no-linebreak
+    //     className={`fr-btn disabled cq-helpers-no-linebreak
     //       cq-btn__content-action-${actionType}`}
     //     style={{ fontSize: labelSize }}
     //     disabled={disabled}

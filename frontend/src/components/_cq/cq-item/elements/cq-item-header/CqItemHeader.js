@@ -6,7 +6,7 @@ import styles from './CqItemHeader.module.scss';
 const CqItemHeader = ({ subtitle, name }) => {
   return (
     <div>
-      <div className={`${commonStyles['cq-item__attribute']}`}>{subtitle}</div>
+      <div className={`${commonStyles['cq-item-attribute']}`}>{subtitle}</div>
       <div className={`${styles['cq-item__name']}`}>{name}</div>
     </div>
   );

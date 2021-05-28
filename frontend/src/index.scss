@@ -48,7 +48,6 @@ p {
 
 h1 {
   font-size: $sizeH1;
-  margin: 0 0 0.1em 0.05em;
 }
 
 h2 {
@@ -62,6 +61,5 @@ h3 {
 
 h4 {
   font-size: $normal;
-  font-weight: $regular;
-  margin: 4px;
+  font-weight: $semiBold;
 }
