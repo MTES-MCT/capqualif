@@ -7,6 +7,7 @@ import styles from './CqItemTitreDetails.module.scss';
 import CqItemCondition from './cq-item-condition/CqItemCondition';
 import { Fragment } from 'react';
 import Validity from '../../../../validity/Validity';
+import { IDENTITY_MARKERS } from '../../../../../../dictionnary/demandeDeTitre';
 
 const CqItemTitreDetails = ({ isVisible, details, action }) => {
   return (
@@ -26,23 +27,25 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
         <p className={`${styles.identity}`}>
           {details.marinIdentity.basicInfos.numeroDeMarin}
         </p>
-        <Validity
-          isValid={details.marinIdentity.identityMarkers.isPhotoValid}
-          validLabel={"Photo d'identité valide"}
-          notValidLabel={"Photo d'identité non valide"}
-        />
-        <Validity
-          isValid={details.marinIdentity.identityMarkers.isSignatureValid}
-          validLabel={'Signature valide'}
-          notValidLabel={'Signature non valide'}
-        />
+        <div className="fr-mt-2w">
+          <Validity
+            isValid={details.marinIdentity.identityMarkers.isPhotoValid}
+            validLabel={IDENTITY_MARKERS.PHOTO}
+            notValidLabel={IDENTITY_MARKERS.PHOTO}
+          />
+          <Validity
+            isValid={details.marinIdentity.identityMarkers.isSignatureValid}
+            validLabel={IDENTITY_MARKERS.SIGNATURE}
+            notValidLabel={IDENTITY_MARKERS.SIGNATURE}
+          />
+        </div>
       </div>
 
       {details.results.details.conditions.map((condition) => (
         <CqItemCondition condition={condition} />
       ))}
 
-      {action && <div className="fr-pt-2w">{action}</div>}
+      {action && <div>{action}</div>}
     </div>
   );
 };

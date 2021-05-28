@@ -15,3 +15,7 @@ export const FONT_SIZES = {
   SMALL: '0.75rem',
   VERY_SMALL: '0.625rem',
 };
+
+export const BUTTON_WIDTH = {
+  FULL: 'full',
+};

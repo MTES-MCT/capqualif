@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import commonStyles from '../common.module.scss';
 import './CqItemCondition.module.scss';
-import { Fragment } from 'react';
+import Validity from '../../../../../validity/Validity';
 
 const CqItemCondition = ({ condition }) => {
   return (
@@ -12,10 +12,11 @@ const CqItemCondition = ({ condition }) => {
     >
       <h3>{condition.group}</h3>
       {condition.conditions.map((cond) => (
-        <Fragment>
-          <div>{cond.name}</div>
-          <div>{cond.isSatisfied ? 'valide' : 'à compléter'}</div>
-        </Fragment>
+        <Validity
+          isValid={cond.isSatisfied}
+          validLabel={`${cond.name}`}
+          notValidLabel={`${cond.name}`}
+        />
       ))}
     </div>
   );

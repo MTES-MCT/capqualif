@@ -1,8 +1,18 @@
+export const STATUS_DOSSIER = {
+  COMPLETE: 'Dossier complet',
+  NOT_COMPLETE: 'Dossier incomplet',
+};
+
 export const STATUS_TITRE = {
   IN_PROGRESS: 'En cours de traitement',
   VALID: 'Valide',
   EXPIRED: 'Expiré',
   BLOCKED: 'Bloqué',
+};
+
+export const IDENTITY_MARKERS = {
+  PHOTO: "Photographie d'identité",
+  SIGNATURE: 'Signature',
 };
 
 export const STATUS_APTITUDE_MEDICALE = {

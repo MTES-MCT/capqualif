@@ -4,12 +4,12 @@ import Button from '../../../button/Button';
 
 const CqItemAction = ({ action }) => {
   return (
-    <div className="cq-item-action rf-p-1w">
+    <div className="cq-helpers-full-width cq-item-action fr-p-1w">
       <Button
         label={action.label}
         labelSize={action.labelSize}
+        width={action.width}
         route={action.route}
-        actionType={action.actionType}
       />
     </div>
   );

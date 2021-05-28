@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import styles from './ChooseTitre.module.scss';
 
-import CqItemCatalog from '../../../../../_cq/cq-item/catalog/CqItemCatalog';
+import { BUTTON_LABELS } from '../../../../../../dictionnary/demandeDeTitre';
 import {
-  ACTION_TYPES,
-  BUTTON_LABELS,
-} from '../../../../../../dictionnary/demandeDeTitre';
-import { FONT_SIZES } from '../../../../../../dictionnary/saas/variables';
+  BUTTON_WIDTH,
+  FONT_SIZES,
+} from '../../../../../../dictionnary/saas/variables';
 import {
-  DESKTOP,
   MOBILE,
   NEW_TITRE_REQUEST_RECAP_ROUTE,
   NEW_TITRE_REQUEST_ROUTE,
@@ -19,15 +18,18 @@ import {
 import CqItemTitre from '../../../../../_cq/cq-item/mobile/cq-item-titre/CqItemTitre';
 
 const ChooseTitre = (props) => {
+  let history = useHistory();
+
   const allTitresMock = [
     {
       titre: {
         capacite: 'Monovalence · Pont',
-        name: 'Certificat de matelot pont',
+        name: 'Certificat de Matelot Pont',
         id: '1',
         slug: 'certificat-de-matelot-pont',
       },
       details: {
+        dossierStatus: false,
         marinIdentity: {
           basicInfos: {
             firstName: 'Thomas',
@@ -96,6 +98,66 @@ const ChooseTitre = (props) => {
         },
       },
     },
+    {
+      titre: {
+        capacite: 'Sécurité',
+        name: 'Certificat de Formation de Base à la Sécurité',
+        id: '2',
+        slug: 'certificat-de-formation-de-base-a-la-securite',
+      },
+      details: {
+        dossierStatus: false,
+        marinIdentity: {
+          basicInfos: {
+            firstName: 'Thomas',
+            lastName: 'Laval',
+            numeroDeMarin: '1234945',
+          },
+          identityMarkers: {
+            isPhotoValid: false,
+            isSignatureValid: true,
+          },
+        },
+        results: {
+          finalResult: false,
+          details: {
+            conditions: [
+              {
+                group: 'Aptitude médicale',
+                conditions: [
+                  {
+                    name: 'Aptitude médicale',
+                    isSatisfied: true,
+                  },
+                ],
+              },
+              {
+                group: 'Qualifications spécifiques',
+                conditions: [
+                  {
+                    name: 'Techniques individuelles de survie (UV- TIS-F) ',
+                    isSatisfied: true,
+                  },
+                  {
+                    name:
+                      'Formation de base à la lutte contre l’incendie (UV-FBLI/F)',
+                    isSatisfied: true,
+                  },
+                  {
+                    name: 'Premiers secours élémentaires (PSC1)',
+                    isSatisfied: true,
+                  },
+                  {
+                    name: 'Prévention des risques à bord (UV-PRAB/F)',
+                    isSatisfied: true,
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      },
+    },
     // {
     //   capacite: 'Sécurité',
     //   name: 'Certificat de formation de base à la sécurité',
@@ -107,12 +169,16 @@ const ChooseTitre = (props) => {
   ];
 
   return (
-    <Fragment>
+    <div>
       <div className={styles['cq-choose-titre-h2-container']}>
         <h2 className={`${styles['cq-choose-titre-h2']} fr-m-2w`}>
           Demander un nouveau titre
         </h2>
-        <span class="fr-fi-close-line" aria-hidden="true"></span>
+        <span
+          class="fr-fi-close-line"
+          aria-hidden="true"
+          onClick={history.goBack}
+        ></span>
       </div>
       <div className="fr-m-2w">
         <h3 className={styles['cq-choose-titre-h3']}>Choix du titre</h3>
@@ -121,11 +187,12 @@ const ChooseTitre = (props) => {
             <CqItemTitre
               subtitle={titre.titre.capacite}
               name={titre.titre.name}
-              status={titre.details.results.finalResult}
+              status={titre.details.dossierStatus}
               details={titre.details}
               action={{
                 label: BUTTON_LABELS.DEMAND_THIS,
                 labelSize: FONT_SIZES.SMALL,
+                width: BUTTON_WIDTH.FULL,
                 route:
                   '/' +
                   MOBILE +
@@ -137,7 +204,6 @@ const ChooseTitre = (props) => {
                   titre.titre.slug +
                   '/' +
                   NEW_TITRE_REQUEST_RECAP_ROUTE,
-                actionType: ACTION_TYPES.PRIMARY,
               }}
             />
           ))}
@@ -146,7 +212,7 @@ const ChooseTitre = (props) => {
           CapQualif bêta ne propose que ces deux titres pour le moment.
         </p>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

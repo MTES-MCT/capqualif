@@ -8,7 +8,7 @@ const Validity = ({ isValid, validLabel, notValidLabel }) => {
   return (
     <Fragment>
       {isValid ? (
-        <p>
+        <p className="fr-p-1w fr-my-1w">
           <span
             className="cq-helpers-success fr-fi-check-line"
             aria-hidden="true"
@@ -16,20 +16,20 @@ const Validity = ({ isValid, validLabel, notValidLabel }) => {
           {validLabel}
         </p>
       ) : (
-        <Fragment>
-          <div className={`${styles.centered} ${styles.highlight} fr-p-1w`}>
-            <p>
-              <span
-                className={`${styles['icon']} cq-helpers-failure fr-fi-close-line`}
-                aria-hidden="true"
-              ></span>
-              {notValidLabel}
-            </p>
-            <span className={`${styles['add-icon']} fr-mr-1w fr-p-1w`}>
-              <GrAdd />
-            </span>
-          </div>
-        </Fragment>
+        <div
+          className={`${styles.centered} ${styles.highlight} fr-p-1w fr-my-1w`}
+        >
+          <p>
+            <span
+              className={`cq-helpers-failure fr-fi-close-line`}
+              aria-hidden="true"
+            ></span>
+            {notValidLabel}
+          </p>
+          <span className={`${styles['add-icon']} fr-mr-1w fr-p-1w`}>
+            <GrAdd />
+          </span>
+        </div>
       )}
     </Fragment>
   );

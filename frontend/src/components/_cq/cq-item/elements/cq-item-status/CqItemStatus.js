@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { VscCircleFilled } from 'react-icons/vsc';
 
 import styles from './CqItemStatus.module.scss';
+import { STATUS_DOSSIER } from '../../../../../dictionnary/demandeDeTitre';
 
 const CqItemStatus = ({ status }) => {
   return (
@@ -12,7 +13,7 @@ const CqItemStatus = ({ status }) => {
           <span
             className={`${styles['cq-item-status-container-text']} cq-helpers-success fr-pr-1w`}
           >
-            Dossier complet
+            {STATUS_DOSSIER.COMPLETE}
           </span>
           <span
             className={`${styles['cq-item-status-container-icon']} cq-helpers-success`}
@@ -25,7 +26,7 @@ const CqItemStatus = ({ status }) => {
           <span
             className={`${styles['cq-item-status-container-text']} cq-helpers-failure fr-pr-1w`}
           >
-            Dossier incomplet
+            {STATUS_DOSSIER.NOT_COMPLETE}
           </span>
           <span
             className={`${styles['cq-item-status-container-icon']} cq-helpers-failure`}
