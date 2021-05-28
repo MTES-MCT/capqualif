@@ -3,6 +3,10 @@ export const STATUS_DOSSIER = {
   NOT_COMPLETE: 'Dossier incomplet',
 };
 
+export const STATUS_DEMANDE = {
+  SENT: 'Demande envoyée',
+};
+
 export const STATUS_TITRE = {
   IN_PROGRESS: 'En cours de traitement',
   VALID: 'Valide',
