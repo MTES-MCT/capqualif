@@ -4,7 +4,13 @@ export const STATUS_DOSSIER = {
 };
 
 export const STATUS_DEMANDE = {
-  SENT: 'Demande envoyée',
+  SENT: {
+    SHORT: 'Demande envoyée',
+    DETAILED: {
+      PART_1: 'Votre demande du titre',
+      PART_2: 'a bien été envoyée',
+    },
+  },
 };
 
 export const STATUS_TITRE = {
@@ -30,6 +36,7 @@ export const BUTTON_LABELS = {
   ADD_DOCUMENT: 'Ajouter un document',
   ASK_FOR_ADVICE: "Demander le conseil d'un agent",
   CONFIRM: 'Confirmer ma demande de titre',
+  GO_BACK_HOME: "Retourner à la page d'accueil",
 };
 
 export const STEPS = {
@@ -49,8 +56,6 @@ export const CATEGORY_NAMES = {
   RESTRICTIONS: 'Restrictions',
 };
 
-// RECAP
-
 export const VALIDITY = {
   DURATION: 'Durée de validité',
   START_DATE: 'Début de validité prévue',
@@ -59,6 +64,8 @@ export const VALIDITY = {
 
 export const VARIOUS = {
   RECAPITULATIF: 'Récapitulatif',
+  CAPQUALIF_BETA_WARNING:
+    'CapQualif bêta ne propose que ces deux titres pour le moment.',
 };
 
 export const RESTRICTIONS = {

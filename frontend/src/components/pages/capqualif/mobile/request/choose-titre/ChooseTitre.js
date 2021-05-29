@@ -6,6 +6,7 @@ import styles from './ChooseTitre.module.scss';
 import {
   BUTTON_LABELS,
   STEPS,
+  VARIOUS,
 } from '../../../../../../dictionnary/demandeDeTitre';
 import {
   BUTTON_WIDTH,
@@ -192,7 +193,7 @@ const ChooseTitre = (props) => {
           ))}
         </div>
         <p className={styles['cq-choose-titre-warning-text']}>
-          CapQualif bêta ne propose que ces deux titres pour le moment.
+          {VARIOUS.CAPQUALIF_BETA_WARNING}
         </p>
       </div>
     </div>

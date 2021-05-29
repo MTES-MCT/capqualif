@@ -19,6 +19,12 @@ import {
   BUTTON_WIDTH,
   FONT_SIZES,
 } from '../../../../../../dictionnary/saas/variables';
+import {
+  CONFIRMATION_ROUTE,
+  MOBILE,
+  NEW_TITRE_REQUEST_ROUTE,
+} from '../../../../../../app/routesDictionnary';
+import CqItemAction from '../../../../../capqualif/cq-item/elements/cq-item-action/CqItemAction';
 
 const Recap = (props) => {
   const titreMock = {
@@ -129,11 +135,19 @@ const Recap = (props) => {
           name={RESTRICTIONS.NO_RESTRICTION}
           status={titreMock.details.dossierStatus}
           details={titreMock.details}
+        />
+        <CqItemAction
           action={{
             label: BUTTON_LABELS.CONFIRM,
             labelSize: FONT_SIZES.SMALL,
             width: BUTTON_WIDTH.FULL,
-            route: '',
+            route:
+              '/' +
+              MOBILE +
+              '/' +
+              NEW_TITRE_REQUEST_ROUTE +
+              '/' +
+              CONFIRMATION_ROUTE,
           }}
         />
       </div>

@@ -1,0 +1,22 @@
+@import '../../../../../../sass/variables';
+
+.page {
+  display: flex;
+  align-items: center;
+  height: 50vh;
+}
+
+.message-container {
+  border: $border;
+  box-shadow: $boxShadow;
+  color: $marianne-blue__dark1;
+}
+
+.header {
+  border-bottom: $border;
+  color: $marianne-blue__dark1;
+}
+
+.titre {
+  font-weight: $extraBold;
+}
