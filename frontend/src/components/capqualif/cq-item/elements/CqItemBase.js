@@ -6,7 +6,7 @@ import styles from './CqItemBase.module.scss';
 import CqItemHeader from './cq-item-header/CqItemHeader';
 import CqItemStatus from './cq-item-status/CqItemStatus';
 
-const CqItemBase = ({ subtitle, name, status, action, details }) => {
+const CqItemBase = ({ subtitle, name, status, date, details }) => {
   const [isDetailVisible, setIsDetailVisible] = useState(false);
 
   return (
@@ -16,7 +16,7 @@ const CqItemBase = ({ subtitle, name, status, action, details }) => {
           <CqItemHeader subtitle={subtitle} name={name} />
         </div>
         <div className={`fr-col-3 fr-mr-1w`}>{status}</div>
-        {action && <div className="fr-col-2">{action}</div>}
+        {date && <div className="fr-col">{date}</div>}
         {details && (
           <div className={`${styles['expand-container']} fr-col-1 fr-px-2w`}>
             <span
@@ -39,6 +39,7 @@ CqItemBase.propTypes = {
   subtitle: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   status: PropTypes.element.isRequired,
+  date: PropTypes.element.isRequired,
   action: PropTypes.element.isRequired,
   details: PropTypes.object.isRequired,
 };

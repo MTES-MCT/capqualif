@@ -3,44 +3,80 @@ import PropTypes from 'prop-types';
 import { VscCircleFilled } from 'react-icons/vsc';
 
 import styles from './CqItemStatus.module.scss';
-import { STATUS_DOSSIER } from '../../../../../dictionnary/demandeDeTitre';
+import {
+  STATUS_REQUEST,
+  STATUS_DOSSIER,
+  STATUS_TITRE,
+  STATUS_TYPES,
+} from '../../../../../dictionnary/demandeDeTitre';
 
 const CqItemStatus = ({ status }) => {
+  const whatToShow = (status) => {
+    switch (status.type) {
+      case STATUS_TYPES.DOSSIER:
+        return fillModel(
+          status.value,
+          STATUS_DOSSIER.COMPLETE,
+          STATUS_DOSSIER.NOT_COMPLETE
+        );
+      case STATUS_TYPES.TITRE_VALIDITY:
+        return fillModel(
+          status.value,
+          STATUS_TITRE.VALID,
+          STATUS_TITRE.NOT_VALID
+        );
+      case STATUS_TYPES.REQUEST:
+        return fillModel(status.value, STATUS_REQUEST.SENT.SHORT, null);
+      default:
+        return null;
+    }
+  };
+
+  const fillModel = (statusValue, successLabel, failureLabel) => {
+    return (
+      <Fragment>
+        {statusValue
+          ? successLabel && (
+              <Fragment>
+                <span
+                  className={`${styles['cq-item-status-container-text']} cq-helpers-success fr-pr-1w`}
+                >
+                  {successLabel}
+                </span>
+                <span
+                  className={`${styles['cq-item-status-container-icon']} cq-helpers-success`}
+                >
+                  <VscCircleFilled />
+                </span>
+              </Fragment>
+            )
+          : failureLabel && (
+              <Fragment>
+                <span
+                  className={`${styles['cq-item-status-container-text']} cq-helpers-failure fr-pr-1w`}
+                >
+                  {failureLabel}
+                </span>
+                <span
+                  className={`${styles['cq-item-status-container-icon']} cq-helpers-failure`}
+                >
+                  <VscCircleFilled />
+                </span>
+              </Fragment>
+            )}
+      </Fragment>
+    );
+  };
+
   return (
     <div className={`${styles['cq-item-status-container']}`}>
-      {status ? (
-        <Fragment>
-          <span
-            className={`${styles['cq-item-status-container-text']} cq-helpers-success fr-pr-1w`}
-          >
-            {STATUS_DOSSIER.COMPLETE}
-          </span>
-          <span
-            className={`${styles['cq-item-status-container-icon']} cq-helpers-success`}
-          >
-            <VscCircleFilled />
-          </span>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <span
-            className={`${styles['cq-item-status-container-text']} cq-helpers-failure fr-pr-1w`}
-          >
-            {STATUS_DOSSIER.NOT_COMPLETE}
-          </span>
-          <span
-            className={`${styles['cq-item-status-container-icon']} cq-helpers-failure`}
-          >
-            <VscCircleFilled />
-          </span>
-        </Fragment>
-      )}
+      {whatToShow(status)}
     </div>
   );
 };
 
 CqItemStatus.propTypes = {
-  status: PropTypes.string.isRequired,
+  status: PropTypes.object.isRequired,
 };
 
 export default CqItemStatus;

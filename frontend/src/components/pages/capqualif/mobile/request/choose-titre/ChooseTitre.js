@@ -5,6 +5,7 @@ import styles from './ChooseTitre.module.scss';
 
 import {
   BUTTON_LABELS,
+  STATUS_TYPES,
   STEPS,
   VARIOUS,
 } from '../../../../../../dictionnary/demandeDeTitre';
@@ -171,7 +172,10 @@ const ChooseTitre = (props) => {
             <CqItemTitre
               subtitle={titre.titre.capacite}
               name={titre.titre.name}
-              status={titre.details.dossierStatus}
+              status={{
+                type: STATUS_TYPES.DOSSIER,
+                value: titre.details.dossierStatus,
+              }}
               details={titre.details}
               action={{
                 label: BUTTON_LABELS.DEMAND_THIS,

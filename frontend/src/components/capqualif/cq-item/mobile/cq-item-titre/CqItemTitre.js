@@ -6,18 +6,29 @@ import CqItemBase from '../../elements/CqItemBase';
 import CqItemStatus from '../../elements/cq-item-status/CqItemStatus';
 import CqItemAction from '../../elements/cq-item-action/CqItemAction';
 import CqItemTitreDetails from './cq-item-titre-details/CqItemTitreDetails';
+import CqItemTitreDate from './cq-item-titre-date/CqItemTitreDate';
 
-const CqItemTitre = ({ name, subtitle, status, action, details }) => {
+const CqItemTitre = ({
+  name,
+  subtitle,
+  status,
+  expirationDate,
+  details,
+  action,
+}) => {
   return (
     <CqItemBase
       subtitle={subtitle}
       name={name}
-      status={<CqItemStatus status={status} />}
+      status={status && <CqItemStatus status={status} />}
+      date={expirationDate && <CqItemTitreDate date={expirationDate} />}
       details={
-        <CqItemTitreDetails
-          details={details}
-          action={action && <CqItemAction action={action} />}
-        />
+        details && (
+          <CqItemTitreDetails
+            details={details}
+            action={action && <CqItemAction action={action} />}
+          />
+        )
       }
     />
   );

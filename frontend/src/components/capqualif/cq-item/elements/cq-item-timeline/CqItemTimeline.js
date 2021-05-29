@@ -8,10 +8,6 @@ const CqItemTimeline = ({ dates }) => {
 
   return (
     <Fragment>
-      {/* TO DO : add a check to display alert */}
-      {/* <div className="rf-grid-row">
-        <div className="cq-item__timeline-alert">{alertText}</div>
-      </div> */}
       <div className="cq-item__timeline">
         <div>
           {dates.delivranceDate ||

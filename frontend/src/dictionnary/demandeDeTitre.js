@@ -1,9 +1,13 @@
+export const DASHBOARD_INFOS = {
+  NO_TITLES: "Vous n'avez aucun titre pour le moment.",
+};
+
 export const STATUS_DOSSIER = {
   COMPLETE: 'Dossier complet',
   NOT_COMPLETE: 'Dossier incomplet',
 };
 
-export const STATUS_DEMANDE = {
+export const STATUS_REQUEST = {
   SENT: {
     SHORT: 'Demande envoyée',
     DETAILED: {
@@ -16,6 +20,7 @@ export const STATUS_DEMANDE = {
 export const STATUS_TITRE = {
   IN_PROGRESS: 'En cours de traitement',
   VALID: 'Valide',
+  NOT_VALID: 'Non valide',
   EXPIRED: 'Expiré',
   BLOCKED: 'Bloqué',
 };
@@ -70,4 +75,10 @@ export const VARIOUS = {
 
 export const RESTRICTIONS = {
   NO_RESTRICTION: 'Aucune restriction',
+};
+
+export const STATUS_TYPES = {
+  TITRE_VALIDITY: 'TITRE_VALIDITY',
+  REQUEST: 'REQUEST',
+  DOSSIER: 'DOSSIER',
 };
