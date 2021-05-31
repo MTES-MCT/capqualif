@@ -8,6 +8,7 @@ import {
   STATUS_DOSSIER,
   STATUS_TITRE,
   STATUS_TYPES,
+  COLORS,
 } from '../../../../../dictionnary/demandeDeTitre';
 
 const CqItemStatus = ({ status }) => {
@@ -18,6 +19,7 @@ const CqItemStatus = ({ status }) => {
           status.value,
           STATUS_DOSSIER.COMPLETE,
           STATUS_DOSSIER.NOT_COMPLETE,
+          COLORS.GREEN,
           true
         );
       case STATUS_TYPES.TITRE_VALIDITY:
@@ -25,23 +27,36 @@ const CqItemStatus = ({ status }) => {
           status.value,
           STATUS_TITRE.VALID,
           STATUS_TITRE.NOT_VALID,
+          COLORS.GREEN,
           false
         );
       case STATUS_TYPES.REQUEST:
-        return fillModel(status.value, STATUS_REQUEST.SENT.SHORT, null, false);
+        return fillModel(
+          status.value,
+          STATUS_REQUEST.SENT.SHORT,
+          null,
+          COLORS.BLUE,
+          false
+        );
       default:
         return null;
     }
   };
 
-  const fillModel = (statusValue, successLabel, failureLabel, isWithCircle) => {
+  const fillModel = (
+    statusValue,
+    successLabel,
+    failureLabel,
+    color,
+    isWithCircle
+  ) => {
     return (
       <Fragment>
         {statusValue
           ? successLabel && (
               <Fragment>
                 <span
-                  className={`${styles['cq-item-status-container-text']} cq-helpers-success fr-pr-1w`}
+                  className={`${styles['cq-item-status-container-text']} cq-helpers-success-${color} fr-pr-1w`}
                 >
                   {successLabel}
                 </span>

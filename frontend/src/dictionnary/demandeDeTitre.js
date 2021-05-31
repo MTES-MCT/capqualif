@@ -88,3 +88,8 @@ export const MARIN_INFOS = {
   NAME: 'Prénom, nom',
   ID_NUMBER: "Numéro d'identification",
 };
+
+export const COLORS = {
+  GREEN: 'green',
+  BLUE: 'blue',
+};
