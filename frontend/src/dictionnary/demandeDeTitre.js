@@ -104,3 +104,8 @@ export const COLORS = {
   GREEN: 'green',
   BLUE: 'blue',
 };
+
+export const DETAILS_TYPE = {
+  CONDITIONS: 'conditions',
+  REQUEST: 'request',
+};

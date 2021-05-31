@@ -8,7 +8,6 @@ import {
   DASHBOARD_INFOS,
   BUTTON_LABELS,
   STATUS_TYPES,
-  REQUEST,
   INSTRUCTION_STATUS,
 } from '../../../../../dictionnary/demandeDeTitre';
 import {
@@ -21,24 +20,24 @@ import CqItemTitre from '../../../../capqualif/cq-item/mobile/cq-item-titre/CqIt
 import { TITRES } from '../../../../../dictionnary/titres';
 
 const Dashboard = (props) => {
-  const allTitresOfMarin = useSelector(
+  const marinTitres = useSelector(
     (state) => state.marinsReducer.marinBasicData.allTitresOfMarin
   );
 
-  const allRequestsOfMarinMock = [
+  const allRequestsMock = [
     {
       requestedTitre: {
         name: TITRES.CERTIFICATS.MATELOT_PONT,
       },
-      requestStatus: REQUEST.STATUS_REQUEST.SENT.SHORT,
+      isRequestSent: true,
       instructionStatus: INSTRUCTION_STATUS.IN_PROGRESS,
       requestDate: '18.06.2020',
     },
   ];
 
-  const displayAllTitresOfMarin = (allTitresOfMarin) => {
-    if (allTitresOfMarin.length > 0) {
-      return allTitresOfMarin
+  const displayAllMarinTitres = (marinTitres) => {
+    if (marinTitres.length > 0) {
+      return marinTitres
         .filter(
           (titre) =>
             titre.name === TITRES.CERTIFICATS.MATELOT_PONT ||
@@ -62,14 +61,14 @@ const Dashboard = (props) => {
     );
   };
 
-  const displayAllRequestsOfMarin = (allRequestsOfMarinMock) => {
-    if (allRequestsOfMarinMock.length > 0) {
-      return allRequestsOfMarinMock.map((request) => (
+  const displayAllRequests = (allRequests) => {
+    if (allRequests.length > 0) {
+      return allRequests.map((request) => (
         <CqItemTitre
           name={request.requestedTitre.name}
           status={{
             type: STATUS_TYPES.REQUEST,
-            value: request.status,
+            value: request.isRequestSent,
           }}
           // details={request.instructionStatus}
         />
@@ -81,8 +80,8 @@ const Dashboard = (props) => {
     <Fragment>
       <div className={styles['cq-titres-container']}>
         <h2>Mes titres</h2>
-        {displayAllRequestsOfMarin(allRequestsOfMarinMock)}
-        {displayAllTitresOfMarin(allTitresOfMarin)}
+        {displayAllRequests(allRequestsMock)}
+        {displayAllMarinTitres(marinTitres)}
       </div>
       <div className={`${styles['cq-dashboard-action-container']} fr-px-1w`}>
         <Button
