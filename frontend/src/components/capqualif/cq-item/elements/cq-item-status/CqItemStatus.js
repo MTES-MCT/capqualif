@@ -17,22 +17,24 @@ const CqItemStatus = ({ status }) => {
         return fillModel(
           status.value,
           STATUS_DOSSIER.COMPLETE,
-          STATUS_DOSSIER.NOT_COMPLETE
+          STATUS_DOSSIER.NOT_COMPLETE,
+          true
         );
       case STATUS_TYPES.TITRE_VALIDITY:
         return fillModel(
           status.value,
           STATUS_TITRE.VALID,
-          STATUS_TITRE.NOT_VALID
+          STATUS_TITRE.NOT_VALID,
+          false
         );
       case STATUS_TYPES.REQUEST:
-        return fillModel(status.value, STATUS_REQUEST.SENT.SHORT, null);
+        return fillModel(status.value, STATUS_REQUEST.SENT.SHORT, null, false);
       default:
         return null;
     }
   };
 
-  const fillModel = (statusValue, successLabel, failureLabel) => {
+  const fillModel = (statusValue, successLabel, failureLabel, isWithCircle) => {
     return (
       <Fragment>
         {statusValue
@@ -46,7 +48,7 @@ const CqItemStatus = ({ status }) => {
                 <span
                   className={`${styles['cq-item-status-container-icon']} cq-helpers-success`}
                 >
-                  <VscCircleFilled />
+                  {isWithCircle && <VscCircleFilled />}
                 </span>
               </Fragment>
             )
@@ -60,7 +62,7 @@ const CqItemStatus = ({ status }) => {
                 <span
                   className={`${styles['cq-item-status-container-icon']} cq-helpers-failure`}
                 >
-                  <VscCircleFilled />
+                  {isWithCircle && <VscCircleFilled />}
                 </span>
               </Fragment>
             )}

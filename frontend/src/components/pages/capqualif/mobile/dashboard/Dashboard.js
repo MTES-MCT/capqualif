@@ -8,6 +8,7 @@ import {
   DASHBOARD_INFOS,
   BUTTON_LABELS,
   STATUS_TYPES,
+  STATUS_REQUEST,
 } from '../../../../../dictionnary/demandeDeTitre';
 import {
   MOBILE,
@@ -23,7 +24,14 @@ const Dashboard = (props) => {
     (state) => state.marinsReducer.marinBasicData.allTitresOfMarin
   );
 
-  const allRequestsOfMarinMock = {};
+  const allRequestsOfMarinMock = [
+    {
+      titre: {
+        name: TITRES.CERTIFICATS.MATELOT_PONT,
+      },
+      status: STATUS_REQUEST.SENT.SHORT,
+    },
+  ];
 
   const displayAllTitresOfMarin = (allTitresOfMarin) => {
     if (allTitresOfMarin.length > 0) {
@@ -46,12 +54,24 @@ const Dashboard = (props) => {
     }
   };
 
-  const displayAllRequestsOfMarin = () => {};
+  const displayAllRequestsOfMarin = (allRequestsOfMarinMock) => {
+    if (allRequestsOfMarinMock.length > 0) {
+      return allRequestsOfMarinMock.map((request) => (
+        <CqItemTitre
+          name={request.titre.name}
+          status={{
+            type: STATUS_TYPES.REQUEST,
+            value: request.status,
+          }}
+        />
+      ));
+    }
+  };
 
   return (
     <Fragment>
       {displayAllTitresOfMarin(allTitresOfMarin)}
-      {displayAllRequestsOfMarin(allTitresOfMarin)}
+      {displayAllRequestsOfMarin(allRequestsOfMarinMock)}
       {/* <div className={styles['cq-titres-container']}>
         <h2>Mes titres</h2>
         <p className={styles['cq-dashboard-no-titles']}>
