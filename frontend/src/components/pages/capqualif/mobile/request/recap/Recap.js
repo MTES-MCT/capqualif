@@ -8,6 +8,7 @@ import Step from '../../../../../capqualif/step/Step';
 import {
   BUTTON_LABELS,
   RESTRICTIONS,
+  STATUS_TYPES,
   STEPS,
   VALIDITY,
   VARIOUS,
@@ -50,6 +51,7 @@ const Recap = (props) => {
       results: {
         finalResult: false,
         details: {
+          restrictions: [],
           conditions: [
             {
               group: 'Âge',
@@ -105,6 +107,20 @@ const Recap = (props) => {
     },
   };
 
+  const displayRestrictions = (restrictions) => {
+    if (restrictions.length === 0) {
+      return <p>{RESTRICTIONS.NO_RESTRICTION}</p>;
+    }
+    return (
+      <p>
+        Restrictions&nbsp;:{' '}
+        {restrictions.map((restriction) => (
+          <p>{restriction}</p>
+        ))}
+      </p>
+    );
+  };
+
   return (
     <Fragment>
       <Step label={STEPS.CONFIRM} />
@@ -113,7 +129,7 @@ const Recap = (props) => {
           subtitle={'Appui · Pont'}
           name={'Certificat de Matelot Pont'}
         />
-        <p>{RESTRICTIONS.NO_RESTRICTION}</p>
+        {displayRestrictions(titreMock.details.results.details.restrictions)}
         <div className={`${styles['spaced']} fr-grid-row fr-my-3w`}>
           <p>{VALIDITY.DURATION}</p>
           <CqItemFlagged label={'5 ans'} />
@@ -132,8 +148,13 @@ const Recap = (props) => {
         </p>
         <CqItemTitre
           subtitle={VARIOUS.RECAPITULATIF}
-          name={RESTRICTIONS.NO_RESTRICTION}
-          status={titreMock.details.dossierStatus}
+          name={displayRestrictions(
+            titreMock.details.results.details.restrictions
+          )}
+          status={{
+            type: STATUS_TYPES.DOSSIER,
+            value: titreMock.details.dossierStatus,
+          }}
           details={titreMock.details}
         />
         <CqItemAction

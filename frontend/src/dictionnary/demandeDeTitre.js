@@ -82,3 +82,9 @@ export const STATUS_TYPES = {
   REQUEST: 'REQUEST',
   DOSSIER: 'DOSSIER',
 };
+
+export const MARIN_INFOS = {
+  IDENTITY: 'Identité',
+  NAME: 'Prénom, nom',
+  ID_NUMBER: "Numéro d'identification",
+};

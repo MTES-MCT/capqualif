@@ -7,7 +7,10 @@ import styles from './CqItemTitreDetails.module.scss';
 import CqItemCondition from './cq-item-condition/CqItemCondition';
 import { Fragment } from 'react';
 import Validity from '../../../../validity/Validity';
-import { IDENTITY_MARKERS } from '../../../../../../dictionnary/demandeDeTitre';
+import {
+  IDENTITY_MARKERS,
+  MARIN_INFOS,
+} from '../../../../../../dictionnary/demandeDeTitre';
 
 const CqItemTitreDetails = ({ isVisible, details, action }) => {
   return (
@@ -16,14 +19,14 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
         className={`${commonStyles.section} cq-helpers-bordered-section fr-p-2w fr-mt-3w fr-grid-row`}
       >
         <div>
-          <h3>Identitié</h3>
-          <h4>Prénom, nom</h4>
+          <h3>{MARIN_INFOS.IDENTITY}</h3>
+          <h4>{MARIN_INFOS.NAME}</h4>
           <p className={`${styles.identity}`}>
             {details.marinIdentity.basicInfos.firstName}&nbsp;
             {details.marinIdentity.basicInfos.lastName}
           </p>
         </div>
-        <h4>Numéra d'identification</h4>
+        <h4>{MARIN_INFOS.ID_NUMBER}</h4>
         <p className={`${styles.identity}`}>
           {details.marinIdentity.basicInfos.numeroDeMarin}
         </p>
