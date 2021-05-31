@@ -7,14 +7,23 @@ export const STATUS_DOSSIER = {
   NOT_COMPLETE: 'Dossier incomplet',
 };
 
-export const STATUS_REQUEST = {
-  SENT: {
-    SHORT: 'Demande envoyée',
-    DETAILED: {
-      PART_1: 'Votre demande du titre',
-      PART_2: 'a bien été envoyée',
+export const REQUEST = {
+  STATUS_REQUEST: {
+    SENT: {
+      SHORT: 'Demande envoyée',
+      DETAILED: {
+        PART_1: 'Votre demande du titre',
+        PART_2: 'a bien été envoyée',
+      },
     },
   },
+  DATES: {
+    START_DATE: 'Date de la demande',
+  },
+};
+
+export const INSTRUCTION_STATUS = {
+  IN_PROGRESS: 'Instruction automatisée en cours',
 };
 
 export const STATUS_TITRE = {
@@ -71,6 +80,8 @@ export const VARIOUS = {
   RECAPITULATIF: 'Récapitulatif',
   CAPQUALIF_BETA_WARNING:
     'CapQualif bêta ne propose que ces deux titres pour le moment.',
+  DATES_WARNING:
+    "Ces dates peuvent changer si la délivrance de votre titre n'est pas immédiate.",
 };
 
 export const RESTRICTIONS = {

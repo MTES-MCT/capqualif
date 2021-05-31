@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './Confirmation.module.scss';
 import {
   BUTTON_LABELS,
-  STATUS_REQUEST,
+  REQUEST,
 } from '../../../../../../dictionnary/demandeDeTitre';
 import CqItemAction from '../../../../../capqualif/cq-item/elements/cq-item-action/CqItemAction';
 import {
@@ -18,14 +18,14 @@ const Confirmation = (props) => {
     <div className={`${styles['page']} fr-container`}>
       <div className={`${styles['message-container']} fr-container fr-pb-1w`}>
         <h2 className={`${styles['header']} fr-p-2w`}>
-          {`${STATUS_REQUEST.SENT.SHORT} !`}
+          {`${REQUEST.STATUS_REQUEST.SENT.SHORT} !`}
         </h2>
         <p className="fr-p-2w">
-          {STATUS_REQUEST.SENT.DETAILED.PART_1}{' '}
+          {REQUEST.STATUS_REQUEST.SENT.DETAILED.PART_1}{' '}
           <span className={`${styles['titre']}`}>
             Certificat de Matelot Pont
           </span>{' '}
-          {STATUS_REQUEST.SENT.DETAILED.PART_2}
+          {REQUEST.STATUS_REQUEST.SENT.DETAILED.PART_2}
         </p>
         <CqItemAction
           action={{

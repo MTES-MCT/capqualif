@@ -8,7 +8,8 @@ import {
   DASHBOARD_INFOS,
   BUTTON_LABELS,
   STATUS_TYPES,
-  STATUS_REQUEST,
+  REQUEST,
+  INSTRUCTION_STATUS,
 } from '../../../../../dictionnary/demandeDeTitre';
 import {
   MOBILE,
@@ -26,10 +27,12 @@ const Dashboard = (props) => {
 
   const allRequestsOfMarinMock = [
     {
-      titre: {
+      requestedTitre: {
         name: TITRES.CERTIFICATS.MATELOT_PONT,
       },
-      status: STATUS_REQUEST.SENT.SHORT,
+      requestStatus: REQUEST.STATUS_REQUEST.SENT.SHORT,
+      instructionStatus: INSTRUCTION_STATUS.IN_PROGRESS,
+      requestDate: '18.06.2020',
     },
   ];
 
@@ -52,17 +55,23 @@ const Dashboard = (props) => {
           />
         ));
     }
+    return (
+      <p className={styles['cq-dashboard-no-titles']}>
+        {DASHBOARD_INFOS.NO_TITLES}
+      </p>
+    );
   };
 
   const displayAllRequestsOfMarin = (allRequestsOfMarinMock) => {
     if (allRequestsOfMarinMock.length > 0) {
       return allRequestsOfMarinMock.map((request) => (
         <CqItemTitre
-          name={request.titre.name}
+          name={request.requestedTitre.name}
           status={{
             type: STATUS_TYPES.REQUEST,
             value: request.status,
           }}
+          // details={request.instructionStatus}
         />
       ));
     }
@@ -70,13 +79,10 @@ const Dashboard = (props) => {
 
   return (
     <Fragment>
-      {displayAllTitresOfMarin(allTitresOfMarin)}
-      {displayAllRequestsOfMarin(allRequestsOfMarinMock)}
-      {/* <div className={styles['cq-titres-container']}>
+      <div className={styles['cq-titres-container']}>
         <h2>Mes titres</h2>
-        <p className={styles['cq-dashboard-no-titles']}>
-          {DASHBOARD_INFOS.NO_TITLES}
-        </p>
+        {displayAllRequestsOfMarin(allRequestsOfMarinMock)}
+        {displayAllTitresOfMarin(allTitresOfMarin)}
       </div>
       <div className={`${styles['cq-dashboard-action-container']} fr-px-1w`}>
         <Button
@@ -84,7 +90,7 @@ const Dashboard = (props) => {
           width={BUTTON_WIDTH.FULL}
           route={`/${MOBILE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
         />
-      </div> */}
+      </div>
     </Fragment>
   );
 };

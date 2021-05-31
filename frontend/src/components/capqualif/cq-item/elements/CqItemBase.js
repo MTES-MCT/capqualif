@@ -10,13 +10,20 @@ const CqItemBase = ({ subtitle, name, status, date, details }) => {
   const [isDetailVisible, setIsDetailVisible] = useState(false);
 
   return (
-    <div className={`${styles['cq-item']} fr-mb-2w fr-py-3w`}>
+    <div className={`${styles['cq-item']} fr-my-1w fr-py-3w`}>
       <div className="fr-container fr-grid-row fr-grid-row--middle">
-        <div className="fr-col fr-pr-4w">
+        <div className="fr-col">
           <CqItemHeader subtitle={subtitle} name={name} />
         </div>
-        <div className={`fr-col-3 fr-mr-1w`}>{status}</div>
-        {date && <div className="fr-col">{date}</div>}
+        {date ? (
+          <div className="fr-col fr-pl-4w">
+            <div className="fr-col fr-mr-1w">{status}</div>
+            <div className="fr-col">{date}</div>
+          </div>
+        ) : (
+          <div className="fr-col fr-pl-4w">{status}</div>
+        )}
+
         {details && (
           <div className={`${styles['expand-container']} fr-col-1 fr-px-2w`}>
             <span

@@ -4,7 +4,7 @@ import { VscCircleFilled } from 'react-icons/vsc';
 
 import styles from './CqItemStatus.module.scss';
 import {
-  STATUS_REQUEST,
+  REQUEST,
   STATUS_DOSSIER,
   STATUS_TITRE,
   STATUS_TYPES,
@@ -33,7 +33,7 @@ const CqItemStatus = ({ status }) => {
       case STATUS_TYPES.REQUEST:
         return fillModel(
           status.value,
-          STATUS_REQUEST.SENT.SHORT,
+          REQUEST.STATUS_REQUEST.SENT.SHORT,
           null,
           COLORS.BLUE,
           false
@@ -61,7 +61,7 @@ const CqItemStatus = ({ status }) => {
                   {successLabel}
                 </span>
                 <span
-                  className={`${styles['cq-item-status-container-icon']} cq-helpers-success`}
+                  className={`${styles['cq-item-status-container-icon']} cq-helpers-success-${color}`}
                 >
                   {isWithCircle && <VscCircleFilled />}
                 </span>

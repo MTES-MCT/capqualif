@@ -4,26 +4,13 @@
   border: $border;
   box-shadow: $boxShadow;
   border-radius: 0.5rem 0.5rem 0 0;
-  width: 100%;
+  width: 95%;
   background-color: $white;
 }
-.infos-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  text-align: center;
-}
 
-.document-container,
 .status-container,
 .expand-container {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.dates-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
 }

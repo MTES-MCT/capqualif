@@ -26,14 +26,16 @@ import {
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../../app/routesDictionnary';
 import CqItemAction from '../../../../../capqualif/cq-item/elements/cq-item-action/CqItemAction';
+import { convertToEuropeanFormat } from '../../../../capadmin/utils';
 
 const Recap = (props) => {
   const titreMock = {
     titre: {
-      capacite: 'Monovalence · Pont',
-      name: 'Certificat de Matelot Pont',
       id: '1',
       slug: 'certificat-de-matelot-pont',
+      capacite: 'Monovalence · Pont',
+      name: 'Certificat de Matelot Pont',
+      validityDurationInYears: '5',
     },
     details: {
       dossierStatus: true,
@@ -107,6 +109,10 @@ const Recap = (props) => {
     },
   };
 
+  const requestMock = {
+    startDate: '2021-06-18',
+  };
+
   const displayRestrictions = (restrictions) => {
     if (restrictions.length === 0) {
       return <p>{RESTRICTIONS.NO_RESTRICTION}</p>;
@@ -121,6 +127,16 @@ const Recap = (props) => {
     );
   };
 
+  const computeEndDate = (startDate, duration) => {
+    const start = new Date(startDate);
+    const endDate = new Date(
+      start.getFullYear() + parseInt(duration),
+      start.getMonth(),
+      start.getDate() - 1
+    );
+    return convertToEuropeanFormat(endDate);
+  };
+
   return (
     <Fragment>
       <Step label={STEPS.CONFIRM} />
@@ -132,20 +148,26 @@ const Recap = (props) => {
         {displayRestrictions(titreMock.details.results.details.restrictions)}
         <div className={`${styles['spaced']} fr-grid-row fr-my-3w`}>
           <p>{VALIDITY.DURATION}</p>
-          <CqItemFlagged label={'5 ans'} />
+          <CqItemFlagged
+            label={`${titreMock.titre.validityDurationInYears} ans`}
+          />
         </div>
         <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>
           <p>{VALIDITY.START_DATE}</p>
-          <CqItemFlagged label={'18.06.2021'} />
+          <CqItemFlagged
+            label={convertToEuropeanFormat(requestMock.startDate)}
+          />
         </div>
         <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>
           <p>{VALIDITY.END_DATE}</p>
-          <CqItemFlagged label={'17.06.2021'} />
+          <CqItemFlagged
+            label={computeEndDate(
+              requestMock.startDate,
+              titreMock.titre.validityDurationInYears
+            )}
+          />
         </div>
-        <p className="fr-mb-2w">
-          Ces dates peuvent changer si la délivrance de votre titre n'est pas
-          immédiate.
-        </p>
+        <p className="fr-mb-2w">{VARIOUS.DATES_WARNING}</p>
         <CqItemTitre
           subtitle={VARIOUS.RECAPITULATIF}
           name={displayRestrictions(

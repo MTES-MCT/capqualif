@@ -165,9 +165,11 @@ const ChooseTitre = (props) => {
   return (
     <div>
       <Step label={STEPS.REQUEST_NEW} />
-      <div className="fr-m-2w">
-        <h3 className={styles['cq-choose-titre-h3']}>Choix du titre</h3>
-        <div className={styles['cq-choose-titre-titres-container']}>
+      <div>
+        <h3 className={`${styles['cq-choose-titre-h3']} fr-m-2w`}>
+          Choix du titre
+        </h3>
+        <div className={`${styles['cq-choose-titre-titres-container']}`}>
           {allTitresMock.map((titre) => (
             <CqItemTitre
               subtitle={titre.titre.capacite}
@@ -196,7 +198,7 @@ const ChooseTitre = (props) => {
             />
           ))}
         </div>
-        <p className={styles['cq-choose-titre-warning-text']}>
+        <p className={`${styles['cq-choose-titre-warning-text']} fr-m-2w`}>
           {VARIOUS.CAPQUALIF_BETA_WARNING}
         </p>
       </div>
