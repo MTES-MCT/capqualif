@@ -20,7 +20,11 @@ const CqItemBase = ({ subtitle, name, status, date, details }) => {
         {details && (
           <div className={`${styles['expand-container']} fr-col-1 fr-px-2w`}>
             <span
-              class={`${styles['expand-container']} fr-ml-1w fr-fi-arrow-up-s-line cq-helpers__clickable`}
+              className={`${
+                isDetailVisible
+                  ? 'fr-fi-arrow-down-s-line'
+                  : 'fr-fi-arrow-up-s-line'
+              } ${styles['expand-container']} fr-ml-1w cq-helpers__clickable`}
               onClick={() => setIsDetailVisible(!isDetailVisible)}
             ></span>
           </div>
