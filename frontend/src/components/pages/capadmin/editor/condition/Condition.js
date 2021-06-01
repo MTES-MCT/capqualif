@@ -8,7 +8,7 @@ import {
 import PropTypes from 'prop-types';
 
 import './Condition.scss';
-import { findInArray } from '../../utils';
+import { findInArray } from '../../../../../app/utils';
 
 const Condition = ({
   allConditions,
@@ -245,6 +245,12 @@ const Condition = ({
   );
 };
 
-Condition.propTypes = {};
+Condition.propTypes = {
+  allConditions: PropTypes.array,
+  parentId: PropTypes.string,
+  onChangeData: PropTypes.func,
+  onChangeUI: PropTypes.func,
+  uiId: PropTypes.string,
+};
 
 export default Condition;

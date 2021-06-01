@@ -10,9 +10,9 @@ export const convertToEuropeanFormat = (dateSource) => {
   const monthValue = date.getMonth() + 1;
   let month;
   month = monthValue < 10 ? '0' + monthValue : monthValue;
-  return date.getDate() + '-' + month + '-' + date.getFullYear();
+  return date.getDate() + '.' + month + '.' + date.getFullYear();
 };
 
-export const convertToDate = (dateString) => {
+const convertToDate = (dateString) => {
   return new Date(dateString);
 };

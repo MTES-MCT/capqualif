@@ -24,6 +24,8 @@ export const REQUEST = {
 
 export const INSTRUCTION_STATUS = {
   IN_PROGRESS: 'Instruction automatisée en cours',
+  IN_PROGRESS_TAKEN_BY: 'Votre dossier a été pris en charge par',
+  CONTACT_THEM: 'Pour toute question, veuillez les contacter',
 };
 
 export const STATUS_TITRE = {

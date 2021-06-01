@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import './Editor.scss';
-import { findInArray } from '../utils';
+import { findInArray } from '../../../../app/utils';
 
 import Condition from './condition/Condition';
 

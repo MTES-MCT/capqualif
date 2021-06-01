@@ -9,6 +9,7 @@ import {
   BUTTON_LABELS,
   STATUS_TYPES,
   INSTRUCTION_STATUS,
+  DETAILS_TYPE,
 } from '../../../../../dictionnary/demandeDeTitre';
 import {
   MOBILE,
@@ -31,7 +32,7 @@ const Dashboard = (props) => {
       },
       isRequestSent: true,
       instructionStatus: INSTRUCTION_STATUS.IN_PROGRESS,
-      requestDate: '18.06.2020',
+      requestDate: '2020/06/18',
     },
   ];
 
@@ -70,7 +71,7 @@ const Dashboard = (props) => {
             type: STATUS_TYPES.REQUEST,
             value: request.isRequestSent,
           }}
-          // details={request.instructionStatus}
+          details={{ type: DETAILS_TYPE.REQUEST, content: request }}
         />
       ));
     }

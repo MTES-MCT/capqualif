@@ -26,7 +26,7 @@ import {
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../../app/routesDictionnary';
 import CqItemAction from '../../../../../capqualif/cq-item/elements/cq-item-action/CqItemAction';
-import { convertToEuropeanFormat } from '../../../../capadmin/utils';
+import { convertToEuropeanFormat } from '../../../../../../app/utils';
 
 const Recap = (props) => {
   const titreMock = {

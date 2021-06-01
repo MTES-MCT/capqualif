@@ -1,26 +1,32 @@
-import React from 'react';
-import { GrAdd } from 'react-icons/gr';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import commonStyles from './common.module.scss';
 import styles from './CqItemTitreDetails.module.scss';
 import CqItemCondition from './cq-item-condition/CqItemCondition';
-import { Fragment } from 'react';
 import Validity from '../../../../validity/Validity';
 import {
   DETAILS_TYPE,
   IDENTITY_MARKERS,
+  INSTRUCTION_STATUS,
   MARIN_INFOS,
   REQUEST,
 } from '../../../../../../dictionnary/demandeDeTitre';
+import { convertToEuropeanFormat } from '../../../../../../app/utils';
 
 const CqItemTitreDetails = ({ isVisible, details, action }) => {
-  const chooseWhatToDisplay = (type) => {
-    switch (type) {
+  const chooseWhatToDisplay = (details) => {
+    switch (details.type) {
       case DETAILS_TYPE.REQUEST:
         return (
           <div className={`${isVisible ? '' : styles.hidden}`}>
-            {REQUEST.DATES.START_DATE}+ +{details.requestDate}
+            <p>
+              {`${REQUEST.DATES.START_DATE} : ${convertToEuropeanFormat(
+                details.content.requestDate
+              )}
+              `}
+            </p>
+            <p>{details.content.instructionStatus}</p>
           </div>
         );
       case DETAILS_TYPE.CONDITIONS:
@@ -69,9 +75,13 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
     }
   };
 
-  return;
+  return <Fragment>{chooseWhatToDisplay(details)}</Fragment>;
 };
 
-CqItemTitreDetails.propTypes = {};
+CqItemTitreDetails.propTypes = {
+  isVisible: PropTypes.bool.isRequired,
+  details: PropTypes.object.isRequired,
+  action: PropTypes.object,
+};
 
 export default CqItemTitreDetails;
