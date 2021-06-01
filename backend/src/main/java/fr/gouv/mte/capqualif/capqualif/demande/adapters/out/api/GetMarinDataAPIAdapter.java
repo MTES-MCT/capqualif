@@ -24,12 +24,11 @@ public class GetMarinDataAPIAdapter implements GetMarinDataPort {
     @Autowired
     TitreOfMarinMapper titreOfMarinMapper;
 
-    String ADMINISTRES_API_URL = "***REMOVED***" +
-            "***REMOVED***";
-    String ADMINISTRES_API_URL_MOCK = "";
+    String ADMINISTRES_API_URL = System.getenv("ADMINISTRES_API_URL");
+    String ADMINISTRES_API_URL_MOCK = System.getenv("ADMINISTRES_API_URL_MOCK");
 
-    String ITEM_API_URL = "***REMOVED***";
-    String ITEM_API_URL_MOCK = "***REMOVED***";
+    String ITEM_API_URL = System.getenv("ITEM_API_URL");
+    String ITEM_API_URL_MOCK = System.getenv("ITEM_API_URL_MOCK");
 
     @Override
     public Marin getMarin(String numeroDeMarin) {
