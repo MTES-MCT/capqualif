@@ -10,7 +10,7 @@ const Validity = ({ isValid, validLabel, notValidLabel }) => {
       {isValid ? (
         <p className="fr-p-1w fr-my-1w">
           <span
-            className="cq-helpers-success fr-fi-check-line"
+            className="cq-helpers-success-green fr-fi-check-line"
             aria-hidden="true"
           ></span>
           {validLabel}

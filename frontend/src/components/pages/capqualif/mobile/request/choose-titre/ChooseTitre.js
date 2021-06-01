@@ -5,6 +5,7 @@ import styles from './ChooseTitre.module.scss';
 
 import {
   BUTTON_LABELS,
+  DETAILS_TYPE,
   STATUS_TYPES,
   STEPS,
   VARIOUS,
@@ -178,7 +179,10 @@ const ChooseTitre = (props) => {
                 type: STATUS_TYPES.DOSSIER,
                 value: titre.details.dossierStatus,
               }}
-              details={titre.details}
+              details={{
+                type: DETAILS_TYPE.CONDITIONS,
+                content: titre.details,
+              }}
               action={{
                 label: BUTTON_LABELS.DEMAND_THIS,
                 labelSize: FONT_SIZES.SMALL,

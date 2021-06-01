@@ -20,13 +20,14 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
       case DETAILS_TYPE.REQUEST:
         return (
           <div className={`${isVisible ? '' : styles.hidden}`}>
-            <p>
+            <p className="fr-px-2w fr-mt-2w">
               {`${REQUEST.DATES.START_DATE} : ${convertToEuropeanFormat(
                 details.content.requestDate
               )}
               `}
+              <br />
+              {details.content.instructionStatus}
             </p>
-            <p>{details.content.instructionStatus}</p>
           </div>
         );
       case DETAILS_TYPE.CONDITIONS:
@@ -39,23 +40,26 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
                 <h3>{MARIN_INFOS.IDENTITY}</h3>
                 <h4>{MARIN_INFOS.NAME}</h4>
                 <p className={`${styles.identity}`}>
-                  {details.marinIdentity.basicInfos.firstName}&nbsp;
-                  {details.marinIdentity.basicInfos.lastName}
+                  {details.content.marinIdentity.basicInfos.firstName}&nbsp;
+                  {details.content.marinIdentity.basicInfos.lastName}
                 </p>
               </div>
               <h4>{MARIN_INFOS.ID_NUMBER}</h4>
               <p className={`${styles.identity}`}>
-                {details.marinIdentity.basicInfos.numeroDeMarin}
+                {details.content.marinIdentity.basicInfos.numeroDeMarin}
               </p>
               <div className="fr-mt-2w">
                 <Validity
-                  isValid={details.marinIdentity.identityMarkers.isPhotoValid}
+                  isValid={
+                    details.content.marinIdentity.identityMarkers.isPhotoValid
+                  }
                   validLabel={IDENTITY_MARKERS.PHOTO}
                   notValidLabel={IDENTITY_MARKERS.PHOTO}
                 />
                 <Validity
                   isValid={
-                    details.marinIdentity.identityMarkers.isSignatureValid
+                    details.content.marinIdentity.identityMarkers
+                      .isSignatureValid
                   }
                   validLabel={IDENTITY_MARKERS.SIGNATURE}
                   notValidLabel={IDENTITY_MARKERS.SIGNATURE}
@@ -63,7 +67,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
               </div>
             </div>
 
-            {details.results.details.conditions.map((condition) => (
+            {details.content.results.details.conditions.map((condition) => (
               <CqItemCondition condition={condition} />
             ))}
 

@@ -7,6 +7,7 @@ import styles from './Recap.module.scss';
 import Step from '../../../../../capqualif/step/Step';
 import {
   BUTTON_LABELS,
+  DETAILS_TYPE,
   RESTRICTIONS,
   STATUS_TYPES,
   STEPS,
@@ -177,7 +178,10 @@ const Recap = (props) => {
             type: STATUS_TYPES.DOSSIER,
             value: titreMock.details.dossierStatus,
           }}
-          details={titreMock.details}
+          details={{
+            type: DETAILS_TYPE.CONDITIONS,
+            content: titreMock.details,
+          }}
         />
         <CqItemAction
           action={{
