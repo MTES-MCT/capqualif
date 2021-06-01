@@ -26,7 +26,7 @@ public class GetMarinDataAPIAdapter implements GetMarinDataPort {
 
     String ADMINISTRES_API_URL = "***REMOVED***" +
             "***REMOVED***";
-    String ADMINISTRES_API_URL_MOCK = "***REMOVED***";
+    String ADMINISTRES_API_URL_MOCK = "";
 
     String ITEM_API_URL = "***REMOVED***";
     String ITEM_API_URL_MOCK = "***REMOVED***";

@@ -1,5 +1,6 @@
 HELP.md
 target/
+src/main/java/fr/gouv/mte/capqualif/config/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
