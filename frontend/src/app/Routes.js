@@ -7,7 +7,7 @@ import {
   NEW_TITRE_REQUEST_CHOICE_ROUTE,
   NEW_TITRE_REQUEST_RECAP_ROUTE,
   ERROR_ROUTE,
-  ADD_PIECE_ROUTE,
+  ADD_DOCUMENT_ROUTE,
   CONFIRMATION_ROUTE,
   CAPADMIN_ROUTE,
   EDITOR_ROUTE,
@@ -19,6 +19,7 @@ import MobileDashboard from '../components/pages/capqualif/mobile/dashboard/Dash
 import MobileRequestChooseTitre from '../components/pages/capqualif/mobile/request/choose-titre/ChooseTitre';
 import MobileRequestRecap from '../components/pages/capqualif/mobile/request/recap/Recap';
 import MobileConfirmation from '../components/pages/capqualif/mobile/request/confirmation/Confirmation';
+import MobileAddDocument from '../components/pages/capqualif/mobile/add-document/Add';
 
 import DesktopDashboard from '../components/pages/capqualif/desktop/dashboard/Dashboard';
 import DesktopNewTitreChoice from '../components/pages/capqualif/desktop/new-titre-application/new-titre-choice/NewTitreChoice';
@@ -54,6 +55,10 @@ const Routes = () => {
           path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${CONFIRMATION_ROUTE}`}
           component={MobileConfirmation}
         />
+        <Route
+          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/:documentName`}
+          component={MobileAddDocument}
+        />
 
         {/* ==================================================================== */}
         {/* ==================================================================== */}
@@ -75,7 +80,7 @@ const Routes = () => {
           component={DesktopApplicationRecap}
         />
         <Route
-          path={`/${DESKTOP}/${ADD_PIECE_ROUTE}`}
+          path={`/${DESKTOP}/${ADD_DOCUMENT_ROUTE}`}
           component={DesktopAddPiece}
         />
         <Route

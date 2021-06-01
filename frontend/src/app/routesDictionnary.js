@@ -10,7 +10,7 @@ export const NEW_TITRE_REQUEST_ROUTE = 'demander-un-titre';
 export const NEW_TITRE_REQUEST_CHOICE_ROUTE = 'choix';
 export const NEW_TITRE_REQUEST_RECAP_ROUTE = 'recapitulatif';
 export const ERROR_ROUTE = 'erreur';
-export const ADD_PIECE_ROUTE = 'ajouter-une-piece';
+export const ADD_DOCUMENT_ROUTE = 'ajouter-un-document';
 export const CONFIRMATION_ROUTE = 'confirmation';
 // ===================================================
 

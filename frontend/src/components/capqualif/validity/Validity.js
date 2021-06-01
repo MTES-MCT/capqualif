@@ -3,8 +3,14 @@ import { GrAdd } from 'react-icons/gr';
 import PropTypes from 'prop-types';
 
 import styles from './Validity.module.scss';
+import { Link } from 'react-router-dom';
+import {
+  ADD_DOCUMENT_ROUTE,
+  MOBILE,
+  NEW_TITRE_REQUEST_ROUTE,
+} from '../../../app/routesDictionnary';
 
-const Validity = ({ isValid, validLabel, notValidLabel }) => {
+const Validity = ({ documentName, isValid, validLabel, notValidLabel }) => {
   return (
     <Fragment>
       {isValid ? (
@@ -26,15 +32,24 @@ const Validity = ({ isValid, validLabel, notValidLabel }) => {
             ></span>
             {notValidLabel}
           </p>
-          <span className={`${styles['add-icon']} fr-mr-1w fr-p-1w`}>
-            <GrAdd />
-          </span>
+          <Link
+            to={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${documentName}/`}
+          >
+            <span className={`${styles['add-icon']} fr-p-1w`}>
+              <GrAdd />
+            </span>
+          </Link>
         </div>
       )}
     </Fragment>
   );
 };
 
-Validity.propTypes = {};
+Validity.propTypes = {
+  documentName: PropTypes.string,
+  isValid: PropTypes.bool,
+  validLabel: PropTypes.string,
+  notValidLabel: PropTypes.string,
+};
 
 export default Validity;

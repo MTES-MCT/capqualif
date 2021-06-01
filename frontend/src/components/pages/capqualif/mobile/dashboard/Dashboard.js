@@ -79,12 +79,14 @@ const Dashboard = (props) => {
 
   return (
     <Fragment>
-      <div className={styles['cq-titres-container']}>
+      <div className="fr-m-2w">
         <h2>Mes titres</h2>
         {displayAllRequests(allRequestsMock)}
         {displayAllMarinTitres(marinTitres)}
       </div>
-      <div className={`${styles['cq-dashboard-action-container']} fr-px-1w`}>
+      <div
+        className={`${styles['cq-dashboard-action-container']} fr-mt-2w fr-pt-1w fr-px-1w`}
+      >
         <Button
           label={BUTTON_LABELS.DEMAND_ONE}
           width={BUTTON_WIDTH.FULL}

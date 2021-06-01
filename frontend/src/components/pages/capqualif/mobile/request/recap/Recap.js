@@ -111,7 +111,7 @@ const Recap = (props) => {
   };
 
   const requestMock = {
-    startDate: '2021-06-18',
+    startDate: '2021/06/18',
   };
 
   const displayRestrictions = (restrictions) => {

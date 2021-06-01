@@ -50,6 +50,8 @@ export const BUTTON_LABELS = {
   DEMAND_ONE: 'Demander un titre',
   DEMAND_THIS: 'Demander ce titre',
   ADD_DOCUMENT: 'Ajouter un document',
+  UPLOAD_DOCUMENT: 'Téléverser un document',
+  TAKE_PICTURE: 'Prendre une photo',
   ASK_FOR_ADVICE: "Demander le conseil d'un agent",
   CONFIRM: 'Confirmer ma demande de titre',
   GO_BACK_HOME: "Retourner à la page d'accueil",
@@ -58,6 +60,7 @@ export const BUTTON_LABELS = {
 export const STEPS = {
   REQUEST_NEW: 'Demander un nouveau titre',
   CONFIRM: 'Confirmer votre demande',
+  ADD_DOCUMENT: 'Ajouter une pièce administrative',
 };
 
 export const ACTION_TYPES = {
