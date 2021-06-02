@@ -39,7 +39,7 @@ const Add = (props) => {
         <p className="fr-my-1w">ou</p>
         <Button
           label={BUTTON_LABELS.TAKE_PICTURE}
-          route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/documentName`}
+          route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/${documentName}`}
         />
       </div>
     </Fragment>
