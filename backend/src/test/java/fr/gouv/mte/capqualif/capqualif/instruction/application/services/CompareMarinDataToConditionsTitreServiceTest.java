@@ -117,7 +117,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
         esculapeData = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ESCULAPE,
-                "***REMOVED***",
+                 System.getenv("ESCULAPE_API_URL"),
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
                                 conditionTitreAptitudeMedicale.getJuridicalDesignation(),
@@ -148,7 +148,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
         administresData = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ADMINISTRES,
-                "***REMOVED***",
+                 System.getenv("ADMINISTRES_API_URL"),
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
                                 conditionTitreAge.getJuridicalDesignation(),
@@ -163,7 +163,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
         amforeData = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.AMFORE,
-                "***REMOVED***",
+                 System.getenv("AMFORE_API_URL"),
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
                                 conditionTitreFormation.getJuridicalDesignation(),
@@ -191,7 +191,7 @@ class CompareMarinDataToConditionsTitreServiceTest {
 
         itemData = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ITEM,
-                "***REMOVED***",
+                 System.getenv("ITEM_API_URL"),
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
                                 conditionTitreTitres.getJuridicalDesignation(),

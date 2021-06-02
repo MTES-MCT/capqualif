@@ -124,7 +124,7 @@ public class JsonExtractorTest {
 
         CorrespondingDataInExistingDataSource data = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.AMFORE,
-                "***REMOVED***",
+                 System.getenv("AMFORE_API_URL"),
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
                             "Formation modulaire : Module P1-Appui",
@@ -190,7 +190,7 @@ public class JsonExtractorTest {
 
         CorrespondingDataInExistingDataSource data = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ESCULAPE,
-                "***REMOVED***",
+                 System.getenv("ESCULAPE_API_URL"),
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
                                 "Aptitude médicale",
@@ -552,7 +552,7 @@ public class JsonExtractorTest {
 
         CorrespondingDataInExistingDataSource data = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ITEM,
-                "***REMOVED***",
+                 System.getenv("ITEM_API_URL"),
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
                             "Certificat de formation de base à la sécurité (CFBS)",
