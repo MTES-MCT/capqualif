@@ -20,6 +20,7 @@
     "react-scripts": "4.0.0",
     "react-slugify": "^2.0.3",
     "react-uuid": "^1.0.2",
+    "react-webcam": "^5.2.4",
     "redux-persist": "^6.0.0",
     "storybook-react-router": "^1.0.8",
     "web-vitals": "^0.2.4"

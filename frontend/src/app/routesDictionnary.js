@@ -11,6 +11,7 @@ export const NEW_TITRE_REQUEST_CHOICE_ROUTE = 'choix';
 export const NEW_TITRE_REQUEST_RECAP_ROUTE = 'recapitulatif';
 export const ERROR_ROUTE = 'erreur';
 export const ADD_DOCUMENT_ROUTE = 'ajouter-un-document';
+export const ADD_PICTURE_ROUTE = 'ajouter-une-photo';
 export const CONFIRMATION_ROUTE = 'confirmation';
 // ===================================================
 

@@ -2,16 +2,15 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import styles from './Button.module.scss';
+import commonStyles from './common.module.scss';
 import { BUTTON_WIDTH } from '../../../dictionnary/saas/variables';
 
-const Button = ({ label, labelSize, width, route, actionOnClick }) => {
+const Button = ({ label, labelSize, width, route }) => {
   return (
     <button
-      className={`${styles['cq-button']} ${styles['fr-btn']} ${
+      className={`${commonStyles['cq-button']} ${commonStyles['fr-btn']} ${
         width === BUTTON_WIDTH.FULL ? 'cq-helpers-full-width' : ''
       }`}
-      onClick={actionOnClick ? (e) => actionOnClick(e) : undefined}
     >
       {route ? (
         <Link to={route} style={{ fontSize: labelSize }}>
