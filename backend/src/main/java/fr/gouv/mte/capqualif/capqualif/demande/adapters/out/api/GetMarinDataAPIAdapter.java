@@ -25,20 +25,17 @@ public class GetMarinDataAPIAdapter implements GetMarinDataPort {
     TitreOfMarinMapper titreOfMarinMapper;
 
     String ADMINISTRES_API_URL = System.getenv("ADMINISTRES_API_URL");
-    String ADMINISTRES_API_URL_MOCK = System.getenv("ADMINISTRES_API_URL_MOCK");
 
     String ITEM_API_URL = System.getenv("ITEM_API_URL");
-    String ITEM_API_URL_MOCK = System.getenv("ITEM_API_URL_MOCK");
-
     @Override
     public Marin getMarin(String numeroDeMarin) {
         // Let's get all titres of a marin and convert the data into something suitable for the domain of our architecture hexagon!
         List<TitreOfMarinDto> allTitresOfMarinDto = jsonGetter.getTitresOfMarinDtoFromAPI(numeroDeMarin,
-                ITEM_API_URL_MOCK);
+                ITEM_API_URL);
         List<TitreOfMarin> allTitresOfMarin = titreOfMarinMapper.mapToDomainEntitiesList(allTitresOfMarinDto);
 
         // Let's go the same for all marin basic data (name, address, etc.)!
-        MarinDto marinDto = jsonGetter.getMarinDtoFromAPI(numeroDeMarin, ADMINISTRES_API_URL_MOCK);
+        MarinDto marinDto = jsonGetter.getMarinDtoFromAPI(numeroDeMarin, ADMINISTRES_API_URL);
         Marin marin = marinMapper.mapToDomaineEntity(marinDto);
 
         // Let's wire titres to marin

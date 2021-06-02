@@ -45,7 +45,7 @@ class SubConditionJpaEntityTitreToRealDataInExistingDataSourcesMapperTest {
         // Then
         CorrespondingDataInExistingDataSource expectedData = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ESCULAPE,
-                "***REMOVED***",
+                 System.getenv("ESCULAPE_API_URL"),
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
                                 conditionTitre.getJuridicalDesignation(),
@@ -95,7 +95,7 @@ class SubConditionJpaEntityTitreToRealDataInExistingDataSourcesMapperTest {
         // Then
         CorrespondingDataInExistingDataSource expectedData = new CorrespondingDataInExistingDataSource(
                 ExistingDataSourceName.ADMINISTRES,
-                "***REMOVED***",
+                 System.getenv("ADMINISTRES_API_URL"),
                 new EntryInExistingDataSource(
                         new KeyInExistingDataSource(
                                 conditionTitre.getJuridicalDesignation(),

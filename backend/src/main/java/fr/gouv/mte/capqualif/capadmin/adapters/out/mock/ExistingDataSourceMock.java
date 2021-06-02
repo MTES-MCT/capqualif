@@ -18,13 +18,13 @@ public class ExistingDataSourceMock implements ExistingDataSource {
             case "Âge supérieur ou égal à 16 ans":
                 return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.ADMINISTRES,
-                        "***REMOVED***",
+                        System.getenv("ADMINISTRES_API_URL"),
                         new EntryInExistingDataSource(
                                 new KeyInExistingDataSource(
-                                    conditionTitre.getJuridicalDesignation(),
-                                    "dateNaissance", DataType.DATE,
-                                    conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                    new ComparisonDate(LocalDate.now().minusYears(16))
+                                        conditionTitre.getJuridicalDesignation(),
+                                        "dateNaissance", DataType.DATE,
+                                        conditionTitre.getMainValueToCheck().getHowToCompare(),
+                                        new ComparisonDate(LocalDate.now().minusYears(16))
                                 ),
                                 null,
                                 DataType.DATE),
@@ -33,7 +33,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
             case "Aptitude toutes fonctions, toutes navigations":
                 return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.ESCULAPE,
-                        "***REMOVED***",
+                        System.getenv("ESCULAPE_API_URL"),
                         new EntryInExistingDataSource(
                                 new KeyInExistingDataSource(
                                         conditionTitre.getJuridicalDesignation(),
@@ -42,7 +42,8 @@ public class ExistingDataSourceMock implements ExistingDataSource {
                                         conditionTitre.getMainValueToCheck().getHowToCompare(),
                                         new ComparisonString("Apte TF/TN"),
                                         true,
-                                        Collections.singletonList(new ParentKey(Position.POSITION_1, "decisionMedicale"))
+                                        Collections.singletonList(new ParentKey(Position.POSITION_1,
+                                                "decisionMedicale"))
                                 ),
                                 new ValueInExistingDataSource("Apte TF/TN"), DataType.STRING
                         ),
@@ -60,14 +61,14 @@ public class ExistingDataSourceMock implements ExistingDataSource {
             case "Module P1-Appui":
                 return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.AMFORE,
-                        "***REMOVED***",
+                        System.getenv("AMFORE_API_URL"),
                         new EntryInExistingDataSource(
                                 new KeyInExistingDataSource(
-                                    conditionTitre.getJuridicalDesignation(),
-                                    "libelleModuleUv",
-                                    DataType.STRING,
-                                    conditionTitre.getMainValueToCheck().getHowToCompare(),
-                                    new ComparisonString("P1–Appui-Navigation")
+                                        conditionTitre.getJuridicalDesignation(),
+                                        "libelleModuleUv",
+                                        DataType.STRING,
+                                        conditionTitre.getMainValueToCheck().getHowToCompare(),
+                                        new ComparisonString("P1–Appui-Navigation")
                                 ),
                                 new ValueInExistingDataSource("P1–Appui-Navigation"), DataType.STRING
                         ),
@@ -84,7 +85,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
             case "Module P2-Appui":
                 return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.AMFORE,
-                        "***REMOVED***",
+                        System.getenv("AMFORE_API_URL"),
                         new EntryInExistingDataSource(
                                 new KeyInExistingDataSource(
                                         conditionTitre.getJuridicalDesignation(),
@@ -109,7 +110,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
             case "Module P3-Appui":
                 return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.AMFORE,
-                        "***REMOVED***",
+                        System.getenv("AMFORE_API_URL"),
                         new EntryInExistingDataSource(
                                 new KeyInExistingDataSource(
                                         conditionTitre.getJuridicalDesignation(),
@@ -133,7 +134,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
             case "Module NP-Appui":
                 return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.AMFORE,
-                        "***REMOVED***",
+                        System.getenv("AMFORE_API_URL"),
                         new EntryInExistingDataSource(
                                 new KeyInExistingDataSource(
                                         conditionTitre.getJuridicalDesignation(),
@@ -157,7 +158,7 @@ public class ExistingDataSourceMock implements ExistingDataSource {
             case "Certificat de formation de base à la sécurité (CFBS)":
                 return new CorrespondingDataInExistingDataSource(
                         ExistingDataSourceName.ITEM,
-                        "***REMOVED***",
+                        System.getenv("ITEM_API_URL"),
                         new EntryInExistingDataSource(
                                 new KeyInExistingDataSource(
                                         conditionTitre.getJuridicalDesignation(),
