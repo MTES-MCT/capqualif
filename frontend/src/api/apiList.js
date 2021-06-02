@@ -1,4 +1,4 @@
-export const CAPQUALIF_URL = 'http://localhost:8080';
+export const CAPQUALIF_URL = process.env.REACT_APP_CAPQUALIF_BACKEND;
 export const MARINS_ENDPOINT = 'marins';
 export const TITRES_ENDPOINT = 'titres';
 export const ALL_TITRES_ENDPOINT = 'titres';
