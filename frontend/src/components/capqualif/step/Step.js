@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import styles from './Step.module.scss';
 
 const Step = ({ label, isDark }) => {
-  let history = useHistory();
+  const history = useHistory();
 
   return (
     <div

@@ -6,7 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from '../redux/store';
 import { store } from '../redux/store';
 
-import { ADD_PICTURE_ROUTE, HOME_ROUTE } from './routesDictionnary';
+import { HOME_ROUTE } from './routesDictionnary';
 
 import './App.scss'; // CapQualif
 
@@ -19,7 +19,7 @@ const App = ({ location }) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        {!location.pathname.includes(ADD_PICTURE_ROUTE) && <Header />}
+        <Header />
         <Router>
           <ScrollToTop />
           <Switch>
@@ -32,4 +32,4 @@ const App = ({ location }) => {
   );
 };
 
-export default withRouter(App);
+export default App;

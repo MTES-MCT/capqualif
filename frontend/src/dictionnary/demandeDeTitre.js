@@ -62,6 +62,7 @@ export const STEPS = {
   CONFIRM: 'Confirmer votre demande',
   ADD_DOCUMENT: 'Ajouter une pièce administrative',
   TAKE_PICTURE: 'Prendre une capture photo',
+  CONFIRM_PICTURE: 'Confirmer votre capture',
 };
 
 export const PICTURE = {

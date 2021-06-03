@@ -1,5 +1,9 @@
-import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import React, { Fragment, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  showHeader,
+  hideHeader,
+} from '../../../../../redux/capqualif/mobile/header/headerSlice';
 import PropTypes from 'prop-types';
 
 import styles from './Dashboard.module.scss';
@@ -24,6 +28,15 @@ const Dashboard = (props) => {
   const marinTitres = useSelector(
     (state) => state.marinsReducer.marinBasicData.allTitresOfMarin
   );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(showHeader());
+    return function cleanUp() {
+      dispatch(hideHeader());
+    };
+  }, []);
 
   const allRequestsMock = [
     {
