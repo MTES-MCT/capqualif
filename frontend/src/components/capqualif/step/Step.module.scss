@@ -8,7 +8,15 @@
   color: $marianne-blue__dark1;
 }
 
-.step-h2 {
+.dark {
+  background-color: $g750;
+  color: $white;
+}
+
+.light {
   color: $marianne-blue__dark1;
+}
+
+.step-h2 {
   font-size: $sizeH3;
 }

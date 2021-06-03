@@ -61,7 +61,11 @@ export const STEPS = {
   REQUEST_NEW: 'Demander un nouveau titre',
   CONFIRM: 'Confirmer votre demande',
   ADD_DOCUMENT: 'Ajouter une pièce administrative',
-  TAKE_PICTURE: 'Prendre une photo',
+  TAKE_PICTURE: 'Prendre une capture photo',
+};
+
+export const PICTURE = {
+  PRESS_HERE: 'Appuyez ici pour prendre une photo',
 };
 
 export const ACTION_TYPES = {
