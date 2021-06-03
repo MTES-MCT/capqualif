@@ -1,8 +1,16 @@
+@import '../../../sass/variables';
+
 /*
  * CapQualif
  */
 
-.cq-header__container {
+.cq-header {
+  height: $headerHeight;
+  display: flex;
+  align-items: center;
+}
+
+.header-container {
   display: flex;
   align-items: center;
 }

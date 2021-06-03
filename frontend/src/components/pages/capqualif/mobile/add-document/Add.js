@@ -32,9 +32,7 @@ const Add = (props) => {
     <Fragment>
       <Step label={STEPS.ADD_DOCUMENT} />
       <h3 className="fr-p-2w">{documentName}</h3>
-      <div
-        className={`${styles.actions} fr-mt-1w fr-px-2w fr-grid-row fr-grid-row--center`}
-      >
+      <div className={`${styles.actions} fr-mt-1w fr-px-2w`}>
         <UploadButton onChange={(e) => handleFileUpload(e)} />
         <p className="fr-my-1w">ou</p>
         <Button

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Header.module.scss';
@@ -8,40 +8,23 @@ import HeaderBrand from '../header-brand/HeaderBrand';
 
 const Header = () => {
   return (
-    <header role="banner" className={styles['fr-header']}>
+    <header
+      role="banner"
+      className={`${styles['fr-header']} ${styles['cq-header']}`}
+    >
       <div className={styles['fr-header__body']}>
         <div className="fr-container">
-          <div className={styles['cq-header__container']}>
-            <div>
-              <a href="/" title="">
-                <HeaderBrand administrationLabel={'Ministère de la Mer'} />
-              </a>
-            </div>
-            <CapQualifLogo />
+          <div className={styles['header-container']}>
+            <a href="/" title="">
+              <HeaderBrand administrationLabel={'Ministère de la Mer'} />
+            </a>
+            <Link to="">
+              <CapQualifLogo />
+            </Link>
           </div>
         </div>
       </div>
     </header>
-    //   <header role="banner" className={styles['fr-header']}>
-    //   <div className={styles['fr-header__body']}>
-    //     <div className="fr-container">
-    //       <div className={styles['fr-header__body-row']}>
-    //         <div className={`${styles['fr-header__brand']} fr-enlarge-link`}>
-    //           <div className={styles['fr-header__brand-top']}>
-    //             <div className={styles['fr-header__logo']}>
-    //               <a href="/" title="">
-    //                 <HeaderBrand administrationLabel={'Ministère de la Mer'} />
-    //               </a>
-    //             </div>
-    //             <div class="fr-header__operator">
-    //               <CapQualifLogo />
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </header>
   );
 };
 

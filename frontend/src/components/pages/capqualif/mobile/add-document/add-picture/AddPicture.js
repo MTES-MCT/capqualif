@@ -11,8 +11,8 @@ const AddPicture = (props) => {
 
   const videoConstraints = {
     width: 320,
-    height: 400,
-    // facingMode: "user"
+    height: 320,
+    facingMode: 'environment',
   };
 
   const capture = React.useCallback(() => {
@@ -21,7 +21,7 @@ const AddPicture = (props) => {
   }, [webcamRef]);
 
   return (
-    <div className={`${styles['dark']}`}>
+    <div className={`${styles['container']} ${styles['dark']}`}>
       <Step label={STEPS.TAKE_PICTURE} isDark={true} />
       <div className={`${styles['camera-container']} fr-p-2w fr-m-3w`}>
         <Webcam
@@ -29,11 +29,10 @@ const AddPicture = (props) => {
           audio={false}
           screenshotFormat={'image/jpeg'}
           videoConstraints={videoConstraints}
-        />{' '}
-        <button
-          className={`${styles['button']} fr-mt-3w fr-p-1w`}
-          onClick={capture}
-        >
+        />
+      </div>
+      <div className={`${styles['button-container']} fr-py-2w`}>
+        <button className={`${styles['button']} fr-p-1w`} onClick={capture}>
           {PICTURE.PRESS_HERE}
         </button>
       </div>
