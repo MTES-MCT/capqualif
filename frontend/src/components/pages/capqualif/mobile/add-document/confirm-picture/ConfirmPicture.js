@@ -17,7 +17,7 @@ import {
 } from '../../../../../../app/routesDictionnary';
 import { Fragment } from 'react';
 import { useParams } from 'react-router';
-import Button from '../../../../../capqualif/button/Button';
+import ButtonLink from '../../../../../capqualif/buttons/ButtonLink';
 import { BUTTON_WIDTH } from '../../../../../../dictionnary/saas/variables';
 
 const ConfirmPicture = (props) => {
@@ -35,14 +35,14 @@ const ConfirmPicture = (props) => {
           className={`${commonStyles['capture-container']} fr-py-4w fr-px-2w`}
         >
           <img src={imageMock} alt="document ajouté" />
-          <Button
+          <ButtonLink
             label={BUTTON_LABELS.RETAKE_PICTURE}
             width={BUTTON_WIDTH.FULL}
             isSecondary={true}
             marginInRem={1}
             route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/${documentName}`}
           />
-          <Button
+          <ButtonLink
             label={BUTTON_LABELS.CONFIRM_PICTURE}
             width={BUTTON_WIDTH.FULL}
             route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${documentName}/`}

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ACTION_TYPES } from '../../../../../../dictionnary/demandeDeTitre';
 import { FONT_SIZES } from '../../../../../../dictionnary/saas/variables';
-import Button from '../../../../../capqualif/button/Button';
+import ButtonLink from '../../../../../capqualif/buttons/ButtonLink';
 import './AddPiece.scss';
 
 const AddPiece = () => {
@@ -25,7 +25,7 @@ const AddPiece = () => {
         </div>
       </div>
       <div id="button-container">
-        <Button
+        <ButtonLink
           label="Ajouter la pièce"
           labelSize={FONT_SIZES.NORMAL}
           route="/recap-success"

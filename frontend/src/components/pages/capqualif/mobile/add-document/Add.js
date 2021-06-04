@@ -6,12 +6,12 @@ import styles from './Add.module.scss';
 import commonStyles from './common.module.scss';
 
 import Step from '../../../../capqualif/step/Step';
-import Button from '../../../../capqualif/button/Button';
+import ButtonLink from '../../../../capqualif/buttons/ButtonLink';
 import {
   BUTTON_LABELS,
   STEPS,
 } from '../../../../../dictionnary/demandeDeTitre';
-import UploadButton from '../../../../capqualif/button/upload-button/UploadButton';
+import ButtonUpload from '../../../../capqualif/buttons/button-upload/ButtonUpload';
 import {
   ADD_DOCUMENT_ROUTE,
   ADD_PICTURE_ROUTE,
@@ -19,6 +19,7 @@ import {
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../app/routesDictionnary';
 import { BUTTON_WIDTH } from '../../../../../dictionnary/saas/variables';
+import ButtonAction from '../../../../capqualif/buttons/button-action/ButtonAction';
 
 const Add = (props) => {
   const [file, setFile] = useState();
@@ -32,7 +33,7 @@ const Add = (props) => {
   const handleFileUpload = (e) => {
     console.log(e.target.files[0]);
     setFile(e.target.files[0]);
-    // TO DO : add file to request object
+    // TO DO : add document to request.documents state
   };
 
   const chooseWhatToDisplay = (documents) => {
@@ -46,14 +47,19 @@ const Add = (props) => {
   const noDocsAddedYet = () => {
     return (
       <div className={`${styles.actions} fr-mt-1w fr-px-2w`}>
-        <UploadButton onChange={(e) => handleFileUpload(e)} />
+        <ButtonUpload onChange={(e) => handleFileUpload(e)} />
         <p className="fr-my-1w">ou</p>
-        <Button
+        <ButtonLink
           label={BUTTON_LABELS.TAKE_PICTURE}
           route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/${documentName}`}
         />
       </div>
     );
+  };
+
+  const addDocumentsToDossier = () => {
+    console.log('bip');
+    // TO DO : add document to request.documents state
   };
 
   const displayAddedDocs = (documents) => {
@@ -66,7 +72,7 @@ const Add = (props) => {
             <img src={doc} alt="document ajouté" />
           </div>
         ))}
-        <Button
+        <ButtonLink
           label={BUTTON_LABELS.ADD_PAGE}
           isSecondary={true}
           marginInRem={1}
@@ -75,9 +81,10 @@ const Add = (props) => {
         <div
           className={`${styles['add-container']} fr-py-2w fr-mt-1w fr-mb-2w`}
         >
-          <Button
+          <ButtonAction
             label={BUTTON_LABELS.ADD_DOCUMENTS_TO_DOSSIER}
             width={BUTTON_WIDTH.FULL}
+            actionOnClick={addDocumentsToDossier}
           />
         </div>
       </Fragment>

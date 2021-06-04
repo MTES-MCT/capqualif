@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { ACTION_TYPES } from '../../../../dictionnary/demandeDeTitre';
 import { FONT_SIZES } from '../../../../dictionnary/saas/variables';
-import Button from '../../button/Button';
+import ButtonLink from '../../buttons/ButtonLink';
 
 import './SectionFooter.scss';
 
@@ -23,7 +23,7 @@ const SectionFooter = ({ possibleActions }) => {
       <div>
         {possibleActions.map((action) => (
           <div className="actions-wrapper rf-mx-1w">
-            <Button
+            <ButtonLink
               route={action.nextPageLink}
               label={action.label}
               labelSize={FONT_SIZES.SMALL}

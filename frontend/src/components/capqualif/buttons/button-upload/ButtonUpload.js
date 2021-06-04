@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import commonStyles from '../common.module.scss';
 
-const UploadButton = ({ label, onChange }) => {
+const ButtonUpload = ({ label, onChange }) => {
   return (
     <input
       type="file"
@@ -15,6 +15,6 @@ const UploadButton = ({ label, onChange }) => {
   );
 };
 
-UploadButton.propTypes = {};
+ButtonUpload.propTypes = {};
 
-export default UploadButton;
+export default ButtonUpload;

@@ -21,7 +21,7 @@ import {
   ACTION_TYPES,
   BUTTON_LABELS,
 } from '../../../../../../dictionnary/demandeDeTitre';
-import Button from '../../../../../capqualif/button/Button';
+import ButtonLink from '../../../../../capqualif/buttons/ButtonLink';
 
 import { getConditions } from '../../../../../../redux/capqualif/desktop/features/conditions/conditionsSlice';
 
@@ -188,7 +188,7 @@ const ApplicationRecap = () => {
           id="ask-for-advice-button-container"
           className="rf-grid-row rf-grid-row--gutters with-margin"
         >
-          <Button
+          <ButtonLink
             label={BUTTON_LABELS.ASK_FOR_ADVICE}
             labelSize={FONT_SIZES.SMALL}
             route=""

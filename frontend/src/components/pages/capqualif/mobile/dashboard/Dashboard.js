@@ -20,7 +20,7 @@ import {
   NEW_TITRE_REQUEST_CHOICE_ROUTE,
 } from '../../../../../app/routesDictionnary';
 import { BUTTON_WIDTH } from '../../../../../dictionnary/saas/variables';
-import Button from '../../../../capqualif/button/Button';
+import ButtonLink from '../../../../capqualif/buttons/ButtonLink';
 import CqItemTitre from '../../../../capqualif/cq-item/mobile/cq-item-titre/CqItemTitre';
 import { TITRES } from '../../../../../dictionnary/titres';
 
@@ -100,7 +100,7 @@ const Dashboard = (props) => {
       <div
         className={`${styles['cq-dashboard-action-container']} fr-mt-2w fr-pt-1w fr-px-1w`}
       >
-        <Button
+        <ButtonLink
           label={BUTTON_LABELS.DEMAND_ONE}
           width={BUTTON_WIDTH.FULL}
           route={`/${MOBILE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}

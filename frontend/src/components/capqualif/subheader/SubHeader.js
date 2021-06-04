@@ -8,7 +8,7 @@ import {
   NEW_TITRE_REQUEST_CHOICE_ROUTE,
   DESKTOP,
 } from '../../../app/routesDictionnary';
-import Button from '../button/Button';
+import ButtonLink from '../buttons/ButtonLink';
 
 const SubHeader = () => {
   return (
@@ -21,7 +21,7 @@ const SubHeader = () => {
           Bienvenue sur <strong>CapQualif</strong> !
         </h4>
       </div>
-      <Button
+      <ButtonLink
         label="Demander un titre"
         route={`/${DESKTOP}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
       />
