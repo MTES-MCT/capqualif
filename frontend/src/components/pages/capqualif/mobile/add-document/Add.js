@@ -18,6 +18,7 @@ import {
   MOBILE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../app/routesDictionnary';
+import { BUTTON_WIDTH } from '../../../../../dictionnary/saas/variables';
 
 const Add = (props) => {
   const [file, setFile] = useState();
@@ -56,19 +57,37 @@ const Add = (props) => {
   };
 
   const displayAddedDocs = (documents) => {
-    return documents.map((doc) => (
-      <div
-        className={`${commonStyles['capture-container']} fr-py-4w fr-px-2w fr-mb-3w`}
-      >
-        <img src={doc} alt="document ajouté" />
-      </div>
-    ));
+    return (
+      <Fragment>
+        {documents.map((doc) => (
+          <div
+            className={`${commonStyles['capture-container']} fr-py-4w fr-mb-3w`}
+          >
+            <img src={doc} alt="document ajouté" />
+          </div>
+        ))}
+        <Button
+          label={BUTTON_LABELS.ADD_PAGE}
+          isSecondary={true}
+          marginInRem={1}
+          width={BUTTON_WIDTH.FULL}
+        />
+        <div
+          className={`${styles['add-container']} fr-py-2w fr-mt-1w fr-mb-2w`}
+        >
+          <Button
+            label={BUTTON_LABELS.ADD_DOCUMENTS_TO_DOSSIER}
+            width={BUTTON_WIDTH.FULL}
+          />
+        </div>
+      </Fragment>
+    );
   };
 
   return (
     <Fragment>
       <Step label={STEPS.ADD_DOCUMENT} />
-      <div className={`${commonStyles['container']}`}>
+      <div className={`${commonStyles['container']} fr-px-1w`}>
         <h3 className="fr-pt-2w fr-pb-1w">{documentName}</h3>
         {chooseWhatToDisplay(documentsMock)}
       </div>

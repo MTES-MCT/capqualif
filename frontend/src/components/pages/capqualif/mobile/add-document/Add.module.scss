@@ -1,5 +1,12 @@
+@import '../../../../../sass/variables';
+
 .actions {
   display: flex;
   flex-direction: column;
   text-align: center;
+}
+
+.add-container {
+  border: $border;
+  width: 100%;
 }

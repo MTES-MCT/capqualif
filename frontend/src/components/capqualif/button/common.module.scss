@@ -9,9 +9,6 @@
   justify-content: center;
 }
 
-.blue {
-}
-
 // .cq-btn a[disabled] {
 //   border: none;
 // }
@@ -459,6 +456,7 @@
 .fr-btn {
   // background-color: var(--bf500);  // Modified by CapQualif Team
   background-color: $marianne-blue__dark1; // Modified by CapQualif Team
+  border: 1px solid $marianne-blue__dark1; // Added by CapQualif Team
   // color: var(--w-bf500);           // Modified by CapQualif Team
   color: $white; // Modified by CapQualif Team
 }

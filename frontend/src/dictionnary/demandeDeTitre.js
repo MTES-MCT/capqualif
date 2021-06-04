@@ -50,6 +50,8 @@ export const BUTTON_LABELS = {
   DEMAND_ONE: 'Demander un titre',
   DEMAND_THIS: 'Demander ce titre',
   ADD_DOCUMENT: 'Ajouter un document',
+  ADD_PAGE: 'Ajouter une page',
+  ADD_DOCUMENTS_TO_DOSSIER: 'Ajouter les documents au dossier',
   UPLOAD_DOCUMENT: 'Téléverser un document',
   TAKE_PICTURE: 'Prendre une photo',
   RETAKE_PICTURE: 'Reprendre la capture',
