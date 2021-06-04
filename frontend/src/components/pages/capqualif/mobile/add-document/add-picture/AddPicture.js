@@ -21,8 +21,8 @@ const AddPicture = (props) => {
   const webcamRef = useRef(null);
 
   const videoConstraints = {
-    width: 320,
-    height: 320,
+    width: 300,
+    height: 400,
     facingMode: 'environment',
   };
 

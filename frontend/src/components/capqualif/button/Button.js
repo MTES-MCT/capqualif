@@ -5,12 +5,21 @@ import { Link } from 'react-router-dom';
 import commonStyles from './common.module.scss';
 import { BUTTON_WIDTH } from '../../../dictionnary/saas/variables';
 
-const Button = ({ label, labelSize, width, route }) => {
+const Button = ({
+  label,
+  labelSize,
+  width,
+  isSecondary,
+  marginInRem,
+  route,
+}) => {
   return (
     <button
       className={`${commonStyles['cq-button']} ${commonStyles['fr-btn']} ${
         width === BUTTON_WIDTH.FULL ? 'cq-helpers-full-width' : ''
-      }`}
+      }
+    ${isSecondary ? commonStyles['fr-btn--secondary'] : ''}`}
+      style={{ margin: `${marginInRem}rem` }}
     >
       {route ? (
         <Link to={route} style={{ fontSize: labelSize }}>

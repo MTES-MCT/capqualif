@@ -52,6 +52,8 @@ export const BUTTON_LABELS = {
   ADD_DOCUMENT: 'Ajouter un document',
   UPLOAD_DOCUMENT: 'Téléverser un document',
   TAKE_PICTURE: 'Prendre une photo',
+  RETAKE_PICTURE: 'Reprendre la capture',
+  CONFIRM_PICTURE: 'Confirmer la capture',
   ASK_FOR_ADVICE: "Demander le conseil d'un agent",
   CONFIRM: 'Confirmer ma demande de titre',
   GO_BACK_HOME: "Retourner à la page d'accueil",
