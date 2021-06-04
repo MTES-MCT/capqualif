@@ -13,7 +13,7 @@ const Step = ({ label, isDark }) => {
     >
       <h2
         className={`${styles['step-h2']} ${
-          isDark ? styles['dark'] : styles['ligth']
+          isDark ? styles['dark'] : styles['light']
         } fr-m-2w`}
       >
         {label}
