@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
@@ -29,11 +29,12 @@ const requestSlice = createSlice({
       state.status = action.payload;
     },
     addDocument(state, action) {
+      console.log(state);
       state.documents.push(action.payload);
     },
   },
 });
 
-export const { addRequest } = requestSlice.actions;
+export const { addDocument } = requestSlice.actions;
 
 export default requestSlice.reducer;

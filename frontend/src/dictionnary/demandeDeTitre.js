@@ -97,6 +97,12 @@ export const VARIOUS = {
     'CapQualif bêta ne propose que ces deux titres pour le moment.',
   DATES_WARNING:
     "Ces dates peuvent changer si la délivrance de votre titre n'est pas immédiate.",
+  DOCUMENT_WARNING: {
+    PART_1: 'Le document doit comporter le',
+    PART_2: 'nom du bénéficiaire',
+    PART_3: 'ainsi que la',
+    PART_4: 'date',
+  },
 };
 
 export const RESTRICTIONS = {

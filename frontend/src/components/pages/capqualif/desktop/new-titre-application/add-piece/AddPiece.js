@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { ACTION_TYPES } from '../../../../../../dictionnary/demandeDeTitre';
+import {
+  ACTION_TYPES,
+  VARIOUS,
+} from '../../../../../../dictionnary/demandeDeTitre';
 import { FONT_SIZES } from '../../../../../../dictionnary/saas/variables';
 import ButtonLink from '../../../../../capqualif/buttons/ButtonLink';
 import './AddPiece.scss';
