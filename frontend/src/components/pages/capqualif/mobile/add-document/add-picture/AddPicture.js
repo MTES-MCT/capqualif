@@ -4,7 +4,7 @@ import Webcam from 'react-webcam';
 import PropTypes from 'prop-types';
 
 import styles from './AddPicture.module.scss';
-import { addDocument } from '../../../../../../redux/capqualif/mobile/request/requestSlice';
+import { addDocument } from '../../../../../../redux/capqualif/mobile/temporary-documents/temporaryDocumentsSlice';
 import Step from '../../../../../capqualif/step/Step';
 import { PICTURE, STEPS } from '../../../../../../dictionnary/demandeDeTitre';
 import { CONFIRMATION_ROUTE } from '../../../../../../app/routesDictionnary';
@@ -25,7 +25,7 @@ const AddPicture = (props) => {
 
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
-    dispatch(addDocument({ img: imageSrc }));
+    dispatch(addDocument(imageSrc));
     history.push(`${documentName}/${CONFIRMATION_ROUTE}`);
   }, [webcamRef]);
 

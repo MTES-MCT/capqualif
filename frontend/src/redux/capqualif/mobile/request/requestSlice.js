@@ -29,7 +29,6 @@ const requestSlice = createSlice({
       state.status = action.payload;
     },
     addDocument(state, action) {
-      console.log(state);
       state.documents.push(action.payload);
     },
   },

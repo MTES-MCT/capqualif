@@ -14,7 +14,7 @@ const CqItemCondition = ({ condition }) => {
       {condition.conditions.map((cond) => (
         <Validity
           documentName={cond.name}
-          isValid={cond.isSatisfied}
+          status={cond.status}
           validLabel={`${cond.name}`}
           notValidLabel={`${cond.name}`}
         />

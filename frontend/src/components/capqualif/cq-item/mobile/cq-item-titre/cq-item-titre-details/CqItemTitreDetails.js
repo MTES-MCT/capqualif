@@ -8,7 +8,6 @@ import Validity from '../../../../validity/Validity';
 import {
   DETAILS_TYPE,
   IDENTITY_MARKERS,
-  INSTRUCTION_STATUS,
   MARIN_INFOS,
   REQUEST,
 } from '../../../../../../dictionnary/demandeDeTitre';
@@ -52,7 +51,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
                 <Validity
                   documentName={'photo'}
                   isValid={
-                    details.content.marinIdentity.identityMarkers.isPhotoValid
+                    details.content.marinIdentity.identityMarkers.photoStatus
                   }
                   validLabel={IDENTITY_MARKERS.PHOTO}
                   notValidLabel={IDENTITY_MARKERS.PHOTO}
@@ -61,7 +60,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
                   documentName={'signature'}
                   isValid={
                     details.content.marinIdentity.identityMarkers
-                      .isSignatureValid
+                      .signatureStatus
                   }
                   validLabel={IDENTITY_MARKERS.SIGNATURE}
                   notValidLabel={IDENTITY_MARKERS.SIGNATURE}
@@ -72,7 +71,6 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
             {details.content.results.details.conditions.map((condition) => (
               <CqItemCondition condition={condition} />
             ))}
-
             {action && <div>{action}</div>}
           </div>
         );

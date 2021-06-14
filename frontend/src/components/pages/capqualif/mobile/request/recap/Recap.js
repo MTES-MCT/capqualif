@@ -26,6 +26,7 @@ import {
   MOBILE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../../app/routesDictionnary';
+import { CONDITION } from '../../../../../../dictionnary/demandeDeTitre';
 import CqItemAction from '../../../../../capqualif/cq-item/elements/cq-item-action/CqItemAction';
 import { convertToEuropeanFormat } from '../../../../../../app/utils';
 
@@ -47,8 +48,8 @@ const Recap = (props) => {
           numeroDeMarin: '1234945',
         },
         identityMarkers: {
-          isPhotoValid: false,
-          isSignatureValid: true,
+          photoStatus: CONDITION.STATUS.NOT_VALID,
+          signatureStatus: CONDITION.STATUS.VALID,
         },
       },
       results: {
@@ -61,7 +62,7 @@ const Recap = (props) => {
               conditions: [
                 {
                   name: 'Âge',
-                  isSatisfied: true,
+                  status: CONDITION.STATUS.DOCUMENT_ADDED,
                 },
               ],
             },
@@ -70,7 +71,7 @@ const Recap = (props) => {
               conditions: [
                 {
                   name: 'Aptitude médicale',
-                  isSatisfied: true,
+                  status: CONDITION.STATUS.VALID,
                 },
               ],
             },
@@ -79,19 +80,19 @@ const Recap = (props) => {
               conditions: [
                 {
                   name: 'Module P1-Appui',
-                  isSatisfied: true,
+                  status: CONDITION.STATUS.VALID,
                 },
                 {
                   name: 'Module P2-Appui',
-                  isSatisfied: true,
+                  status: CONDITION.STATUS.VALID,
                 },
                 {
                   name: 'Module P3-Appui',
-                  isSatisfied: false,
+                  status: CONDITION.STATUS.NOT_VALID,
                 },
                 {
                   name: 'Module NP-Appui',
-                  isSatisfied: true,
+                  status: CONDITION.STATUS.VALID,
                 },
               ],
             },
@@ -100,7 +101,7 @@ const Recap = (props) => {
               conditions: [
                 {
                   name: 'Certificat de Formation de Base à la Sécurité',
-                  isSatisfied: true,
+                  status: CONDITION.STATUS.VALID,
                 },
               ],
             },

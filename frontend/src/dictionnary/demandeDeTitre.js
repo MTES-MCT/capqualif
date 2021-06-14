@@ -130,3 +130,11 @@ export const DETAILS_TYPE = {
   CONDITIONS: 'conditions',
   REQUEST: 'request',
 };
+
+export const CONDITION = {
+  STATUS: {
+    VALID: 'VALID',
+    NOT_VALID: 'NOT_VALID',
+    DOCUMENT_ADDED: 'DOCUMENT_ADDED',
+  },
+};
