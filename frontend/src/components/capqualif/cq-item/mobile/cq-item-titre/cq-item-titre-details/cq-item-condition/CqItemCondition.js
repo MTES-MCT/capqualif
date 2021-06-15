@@ -13,6 +13,7 @@ const CqItemCondition = ({ condition }) => {
       <h3>{condition.group}</h3>
       {condition.conditions.map((cond) => (
         <Validity
+          documentId={cond.id}
           documentName={cond.name}
           status={cond.status}
           validLabel={`${cond.name}`}

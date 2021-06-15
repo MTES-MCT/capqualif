@@ -12,8 +12,8 @@ const initialState = {
   documents: [],
 };
 
-const requestSlice = createSlice({
-  name: 'request',
+const requestsSlice = createSlice({
+  name: 'requests',
   initialState,
   reducers: {
     addRequestor(state, action) {
@@ -34,6 +34,6 @@ const requestSlice = createSlice({
   },
 });
 
-export const { addDocument } = requestSlice.actions;
+export const { addDocument } = requestsSlice.actions;
 
-export default requestSlice.reducer;
+export default requestsSlice.reducer;

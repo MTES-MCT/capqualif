@@ -28,8 +28,8 @@ const CqItem = ({
   level,
   capacite,
   itemName,
-  itemId,
-  itemSlug,
+  // itemId,
+  // itemSlug,
   details,
   delivranceDate,
   expirationDate,
@@ -74,7 +74,8 @@ const CqItem = ({
               <CqItemDetails
                 isVisible={isDetailVisible}
                 details={details}
-                buttonRoute={`/${DESKTOP}/${NEW_TITRE_APPLICATION_ROUTE}/${itemId}/${itemSlug}/${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
+                // buttonRoute={`/${DESKTOP}/${NEW_TITRE_APPLICATION_ROUTE}/${itemId}/${itemSlug}/${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
+                buttonRoute={`/${DESKTOP}/${NEW_TITRE_APPLICATION_ROUTE}/${NEW_TITRE_APPLICATION_RECAP_ROUTE}`}
               />
             </div>
           </div>

@@ -68,7 +68,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
               </div>
             </div>
 
-            {details.content.results.details.conditions.map((condition) => (
+            {details.content.results.allConditionsGroups.map((condition) => (
               <CqItemCondition condition={condition} />
             ))}
             {action && <div>{action}</div>}

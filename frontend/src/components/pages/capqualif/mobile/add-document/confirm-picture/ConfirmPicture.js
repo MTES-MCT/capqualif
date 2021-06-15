@@ -1,11 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Fragment } from 'react';
+import { useHistory, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import commonStyles from '../common.module.scss';
 
 import Step from '../../../../../capqualif/step/Step';
-import { addDocument } from '../../../../../../redux/capqualif/mobile/request/requestSlice';
+import { addDocument } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
 import {
   BUTTON_LABELS,
   STEPS,
@@ -15,10 +17,7 @@ import {
   NEW_TITRE_REQUEST_ROUTE,
   ADD_DOCUMENT_ROUTE,
   ADD_PICTURE_ROUTE,
-  CONFIRMATION_ROUTE,
 } from '../../../../../../app/routesDictionnary';
-import { Fragment } from 'react';
-import { useHistory, useParams } from 'react-router';
 import ButtonLink from '../../../../../capqualif/buttons/ButtonLink';
 import { BUTTON_WIDTH } from '../../../../../../dictionnary/saas/variables';
 import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import styles from './ChooseTitre.module.scss';
@@ -23,145 +24,7 @@ import CqItemTitre from '../../../../../capqualif/cq-item/mobile/cq-item-titre/C
 import Step from '../../../../../capqualif/step/Step';
 
 const ChooseTitre = (props) => {
-  const allTitresMock = [
-    {
-      titre: {
-        capacite: 'Monovalence · Pont',
-        name: 'Certificat de Matelot Pont',
-        id: '1',
-        slug: 'certificat-de-matelot-pont',
-      },
-      details: {
-        dossierStatus: false,
-        marinIdentity: {
-          basicInfos: {
-            firstName: 'Thomas',
-            lastName: 'Laval',
-            numeroDeMarin: '1234945',
-          },
-          identityMarkers: {
-            isPhotoValid: false,
-            isSignatureValid: true,
-          },
-        },
-        results: {
-          finalResult: false,
-          details: {
-            conditions: [
-              {
-                group: 'Âge',
-                conditions: [
-                  {
-                    name: 'Âge',
-                    isSatisfied: true,
-                  },
-                ],
-              },
-              {
-                group: 'Aptitude médicale',
-                conditions: [
-                  {
-                    name: 'Aptitude médicale',
-                    isSatisfied: true,
-                  },
-                ],
-              },
-              {
-                group: 'Qualifications principales',
-                conditions: [
-                  {
-                    name: 'Module P1-Appui',
-                    isSatisfied: true,
-                  },
-                  {
-                    name: 'Module P2-Appui',
-                    isSatisfied: true,
-                  },
-                  {
-                    name: 'Module P3-Appui',
-                    isSatisfied: false,
-                  },
-                  {
-                    name: 'Module NP-Appui',
-                    isSatisfied: true,
-                  },
-                ],
-              },
-              {
-                group: 'Qualifications spécifiques',
-                conditions: [
-                  {
-                    name: 'Certificat de Formation de Base à la Sécurité',
-                    isSatisfied: true,
-                  },
-                ],
-              },
-            ],
-          },
-        },
-      },
-    },
-    {
-      titre: {
-        capacite: 'Sécurité',
-        name: 'Certificat de Formation de Base à la Sécurité',
-        id: '2',
-        slug: 'certificat-de-formation-de-base-a-la-securite',
-      },
-      details: {
-        dossierStatus: false,
-        marinIdentity: {
-          basicInfos: {
-            firstName: 'Thomas',
-            lastName: 'Laval',
-            numeroDeMarin: '1234945',
-          },
-          identityMarkers: {
-            isPhotoValid: false,
-            isSignatureValid: true,
-          },
-        },
-        results: {
-          finalResult: false,
-          details: {
-            conditions: [
-              {
-                group: 'Aptitude médicale',
-                conditions: [
-                  {
-                    name: 'Aptitude médicale',
-                    isSatisfied: true,
-                  },
-                ],
-              },
-              {
-                group: 'Qualifications spécifiques',
-                conditions: [
-                  {
-                    name: 'Techniques individuelles de survie (UV- TIS-F) ',
-                    isSatisfied: true,
-                  },
-                  {
-                    name:
-                      'Formation de base à la lutte contre l’incendie (UV-FBLI/F)',
-                    isSatisfied: true,
-                  },
-                  {
-                    name: 'Premiers secours élémentaires (PSC1)',
-                    isSatisfied: true,
-                  },
-                  {
-                    name: 'Prévention des risques à bord (UV-PRAB/F)',
-                    isSatisfied: true,
-                  },
-                ],
-              },
-            ],
-          },
-        },
-      },
-    },
-  ];
+  const allTitres = useSelector((state) => state.instructionsReducer.titres);
 
   return (
     <div>
@@ -171,17 +34,17 @@ const ChooseTitre = (props) => {
           Choix du titre
         </h3>
         <div className={`${styles['cq-choose-titre-titres-container']}`}>
-          {allTitresMock.map((titre) => (
+          {allTitres.map((titre) => (
             <CqItemTitre
               subtitle={titre.titre.capacite}
               name={titre.titre.name}
               status={{
                 type: STATUS_TYPES.DOSSIER,
-                value: titre.details.dossierStatus,
+                value: titre.instruction.dossierStatus,
               }}
               details={{
                 type: DETAILS_TYPE.CONDITIONS,
-                content: titre.details,
+                content: titre.instruction,
               }}
               action={{
                 label: BUTTON_LABELS.DEMAND_THIS,
@@ -192,10 +55,6 @@ const ChooseTitre = (props) => {
                   MOBILE +
                   '/' +
                   NEW_TITRE_REQUEST_ROUTE +
-                  '/' +
-                  titre.titre.id +
-                  '/' +
-                  titre.titre.slug +
                   '/' +
                   NEW_TITRE_REQUEST_RECAP_ROUTE,
               }}

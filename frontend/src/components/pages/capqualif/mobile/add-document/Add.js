@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { findFirst } from 'obj-traverse/lib/obj-traverse';
 import PropTypes from 'prop-types';
 
 import styles from './Add.module.scss';
@@ -9,6 +11,7 @@ import Step from '../../../../capqualif/step/Step';
 import ButtonLink from '../../../../capqualif/buttons/ButtonLink';
 import {
   BUTTON_LABELS,
+  CONDITION,
   STEPS,
   VARIOUS,
 } from '../../../../../dictionnary/demandeDeTitre';
@@ -22,17 +25,27 @@ import {
 } from '../../../../../app/routesDictionnary';
 import { BUTTON_WIDTH } from '../../../../../dictionnary/saas/variables';
 import ButtonAction from '../../../../capqualif/buttons/button-action/ButtonAction';
-import { useSelector } from 'react-redux';
+import { changeConditionStatus } from '../../../../../redux/capqualif/mobile/instructions/instructionsSlice';
 
 const Add = (props) => {
   const [file, setFile] = useState();
   const { documentName } = useParams();
-  const documents = useSelector((state) => state.requestReducer.documents);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const documents = useSelector((state) => state.requestsReducer.documents);
 
   const handleFileUpload = (e) => {
     console.log(e.target.files[0]);
     setFile(e.target.files[0]);
     // TO DO : add document to request.documents state
+  };
+
+  const addDocuments = () => {
+    dispatch(changeConditionStatus('12'));
+    history.push(
+      `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`
+    );
   };
 
   const chooseWhatToDisplay = (documents) => {
@@ -89,10 +102,10 @@ const Add = (props) => {
         <div
           className={`${styles['add-container']} fr-py-2w fr-mt-1w fr-mb-2w`}
         >
-          <ButtonLink
+          <ButtonAction
             label={BUTTON_LABELS.ADD_DOCUMENTS_TO_DOSSIER}
             width={BUTTON_WIDTH.FULL}
-            route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${itemId}/${itemSlug}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`}
+            actionOnClick={addDocuments}
           />
         </div>
       </Fragment>

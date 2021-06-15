@@ -5,7 +5,7 @@ import { CAPQUALIF_URL, MARINS_ENDPOINT } from '../../../../../api/apiList';
 
 export const getMarinBasicDataByNumeroDeMarin = createAsyncThunk(
   'marins/getMarinBasicDataByNumeroDeMarin',
-  async (numeroDeMarin) => {
+  async (numeroDeMarin, thunkAPI) => {
     const response = await axios.get(
       `${CAPQUALIF_URL}/${MARINS_ENDPOINT}/${numeroDeMarin}`
     );
@@ -14,7 +14,7 @@ export const getMarinBasicDataByNumeroDeMarin = createAsyncThunk(
 );
 
 export const marinsSlice = createSlice({
-  name: 'marin',
+  name: 'marins',
   initialState: {
     marinBasicData: {
       numeroDeMarin: '',

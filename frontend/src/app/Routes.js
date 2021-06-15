@@ -51,18 +51,27 @@ const Routes = () => {
           component={MobileRequestChooseTitre}
         />
         <Route
-          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/:itemId/:itemSlug/${NEW_TITRE_REQUEST_RECAP_ROUTE}`}
+          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`}
           component={MobileRequestRecap}
         />
+        {/* <Route
+          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/:itemId/:itemSlug/${NEW_TITRE_REQUEST_RECAP_ROUTE}`}
+          component={MobileRequestRecap}
+        /> */}
         <Route
           path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${CONFIRMATION_ROUTE}`}
           component={MobileConfirmation}
         />
         <Route
           exact
-          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/:documentName`}
+          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`}
           component={MobileAddDocument}
         />
+        {/* <Route
+          exact
+          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/:documentName`}
+          component={MobileAddDocument}
+        /> */}
         <Route
           exact
           path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/:documentName`}
