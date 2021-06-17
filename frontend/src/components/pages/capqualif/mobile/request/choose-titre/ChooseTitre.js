@@ -24,7 +24,7 @@ import CqItemTitre from '../../../../../capqualif/cq-item/mobile/cq-item-titre/C
 import Step from '../../../../../capqualif/step/Step';
 
 const ChooseTitre = (props) => {
-  const allTitres = useSelector((state) => state.instructionsReducer.titres);
+  const allTitres = useSelector((state) => state.instructions.titres);
 
   return (
     <div>

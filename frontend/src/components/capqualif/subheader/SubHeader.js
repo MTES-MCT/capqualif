@@ -15,7 +15,7 @@ const SubHeader = () => {
     <div className="cq-section-header rf-container">
       <div className="cq-welcome">
         <h1>
-          {/* Bonjour, {store.getState().marinsReducer.marinBasicData.prenom}. */}
+          {/* Bonjour, {store.getState().marins.marinBasicData.prenom}. */}
         </h1>
         <h4>
           Bienvenue sur <strong>CapQualif</strong> !

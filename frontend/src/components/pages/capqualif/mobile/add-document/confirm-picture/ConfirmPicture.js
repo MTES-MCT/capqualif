@@ -27,7 +27,7 @@ const ConfirmPicture = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const temporaryDocument = useSelector(
-    (state) => state.temporaryDocumentsReducer.document
+    (state) => state.temporaryDocuments.document
   );
 
   const confirm = () => {

@@ -21,7 +21,7 @@ import {
 } from '../../../../../../app/routesDictionnary';
 
 const NewTitleChoice = () => {
-  // const allTitres = useSelector((state) => state.titresReducer.allTitres);
+  // const allTitres = useSelector((state) => state.titres.allTitres);
 
   const allTitresMock = [
     {

@@ -29,7 +29,7 @@
 
 // const FakeSuccess = ({ match }) => {
 //   const dispatch = useDispatch();
-//   const marin = useSelector((state) => state.marinsReducer.marinBasicData);
+//   const marin = useSelector((state) => state.marins.marinBasicData);
 
 //   const conditionsResultsMock = {
 //     age: {

@@ -26,7 +26,7 @@ import { TITRES } from '../../../../../dictionnary/titres';
 
 const Dashboard = (props) => {
   const marinTitres = useSelector(
-    (state) => state.marinsReducer.marinBasicData.allTitresOfMarin
+    (state) => state.marins.marinBasicData.allTitresOfMarin
   );
 
   const dispatch = useDispatch();

@@ -9,7 +9,7 @@ import HeaderBrand from '../header-brand/HeaderBrand';
 import { Fragment } from 'react';
 
 const Header = () => {
-  const isVisible = useSelector((state) => state.headerReducer.isVisible);
+  const isVisible = useSelector((state) => state.header.isVisible);
   const [isVisibleInternal, setIsVisibleInternal] = useState(false);
 
   useEffect(() => {

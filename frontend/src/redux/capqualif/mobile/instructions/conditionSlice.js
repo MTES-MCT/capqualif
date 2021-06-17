@@ -14,4 +14,5 @@ const conditionSlice = createSlice({
   },
 });
 
+export const { setCurrentConditionId } = conditionSlice.actions;
 export default conditionSlice.reducer;

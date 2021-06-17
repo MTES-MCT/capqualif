@@ -33,7 +33,7 @@ const Add = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const documents = useSelector((state) => state.requestsReducer.documents);
+  const documents = useSelector((state) => state.requests.documents);
 
   const handleFileUpload = (e) => {
     console.log(e.target.files[0]);

@@ -27,8 +27,8 @@ import { getConditions } from '../../../../../../redux/capqualif/desktop/feature
 
 const ApplicationRecap = () => {
   const dispatch = useDispatch();
-  const marin = useSelector((state) => state.marinsReducer.marinBasicData);
-  const conditions = useSelector((state) => state.conditionsReducer.conditions);
+  const marin = useSelector((state) => state.marins.marinBasicData);
+  const conditions = useSelector((state) => state.conditions.conditions);
 
   useEffect(() => {
     dispatch(

@@ -31,7 +31,7 @@ import { convertToEuropeanFormat } from '../../../../../../app/utils';
 
 const Recap = (props) => {
   // TO DO : CHANGE
-  const titre = useSelector((state) => state.instructionsReducer.titres[0]);
+  const titre = useSelector((state) => state.instructions.titres[0]);
 
   // TO DO : CHANGE
   const requestMock = {

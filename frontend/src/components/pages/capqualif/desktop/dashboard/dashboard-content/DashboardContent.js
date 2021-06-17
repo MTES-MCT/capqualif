@@ -14,7 +14,7 @@ import { FONT_SIZES } from '../../../../../../dictionnary/saas/variables';
 
 const DashboardContent = () => {
   const allTitresOfMarin = useSelector(
-    (state) => state.marinsReducer.marinBasicData.allTitresOfMarin
+    (state) => state.marins.marinBasicData.allTitresOfMarin
   );
 
   return (

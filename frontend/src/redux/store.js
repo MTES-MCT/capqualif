@@ -9,12 +9,12 @@ import instructionsReducer from './capqualif/mobile/instructions/instructionsSli
 
 export default configureStore({
   reducer: {
-    marinsReducer,
-    titresReducer,
-    conditionsReducer,
-    headerReducer,
-    requestsReducer,
-    temporaryDocumentsReducer,
-    instructionsReducer,
+    marins: marinsReducer,
+    titres: titresReducer,
+    conditions: conditionsReducer,
+    header: headerReducer,
+    requests: requestsReducer,
+    temporaryDocuments: temporaryDocumentsReducer,
+    instructions: instructionsReducer,
   },
 });
