@@ -74,12 +74,12 @@ const Routes = () => {
         /> */}
         <Route
           exact
-          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/:documentName`}
+          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}`}
           component={MobileAddPicture}
         />
         <Route
           exact
-          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/:documentName/${CONFIRMATION_ROUTE}`}
+          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/${CONFIRMATION_ROUTE}`}
           component={MobileConfirmPicture}
         />
 

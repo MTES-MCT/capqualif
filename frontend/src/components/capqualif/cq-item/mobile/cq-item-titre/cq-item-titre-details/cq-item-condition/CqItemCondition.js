@@ -13,11 +13,10 @@ const CqItemCondition = ({ condition }) => {
       <h3>{condition.group}</h3>
       {condition.conditions.map((cond) => (
         <Validity
-          documentId={cond.id}
-          documentName={cond.name}
+          document={{ id: cond.id, name: cond.name }}
           status={cond.status}
-          validLabel={`${cond.name}`}
-          notValidLabel={`${cond.name}`}
+          validLabel={cond.name}
+          notValidLabel={cond.name}
         />
       ))}
     </div>

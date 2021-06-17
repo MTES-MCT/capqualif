@@ -49,7 +49,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
               </p>
               <div className="fr-mt-2w">
                 <Validity
-                  documentName={'photo'}
+                  document={{ id: 'photo', name: 'photo' }}
                   isValid={
                     details.content.marinIdentity.identityMarkers.photoStatus
                   }
@@ -57,7 +57,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
                   notValidLabel={IDENTITY_MARKERS.PHOTO}
                 />
                 <Validity
-                  documentName={'signature'}
+                  document={{ id: 'signature', name: 'signature' }}
                   isValid={
                     details.content.marinIdentity.identityMarkers
                       .signatureStatus

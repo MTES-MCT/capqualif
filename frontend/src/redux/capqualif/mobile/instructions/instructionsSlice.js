@@ -37,7 +37,7 @@ const initialState = {
                 {
                   id: '11',
                   name: 'Âge',
-                  status: CONDITION.STATUS.DOCUMENT_ADDED,
+                  status: CONDITION.STATUS.VALID,
                 },
               ],
             },
@@ -47,7 +47,7 @@ const initialState = {
                 {
                   id: '12',
                   name: 'Aptitude médicale',
-                  status: CONDITION.STATUS.VALID,
+                  status: CONDITION.STATUS.NOT_VALID,
                 },
               ],
             },
@@ -65,11 +65,12 @@ const initialState = {
                   status: CONDITION.STATUS.VALID,
                 },
                 {
+                  id: '133',
                   name: 'Module P3-Appui',
                   status: CONDITION.STATUS.NOT_VALID,
                 },
                 {
-                  id: '133',
+                  id: '134',
                   name: 'Module NP-Appui',
                   status: CONDITION.STATUS.VALID,
                 },
@@ -79,9 +80,9 @@ const initialState = {
               group: 'Qualifications spécifiques',
               conditions: [
                 {
-                  id: '134',
+                  id: '14',
                   name: 'Certificat de Formation de Base à la Sécurité',
-                  status: CONDITION.STATUS.VALID,
+                  status: CONDITION.STATUS.NOT_VALID,
                 },
               ],
             },

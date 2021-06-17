@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Webcam from 'react-webcam';
 import PropTypes from 'prop-types';
 
@@ -7,15 +8,16 @@ import styles from './AddPicture.module.scss';
 import { addDocument } from '../../../../../../redux/capqualif/mobile/temporary-documents/temporaryDocumentsSlice';
 import Step from '../../../../../capqualif/step/Step';
 import { PICTURE, STEPS } from '../../../../../../dictionnary/demandeDeTitre';
-import { CONFIRMATION_ROUTE } from '../../../../../../app/routesDictionnary';
-import { useDispatch } from 'react-redux';
+import {
+  ADD_PICTURE_ROUTE,
+  CONFIRMATION_ROUTE,
+} from '../../../../../../app/routesDictionnary';
 
 const AddPicture = (props) => {
   const history = useHistory();
-  const { documentName } = useParams();
   const dispatch = useDispatch();
-
   const webcamRef = useRef(null);
+  const documentToAddName = useSelector((state) => state.currentCondition.name);
 
   const videoConstraints = {
     width: 300,
@@ -26,14 +28,14 @@ const AddPicture = (props) => {
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     dispatch(addDocument(imageSrc));
-    history.push(`${documentName}/${CONFIRMATION_ROUTE}`);
+    history.push(`${ADD_PICTURE_ROUTE}/${CONFIRMATION_ROUTE}`);
   }, [webcamRef]);
 
   return (
     <div className={`${styles['dark']}`}>
       <Step label={STEPS.TAKE_PICTURE} isDark={true} />
       <div className={`${styles['camera-container']} fr-p-1w fr-m-2w`}>
-        <p className="fr-mb-2w">{documentName}</p>
+        <p className="fr-mb-2w">{documentToAddName}</p>
         <Webcam
           ref={webcamRef}
           audio={false}

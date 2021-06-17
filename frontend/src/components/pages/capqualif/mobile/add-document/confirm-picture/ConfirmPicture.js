@@ -32,9 +32,7 @@ const ConfirmPicture = (props) => {
 
   const confirm = () => {
     dispatch(addDocument(temporaryDocument));
-    history.push(
-      `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${documentName}`
-    );
+    history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`);
   };
 
   return (

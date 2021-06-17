@@ -1,23 +1,22 @@
 import React, { Fragment } from 'react';
 import { GrAdd } from 'react-icons/gr';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import styles from './Validity.module.scss';
-import { Link } from 'react-router-dom';
 import {
   ADD_DOCUMENT_ROUTE,
   MOBILE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../app/routesDictionnary';
 import { CONDITION } from '../../../dictionnary/demandeDeTitre';
+import { setInfos } from '../../../redux/capqualif/mobile/instructions/currentCondition';
 
-const Validity = ({
-  documentId,
-  documentName,
-  status,
-  validLabel,
-  notValidLabel,
-}) => {
+const Validity = ({ document, status, validLabel, notValidLabel }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const chooseWhatToDisplay = (status) => {
     switch (status) {
       case CONDITION.STATUS.VALID:
@@ -33,12 +32,12 @@ const Validity = ({
 
   const displayValidCondition = () => {
     return (
-      <p className="fr-p-1w fr-my-1w">
+      <p className="fr-p-1w fr-my-1w`">
         <span
           className="cq-helpers-success-green fr-fi-check-line fr-mr-1w"
           aria-hidden="true"
         ></span>
-        {validLabel}
+        <span className={styles.label}>{validLabel}</span>
       </p>
     );
   };
@@ -48,28 +47,32 @@ const Validity = ({
       <div
         className={`${styles.centered} ${styles.highlight} fr-p-1w fr-my-1w`}
       >
-        <p>
+        <p className={styles.label}>
           <span
             className={`cq-helpers-failure fr-fi-close-line fr-mr-1w`}
             aria-hidden="true"
           ></span>
           {notValidLabel}
         </p>
-        <Link
-          to={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`}
+        <span
+          className={`${styles['add-icon']} fr-p-1w`}
+          onClick={() => startDocumentAdding(document)}
         >
-          <span className={`${styles['add-icon']} fr-p-1w`}>
-            <GrAdd />
-          </span>
-        </Link>
+          <GrAdd />
+        </span>
       </div>
     );
+  };
+
+  const startDocumentAdding = (document) => {
+    dispatch(setInfos(document));
+    history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`);
   };
 
   const displayDocumentAdded = () => {
     return (
       <div className={`${styles.centered} fr-p-1w fr-my-1w`}>
-        <p>
+        <p className={styles.label}>
           <span
             className="cq-helpers-success-green fr-fi-mail-line fr-mr-1w"
             aria-hidden="true"
@@ -77,7 +80,7 @@ const Validity = ({
           {notValidLabel}
         </p>
         <Link
-          to={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${documentName}/`}
+          to={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${document.name}/`}
         ></Link>
       </div>
     );
@@ -87,8 +90,7 @@ const Validity = ({
 };
 
 Validity.propTypes = {
-  documentId: PropTypes.string,
-  documentName: PropTypes.string,
+  document: PropTypes.object,
   isValid: PropTypes.bool,
   validLabel: PropTypes.string,
   notValidLabel: PropTypes.string,

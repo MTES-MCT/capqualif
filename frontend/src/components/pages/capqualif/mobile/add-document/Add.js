@@ -34,6 +34,10 @@ const Add = (props) => {
   const dispatch = useDispatch();
 
   const documents = useSelector((state) => state.requests.documents);
+  const conditionToModifyId = useSelector((state) => state.currentCondition.id);
+  const conditionToModifyName = useSelector(
+    (state) => state.currentCondition.name
+  );
 
   const handleFileUpload = (e) => {
     console.log(e.target.files[0]);
@@ -42,7 +46,7 @@ const Add = (props) => {
   };
 
   const addDocuments = () => {
-    dispatch(changeConditionStatus('12'));
+    dispatch(changeConditionStatus(conditionToModifyId));
     history.push(
       `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`
     );
@@ -58,6 +62,7 @@ const Add = (props) => {
   const noDocsAddedYet = () => {
     return (
       <div className={`${styles.actions} fr-mt-1w fr-px-2w`}>
+        <h2>{conditionToModifyName}</h2>
         <p className="fr-mb-4w">
           {VARIOUS.DOCUMENT_WARNING.PART_1}{' '}
           <span className={`${styles['highlighted']}`}>
@@ -73,14 +78,11 @@ const Add = (props) => {
         <p className="fr-my-1w">ou</p>
         <ButtonLink
           label={BUTTON_LABELS.TAKE_PICTURE}
-          route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/${documentName}`}
+          route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}`}
         />
       </div>
     );
   };
-
-  const itemId = '123';
-  const itemSlug = '123';
 
   const displayAddedDocs = (documents) => {
     return (
