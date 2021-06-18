@@ -37,15 +37,13 @@ const requestsSlice = createSlice({
        **conditionDocuments: []
        **}
        */
-
       const { conditionId } = action.payload;
       const { documents } = state;
       if (isConditionAlreadyInTheArray(documents, conditionId)) {
-        state.documents[
-          findConditionIndex(documents, conditionId)
-        ].conditionDocuments = action.payload.conditionDocuments;
+        const newDocuments = action.payload.conditionDocuments;
+        updateDocuments(documents, conditionId, newDocuments);
       } else {
-        state.documents.push(action.payload);
+        documents.push(action.payload);
       }
     },
   },
@@ -53,6 +51,12 @@ const requestsSlice = createSlice({
 
 const isConditionAlreadyInTheArray = (array, value) => {
   return findConditionIndex(array, value) !== -1 ? true : false;
+};
+
+const updateDocuments = (documents, conditionId, newDocuments) => {
+  documents[
+    findConditionIndex(documents, conditionId)
+  ].conditionDocuments = newDocuments;
 };
 
 const findConditionIndex = (array, value) => {
