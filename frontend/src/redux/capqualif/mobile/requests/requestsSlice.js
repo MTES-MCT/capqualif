@@ -29,19 +29,21 @@ const requestsSlice = createSlice({
       state.status = action.payload;
     },
     addDocument(state, action) {
-      // Here, action.payload is :
-      //    {
-      //      conditionId: ''
-      //      conditionName: ''
-      //      conditionDocuments: []
-      //    }
+      /**
+       ** Here, action.payload is :
+       ** {
+       **conditionId: ''
+       **conditionName: ''
+       **conditionDocuments: []
+       **}
+       */
 
-      const conditionIndex = state.documents.findIndex(
-        (doc) => doc.conditionId === action.payload.conditionId
-      );
-      if (isInTheArray(conditionIndex)) {
-        state.documents[conditionIndex].conditionDocuments =
-          action.payload.conditionDocuments;
+      const { conditionId } = action.payload;
+      const { documents } = state;
+      if (isConditionAlreadyInTheArray(documents, conditionId)) {
+        state.documents[
+          findConditionIndex(documents, conditionId)
+        ].conditionDocuments = action.payload.conditionDocuments;
       } else {
         state.documents.push(action.payload);
       }
@@ -49,9 +51,15 @@ const requestsSlice = createSlice({
   },
 });
 
-const isInTheArray = (index) => {
-  return index !== -1 ? true : false;
+const isConditionAlreadyInTheArray = (array, value) => {
+  return findConditionIndex(array, value) !== -1 ? true : false;
 };
+
+const findConditionIndex = (array, value) => {
+  return array.findIndex((doc) => doc.conditionId === value);
+};
+
+const isIndexNegative = (index) => {};
 
 export const { addDocument } = requestsSlice.actions;
 
