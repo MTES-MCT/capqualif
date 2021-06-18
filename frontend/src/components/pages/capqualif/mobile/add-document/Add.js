@@ -24,13 +24,15 @@ import {
 import { BUTTON_WIDTH } from '../../../../../dictionnary/saas/variables';
 import ButtonAction from '../../../../capqualif/buttons/button-action/ButtonAction';
 import { changeConditionStatus } from '../../../../../redux/capqualif/mobile/instructions/instructionsSlice';
+import { addDocuments } from '../../../../../redux/capqualif/mobile/requests/requestsSlice';
+import { cleanCondition } from '../../../../../redux/capqualif/mobile/instructions/currentCondition';
 
 const Add = (props) => {
   const { documentName } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const documents = useSelector((state) => state.requests.documents);
+  // const documents = useSelector((state) => state.requests.documents);
   const conditionToModify = useSelector((state) => state.currentCondition);
 
   const handleFileUpload = (e) => {
@@ -38,7 +40,14 @@ const Add = (props) => {
     // TO DO : add document to request.documents state
   };
 
-  const setConditionStatusToDocumentAdded = () => {
+  const addDocumentsToRequest = () => {
+    const renamedCondition = {
+      conditionId: conditionToModify.id,
+      conditionName: conditionToModify.name,
+      conditionDocuments: conditionToModify.pictures,
+    };
+    dispatch(addDocuments(renamedCondition));
+    dispatch(cleanCondition());
     dispatch(changeConditionStatus(conditionToModify.id));
     history.push(
       `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`
@@ -46,10 +55,13 @@ const Add = (props) => {
   };
 
   const chooseWhatToDisplay = (documents) => {
-    if (findDocByCondition(documents, conditionToModify).length === 0) {
+    if (conditionToModify.pictures.length === 0) {
       return noDocsAddedYet();
     }
-    return displayAddedDocs(documents);
+    // if (findDocByCondition(documents, conditionToModify).length === 0) {
+    //   return noDocsAddedYet();
+    // }
+    return displayAddedPictures(documents);
   };
 
   const findDocByCondition = (documents, condition) => {
@@ -81,10 +93,17 @@ const Add = (props) => {
     );
   };
 
-  const displayAddedDocs = (documents) => {
+  const displayAddedPictures = (picture) => {
     return (
       <Fragment>
-        {findDocByCondition(documents, conditionToModify).map((doc) => (
+        {conditionToModify.pictures.map((pic) => (
+          <div
+            className={`${commonStyles['capture-container']} fr-py-4w fr-mb-3w`}
+          >
+            <img src={pic} alt="document ajouté" />
+          </div>
+        ))}
+        {/* {findDocByCondition(documents, conditionToModify).map((doc) => (
           <Fragment>
             {doc.conditionDocuments.map((conditionDoc) => (
               <div
@@ -94,7 +113,7 @@ const Add = (props) => {
               </div>
             ))}
           </Fragment>
-        ))}
+        ))} */}
         <ButtonLink
           label={BUTTON_LABELS.ADD_PAGE}
           isSecondary={true}
@@ -108,7 +127,7 @@ const Add = (props) => {
           <ButtonAction
             label={BUTTON_LABELS.ADD_DOCUMENTS_TO_DOSSIER}
             width={BUTTON_WIDTH.FULL}
-            actionOnClick={setConditionStatusToDocumentAdded}
+            actionOnClick={addDocumentsToRequest}
           />
         </div>
       </Fragment>
@@ -120,7 +139,7 @@ const Add = (props) => {
       <Step label={STEPS.ADD_DOCUMENT} />
       <div className={`${commonStyles['container']} fr-px-1w`}>
         <h3 className="fr-pt-2w fr-pb-1w">{documentName}</h3>
-        {chooseWhatToDisplay(documents)}
+        {chooseWhatToDisplay(conditionToModify.pictures)}
       </div>
     </Fragment>
   );

@@ -5,7 +5,7 @@ import Webcam from 'react-webcam';
 import PropTypes from 'prop-types';
 
 import styles from './AddPicture.module.scss';
-import { addDocument } from '../../../../../../redux/capqualif/mobile/instructions/currentCondition';
+import { addPicture } from '../../../../../../redux/capqualif/mobile/instructions/currentCondition';
 import Step from '../../../../../capqualif/step/Step';
 import { PICTURE, STEPS } from '../../../../../../dictionnary/demandeDeTitre';
 import {
@@ -17,7 +17,7 @@ const AddPicture = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const webcamRef = useRef(null);
-  const documentToAddName = useSelector((state) => state.currentCondition.name);
+  const pictureToAddName = useSelector((state) => state.currentCondition.name);
 
   const videoConstraints = {
     width: 300,
@@ -27,7 +27,7 @@ const AddPicture = (props) => {
 
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
-    dispatch(addDocument(imageSrc));
+    dispatch(addPicture(imageSrc));
     history.push(`${ADD_PICTURE_ROUTE}/${CONFIRMATION_ROUTE}`);
   }, [webcamRef]);
 
@@ -35,7 +35,7 @@ const AddPicture = (props) => {
     <div className={`${styles['dark']}`}>
       <Step label={STEPS.TAKE_PICTURE} isDark={true} />
       <div className={`${styles['camera-container']} fr-p-1w fr-m-2w`}>
-        <p className="fr-mb-2w">{documentToAddName}</p>
+        <p className="fr-mb-2w">{pictureToAddName}</p>
         <Webcam
           ref={webcamRef}
           audio={false}

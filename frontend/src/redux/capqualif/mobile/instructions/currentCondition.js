@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   id: '',
   name: '',
-  documents: [],
+  pictures: [],
 };
 
 const currentConditionSlice = createSlice({
@@ -14,18 +14,24 @@ const currentConditionSlice = createSlice({
       state.id = action.payload.id;
       state.name = action.payload.name;
     },
-    addDocument(state, action) {
-      state.documents.push(action.payload);
+    addPicture(state, action) {
+      state.pictures.push(action.payload);
     },
-    deleteLastDocument(state) {
-      state.documents.pop();
+    deleteLastPicture(state) {
+      state.pictures.pop();
+    },
+    cleanCondition(state) {
+      state.id = '';
+      state.name = '';
+      state.pictures = [];
     },
   },
 });
 
 export const {
   setInfos,
-  addDocument,
-  deleteLastDocument,
+  addPicture,
+  deleteLastPicture,
+  cleanCondition,
 } = currentConditionSlice.actions;
 export default currentConditionSlice.reducer;

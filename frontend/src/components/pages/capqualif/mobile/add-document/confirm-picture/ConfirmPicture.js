@@ -8,7 +8,7 @@ import commonStyles from '../common.module.scss';
 
 import Step from '../../../../../capqualif/step/Step';
 import { addDocuments } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
-import { deleteLastDocument } from '../../../../../../redux/capqualif/mobile/instructions/currentCondition';
+import { deleteLastPicture } from '../../../../../../redux/capqualif/mobile/instructions/currentCondition';
 import {
   BUTTON_LABELS,
   STEPS,
@@ -30,17 +30,17 @@ const ConfirmPicture = (props) => {
   const currentCondition = useSelector((state) => state.currentCondition);
 
   const confirm = () => {
-    const renamedCondition = {
-      conditionId: currentCondition.id,
-      conditionName: currentCondition.name,
-      conditionDocuments: currentCondition.documents,
-    };
-    dispatch(addDocuments(renamedCondition));
+    // const renamedCondition = {
+    //   conditionId: currentCondition.id,
+    //   conditionName: currentCondition.name,
+    //   conditionDocuments: currentCondition.documents,
+    // };
+    // dispatch(addDocuments(renamedCondition));
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`);
   };
 
   const deleteAndGoBack = () => {
-    dispatch(deleteLastDocument());
+    dispatch(deleteLastPicture());
     history.goBack();
   };
 
@@ -54,7 +54,7 @@ const ConfirmPicture = (props) => {
         >
           <img
             src={
-              currentCondition.documents[currentCondition.documents.length - 1]
+              currentCondition.pictures[currentCondition.pictures.length - 1]
             }
             alt="document ajouté"
           />
