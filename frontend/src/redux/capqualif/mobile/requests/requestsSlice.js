@@ -28,7 +28,7 @@ const requestsSlice = createSlice({
     addStatus(state, action) {
       state.status = action.payload;
     },
-    addDocument(state, action) {
+    addDocuments(state, action) {
       /**
        ** Here, action.payload is :
        ** {
@@ -61,6 +61,6 @@ const findConditionIndex = (array, value) => {
 
 const isIndexNegative = (index) => {};
 
-export const { addDocument } = requestsSlice.actions;
+export const { addDocuments } = requestsSlice.actions;
 
 export default requestsSlice.reducer;

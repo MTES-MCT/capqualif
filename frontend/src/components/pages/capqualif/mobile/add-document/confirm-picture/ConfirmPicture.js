@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import commonStyles from '../common.module.scss';
 
 import Step from '../../../../../capqualif/step/Step';
-import { addDocument } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
+import { addDocuments } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
 import {
   BUTTON_LABELS,
   STEPS,
@@ -34,7 +34,7 @@ const ConfirmPicture = (props) => {
       conditionName: currentCondition.name,
       conditionDocuments: currentCondition.documents,
     };
-    dispatch(addDocument(renamedCondition));
+    dispatch(addDocuments(renamedCondition));
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`);
   };
 
