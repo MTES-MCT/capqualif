@@ -26,12 +26,15 @@ const ConfirmPicture = (props) => {
   const { documentName } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const temporaryDocument = useSelector(
-    (state) => state.temporaryDocuments.document
-  );
+  const currentCondition = useSelector((state) => state.currentCondition);
 
   const confirm = () => {
-    dispatch(addDocument(temporaryDocument));
+    const renamedCondition = {
+      conditionId: currentCondition.id,
+      conditionName: currentCondition.name,
+      conditionDocument: currentCondition.document,
+    };
+    dispatch(addDocument(renamedCondition));
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`);
   };
 
@@ -43,13 +46,13 @@ const ConfirmPicture = (props) => {
         <div
           className={`${commonStyles['capture-container']} fr-py-4w fr-px-2w`}
         >
-          <img src={temporaryDocument} alt="document ajouté" />
+          <img src={currentCondition.document} alt="document ajouté" />
           <ButtonLink
             label={BUTTON_LABELS.RETAKE_PICTURE}
             width={BUTTON_WIDTH.FULL}
             isSecondary={true}
             marginInRem={1}
-            route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/${documentName}`}
+            route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}`}
           />
           <ButtonAction
             label={BUTTON_LABELS.CONFIRM_PICTURE}

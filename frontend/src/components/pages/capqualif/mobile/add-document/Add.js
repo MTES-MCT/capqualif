@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { findFirst } from 'obj-traverse/lib/obj-traverse';
 import PropTypes from 'prop-types';
 
 import styles from './Add.module.scss';
@@ -11,7 +10,6 @@ import Step from '../../../../capqualif/step/Step';
 import ButtonLink from '../../../../capqualif/buttons/ButtonLink';
 import {
   BUTTON_LABELS,
-  CONDITION,
   STEPS,
   VARIOUS,
 } from '../../../../../dictionnary/demandeDeTitre';
@@ -34,10 +32,7 @@ const Add = (props) => {
   const dispatch = useDispatch();
 
   const documents = useSelector((state) => state.requests.documents);
-  const conditionToModifyId = useSelector((state) => state.currentCondition.id);
-  const conditionToModifyName = useSelector(
-    (state) => state.currentCondition.name
-  );
+  const conditionToModify = useSelector((state) => state.currentCondition);
 
   const handleFileUpload = (e) => {
     console.log(e.target.files[0]);
@@ -45,24 +40,28 @@ const Add = (props) => {
     // TO DO : add document to request.documents state
   };
 
-  const addDocuments = () => {
-    dispatch(changeConditionStatus(conditionToModifyId));
+  const setConditionStatusToDocumentAdded = () => {
+    dispatch(changeConditionStatus(conditionToModify.id));
     history.push(
       `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`
     );
   };
 
   const chooseWhatToDisplay = (documents) => {
-    if (documents.length === 0) {
+    if (findDocByCondition(documents, conditionToModify).length === 0) {
       return noDocsAddedYet();
     }
     return displayAddedDocs(documents);
   };
 
+  const findDocByCondition = (documents, condition) => {
+    return documents.filter((doc) => doc.conditionId === condition.id);
+  };
+
   const noDocsAddedYet = () => {
     return (
       <div className={`${styles.actions} fr-mt-1w fr-px-2w`}>
-        <h2>{conditionToModifyName}</h2>
+        <h2>{conditionToModify.name}</h2>
         <p className="fr-mb-4w">
           {VARIOUS.DOCUMENT_WARNING.PART_1}{' '}
           <span className={`${styles['highlighted']}`}>
@@ -87,11 +86,11 @@ const Add = (props) => {
   const displayAddedDocs = (documents) => {
     return (
       <Fragment>
-        {documents.map((doc) => (
+        {findDocByCondition(documents, conditionToModify).map((doc) => (
           <div
             className={`${commonStyles['capture-container']} fr-py-4w fr-mb-3w`}
           >
-            <img src={doc} alt="document ajouté" />
+            <img src={doc.conditionDocument} alt="document ajouté" />
           </div>
         ))}
         <ButtonLink
@@ -99,7 +98,7 @@ const Add = (props) => {
           isSecondary={true}
           marginInRem={1}
           width={BUTTON_WIDTH.FULL}
-          route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/${documentName}`}
+          route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}`}
         />
         <div
           className={`${styles['add-container']} fr-py-2w fr-mt-1w fr-mb-2w`}
@@ -107,7 +106,7 @@ const Add = (props) => {
           <ButtonAction
             label={BUTTON_LABELS.ADD_DOCUMENTS_TO_DOSSIER}
             width={BUTTON_WIDTH.FULL}
-            actionOnClick={addDocuments}
+            actionOnClick={setConditionStatusToDocumentAdded}
           />
         </div>
       </Fragment>

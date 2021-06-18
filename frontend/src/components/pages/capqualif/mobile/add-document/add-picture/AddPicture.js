@@ -5,7 +5,7 @@ import Webcam from 'react-webcam';
 import PropTypes from 'prop-types';
 
 import styles from './AddPicture.module.scss';
-import { addDocument } from '../../../../../../redux/capqualif/mobile/temporary-documents/temporaryDocumentsSlice';
+import { addDocument } from '../../../../../../redux/capqualif/mobile/instructions/currentCondition';
 import Step from '../../../../../capqualif/step/Step';
 import { PICTURE, STEPS } from '../../../../../../dictionnary/demandeDeTitre';
 import {

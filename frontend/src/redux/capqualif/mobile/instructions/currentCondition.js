@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   id: '',
   name: '',
+  document: '',
 };
 
 const currentConditionSlice = createSlice({
@@ -13,8 +14,12 @@ const currentConditionSlice = createSlice({
       state.id = action.payload.id;
       state.name = action.payload.name;
     },
+    addDocument(state, action) {
+      state.document = action.payload;
+    },
   },
 });
 
 export const { setInfos } = currentConditionSlice.actions;
+export const { addDocument } = currentConditionSlice.actions;
 export default currentConditionSlice.reducer;

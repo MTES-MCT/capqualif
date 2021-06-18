@@ -3,7 +3,6 @@ import marinsReducer from './capqualif/desktop/features/marinData/marinsSlice';
 import titresReducer from './capqualif/desktop/features/titresCatalog/titresSlice';
 import headerReducer from './capqualif/mobile/header/headerSlice';
 import requestsReducer from './capqualif/mobile/requests/requestsSlice';
-import temporaryDocumentsReducer from './capqualif/mobile/temporary-documents/temporaryDocumentsSlice';
 import instructionsReducer from './capqualif/mobile/instructions/instructionsSlice';
 import currentConditionReducer from './capqualif/mobile/instructions/currentCondition';
 
@@ -16,7 +15,6 @@ export default configureStore({
     conditions: conditionsReducer,
     header: headerReducer,
     requests: requestsReducer,
-    temporaryDocuments: temporaryDocumentsReducer,
     instructions: instructionsReducer,
     currentCondition: currentConditionReducer,
   },
