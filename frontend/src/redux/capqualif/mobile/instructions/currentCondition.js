@@ -17,9 +17,15 @@ const currentConditionSlice = createSlice({
     addDocument(state, action) {
       state.documents.push(action.payload);
     },
+    deleteLastDocument(state) {
+      state.documents.pop();
+    },
   },
 });
 
-export const { setInfos } = currentConditionSlice.actions;
-export const { addDocument } = currentConditionSlice.actions;
+export const {
+  setInfos,
+  addDocument,
+  deleteLastDocument,
+} = currentConditionSlice.actions;
 export default currentConditionSlice.reducer;

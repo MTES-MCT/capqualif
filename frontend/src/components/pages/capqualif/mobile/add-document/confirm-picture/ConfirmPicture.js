@@ -8,6 +8,7 @@ import commonStyles from '../common.module.scss';
 
 import Step from '../../../../../capqualif/step/Step';
 import { addDocuments } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
+import { deleteLastDocument } from '../../../../../../redux/capqualif/mobile/instructions/currentCondition';
 import {
   BUTTON_LABELS,
   STEPS,
@@ -18,8 +19,8 @@ import {
   ADD_DOCUMENT_ROUTE,
   ADD_PICTURE_ROUTE,
 } from '../../../../../../app/routesDictionnary';
-import ButtonLink from '../../../../../capqualif/buttons/ButtonLink';
 import { BUTTON_WIDTH } from '../../../../../../dictionnary/saas/variables';
+import ButtonLink from '../../../../../capqualif/buttons/ButtonLink';
 import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';
 
 const ConfirmPicture = (props) => {
@@ -38,6 +39,11 @@ const ConfirmPicture = (props) => {
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`);
   };
 
+  const deleteAndGoBack = () => {
+    dispatch(deleteLastDocument());
+    history.goBack();
+  };
+
   return (
     <Fragment>
       <Step label={STEPS.CONFIRM_PICTURE} />
@@ -46,13 +52,18 @@ const ConfirmPicture = (props) => {
         <div
           className={`${commonStyles['capture-container']} fr-py-4w fr-px-2w`}
         >
-          <img src={currentCondition.document} alt="document ajouté" />
-          <ButtonLink
+          <img
+            src={
+              currentCondition.documents[currentCondition.documents.length - 1]
+            }
+            alt="document ajouté"
+          />
+          <ButtonAction
             label={BUTTON_LABELS.RETAKE_PICTURE}
             width={BUTTON_WIDTH.FULL}
             isSecondary={true}
             marginInRem={1}
-            route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}`}
+            actionOnClick={deleteAndGoBack}
           />
           <ButtonAction
             label={BUTTON_LABELS.CONFIRM_PICTURE}

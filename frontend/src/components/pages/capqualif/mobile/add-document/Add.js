@@ -85,11 +85,15 @@ const Add = (props) => {
     return (
       <Fragment>
         {findDocByCondition(documents, conditionToModify).map((doc) => (
-          <div
-            className={`${commonStyles['capture-container']} fr-py-4w fr-mb-3w`}
-          >
-            <img src={doc.conditionDocument} alt="document ajouté" />
-          </div>
+          <Fragment>
+            {doc.conditionDocuments.map((conditionDoc) => (
+              <div
+                className={`${commonStyles['capture-container']} fr-py-4w fr-mb-3w`}
+              >
+                <img src={conditionDoc} alt="document ajouté" />
+              </div>
+            ))}
+          </Fragment>
         ))}
         <ButtonLink
           label={BUTTON_LABELS.ADD_PAGE}
