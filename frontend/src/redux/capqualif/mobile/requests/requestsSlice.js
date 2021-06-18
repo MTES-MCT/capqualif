@@ -59,8 +59,6 @@ const findConditionIndex = (array, value) => {
   return array.findIndex((doc) => doc.conditionId === value);
 };
 
-const isIndexNegative = (index) => {};
-
 export const { addDocuments } = requestsSlice.actions;
 
 export default requestsSlice.reducer;
