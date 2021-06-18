@@ -26,7 +26,6 @@ import ButtonAction from '../../../../capqualif/buttons/button-action/ButtonActi
 import { changeConditionStatus } from '../../../../../redux/capqualif/mobile/instructions/instructionsSlice';
 
 const Add = (props) => {
-  const [file, setFile] = useState();
   const { documentName } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -36,7 +35,6 @@ const Add = (props) => {
 
   const handleFileUpload = (e) => {
     console.log(e.target.files[0]);
-    setFile(e.target.files[0]);
     // TO DO : add document to request.documents state
   };
 

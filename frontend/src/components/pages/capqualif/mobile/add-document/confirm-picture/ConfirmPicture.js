@@ -32,7 +32,7 @@ const ConfirmPicture = (props) => {
     const renamedCondition = {
       conditionId: currentCondition.id,
       conditionName: currentCondition.name,
-      conditionDocument: currentCondition.document,
+      conditionDocuments: currentCondition.documents,
     };
     dispatch(addDocument(renamedCondition));
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`);

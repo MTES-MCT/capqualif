@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   id: '',
   name: '',
-  document: '',
+  documents: [],
 };
 
 const currentConditionSlice = createSlice({
@@ -15,7 +15,7 @@ const currentConditionSlice = createSlice({
       state.name = action.payload.name;
     },
     addDocument(state, action) {
-      state.document = action.payload;
+      state.documents.push(action.payload);
     },
   },
 });

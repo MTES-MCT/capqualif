@@ -2,6 +2,8 @@ export const findInArray = (array, property, value) => {
   return array.find((condition) => condition[property] === value);
 };
 
+// ========= Convert date : start =======================
+
 export const convertToEuropeanFormat = (dateSource) => {
   const date =
     typeof dateSource === 'string' || dateSource instanceof String
@@ -16,3 +18,5 @@ export const convertToEuropeanFormat = (dateSource) => {
 const convertToDate = (dateString) => {
   return new Date(dateString);
 };
+
+// ========= Convert date : end =======================
