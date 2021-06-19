@@ -8,23 +8,21 @@ import { HOME_ROUTE } from './routesDictionnary';
 import './App.scss';
 
 import Routes from './Routes';
-import Sign from '../components/pages/capqualif/desktop/sign/Sign';
+import Login from '../components/pages/capqualif/mobile/login/Login';
 import Header from '../components/system-design-etat/header/Header';
 import ScrollToTop from '../components/helpers/ScrollToTop';
 
-const App = ({ location }) => {
+const App = () => {
   return (
     <Provider store={store}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
       <Header />
       <Router>
         <ScrollToTop />
         <Switch>
-          <Route exact path={HOME_ROUTE} component={Sign} />
+          <Route exact path={HOME_ROUTE} component={Login} />
           <Routes />
         </Switch>
       </Router>
-      {/* </PersistGate> */}
     </Provider>
   );
 };

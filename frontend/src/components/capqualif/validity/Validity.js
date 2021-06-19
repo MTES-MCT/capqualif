@@ -79,9 +79,6 @@ const Validity = ({ document, status, validLabel, notValidLabel }) => {
           ></span>
           {notValidLabel}
         </p>
-        <Link
-          to={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${document.name}/`}
-        ></Link>
       </div>
     );
   };

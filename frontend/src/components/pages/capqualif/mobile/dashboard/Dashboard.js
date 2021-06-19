@@ -14,6 +14,7 @@ import {
   STATUS_TYPES,
   INSTRUCTION_STATUS,
   DETAILS_TYPE,
+  REQUEST,
 } from '../../../../../dictionnary/demandeDeTitre';
 import {
   MOBILE,
@@ -25,11 +26,10 @@ import CqItemTitre from '../../../../capqualif/cq-item/mobile/cq-item-titre/CqIt
 import { TITRES } from '../../../../../dictionnary/titres';
 
 const Dashboard = (props) => {
+  const dispatch = useDispatch();
   const marinTitres = useSelector(
     (state) => state.marins.marinBasicData.allTitresOfMarin
   );
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(showHeader());
@@ -40,12 +40,14 @@ const Dashboard = (props) => {
 
   const allRequestsMock = [
     {
-      requestedTitre: {
-        name: TITRES.CERTIFICATS.MATELOT_PONT,
+      requestor: {
+        firstName: 'Mile',
+        lastName: 'End',
       },
-      isRequestSent: true,
-      instructionStatus: INSTRUCTION_STATUS.IN_PROGRESS,
-      requestDate: '2020/06/18',
+      requestedTitre: TITRES.CERTIFICATS.MATELOT_PONT,
+      startDate: '2020/06/18',
+      status: REQUEST.STATUS_REQUEST.SENT.SHORT,
+      documents: [],
     },
   ];
 
@@ -79,12 +81,12 @@ const Dashboard = (props) => {
     if (allRequests.length > 0) {
       return allRequests.map((request) => (
         <CqItemTitre
-          name={request.requestedTitre.name}
+          name={request.requestedTitre}
           status={{
             type: STATUS_TYPES.REQUEST,
-            value: request.isRequestSent,
+            value: request.status,
           }}
-          details={{ type: DETAILS_TYPE.REQUEST, content: request }}
+          details={{ type: DETAILS_TYPE.REQUEST, content: request.startDate }}
         />
       ));
     }

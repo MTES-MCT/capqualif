@@ -14,6 +14,7 @@ import {
   DESKTOP,
   MOBILE,
   ADD_PICTURE_ROUTE,
+  HOME_ROUTE,
 } from './routesDictionnary';
 
 import MobileDashboard from '../components/pages/capqualif/mobile/dashboard/Dashboard';
@@ -54,10 +55,6 @@ const Routes = () => {
           path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`}
           component={MobileRequestRecap}
         />
-        {/* <Route
-          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/:itemId/:itemSlug/${NEW_TITRE_REQUEST_RECAP_ROUTE}`}
-          component={MobileRequestRecap}
-        /> */}
         <Route
           path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${CONFIRMATION_ROUTE}`}
           component={MobileConfirmation}
@@ -67,11 +64,6 @@ const Routes = () => {
           path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`}
           component={MobileAddDocument}
         />
-        {/* <Route
-          exact
-          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/:documentName`}
-          component={MobileAddDocument}
-        /> */}
         <Route
           exact
           path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}`}

@@ -37,8 +37,10 @@ const CqItemTitre = ({
 CqItemTitre.propTypes = {
   name: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
-  action: PropTypes.object.isRequired,
+  status: PropTypes.string,
+  expirationDate: PropTypes.string,
+  details: PropTypes.string,
+  action: PropTypes.object,
 };
 
 export default CqItemTitre;

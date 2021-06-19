@@ -12,7 +12,7 @@ import {
 } from '../../../../../dictionnary/demandeDeTitre';
 
 const CqItemStatus = ({ status }) => {
-  const whatToShow = (status) => {
+  const chooseWhatToDisplay = (status) => {
     switch (status.type) {
       case STATUS_TYPES.DOSSIER:
         return fillModel(
@@ -31,8 +31,10 @@ const CqItemStatus = ({ status }) => {
           false
         );
       case STATUS_TYPES.REQUEST:
+        const statusValue =
+          status.value === REQUEST.STATUS_REQUEST.SENT.SHORT ? true : false;
         return fillModel(
-          status.value,
+          statusValue,
           REQUEST.STATUS_REQUEST.SENT.SHORT,
           null,
           COLORS.BLUE,
@@ -87,7 +89,7 @@ const CqItemStatus = ({ status }) => {
 
   return (
     <div className={`${styles['cq-item-status-container']}`}>
-      {whatToShow(status)}
+      {chooseWhatToDisplay(status)}
     </div>
   );
 };

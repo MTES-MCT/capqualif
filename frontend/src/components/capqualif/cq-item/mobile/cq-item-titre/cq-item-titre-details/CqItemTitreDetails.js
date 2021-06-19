@@ -30,7 +30,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
       <div className={`${isVisible ? '' : styles.hidden}`}>
         <p className="fr-px-2w fr-mt-2w">
           {`${REQUEST.DATES.START_DATE} : ${convertToEuropeanFormat(
-            details.content.requestDate
+            details.content
           )}
         `}
           <br />
@@ -41,6 +41,8 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
   };
 
   const displayConditions = () => {
+    const marinIdentityMarkers = details.content.marinIdentity.identityMarkers;
+    const marinBasicsInfos = details.content.marinIdentity.basicInfos;
     return (
       <div className={`${isVisible ? '' : styles.hidden}`}>
         <div
@@ -50,28 +52,24 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
             <h3>{MARIN_INFOS.IDENTITY}</h3>
             <h4>{MARIN_INFOS.NAME}</h4>
             <p className={`${styles.identity}`}>
-              {details.content.marinIdentity.basicInfos.firstName}&nbsp;
-              {details.content.marinIdentity.basicInfos.lastName}
+              {marinBasicsInfos.firstName}&nbsp;
+              {marinBasicsInfos.lastName}
             </p>
           </div>
           <h4>{MARIN_INFOS.ID_NUMBER}</h4>
           <p className={`${styles.identity}`}>
-            {details.content.marinIdentity.basicInfos.numeroDeMarin}
+            {marinBasicsInfos.numeroDeMarin}
           </p>
           <div className="fr-mt-2w">
             <Validity
               document={{ id: 'photo', name: 'photo' }}
-              isValid={
-                details.content.marinIdentity.identityMarkers.photoStatus
-              }
+              isValid={marinIdentityMarkers.photoStatus}
               validLabel={IDENTITY_MARKERS.PHOTO}
               notValidLabel={IDENTITY_MARKERS.PHOTO}
             />
             <Validity
               document={{ id: 'signature', name: 'signature' }}
-              isValid={
-                details.content.marinIdentity.identityMarkers.signatureStatus
-              }
+              isValid={marinIdentityMarkers.signatureStatus}
               validLabel={IDENTITY_MARKERS.SIGNATURE}
               notValidLabel={IDENTITY_MARKERS.SIGNATURE}
             />
@@ -81,6 +79,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
         {details.content.results.allConditionsGroups.map((condition) => (
           <CqItemCondition condition={condition} />
         ))}
+
         {action && <div>{action}</div>}
       </div>
     );
