@@ -13,7 +13,6 @@ const Header = () => {
   const [isVisibleInternal, setIsVisibleInternal] = useState(false);
 
   useEffect(() => {
-    console.log(isVisible);
     setIsVisibleInternal(isVisible);
   }, [isVisible]);
 
