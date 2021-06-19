@@ -8,7 +8,8 @@ const initialState = {
   },
   requestedTitre: '',
   startDate: '',
-  status: '',
+  requestStatus: '',
+  instructionStatus: '',
   documents: [],
 };
 

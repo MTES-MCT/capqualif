@@ -62,7 +62,7 @@ const ConfirmPicture = (props) => {
             label={BUTTON_LABELS.RETAKE_PICTURE}
             width={BUTTON_WIDTH.FULL}
             isSecondary={true}
-            marginInRem={1}
+            marginsInRem={{ top: 1 }}
             actionOnClick={deleteAndGoBack}
           />
           <ButtonAction

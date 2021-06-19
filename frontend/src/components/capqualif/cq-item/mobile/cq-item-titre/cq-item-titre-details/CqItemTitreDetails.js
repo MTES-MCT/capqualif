@@ -26,15 +26,15 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
   };
 
   const displayRequests = () => {
+    const { startDate } = details.content;
+    const { instructionStatus } = details.content;
     return (
       <div className={`${isVisible ? '' : styles.hidden}`}>
         <p className="fr-px-2w fr-mt-2w">
-          {`${REQUEST.DATES.START_DATE} : ${convertToEuropeanFormat(
-            details.content
-          )}
+          {`${REQUEST.DATES.START_DATE} : ${convertToEuropeanFormat(startDate)}
         `}
           <br />
-          {details.content.instructionStatus}
+          {instructionStatus}.
         </p>
       </div>
     );

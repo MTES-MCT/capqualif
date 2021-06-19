@@ -28,6 +28,7 @@ import {
 } from '../../../../../../app/routesDictionnary';
 import CqItemAction from '../../../../../capqualif/cq-item/elements/cq-item-action/CqItemAction';
 import { convertToEuropeanFormat } from '../../../../../../app/utils';
+import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';
 
 const Recap = (props) => {
   // TO DO : CHANGE
@@ -103,7 +104,13 @@ const Recap = (props) => {
             content: titre.instruction,
           }}
         />
-        <CqItemAction
+        <ButtonAction
+          label={BUTTON_LABELS.CONFIRM}
+          labelSize={FONT_SIZES.SMALL}
+          width={BUTTON_WIDTH.FULL}
+          marginsInRem={{ top: 1 }}
+        />
+        {/* <CqItemAction
           action={{
             label: BUTTON_LABELS.CONFIRM,
             labelSize: FONT_SIZES.SMALL,
@@ -116,7 +123,7 @@ const Recap = (props) => {
               '/' +
               CONFIRMATION_ROUTE,
           }}
-        />
+        /> */}
       </div>
     </Fragment>
   );

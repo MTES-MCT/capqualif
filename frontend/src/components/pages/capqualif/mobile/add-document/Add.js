@@ -117,7 +117,7 @@ const Add = (props) => {
         <ButtonLink
           label={BUTTON_LABELS.ADD_PAGE}
           isSecondary={true}
-          marginInRem={1}
+          marginsInRem={{ top: 1 }}
           width={BUTTON_WIDTH.FULL}
           route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}`}
         />

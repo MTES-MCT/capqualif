@@ -46,29 +46,58 @@ const Dashboard = (props) => {
       },
       requestedTitre: TITRES.CERTIFICATS.MATELOT_PONT,
       startDate: '2020/06/18',
-      status: REQUEST.STATUS_REQUEST.SENT.SHORT,
+      requestStatus: REQUEST.STATUS_REQUEST.SENT.SHORT,
+      instructionStatus: INSTRUCTION_STATUS.IN_PROGRESS,
       documents: [],
     },
   ];
 
+  const displayAllRequests = (allRequests) => {
+    if (allRequests.length > 0) {
+      return (
+        <Fragment>
+          <h2>Mes demandes</h2>
+          {allRequests.map((request) => (
+            <CqItemTitre
+              name={request.requestedTitre}
+              status={{
+                type: STATUS_TYPES.REQUEST,
+                value: request.requestStatus,
+              }}
+              details={{
+                type: DETAILS_TYPE.REQUEST,
+                content: request,
+              }}
+            />
+          ))}
+        </Fragment>
+      );
+    }
+  };
+
   const displayAllMarinTitres = (marinTitres) => {
     if (marinTitres.length > 0) {
-      return marinTitres
-        .filter(
-          (titre) =>
-            titre.name === TITRES.CERTIFICATS.MATELOT_PONT ||
-            titre.name === TITRES.CERTIFICATS.CFBS
-        )
-        .map((titre) => (
-          <CqItemTitre
-            name={titre.name}
-            status={{
-              type: STATUS_TYPES.TITRE_VALIDITY,
-              value: titre.validityStatus,
-            }}
-            expirationDate={titre.dates.expirationDate}
-          />
-        ));
+      return (
+        <Fragment>
+          <h2>Mes titres</h2>
+          {marinTitres
+            .filter(
+              (titre) =>
+                titre.name === TITRES.CERTIFICATS.MATELOT_PONT ||
+                titre.name === TITRES.CERTIFICATS.CFBS
+            )
+            .map((titre) => (
+              <CqItemTitre
+                name={titre.name}
+                status={{
+                  type: STATUS_TYPES.TITRE_VALIDITY,
+                  value: titre.validityStatus,
+                }}
+                expirationDate={titre.dates.expirationDate}
+              />
+            ))}
+        </Fragment>
+      );
     }
     return (
       <p className={styles['cq-dashboard-no-titles']}>
@@ -77,25 +106,9 @@ const Dashboard = (props) => {
     );
   };
 
-  const displayAllRequests = (allRequests) => {
-    if (allRequests.length > 0) {
-      return allRequests.map((request) => (
-        <CqItemTitre
-          name={request.requestedTitre}
-          status={{
-            type: STATUS_TYPES.REQUEST,
-            value: request.status,
-          }}
-          details={{ type: DETAILS_TYPE.REQUEST, content: request.startDate }}
-        />
-      ));
-    }
-  };
-
   return (
     <Fragment>
       <div className="fr-m-2w">
-        <h2>Mes titres</h2>
         {displayAllRequests(allRequestsMock)}
         {displayAllMarinTitres(marinTitres)}
       </div>

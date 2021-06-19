@@ -9,7 +9,7 @@ const ButtonAction = ({
   labelSize,
   width,
   isSecondary,
-  marginInRem,
+  marginsInRem,
   actionOnClick,
 }) => {
   return (
@@ -17,7 +17,11 @@ const ButtonAction = ({
       className={`${commonStyles['cq-button']} ${commonStyles['fr-btn']} ${
         width === BUTTON_WIDTH.FULL ? 'cq-helpers-full-width' : ''
       } ${isSecondary ? commonStyles['fr-btn--secondary'] : ''}`}
-      style={{ margin: `${marginInRem}rem`, fontSize: labelSize }}
+      style={{
+        marginTop: `${marginsInRem.top}rem`,
+        marginBottom: `${marginsInRem.bottom}rem`,
+        fontSize: labelSize,
+      }}
       onClick={() => actionOnClick()}
     >
       {label}
@@ -29,6 +33,8 @@ ButtonAction.propTypes = {
   label: PropTypes.string.isRequired,
   labelSize: PropTypes.string,
   width: PropTypes.string,
+  isSecondary: PropTypes.bool,
+  marginsInRem: PropTypes.object,
   actionOnClick: PropTypes.func,
 };
 
