@@ -18,8 +18,8 @@ const ButtonAction = ({
         width === BUTTON_WIDTH.FULL ? 'cq-helpers-full-width' : ''
       } ${isSecondary ? commonStyles['fr-btn--secondary'] : ''}`}
       style={{
-        marginTop: `${marginsInRem.top}rem`,
-        marginBottom: `${marginsInRem.bottom}rem`,
+        marginTop: `${marginsInRem ? `${marginsInRem.top}rem` : '0rem'}`,
+        marginBottom: `${marginsInRem ? `${marginsInRem.bottom}rem` : '0rem'}`,
         fontSize: labelSize,
       }}
       onClick={() => actionOnClick()}

@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import styles from './Recap.module.scss';
@@ -17,22 +18,26 @@ import {
 import CqItemHeader from '../../../../../capqualif/cq-item/elements/cq-item-header/CqItemHeader';
 import CqItemFlagged from '../../../../../capqualif/cq-item/elements/cq-item-flagged/CqItemFlagged';
 import CqItemTitre from '../../../../../capqualif/cq-item/mobile/cq-item-titre/CqItemTitre';
-import {
-  BUTTON_WIDTH,
-  FONT_SIZES,
-} from '../../../../../../dictionnary/saas/variables';
+import { BUTTON_WIDTH } from '../../../../../../dictionnary/saas/variables';
 import {
   CONFIRMATION_ROUTE,
   MOBILE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../../app/routesDictionnary';
-import CqItemAction from '../../../../../capqualif/cq-item/elements/cq-item-action/CqItemAction';
 import { convertToEuropeanFormat } from '../../../../../../app/utils';
 import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';
+import { addRequestorAndStartDate } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
 
 const Recap = (props) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   // TO DO : CHANGE
   const titre = useSelector((state) => state.instructions.titres[0]);
+
+  const { numeroDeMarin, nom, prenom } = useSelector(
+    (state) => state.marins.marinBasicData
+  );
 
   // TO DO : CHANGE
   const requestMock = {
@@ -53,6 +58,20 @@ const Recap = (props) => {
     );
   };
 
+  const confirmRequest = () => {
+    dispatch(
+      addRequestorAndStartDate({
+        numeroDeMarin,
+        firstName: prenom,
+        lastName: nom,
+      })
+    );
+    history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${CONFIRMATION_ROUTE}`);
+  };
+
+  /**
+   * TODO: transfer this to backend
+   * */
   const computeEndDate = (startDate, duration) => {
     const start = new Date(startDate);
     const endDate = new Date(
@@ -106,24 +125,10 @@ const Recap = (props) => {
         />
         <ButtonAction
           label={BUTTON_LABELS.CONFIRM}
-          labelSize={FONT_SIZES.SMALL}
           width={BUTTON_WIDTH.FULL}
-          marginsInRem={{ top: 1 }}
+          marginsInRem={{ top: 1, bottom: 1 }}
+          actionOnClick={confirmRequest}
         />
-        {/* <CqItemAction
-          action={{
-            label: BUTTON_LABELS.CONFIRM,
-            labelSize: FONT_SIZES.SMALL,
-            width: BUTTON_WIDTH.FULL,
-            route:
-              '/' +
-              MOBILE +
-              '/' +
-              NEW_TITRE_REQUEST_ROUTE +
-              '/' +
-              CONFIRMATION_ROUTE,
-          }}
-        /> */}
       </div>
     </Fragment>
   );

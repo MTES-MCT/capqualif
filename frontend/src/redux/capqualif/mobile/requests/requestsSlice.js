@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const initialState = {
   requestor: {
+    numeroDeMarin: '',
     firstName: '',
     lastName: '',
   },
@@ -17,15 +18,19 @@ const requestsSlice = createSlice({
   name: 'requests',
   initialState,
   reducers: {
-    addRequestor(state, action) {
-      state.requestor = action.payload;
+    addRequestorAndStartDate(state, action) {
+      state.requestor.numeroDeMarin = action.payload.numeroDeMarin;
+      state.requestor.firstName = action.payload.firstName;
+      state.requestor.lastName = action.payload.lastName;
+      /**
+       * TODO: add today's date
+       * */
+      state.startDate = '';
     },
     addRequestedTitle(state, action) {
       state.requestorFirstName = action.payload;
     },
-    addStartDate(state, action) {
-      state.startDate = action.payload;
-    },
+    addStartDate(state, action) {},
     addStatus(state, action) {
       state.status = action.payload;
     },
@@ -64,6 +69,6 @@ const findConditionIndex = (array, value) => {
   return array.findIndex((doc) => doc.conditionId === value);
 };
 
-export const { addDocuments } = requestsSlice.actions;
+export const { addRequestorAndStartDate, addDocuments } = requestsSlice.actions;
 
 export default requestsSlice.reducer;
