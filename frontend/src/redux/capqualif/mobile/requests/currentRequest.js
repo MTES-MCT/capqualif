@@ -16,7 +16,6 @@ const currentRequestSlice = createSlice({
   initialState,
   reducers: {
     setCurrentTitre(state, action) {
-      console.log(action.payload);
       state.currentTitre.id = action.payload;
     },
     setCurrentConditionInfos(state, action) {

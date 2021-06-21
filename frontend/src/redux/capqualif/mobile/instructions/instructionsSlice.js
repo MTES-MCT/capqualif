@@ -5,7 +5,7 @@ import { CAPQUALIF_URL } from '../../../../api/apiList';
 import { CONDITION } from '../../../../dictionnary/demandeDeTitre';
 
 const initialState = {
-  titres: [
+  possibleTitres: [
     {
       titre: {
         id: '1',
@@ -170,7 +170,7 @@ const instructionsSlice = createSlice({
   initialState,
   reducers: {
     changeConditionStatus(state, action) {
-      state.titres
+      state.possibleTitres
         .find((titre) =>
           titre.instruction.results.allConditionsGroups.find((group) =>
             group.conditions.find(
@@ -188,7 +188,7 @@ const instructionsSlice = createSlice({
   },
   extraReducers: {
     [getInstructionResult.fulfilled]: (state, action) => {
-      state.titres = action.payload;
+      state.possibleTitres = action.payload;
     },
   },
 });

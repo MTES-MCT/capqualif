@@ -28,7 +28,7 @@ import { setCurrentTitre } from '../../../../../../redux/capqualif/mobile/reques
 const ChooseTitre = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const allTitres = useSelector((state) => state.instructions.titres);
+  const allTitres = useSelector((state) => state.instructions.possibleTitres);
 
   const requestThisTitre = (id) => {
     dispatch(setCurrentTitre(id));

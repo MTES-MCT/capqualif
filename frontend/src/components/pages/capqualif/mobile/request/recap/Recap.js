@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -36,8 +36,17 @@ const Recap = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // TO DO : CHANGE
-  const titre = useSelector((state) => state.instructions.titres[0]);
+  const findTitreIndex = (array, value) => {
+    return array.findIndex((titre) => titre.titre.id === value);
+  };
+
+  const titres = useSelector((state) => state.instructions.possibleTitres);
+  const currentTitreId = useSelector(
+    (state) => state.currentRequest.currentTitre.id
+  );
+  const [titre, setTitre] = useState(
+    titres[findTitreIndex(titres, currentTitreId)]
+  );
 
   const { numeroDeMarin, nom, prenom } = useSelector(
     (state) => state.marins.marinBasicData
