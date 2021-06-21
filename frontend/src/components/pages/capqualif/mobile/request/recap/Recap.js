@@ -24,7 +24,7 @@ import {
   MOBILE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../../app/routesDictionnary';
-import { convertToEuropeanFormat } from '../../../../../../app/utils';
+import { convertDateToEuropeanFormat } from '../../../../../../app/utils';
 import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';
 import { addRequestorAndStartDate } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
 
@@ -79,7 +79,7 @@ const Recap = (props) => {
       start.getMonth(),
       start.getDate() - 1
     );
-    return convertToEuropeanFormat(endDate);
+    return convertDateToEuropeanFormat(endDate);
   };
 
   return (
@@ -98,7 +98,7 @@ const Recap = (props) => {
         <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>
           <p>{VALIDITY.START_DATE}</p>
           <CqItemFlagged
-            label={convertToEuropeanFormat(requestMock.startDate)}
+            label={convertDateToEuropeanFormat(requestMock.startDate)}
           />
         </div>
         <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>

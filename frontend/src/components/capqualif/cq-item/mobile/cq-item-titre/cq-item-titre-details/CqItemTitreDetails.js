@@ -11,7 +11,7 @@ import {
   MARIN_INFOS,
   REQUEST,
 } from '../../../../../../dictionnary/demandeDeTitre';
-import { convertToEuropeanFormat } from '../../../../../../app/utils';
+import { convertDateToEuropeanFormat } from '../../../../../../app/utils';
 
 const CqItemTitreDetails = ({ isVisible, details, action }) => {
   const chooseWhatToDisplay = (details) => {
@@ -31,7 +31,9 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
     return (
       <div className={`${isVisible ? '' : styles.hidden}`}>
         <p className="fr-px-2w fr-mt-2w">
-          {`${REQUEST.DATES.START_DATE} : ${convertToEuropeanFormat(startDate)}
+          {`${REQUEST.DATES.START_DATE} : ${convertDateToEuropeanFormat(
+            startDate
+          )}
         `}
           <br />
           {instructionStatus}.

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { convertDateToEuropeanFormat } from '../../../../app/utils';
 
 const initialState = {
   requestor: {
@@ -22,10 +23,9 @@ const requestsSlice = createSlice({
       state.requestor.numeroDeMarin = action.payload.numeroDeMarin;
       state.requestor.firstName = action.payload.firstName;
       state.requestor.lastName = action.payload.lastName;
-      /**
-       * TODO: add today's date
-       * */
-      state.startDate = '';
+
+      const today = new Date();
+      state.startDate = today;
     },
     addRequestedTitle(state, action) {
       state.requestorFirstName = action.payload;
