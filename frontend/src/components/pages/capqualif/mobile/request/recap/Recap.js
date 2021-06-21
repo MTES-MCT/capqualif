@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import styles from './Recap.module.scss';
@@ -31,10 +32,13 @@ import {
   addRequestor,
   addStartDate,
 } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
+import GenericError from '../../../../../capqualif/errors/GenericError';
 
 const Recap = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const canRequestBeSent = useSelector((state) => state.requests.canBeSent);
 
   const findTitreIndex = (array, value) => {
     return array.findIndex((titre) => titre.titre.id === value);
@@ -87,20 +91,19 @@ const Recap = (props) => {
    * TODO: transfer this to backend
    * */
   const computeEndDate = (startDate, duration) => {
-    const start = new Date(startDate);
     const endDate = new Date(
-      start.getFullYear() + parseInt(duration),
-      start.getMonth(),
-      start.getDate() - 1
+      startDate.getFullYear() + parseInt(duration),
+      startDate.getMonth(),
+      startDate.getDate() - 1
     );
     return convertDateToEuropeanFormat(endDate);
   };
 
-  const today = () => {
+  const getTodayDate = () => {
     return new Date();
   };
 
-  return (
+  return titre ? (
     <Fragment>
       <Step label={STEPS.CONFIRM} />
       <div className="fr-mt-2w fr-px-2w">
@@ -115,13 +118,13 @@ const Recap = (props) => {
         </div>
         <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>
           <p>{VALIDITY.START_DATE}</p>
-          <CqItemFlagged label={convertDateToEuropeanFormat(today.startDate)} />
+          <CqItemFlagged label={convertDateToEuropeanFormat(getTodayDate())} />
         </div>
         <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>
           <p>{VALIDITY.END_DATE}</p>
           <CqItemFlagged
             label={computeEndDate(
-              today.startDate,
+              getTodayDate(),
               titre.titre.validityDurationInYears
             )}
           />
@@ -144,9 +147,14 @@ const Recap = (props) => {
           width={BUTTON_WIDTH.FULL}
           marginsInRem={{ top: 1, bottom: 1 }}
           actionOnClick={confirmRequest}
+          isDisabled={canRequestBeSent ? false : true}
         />
       </div>
     </Fragment>
+  ) : (
+    <div className={`${styles['centered']}`}>
+      <GenericError />
+    </div>
   );
 };
 

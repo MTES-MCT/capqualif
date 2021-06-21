@@ -36,6 +36,7 @@ const CqItemTitre = ({
                   labelSize={action.labelSize}
                   width={action.width}
                   actionOnClick={action.onClick}
+                  isDisabled={action.isDisabled}
                 />
               )
             }

@@ -13,6 +13,7 @@ const initialState = {
   requestStatus: '',
   instructionStatus: '',
   documents: [],
+  canBeSent: true,
 };
 
 const requestsSlice = createSlice({

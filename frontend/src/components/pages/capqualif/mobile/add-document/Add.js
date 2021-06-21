@@ -28,7 +28,6 @@ import { addDocuments } from '../../../../../redux/capqualif/mobile/requests/req
 import { cleanCurrentCondition } from '../../../../../redux/capqualif/mobile/requests/currentRequest';
 
 const Add = (props) => {
-  const { documentName } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -41,18 +40,21 @@ const Add = (props) => {
     // TO DO : add document to request.documents state
   };
 
-  const addDocumentsToRequest = () => {
-    const renamedCondition = {
-      conditionId: conditionToModify.id,
-      conditionName: conditionToModify.name,
-      conditionDocuments: conditionToModify.pictures,
-    };
-    dispatch(addDocuments(renamedCondition));
+  const addPicturesToRequest = () => {
+    dispatch(addDocuments(renameCondition()));
     dispatch(cleanCurrentCondition());
     dispatch(changeConditionStatus(conditionToModify.id));
     history.push(
       `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`
     );
+  };
+
+  const renameCondition = () => {
+    return {
+      conditionId: conditionToModify.id,
+      conditionName: conditionToModify.name,
+      conditionDocuments: conditionToModify.pictures,
+    };
   };
 
   const chooseWhatToDisplay = (documents) => {
@@ -110,7 +112,7 @@ const Add = (props) => {
           <ButtonAction
             label={BUTTON_LABELS.ADD_DOCUMENTS_TO_DOSSIER}
             width={BUTTON_WIDTH.FULL}
-            actionOnClick={addDocumentsToRequest}
+            actionOnClick={addPicturesToRequest}
           />
         </div>
       </Fragment>
@@ -121,7 +123,7 @@ const Add = (props) => {
     <Fragment>
       <Step label={STEPS.ADD_DOCUMENT} />
       <div className={`${commonStyles['container']} fr-px-1w`}>
-        <h3 className="fr-pt-2w fr-pb-1w">{documentName}</h3>
+        <h3 className="fr-pt-2w fr-pb-1w">{conditionToModify.name}</h3>
         {chooseWhatToDisplay(conditionToModify.pictures)}
       </div>
     </Fragment>

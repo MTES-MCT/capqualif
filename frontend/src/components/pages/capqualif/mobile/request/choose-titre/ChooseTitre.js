@@ -28,11 +28,17 @@ import { setCurrentTitre } from '../../../../../../redux/capqualif/mobile/reques
 const ChooseTitre = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
+
   const allTitres = useSelector((state) => state.instructions.possibleTitres);
+  const canRequestBeSent = useSelector((state) => state.requests.canBeSent);
 
   const requestThisTitre = (id) => {
-    dispatch(setCurrentTitre(id));
-    history.push(`${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`);
+    if (canRequestBeSent) {
+      dispatch(setCurrentTitre(id));
+      history.push(
+        `${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`
+      );
+    }
   };
 
   return (
@@ -59,6 +65,7 @@ const ChooseTitre = (props) => {
                 label: BUTTON_LABELS.DEMAND_THIS,
                 labelSize: FONT_SIZES.SMALL,
                 width: BUTTON_WIDTH.FULL,
+                isDisabled: canRequestBeSent ? false : true,
                 onClick: () => requestThisTitre(titre.titre.id),
               }}
             />

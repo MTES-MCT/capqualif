@@ -5,7 +5,10 @@ export const findInArray = (array, property, value) => {
 // ========= Convert date : start =======================
 
 export const convertDateToEuropeanFormat = (dateSource) => {
-  if (dateSource) {
+  if (
+    dateSource &&
+    (dateSource instanceof String || dateSource instanceof Date)
+  ) {
     const date =
       typeof dateSource === 'string' || dateSource instanceof String
         ? convertToDate(dateSource)

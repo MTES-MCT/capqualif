@@ -11,6 +11,7 @@ const ButtonAction = ({
   isSecondary,
   marginsInRem,
   actionOnClick,
+  isDisabled,
 }) => {
   return (
     <button
@@ -23,6 +24,7 @@ const ButtonAction = ({
         fontSize: labelSize,
       }}
       onClick={() => actionOnClick()}
+      disabled={isDisabled}
     >
       {label}
     </button>
@@ -36,6 +38,7 @@ ButtonAction.propTypes = {
   isSecondary: PropTypes.bool,
   marginsInRem: PropTypes.object,
   actionOnClick: PropTypes.func,
+  isDisabled: PropTypes.bool,
 };
 
 export default ButtonAction;
