@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -25,15 +25,16 @@ import { BUTTON_WIDTH } from '../../../../../dictionnary/saas/variables';
 import ButtonAction from '../../../../capqualif/buttons/button-action/ButtonAction';
 import { changeConditionStatus } from '../../../../../redux/capqualif/mobile/instructions/instructionsSlice';
 import { addDocuments } from '../../../../../redux/capqualif/mobile/requests/requestsSlice';
-import { cleanCondition } from '../../../../../redux/capqualif/mobile/instructions/currentCondition';
+import { cleanCurrentCondition } from '../../../../../redux/capqualif/mobile/requests/currentRequest';
 
 const Add = (props) => {
   const { documentName } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // const documents = useSelector((state) => state.requests.documents);
-  const conditionToModify = useSelector((state) => state.currentCondition);
+  const conditionToModify = useSelector(
+    (state) => state.currentRequest.currentCondition
+  );
 
   const handleFileUpload = (e) => {
     console.log(e.target.files[0]);
@@ -47,7 +48,7 @@ const Add = (props) => {
       conditionDocuments: conditionToModify.pictures,
     };
     dispatch(addDocuments(renamedCondition));
-    dispatch(cleanCondition());
+    dispatch(cleanCurrentCondition());
     dispatch(changeConditionStatus(conditionToModify.id));
     history.push(
       `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`
@@ -58,14 +59,7 @@ const Add = (props) => {
     if (conditionToModify.pictures.length === 0) {
       return noDocsAddedYet();
     }
-    // if (findDocByCondition(documents, conditionToModify).length === 0) {
-    //   return noDocsAddedYet();
-    // }
     return displayAddedPictures(documents);
-  };
-
-  const findDocByCondition = (documents, condition) => {
-    return documents.filter((doc) => doc.conditionId === condition.id);
   };
 
   const noDocsAddedYet = () => {
@@ -103,17 +97,6 @@ const Add = (props) => {
             <img src={pic} alt="document ajouté" />
           </div>
         ))}
-        {/* {findDocByCondition(documents, conditionToModify).map((doc) => (
-          <Fragment>
-            {doc.conditionDocuments.map((conditionDoc) => (
-              <div
-                className={`${commonStyles['capture-container']} fr-py-4w fr-mb-3w`}
-              >
-                <img src={conditionDoc} alt="document ajouté" />
-              </div>
-            ))}
-          </Fragment>
-        ))} */}
         <ButtonLink
           label={BUTTON_LABELS.ADD_PAGE}
           isSecondary={true}

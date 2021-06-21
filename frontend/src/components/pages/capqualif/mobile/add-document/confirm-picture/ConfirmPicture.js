@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import commonStyles from '../common.module.scss';
 
 import Step from '../../../../../capqualif/step/Step';
-import { deleteLastPicture } from '../../../../../../redux/capqualif/mobile/instructions/currentCondition';
+import { deleteLastPicture } from '../../../../../../redux/capqualif/mobile/requests/currentRequest';
 import {
   BUTTON_LABELS,
   STEPS,
@@ -23,7 +23,9 @@ import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonA
 const ConfirmPicture = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const currentCondition = useSelector((state) => state.currentCondition);
+  const currentCondition = useSelector(
+    (state) => state.currentRequest.currentCondition
+  );
 
   const confirm = () => {
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`);

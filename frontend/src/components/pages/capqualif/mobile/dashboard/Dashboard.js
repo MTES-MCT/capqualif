@@ -88,6 +88,7 @@ const Dashboard = (props) => {
             )
             .map((titre) => (
               <CqItemTitre
+                id={titre.id}
                 name={titre.name}
                 status={{
                   type: STATUS_TYPES.TITRE_VALIDITY,

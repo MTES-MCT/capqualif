@@ -19,18 +19,18 @@ const requestsSlice = createSlice({
   name: 'requests',
   initialState,
   reducers: {
-    addRequestorAndStartDate(state, action) {
+    addRequestor(state, action) {
       state.requestor.numeroDeMarin = action.payload.numeroDeMarin;
       state.requestor.firstName = action.payload.firstName;
       state.requestor.lastName = action.payload.lastName;
-
+    },
+    addRequestedTitre(state, action) {
+      state.requestedTitre = action.payload;
+    },
+    addStartDate(state) {
       const today = new Date();
-      state.startDate = today;
+      state.startDate = today.toDateString;
     },
-    addRequestedTitle(state, action) {
-      state.requestorFirstName = action.payload;
-    },
-    addStartDate(state, action) {},
     addStatus(state, action) {
       state.status = action.payload;
     },
@@ -69,6 +69,11 @@ const findConditionIndex = (array, value) => {
   return array.findIndex((doc) => doc.conditionId === value);
 };
 
-export const { addRequestorAndStartDate, addDocuments } = requestsSlice.actions;
+export const {
+  addRequestor,
+  addStartDate,
+  addDocuments,
+  addRequestedTitre,
+} = requestsSlice.actions;
 
 export default requestsSlice.reducer;

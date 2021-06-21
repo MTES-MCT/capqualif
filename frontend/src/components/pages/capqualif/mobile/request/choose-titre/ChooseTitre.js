@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import styles from './ChooseTitre.module.scss';
@@ -22,9 +23,17 @@ import {
 } from '../../../../../../app/routesDictionnary';
 import CqItemTitre from '../../../../../capqualif/cq-item/mobile/cq-item-titre/CqItemTitre';
 import Step from '../../../../../capqualif/step/Step';
+import { setCurrentTitre } from '../../../../../../redux/capqualif/mobile/requests/currentRequest';
 
 const ChooseTitre = (props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const allTitres = useSelector((state) => state.instructions.titres);
+
+  const requestThisTitre = (id) => {
+    dispatch(setCurrentTitre(id));
+    history.push(`${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`);
+  };
 
   return (
     <div>
@@ -50,13 +59,7 @@ const ChooseTitre = (props) => {
                 label: BUTTON_LABELS.DEMAND_THIS,
                 labelSize: FONT_SIZES.SMALL,
                 width: BUTTON_WIDTH.FULL,
-                route:
-                  '/' +
-                  MOBILE +
-                  '/' +
-                  NEW_TITRE_REQUEST_ROUTE +
-                  '/' +
-                  NEW_TITRE_REQUEST_RECAP_ROUTE,
+                onClick: () => requestThisTitre(titre.titre.id),
               }}
             />
           ))}

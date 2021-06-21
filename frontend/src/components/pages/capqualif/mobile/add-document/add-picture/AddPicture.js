@@ -5,7 +5,7 @@ import Webcam from 'react-webcam';
 import PropTypes from 'prop-types';
 
 import styles from './AddPicture.module.scss';
-import { addPicture } from '../../../../../../redux/capqualif/mobile/instructions/currentCondition';
+import { addPicture } from '../../../../../../redux/capqualif/mobile/requests/currentRequest';
 import Step from '../../../../../capqualif/step/Step';
 import { PICTURE, STEPS } from '../../../../../../dictionnary/demandeDeTitre';
 import {
@@ -17,7 +17,9 @@ const AddPicture = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const webcamRef = useRef(null);
-  const pictureToAddName = useSelector((state) => state.currentCondition.name);
+  const pictureToAddName = useSelector(
+    (state) => state.currentRequest.currentCondition.name
+  );
 
   const videoConstraints = {
     width: 300,

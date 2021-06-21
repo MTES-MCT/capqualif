@@ -7,8 +7,10 @@ import CqItemStatus from '../../elements/cq-item-status/CqItemStatus';
 import CqItemAction from '../../elements/cq-item-action/CqItemAction';
 import CqItemTitreDetails from './cq-item-titre-details/CqItemTitreDetails';
 import CqItemTitreDate from './cq-item-titre-date/CqItemTitreDate';
+import ButtonAction from '../../../buttons/button-action/ButtonAction';
 
 const CqItemTitre = ({
+  id,
   name,
   subtitle,
   status,
@@ -26,7 +28,17 @@ const CqItemTitre = ({
         details && (
           <CqItemTitreDetails
             details={details}
-            action={action && <CqItemAction action={action} />}
+            // action={action && <CqItemAction action={action} />}
+            action={
+              action && (
+                <ButtonAction
+                  label={action.label}
+                  labelSize={action.labelSize}
+                  width={action.width}
+                  actionOnClick={action.onClick}
+                />
+              )
+            }
           />
         )
       }
@@ -35,6 +47,7 @@ const CqItemTitre = ({
 };
 
 CqItemTitre.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   status: PropTypes.string,

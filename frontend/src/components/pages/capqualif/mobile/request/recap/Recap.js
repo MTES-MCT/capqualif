@@ -26,7 +26,11 @@ import {
 } from '../../../../../../app/routesDictionnary';
 import { convertDateToEuropeanFormat } from '../../../../../../app/utils';
 import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';
-import { addRequestorAndStartDate } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
+import {
+  addRequestedTitre,
+  addRequestor,
+  addStartDate,
+} from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
 
 const Recap = (props) => {
   const dispatch = useDispatch();
@@ -39,10 +43,9 @@ const Recap = (props) => {
     (state) => state.marins.marinBasicData
   );
 
-  // TO DO : CHANGE
-  const requestMock = {
-    startDate: '2021/06/18',
-  };
+  const requestedTitreId = useSelector(
+    (state) => state.currentRequest.currentTitre.id
+  );
 
   const displayRestrictions = (restrictions) => {
     if (restrictions.length === 0) {
@@ -60,12 +63,14 @@ const Recap = (props) => {
 
   const confirmRequest = () => {
     dispatch(
-      addRequestorAndStartDate({
+      addRequestor({
         numeroDeMarin,
         firstName: prenom,
         lastName: nom,
       })
     );
+    dispatch(addStartDate());
+    dispatch(addRequestedTitre(requestedTitreId));
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${CONFIRMATION_ROUTE}`);
   };
 
@@ -80,6 +85,10 @@ const Recap = (props) => {
       start.getDate() - 1
     );
     return convertDateToEuropeanFormat(endDate);
+  };
+
+  const today = () => {
+    return new Date();
   };
 
   return (
@@ -97,15 +106,13 @@ const Recap = (props) => {
         </div>
         <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>
           <p>{VALIDITY.START_DATE}</p>
-          <CqItemFlagged
-            label={convertDateToEuropeanFormat(requestMock.startDate)}
-          />
+          <CqItemFlagged label={convertDateToEuropeanFormat(today.startDate)} />
         </div>
         <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>
           <p>{VALIDITY.END_DATE}</p>
           <CqItemFlagged
             label={computeEndDate(
-              requestMock.startDate,
+              today.startDate,
               titre.titre.validityDurationInYears
             )}
           />

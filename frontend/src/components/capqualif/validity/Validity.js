@@ -11,7 +11,7 @@ import {
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../app/routesDictionnary';
 import { CONDITION } from '../../../dictionnary/demandeDeTitre';
-import { setInfos } from '../../../redux/capqualif/mobile/instructions/currentCondition';
+import { setCurrentConditionInfos } from '../../../redux/capqualif/mobile/requests/currentRequest';
 
 const Validity = ({ document, status, validLabel, notValidLabel }) => {
   const history = useHistory();
@@ -65,7 +65,7 @@ const Validity = ({ document, status, validLabel, notValidLabel }) => {
   };
 
   const startDocumentAdding = (document) => {
-    dispatch(setInfos(document));
+    dispatch(setCurrentConditionInfos(document));
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`);
   };
 

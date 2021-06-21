@@ -5,14 +5,16 @@ export const findInArray = (array, property, value) => {
 // ========= Convert date : start =======================
 
 export const convertDateToEuropeanFormat = (dateSource) => {
-  const date =
-    typeof dateSource === 'string' || dateSource instanceof String
-      ? convertToDate(dateSource)
-      : dateSource;
-  const monthValue = date.getMonth() + 1;
-  let month;
-  month = monthValue < 10 ? '0' + monthValue : monthValue;
-  return date.getDate() + '.' + month + '.' + date.getFullYear();
+  if (dateSource) {
+    const date =
+      typeof dateSource === 'string' || dateSource instanceof String
+        ? convertToDate(dateSource)
+        : dateSource;
+    const monthValue = date.getMonth() + 1;
+    let month;
+    month = monthValue < 10 ? '0' + monthValue : monthValue;
+    return date.getDate() + '.' + month + '.' + date.getFullYear();
+  }
 };
 
 const convertToDate = (dateString) => {

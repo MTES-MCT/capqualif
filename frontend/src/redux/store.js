@@ -4,7 +4,7 @@ import titresReducer from './capqualif/desktop/features/titresCatalog/titresSlic
 import headerReducer from './capqualif/mobile/header/headerSlice';
 import requestsReducer from './capqualif/mobile/requests/requestsSlice';
 import instructionsReducer from './capqualif/mobile/instructions/instructionsSlice';
-import currentConditionReducer from './capqualif/mobile/instructions/currentCondition';
+import currentRequestReducer from './capqualif/mobile/requests/currentRequest';
 
 import conditionsReducer from './capadmin/features/conditions/conditionsSlice';
 
@@ -16,6 +16,6 @@ export default configureStore({
     header: headerReducer,
     requests: requestsReducer,
     instructions: instructionsReducer,
-    currentCondition: currentConditionReducer,
+    currentRequest: currentRequestReducer,
   },
 });
