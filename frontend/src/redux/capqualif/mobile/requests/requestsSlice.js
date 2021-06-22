@@ -58,33 +58,22 @@ const requestsSlice = createSlice({
       state.status = action.payload;
     },
     addDocuments(state, action) {
-      /**
-       ** Here, action.payload is :
-       ** {
-       **conditionId: ''
-       **conditionName: ''
-       **conditionDocuments: []
-       **}
-       */
       const { titreId, condition } = action.payload;
-      console.log('titreId', titreId);
-      console.log('condition', condition);
-      console.log(
-        findIndex(state.possibleRequests, 'requestedTitreId', titreId)
-      );
-      const { documents } = state.possibleRequests[
-        findIndex(state.possibleRequests, 'requestedTitreId', titreId)
-      ].documents;
+      const documents =
+        state.possibleRequests[
+          findIndex(state.possibleRequests, 'requestedTitreId', titreId)
+        ].documents;
 
-      if (isConditionAlreadyInTheArray(documents, 'id', condition.id)) {
+      if (
+        isConditionAlreadyInTheArray(documents, 'conditionId', condition.id)
+      ) {
         const newDocuments = action.payload.conditionDocuments;
         updateDocuments(documents, condition.id, newDocuments);
       } else {
-        documents.push(action.payload);
+        documents.push(condition);
       }
     },
     setCanBeSent(state, action) {
-      console.log(action.payload);
       state.possibleRequests[
         findIndex(
           state.possibleRequests,

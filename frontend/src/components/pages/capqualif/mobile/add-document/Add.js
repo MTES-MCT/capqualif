@@ -19,7 +19,6 @@ import {
   ADD_PICTURE_ROUTE,
   MOBILE,
   NEW_TITRE_REQUEST_CHOICE_ROUTE,
-  NEW_TITRE_REQUEST_RECAP_ROUTE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../app/routesDictionnary';
 import { BUTTON_WIDTH } from '../../../../../dictionnary/saas/variables';
@@ -44,8 +43,8 @@ const Add = (props) => {
 
   const addPicturesToRequest = () => {
     dispatch(addDocuments({ titreId: titreId, condition: renameCondition() }));
-    dispatch(cleanCurrentCondition());
     dispatch(changeConditionStatus(conditionToModify.id));
+    dispatch(cleanCurrentCondition());
     history.push(
       `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`
     );

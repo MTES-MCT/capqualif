@@ -23,17 +23,26 @@ import {
 import CqItemTitre from '../../../../../capqualif/cq-item/mobile/cq-item-titre/CqItemTitre';
 import Step from '../../../../../capqualif/step/Step';
 import { setCurrentTitreId } from '../../../../../../redux/capqualif/mobile/requests/currentRequest';
+import { findIndex } from '../../../../../../app/utils';
 
 const ChooseTitre = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const allTitres = useSelector((state) => state.instructions.possibleTitres);
-  const canRequestBeSent = useSelector((state) => state.requests.canBeSent);
+  const possibleRequests = useSelector(
+    (state) => state.requests.possibleRequests
+  );
 
-  const requestThisTitre = (id) => {
+  /**
+   * TODO: move to CqItemTitre?
+   */
+  const requestThisTitre = (id, possibleRequests) => {
     dispatch(setCurrentTitreId(id));
-    if (canRequestBeSent) {
+    if (
+      possibleRequests[findIndex(possibleRequests, 'requestedTitreId', id)]
+        .canBeSent
+    ) {
       history.push(
         `${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`
       );
