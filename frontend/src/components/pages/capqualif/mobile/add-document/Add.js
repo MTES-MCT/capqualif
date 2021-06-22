@@ -18,6 +18,7 @@ import {
   ADD_DOCUMENT_ROUTE,
   ADD_PICTURE_ROUTE,
   MOBILE,
+  NEW_TITRE_REQUEST_CHOICE_ROUTE,
   NEW_TITRE_REQUEST_RECAP_ROUTE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../app/routesDictionnary';
@@ -45,7 +46,7 @@ const Add = (props) => {
     dispatch(cleanCurrentCondition());
     dispatch(changeConditionStatus(conditionToModify.id));
     history.push(
-      `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`
+      `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`
     );
   };
 

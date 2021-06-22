@@ -12,7 +12,7 @@ const initialState = {
   requestStatus: '',
   instructionStatus: '',
   documents: [],
-  canBeSent: true,
+  canBeSent: false,
 };
 
 const requestsSlice = createSlice({
@@ -52,6 +52,9 @@ const requestsSlice = createSlice({
         documents.push(action.payload);
       }
     },
+    setCanBeSent(state, action) {
+      state.canBeSent = action.payload;
+    },
   },
 });
 
@@ -74,6 +77,7 @@ export const {
   addStartDate,
   addDocuments,
   addRequestedTitre,
+  setCanBeSent,
 } = requestsSlice.actions;
 
 export default requestsSlice.reducer;

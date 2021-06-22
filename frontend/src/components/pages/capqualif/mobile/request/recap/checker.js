@@ -1,17 +1,13 @@
-import {
-  CONDITION,
-  STATUS_TITRE,
-} from '../../../../../../dictionnary/demandeDeTitre';
+import { CONDITION } from '../../../../../../dictionnary/demandeDeTitre';
 
 export const checkIfRequestCanBeSent = (
   marinIdentityMarkers,
   conditionsGroups
 ) => {
-  console.log(
-    'checkIdentityMarkers',
-    checkIdentityMarkers(marinIdentityMarkers)
-  );
-  console.log('checkConditions', checkConditions(conditionsGroups));
+  const results = [];
+  results.push(checkIdentityMarkers(marinIdentityMarkers));
+  results.push(checkConditions(conditionsGroups));
+  return results.includes(false) ? false : true;
 };
 
 const checkIdentityMarkers = (marinIdentityMarkers) => {

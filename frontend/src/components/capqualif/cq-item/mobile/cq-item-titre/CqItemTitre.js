@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import style from './CqItemTitre.module.scss';
 import CqItemBase from '../../elements/CqItemBase';
 import CqItemStatus from '../../elements/cq-item-status/CqItemStatus';
-import CqItemAction from '../../elements/cq-item-action/CqItemAction';
 import CqItemTitreDetails from './cq-item-titre-details/CqItemTitreDetails';
 import CqItemTitreDate from './cq-item-titre-date/CqItemTitreDate';
 import ButtonAction from '../../../buttons/button-action/ButtonAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCanBeSent } from '../../../../../redux/capqualif/mobile/requests/requestsSlice';
+import { checkIfRequestCanBeSent } from '../../../../pages/capqualif/mobile/request/recap/checker';
 
 const CqItemTitre = ({
   id,
@@ -18,6 +19,44 @@ const CqItemTitre = ({
   details,
   action,
 }) => {
+  /**
+   * Boilerplate
+   */
+  const dispatch = useDispatch();
+
+  /**
+   * Let's select data from global state (redux)
+   */
+  const canRequestBeSent = useSelector((state) => state.requests.canBeSent);
+  const titres =
+    useSelector((state) => state.instructions.possibleTitres) || [];
+
+  /**
+   * Let's find the titre that the marin is requesting in all possible titres
+   * to display it in the UI!
+   */
+  const findTitreIndex = (allPossibleTitres, currentTitreId) => {
+    return allPossibleTitres.findIndex(
+      (titre) => titre.informations.id === currentTitreId
+    );
+  };
+
+  const titre = titres[findTitreIndex(titres, id)];
+
+  /**
+   * Let's check if the request can be sent
+   */
+  useEffect(() => {
+    if (titre) {
+      const canRequestBeSent = checkIfRequestCanBeSent(
+        titre.instruction.marinIdentity.identityMarkers,
+        titre.instruction.results.allConditionsGroups
+      );
+      console.log('canRequestBeSent', canRequestBeSent);
+      dispatch(setCanBeSent(canRequestBeSent));
+    }
+  }, []);
+
   return (
     <CqItemBase
       subtitle={subtitle}
@@ -27,6 +66,7 @@ const CqItemTitre = ({
       details={
         details && (
           <CqItemTitreDetails
+            titreId={id}
             details={details}
             action={
               action && (
@@ -35,7 +75,7 @@ const CqItemTitre = ({
                   labelSize={action.labelSize}
                   width={action.width}
                   actionOnClick={action.onClick}
-                  isDisabled={action.isDisabled}
+                  isDisabled={!canRequestBeSent}
                 />
               )
             }

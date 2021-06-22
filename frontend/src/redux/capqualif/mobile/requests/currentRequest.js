@@ -15,7 +15,7 @@ const currentRequestSlice = createSlice({
   name: 'currentRequest',
   initialState,
   reducers: {
-    setCurrentTitre(state, action) {
+    setCurrentTitreId(state, action) {
       state.currentTitre.id = action.payload;
     },
     setCurrentConditionInfos(state, action) {
@@ -37,7 +37,7 @@ const currentRequestSlice = createSlice({
 });
 
 export const {
-  setCurrentTitre,
+  setCurrentTitreId,
   setCurrentConditionInfos,
   addPicture,
   deleteLastPicture,

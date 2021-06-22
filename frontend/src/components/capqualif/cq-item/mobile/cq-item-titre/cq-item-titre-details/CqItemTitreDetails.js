@@ -12,8 +12,9 @@ import {
   REQUEST,
 } from '../../../../../../dictionnary/demandeDeTitre';
 import { convertDateToEuropeanFormat } from '../../../../../../app/utils';
+import GenericError from '../../../../errors/GenericError';
 
-const CqItemTitreDetails = ({ isVisible, details, action }) => {
+const CqItemTitreDetails = ({ isVisible, titreId, details, action }) => {
   const chooseWhatToDisplay = (details) => {
     switch (details.type) {
       case DETAILS_TYPE.REQUEST:
@@ -21,7 +22,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
       case DETAILS_TYPE.CONDITIONS:
         return displayConditions();
       default:
-        return null;
+        return <GenericError />;
     }
   };
 
@@ -64,12 +65,14 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
           </p>
           <div className="fr-mt-2w">
             <Validity
+              titreId={titreId}
               document={{ id: 'photo', name: 'photo' }}
               isValid={marinIdentityMarkers.photoStatus}
               validLabel={IDENTITY_MARKERS.PHOTO}
               notValidLabel={IDENTITY_MARKERS.PHOTO}
             />
             <Validity
+              titreId={titreId}
               document={{ id: 'signature', name: 'signature' }}
               isValid={marinIdentityMarkers.signatureStatus}
               validLabel={IDENTITY_MARKERS.SIGNATURE}
@@ -79,7 +82,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
         </div>
 
         {details.content.results.allConditionsGroups.map((condition) => (
-          <CqItemCondition condition={condition} />
+          <CqItemCondition titreId={titreId} condition={condition} />
         ))}
 
         {action && <div>{action}</div>}
@@ -92,6 +95,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
 
 CqItemTitreDetails.propTypes = {
   isVisible: PropTypes.bool.isRequired,
+  titreId: PropTypes.string.isRequired,
   details: PropTypes.object.isRequired,
   action: PropTypes.object,
 };

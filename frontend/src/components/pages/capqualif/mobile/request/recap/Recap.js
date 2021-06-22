@@ -32,7 +32,6 @@ import {
   addStartDate,
 } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
 import GenericError from '../../../../../capqualif/errors/GenericError';
-import { checkIfRequestCanBeSent } from './checker';
 
 const Recap = (props) => {
   /**
@@ -45,7 +44,8 @@ const Recap = (props) => {
    * Let's select data from global state (redux)
    */
   const canRequestBeSent = useSelector((state) => state.requests.canBeSent);
-  const titres = useSelector((state) => state.instructions.possibleTitres);
+  const titres =
+    useSelector((state) => state.instructions.possibleTitres) || [];
   const currentTitreId = useSelector(
     (state) => state.currentRequest.currentTitre.id
   );
@@ -66,20 +66,21 @@ const Recap = (props) => {
     );
   };
 
-  const [titre, setTitre] = useState(
-    titres[findTitreIndex(titres, currentTitreId)]
-  );
+  const titre = titres[findTitreIndex(titres, currentTitreId)];
 
-  /**
-   * Let's check if the request can be sent
-   */
-  useEffect(() => {
-    if (titre)
-      checkIfRequestCanBeSent(
-        titre.instruction.marinIdentity.identityMarkers,
-        titre.instruction.results.allConditionsGroups
-      );
-  }, []);
+  // /**
+  //  * Let's check if the request can be sent
+  //  */
+  // useEffect(() => {
+  //   if (titre) {
+  //     const canRequestBeSent = checkIfRequestCanBeSent(
+  //       titre.instruction.marinIdentity.identityMarkers,
+  //       titre.instruction.results.allConditionsGroups
+  //     );
+  //     console.log('canRequestBeSent', canRequestBeSent);
+  //     dispatch(setCanBeSent(canRequestBeSent));
+  //   }
+  // }, []);
 
   /**
    * Actions on click event
@@ -131,7 +132,7 @@ const Recap = (props) => {
     return new Date();
   };
 
-  return titre ? (
+  return (
     <Fragment>
       <Step label={STEPS.CONFIRM} />
       <div className="fr-mt-2w fr-px-2w">
@@ -161,6 +162,7 @@ const Recap = (props) => {
         </div>
         <p className="fr-mb-2w">{VARIOUS.DATES_WARNING}</p>
         <CqItemTitre
+          id={titre.informations.id}
           subtitle={VARIOUS.RECAPITULATIF}
           name={displayRestrictions(titre.instruction.results.restrictions)}
           status={{
@@ -181,11 +183,63 @@ const Recap = (props) => {
         />
       </div>
     </Fragment>
-  ) : (
-    <div className={`${styles['centered']}`}>
-      <GenericError />
-    </div>
   );
+
+  // return titre ? (
+  //   <Fragment>
+  //     <Step label={STEPS.CONFIRM} />
+  //     <div className="fr-mt-2w fr-px-2w">
+  //       <CqItemHeader
+  //         subtitle={'Appui · Pont'}
+  //         name={'Certificat de Matelot Pont'}
+  //       />
+  //       {displayRestrictions(titre.instruction.results.restrictions)}
+  //       <div className={`${styles['spaced']} fr-grid-row fr-my-3w`}>
+  //         <p>{VALIDITY.DURATION}</p>
+  //         <CqItemFlagged
+  //           label={`${titre.informations.validityDurationInYears} ans`}
+  //         />
+  //       </div>
+  //       <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>
+  //         <p>{VALIDITY.START_DATE}</p>
+  //         <CqItemFlagged label={convertDateToEuropeanFormat(getTodayDate())} />
+  //       </div>
+  //       <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>
+  //         <p>{VALIDITY.END_DATE}</p>
+  //         <CqItemFlagged
+  //           label={computeEndDate(
+  //             getTodayDate(),
+  //             titre.informations.validityDurationInYears
+  //           )}
+  //         />
+  //       </div>
+  //       <p className="fr-mb-2w">{VARIOUS.DATES_WARNING}</p>
+  //       <CqItemTitre
+  //         subtitle={VARIOUS.RECAPITULATIF}
+  //         name={displayRestrictions(titre.instruction.results.restrictions)}
+  //         status={{
+  //           type: STATUS_TYPES.DOSSIER,
+  //           value: titre.instruction.dossierStatus,
+  //         }}
+  //         details={{
+  //           type: DETAILS_TYPE.CONDITIONS,
+  //           content: titre.instruction,
+  //         }}
+  //       />
+  //       <ButtonAction
+  //         label={BUTTON_LABELS.CONFIRM}
+  //         width={BUTTON_WIDTH.FULL}
+  //         marginsInRem={{ top: 1, bottom: 1 }}
+  //         actionOnClick={confirmRequest}
+  //         isDisabled={canRequestBeSent ? false : true}
+  //       />
+  //     </div>
+  //   </Fragment>
+  // ) : (
+  //   <div className={`${styles['centered']}`}>
+  //     <GenericError />
+  //   </div>
+  // );
 };
 
 Recap.propTypes = {};

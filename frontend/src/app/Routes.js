@@ -48,7 +48,7 @@ const Routes = () => {
         />
         <Route
           exact
-          path={`/${MOBILE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
+          path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
           component={MobileRequestChooseTitre}
         />
         <Route

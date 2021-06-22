@@ -19,6 +19,7 @@ import {
 import {
   MOBILE,
   NEW_TITRE_REQUEST_CHOICE_ROUTE,
+  NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../app/routesDictionnary';
 import { BUTTON_WIDTH } from '../../../../../dictionnary/saas/variables';
 import ButtonLink from '../../../../capqualif/buttons/ButtonLink';
@@ -119,7 +120,7 @@ const Dashboard = (props) => {
         <ButtonLink
           label={BUTTON_LABELS.DEMAND_ONE}
           width={BUTTON_WIDTH.FULL}
-          route={`/${MOBILE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
+          route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
         />
       </div>
     </Fragment>

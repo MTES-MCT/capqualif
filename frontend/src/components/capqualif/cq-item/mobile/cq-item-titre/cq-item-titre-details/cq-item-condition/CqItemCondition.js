@@ -5,7 +5,7 @@ import commonStyles from '../common.module.scss';
 import './CqItemCondition.module.scss';
 import Validity from '../../../../../validity/Validity';
 
-const CqItemCondition = ({ condition }) => {
+const CqItemCondition = ({ titreId, condition }) => {
   return (
     <div
       className={`${commonStyles.section} cq-helpers-bordered-section fr-p-2w`}
@@ -13,6 +13,7 @@ const CqItemCondition = ({ condition }) => {
       <h3>{condition.group}</h3>
       {condition.conditions.map((cond) => (
         <Validity
+          titreId={titreId}
           document={{ id: cond.id, name: cond.name }}
           status={cond.status}
           validLabel={cond.name}
@@ -24,6 +25,7 @@ const CqItemCondition = ({ condition }) => {
 };
 
 CqItemCondition.propTypes = {
+  titreId: PropTypes.bool,
   condition: PropTypes.object.isRequired,
 };
 

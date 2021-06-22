@@ -23,7 +23,7 @@ const initialState = {
             numeroDeMarin: '1234945',
           },
           identityMarkers: {
-            photoStatus: CONDITION.STATUS.NOT_VALID,
+            photoStatus: CONDITION.STATUS.VALID,
             signatureStatus: CONDITION.STATUS.VALID,
           },
         },

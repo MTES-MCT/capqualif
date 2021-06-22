@@ -17,13 +17,12 @@ import {
   FONT_SIZES,
 } from '../../../../../../dictionnary/saas/variables';
 import {
-  MOBILE,
   NEW_TITRE_REQUEST_RECAP_ROUTE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../../app/routesDictionnary';
 import CqItemTitre from '../../../../../capqualif/cq-item/mobile/cq-item-titre/CqItemTitre';
 import Step from '../../../../../capqualif/step/Step';
-import { setCurrentTitre } from '../../../../../../redux/capqualif/mobile/requests/currentRequest';
+import { setCurrentTitreId } from '../../../../../../redux/capqualif/mobile/requests/currentRequest';
 
 const ChooseTitre = (props) => {
   const history = useHistory();
@@ -33,8 +32,8 @@ const ChooseTitre = (props) => {
   const canRequestBeSent = useSelector((state) => state.requests.canBeSent);
 
   const requestThisTitre = (id) => {
+    dispatch(setCurrentTitreId(id));
     if (canRequestBeSent) {
-      dispatch(setCurrentTitre(id));
       history.push(
         `${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`
       );
@@ -51,6 +50,7 @@ const ChooseTitre = (props) => {
         <div className={`${styles['cq-choose-titre-titres-container']}`}>
           {allTitres.map((titre) => (
             <CqItemTitre
+              id={titre.informations.id}
               subtitle={titre.informations.capacite}
               name={titre.informations.name}
               status={{
@@ -65,7 +65,6 @@ const ChooseTitre = (props) => {
                 label: BUTTON_LABELS.DEMAND_THIS,
                 labelSize: FONT_SIZES.SMALL,
                 width: BUTTON_WIDTH.FULL,
-                isDisabled: canRequestBeSent ? false : true,
                 onClick: () => requestThisTitre(titre.informations.id),
               }}
             />

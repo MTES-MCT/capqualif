@@ -11,9 +11,12 @@ import {
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../app/routesDictionnary';
 import { CONDITION } from '../../../dictionnary/demandeDeTitre';
-import { setCurrentConditionInfos } from '../../../redux/capqualif/mobile/requests/currentRequest';
+import {
+  setCurrentTitreId,
+  setCurrentConditionInfos,
+} from '../../../redux/capqualif/mobile/requests/currentRequest';
 
-const Validity = ({ document, status, validLabel, notValidLabel }) => {
+const Validity = ({ document, titreId, status, validLabel, notValidLabel }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -56,7 +59,7 @@ const Validity = ({ document, status, validLabel, notValidLabel }) => {
         </p>
         <span
           className={`${styles['add-icon']} fr-p-1w`}
-          onClick={() => startDocumentAdding(document)}
+          onClick={() => startDocumentAdding(titreId, document)}
         >
           <GrAdd />
         </span>
@@ -64,7 +67,8 @@ const Validity = ({ document, status, validLabel, notValidLabel }) => {
     );
   };
 
-  const startDocumentAdding = (document) => {
+  const startDocumentAdding = (titreId, document) => {
+    dispatch(setCurrentTitreId(titreId));
     dispatch(setCurrentConditionInfos(document));
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`);
   };
@@ -88,6 +92,7 @@ const Validity = ({ document, status, validLabel, notValidLabel }) => {
 
 Validity.propTypes = {
   document: PropTypes.object,
+  titreId: PropTypes.string,
   isValid: PropTypes.bool,
   validLabel: PropTypes.string,
   notValidLabel: PropTypes.string,
