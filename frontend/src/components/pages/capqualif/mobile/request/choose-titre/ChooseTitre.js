@@ -49,10 +49,6 @@ const ChooseTitre = (props) => {
     }
   };
 
-  const whatStatus = () => {
-    return;
-  };
-
   return (
     <div>
       <Step label={STEPS.REQUEST_NEW} />

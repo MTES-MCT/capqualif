@@ -47,7 +47,6 @@ const Validity = ({ document, titreId, status, validLabel, notValidLabel }) => {
         addedDocuments[findIndex(addedDocuments, 'conditionId', document.id)]
           .conditionDocuments.length > 0
       ) {
-        console.log('change cond status triggered from validity');
         dispatch(changeConditionStatus(document.id));
       }
     }

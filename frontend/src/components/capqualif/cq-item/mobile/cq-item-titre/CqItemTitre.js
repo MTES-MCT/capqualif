@@ -29,8 +29,7 @@ const CqItemTitre = ({
    * Let's select data from global state (redux)
    */
   const canRequestBeSent = useSelector((state) => state.requests.canBeSent);
-  const titres =
-    useSelector((state) => state.instructions.possibleTitres) || [];
+  const titres = useSelector((state) => state.instructions.possibleTitres);
   const possibleRequests = useSelector(
     (state) => state.requests.possibleRequests
   );
@@ -39,11 +38,8 @@ const CqItemTitre = ({
    * Let's find the titre that the marin is requesting in all possible titres
    * to display it in the UI!
    */
-  const findTitreIndex = (allPossibleTitres, currentTitreId) => {
-    return findIndex(allPossibleTitres, 'informations.id', currentTitreId);
-  };
 
-  const titre = titres[findTitreIndex(titres, id)];
+  const titre = titres[findIndex(titres, 'informations.id', id)];
 
   const isPossibleRequestsEmpty = (possibleRequests) => {
     return possibleRequests.length === 0 ? true : false;
@@ -53,6 +49,15 @@ const CqItemTitre = ({
    * Let's check if the request can be sent
    */
   useEffect(() => {
+    console.log('findex', findIndex(titres, 'informations.id', id));
+    console.log('titres', titres);
+    console.log('id', id);
+    console.log('titre', titre);
+    console.log('possibleRequests', possibleRequests);
+    console.log(
+      'isPossibleRequestsEmpty',
+      isPossibleRequestsEmpty(possibleRequests)
+    );
     if (titre && !isPossibleRequestsEmpty(possibleRequests)) {
       const canRequestBeSent = checkIfRequestCanBeSent(
         titre.instruction.marinIdentity.identityMarkers,
@@ -61,7 +66,7 @@ const CqItemTitre = ({
       console.log('canRequestBeSent', canRequestBeSent);
       dispatch(
         setCanBeSent({
-          titreId: findTitreIndex(titres, id),
+          titreId: id,
           canRequestBeSent: canRequestBeSent,
         })
       );
