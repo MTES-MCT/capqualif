@@ -15,6 +15,10 @@ import { convertDateToEuropeanFormat } from '../../../../../../app/utils';
 import GenericError from '../../../../errors/GenericError';
 
 const CqItemTitreDetails = ({ isVisible, titreId, details, action }) => {
+  /**
+   *  ================ UI ================
+   */
+
   const chooseWhatToDisplay = (details) => {
     switch (details.type) {
       case DETAILS_TYPE.REQUEST:

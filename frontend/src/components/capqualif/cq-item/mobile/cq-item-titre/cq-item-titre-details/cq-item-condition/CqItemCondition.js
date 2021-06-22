@@ -14,6 +14,7 @@ const CqItemCondition = ({ titreId, condition }) => {
       {condition.conditions.map((cond) => (
         <Validity
           titreId={titreId}
+          conditionId={cond.id}
           document={{ id: cond.id, name: cond.name }}
           status={cond.status}
           validLabel={cond.name}

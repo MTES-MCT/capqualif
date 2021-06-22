@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { GrAdd } from 'react-icons/gr';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -15,10 +15,47 @@ import {
   setCurrentTitreId,
   setCurrentConditionInfos,
 } from '../../../redux/capqualif/mobile/requests/currentRequest';
+import { findIndex } from '../../../app/utils';
+import { changeConditionStatus } from '../../../redux/capqualif/mobile/instructions/instructionsSlice';
 
 const Validity = ({ document, titreId, status, validLabel, notValidLabel }) => {
-  const history = useHistory();
+  /**
+   * Boilerplate
+   */
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  /**
+   * Let's select data from global state (redux)
+   */
+  const possibleRequests = useSelector(
+    (state) => state.requests.possibleRequests
+  );
+
+  /**
+   * Let's check what status to show for each condition
+   */
+  useEffect(() => {
+    if (document.id) {
+      const addedDocuments =
+        possibleRequests[
+          findIndex(possibleRequests, 'requestedTitreId', titreId)
+        ].documents;
+      const index = findIndex(addedDocuments, 'conditionId', document.id);
+      if (
+        index !== -1 &&
+        addedDocuments[findIndex(addedDocuments, 'conditionId', document.id)]
+          .conditionDocuments.length > 0
+      ) {
+        console.log('change cond status triggered from validity');
+        dispatch(changeConditionStatus(document.id));
+      }
+    }
+  }, []);
+
+  /**
+   *  ================ UI ================
+   */
 
   const chooseWhatToDisplay = (status) => {
     switch (status) {

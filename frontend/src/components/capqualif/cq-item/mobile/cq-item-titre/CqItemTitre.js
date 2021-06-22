@@ -54,7 +54,6 @@ const CqItemTitre = ({
    */
   useEffect(() => {
     if (titre && !isPossibleRequestsEmpty(possibleRequests)) {
-      console.log('triggered');
       const canRequestBeSent = checkIfRequestCanBeSent(
         titre.instruction.marinIdentity.identityMarkers,
         titre.instruction.results.allConditionsGroups
