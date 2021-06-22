@@ -24,10 +24,12 @@ import {
   MOBILE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../../app/routesDictionnary';
-import { convertDateToEuropeanFormat } from '../../../../../../app/utils';
+import {
+  convertDateToEuropeanFormat,
+  findIndex,
+} from '../../../../../../app/utils';
 import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';
 import {
-  addRequestedTitre,
   addRequestor,
   addStartDate,
 } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
@@ -60,41 +62,19 @@ const Recap = (props) => {
    * Let's find the titre that the marin is requesting in all possible titres
    * to display it in the UI!
    */
-  const findTitreIndex = (allPossibleTitres, currentTitreId) => {
-    return allPossibleTitres.findIndex(
-      (titre) => titre.informations.id === currentTitreId
-    );
-  };
+  // const findTitreIndex = (allPossibleTitres, currentTitreId) => {
+  //   return allPossibleTitres.findIndex(
+  //     (titre) => titre.informations.id === currentTitreId
+  //   );
+  // };
 
-  const titre = titres[findTitreIndex(titres, currentTitreId)];
-
-  // /**
-  //  * Let's check if the request can be sent
-  //  */
-  // useEffect(() => {
-  //   if (titre) {
-  //     const canRequestBeSent = checkIfRequestCanBeSent(
-  //       titre.instruction.marinIdentity.identityMarkers,
-  //       titre.instruction.results.allConditionsGroups
-  //     );
-  //     console.log('canRequestBeSent', canRequestBeSent);
-  //     dispatch(setCanBeSent(canRequestBeSent));
-  //   }
-  // }, []);
+  const titre = titres[findIndex(titres, 'informations.id', currentTitreId)];
 
   /**
    * Actions on click event
    */
   const confirmRequest = () => {
-    dispatch(
-      addRequestor({
-        numeroDeMarin,
-        firstName: prenom,
-        lastName: nom,
-      })
-    );
     dispatch(addStartDate());
-    dispatch(addRequestedTitre(requestedTitreId));
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${CONFIRMATION_ROUTE}`);
   };
 

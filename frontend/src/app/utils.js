@@ -2,6 +2,10 @@ export const findInArray = (array, property, value) => {
   return array.find((condition) => condition[property] === value);
 };
 
+export const findIndex = (array, property, value) => {
+  return array.findIndex((element) => element[property] === value);
+};
+
 // ========= Convert date : start =======================
 
 export const convertDateToEuropeanFormat = (dateSource) => {

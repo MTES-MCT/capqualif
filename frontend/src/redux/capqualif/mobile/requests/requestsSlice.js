@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { findIndex } from '../../../../app/utils';
 
 const initialState = {
   requestor: {
@@ -7,26 +8,48 @@ const initialState = {
     firstName: '',
     lastName: '',
   },
-  requestedTitre: '',
-  startDate: '',
-  requestStatus: '',
-  instructionStatus: '',
-  documents: [],
-  canBeSent: false,
+  possibleRequests: [],
 };
 
 const requestsSlice = createSlice({
   name: 'requests',
   initialState,
   reducers: {
-    addRequestor(state, action) {
-      state.requestor.numeroDeMarin = action.payload.numeroDeMarin;
-      state.requestor.firstName = action.payload.firstName;
-      state.requestor.lastName = action.payload.lastName;
+    createRequest(state, action) {
+      state.requestor.numeroDeMarin = action.payload.requestor.numeroDeMarin;
+      state.requestor.firstName = action.payload.requestor.firstName;
+      state.requestor.lastName = action.payload.requestor.lastName;
+      state.possibleRequests.push({
+        requestedTitreId: action.payload.titreId,
+        startDate: '',
+        requestStatus: '',
+        instructionStatus: '',
+        documents: [],
+        canBeSent: false,
+      });
     },
-    addRequestedTitre(state, action) {
-      state.requestedTitre = action.payload;
+    // addRequestor(state, action) {
+    //   const request =
+    //     state.possibleRequests[
+    //       findIndex(
+    //         state.possibleRequests,
+    //         'requestedTitreId',
+    //         action.payload.titreId
+    //       )
+    //     ].requestor;
+    //   request.numeroDeMarin = action.payload.numeroDeMarin;
+    //   request.firstName = action.payload.firstName;
+    //   request.lastName = action.payload.lastName;
+    // },
+    // addrequestedTitreId(state, action) {
+    //   state.requestedTitreId = action.payload;
+    // },
+    cleanRequests(state) {
+      state.possibleRequests = [];
     },
+    /**
+     * TODO : refactor state.
+     * */
     addStartDate(state) {
       const today = new Date();
       state.startDate = today.toDateString;
@@ -43,40 +66,52 @@ const requestsSlice = createSlice({
        **conditionDocuments: []
        **}
        */
-      const { conditionId } = action.payload;
-      const { documents } = state;
-      if (isConditionAlreadyInTheArray(documents, conditionId)) {
+      const { titreId, condition } = action.payload;
+      console.log('titreId', titreId);
+      console.log('condition', condition);
+      console.log(
+        findIndex(state.possibleRequests, 'requestedTitreId', titreId)
+      );
+      const { documents } = state.possibleRequests[
+        findIndex(state.possibleRequests, 'requestedTitreId', titreId)
+      ].documents;
+
+      if (isConditionAlreadyInTheArray(documents, 'id', condition.id)) {
         const newDocuments = action.payload.conditionDocuments;
-        updateDocuments(documents, conditionId, newDocuments);
+        updateDocuments(documents, condition.id, newDocuments);
       } else {
         documents.push(action.payload);
       }
     },
     setCanBeSent(state, action) {
-      state.canBeSent = action.payload;
+      console.log(action.payload);
+      state.possibleRequests[
+        findIndex(
+          state.possibleRequests,
+          'requestedTitreId',
+          action.payload.titreId
+        )
+      ].canBeSent = action.payload.canRequestBeSent;
     },
   },
 });
 
-const isConditionAlreadyInTheArray = (array, value) => {
-  return findConditionIndex(array, value) !== -1 ? true : false;
+const isConditionAlreadyInTheArray = (array, property, value) => {
+  return findIndex(array, property, value) !== -1 ? true : false;
 };
 
 const updateDocuments = (documents, conditionId, newDocuments) => {
   documents[
-    findConditionIndex(documents, conditionId)
+    findIndex(documents, conditionId)
   ].conditionDocuments = newDocuments;
 };
 
-const findConditionIndex = (array, value) => {
-  return array.findIndex((doc) => doc.conditionId === value);
-};
-
 export const {
+  createRequest,
+  cleanRequests,
   addRequestor,
   addStartDate,
   addDocuments,
-  addRequestedTitre,
   setCanBeSent,
 } = requestsSlice.actions;
 

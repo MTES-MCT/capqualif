@@ -9,6 +9,7 @@ import ButtonAction from '../../../buttons/button-action/ButtonAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCanBeSent } from '../../../../../redux/capqualif/mobile/requests/requestsSlice';
 import { checkIfRequestCanBeSent } from '../../../../pages/capqualif/mobile/request/recap/checker';
+import { findIndex } from '../../../../../app/utils';
 
 const CqItemTitre = ({
   id,
@@ -30,30 +31,41 @@ const CqItemTitre = ({
   const canRequestBeSent = useSelector((state) => state.requests.canBeSent);
   const titres =
     useSelector((state) => state.instructions.possibleTitres) || [];
+  const possibleRequests = useSelector(
+    (state) => state.requests.possibleRequests
+  );
 
   /**
    * Let's find the titre that the marin is requesting in all possible titres
    * to display it in the UI!
    */
   const findTitreIndex = (allPossibleTitres, currentTitreId) => {
-    return allPossibleTitres.findIndex(
-      (titre) => titre.informations.id === currentTitreId
-    );
+    return findIndex(allPossibleTitres, 'informations.id', currentTitreId);
   };
 
   const titre = titres[findTitreIndex(titres, id)];
+
+  const isPossibleRequestsEmpty = (possibleRequests) => {
+    return possibleRequests.length === 0 ? true : false;
+  };
 
   /**
    * Let's check if the request can be sent
    */
   useEffect(() => {
-    if (titre) {
+    if (titre && !isPossibleRequestsEmpty(possibleRequests)) {
+      console.log('triggered');
       const canRequestBeSent = checkIfRequestCanBeSent(
         titre.instruction.marinIdentity.identityMarkers,
         titre.instruction.results.allConditionsGroups
       );
       console.log('canRequestBeSent', canRequestBeSent);
-      dispatch(setCanBeSent(canRequestBeSent));
+      dispatch(
+        setCanBeSent({
+          titreId: findTitreIndex(titres, id),
+          canRequestBeSent: canRequestBeSent,
+        })
+      );
     }
   }, []);
 

@@ -32,6 +32,7 @@ const Add = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const titreId = useSelector((state) => state.currentRequest.currentTitre.id);
   const conditionToModify = useSelector(
     (state) => state.currentRequest.currentCondition
   );
@@ -42,7 +43,7 @@ const Add = (props) => {
   };
 
   const addPicturesToRequest = () => {
-    dispatch(addDocuments(renameCondition()));
+    dispatch(addDocuments({ titreId: titreId, condition: renameCondition() }));
     dispatch(cleanCurrentCondition());
     dispatch(changeConditionStatus(conditionToModify.id));
     history.push(
@@ -93,6 +94,7 @@ const Add = (props) => {
   const displayAddedPictures = (picture) => {
     return (
       <Fragment>
+        <h2>{conditionToModify.name}</h2>
         {conditionToModify.pictures.map((pic) => (
           <div
             className={`${commonStyles['capture-container']} fr-py-4w fr-mb-3w`}
@@ -124,7 +126,6 @@ const Add = (props) => {
     <Fragment>
       <Step label={STEPS.ADD_DOCUMENT} />
       <div className={`${commonStyles['container']} fr-px-1w`}>
-        <h3 className="fr-pt-2w fr-pb-1w">{conditionToModify.name}</h3>
         {chooseWhatToDisplay(conditionToModify.pictures)}
       </div>
     </Fragment>

@@ -1,13 +1,14 @@
 import React, { Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  showHeader,
-  hideHeader,
-} from '../../../../../redux/capqualif/mobile/header/headerSlice';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import styles from './Dashboard.module.scss';
 
+import {
+  showHeader,
+  hideHeader,
+} from '../../../../../redux/capqualif/mobile/header/headerSlice';
 import {
   DASHBOARD_INFOS,
   BUTTON_LABELS,
@@ -22,14 +23,29 @@ import {
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../app/routesDictionnary';
 import { BUTTON_WIDTH } from '../../../../../dictionnary/saas/variables';
-import ButtonLink from '../../../../capqualif/buttons/ButtonLink';
 import CqItemTitre from '../../../../capqualif/cq-item/mobile/cq-item-titre/CqItemTitre';
 import { TITRES } from '../../../../../dictionnary/titres';
+import ButtonAction from '../../../../capqualif/buttons/button-action/ButtonAction';
+import {
+  cleanRequests,
+  createRequest,
+} from '../../../../../redux/capqualif/mobile/requests/requestsSlice';
 
 const Dashboard = (props) => {
+  /**
+   * Boilerplate
+   */
   const dispatch = useDispatch();
-  const marinTitres = useSelector(
-    (state) => state.marins.marinBasicData.allTitresOfMarin
+  const history = useHistory();
+
+  /**
+   * Let's select data from global state (redux)
+   */
+  const marin = useSelector((state) => state.marins.marinBasicData);
+  const marinTitres = marin.allTitresOfMarin;
+
+  const requestableTitres = useSelector(
+    (state) => state.instructions.possibleTitres
   );
 
   useEffect(() => {
@@ -53,6 +69,31 @@ const Dashboard = (props) => {
     },
   ];
 
+  /**
+   * Actions on click event
+   */
+  const startRequest = (marin, requestableTitres) => {
+    dispatch(cleanRequests());
+    requestableTitres.forEach((titre) => {
+      dispatch(
+        createRequest({
+          requestor: {
+            numeroDeMarin: marin.numeroDeMarin,
+            firstName: marin.prenom,
+            lastName: marin.nom,
+          },
+          titreId: titre.informations.id,
+        })
+      );
+    });
+    history.push(
+      `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`
+    );
+  };
+
+  /**
+   *  ================ UI ================
+   */
   const displayAllRequests = (allRequests) => {
     if (allRequests.length > 0) {
       return (
@@ -117,11 +158,16 @@ const Dashboard = (props) => {
       <div
         className={`${styles['cq-dashboard-action-container']} fr-mt-2w fr-pt-1w fr-px-1w`}
       >
-        <ButtonLink
+        <ButtonAction
+          label={BUTTON_LABELS.DEMAND_ONE}
+          width={BUTTON_WIDTH.FULL}
+          actionOnClick={() => startRequest(marin, requestableTitres)}
+        />
+        {/* <ButtonLink
           label={BUTTON_LABELS.DEMAND_ONE}
           width={BUTTON_WIDTH.FULL}
           route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
-        />
+        /> */}
       </div>
     </Fragment>
   );

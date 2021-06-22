@@ -106,7 +106,7 @@ const initialState = {
             numeroDeMarin: '1234945',
           },
           identityMarkers: {
-            photoStatus: CONDITION.STATUS.NOT_VALID,
+            photoStatus: CONDITION.STATUS.VALID,
             signatureStatus: CONDITION.STATUS.VALID,
           },
         },
@@ -130,7 +130,7 @@ const initialState = {
                 {
                   id: '221',
                   name: 'Techniques individuelles de survie (UV- TIS-F) ',
-                  status: CONDITION.STATUS.VALID,
+                  status: CONDITION.STATUS.NOT_VALID,
                 },
                 {
                   id: '222',
