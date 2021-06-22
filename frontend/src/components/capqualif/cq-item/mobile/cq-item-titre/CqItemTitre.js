@@ -28,7 +28,6 @@ const CqItemTitre = ({
         details && (
           <CqItemTitreDetails
             details={details}
-            // action={action && <CqItemAction action={action} />}
             action={
               action && (
                 <ButtonAction

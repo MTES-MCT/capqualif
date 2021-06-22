@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { convertDateToEuropeanFormat } from '../../../../app/utils';
 
 const initialState = {
   requestor: {

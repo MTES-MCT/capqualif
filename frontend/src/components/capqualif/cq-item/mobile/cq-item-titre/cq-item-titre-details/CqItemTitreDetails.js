@@ -26,7 +26,7 @@ const CqItemTitreDetails = ({ isVisible, details, action }) => {
   };
 
   const displayRequests = () => {
-    const { startDate } = details.content;
+    const { startDate } = details.content.startDate;
     const { instructionStatus } = details.content;
     return (
       <div className={`${isVisible ? '' : styles.hidden}`}>

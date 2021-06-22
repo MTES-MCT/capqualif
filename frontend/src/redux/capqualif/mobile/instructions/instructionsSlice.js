@@ -7,7 +7,7 @@ import { CONDITION } from '../../../../dictionnary/demandeDeTitre';
 const initialState = {
   possibleTitres: [
     {
-      titre: {
+      informations: {
         id: '1',
         slug: 'certificat-de-matelot-pont',
         capacite: 'Monovalence · Pont',
@@ -91,7 +91,7 @@ const initialState = {
       },
     },
     {
-      titre: {
+      informations: {
         capacite: 'Sécurité',
         name: 'Certificat de Formation de Base à la Sécurité',
         id: '2',

@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import styles from './Recap.module.scss';
@@ -33,32 +32,74 @@ import {
   addStartDate,
 } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
 import GenericError from '../../../../../capqualif/errors/GenericError';
+import { checkIfRequestCanBeSent } from './checker';
 
 const Recap = (props) => {
+  /**
+   * Boilerplate
+   */
   const dispatch = useDispatch();
   const history = useHistory();
 
+  /**
+   * Let's select data from global state (redux)
+   */
   const canRequestBeSent = useSelector((state) => state.requests.canBeSent);
-
-  const findTitreIndex = (array, value) => {
-    return array.findIndex((titre) => titre.titre.id === value);
-  };
-
   const titres = useSelector((state) => state.instructions.possibleTitres);
   const currentTitreId = useSelector(
     (state) => state.currentRequest.currentTitre.id
   );
+  const { numeroDeMarin, nom, prenom } = useSelector(
+    (state) => state.marins.marinBasicData
+  );
+  const requestedTitreId = useSelector(
+    (state) => state.currentRequest.currentTitre.id
+  );
+
+  /**
+   * Let's find the titre that the marin is requesting in all possible titres
+   * to display it in the UI!
+   */
+  const findTitreIndex = (allPossibleTitres, currentTitreId) => {
+    return allPossibleTitres.findIndex(
+      (titre) => titre.informations.id === currentTitreId
+    );
+  };
+
   const [titre, setTitre] = useState(
     titres[findTitreIndex(titres, currentTitreId)]
   );
 
-  const { numeroDeMarin, nom, prenom } = useSelector(
-    (state) => state.marins.marinBasicData
-  );
+  /**
+   * Let's check if the request can be sent
+   */
+  useEffect(() => {
+    if (titre)
+      checkIfRequestCanBeSent(
+        titre.instruction.marinIdentity.identityMarkers,
+        titre.instruction.results.allConditionsGroups
+      );
+  }, []);
 
-  const requestedTitreId = useSelector(
-    (state) => state.currentRequest.currentTitre.id
-  );
+  /**
+   * Actions on click event
+   */
+  const confirmRequest = () => {
+    dispatch(
+      addRequestor({
+        numeroDeMarin,
+        firstName: prenom,
+        lastName: nom,
+      })
+    );
+    dispatch(addStartDate());
+    dispatch(addRequestedTitre(requestedTitreId));
+    history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${CONFIRMATION_ROUTE}`);
+  };
+
+  /**
+   *  ================ UI ================
+   */
 
   const displayRestrictions = (restrictions) => {
     if (restrictions.length === 0) {
@@ -72,19 +113,6 @@ const Recap = (props) => {
         ))}
       </p>
     );
-  };
-
-  const confirmRequest = () => {
-    dispatch(
-      addRequestor({
-        numeroDeMarin,
-        firstName: prenom,
-        lastName: nom,
-      })
-    );
-    dispatch(addStartDate());
-    dispatch(addRequestedTitre(requestedTitreId));
-    history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${CONFIRMATION_ROUTE}`);
   };
 
   /**
@@ -114,7 +142,9 @@ const Recap = (props) => {
         {displayRestrictions(titre.instruction.results.restrictions)}
         <div className={`${styles['spaced']} fr-grid-row fr-my-3w`}>
           <p>{VALIDITY.DURATION}</p>
-          <CqItemFlagged label={`${titre.titre.validityDurationInYears} ans`} />
+          <CqItemFlagged
+            label={`${titre.informations.validityDurationInYears} ans`}
+          />
         </div>
         <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>
           <p>{VALIDITY.START_DATE}</p>
@@ -125,7 +155,7 @@ const Recap = (props) => {
           <CqItemFlagged
             label={computeEndDate(
               getTodayDate(),
-              titre.titre.validityDurationInYears
+              titre.informations.validityDurationInYears
             )}
           />
         </div>

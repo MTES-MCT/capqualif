@@ -51,8 +51,8 @@ const ChooseTitre = (props) => {
         <div className={`${styles['cq-choose-titre-titres-container']}`}>
           {allTitres.map((titre) => (
             <CqItemTitre
-              subtitle={titre.titre.capacite}
-              name={titre.titre.name}
+              subtitle={titre.informations.capacite}
+              name={titre.informations.name}
               status={{
                 type: STATUS_TYPES.DOSSIER,
                 value: titre.instruction.dossierStatus,
@@ -66,7 +66,7 @@ const ChooseTitre = (props) => {
                 labelSize: FONT_SIZES.SMALL,
                 width: BUTTON_WIDTH.FULL,
                 isDisabled: canRequestBeSent ? false : true,
-                onClick: () => requestThisTitre(titre.titre.id),
+                onClick: () => requestThisTitre(titre.informations.id),
               }}
             />
           ))}
