@@ -96,6 +96,7 @@ const initialState = {
         name: 'Certificat de Formation de Base à la Sécurité',
         id: '2',
         slug: 'certificat-de-formation-de-base-a-la-securite',
+        validityDurationInYears: '5',
       },
       instruction: {
         dossierStatus: false,

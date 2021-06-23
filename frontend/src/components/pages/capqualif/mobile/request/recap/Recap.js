@@ -99,8 +99,8 @@ const Recap = (props) => {
       <Step label={STEPS.CONFIRM} />
       <div className="fr-mt-2w fr-px-2w">
         <CqItemHeader
-          subtitle={'Appui · Pont'}
-          name={'Certificat de Matelot Pont'}
+          subtitle={titre.informations.capacite}
+          name={titre.informations.name}
         />
         {displayRestrictions(titre.instruction.results.restrictions)}
         <div className={`${styles['spaced']} fr-grid-row fr-my-3w`}>

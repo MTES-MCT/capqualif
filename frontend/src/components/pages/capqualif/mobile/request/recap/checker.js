@@ -22,6 +22,7 @@ const checkIdentityMarkers = (marinIdentityMarkers) => {
   const results = [];
   results.push(photo);
   results.push(signature);
+  console.log('marinId', results.includes(false) ? false : true);
   return results.includes(false) ? false : true;
 };
 
@@ -31,8 +32,11 @@ const checkConditions = (conditionsGroups) => {
     group.conditions.forEach((condition) => {
       const status =
         condition.status === CONDITION.STATUS.NOT_VALID ? false : true;
+      console.log(condition);
+      console.log(status);
       results.push(status);
     });
   });
+  console.log('conditions', results.includes(false) ? false : true);
   return results.includes(false) ? false : true;
 };

@@ -41,7 +41,7 @@ const CqItemTitre = ({
    * to display it in the UI!
    */
 
-  const titre = titres[findIndex(titres, 'informations.id', '1')];
+  const titre = titres[findIndex(titres, 'informations.id', id)];
 
   /**
    * Let's check if the request can be sent
@@ -60,7 +60,7 @@ const CqItemTitre = ({
         })
       );
     }
-  }, [possibleTitres]);
+  }, [possibleTitres[findIndex(possibleTitres, 'informations.id', id)]]);
 
   const isPossibleRequestsEmpty = (possibleRequests) => {
     return possibleRequests.length === 0 ? true : false;
