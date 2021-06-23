@@ -12,6 +12,8 @@ import {
   MOBILE,
 } from '../../../../../../app/routesDictionnary';
 import { BUTTON_WIDTH } from '../../../../../../dictionnary/saas/variables';
+import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';
+import ButtonLink from '../../../../../capqualif/buttons/ButtonLink';
 
 const Confirmation = (props) => {
   return (
@@ -27,12 +29,10 @@ const Confirmation = (props) => {
           </span>{' '}
           {REQUEST.STATUS_REQUEST.SENT.DETAILED.PART_2}
         </p>
-        <CqItemAction
-          action={{
-            label: BUTTON_LABELS.GO_BACK_HOME,
-            width: BUTTON_WIDTH.FULL,
-            route: '/' + MOBILE + '/' + DASHBOARD_ROUTE,
-          }}
+        <ButtonLink
+          label={BUTTON_LABELS.GO_BACK_HOME}
+          width={BUTTON_WIDTH.FULL}
+          route={`${MOBILE}/${DASHBOARD_ROUTE}`}
         />
       </div>
     </div>

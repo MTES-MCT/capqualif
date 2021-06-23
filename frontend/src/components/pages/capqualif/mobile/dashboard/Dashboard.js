@@ -102,10 +102,10 @@ const Dashboard = (props) => {
           {allRequests.map((request) => (
             <CqItemTitre
               id={'1'}
-              name={request.requestedTitre}
+              name={request?.requestedTitre}
               status={{
                 type: STATUS_TYPES.REQUEST,
-                value: request.requestStatus,
+                value: request?.requestStatus,
               }}
               details={{
                 type: DETAILS_TYPE.REQUEST,
@@ -135,9 +135,9 @@ const Dashboard = (props) => {
                 name={titre.name}
                 status={{
                   type: STATUS_TYPES.TITRE_VALIDITY,
-                  value: titre.validityStatus,
+                  value: titre?.validityStatus,
                 }}
-                expirationDate={titre.dates.expirationDate}
+                expirationDate={titre?.dates?.expirationDate}
               />
             ))}
         </Fragment>

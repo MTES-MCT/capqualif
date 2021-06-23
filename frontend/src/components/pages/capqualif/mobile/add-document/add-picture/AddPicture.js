@@ -14,9 +14,16 @@ import {
 } from '../../../../../../app/routesDictionnary';
 
 const AddPicture = (props) => {
+  /**
+   * Boilerplate
+   */
   const history = useHistory();
   const dispatch = useDispatch();
   const webcamRef = useRef(null);
+
+  /**
+   * Let's select data from global state (redux)
+   */
   const pictureToAddName = useSelector(
     (state) => state.currentRequest.currentCondition.name
   );
@@ -27,12 +34,18 @@ const AddPicture = (props) => {
     facingMode: 'environment',
   };
 
+  /**
+   * Actions on click event
+   */
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     dispatch(addPicture(imageSrc));
     history.push(`${ADD_PICTURE_ROUTE}/${CONFIRMATION_ROUTE}`);
   }, [webcamRef]);
 
+  /**
+   *  ================ UI ================
+   */
   return (
     <div className={`${styles['dark']}`}>
       <Step label={STEPS.TAKE_PICTURE} isDark={true} />

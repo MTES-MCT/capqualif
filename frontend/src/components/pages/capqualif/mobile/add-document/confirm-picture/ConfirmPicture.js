@@ -21,12 +21,22 @@ import { BUTTON_WIDTH } from '../../../../../../dictionnary/saas/variables';
 import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';
 
 const ConfirmPicture = (props) => {
+  /**
+   * Boilerplate
+   */
   const dispatch = useDispatch();
   const history = useHistory();
+
+  /**
+   * Let's select data from global state (redux)
+   */
   const currentCondition = useSelector(
     (state) => state.currentRequest.currentCondition
   );
 
+  /**
+   * Actions on click event
+   */
   const confirm = () => {
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}`);
   };
@@ -36,17 +46,20 @@ const ConfirmPicture = (props) => {
     history.goBack();
   };
 
+  /**
+   *  ================ UI ================
+   */
   return (
     <Fragment>
       <Step label={STEPS.CONFIRM_PICTURE} />
       <div className={`${commonStyles['container']}`}>
-        <h3 className="fr-m-2w">{currentCondition.name}</h3>
+        <h3 className="fr-m-2w">{currentCondition?.name}</h3>
         <div
           className={`${commonStyles['capture-container']} fr-py-4w fr-px-2w`}
         >
           <img
             src={
-              currentCondition.pictures[currentCondition.pictures.length - 1]
+              currentCondition?.pictures[currentCondition.pictures.length - 1]
             }
             alt="document ajouté"
           />

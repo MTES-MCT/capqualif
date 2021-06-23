@@ -5,19 +5,10 @@ export const findInArray = (array, property, value) => {
 };
 
 export const findIndex = (array, property, value) => {
-  if (property instanceof Array) {
-    console.log(resolve('informations.id'));
-  }
   return array.findIndex(
     (element) => nestedProperty.get(element, property) === value
   );
 };
-
-function resolve(path, obj) {
-  return path.split('.').reduce(function (prev, curr) {
-    return prev ? prev[curr] : null;
-  }, obj);
-}
 
 // ========= Convert date : start =======================
 

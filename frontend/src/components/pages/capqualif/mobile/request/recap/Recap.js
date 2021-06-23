@@ -99,14 +99,14 @@ const Recap = (props) => {
       <Step label={STEPS.CONFIRM} />
       <div className="fr-mt-2w fr-px-2w">
         <CqItemHeader
-          subtitle={titre.informations.capacite}
-          name={titre.informations.name}
+          subtitle={titre?.informations?.capacite}
+          name={titre?.informations?.name}
         />
-        {displayRestrictions(titre.instruction.results.restrictions)}
+        {displayRestrictions(titre?.instruction?.results?.restrictions)}
         <div className={`${styles['spaced']} fr-grid-row fr-my-3w`}>
           <p>{VALIDITY.DURATION}</p>
           <CqItemFlagged
-            label={`${titre.informations.validityDurationInYears} ans`}
+            label={`${titre?.informations?.validityDurationInYears} ans`}
           />
         </div>
         <div className={`${styles['spaced']} fr-grid-row fr-my-2w`}>
@@ -118,7 +118,7 @@ const Recap = (props) => {
           <CqItemFlagged
             label={computeEndDate(
               getTodayDate(),
-              titre.informations.validityDurationInYears
+              titre?.informations?.validityDurationInYears
             )}
           />
         </div>
@@ -126,13 +126,13 @@ const Recap = (props) => {
         <CqItemTitre
           id={currentTitreId}
           subtitle={VARIOUS.RECAPITULATIF}
-          name={displayRestrictions(titre.instruction.results.restrictions)}
+          name={displayRestrictions(titre?.instruction?.results?.restrictions)}
           status={{
             type: STATUS_TYPES.DOSSIER,
           }}
           details={{
             type: DETAILS_TYPE.CONDITIONS,
-            content: titre.instruction,
+            content: titre?.instruction,
           }}
           action={{
             label: BUTTON_LABELS.CONFIRM,
