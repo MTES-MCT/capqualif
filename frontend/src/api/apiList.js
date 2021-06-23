@@ -5,3 +5,8 @@ export const ALL_TITRES_ENDPOINT = 'titres';
 export const CONDITIONS_ENDPOINT = 'instruction/comparaison';
 export const CAPADMIN_ENDPOINT = 'capadmin';
 export const CAPADMIN_TITRES_ENDPOINT = 'titres';
+
+/**
+ * Mobile
+ */
+export const REQUESTS_ENDPOINT = 'requests';

@@ -28,7 +28,10 @@ import {
   convertDateToEuropeanFormat,
   findIndex,
 } from '../../../../../../app/utils';
-import { addStartDate } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
+import {
+  addStartDate,
+  postRequest,
+} from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
 import GenericError from '../../../../../capqualif/errors/GenericError';
 import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';
 
@@ -47,6 +50,9 @@ const Recap = (props) => {
   const currentTitreId = useSelector(
     (state) => state.currentRequest.currentTitre.id
   );
+  const possibleRequests = useSelector(
+    (state) => state.requests.possibleRequests
+  );
 
   /**
    * Let's find the titre that the marin is requesting in all possible titres
@@ -59,6 +65,13 @@ const Recap = (props) => {
    */
   const confirmRequest = () => {
     dispatch(addStartDate(currentTitreId));
+    dispatch(
+      postRequest(
+        possibleRequests[
+          findIndex(possibleRequests, 'requestTitreId', currentTitreId)
+        ]
+      )
+    );
     // dispatch(getMarinBasicDataByNumeroDeMarin(numeroDeMarin))
     // .then(unwrapResult)
     // .then(() => {

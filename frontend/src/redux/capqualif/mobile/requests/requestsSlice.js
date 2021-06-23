@@ -1,5 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { CAPQUALIF_URL, REQUESTS_ENDPOINT } from '../../../../api/apiList';
+
 import { findIndex } from '../../../../app/utils';
 
 const initialState = {
@@ -10,6 +12,17 @@ const initialState = {
   },
   possibleRequests: [],
 };
+
+export const postRequest = createAsyncThunk(
+  'requests/postRequest',
+  async (request, thunkAPI) => {
+    const response = await axios.post(
+      `${CAPQUALIF_URL}/${REQUESTS_ENDPOINT}`,
+      request
+    );
+    return response.data;
+  }
+);
 
 const requestsSlice = createSlice({
   name: 'requests',
@@ -66,6 +79,17 @@ const requestsSlice = createSlice({
           action.payload.titreId
         )
       ].canBeSent = action.payload.canRequestBeSent;
+    },
+  },
+  extraReducers: {
+    [postRequest.fulfilled]: (state, action) => {
+      state.possibleRequests[
+        findIndex(
+          state.possibleRequests,
+          'requestedTitreId',
+          action.payload.titreId
+        )
+      ] = action.payload;
     },
   },
 });
