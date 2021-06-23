@@ -30,6 +30,7 @@ import {
 } from '../../../../../../app/utils';
 import { addStartDate } from '../../../../../../redux/capqualif/mobile/requests/requestsSlice';
 import GenericError from '../../../../../capqualif/errors/GenericError';
+import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';
 
 const Recap = (props) => {
   /**
@@ -57,8 +58,32 @@ const Recap = (props) => {
    * Actions on click event
    */
   const confirmRequest = () => {
-    dispatch(addStartDate());
+    dispatch(addStartDate(currentTitreId));
+    // dispatch(getMarinBasicDataByNumeroDeMarin(numeroDeMarin))
+    // .then(unwrapResult)
+    // .then(() => {
+    //   history.push(`${DESKTOP}/${DASHBOARD_ROUTE}`);
+    // })
+    // .catch(() => {
+    //   history.push('/error');
+    // });
     history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${CONFIRMATION_ROUTE}`);
+  };
+
+  /**
+   * TODO: transfer this to backend?
+   * */
+  const computeEndDate = (startDate, duration) => {
+    const endDate = new Date(
+      startDate.getFullYear() + parseInt(duration),
+      startDate.getMonth(),
+      startDate.getDate() - 1
+    );
+    return convertDateToEuropeanFormat(endDate);
+  };
+
+  const getTodayDate = () => {
+    return new Date();
   };
 
   /**
@@ -76,22 +101,6 @@ const Recap = (props) => {
         ))}
       </p>
     );
-  };
-
-  /**
-   * TODO: transfer this to backend
-   * */
-  const computeEndDate = (startDate, duration) => {
-    const endDate = new Date(
-      startDate.getFullYear() + parseInt(duration),
-      startDate.getMonth(),
-      startDate.getDate() - 1
-    );
-    return convertDateToEuropeanFormat(endDate);
-  };
-
-  const getTodayDate = () => {
-    return new Date();
   };
 
   return titre ? (
@@ -134,12 +143,12 @@ const Recap = (props) => {
             type: DETAILS_TYPE.CONDITIONS,
             content: titre?.instruction,
           }}
-          action={{
-            label: BUTTON_LABELS.CONFIRM,
-            width: BUTTON_WIDTH.FULL,
-            marginsInRem: { top: 1, bottom: 1 },
-            onClick: confirmRequest,
-          }}
+        />
+        <ButtonAction
+          label={BUTTON_LABELS.CONFIRM}
+          width={BUTTON_WIDTH.FULL}
+          marginsInRem={{ top: 1, bottom: 1 }}
+          actionOnClick={confirmRequest}
         />
       </div>
     </Fragment>

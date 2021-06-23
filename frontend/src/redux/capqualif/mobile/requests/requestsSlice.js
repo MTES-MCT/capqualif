@@ -34,12 +34,14 @@ const requestsSlice = createSlice({
     /**
      * TODO : refactor state.
      * */
-    addStartDate(state) {
-      const today = new Date();
-      state.startDate = today.toDateString;
+    addStartDate(state, action) {
+      const today = new Date().toDateString();
+      state.possibleRequests[
+        findIndex(state.possibleRequests, 'requestedTitreId', action.payload)
+      ].startDate = today;
     },
     addStatus(state, action) {
-      state.status = action.payload;
+      // state.status = action.payload;
     },
     addDocuments(state, action) {
       const { titreId, condition } = action.payload;
