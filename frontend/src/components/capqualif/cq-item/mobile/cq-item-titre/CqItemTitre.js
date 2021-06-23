@@ -75,7 +75,7 @@ const CqItemTitre = ({
      * If CqItemTitre is a request item, we should use the state value.
      * If CqItemTitre is a marin's titre item, we should use titre's value.
      */
-    return typeOfItem === STATUS_TYPES.REQUEST
+    return typeOfItem === STATUS_TYPES.DOSSIER
       ? canRequestBeSent
       : status.value;
   };

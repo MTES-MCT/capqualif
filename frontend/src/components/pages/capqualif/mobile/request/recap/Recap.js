@@ -129,7 +129,6 @@ const Recap = (props) => {
           name={displayRestrictions(titre.instruction.results.restrictions)}
           status={{
             type: STATUS_TYPES.DOSSIER,
-            value: titre.instruction.dossierStatus,
           }}
           details={{
             type: DETAILS_TYPE.CONDITIONS,
