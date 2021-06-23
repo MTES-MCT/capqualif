@@ -43,9 +43,7 @@ const ChooseTitre = (props) => {
       possibleRequests[findIndex(possibleRequests, 'requestedTitreId', id)]
         .canBeSent
     ) {
-      history.push(
-        `${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_RECAP_ROUTE}`
-      );
+      history.push(`${NEW_TITRE_REQUEST_RECAP_ROUTE}`);
     }
   };
 
@@ -74,7 +72,8 @@ const ChooseTitre = (props) => {
                 label: BUTTON_LABELS.DEMAND_THIS,
                 labelSize: FONT_SIZES.SMALL,
                 width: BUTTON_WIDTH.FULL,
-                onClick: () => requestThisTitre(titre.informations.id),
+                onClick: () =>
+                  requestThisTitre(titre.informations.id, possibleRequests),
               }}
             />
           ))}

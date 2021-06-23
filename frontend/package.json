@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.1.0",
     "axios": "^0.21.1",
     "env-cmd": "^10.1.0",
+    "nested-property": "^4.0.0",
     "node-sass": "^4.14.1",
     "obj-traverse": "^1.0.0",
     "prop-types": "^15.7.2",

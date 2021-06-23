@@ -101,6 +101,7 @@ const Dashboard = (props) => {
           <h2>Mes demandes</h2>
           {allRequests.map((request) => (
             <CqItemTitre
+              id={'1'}
               name={request.requestedTitre}
               status={{
                 type: STATUS_TYPES.REQUEST,
@@ -163,11 +164,6 @@ const Dashboard = (props) => {
           width={BUTTON_WIDTH.FULL}
           actionOnClick={() => startRequest(marin, requestableTitres)}
         />
-        {/* <ButtonLink
-          label={BUTTON_LABELS.DEMAND_ONE}
-          width={BUTTON_WIDTH.FULL}
-          route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`}
-        /> */}
       </div>
     </Fragment>
   );

@@ -28,22 +28,6 @@ const requestsSlice = createSlice({
         canBeSent: false,
       });
     },
-    // addRequestor(state, action) {
-    //   const request =
-    //     state.possibleRequests[
-    //       findIndex(
-    //         state.possibleRequests,
-    //         'requestedTitreId',
-    //         action.payload.titreId
-    //       )
-    //     ].requestor;
-    //   request.numeroDeMarin = action.payload.numeroDeMarin;
-    //   request.firstName = action.payload.firstName;
-    //   request.lastName = action.payload.lastName;
-    // },
-    // addrequestedTitreId(state, action) {
-    //   state.requestedTitreId = action.payload;
-    // },
     cleanRequests(state) {
       state.possibleRequests = [];
     },
@@ -63,7 +47,6 @@ const requestsSlice = createSlice({
         state.possibleRequests[
           findIndex(state.possibleRequests, 'requestedTitreId', titreId)
         ].documents;
-
       if (
         isConditionAlreadyInTheArray(documents, 'conditionId', condition.id)
       ) {

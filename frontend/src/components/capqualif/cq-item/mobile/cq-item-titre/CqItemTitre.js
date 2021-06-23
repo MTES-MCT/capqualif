@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import CqItemBase from '../../elements/CqItemBase';
@@ -28,10 +28,12 @@ const CqItemTitre = ({
   /**
    * Let's select data from global state (redux)
    */
-  const canRequestBeSent = useSelector((state) => state.requests.canBeSent);
   const titres = useSelector((state) => state.instructions.possibleTitres);
   const possibleRequests = useSelector(
     (state) => state.requests.possibleRequests
+  );
+  const possibleTitres = useSelector(
+    (state) => state.instructions.possibleTitres
   );
 
   /**
@@ -39,39 +41,30 @@ const CqItemTitre = ({
    * to display it in the UI!
    */
 
-  const titre = titres[findIndex(titres, 'informations.id', id)];
-
-  const isPossibleRequestsEmpty = (possibleRequests) => {
-    return possibleRequests.length === 0 ? true : false;
-  };
+  const titre = titres[findIndex(titres, 'informations.id', '1')];
 
   /**
    * Let's check if the request can be sent
    */
   useEffect(() => {
-    console.log('findex', findIndex(titres, 'informations.id', id));
-    console.log('titres', titres);
-    console.log('id', id);
-    console.log('titre', titre);
-    console.log('possibleRequests', possibleRequests);
-    console.log(
-      'isPossibleRequestsEmpty',
-      isPossibleRequestsEmpty(possibleRequests)
-    );
     if (titre && !isPossibleRequestsEmpty(possibleRequests)) {
-      const canRequestBeSent = checkIfRequestCanBeSent(
+      const canBeSent = checkIfRequestCanBeSent(
         titre.instruction.marinIdentity.identityMarkers,
         titre.instruction.results.allConditionsGroups
       );
-      console.log('canRequestBeSent', canRequestBeSent);
+      console.log('canRequestBeSent', canBeSent);
       dispatch(
         setCanBeSent({
           titreId: id,
-          canRequestBeSent: canRequestBeSent,
+          canRequestBeSent: canBeSent,
         })
       );
     }
-  }, []);
+  }, [possibleTitres]);
+
+  const isPossibleRequestsEmpty = (possibleRequests) => {
+    return possibleRequests.length === 0 ? true : false;
+  };
 
   return (
     <CqItemBase
@@ -91,7 +84,11 @@ const CqItemTitre = ({
                   labelSize={action.labelSize}
                   width={action.width}
                   actionOnClick={action.onClick}
-                  isDisabled={!canRequestBeSent}
+                  isDisabled={
+                    !possibleRequests[
+                      findIndex(possibleRequests, 'requestedTitreId', id)
+                    ].canBeSent
+                  }
                 />
               )
             }
