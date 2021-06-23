@@ -22,10 +22,11 @@ function resolve(path, obj) {
 // ========= Convert date : start =======================
 
 export const convertDateToEuropeanFormat = (dateSource) => {
-  if (
-    dateSource &&
-    (dateSource instanceof String || dateSource instanceof Date)
-  ) {
+  console.log(typeof dateSource);
+  console.log(dateSource instanceof String);
+  console.log(dateSource instanceof Date);
+  if (dateSource && (isString(dateSource) || dateSource instanceof Date)) {
+    console.log('trig');
     const date =
       typeof dateSource === 'string' || dateSource instanceof String
         ? convertToDate(dateSource)
@@ -39,6 +40,10 @@ export const convertDateToEuropeanFormat = (dateSource) => {
 
 const convertToDate = (dateString) => {
   return new Date(dateString);
+};
+
+const isString = (dateSource) => {
+  return typeof dateSource === 'string' || dateSource instanceof String;
 };
 
 // ========= Convert date : end =======================

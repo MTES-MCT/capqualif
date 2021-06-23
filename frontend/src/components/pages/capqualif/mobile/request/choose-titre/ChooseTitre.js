@@ -62,7 +62,6 @@ const ChooseTitre = (props) => {
               name={titre.informations.name}
               status={{
                 type: STATUS_TYPES.DOSSIER,
-                value: titre.instruction.dossierStatus,
               }}
               details={{
                 type: DETAILS_TYPE.CONDITIONS,

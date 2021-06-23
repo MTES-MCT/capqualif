@@ -31,7 +31,8 @@ const CqItemTitreDetails = ({ isVisible, titreId, details, action }) => {
   };
 
   const displayRequests = () => {
-    const { startDate } = details.content.startDate;
+    console.log(details);
+    const startDate = details.content.startDate;
     const { instructionStatus } = details.content;
     return (
       <div className={`${isVisible ? '' : styles.hidden}`}>

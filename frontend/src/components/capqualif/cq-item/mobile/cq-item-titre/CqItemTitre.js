@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCanBeSent } from '../../../../../redux/capqualif/mobile/requests/requestsSlice';
 import { checkIfRequestCanBeSent } from '../../../../pages/capqualif/mobile/request/recap/checker';
 import { findIndex } from '../../../../../app/utils';
+import { STATUS_TYPES } from '../../../../../dictionnary/demandeDeTitre';
 
 const CqItemTitre = ({
   id,
@@ -35,6 +36,9 @@ const CqItemTitre = ({
   const possibleTitres = useSelector(
     (state) => state.instructions.possibleTitres
   );
+  const canRequestBeSent =
+    possibleRequests[findIndex(possibleRequests, 'requestedTitreId', id)]
+      ?.canBeSent;
 
   /**
    * Let's find the titre that the marin is requesting in all possible titres
@@ -66,11 +70,30 @@ const CqItemTitre = ({
     return possibleRequests.length === 0 ? true : false;
   };
 
+  const chooseWhichValueToUse = (typeOfItem) => {
+    /**
+     * If CqItemTitre is a request item, we should use the state value.
+     * If CqItemTitre is a marin's titre item, we should use titre's value.
+     */
+    return typeOfItem === STATUS_TYPES.REQUEST
+      ? canRequestBeSent
+      : status.value;
+  };
+
   return (
     <CqItemBase
       subtitle={subtitle}
       name={name}
-      status={status && <CqItemStatus status={status} />}
+      status={
+        status && (
+          <CqItemStatus
+            status={{
+              type: status.type,
+              value: chooseWhichValueToUse(status.type),
+            }}
+          />
+        )
+      }
       date={expirationDate && <CqItemTitreDate date={expirationDate} />}
       details={
         details && (
