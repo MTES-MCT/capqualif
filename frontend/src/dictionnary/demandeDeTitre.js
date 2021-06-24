@@ -16,6 +16,9 @@ export const REQUEST = {
         PART_2: 'a bien été envoyée',
       },
     },
+    NOT_SENT: {
+      SHORT: 'Demande non envoyée',
+    },
   },
   DATES: {
     START_DATE: 'Date de la demande',

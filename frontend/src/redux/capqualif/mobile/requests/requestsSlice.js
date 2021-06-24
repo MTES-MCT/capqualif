@@ -3,6 +3,7 @@ import axios from 'axios';
 import { CAPQUALIF_URL, REQUESTS_ENDPOINT } from '../../../../api/apiList';
 
 import { findIndex } from '../../../../app/utils';
+import { REQUEST } from '../../../../dictionnary/demandeDeTitre';
 
 const initialState = {
   requestor: {
@@ -35,7 +36,7 @@ const requestsSlice = createSlice({
       state.possibleRequests.push({
         requestedTitreId: action.payload.titreId,
         startDate: '',
-        requestStatus: '',
+        requestStatus: REQUEST.STATUS_REQUEST.NOT_SENT.SHORT,
         instructionStatus: '',
         documents: [],
         canBeSent: false,
