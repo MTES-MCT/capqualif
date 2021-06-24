@@ -1,13 +1,11 @@
 package fr.gouv.mte.capqualif.capqualif.request.domain.marin.request;
 
-import java.util.List;
-
 public class RequestDetails {
-    public String requestedTitreId;
-    public String startDate;
-    public String requestStatus;
-    public List<Object> documents;
-    public boolean canBeSent;
+    private String requestedTitreId;
+    private String startDate;
+    private String requestStatus;
+    private Document document;
+    private boolean canBeSent;
 
     public String getRequestedTitreId() {
         return requestedTitreId;
@@ -21,8 +19,8 @@ public class RequestDetails {
         return requestStatus;
     }
 
-    public List<Object> getDocuments() {
-        return documents;
+    public Document getDocuments() {
+        return document;
     }
 
     public boolean isCanBeSent() {
@@ -35,7 +33,7 @@ public class RequestDetails {
                 "requestedTitreId='" + requestedTitreId + '\'' +
                 ", startDate='" + startDate + '\'' +
                 ", requestStatus='" + requestStatus + '\'' +
-                ", documents=" + documents +
+                ", documents=" + document +
                 ", canBeSent=" + canBeSent +
                 '}';
     }

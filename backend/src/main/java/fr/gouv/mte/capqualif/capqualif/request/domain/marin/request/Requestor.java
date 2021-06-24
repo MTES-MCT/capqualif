@@ -1,9 +1,9 @@
 package fr.gouv.mte.capqualif.capqualif.request.domain.marin.request;
 
 public class Requestor {
-    public String numeroDeMarin;
-    public String firstName;
-    public String lastName;
+    private String numeroDeMarin;
+    private String firstName;
+    private String lastName;
 
     public String getNumeroDeMarin() {
         return numeroDeMarin;
