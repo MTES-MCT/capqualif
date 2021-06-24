@@ -12,7 +12,6 @@ import {
   MOBILE,
 } from '../../../../../../app/routesDictionnary';
 import { BUTTON_WIDTH } from '../../../../../../dictionnary/saas/variables';
-import ButtonAction from '../../../../../capqualif/buttons/button-action/ButtonAction';
 import ButtonLink from '../../../../../capqualif/buttons/ButtonLink';
 
 const Confirmation = (props) => {
@@ -32,7 +31,7 @@ const Confirmation = (props) => {
         <ButtonLink
           label={BUTTON_LABELS.GO_BACK_HOME}
           width={BUTTON_WIDTH.FULL}
-          route={`${MOBILE}/${DASHBOARD_ROUTE}`}
+          route={`/${MOBILE}/${DASHBOARD_ROUTE}`}
         />
       </div>
     </div>
