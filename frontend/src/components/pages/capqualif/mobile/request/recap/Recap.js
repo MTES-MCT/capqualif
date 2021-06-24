@@ -67,11 +67,11 @@ const Recap = (props) => {
    * Actions on click event
    */
   const confirmRequest = () => {
-    dispatch(addStartDate(currentTitreId));
+    // dispatch(addStartDate(currentTitreId));
     dispatch(
       postRequest({
         requestor: requestor,
-        requestDetails:
+        details:
           possibleRequests[
             findIndex(possibleRequests, 'requestedTitreId', currentTitreId)
           ],

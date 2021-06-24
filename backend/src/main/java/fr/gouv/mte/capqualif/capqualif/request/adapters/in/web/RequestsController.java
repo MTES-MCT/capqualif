@@ -14,7 +14,8 @@ public class RequestsController {
     private CreateRequestUseCase createRequestUseCase;
 
     @PostMapping
-    public Request createRequest(@PathVariable("request") Request request) {
+    public Request createRequest(@RequestBody Request request) {
+        System.out.println(request);
         return createRequestUseCase.createRequest(request);
     }
 

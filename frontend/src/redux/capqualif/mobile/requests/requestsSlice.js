@@ -16,7 +16,16 @@ const initialState = {
 
 export const postRequest = createAsyncThunk(
   'requests/postRequest',
-  async (request, thunkAPI) => {
+  async (sourceRequest, thunkAPI) => {
+    const request = {
+      requestor: {
+        ...sourceRequest.requestor,
+      },
+      details: {
+        ...sourceRequest.details,
+        startDate: getTodayDate(),
+      },
+    };
     if (isRequestFilled(request)) {
       const response = await axios.post(
         `${CAPQUALIF_URL}/${REQUESTS_ENDPOINT}`,
@@ -27,8 +36,11 @@ export const postRequest = createAsyncThunk(
   }
 );
 
+/**
+ * TODO: validate more than just the fact that request is filled
+ */
 const isRequestFilled = (request) => {
-  return !isEmpty(request.requestor) && !isEmpty(request.requestDetails);
+  return !isEmpty(request.requestor) && !isEmpty(request.details);
 };
 
 const requestsSlice = createSlice({
@@ -49,18 +61,6 @@ const requestsSlice = createSlice({
     },
     cleanRequests(state) {
       state.possibleRequests = [];
-    },
-    /**
-     * TODO : refactor state.
-     * */
-    addStartDate(state, action) {
-      const today = new Date().toDateString();
-      state.possibleRequests[
-        findIndex(state.possibleRequests, 'requestedTitreId', action.payload)
-      ].startDate = today;
-    },
-    addStatus(state, action) {
-      // state.status = action.payload;
     },
     addDocuments(state, action) {
       const { titreId, condition } = action.payload;
@@ -101,6 +101,10 @@ const requestsSlice = createSlice({
     },
   },
 });
+
+const getTodayDate = () => {
+  return new Date().toDateString();
+};
 
 const isConditionAlreadyInTheArray = (array, property, value) => {
   return findIndex(array, property, value) !== -1 ? true : false;
