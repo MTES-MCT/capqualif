@@ -43,7 +43,6 @@ const Add = (props) => {
 
   const addPicturesToRequest = () => {
     dispatch(addDocuments({ titreId: titreId, condition: renameCondition() }));
-    // dispatch(changeConditionStatus(conditionToModify.id));
     dispatch(cleanCurrentCondition());
     history.push(
       `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${NEW_TITRE_REQUEST_CHOICE_ROUTE}`

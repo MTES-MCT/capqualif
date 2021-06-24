@@ -31,7 +31,6 @@ const CqItemTitreDetails = ({ isVisible, titreId, details, action }) => {
   };
 
   const displayRequests = () => {
-    console.log(details);
     const startDate = details.content.startDate;
     const { instructionStatus } = details.content;
     return (

@@ -56,7 +56,6 @@ const CqItemTitre = ({
         titre.instruction.marinIdentity.identityMarkers,
         titre.instruction.results.allConditionsGroups
       );
-      console.log('canRequestBeSent', canBeSent);
       dispatch(
         setCanBeSent({
           titreId: id,

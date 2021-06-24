@@ -29,11 +29,7 @@ export const isEmpty = (object) => {
 // ========= Convert date : start =======================
 
 export const convertDateToEuropeanFormat = (dateSource) => {
-  console.log(typeof dateSource);
-  console.log(dateSource instanceof String);
-  console.log(dateSource instanceof Date);
   if (dateSource && (isString(dateSource) || dateSource instanceof Date)) {
-    console.log('trig');
     const date =
       typeof dateSource === 'string' || dateSource instanceof String
         ? convertToDate(dateSource)

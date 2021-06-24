@@ -22,6 +22,7 @@ import CqItemTitre from '../../../../../capqualif/cq-item/mobile/cq-item-titre/C
 import { BUTTON_WIDTH } from '../../../../../../dictionnary/saas/variables';
 import {
   CONFIRMATION_ROUTE,
+  ERROR_ROUTE,
   MOBILE,
   NEW_TITRE_REQUEST_ROUTE,
 } from '../../../../../../app/routesDictionnary';
@@ -51,6 +52,7 @@ const Recap = (props) => {
   const currentTitreId = useSelector(
     (state) => state.currentRequest.currentTitre.id
   );
+  const requestor = useSelector((state) => state.requests.requestor);
   const possibleRequests = useSelector(
     (state) => state.requests.possibleRequests
   );
@@ -67,11 +69,13 @@ const Recap = (props) => {
   const confirmRequest = () => {
     dispatch(addStartDate(currentTitreId));
     dispatch(
-      postRequest(
-        possibleRequests[
-          findIndex(possibleRequests, 'requestTitreId', currentTitreId)
-        ]
-      )
+      postRequest({
+        requestor: requestor,
+        requestDetails:
+          possibleRequests[
+            findIndex(possibleRequests, 'requestedTitreId', currentTitreId)
+          ],
+      })
     )
       .then(unwrapResult)
       .then(() => {
@@ -80,7 +84,7 @@ const Recap = (props) => {
         );
       })
       .catch(() => {
-        history.push('/error');
+        history.push(`/${MOBILE}/${ERROR_ROUTE}`);
       });
   };
 

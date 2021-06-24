@@ -27,8 +27,8 @@ export const postRequest = createAsyncThunk(
   }
 );
 
-const isRequestFilled = (state, request) => {
-  // return !isEmpty(state.requestor) &&
+const isRequestFilled = (request) => {
+  return !isEmpty(request.requestor) && !isEmpty(request.requestDetails);
 };
 
 const requestsSlice = createSlice({
@@ -43,7 +43,6 @@ const requestsSlice = createSlice({
         requestedTitreId: action.payload.titreId,
         startDate: '',
         requestStatus: REQUEST.STATUS_REQUEST.NOT_SENT.SHORT,
-        instructionStatus: '',
         documents: [],
         canBeSent: false,
       });
@@ -68,17 +67,16 @@ const requestsSlice = createSlice({
       const documents =
         state.possibleRequests[
           findIndex(state.possibleRequests, 'requestedTitreId', titreId)
-        ].documents;
-      /**
-       * WHY???
-       */
-      if (
-        isConditionAlreadyInTheArray(documents, 'conditionId', condition.id)
-      ) {
-        const newDocuments = action.payload.conditionDocuments;
-        updateDocuments(documents, 'conditionId', condition.id, newDocuments);
-      } else {
-        documents.push(condition);
+        ]?.documents;
+      if (documents) {
+        if (
+          isConditionAlreadyInTheArray(documents, 'conditionId', condition.id)
+        ) {
+          const newDocuments = action.payload.conditionDocuments;
+          updateDocuments(documents, 'conditionId', condition.id, newDocuments);
+        } else {
+          documents.push(condition);
+        }
       }
     },
     setCanBeSent(state, action) {
@@ -105,17 +103,6 @@ const requestsSlice = createSlice({
 });
 
 const isConditionAlreadyInTheArray = (array, property, value) => {
-  console.log('array', array);
-  console.log('property', property);
-  console.log('value', value);
-  console.log(
-    'findIndex(array, property, value)',
-    findIndex(array, property, value)
-  );
-  console.log(
-    'isConditionAlreadyInTheArray',
-    findIndex(array, property, value) !== -1 ? true : false
-  );
   return findIndex(array, property, value) !== -1 ? true : false;
 };
 

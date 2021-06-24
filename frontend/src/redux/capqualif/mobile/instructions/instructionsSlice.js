@@ -131,7 +131,7 @@ const initialState = {
                 {
                   id: '221',
                   name: 'Techniques individuelles de survie (UV- TIS-F) ',
-                  status: CONDITION.STATUS.NOT_VALID,
+                  status: CONDITION.STATUS.VALID,
                 },
                 {
                   id: '222',
