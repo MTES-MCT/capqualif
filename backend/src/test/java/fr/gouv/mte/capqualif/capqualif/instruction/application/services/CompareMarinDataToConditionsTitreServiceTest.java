@@ -5,7 +5,7 @@ import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.out.GetMari
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.ComparisonsSummary;
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.ExtractionResult;
 import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.*;
-import fr.gouv.mte.capqualif.capqualif.demande.domain.marin.Marin;
+import fr.gouv.mte.capqualif.capqualif.request.domain.marin.Marin;
 import fr.gouv.mte.capqualif.shared.TimeConverter;
 import fr.gouv.mte.capqualif.capadmin.titreTemp.application.ports.out.GetTitrePort;
 import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.*;
