@@ -9,10 +9,10 @@ import { HOME_ROUTE } from '../../../app/routesDictionnary';
 
 const GenericError = (props) => {
   return (
-    <Fragment>
+    <div className={`${styles['error-container']}`}>
       <h3>{ERROR.MESSAGE}</h3>
       <Link to={HOME_ROUTE}>{ERROR.NEXT_ACTION}</Link>
-    </Fragment>
+    </div>
   );
 };
 

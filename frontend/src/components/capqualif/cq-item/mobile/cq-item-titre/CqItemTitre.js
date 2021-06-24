@@ -110,7 +110,7 @@ const CqItemTitre = ({
                   isDisabled={
                     !possibleRequests[
                       findIndex(possibleRequests, 'requestedTitreId', id)
-                    ].canBeSent
+                    ]?.canBeSent
                   }
                 />
               )

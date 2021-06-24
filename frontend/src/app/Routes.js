@@ -14,7 +14,6 @@ import {
   DESKTOP,
   MOBILE,
   ADD_PICTURE_ROUTE,
-  HOME_ROUTE,
 } from './routesDictionnary';
 
 import MobileDashboard from '../components/pages/capqualif/mobile/dashboard/Dashboard';
@@ -24,6 +23,7 @@ import MobileConfirmation from '../components/pages/capqualif/mobile/request/con
 import MobileAddDocument from '../components/pages/capqualif/mobile/add-document/Add';
 import MobileAddPicture from '../components/pages/capqualif/mobile/add-document/add-picture/AddPicture';
 import MobileConfirmPicture from '../components/pages/capqualif/mobile/add-document/confirm-picture/ConfirmPicture';
+import MobileError from '../components/capqualif/errors/GenericError';
 
 import DesktopDashboard from '../components/pages/capqualif/desktop/dashboard/Dashboard';
 import DesktopNewTitreChoice from '../components/pages/capqualif/desktop/new-titre-application/new-titre-choice/NewTitreChoice';
@@ -73,6 +73,11 @@ const Routes = () => {
           exact
           path={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}/${CONFIRMATION_ROUTE}`}
           component={MobileConfirmPicture}
+        />
+        <Route
+          exact
+          path={`/${MOBILE}/${ERROR_ROUTE}`}
+          component={MobileError}
         />
 
         {/* ==================================================================== */}

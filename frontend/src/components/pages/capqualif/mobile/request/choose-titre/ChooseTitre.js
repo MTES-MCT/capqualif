@@ -37,6 +37,7 @@ const ChooseTitre = (props) => {
   const requestThisTitre = (id, possibleRequests) => {
     dispatch(setCurrentTitreId(id));
     if (
+      possibleRequests.length > 0 &&
       possibleRequests[findIndex(possibleRequests, 'requestedTitreId', id)]
         ?.canBeSent
     ) {

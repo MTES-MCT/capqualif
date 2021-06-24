@@ -40,12 +40,13 @@ const Validity = ({ document, titreId, status, validLabel, notValidLabel }) => {
       const addedDocuments =
         possibleRequests[
           findIndex(possibleRequests, 'requestedTitreId', titreId)
-        ].documents;
+        ]?.documents;
       const index = findIndex(addedDocuments, 'conditionId', document.id);
       if (
         index !== -1 &&
+        addedDocuments &&
         addedDocuments[findIndex(addedDocuments, 'conditionId', document.id)]
-          .conditionDocuments.length > 0
+          ?.conditionDocuments.length > 0
       ) {
         dispatch(changeConditionStatus(document.id));
       }

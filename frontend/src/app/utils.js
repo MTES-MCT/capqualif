@@ -4,10 +4,26 @@ export const findInArray = (array, property, value) => {
   return array.find((condition) => condition[property] === value);
 };
 
+/**
+ *
+ * @param {*} array
+ * @param {*} property
+ * @param {*} value
+ * @returns if one of the params is not ok, returning -1 means the index cannot be found
+ */
 export const findIndex = (array, property, value) => {
-  return array.findIndex(
-    (element) => nestedProperty.get(element, property) === value
-  );
+  return array && property && value
+    ? array.findIndex(
+        (element) => nestedProperty.get(element, property) === value
+      )
+    : -1;
+};
+
+/**
+ * Source: https://stackoverflow.com/a/49427583
+ */
+export const isEmpty = (object) => {
+  return !Object.values(object).some((x) => x !== null && x !== '');
 };
 
 // ========= Convert date : start =======================

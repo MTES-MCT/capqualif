@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { CAPQUALIF_URL, REQUESTS_ENDPOINT } from '../../../../api/apiList';
 
-import { findIndex } from '../../../../app/utils';
+import { findIndex, isEmpty } from '../../../../app/utils';
 import { REQUEST } from '../../../../dictionnary/demandeDeTitre';
 
 const initialState = {
@@ -17,13 +17,19 @@ const initialState = {
 export const postRequest = createAsyncThunk(
   'requests/postRequest',
   async (request, thunkAPI) => {
-    const response = await axios.post(
-      `${CAPQUALIF_URL}/${REQUESTS_ENDPOINT}`,
-      request
-    );
-    return response.data;
+    if (isRequestFilled(request)) {
+      const response = await axios.post(
+        `${CAPQUALIF_URL}/${REQUESTS_ENDPOINT}`,
+        request
+      );
+      return response.data;
+    }
   }
 );
+
+const isRequestFilled = (state, request) => {
+  // return !isEmpty(state.requestor) &&
+};
 
 const requestsSlice = createSlice({
   name: 'requests',
@@ -63,11 +69,14 @@ const requestsSlice = createSlice({
         state.possibleRequests[
           findIndex(state.possibleRequests, 'requestedTitreId', titreId)
         ].documents;
+      /**
+       * WHY???
+       */
       if (
         isConditionAlreadyInTheArray(documents, 'conditionId', condition.id)
       ) {
         const newDocuments = action.payload.conditionDocuments;
-        updateDocuments(documents, condition.id, newDocuments);
+        updateDocuments(documents, 'conditionId', condition.id, newDocuments);
       } else {
         documents.push(condition);
       }
@@ -96,12 +105,23 @@ const requestsSlice = createSlice({
 });
 
 const isConditionAlreadyInTheArray = (array, property, value) => {
+  console.log('array', array);
+  console.log('property', property);
+  console.log('value', value);
+  console.log(
+    'findIndex(array, property, value)',
+    findIndex(array, property, value)
+  );
+  console.log(
+    'isConditionAlreadyInTheArray',
+    findIndex(array, property, value) !== -1 ? true : false
+  );
   return findIndex(array, property, value) !== -1 ? true : false;
 };
 
-const updateDocuments = (documents, conditionId, newDocuments) => {
+const updateDocuments = (documents, property, conditionId, newDocuments) => {
   documents[
-    findIndex(documents, conditionId)
+    findIndex(documents, property, conditionId)
   ].conditionDocuments = newDocuments;
 };
 

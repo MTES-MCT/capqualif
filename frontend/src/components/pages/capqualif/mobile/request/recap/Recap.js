@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -71,16 +72,16 @@ const Recap = (props) => {
           findIndex(possibleRequests, 'requestTitreId', currentTitreId)
         ]
       )
-    );
-    // dispatch(getMarinBasicDataByNumeroDeMarin(numeroDeMarin))
-    // .then(unwrapResult)
-    // .then(() => {
-    //   history.push(`${DESKTOP}/${DASHBOARD_ROUTE}`);
-    // })
-    // .catch(() => {
-    //   history.push('/error');
-    // });
-    history.push(`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${CONFIRMATION_ROUTE}`);
+    )
+      .then(unwrapResult)
+      .then(() => {
+        history.push(
+          `/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${CONFIRMATION_ROUTE}`
+        );
+      })
+      .catch(() => {
+        history.push('/error');
+      });
   };
 
   /**
