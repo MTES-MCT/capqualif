@@ -10,7 +10,6 @@ public class DocumentJpaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
     @ManyToOne
     @JoinColumn(name = "request_id")
     private RequestJpaEntity request;

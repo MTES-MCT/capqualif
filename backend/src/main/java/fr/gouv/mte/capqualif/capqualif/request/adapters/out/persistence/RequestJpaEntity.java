@@ -5,6 +5,8 @@ import fr.gouv.mte.capqualif.capqualif.request.domain.marin.request.Requestor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,7 +35,6 @@ public class RequestJpaEntity {
     @Column
     private LocalDateTime startDate;
 
-    @Column
-    @OneToMany(mappedBy = "requestId")
-    private Set<Document> documents;
+    @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
+    private List<DocumentJpaEntity> documents = new ArrayList<>();
 }

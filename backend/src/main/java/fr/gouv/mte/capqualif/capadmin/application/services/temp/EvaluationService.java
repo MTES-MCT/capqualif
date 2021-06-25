@@ -58,7 +58,7 @@ public class EvaluationService {
         if (result.areConditionsSatisfied()) {
             System.out.println("\nxxxxxxxxxxxxx C'est parfait, vous remplissez les conditions pour obtenir ce titre. xxxxxxxxxxxx\n");
         } else {
-            System.out.println("\nxxxxxxxxxxxxx Vous ne remplissez les conditions pour obtenir ce titre. xxxxxxxxxxxx\n");
+            System.out.println("\nxxxxxxxxxxxxx Vous ne remplissez pas les conditions pour obtenir ce titre. xxxxxxxxxxxx\n");
         }
 
         if (!result.areConditionsSatisfied()) {
