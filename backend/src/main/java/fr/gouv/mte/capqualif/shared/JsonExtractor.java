@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.shared;
 
 import com.jayway.jsonpath.JsonPath;
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.ExtractionResult;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ExtractionResult;
 import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.CorrespondingDataInExistingDataSource;
 import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.KeyInExistingDataSource;

@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.capqualif.request.adapters.in.web;
 
 import fr.gouv.mte.capqualif.capqualif.request.application.ports.in.CreateRequestUseCase;
-import fr.gouv.mte.capqualif.capqualif.request.domain.marin.request.Request;
+import fr.gouv.mte.capqualif.capqualif.request.domain.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

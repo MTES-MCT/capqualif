@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capqualif.instruction.domain;
+package fr.gouv.mte.capqualif.capqualif.instruction.domain.archive;
 
 import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.enums.DataType;
 

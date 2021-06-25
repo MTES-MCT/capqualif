@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.capqualif.request.adapters.out.persistence;
 
 import fr.gouv.mte.capqualif.capqualif.request.application.ports.out.CreateRequestPort;
-import fr.gouv.mte.capqualif.capqualif.request.domain.marin.request.Request;
+import fr.gouv.mte.capqualif.capqualif.request.domain.request.Request;
 import org.springframework.stereotype.Component;
 
 @Component

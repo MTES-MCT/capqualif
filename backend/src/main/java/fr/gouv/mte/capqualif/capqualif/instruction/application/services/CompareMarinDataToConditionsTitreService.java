@@ -1,10 +1,10 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.application.services;
 
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.ComparisonResult;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ComparisonResult;
 import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.out.GetMarinDataPort;
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.ComparisonsSummary;
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.ExtractionResult;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ComparisonsSummary;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ExtractionResult;
 import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.CorrespondingDataInExistingDataSource;
 import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.EntryInExistingDataSource;
 import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.ExistingDataSource;

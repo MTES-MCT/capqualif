@@ -2,7 +2,7 @@ package fr.gouv.mte.capqualif.capqualif.request.application.services;
 
 import fr.gouv.mte.capqualif.capqualif.request.application.ports.in.CreateRequestUseCase;
 import fr.gouv.mte.capqualif.capqualif.request.application.ports.out.CreateRequestPort;
-import fr.gouv.mte.capqualif.capqualif.request.domain.marin.request.Request;
+import fr.gouv.mte.capqualif.capqualif.request.domain.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

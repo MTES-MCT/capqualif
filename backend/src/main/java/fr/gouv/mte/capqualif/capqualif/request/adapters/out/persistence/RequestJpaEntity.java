@@ -1,13 +1,11 @@
 package fr.gouv.mte.capqualif.capqualif.request.adapters.out.persistence;
 
-import fr.gouv.mte.capqualif.capqualif.request.domain.marin.request.Document;
-import fr.gouv.mte.capqualif.capqualif.request.domain.marin.request.Requestor;
+import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.persistence.InstructionJpaEntity;
+import fr.gouv.mte.capqualif.capqualif.request.domain.request.StatusRequest;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "requests")
@@ -17,24 +15,23 @@ public class RequestJpaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String requestorId;
+    private Long requestorId;
 
-    @Column
-    private String requestorFirstName;
+    public Long requestedTitreId;
 
-    @Column
-    private String requestorLastName;
+    @OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    public InstructionJpaEntity instruction;
 
-    @Column
-    public String requestedTitreId;
+    @Enumerated
+    private StatusRequest statusRequest;
 
-    @Column
-    private String requestStatus;
-
-    @Column
     private LocalDateTime startDate;
 
+    private LocalDateTime updateDate;
+
+    private Long agentId;
+
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
-    private List<DocumentJpaEntity> documents = new ArrayList<>();
+    private List<DocumentJpaEntity> documents;
 }

@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capqualif.request.domain.marin.request;
+package fr.gouv.mte.capqualif.capqualif.request.domain.request;
 
 public class Requestor {
     private String numeroDeMarin;

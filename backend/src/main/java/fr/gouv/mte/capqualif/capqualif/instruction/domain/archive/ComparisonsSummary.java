@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capqualif.instruction.domain;
+package fr.gouv.mte.capqualif.capqualif.instruction.domain.archive;
 
 import java.util.List;
 import java.util.Objects;
