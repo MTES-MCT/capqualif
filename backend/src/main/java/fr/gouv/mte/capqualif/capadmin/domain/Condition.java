@@ -110,13 +110,13 @@ public class Condition {
         }
     }
 
-    public boolean validate(List<ConditionIdentity> errorsList) {
+    public boolean validate(List<ConditionResult> logs) {
         switch (operator) {
             case "AND":
                 Map<ConditionIdentity, Boolean> andResults = new HashMap<>();
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
-                        boolean validationResult = subCondition.validate(errorsList);
+                        boolean validationResult = subCondition.validate(logs);
                         andResults.put(buildConditionIdentity(subCondition.getName(), subCondition.getGroup().getName(), subCondition.getGroup().getOperator()), validationResult);
                     }
                 }
@@ -129,33 +129,36 @@ public class Condition {
                 Map<ConditionIdentity, Boolean> orResults = new HashMap<>();
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
-                        boolean validationResult = subCondition.validate(errorsList);
+                        boolean validationResult = subCondition.validate(logs);
                         orResults.put(buildConditionIdentity(subCondition.getName(), subCondition.getGroup().getName(), subCondition.getGroup().getOperator()), validationResult);
                     }
                 }
                 System.out.println("orResults : " + orResults);
                 if (orResults.containsValue(Boolean.TRUE)) {
-                    removeErrorsFromOtherFalseSubconditions(errorsList, orResults);
+                    removeErrorsFromOtherFalseSubconditions(logs, orResults);
                     return true;
                 }
                 return false;
             case "==":
                 if (leftOp.isEmpty() || !leftOp.equals(rightOp)) {
-                    addToErrors(errorsList, name, group);
+                    addToLogs(logs, name, group, false);
                     return false;
                 }
+                addToLogs(logs, name, group, true);
                 return true;
             case ">=":
                 if (leftOp.isEmpty() || !(Integer.parseInt(leftOp) >= Integer.parseInt(rightOp))) {
-                    addToErrors(errorsList, name, group);
+                    addToLogs(logs, name, group, false);
                     return false;
                 }
+                addToLogs(logs, name, group, true);
                 return true;
             case "contains":
                 if (!leftOpList.contains(rightOp)) {
-                    addToErrors(errorsList, name, group);
+                    addToLogs(logs, name, group, false);
                     return false;
                 }
+                addToLogs(logs, name, group, true);
                 return true;
             default:
                 System.out.println("validate aouch.");
@@ -169,11 +172,14 @@ public class Condition {
         return new ConditionIdentity(name, new Group(groupName, groupOperator));
     }
 
-    private void addToErrors(List<ConditionIdentity> errorsList, String name, Group group) {
-        errorsList.add(new ConditionIdentity(name, group));
+    private void addToLogs(List<ConditionResult> logs, String name, Group group, boolean isValid) {
+        logs.add(new ConditionResult(name, group, isValid));
     }
 
-    private void removeErrorsFromOtherFalseSubconditions(List<ConditionIdentity> errorsList, Map<ConditionIdentity, Boolean> orResults) {
+    /*
+    * For an OR condition, if one of the subconditions is satisfied, we remove other not satisfied conditions so it does not pollute or results
+    */
+    private void removeErrorsFromOtherFalseSubconditions(List<ConditionResult> errorsList, Map<ConditionIdentity, Boolean> orResults) {
         List<String> errorGroupsToRemove = new ArrayList<>();
         for (Map.Entry<ConditionIdentity, Boolean> entry : orResults.entrySet()) {
             if (entry.getValue().equals(Boolean.FALSE)) {

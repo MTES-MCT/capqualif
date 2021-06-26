@@ -39,18 +39,21 @@ public class EvaluationService {
         // There is only one condition in the list
         // (the list is only used for deserialization purposes)
         Condition condition = titre.getConditions().get(0);
-        List<ConditionIdentity> allErrors = new ArrayList<>();
-        ParseResult result = new ParseResult(areConditionsSatisfied(condition, allErrors), getErrors(allErrors));
-        logResults(result);
-        return result;
+//        List<ConditionIdentity> allErrors = new ArrayList<>();
+        List<ConditionResult> logs = new ArrayList<>();
+//        ParseResult result = new ParseResult(areConditionsSatisfied(condition, logs), getLogs(logs));
+        areConditionsSatisfied(condition, logs);
+        System.out.println(logs);
+//        logResults(result);
+        return null;
     }
 
-    private boolean areConditionsSatisfied(Condition condition, List<ConditionIdentity> conditionIdentities) {
-        return condition.validate(conditionIdentities);
+    private boolean areConditionsSatisfied(Condition condition, List<ConditionResult> logs) {
+        return condition.validate(logs);
     }
 
-    private List<ConditionIdentity> getErrors(List<ConditionIdentity> errors) {
-        return errors;
+    private List<ConditionIdentity> getLogs(List<ConditionIdentity> logs) {
+        return logs;
     }
 
     // TO DO : temp, remove later

@@ -120,7 +120,7 @@
             {
               "name": "document reconnu équivalent au CFBS 2014",
               "group": {
-                "name": "compétences en sécurité",
+                "name": "équivalents pour les compétences en sécurité",
                 "operator": "OR"
               },
               "operator": "contains",
@@ -131,7 +131,7 @@
             {
               "name": "document reconnu équivalent au CFBS 2015",
               "group": {
-                "name": "compétences en sécurité",
+                "name": "équivalents pour les compétences en sécurité",
                 "operator": "OR"
               },
               "operator": "contains",
