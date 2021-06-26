@@ -109,7 +109,7 @@
             {
               "name": "titre mainstream",
               "group": {
-                "name": "compétences en sécurité",
+                "name": "compétences en sécurité mainstream",
                 "operator": "OR"
               },
               "operator": "contains",

@@ -111,7 +111,7 @@ public class Condition {
     }
 
     private boolean containsResult(List<ConditionResult> list, boolean result){
-        return list.stream().filter(o -> o.getName().equals(result)).findFirst().isPresent();
+        return list.stream().filter(o -> o.getResult().equals(result)).findFirst().isPresent();
     }
 
     public boolean validate(List<ConditionResult> logs) {
@@ -122,7 +122,6 @@ public class Condition {
                     for (Condition subCondition : subConditions) {
                         boolean validationResult = subCondition.validate(logs);
                         andResults.add(new ConditionResult(subCondition.getGroup().getName(), subCondition.getName(), validationResult));
-//                        andResults.put(buildConditionIdentity(subCondition.getName(), subCondition.getGroup().getName(), subCondition.getGroup().getOperator()), validationResult);
                     }
                 }
                 System.out.println("andResults : " + andResults);
@@ -132,12 +131,10 @@ public class Condition {
                 return true;
             case "OR":
                 List<ConditionResult> orResults = new ArrayList<>();
-//                Map<ConditionIdentity, Boolean> orResults = new HashMap<>();
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
                         boolean validationResult = subCondition.validate(logs);
                         orResults.add(new ConditionResult(subCondition.getGroup().getName(), subCondition.getName(), validationResult));
-//                        orResults.put(buildConditionIdentity(subCondition.getName(), subCondition.getGroup().getName(), subCondition.getGroup().getOperator()), validationResult);
                     }
                 }
                 System.out.println("orResults : " + orResults);
