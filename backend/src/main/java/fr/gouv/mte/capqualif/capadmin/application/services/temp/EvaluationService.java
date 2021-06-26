@@ -10,10 +10,8 @@ import java.util.logging.Logger;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
 
 @Component
 public class EvaluationService {
@@ -27,7 +25,7 @@ public class EvaluationService {
     }
 
 
-    public ParseResult processTitre(Titre titre, Marin marin) {
+    public GlobalResult processTitre(Titre titre, Marin marin) {
         if (marin != null) {
             try {
                 titre = jsonPopulator.populate(titre, marin);
@@ -39,12 +37,10 @@ public class EvaluationService {
         // There is only one condition in the list
         // (the list is only used for deserialization purposes)
         Condition condition = titre.getConditions().get(0);
-//        List<ConditionIdentity> allErrors = new ArrayList<>();
         List<ConditionResult> logs = new ArrayList<>();
-        ParseResult result = new ParseResult(areConditionsSatisfied(condition, logs), getLogs(logs));
+        GlobalResult result = new GlobalResult(areConditionsSatisfied(condition, logs), getLogs(logs));
         System.out.println(logs);
         System.out.println(result);
-//        logResults(result);
         return result;
     }
 

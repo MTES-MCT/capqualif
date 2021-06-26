@@ -73,7 +73,7 @@ public class Condition {
 
     public void populateWithData(Marin marin) {
         for (Data<?> data : marin.getData()) {
-            boolean done = false;
+//            boolean done = false;
             replaceWithValue(data);
         }
     }
@@ -145,24 +145,24 @@ public class Condition {
                 return false;
             case "==":
                 if (leftOp.isEmpty() || !leftOp.equals(rightOp)) {
-                    addToLogs(logs, name, group, false);
+                    addToLogs(logs, name, group, leftOp, false);
                     return false;
                 }
-                addToLogs(logs, name, group, true);
+                addToLogs(logs, name, group, leftOp, true);
                 return true;
             case ">=":
                 if (leftOp.isEmpty() || !(Integer.parseInt(leftOp) >= Integer.parseInt(rightOp))) {
-                    addToLogs(logs, name, group, false);
+                    addToLogs(logs, name, group, leftOp,false);
                     return false;
                 }
-                addToLogs(logs, name, group, true);
+                addToLogs(logs, name, group, leftOp, true);
                 return true;
             case "contains":
                 if (!leftOpList.contains(rightOp)) {
-                    addToLogs(logs, name, group, false);
+                    addToLogs(logs, name, group, leftOpList.toString(), false);
                     return false;
                 }
-                addToLogs(logs, name, group, true);
+                addToLogs(logs, name, group, leftOpList.toString(), true);
                 return true;
             default:
                 System.out.println("validate aouch.");
@@ -172,8 +172,8 @@ public class Condition {
         return false;
     }
 
-    private void addToLogs(List<ConditionResult> logs, String name, Group group, boolean isValid) {
-        logs.add(new ConditionResult(name, group.getName(), isValid));
+    private void addToLogs(List<ConditionResult> logs, String name, Group group, String marinData, boolean isValid) {
+        logs.add(new ConditionResult(name, group.getName(), marinData, isValid));
     }
 
     /*

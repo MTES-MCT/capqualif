@@ -15,7 +15,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class EvaluationServiceErrorsTest {
+class EvaluationServiceDetailledResultsTest {
 
     EvaluationService evaluationService;
     JsonPopulator jsonPopulator;
@@ -43,12 +43,13 @@ class EvaluationServiceErrorsTest {
         );
 
         // When
-        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getErrors();
+        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
 
         // Then
-//        List<ConditionResult> expected = Collections.singletonList(
-//                new ConditionResult("age", new Group("age", Operator.AND))
-//        );
+        List<ConditionResult> expected = Arrays.asList(
+                new ConditionResult("age", "age", "12", false),
+                new ConditionResult("aptitude", "aptitude","apte", false)
+        );
 
 //        assertEquals(expected, actual);
     }
@@ -67,7 +68,7 @@ class EvaluationServiceErrorsTest {
         );
 
         // When
-        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getErrors();
+        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
 
 //        // Then
 //        List<ConditionResult> expected = Collections.singletonList(
@@ -91,7 +92,7 @@ class EvaluationServiceErrorsTest {
         );
 
         // When
-        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getErrors();
+        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
 
 //        // Then
 //        List<ConditionResult> expected = Arrays.asList(
@@ -116,7 +117,7 @@ class EvaluationServiceErrorsTest {
         );
 
         // When
-        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getErrors();
+        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
 
 
 //        // Then
