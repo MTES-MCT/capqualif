@@ -7,7 +7,7 @@ import fr.gouv.mte.capqualif.capqualif.request.adapters.out.persistence.RequestJ
 import javax.persistence.*;
 
 @Entity
-@Table(name = "instructions")
+@Table(name = "instruction")
 public class InstructionJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

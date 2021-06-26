@@ -3,7 +3,7 @@ package fr.gouv.mte.capqualif.capqualif.request.adapters.out.persistence;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "documents")
+@Table(name = "document")
 public class DocumentJpaEntity {
 
     @Id
