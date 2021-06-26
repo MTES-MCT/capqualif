@@ -110,31 +110,38 @@ public class Condition {
         }
     }
 
+    private boolean containsResult(List<ConditionResult> list, boolean result){
+        return list.stream().filter(o -> o.getName().equals(result)).findFirst().isPresent();
+    }
+
     public boolean validate(List<ConditionResult> logs) {
         switch (operator) {
             case "AND":
-                Map<ConditionIdentity, Boolean> andResults = new HashMap<>();
+                List<ConditionResult> andResults = new ArrayList<>();
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
                         boolean validationResult = subCondition.validate(logs);
-                        andResults.put(buildConditionIdentity(subCondition.getName(), subCondition.getGroup().getName(), subCondition.getGroup().getOperator()), validationResult);
+                        andResults.add(new ConditionResult(subCondition.getGroup().getName(), subCondition.getName(), validationResult));
+//                        andResults.put(buildConditionIdentity(subCondition.getName(), subCondition.getGroup().getName(), subCondition.getGroup().getOperator()), validationResult);
                     }
                 }
                 System.out.println("andResults : " + andResults);
-                if (andResults.containsValue(Boolean.FALSE)) {
+                if (containsResult(andResults, Boolean.FALSE)) {
                     return false;
                 }
                 return true;
             case "OR":
-                Map<ConditionIdentity, Boolean> orResults = new HashMap<>();
+                List<ConditionResult> orResults = new ArrayList<>();
+//                Map<ConditionIdentity, Boolean> orResults = new HashMap<>();
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
                         boolean validationResult = subCondition.validate(logs);
-                        orResults.put(buildConditionIdentity(subCondition.getName(), subCondition.getGroup().getName(), subCondition.getGroup().getOperator()), validationResult);
+                        orResults.add(new ConditionResult(subCondition.getGroup().getName(), subCondition.getName(), validationResult));
+//                        orResults.put(buildConditionIdentity(subCondition.getName(), subCondition.getGroup().getName(), subCondition.getGroup().getOperator()), validationResult);
                     }
                 }
                 System.out.println("orResults : " + orResults);
-                if (orResults.containsValue(Boolean.TRUE)) {
+                if (containsResult(orResults, Boolean.TRUE)) {
                     removeErrorsFromOtherFalseSubconditions(logs, orResults);
                     return true;
                 }
@@ -168,26 +175,29 @@ public class Condition {
         return false;
     }
 
-    private ConditionIdentity buildConditionIdentity(String name, String groupName, Operator groupOperator) {
-        return new ConditionIdentity(name, new Group(groupName, groupOperator));
-    }
-
     private void addToLogs(List<ConditionResult> logs, String name, Group group, boolean isValid) {
-        logs.add(new ConditionResult(name, group, isValid));
+        logs.add(new ConditionResult(name, group.getName(), isValid));
     }
 
     /*
     * For an OR condition, if one of the subconditions is satisfied, we remove other not satisfied conditions so it does not pollute or results
     */
-    private void removeErrorsFromOtherFalseSubconditions(List<ConditionResult> errorsList, Map<ConditionIdentity, Boolean> orResults) {
+    private void removeErrorsFromOtherFalseSubconditions(List<ConditionResult> errorsList, List<ConditionResult> orResults) {
         List<String> errorGroupsToRemove = new ArrayList<>();
-        for (Map.Entry<ConditionIdentity, Boolean> entry : orResults.entrySet()) {
-            if (entry.getValue().equals(Boolean.FALSE)) {
-                errorGroupsToRemove.add(entry.getKey().getGroup().getName());
+        for(ConditionResult orResult : orResults) {
+            if (orResult.getResult().equals(Boolean.FALSE)) {
+                errorGroupsToRemove.add(orResult.getName());
             }
         }
+
+//        for (Map.Entry<ConditionIdentity, Boolean> entry : orResults.entrySet()) {
+//            if (entry.getValue().equals(Boolean.FALSE)) {
+//                errorGroupsToRemove.add(entry.getKey().getGroup().getName());
+//            }
+//        }
         for (String group : errorGroupsToRemove) {
-            errorsList.removeIf(error -> error.getGroup().getName().equals(group));
+            errorsList.removeIf(error -> error.getGroup().equals(group));
+//            errorsList.removeIf(error -> error.getGroup().getName().equals(group));
         }
     }
 

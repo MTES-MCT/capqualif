@@ -2,10 +2,10 @@ package fr.gouv.mte.capqualif.capadmin.domain;
 
 public class ConditionResult {
     private String name;
-    private Group group;
-    private boolean result;
+    private String group;
+    private Boolean result;
 
-    public ConditionResult(String name, Group group, boolean result) {
+    public ConditionResult(String name, String group, Boolean result) {
         this.name = name;
         this.group = group;
         this.result = result;
@@ -15,11 +15,11 @@ public class ConditionResult {
         return name;
     }
 
-    public Group getGroup() {
+    public String getGroup() {
         return group;
     }
 
-    public boolean isResult() {
+    public Boolean getResult() {
         return result;
     }
 
@@ -27,7 +27,7 @@ public class ConditionResult {
     public String toString() {
         return "ConditionResult{" +
                 "name='" + name + '\'' +
-                ", group=" + group +
+                ", group='" + group + '\'' +
                 ", result=" + result +
                 '}';
     }
