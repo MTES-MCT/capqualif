@@ -1,8 +1,8 @@
-package fr.gouv.mte.capqualif.capadmin.application.services.temp;
+package fr.gouv.mte.capqualif.capqualif.evaluator.application.services;
 
 import fr.gouv.mte.capqualif.capadmin.application.services.JsonPopulator;
 import fr.gouv.mte.capqualif.capadmin.domain.*;
-import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.Marin;
 import org.springframework.stereotype.Component;
 
 import java.util.logging.Level;
@@ -17,13 +17,14 @@ import static java.util.stream.Collectors.groupingBy;
 public class EvaluationService {
 
     private final JsonPopulator jsonPopulator;
+    private final static Logger LOGGER = Logger.getLogger(EvaluationService.class.getName());
 
     public EvaluationService(JsonPopulator jsonPopulator) {
         this.jsonPopulator = jsonPopulator;
     }
 
 
-    public GlobalResult processTitre(Titre titre, Marin marin) {
+    public GlobalResult canMarinHaveTitre(Titre titre, Marin marin) {
         if (marin != null) {
             try {
                 titre = jsonPopulator.populate(titre, marin);

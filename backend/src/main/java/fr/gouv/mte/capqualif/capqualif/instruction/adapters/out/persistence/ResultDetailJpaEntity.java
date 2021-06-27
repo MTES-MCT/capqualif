@@ -1,6 +1,6 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.persistence;
 
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.StatusResultDetails;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.statuses.StatusResultDetails;
 
 import javax.persistence.*;
 

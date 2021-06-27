@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.persistence;
 
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.StatusInstruction;
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.StatusResult;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.statuses.StatusInstruction;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.statuses.StatusResult;
 import fr.gouv.mte.capqualif.capqualif.request.adapters.out.persistence.RequestJpaEntity;
 
 import javax.persistence.*;

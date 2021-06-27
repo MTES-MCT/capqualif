@@ -1,20 +1,9 @@
 package fr.gouv.mte.capqualif.capadmin.adapters.out.persistence.temp;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import fr.gouv.mte.capqualif.capadmin.adapters.out.persistence.TitreJpaEntity;
 import fr.gouv.mte.capqualif.capadmin.adapters.out.persistence.TitreRepository;
-import fr.gouv.mte.capqualif.capadmin.application.services.temp.EvaluationService;
-import fr.gouv.mte.capqualif.capadmin.domain.*;
-import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
+import fr.gouv.mte.capqualif.capqualif.evaluator.application.services.EvaluationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class DatabaseActions {

@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.capadmin.adapters.in.web;
 
 import fr.gouv.mte.capqualif.capadmin.application.ports.in.CreateTitreUseCase;
-import fr.gouv.mte.capqualif.capadmin.application.services.temp.EvaluationService;
+import fr.gouv.mte.capqualif.capqualif.evaluator.application.services.EvaluationService;
 import fr.gouv.mte.capqualif.capadmin.domain.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ public class ConditionsController {
 
     @PostMapping("/evaluate")
     public void testEvaluation(@RequestBody Titre titre) {
-        evaluationService.processTitre(titre, null);
+        evaluationService.canMarinHaveTitre(titre, null);
     }
 
 

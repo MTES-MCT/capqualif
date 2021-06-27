@@ -1,6 +1,7 @@
 package fr.gouv.mte.capqualif.capadmin.domain;
 
-import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.Data;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.Marin;
 
 import java.util.*;
 
@@ -113,13 +114,13 @@ public class Condition {
         return list.stream().filter(o -> o.getResult().equals(result)).findFirst().isPresent();
     }
 
-    public boolean validate(List<ConditionResult> logs) {
+    public boolean validate(List<ConditionResult> detailedResults) {
         switch (operator) {
             case "AND":
                 List<ConditionResult> andResults = new ArrayList<>();
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
-                        boolean validationResult = subCondition.validate(logs);
+                        boolean validationResult = subCondition.validate(detailedResults);
                         andResults.add(new ConditionResult(subCondition.getGroup().getName(), subCondition.getName(), validationResult));
                     }
                 }
@@ -132,36 +133,36 @@ public class Condition {
                 List<ConditionResult> orResults = new ArrayList<>();
                 if (subConditions != null) {
                     for (Condition subCondition : subConditions) {
-                        boolean validationResult = subCondition.validate(logs);
+                        boolean validationResult = subCondition.validate(detailedResults);
                         orResults.add(new ConditionResult(subCondition.getGroup().getName(), subCondition.getName(), validationResult));
                     }
                 }
                 System.out.println("orResults : " + orResults);
                 if (containsResult(orResults, Boolean.TRUE)) {
-                    removeErrorsFromOtherFalseSubconditions(logs, orResults);
+                    removeErrorsFromOtherFalseSubconditions(detailedResults, orResults);
                     return true;
                 }
                 return false;
             case "==":
                 if (leftOp.isEmpty() || !leftOp.equals(rightOp)) {
-                    addToLogs(logs, name, group, leftOp, false);
+                    addToLogs(detailedResults, name, group, leftOp, false);
                     return false;
                 }
-                addToLogs(logs, name, group, leftOp, true);
+                addToLogs(detailedResults, name, group, leftOp, true);
                 return true;
             case ">=":
                 if (leftOp.isEmpty() || !(Integer.parseInt(leftOp) >= Integer.parseInt(rightOp))) {
-                    addToLogs(logs, name, group, leftOp,false);
+                    addToLogs(detailedResults, name, group, leftOp,false);
                     return false;
                 }
-                addToLogs(logs, name, group, leftOp, true);
+                addToLogs(detailedResults, name, group, leftOp, true);
                 return true;
             case "contains":
                 if (!leftOpList.contains(rightOp)) {
-                    addToLogs(logs, name, group, leftOpList.toString(), false);
+                    addToLogs(detailedResults, name, group, leftOpList.toString(), false);
                     return false;
                 }
-                addToLogs(logs, name, group, leftOpList.toString(), true);
+                addToLogs(detailedResults, name, group, leftOpList.toString(), true);
                 return true;
             default:
                 System.out.println("validate aouch.");
@@ -171,12 +172,12 @@ public class Condition {
         return false;
     }
 
-    private void addToLogs(List<ConditionResult> logs, String name, Group group, String marinData, boolean isValid) {
-        logs.add(new ConditionResult(name, group.getName(), marinData, isValid));
+    private void addToLogs(List<ConditionResult> detailedResults, String name, Group group, String marinData, boolean isValid) {
+        detailedResults.add(new ConditionResult(name, group.getName(), marinData, isValid));
     }
 
     /*
-    * For an OR condition, if one of the subconditions is satisfied, we remove other not satisfied conditions so it does not pollute or results
+    * For an OR condition, if one of the subconditions is satisfied, we remove other not satisfied conditions so it does not pollute detailed results
     */
     private void removeErrorsFromOtherFalseSubconditions(List<ConditionResult> errorsList, List<ConditionResult> orResults) {
         List<String> errorGroupsToRemove = new ArrayList<>();

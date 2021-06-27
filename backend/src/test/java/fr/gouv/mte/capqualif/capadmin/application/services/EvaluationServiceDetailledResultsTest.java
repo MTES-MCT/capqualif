@@ -1,9 +1,10 @@
 package fr.gouv.mte.capqualif.capadmin.application.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.gouv.mte.capqualif.capadmin.application.services.temp.EvaluationService;
+import fr.gouv.mte.capqualif.capqualif.evaluator.application.services.EvaluationService;
 import fr.gouv.mte.capqualif.capadmin.domain.*;
-import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.Data;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.Marin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +44,7 @@ class EvaluationServiceDetailledResultsTest {
         );
 
         // When
-        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
+        List<ConditionResult> actual = evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
 
         // Then
         List<ConditionResult> expected = Arrays.asList(
@@ -72,7 +73,7 @@ class EvaluationServiceDetailledResultsTest {
         );
 
         // When
-        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
+        List<ConditionResult> actual = evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
 
         // Then
         List<ConditionResult> expected = Arrays.asList(
@@ -100,7 +101,7 @@ class EvaluationServiceDetailledResultsTest {
         );
 
         // When
-        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
+        List<ConditionResult> actual = evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
 
 
         // Then

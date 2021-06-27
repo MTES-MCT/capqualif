@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capadmin.domain;
+package fr.gouv.mte.capqualif.capqualif.instruction.domain;
 
 public class Data<T> {
 

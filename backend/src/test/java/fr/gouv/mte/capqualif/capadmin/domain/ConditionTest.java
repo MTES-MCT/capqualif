@@ -2,8 +2,9 @@ package fr.gouv.mte.capqualif.capadmin.domain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.gouv.mte.capqualif.capadmin.application.services.JsonPopulator;
-import fr.gouv.mte.capqualif.capadmin.application.services.temp.EvaluationService;
-import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
+import fr.gouv.mte.capqualif.capqualif.evaluator.application.services.EvaluationService;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.Data;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.Marin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +51,7 @@ class ConditionTest {
         );
 
         // When & Then
-        assertTrue(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
+        assertTrue(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
                 , marin).areConditionsSatisfied());
     }
 
@@ -78,7 +79,7 @@ class ConditionTest {
         );
 
         // When & Then
-        assertFalse(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
+        assertFalse(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
                 , marin).areConditionsSatisfied());
 
     }
@@ -107,7 +108,7 @@ class ConditionTest {
         );
 
         // When & Then
-        assertFalse(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
+        assertFalse(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
                 , marin).areConditionsSatisfied());
 
     }
@@ -135,7 +136,7 @@ class ConditionTest {
         );
 
         // When & Then
-        assertFalse(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
+        assertFalse(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
                 , marin).areConditionsSatisfied());
 
     }
@@ -164,7 +165,7 @@ class ConditionTest {
         );
 
         // When & Then
-        assertTrue(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
+        assertTrue(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
                 , marin).areConditionsSatisfied());
 
     }

@@ -1,6 +1,4 @@
-package fr.gouv.mte.capqualif.capadmin.domain.temp;
-
-import fr.gouv.mte.capqualif.capadmin.domain.Data;
+package fr.gouv.mte.capqualif.capqualif.instruction.domain;
 
 import java.util.List;
 

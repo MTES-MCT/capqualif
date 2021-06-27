@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.capadmin.application.services;
 
 import fr.gouv.mte.capqualif.capadmin.domain.Condition;
-import fr.gouv.mte.capqualif.capadmin.domain.temp.Marin;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.Marin;
 import fr.gouv.mte.capqualif.capadmin.domain.Titre;
 import org.springframework.stereotype.Component;
 

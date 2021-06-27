@@ -2,7 +2,7 @@ package fr.gouv.mte.capqualif.capqualif.request.adapters.out.api;
 
 import fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto.MarinDto;
 import fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto.TitreOfMarinDto;
-import fr.gouv.mte.capqualif.capqualif.request.application.ports.out.GetMarinDataPort;
+import fr.gouv.mte.capqualif.capqualif.request.application.ports.out.GetMarinBasicDataPort;
 import fr.gouv.mte.capqualif.capqualif.request.domain.marin.Marin;
 import fr.gouv.mte.capqualif.capqualif.request.domain.marin.TitreOfMarin;
 import fr.gouv.mte.capqualif.shared.JsonGetter;
@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @Component
-public class GetMarinDataAPIAdapter implements GetMarinDataPort {
+public class GetMarinBasicBasicDataAPIAdapter implements GetMarinBasicDataPort {
 
     @Autowired
     JsonGetter jsonGetter;
@@ -34,7 +34,7 @@ public class GetMarinDataAPIAdapter implements GetMarinDataPort {
                 ITEM_API_URL);
         List<TitreOfMarin> allTitresOfMarin = titreOfMarinMapper.mapToDomainEntitiesList(allTitresOfMarinDto);
 
-        // Let's go the same for all marin basic data (name, address, etc.)!
+        // Let's do the same for all marin basic data (name, address, etc.)!
         MarinDto marinDto = jsonGetter.getMarinDtoFromAPI(numeroDeMarin, ADMINISTRES_API_URL);
         Marin marin = marinMapper.mapToDomaineEntity(marinDto);
 
