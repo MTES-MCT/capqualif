@@ -30,7 +30,7 @@ class EvaluationServiceDetailledResultsTest {
 
 
     @Test
-    void shouldReturnAgeError_dyamicallyPopulated() throws IOException {
+    void shouldReturnAllConditionsOKButAge() throws IOException {
 
         // Given
         Marin marin = new Marin(Arrays.asList(
@@ -48,34 +48,14 @@ class EvaluationServiceDetailledResultsTest {
         // Then
         List<ConditionResult> expected = Arrays.asList(
                 new ConditionResult("age", "age", "12", false),
-                new ConditionResult("aptitude", "aptitude","apte", false)
+                new ConditionResult("aptitude médicale", "aptitude","apte", true),
+                new ConditionResult("module de formation modulaire P1", "formations modulaires","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", true),
+                new ConditionResult("module de formation modulaire P2", "formations modulaires","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", true),
+                new ConditionResult("titre mainstream", "compétences en sécurité mainstream","[CFBS]", true)
+
         );
 
-//        assertEquals(expected, actual);
-    }
-
-    @Test
-    void shouldReturnAllOkButAgeError() throws IOException {
-
-        // Given
-        Marin marin = new Marin(Arrays.asList(
-                new Data<String>("age", "12"),
-                new Data<String>("aptitude", "apte"),
-                new Data<List<String>>("formations", Arrays.asList(
-                        "Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche")),
-                new Data<List<String>>("titres", Collections.singletonList("CFBS"))
-            )
-        );
-
-        // When
-        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
-
-//        // Then
-//        List<ConditionResult> expected = Collections.singletonList(
-//                new ConditionResult("age", new Group("age", Operator.AND))
-//        );
-//
-//        assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test

@@ -1,5 +1,7 @@
 package fr.gouv.mte.capqualif.capadmin.domain;
 
+import java.util.Objects;
+
 public class ConditionResult {
     private String name;
     private String group;
@@ -43,5 +45,23 @@ public class ConditionResult {
                 ", marinData='" + marinData + '\'' +
                 ", result=" + result +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        ConditionResult that = (ConditionResult) o;
+        return name.equals(that.name) &&
+                group.equals(that.group) &&
+                Objects.equals(marinData, that.marinData) &&
+                result.equals(that.result);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, group, marinData, result);
     }
 }
