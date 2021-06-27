@@ -1,6 +1,7 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.application.services;
 
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.APINames;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.DataSource;
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.DataSources;
 //import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ComparisonResult;
 import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
@@ -12,12 +13,11 @@ import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.out.GetMari
 //import fr.gouv.mte.capqualif.shared.TimeConverter;
 //import fr.gouv.mte.capqualif.capadmin.titreTemp.application.ports.out.GetTitrePort;
 //import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.*;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.JuridicalDesignations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Map;
 
 @Component
@@ -30,9 +30,15 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         this.getMarinDataPort = getMarinDataPort;
     }
 
+    DataSources DATA_SOURCES_MOCK = new DataSources(Arrays.asList(
+            new DataSource(JuridicalDesignations.AGE, APINames.ADMINISTRES, System.getenv("ADMINISTRES_API_URL")),
+            new DataSource(JuridicalDesignations.APTITUDE_MEDICALE, APINames.ESCULAPE, System.getenv("ESCULAPE_API_URL")),
+            new DataSource(JuridicalDesignations.FORMATIONS, APINames.AMFORE, System.getenv("AMFORE_API_URL")),
+            new DataSource(JuridicalDesignations.TITRES, APINames.ITEM, System.getenv("ITEM_API_URL"))
+    ));
 
-    public void compareMarinDataToConditionsTitre(String titreId, String marinId, DataSources dataSources) {
-        Map<APINames, String> allMarinData = getMarinDataPort.getAllMarinData(marinId, dataSources);
+    public void compareMarinDataToConditionsTitre(String titreId, String marinId) {
+        Map<APINames, String> allMarinData = getMarinDataPort.getAllMarinData(marinId, DATA_SOURCES_MOCK);
         System.out.println(allMarinData);
     }
 

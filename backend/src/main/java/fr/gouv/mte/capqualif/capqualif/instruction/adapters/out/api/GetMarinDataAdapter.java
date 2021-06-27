@@ -32,11 +32,8 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
 
     private String getJson(String marinId, String url) {
         String request = ENVIRONMENT.equals("local") ? url :  url + "/" + marinId;
-        System.out.println("Looking for " + request);
         String res = restTemplate.getForObject(request, String.class);
         Gson gson = new Gson();
-        String json = gson.fromJson(res, JsonElement.class).toString();
-        System.out.println("Retrieved json is " + json);
-        return json;
+        return gson.fromJson(res, JsonElement.class).toString();
     }
 }
