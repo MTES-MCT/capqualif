@@ -17,8 +17,6 @@ import static java.util.stream.Collectors.groupingBy;
 public class EvaluationService {
 
     private final JsonPopulator jsonPopulator;
-    private final static Logger LOGGER = Logger.getLogger(EvaluationService.class.getName());
-
 
     public EvaluationService(JsonPopulator jsonPopulator) {
         this.jsonPopulator = jsonPopulator;
@@ -37,19 +35,15 @@ public class EvaluationService {
         // There is only one condition in the list
         // (the list is only used for deserialization purposes)
         Condition condition = titre.getConditions().get(0);
-        List<ConditionResult> logs = new ArrayList<>();
-        GlobalResult result = new GlobalResult(areConditionsSatisfied(condition, logs), getLogs(logs));
-        System.out.println(logs);
+        List<ConditionResult> detailedResults = new ArrayList<>();
+        GlobalResult result = new GlobalResult(areConditionsSatisfied(condition, detailedResults), detailedResults);
+        System.out.println(detailedResults);
         System.out.println(result);
         return result;
     }
 
-    private boolean areConditionsSatisfied(Condition condition, List<ConditionResult> logs) {
-        return condition.validate(logs);
-    }
-
-    private List<ConditionResult> getLogs(List<ConditionResult> logs) {
-        return logs;
+    private boolean areConditionsSatisfied(Condition condition, List<ConditionResult> detailedResults) {
+        return condition.validate(detailedResults);
     }
 
 }
