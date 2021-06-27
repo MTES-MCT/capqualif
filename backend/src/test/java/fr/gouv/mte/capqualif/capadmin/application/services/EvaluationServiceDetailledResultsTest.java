@@ -59,7 +59,7 @@ class EvaluationServiceDetailledResultsTest {
     }
 
     @Test
-    void shouldReturnCompetenceEnSecuriteError_dynamicallyPopulated() throws IOException {
+    void shouldReturnAllConditionsOKButCompetenceSecurite() throws IOException {
 
         // Given
         Marin marin = new Marin(Arrays.asList(
@@ -74,18 +74,21 @@ class EvaluationServiceDetailledResultsTest {
         // When
         List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
 
-//        // Then
-//        List<ConditionResult> expected = Arrays.asList(
-//                new ConditionResult("titre mainstream", new Group("compétences en sécurité", Operator.OR)),
-//                new ConditionResult("document reconnu équivalent au CFBS 2014", new Group("compétences en sécurité", Operator.OR)),
-//                new ConditionResult("document reconnu équivalent au CFBS 2015", new Group("compétences en sécurité", Operator.OR))
-//        );
-//
-//        assertEquals(expected, actual);
+        // Then
+        List<ConditionResult> expected = Arrays.asList(
+                new ConditionResult("age", "age", "26", true),
+                new ConditionResult("aptitude médicale", "aptitude","apte", true),
+                new ConditionResult("module de formation modulaire P1", "formations modulaires","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", true),
+                new ConditionResult("module de formation modulaire P2", "formations modulaires","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", true),
+                new ConditionResult("titre mainstream", "compétences en sécurité mainstream","[]", false),
+                new ConditionResult("document reconnu équivalent au CFBS 2014", "équivalents pour les compétences en sécurité","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", false),
+                new ConditionResult("document reconnu équivalent au CFBS 2015", "équivalents pour les compétences en sécurité","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", false)
+        );
+        assertEquals(expected, actual);
     }
 
     @Test
-    void shouldReturnAllFormationsError_dynamicallyPopulated() throws IOException {
+    void shouldReturnAllConditionsOKButFormations() throws IOException {
 
         // Given
         Marin marin = new Marin(Arrays.asList(
@@ -100,43 +103,19 @@ class EvaluationServiceDetailledResultsTest {
         List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
 
 
-//        // Then
-//        List<ConditionResult> expected = Arrays.asList(
-//                new ConditionResult("module de formation modulaire P1", new Group("formations modulaires", Operator.AND)),
-//                new ConditionResult("module de formation modulaire P2", new Group("formations modulaires", Operator.AND)),
-//                new ConditionResult("titre reconnu équivalent à la formation modulaire 2006", new Group("titres reconnus équivalents à la formation modulaire", Operator.OR)),
-//                new ConditionResult("titre reconnu équivalent à la formation modulaire 2005", new Group("titres reconnus équivalents à la formation modulaire", Operator.OR))
-//        );
-//
-//        assertEquals(expected, actual);
-    }
+        // Then
+        List<ConditionResult> expected = Arrays.asList(
+                new ConditionResult("age", "age", "26", true),
+                new ConditionResult("aptitude médicale", "aptitude","apte", true),
+                new ConditionResult("module de formation modulaire P1", "formations modulaires","[]", false),
+                new ConditionResult("module de formation modulaire P2", "formations modulaires","[]", false),
+                new ConditionResult("titre reconnu équivalent à la formation modulaire 2006", "titres reconnus équivalents à la formation modulaire","[]", false),
+                new ConditionResult("titre reconnu équivalent à la formation modulaire 2005", "titres reconnus équivalents à la formation modulaire","[]", false),
+                new ConditionResult("titre mainstream", "compétences en sécurité mainstream","[CFBS]", true)
+        );
 
-//    @Test
-//    void shouldReturnErrorsForCompetenceSecuButNotForFormation_dynamicallyPopulated() throws IOException {
-//
-//        // Given
-//        Marin marin = new Marin(Arrays.asList(
-//                new Data<String>("age", "27"),
-//                new Data<String>("aptitude", "inapte"),
-//                new Data<List<String>>("formations", Arrays.asList(
-//                        "Module P1-Appui navigation", "")),
-//                new Data<List<String>>("titres", Collections.emptyList())
-//        )
-//        );
-//
-//        // When
-//        List<ConditionResult> actual = evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getErrors();
-//
-//
-//        // Then
-//        List<ConditionResult> expected = Arrays.asList(
-//                new ConditionResult("titre mainstream", new Group("compétences en sécurité", Operator.OR),
-//                new ConditionResult("document reconnu équivalent au CFBS 2014", "compétences en sécurité"),
-//                new ConditionResult("document reconnu équivalent au CFBS 2015", "compétences en sécurité")
-//        );
-//
-//        assertEquals(expected, actual);
-//    }
+        assertEquals(expected, actual);
+    }
 
     private Titre jsonToTitre(String location) throws IOException, IOException {
         ObjectMapper objectMapper = new ObjectMapper();

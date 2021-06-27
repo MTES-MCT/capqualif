@@ -26,29 +26,6 @@ class ConditionTest {
         evaluationService = new EvaluationService(new JsonPopulator());
     }
 
-//  Tests for hardcoded populated conditions
-//    @Test
-//    void shouldEvaluateCorrectlyNotPopulatedJson() throws IOException {
-//        assertTrue(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueAll.json")
-//                , null).areConditionsSatisfied());
-//        assertTrue(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
-//                "/trueFormationModulaire.json"), null).areConditionsSatisfied());
-//        assertTrue(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
-//                "/trueEquivFormationModulaire.json"), null).areConditionsSatisfied());
-//        assertTrue(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueCFBS.json"), null).areConditionsSatisfied());
-//        assertTrue(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/trueEquivCFBS" +
-//                ".json"), null).areConditionsSatisfied());
-//        assertTrue(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
-//                "/trueBecauseFormationsContainsAllFormationsModulaires.json"), null).areConditionsSatisfied());
-//
-//        assertFalse(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/falseAgeWrong" +
-//                ".json"), null).areConditionsSatisfied());
-//        assertFalse(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
-//                "/falseFormationWrong.json"), null).areConditionsSatisfied());
-//        assertFalse(evaluationService.processTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions" +
-//                "/falseCFBSWrong.json"), null).areConditionsSatisfied());
-//    }
-
     @Test
     void shouldEvaluateTrueBecauseMarinSatisfiesConditions() throws IOException {
         // Given
