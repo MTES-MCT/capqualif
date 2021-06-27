@@ -52,32 +52,4 @@ public class EvaluationService {
         return logs;
     }
 
-    // TO DO : temp, remove later
-//    private void logResults(ParseResult result) {
-//        if (result.areConditionsSatisfied()) {
-//            System.out.println("\nxxxxxxxxxxxxx C'est parfait, vous remplissez les conditions pour obtenir ce titre. xxxxxxxxxxxx\n");
-//        } else {
-//            System.out.println("\nxxxxxxxxxxxxx Vous ne remplissez pas les conditions pour obtenir ce titre. xxxxxxxxxxxx\n");
-//        }
-//
-//        if (!result.areConditionsSatisfied()) {
-//            Map<Group, List<ConditionIdentity>> errorsByGroup = result.getErrors().stream().collect(groupingBy(ConditionIdentity::getGroup, toList()));
-//            for (Map.Entry<Group, List<ConditionIdentity>> errorGroup : errorsByGroup.entrySet()) {
-//                if (errorGroup.getKey().getOperator().equals(Operator.OR)) {
-//                    System.out.println("*************** Avez-vous l'un de ces documents ? ***************");
-//                    for (ConditionIdentity error : errorGroup.getValue()) {
-//                        System.out.println("****************************** " + error.getName() + " ? ***************");
-//                    }
-//                }
-//                if (errorGroup.getKey().getOperator().equals(Operator.AND)) {
-//                    System.out.println("*************** Avez-vous ces documents ? ***************");
-//                    for (ConditionIdentity error : errorGroup.getValue()) {
-//                        System.out.println("****************************** " + error.getName() + " ? ***************");
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-
 }

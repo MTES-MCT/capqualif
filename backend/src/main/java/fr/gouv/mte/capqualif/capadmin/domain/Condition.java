@@ -73,7 +73,6 @@ public class Condition {
 
     public void populateWithData(Marin marin) {
         for (Data<?> data : marin.getData()) {
-//            boolean done = false;
             replaceWithValue(data);
         }
     }
@@ -187,14 +186,8 @@ public class Condition {
             }
         }
 
-//        for (Map.Entry<ConditionIdentity, Boolean> entry : orResults.entrySet()) {
-//            if (entry.getValue().equals(Boolean.FALSE)) {
-//                errorGroupsToRemove.add(entry.getKey().getGroup().getName());
-//            }
-//        }
         for (String group : errorGroupsToRemove) {
             errorsList.removeIf(error -> error.getGroup().equals(group));
-//            errorsList.removeIf(error -> error.getGroup().getName().equals(group));
         }
     }
 
