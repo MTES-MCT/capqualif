@@ -103,7 +103,10 @@
         },
         {
           "name": "compétences en sécurité",
-          "group": "compétences en sécurité",
+          "group": {
+            "name": "compétences en sécurité",
+            "operator":"AND"
+          },
           "operator": "OR",
           "subConditions": [
             {
