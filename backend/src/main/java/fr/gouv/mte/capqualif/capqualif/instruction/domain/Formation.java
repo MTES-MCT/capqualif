@@ -1,20 +1,13 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.domain;
 
-public class MarinData {
+public class Formation extends MarinData {
 
-    private String value;
-    private String endOfValidity;
+    private final String value;
+    private final String endOfValidity;
 
-    public MarinData(String value, String endOfValidity) {
+    public Formation(String value, String endOfValidity) {
         this.value = value;
         this.endOfValidity = endOfValidity;
-    }
-
-    public MarinData(String value) {
-        this.value = value;
-    }
-
-    public MarinData() {
     }
 
     public String getValue() {
@@ -27,7 +20,7 @@ public class MarinData {
 
     @Override
     public String toString() {
-        return "MarinData{" +
+        return "Formation{" +
                 "value='" + value + '\'' +
                 ", endOfValidity='" + endOfValidity + '\'' +
                 '}';

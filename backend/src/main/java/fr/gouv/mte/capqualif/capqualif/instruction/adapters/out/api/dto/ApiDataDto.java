@@ -2,7 +2,7 @@ package fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto;
 
 import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.APINames;
 
-public class APIDataDTO {
+public class ApiDataDto {
 
     private APINames name;
 

@@ -2,11 +2,8 @@ package fr.gouv.mte.capqualif.capqualif.instruction.application.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.gouv.mte.capqualif.capadmin.domain.Titre;
-import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.ComparisonDate;
-import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.ComparisonRule;
 import fr.gouv.mte.capqualif.capqualif.evaluator.application.services.EvaluationService;
 import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.InstructionMapper;
-import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto.APIDataDTO;
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.*;
 //import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ComparisonResult;
 import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
@@ -23,9 +20,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,16 +42,42 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     }
 
     public void compareMarinDataToConditionsTitre(String marinId) {
-        Map<String, MarinData> allMarinData = getMarinDataPort.getAllMarinData(marinId);
+        Map<String, List<MarinData>> allMarinData = getMarinDataPort.getAllMarinData(marinId);
         System.out.println("allMarinData: " + allMarinData);
-
         List<Data> data = new ArrayList<>();
-        for (Map.Entry<String, MarinData> entry : allMarinData.entrySet()) {
+
+
+
+        Map<String, List<MarinDataPurified>> allMarinDataPurified = new HashMap<>();
+
+        for (Map.Entry<String, List<MarinData>> entry : allMarinData.entrySet()) {
             /**
              * TODO: check MarinData validity before building Marin
              */
-
+            List<MarinDataPurified> purifiedData = new ArrayList<>();
+            List<MarinData> mds = entry.getValue();
+            for (MarinData md : mds) {
+                purifiedData.add(new MarinDataPurified(md.getValue()));
+            }
+            allMarinDataPurified.put(entry.getKey(), purifiedData);
         }
+
+        for (Map.Entry<String, List<MarinDataPurified>> entry : allMarinDataPurified.entrySet()) {
+            if (entry.getValue().size() == 1) {
+                MarinDataPurified stripped = entry.getValue().get(0);
+                data.add(new Data(entry.getKey(), stripped.getValue()));
+            } else {
+                List<String> sl = new ArrayList<>();
+                List<MarinDataPurified> list = entry.getValue();
+                for(MarinDataPurified marinDataPurified : list) {
+                    sl.add(marinDataPurified.getValue());
+                }
+                data.add(new Data(entry.getKey(), sl));
+            }
+        }
+
+
+
         Marin marin = new Marin(data);
         System.out.println("marin " + marin);
         try {
@@ -63,8 +85,6 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private Titre jsonToTitre(String location) throws IOException, IOException {

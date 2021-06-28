@@ -52,7 +52,7 @@
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
-                  "rightOp": "Module P1-Appui navigation"
+                  "rightOp": "P1–Appui-Navigation"
                 },
                 {
                   "name": "module de formation modulaire P2",
@@ -63,7 +63,7 @@
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
-                  "rightOp": "Module P2-Appui manutention et arrimage de la cargaison, pêche"
+                  "rightOp": "P2–Appui-Manutention/arrimage cargaison/pêche"
                 }
               ]
             },

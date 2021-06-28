@@ -2,13 +2,14 @@ package fr.gouv.mte.capqualif.capqualif.instruction.domain;
 
 public class Age extends MarinData {
 
-    private String age;
+    private final String age;
 
     public Age(String birthDate) {
         this.age = computeAge(birthDate);
     }
 
-    public String getAge() {
+    @Override
+    public String getValue() {
         return age;
     }
 

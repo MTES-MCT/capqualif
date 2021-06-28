@@ -1,6 +1,6 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto;
 
-public class ItemDTO extends APIDataDTO {
+public class ItemDto extends ApiDataDto {
 
     private String dateDelivrance;
     private String dateEffet;

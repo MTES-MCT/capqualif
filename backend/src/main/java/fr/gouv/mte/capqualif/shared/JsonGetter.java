@@ -1,10 +1,11 @@
 package fr.gouv.mte.capqualif.shared;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.APINames;
-import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto.APIDataDTO;
+import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto.AmforeDto;
+import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto.ApiDataDto;
+import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto.ItemDto;
 import fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto.MarinDTO;
 import fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto.TitreOfMarinDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -21,32 +23,54 @@ public class JsonGetter {
     private RestTemplate restTemplate;
 
     String ENVIRONMENT = System.getenv("ENV_TYPE");
+    String DTO_PACKAGE = "fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto";
 
-    public APIDataDTO getDtoFromAPI(String marinId, String apiUrl, APINames dtoClassName) {
-        System.out.println(dtoClassName);
-        String className = "fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto." + dtoClassName.getName() + "DTO";
+    public List<ApiDataDto> getDtoFromApi(String marinId, String apiUrl, APINames dtoClassName) {
+        String className = DTO_PACKAGE + "." + dtoClassName.getName() + "Dto";
         String res = getJson(marinId, apiUrl);
-
         Gson gson = new Gson();
+        Class<ApiDataDto> myClass = (Class<ApiDataDto>) createClass(className);
+        if (res.startsWith("[")) {
+            switch (dtoClassName) {
+                case AMFORE:
+                    Type amforeListType = new TypeToken<List<AmforeDto>>(){}.getType();
+                    List<ApiDataDto> amfores = gson.fromJson(res, amforeListType);
+                    for(ApiDataDto amforeDto : amfores) {
+                        addApiName(dtoClassName, amforeDto);
+                    }
+                    return amfores;
+                case ITEM:
+                    Type itemListType = new TypeToken<List<ItemDto>>(){}.getType();
+                    List<ApiDataDto> items = gson.fromJson(res, itemListType);
+                    for(ApiDataDto item : items) {
+                        addApiName(dtoClassName, item);
+                    }
+                    return items;
+                default:
+                    return null;
+            }
 
-        Class<?> myClass = null;
+        } else {
+            ApiDataDto apiDataDTO = (ApiDataDto) gson.fromJson(res, myClass);
+            return Collections.singletonList(addApiName(dtoClassName, apiDataDTO));
+        }
+    }
+
+
+    private ApiDataDto addApiName(APINames dtoClassName, ApiDataDto apiDataDTO) {
+        apiDataDTO.setName(dtoClassName);
+        return apiDataDTO;
+    }
+
+    private Class createClass(String className) {
+        Class myClass = null;
 
         try {
             myClass = Class.forName(className);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-//        if (res.startsWith("[")) {
-////            Type listType = new TypeToken<List<myClass>>(){}.getType();
-////            return gson.fromJson(res, listType);
-////            (APIDataDTO) gson.fromJson(res, myClass);
-//        }
-
-        APIDataDTO apiDataDTO = (APIDataDTO) gson.fromJson(res, myClass);
-        apiDataDTO.setName(dtoClassName);
-        return apiDataDTO;
-//        return (APIDataDTO) gson.fromJson(res, myClass);
+        return myClass;
     }
 
     public MarinDTO getMarinDtoFromAPI(String marinId, String apiUrl) {

@@ -1,6 +1,6 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto;
 
-public class DecisionMedicaleDTO {
+public class DecisionMedicaleDto {
 
     private String code;
 
