@@ -28,7 +28,7 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
     private RestTemplate restTemplate;
 
     DataSources DATA_SOURCES_MOCK = new DataSources(Arrays.asList(
-//            new DataSource(JuridicalDesignations.AGE, APINames.ADMINISTRES, System.getenv("ADMINISTRES_API_URL")),
+            new DataSource(JuridicalDesignations.AGE, APINames.ADMINISTRES, System.getenv("ADMINISTRES_API_URL")),
             new DataSource(JuridicalDesignations.APTITUDE_MEDICALE, APINames.ESCULAPE, System.getenv("ESCULAPE_API_URL"))
 //            new DataSource(JuridicalDesignations.FORMATIONS, APINames.AMFORE, System.getenv("AMFORE_API_URL"))
 //            new DataSource(JuridicalDesignations.TITRES, APINames.ITEM, System.getenv("ITEM_API_URL"))
@@ -42,7 +42,7 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
         }
         Map<String, MarinData> marinData = new HashMap<>();
         for (Map.Entry<String, APIDataDTO> entry : marinDataDTOs.entrySet()) {
-            marinData.put(entry.getKey(), instructionMapper.mapToDomainEntity((EsculapeDTO) entry.getValue()));
+            marinData.put(entry.getKey(), instructionMapper.mapToDomainEntity(entry.getValue()));
         }
         return marinData;
     }
