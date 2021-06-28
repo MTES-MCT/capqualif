@@ -37,7 +37,7 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
         }
         Map<APINames, MarinData> marinData = new HashMap<>();
         for (Map.Entry<APINames, APIDataDTO> entry : rawMarinData.entrySet()) {
-            marinData.put(entry.getKey(), instructionMapper.mapToDomaineEntity((EsculapeDTO) entry.getValue()));
+            marinData.put(entry.getKey(), instructionMapper.mapToDomainEntity((EsculapeDTO) entry.getValue()));
         }
         return marinData;
     }

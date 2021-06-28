@@ -1,16 +1,15 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.domain;
 
-// TO DO : move to adapter
+public enum MarinDataNames {
+    ADMINISTRES("age"),
+    ESCULAPE("aptitude"),
+    AMFORE("formations"),
+    ITEM("titres");
 
-public enum APINames {
-    ADMINISTRES("Administres"),
-    ESCULAPE("Esculape"),
-    AMFORE("Amfore"),
-    ITEM("Item");
 
     private final String name;
 
-    APINames(String name) {
+    MarinDataNames(String name) {
         this.name = name;
     }
 

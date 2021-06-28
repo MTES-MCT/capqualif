@@ -5,6 +5,7 @@ import fr.gouv.mte.capqualif.capadmin.domain.Titre;
 import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.ComparisonDate;
 import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.ComparisonRule;
 import fr.gouv.mte.capqualif.capqualif.evaluator.application.services.EvaluationService;
+import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.InstructionMapper;
 import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto.APIDataDTO;
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.*;
 //import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ComparisonResult;
@@ -37,6 +38,9 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     @Autowired
     EvaluationService evaluationService;
 
+    @Autowired
+    InstructionMapper instructionMapper;
+
     public CompareMarinDataToConditionsTitreService(GetMarinDataPort getMarinDataPort) {
         this.getMarinDataPort = getMarinDataPort;
     }
@@ -56,9 +60,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         }
         List<Data> data = new ArrayList<>();
         for (Map.Entry<APINames, MarinData> entry : allMarinData.entrySet()) {
-            String value = entry.getValue().getValue();
-//            data.add(new Data(entry.getKey().getName(), value));
-            data.add(new Data("aptitude", value));
+            data.add(new Data(instructionMapper.mapToDomainMarinDataNames(entry.getKey()), entry.getValue().getValue()));
         }
         Marin marin = new Marin(data);
         System.out.println("marin " + marin);
