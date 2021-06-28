@@ -1,4 +1,4 @@
-package fr.gouv.mte.capqualif.capqualif.instruction.adapters.in.web.archive;
+package fr.gouv.mte.capqualif.capqualif.instruction.adapters.in.web;
 
 import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,9 @@ public class CompareMarinDataToConditionsTitreController {
         this.compareMarinDataToConditionsTitreUseCase = compareMarinDataToConditionsTitreUseCase;
     }
 
-    @GetMapping("/{titreId}/{numeroDeMarin}")
-    public void compareMarinDataToTitreConditions(@PathVariable("titreId") String titreId, @PathVariable("numeroDeMarin") String numeroDeMarin) {
-        compareMarinDataToConditionsTitreUseCase.compareMarinDataToConditionsTitre(titreId, numeroDeMarin);
+    @GetMapping("/evaluations/{numeroDeMarin}")
+    public void compareMarinDataToTitreConditions(@PathVariable("numeroDeMarin") String numeroDeMarin) {
+        compareMarinDataToConditionsTitreUseCase.compareMarinDataToConditionsTitre(numeroDeMarin);
     }
 
 }

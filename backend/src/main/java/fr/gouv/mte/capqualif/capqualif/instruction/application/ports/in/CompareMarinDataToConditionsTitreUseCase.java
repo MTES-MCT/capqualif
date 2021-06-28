@@ -6,5 +6,5 @@ import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ComparisonsSum
 import java.util.List;
 
 public interface CompareMarinDataToConditionsTitreUseCase {
-    void compareMarinDataToConditionsTitre(String titreId, String marinId);
+    void compareMarinDataToConditionsTitre(String marinId);
 }

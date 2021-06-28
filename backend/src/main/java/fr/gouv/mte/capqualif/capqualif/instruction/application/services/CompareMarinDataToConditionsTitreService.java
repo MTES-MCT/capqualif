@@ -45,7 +45,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         this.getMarinDataPort = getMarinDataPort;
     }
 
-    public void compareMarinDataToConditionsTitre(String titreId, String marinId) {
+    public void compareMarinDataToConditionsTitre(String marinId) {
         Map<String, MarinData> allMarinData = getMarinDataPort.getAllMarinData(marinId);
         System.out.println("allMarinData: " + allMarinData);
 
