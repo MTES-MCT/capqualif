@@ -2,27 +2,29 @@ package fr.gouv.mte.capqualif.capqualif.instruction.domain;
 
 public class AptitudeMedicale extends MarinData {
 
-    private String endOfValidity;
-    private String value;
+    private final String value;
+    private final String endOfValidity;
 
-    public AptitudeMedicale(String endOfValidity, String value) {
-        this.endOfValidity = endOfValidity;
+    public AptitudeMedicale(String value, String endOfValidity) {
         this.value = value;
+        this.endOfValidity = endOfValidity;
     }
 
-    public String getEndOfValidity() {
-        return endOfValidity;
-    }
-
+    @Override
     public String getValue() {
         return value;
     }
 
     @Override
+    public String getEndOfValidity() {
+        return endOfValidity;
+    }
+
+    @Override
     public String toString() {
         return "AptitudeMedicale{" +
-                "dateFinDeValidite='" + endOfValidity + '\'' +
-                ", codeDecisionMedicale='" + value + '\'' +
+                "value='" + value + '\'' +
+                ", endOfValidity='" + endOfValidity + '\'' +
                 '}';
     }
 }

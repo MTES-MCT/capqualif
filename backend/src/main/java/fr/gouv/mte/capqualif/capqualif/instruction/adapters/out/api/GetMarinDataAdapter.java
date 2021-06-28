@@ -9,14 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
 public class GetMarinDataAdapter implements GetMarinDataPort {
-
-    @Autowired
-    private RestTemplate restTemplate;
 
     @Autowired
     JsonGetter jsonGetter;
@@ -26,11 +24,21 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
 
     String ENVIRONMENT = System.getenv("ENV_TYPE");
 
-    public Map<String, MarinData> getAllMarinData(String marinId, DataSources dataSources) {
+    @Autowired
+    private RestTemplate restTemplate;
+
+    DataSources DATA_SOURCES_MOCK = new DataSources(Arrays.asList(
+//            new DataSource(JuridicalDesignations.AGE, APINames.ADMINISTRES, System.getenv("ADMINISTRES_API_URL")),
+            new DataSource(JuridicalDesignations.APTITUDE_MEDICALE, APINames.ESCULAPE, System.getenv("ESCULAPE_API_URL"))
+//            new DataSource(JuridicalDesignations.FORMATIONS, APINames.AMFORE, System.getenv("AMFORE_API_URL"))
+//            new DataSource(JuridicalDesignations.TITRES, APINames.ITEM, System.getenv("ITEM_API_URL"))
+    ));
+
+    public Map<String, MarinData> getAllMarinData(String marinId) {
         Map<String, APIDataDTO> marinDataDTOs = new HashMap<>();
-        for (DataSource dataSource : dataSources.getDataSources()) {
+        for (DataSource dataSource : DATA_SOURCES_MOCK.getDataSources()) {
             marinDataDTOs.put(dataSource.getJuridicalDesignation().getName(),
-                    jsonGetter.getDtoFromAPI(marinId, dataSource.getAPIUrl(),  dataSource.getAPIName().getName()));
+                    jsonGetter.getDtoFromAPI(marinId, dataSource.getAPIUrl(), dataSource.getAPIName()));
         }
         Map<String, MarinData> marinData = new HashMap<>();
         for (Map.Entry<String, APIDataDTO> entry : marinDataDTOs.entrySet()) {

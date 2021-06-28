@@ -1,5 +1,7 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.domain;
 
+import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.APINames;
+
 public class DataSource {
 
     private JuridicalDesignations juridicalDesignation;

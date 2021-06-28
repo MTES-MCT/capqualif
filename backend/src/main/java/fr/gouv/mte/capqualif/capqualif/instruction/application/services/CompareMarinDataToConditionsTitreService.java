@@ -45,15 +45,8 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         this.getMarinDataPort = getMarinDataPort;
     }
 
-    DataSources DATA_SOURCES_MOCK = new DataSources(Arrays.asList(
-//            new DataSource(JuridicalDesignations.AGE, APINames.ADMINISTRES, System.getenv("ADMINISTRES_API_URL")),
-            new DataSource(JuridicalDesignations.APTITUDE_MEDICALE, APINames.ESCULAPE, System.getenv("ESCULAPE_API_URL"))
-//            new DataSource(JuridicalDesignations.FORMATIONS, APINames.AMFORE, System.getenv("AMFORE_API_URL"))
-//            new DataSource(JuridicalDesignations.TITRES, APINames.ITEM, System.getenv("ITEM_API_URL"))
-    ));
-
     public void compareMarinDataToConditionsTitre(String titreId, String marinId) {
-        Map<String, MarinData> allMarinData = getMarinDataPort.getAllMarinData(marinId, DATA_SOURCES_MOCK);
+        Map<String, MarinData> allMarinData = getMarinDataPort.getAllMarinData(marinId);
         System.out.println("allMarinData: " + allMarinData);
 
         List<Data> data = new ArrayList<>();
@@ -61,7 +54,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
             /**
              * TODO: check MarinData validity before building Marin
              */
-//            data.add(new Data(instructionMapper.mapToDomainMarinDataNames(entry.getKey()), entry.getValue().getValue()));
+
         }
         Marin marin = new Marin(data);
         System.out.println("marin " + marin);

@@ -6,7 +6,7 @@ package fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto;
 
 import java.util.List;
 
-public class MarinDto {
+public class MarinDTO {
     private String numIdentification;
     private String nom;
     private String nomUsage;

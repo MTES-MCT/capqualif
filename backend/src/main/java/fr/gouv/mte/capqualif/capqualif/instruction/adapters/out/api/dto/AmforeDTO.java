@@ -1,6 +1,6 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto;
 
-public class AmforeDTO implements APIDataDTO {
+public class AmforeDTO extends APIDataDTO {
 
     private String libelleVersionFormation;
     private String dateAcquisition;

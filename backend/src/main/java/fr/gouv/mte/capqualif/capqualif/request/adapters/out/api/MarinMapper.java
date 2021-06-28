@@ -1,12 +1,12 @@
 package fr.gouv.mte.capqualif.capqualif.request.adapters.out.api;
 
-import fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto.MarinDto;
+import fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto.MarinDTO;
 import fr.gouv.mte.capqualif.capqualif.request.domain.marin.Marin;
 import org.springframework.stereotype.Component;
 
 @Component
 class MarinMapper {
-    Marin mapToDomaineEntity(MarinDto marinDto) {
+    Marin mapToDomainEntity(MarinDTO marinDto) {
         Marin marin = new Marin(
                 marinDto.getNumIdentification(),
                 marinDto.getNom(),

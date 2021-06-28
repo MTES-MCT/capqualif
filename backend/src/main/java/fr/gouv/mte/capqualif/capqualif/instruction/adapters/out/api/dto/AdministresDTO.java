@@ -1,6 +1,6 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto;
 
-public class AdministresDTO implements APIDataDTO {
+public class AdministresDTO extends APIDataDTO {
     private String dateNaissance;
 
     public String getDateNaissance() {

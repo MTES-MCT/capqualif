@@ -1,7 +1,6 @@
 package fr.gouv.mte.capqualif.capqualif.request.adapters.out.api;
 
-import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto.APIDataDTO;
-import fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto.MarinDto;
+import fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto.MarinDTO;
 import fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto.TitreOfMarinDto;
 import fr.gouv.mte.capqualif.capqualif.request.application.ports.out.GetMarinBasicDataPort;
 import fr.gouv.mte.capqualif.capqualif.request.domain.marin.Marin;
@@ -36,8 +35,8 @@ public class GetMarinBasicBasicDataAPIAdapter implements GetMarinBasicDataPort {
         List<TitreOfMarin> allTitresOfMarin = titreOfMarinMapper.mapToDomainEntitiesList(allTitresOfMarinDto);
 
         // Let's do the same for all marin basic data (name, address, etc.)
-        APIDataDTO marinDto = jsonGetter.getDtoFromAPI(numeroDeMarin, ADMINISTRES_API_URL, "MarinDto");
-        Marin marin = marinMapper.mapToDomaineEntity((MarinDto) marinDto);
+        MarinDTO marinDto = jsonGetter.getMarinDtoFromAPI(numeroDeMarin, ADMINISTRES_API_URL);
+        Marin marin = marinMapper.mapToDomainEntity((MarinDTO) marinDto);
 
         // Let's wire titres to marin
         marin.setAllTitresOfMarin(allTitresOfMarin);

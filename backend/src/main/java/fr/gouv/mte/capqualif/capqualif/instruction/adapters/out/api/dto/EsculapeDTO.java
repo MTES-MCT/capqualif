@@ -1,12 +1,21 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto;
 
-public class EsculapeDTO implements APIDataDTO {
-    private DecisionMedicaleDTO decisionMedicale;
-    private String dateFinDeValidite;
+import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.APINames;
+
+public class EsculapeDTO extends APIDataDTO {
+
+    private final DecisionMedicaleDTO decisionMedicale;
+    private final String dateFinDeValidite;
+
+    public EsculapeDTO(DecisionMedicaleDTO decisionMedicale, String dateFinDeValidite) {
+        this.decisionMedicale = decisionMedicale;
+        this.dateFinDeValidite = dateFinDeValidite;
+    }
 
     public DecisionMedicaleDTO getDecisionMedicale() {
         return decisionMedicale;
     }
+
     public String getDateFinDeValidite() {
         return dateFinDeValidite;
     }
@@ -14,8 +23,8 @@ public class EsculapeDTO implements APIDataDTO {
     @Override
     public String toString() {
         return "EsculapeDTO{" +
-                "dateFinDeValidite='" + dateFinDeValidite + '\'' +
-                ", decisionMedicale=" + decisionMedicale +
+                "decisionMedicale=" + decisionMedicale +
+                ", dateFinDeValidite='" + dateFinDeValidite + '\'' +
                 '}';
     }
 }

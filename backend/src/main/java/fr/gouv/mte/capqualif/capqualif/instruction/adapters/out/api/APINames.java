@@ -1,6 +1,4 @@
-package fr.gouv.mte.capqualif.capqualif.instruction.domain;
-
-// TO DO : move to adapter
+package fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api;
 
 public enum APINames {
     ADMINISTRES("Administres"),
