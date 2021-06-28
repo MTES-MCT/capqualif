@@ -26,36 +26,41 @@ public class JsonGetter {
     String DTO_PACKAGE = "fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto";
 
     public List<ApiDataDto> getDtoFromApi(String marinId, String apiUrl, APINames dtoClassName) {
-        String className = DTO_PACKAGE + "." + dtoClassName.getName() + "Dto";
         String res = getJson(marinId, apiUrl);
         Gson gson = new Gson();
-        Class<ApiDataDto> myClass = (Class<ApiDataDto>) createClass(className);
+        String className = DTO_PACKAGE + "." + dtoClassName.getName() + "Dto";
+        Class<?> myClass = createClass(className);
         if (res.startsWith("[")) {
-            switch (dtoClassName) {
-                case AMFORE:
-                    Type amforeListType = new TypeToken<List<AmforeDto>>(){}.getType();
-                    List<ApiDataDto> amfores = gson.fromJson(res, amforeListType);
-                    for(ApiDataDto amforeDto : amfores) {
-                        addApiName(dtoClassName, amforeDto);
-                    }
-                    return amfores;
-                case ITEM:
-                    Type itemListType = new TypeToken<List<ItemDto>>(){}.getType();
-                    List<ApiDataDto> items = gson.fromJson(res, itemListType);
-                    for(ApiDataDto item : items) {
-                        addApiName(dtoClassName, item);
-                    }
-                    return items;
-                default:
-                    return null;
-            }
-
+            return getApiDataDtos(dtoClassName, res, gson);
         } else {
             ApiDataDto apiDataDTO = (ApiDataDto) gson.fromJson(res, myClass);
             return Collections.singletonList(addApiName(dtoClassName, apiDataDTO));
         }
     }
 
+    /**
+     * TODO: refactor to a more elegant solution.
+     */
+    private List<ApiDataDto> getApiDataDtos(APINames dtoClassName, String res, Gson gson) {
+        switch (dtoClassName) {
+            case AMFORE:
+                Type amforeListType = new TypeToken<List<AmforeDto>>(){}.getType();
+                List<ApiDataDto> amfores = gson.fromJson(res, amforeListType);
+                for(ApiDataDto amforeDto : amfores) {
+                    addApiName(dtoClassName, amforeDto);
+                }
+                return amfores;
+            case ITEM:
+                Type itemListType = new TypeToken<List<ItemDto>>(){}.getType();
+                List<ApiDataDto> items = gson.fromJson(res, itemListType);
+                for(ApiDataDto item : items) {
+                    addApiName(dtoClassName, item);
+                }
+                return items;
+            default:
+                return null;
+        }
+    }
 
     private ApiDataDto addApiName(APINames dtoClassName, ApiDataDto apiDataDTO) {
         apiDataDTO.setName(dtoClassName);

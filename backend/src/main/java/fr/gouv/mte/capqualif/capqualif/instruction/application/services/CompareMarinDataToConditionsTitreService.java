@@ -46,8 +46,6 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         System.out.println("allMarinData: " + allMarinData);
         List<Data> data = new ArrayList<>();
 
-
-
         Map<String, List<MarinDataPurified>> allMarinDataPurified = new HashMap<>();
 
         for (Map.Entry<String, List<MarinData>> entry : allMarinData.entrySet()) {
@@ -75,8 +73,6 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                 data.add(new Data(entry.getKey(), sl));
             }
         }
-
-
 
         Marin marin = new Marin(data);
         System.out.println("marin " + marin);
