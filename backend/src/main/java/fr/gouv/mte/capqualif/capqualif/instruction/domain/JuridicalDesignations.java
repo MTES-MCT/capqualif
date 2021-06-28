@@ -2,18 +2,18 @@ package fr.gouv.mte.capqualif.capqualif.instruction.domain;
 
 public enum JuridicalDesignations {
 
-    AGE("âge"),
-    APTITUDE_MEDICALE("aptitude médicale"),
+    AGE("age"),
+    APTITUDE_MEDICALE("aptitude"),
     FORMATIONS("formations"),
     TITRES("titres");
 
-    private final String juridicalDesignation;
+    private final String name;
 
-    JuridicalDesignations(String juridicalDesignation) {
-        this.juridicalDesignation = juridicalDesignation;
+    JuridicalDesignations(String name) {
+        this.name = name;
     }
 
-    public String getJuridicalDesignation() {
-        return juridicalDesignation;
+    public String getName() {
+        return name;
     }
 }

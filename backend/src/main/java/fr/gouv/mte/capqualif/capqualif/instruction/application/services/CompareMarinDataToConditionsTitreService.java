@@ -53,14 +53,15 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     ));
 
     public void compareMarinDataToConditionsTitre(String titreId, String marinId) {
-        Map<APINames, MarinData> allMarinData = getMarinDataPort.getAllMarinData(marinId, DATA_SOURCES_MOCK);
+        Map<String, MarinData> allMarinData = getMarinDataPort.getAllMarinData(marinId, DATA_SOURCES_MOCK);
         System.out.println("allMarinData: " + allMarinData);
-        for (Map.Entry<APINames, MarinData> entry : allMarinData.entrySet()) {
-            System.out.println(entry.getValue());
-        }
+
         List<Data> data = new ArrayList<>();
-        for (Map.Entry<APINames, MarinData> entry : allMarinData.entrySet()) {
-            data.add(new Data(instructionMapper.mapToDomainMarinDataNames(entry.getKey()), entry.getValue().getValue()));
+        for (Map.Entry<String, MarinData> entry : allMarinData.entrySet()) {
+            /**
+             * TODO: check MarinData validity before building Marin
+             */
+//            data.add(new Data(instructionMapper.mapToDomainMarinDataNames(entry.getKey()), entry.getValue().getValue()));
         }
         Marin marin = new Marin(data);
         System.out.println("marin " + marin);

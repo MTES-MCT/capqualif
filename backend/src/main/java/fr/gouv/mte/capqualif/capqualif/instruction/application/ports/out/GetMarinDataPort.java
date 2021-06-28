@@ -9,6 +9,6 @@ import java.util.Map;
 
 public interface GetMarinDataPort {
 
-    Map<APINames, MarinData> getAllMarinData(String marinId, DataSources dataSources);
+    Map<String, MarinData> getAllMarinData(String marinId, DataSources dataSources);
 
 }
