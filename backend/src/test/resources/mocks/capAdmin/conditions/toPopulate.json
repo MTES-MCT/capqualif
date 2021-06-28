@@ -25,7 +25,7 @@
           "operator": "==",
           "leftOpId": "aptitude",
           "leftOp": "",
-          "rightOp": "apte"
+          "rightOp": "1"
         },
         {
           "name": "formations",

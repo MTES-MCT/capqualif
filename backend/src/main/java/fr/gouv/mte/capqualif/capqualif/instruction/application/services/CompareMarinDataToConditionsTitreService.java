@@ -1,8 +1,12 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.application.services;
 
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.APINames;
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.DataSource;
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.DataSources;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.gouv.mte.capqualif.capadmin.domain.Titre;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.ComparisonDate;
+import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.ComparisonRule;
+import fr.gouv.mte.capqualif.capqualif.evaluator.application.services.EvaluationService;
+import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto.APIDataDTO;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.*;
 //import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ComparisonResult;
 import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.out.GetMarinDataPort;
@@ -13,11 +17,15 @@ import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.out.GetMari
 //import fr.gouv.mte.capqualif.shared.TimeConverter;
 //import fr.gouv.mte.capqualif.capadmin.titreTemp.application.ports.out.GetTitrePort;
 //import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.*;
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.JuridicalDesignations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -26,22 +34,83 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     @Autowired
     GetMarinDataPort getMarinDataPort;
 
+    @Autowired
+    EvaluationService evaluationService;
+
     public CompareMarinDataToConditionsTitreService(GetMarinDataPort getMarinDataPort) {
         this.getMarinDataPort = getMarinDataPort;
     }
 
     DataSources DATA_SOURCES_MOCK = new DataSources(Arrays.asList(
-            new DataSource(JuridicalDesignations.AGE, APINames.ADMINISTRES, System.getenv("ADMINISTRES_API_URL")),
-            new DataSource(JuridicalDesignations.APTITUDE_MEDICALE, APINames.ESCULAPE, System.getenv("ESCULAPE_API_URL")),
-            new DataSource(JuridicalDesignations.FORMATIONS, APINames.AMFORE, System.getenv("AMFORE_API_URL")),
-            new DataSource(JuridicalDesignations.TITRES, APINames.ITEM, System.getenv("ITEM_API_URL"))
+//            new DataSource(JuridicalDesignations.AGE, APINames.ADMINISTRES, System.getenv("ADMINISTRES_API_URL")),
+            new DataSource(JuridicalDesignations.APTITUDE_MEDICALE, APINames.ESCULAPE, System.getenv("ESCULAPE_API_URL"))
+//            new DataSource(JuridicalDesignations.FORMATIONS, APINames.AMFORE, System.getenv("AMFORE_API_URL"))
+//            new DataSource(JuridicalDesignations.TITRES, APINames.ITEM, System.getenv("ITEM_API_URL"))
     ));
 
     public void compareMarinDataToConditionsTitre(String titreId, String marinId) {
-        Map<APINames, String> allMarinData = getMarinDataPort.getAllMarinData(marinId, DATA_SOURCES_MOCK);
-        System.out.println(allMarinData);
+        Map<APINames, MarinData> allMarinData = getMarinDataPort.getAllMarinData(marinId, DATA_SOURCES_MOCK);
+        System.out.println("allMarinData: " + allMarinData);
+        for (Map.Entry<APINames, MarinData> entry : allMarinData.entrySet()) {
+            System.out.println(entry.getValue());
+        }
+        List<Data> data = new ArrayList<>();
+        for (Map.Entry<APINames, MarinData> entry : allMarinData.entrySet()) {
+            String value = entry.getValue().getValue();
+//            data.add(new Data(entry.getKey().getName(), value));
+            data.add(new Data("aptitude", value));
+        }
+        Marin marin = new Marin(data);
+        System.out.println("marin " + marin);
+        try {
+            System.out.println("eval " + evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
+    private Titre jsonToTitre(String location) throws IOException, IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Titre titre = objectMapper.readValue(new File(location), Titre.class);
+        System.out.println(titre);
+        return titre;
+    }
+
+//    private boolean checkValidity(MarinData data) {
+//
+//    }
+
+//    private boolean compareDates(LocalDate comparedDate, ComparisonDate referenceDate, ComparisonRule comparisonRule) {
+//        LocalDate refDate = referenceDate.getData();
+//        boolean result = false;
+//        switch (comparisonRule) {
+//            case EQUAL_TO_OR_POSTERIOR:
+//                if (comparedDate.isAfter(refDate) || comparedDate.isEqual(refDate)) {
+//                    result = true;
+//                }
+//                break;
+//            case EQUAL_TO_OR_ANTERIOR:
+//                if (comparedDate.isBefore(refDate) || comparedDate.isEqual(refDate)) {
+//                    result = true;
+//                }
+//                break;
+//            case STRICTLY_ANTERIOR:
+//                if (comparedDate.isBefore(refDate)) {
+//                    result = true;
+//                }
+//                break;
+//            case STRICTLY_POSTERIOR:
+//                if (comparedDate.isAfter(refDate)) {
+//                    result = true;
+//                }
+//                break;
+//            default:
+//                return false;
+//        }
+//        return result;
+//    }
 
 //    @Autowired
 //    GetTitrePort getTitrePort;

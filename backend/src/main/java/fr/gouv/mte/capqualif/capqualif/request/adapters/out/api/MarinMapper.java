@@ -25,3 +25,10 @@ class MarinMapper {
         return marin;
     }
 }
+
+//(String dateFinDeValidite,
+//        String restrictionMedicale1,
+//        String restrictionMedicale2,
+//        String codeDecisionMedicale,
+//        Long dateDebutApplicationDecisionMedicale,
+//        Long dateFinApplicationDecisionMedicale)

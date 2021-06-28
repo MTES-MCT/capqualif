@@ -1,5 +1,6 @@
 package fr.gouv.mte.capqualif.capqualif.request.adapters.out.api;
 
+import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto.APIDataDTO;
 import fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto.MarinDto;
 import fr.gouv.mte.capqualif.capqualif.request.adapters.out.api.dto.TitreOfMarinDto;
 import fr.gouv.mte.capqualif.capqualif.request.application.ports.out.GetMarinBasicDataPort;
@@ -29,14 +30,14 @@ public class GetMarinBasicBasicDataAPIAdapter implements GetMarinBasicDataPort {
     String ITEM_API_URL = System.getenv("ITEM_API_URL");
     @Override
     public Marin getMarin(String numeroDeMarin) {
-        // Let's get all titres of a marin and convert the data into something suitable for the domain of our architecture hexagon!
+        // Let's get all titres of a marin and convert the data into domain entities
         List<TitreOfMarinDto> allTitresOfMarinDto = jsonGetter.getTitresOfMarinDtoFromAPI(numeroDeMarin,
                 ITEM_API_URL);
         List<TitreOfMarin> allTitresOfMarin = titreOfMarinMapper.mapToDomainEntitiesList(allTitresOfMarinDto);
 
-        // Let's do the same for all marin basic data (name, address, etc.)!
-        MarinDto marinDto = jsonGetter.getMarinDtoFromAPI(numeroDeMarin, ADMINISTRES_API_URL);
-        Marin marin = marinMapper.mapToDomaineEntity(marinDto);
+        // Let's do the same for all marin basic data (name, address, etc.)
+        APIDataDTO marinDto = jsonGetter.getDtoFromAPI(numeroDeMarin, ADMINISTRES_API_URL, "MarinDto");
+        Marin marin = marinMapper.mapToDomaineEntity((MarinDto) marinDto);
 
         // Let's wire titres to marin
         marin.setAllTitresOfMarin(allTitresOfMarin);

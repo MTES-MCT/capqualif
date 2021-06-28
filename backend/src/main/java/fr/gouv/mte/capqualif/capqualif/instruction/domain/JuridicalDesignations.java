@@ -7,7 +7,7 @@ public enum JuridicalDesignations {
     FORMATIONS("formations"),
     TITRES("titres");
 
-    private String juridicalDesignation;
+    private final String juridicalDesignation;
 
     JuridicalDesignations(String juridicalDesignation) {
         this.juridicalDesignation = juridicalDesignation;

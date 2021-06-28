@@ -17,4 +17,12 @@ public class Data<T> {
     public T getValue() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "Data{" +
+                "juridicalDesignation='" + juridicalDesignation + '\'' +
+                ", value=" + value +
+                '}';
+    }
 }
