@@ -30,8 +30,8 @@ public class GetMarinDataAdapter implements GetMarinDataPort {
     DataSources DATA_SOURCES_MOCK = new DataSources(Arrays.asList(
             new DataSource(JuridicalDesignations.AGE, APINames.ADMINISTRES, System.getenv("ADMINISTRES_API_URL")),
             new DataSource(JuridicalDesignations.APTITUDE_MEDICALE, APINames.ESCULAPE, System.getenv("ESCULAPE_API_URL")),
-            new DataSource(JuridicalDesignations.FORMATIONS, APINames.AMFORE, System.getenv("AMFORE_API_URL"))
-//            new DataSource(JuridicalDesignations.TITRES, APINames.ITEM, System.getenv("ITEM_API_URL"))
+            new DataSource(JuridicalDesignations.FORMATIONS, APINames.AMFORE, System.getenv("AMFORE_API_URL")),
+            new DataSource(JuridicalDesignations.TITRES, APINames.ITEM, System.getenv("ITEM_API_URL"))
     ));
 
     public Map<String, List<MarinData>> getAllMarinData(String marinId) {

@@ -118,7 +118,7 @@
               "operator": "contains",
               "leftOpId": "titres",
               "leftOpList": [""],
-              "rightOp": "CFBS"
+              "rightOp": "Certificat de sensibilisation à la sûreté (STCW10)"
             },
             {
               "name": "document reconnu équivalent au CFBS 2014",

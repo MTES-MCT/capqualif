@@ -52,6 +52,10 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
             /**
              * TODO: check MarinData validity before building Marin
              */
+
+            /**
+             * TODO: simplify
+             */
             List<MarinDataPurified> purifiedData = new ArrayList<>();
             List<MarinData> mds = entry.getValue();
             for (MarinData md : mds) {
@@ -67,7 +71,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
             } else {
                 List<String> sl = new ArrayList<>();
                 List<MarinDataPurified> list = entry.getValue();
-                for(MarinDataPurified marinDataPurified : list) {
+                for (MarinDataPurified marinDataPurified : list) {
                     sl.add(marinDataPurified.getValue());
                 }
                 data.add(new Data(entry.getKey(), sl));
