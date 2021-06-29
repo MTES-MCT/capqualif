@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Marin {
 
-    private List<Data> data;
+    private List<Data<?>> data;
 
     public Marin() {}
 
-    public Marin(List<Data> data) {
+    public Marin(List<Data<?>> data) {
         this.data = data;
     }
 
-    public List<Data> getData() {
+    public List<Data<?>> getData() {
         return data;
     }
 

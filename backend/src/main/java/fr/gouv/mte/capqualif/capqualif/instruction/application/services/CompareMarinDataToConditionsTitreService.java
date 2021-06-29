@@ -5,16 +5,8 @@ import fr.gouv.mte.capqualif.capadmin.domain.Titre;
 import fr.gouv.mte.capqualif.capqualif.evaluator.application.services.EvaluationService;
 import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.InstructionMapper;
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.*;
-//import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ComparisonResult;
 import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.in.CompareMarinDataToConditionsTitreUseCase;
 import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.out.GetMarinDataPort;
-//import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ComparisonsSummary;
-//import fr.gouv.mte.capqualif.capqualif.instruction.domain.archive.ExtractionResult;
-//import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.EntryInExistingDataSource;
-//import fr.gouv.mte.capqualif.capadmin.adapters.out.mock.KeyInExistingDataSource;
-//import fr.gouv.mte.capqualif.shared.TimeConverter;
-//import fr.gouv.mte.capqualif.capadmin.titreTemp.application.ports.out.GetTitrePort;
-//import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.*;
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.marinData.MarinData;
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.marinData.MarinDataPurified;
 import fr.gouv.mte.capqualif.shared.JsonConverter;
@@ -48,9 +40,18 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     }
 
     public void compareMarinDataToConditionsTitre(String marinId) {
+        Marin marin = buildMarin(marinId);
+        try {
+            System.out.println("eval " + evaluationService.canMarinHaveTitre(jsonConverter.jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Marin buildMarin(String marinId) {
         Map<String, List<MarinData>> allMarinData = getMarinDataPort.getAllMarinData(marinId);
         System.out.println("allMarinData: " + allMarinData);
-        List<Data> data = new ArrayList<>();
+        List<Data<?>> data = new ArrayList<>();
 
         Map<String, List<MarinDataPurified>> allMarinDataPurified = new HashMap<>();
 
@@ -86,11 +87,7 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
 
         Marin marin = new Marin(data);
         System.out.println("marin " + marin);
-        try {
-            System.out.println("eval " + evaluationService.canMarinHaveTitre(jsonConverter.jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return marin;
     }
 
 //    private boolean checkValidity(MarinData data) {
