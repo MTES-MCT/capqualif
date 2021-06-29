@@ -106,7 +106,7 @@
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
-                  "rightOp": "Certificat de fin d’études maritimes de matelot, de marin du commerce ou “pêche” délivré conformément à l’arrêté du 12 décembre 2006 susvisé"
+                  "rightOp": "Certificat de fin d'études maritimes de matelot (2006)"
                 },
                 {
                   "name": "titre reconnu équivalent à la formation modulaire 2005",
@@ -117,7 +117,7 @@
                   "operator": "contains",
                   "leftOpId": "formations",
                   "leftOpList": [""],
-                  "rightOp": "Certificat d’aptitude professionnelle maritime de matelot délivré conformément à l’arrêté du 8 septembre 2005 susvisé"
+                  "rightOp": "Certificat d'aptitude professionnelle maritime de matelot (2005)"
                 }
               ]
             }

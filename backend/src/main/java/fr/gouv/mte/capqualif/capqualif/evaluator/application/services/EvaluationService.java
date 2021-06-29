@@ -24,7 +24,7 @@ public class EvaluationService {
     }
 
 
-    public GlobalResult canMarinHaveTitre(Titre titre, Marin marin) {
+    public PossibleTitre canMarinHaveTitre(Titre titre, Marin marin) {
         if (marin != null) {
             try {
                 titre = jsonPopulator.populate(titre, marin);
@@ -39,7 +39,7 @@ public class EvaluationService {
          */
         Condition condition = titre.getConditions().get(0);
         List<ConditionResult> detailedResults = new ArrayList<>();
-        GlobalResult result = new GlobalResult(titre.getName(), areConditionsSatisfied(condition, detailedResults), detailedResults);
+        PossibleTitre result = new PossibleTitre(titre.getName(), areConditionsSatisfied(condition, detailedResults), detailedResults);
         System.out.println(detailedResults);
         System.out.println(result);
         return result;

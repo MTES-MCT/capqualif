@@ -162,6 +162,7 @@ const Dashboard = (props) => {
         <ButtonAction
           label={BUTTON_LABELS.DEMAND_ONE}
           width={BUTTON_WIDTH.FULL}
+          marginsInRem={{ bottom: 0.5 }}
           actionOnClick={() => startRequest(marin, requestableTitres)}
         />
       </div>

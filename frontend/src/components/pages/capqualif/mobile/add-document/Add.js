@@ -36,10 +36,12 @@ const Add = (props) => {
     (state) => state.currentRequest.currentCondition
   );
 
-  const handleFileUpload = (e) => {
-    console.log(e.target.files[0]);
-    // TO DO : add document to request.documents state
-  };
+  /**
+   * TODO: handle upload
+   */
+  // const handleFileUpload = (e) => {
+  //   console.log(e.target.files[0]);
+  // };
 
   const addPicturesToRequest = () => {
     dispatch(addDocuments({ titreId: titreId, condition: renameCondition() }));
@@ -79,8 +81,9 @@ const Add = (props) => {
           </span>
           .
         </p>
-        <ButtonUpload onChange={(e) => handleFileUpload(e)} />
-        <p className="fr-my-1w">ou</p>
+        {/* TODO: handle upload 
+        <ButtonUpload onChange={(e) => handleFileUpload(e)} /> 
+        <p className="fr-my-1w">ou</p>*/}
         <ButtonLink
           label={BUTTON_LABELS.TAKE_PICTURE}
           route={`/${MOBILE}/${NEW_TITRE_REQUEST_ROUTE}/${ADD_DOCUMENT_ROUTE}/${ADD_PICTURE_ROUTE}`}

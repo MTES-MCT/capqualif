@@ -176,19 +176,19 @@ public class Condition {
         detailedResults.add(new ConditionResult(name, group.getName(), marinData, isValid));
     }
 
-    /*
-    * For an OR condition, if one of the subconditions is satisfied, we remove other not satisfied conditions so it does not pollute detailed results
-    */
-    private void removeErrorsFromOtherFalseSubconditions(List<ConditionResult> errorsList, List<ConditionResult> orResults) {
-        List<String> errorGroupsToRemove = new ArrayList<>();
+    /**
+     * For an OR condition, if one of the subconditions is satisfied, we remove other not satisfied conditions so it does not pollute detailed results
+     */
+    private void removeErrorsFromOtherFalseSubconditions(List<ConditionResult> detailedResults, List<ConditionResult> orResults) {
+        List<String> detailsGroupsToRemove = new ArrayList<>();
         for(ConditionResult orResult : orResults) {
             if (orResult.getResult().equals(Boolean.FALSE)) {
-                errorGroupsToRemove.add(orResult.getName());
+                detailsGroupsToRemove.add(orResult.getName());
             }
         }
 
-        for (String group : errorGroupsToRemove) {
-            errorsList.removeIf(error -> error.getGroup().equals(group));
+        for (String group : detailsGroupsToRemove) {
+            detailedResults.removeIf(error -> error.getGroup().equals(group));
         }
     }
 

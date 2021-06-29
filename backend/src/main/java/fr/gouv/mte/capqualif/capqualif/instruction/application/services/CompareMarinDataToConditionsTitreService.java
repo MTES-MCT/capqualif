@@ -1,7 +1,6 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.application.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.gouv.mte.capqualif.capadmin.domain.GlobalResult;
+import fr.gouv.mte.capqualif.capadmin.domain.PossibleTitre;
 import fr.gouv.mte.capqualif.capadmin.domain.Titre;
 import fr.gouv.mte.capqualif.capqualif.evaluator.application.services.EvaluationService;
 import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.InstructionMapper;
@@ -14,7 +13,6 @@ import fr.gouv.mte.capqualif.shared.JsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -48,11 +46,14 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
                     jsonConverter.jsonToTitre("src/test/resources/mocks/capAdmin/conditions/CFBS_ToPopulate.json")
 
             );
-            List<GlobalResult> allResults = new ArrayList<>();
+            List<PossibleTitre> allResults = new ArrayList<>();
             for (Titre titre : titresToEvaluation) {
                 allResults.add(evaluationService.canMarinHaveTitre(titre, marin));
             }
-            System.out.println(allResults);
+            System.out.println("\n******** Marin can have: ********");
+            for (PossibleTitre result : allResults) {
+                System.out.println(result);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

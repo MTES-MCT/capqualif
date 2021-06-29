@@ -45,29 +45,25 @@ const Login = () => {
           onSubmit={(event) => handleSubmit(event)}
           className={`${styles['form']} fr-mt-3w`}
         >
-          <label className={`${styles['fr-label']}`} for="text-input-text">
+          <label className={`${styles['fr-label']}`} for="marin-id">
             <span className={`${styles['mandatory-input']}`}>*</span> {LOGIN.ID}
           </label>
           <input
             className={`${styles['fr-input']} fr-mb-4w`}
             type="text"
-            id="text-input-text"
-            name="text-input-text"
-            // name="sailor-id"
+            name="marin-id"
             placeholder="Exemple&nbsp;: 19780030"
             onChange={(event) => handleChange(event)}
           />
-          <label className={`${styles['fr-label']}`} for="text-input-text">
+          <label className={`${styles['fr-label']}`} for="marin-password">
             <span className={`${styles['mandatory-input']}`}>*</span>{' '}
             {LOGIN.PASSWORD}
           </label>
           <input
             className={`${styles['fr-input']} fr-mb-2w`}
             type="text"
-            id="text-input-text"
-            name="text-input-text"
-            // name="sailor-id"
-            placeholder="Exemple&nbsp;: 19780030"
+            name="marin-password"
+            placeholder=""
             onChange={(event) => handleChange(event)}
           />
           <ButtonSubmit label={LOGIN.SIGN_IN} marginsInRem={{ top: 1 }} />
