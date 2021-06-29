@@ -9,7 +9,7 @@
           "name": "age",
           "group": {
             "name": "age",
-            "operator": "AND"
+            "operator": "NO_LOGIC_OPERATOR_NEEDED"
           },
           "operator": ">=",
           "leftOpId": "age",
@@ -20,7 +20,7 @@
           "name": "aptitude médicale",
           "group": {
             "name": "aptitude",
-            "operator": "AND"
+            "operator": "NO_LOGIC_OPERATOR_NEEDED"
           },
           "operator": "==",
           "leftOpId": "aptitude",
@@ -31,7 +31,7 @@
           "name": "formations",
           "group": {
             "name": "formations",
-            "operator": "AND"
+            "operator": "OR"
           },
           "operator": "OR",
           "subConditions": [
@@ -39,7 +39,7 @@
               "name": "formations modulaires",
               "group": {
                 "name": "formations modulaires",
-                "operator": "OR"
+                "operator": "AND"
               },
               "operator": "AND",
               "subConditions": [
@@ -105,7 +105,7 @@
           "name": "compétences en sécurité",
           "group": {
             "name": "compétences en sécurité",
-            "operator":"AND"
+            "operator":"OR"
           },
           "operator": "OR",
           "subConditions": [
@@ -113,7 +113,7 @@
               "name": "titre mainstream",
               "group": {
                 "name": "compétences en sécurité mainstream",
-                "operator": "OR"
+                "operator": "NO_LOGIC_OPERATOR_NEEDED"
               },
               "operator": "contains",
               "leftOpId": "titres",
@@ -124,7 +124,7 @@
               "name": "document reconnu équivalent au CFBS 2014",
               "group": {
                 "name": "équivalents pour les compétences en sécurité",
-                "operator": "OR"
+                "operator": "NO_LOGIC_OPERATOR_NEEDED"
               },
               "operator": "contains",
               "leftOpId": "formations",
@@ -135,7 +135,7 @@
               "name": "document reconnu équivalent au CFBS 2015",
               "group": {
                 "name": "équivalents pour les compétences en sécurité",
-                "operator": "OR"
+                "operator": "NO_LOGIC_OPERATOR_NEEDED"
               },
               "operator": "contains",
               "leftOpId": "formations",

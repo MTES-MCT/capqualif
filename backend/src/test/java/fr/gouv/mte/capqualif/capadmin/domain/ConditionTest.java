@@ -51,7 +51,7 @@ class ConditionTest {
         );
 
         // When & Then
-        assertTrue(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
+        assertTrue(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_toPopulate.json")
                 , marin).areConditionsSatisfied());
     }
 
@@ -79,7 +79,7 @@ class ConditionTest {
         );
 
         // When & Then
-        assertFalse(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
+        assertFalse(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_toPopulate.json")
                 , marin).areConditionsSatisfied());
 
     }
@@ -108,7 +108,7 @@ class ConditionTest {
         );
 
         // When & Then
-        assertFalse(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
+        assertFalse(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_toPopulate.json")
                 , marin).areConditionsSatisfied());
 
     }
@@ -136,7 +136,7 @@ class ConditionTest {
         );
 
         // When & Then
-        assertFalse(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
+        assertFalse(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_toPopulate.json")
                 , marin).areConditionsSatisfied());
 
     }
@@ -165,7 +165,7 @@ class ConditionTest {
         );
 
         // When & Then
-        assertTrue(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json")
+        assertTrue(evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_toPopulate.json")
                 , marin).areConditionsSatisfied());
 
     }

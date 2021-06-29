@@ -2,5 +2,6 @@ package fr.gouv.mte.capqualif.capadmin.domain;
 
 public enum Operator {
     AND,
-    OR
+    OR,
+    NO_LOGIC_OPERATOR_NEEDED
 }

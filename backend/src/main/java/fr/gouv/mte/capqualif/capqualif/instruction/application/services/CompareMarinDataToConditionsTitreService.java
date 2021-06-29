@@ -1,6 +1,7 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.application.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.gouv.mte.capqualif.capadmin.domain.GlobalResult;
 import fr.gouv.mte.capqualif.capadmin.domain.Titre;
 import fr.gouv.mte.capqualif.capqualif.evaluator.application.services.EvaluationService;
 import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.InstructionMapper;
@@ -15,10 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class CompareMarinDataToConditionsTitreService implements CompareMarinDataToConditionsTitreUseCase {
@@ -42,7 +40,18 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
     public void compareMarinDataToConditionsTitre(String marinId) {
         Marin marin = buildMarin(marinId);
         try {
-            System.out.println("eval " + evaluationService.canMarinHaveTitre(jsonConverter.jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails());
+            /**
+             * TODO: decouple by establishing a proper REST communication between modules
+             */
+            List<Titre> titresToEvaluation = Arrays.asList(
+                    jsonConverter.jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_ToPopulate.json")
+
+            );
+            List<GlobalResult> allResults = new ArrayList<>();
+            for (Titre titre : titresToEvaluation) {
+                allResults.add(evaluationService.canMarinHaveTitre(titre, marin));
+            }
+            System.out.println(allResults);
         } catch (IOException e) {
             e.printStackTrace();
         }

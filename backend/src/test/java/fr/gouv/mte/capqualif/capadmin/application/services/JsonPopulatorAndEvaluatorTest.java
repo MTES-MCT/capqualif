@@ -36,13 +36,13 @@ class JsonPopulatorAndEvaluatorTest {
             )
         );
 
-        Titre notPopulatedYet = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json");
+        Titre notPopulatedYet = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_toPopulate.json");
 
         // When
         Titre actual = jsonPopulator.populate(notPopulatedYet, marin);
 
         // Then
-        Titre expected = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulateExpected.json");
+        Titre expected = jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_ToPopulateExpected.json");
 
         assertEquals(expected, actual);
 

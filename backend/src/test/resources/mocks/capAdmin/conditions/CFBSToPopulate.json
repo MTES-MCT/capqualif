@@ -1,0 +1,127 @@
+{
+  "titre": "Certificat de Formation de Base à la Sécurité",
+  "conditions": [
+    {
+      "name": "all conditions",
+      "operator": "AND",
+      "subConditions": [
+        {
+          "name": "aptitude médicale",
+          "group": {
+            "name": "aptitude",
+            "operator": "AND"
+          },
+          "operator": "==",
+          "leftOpId": "aptitude",
+          "leftOp": "",
+          "rightOp": "1"
+        },
+        {
+          "name": "formations",
+          "group": {
+            "name": "formations",
+            "operator": "AND"
+          },
+          "operator": "AND",
+          "subConditions": [
+            {
+              "name": "Techniques individuelles de survie",
+              "group": {
+                "name": "formations",
+                "operator": "AND"
+              },
+              "operator": "contains",
+              "leftOpId": "formations",
+              "leftOpList": [""],
+              "rightOp": "UV Techniques individuelles de survie"
+            },
+            {
+              "name": "Formation de base à la lutte contre l’incendie",
+              "group": {
+                "name": "formations",
+                "operator": "AND"
+              },
+              "operator": "contains",
+              "leftOpId": "formations",
+              "leftOpList": [""],
+              "rightOp": "UV formation de base à la lutte incendie"
+            },
+            {
+              "name": "Prévention des risques à bord",
+              "group": {
+                "name": "formations",
+                "operator": "AND"
+              },
+              "operator": "contains",
+              "leftOpId": "formations",
+              "leftOpList": [""],
+              "rightOp": "UV prévention des risques à bord - pêche"
+            }
+          ]
+        },
+        {
+          "name": "compétences médicales",
+          "group": {
+            "name": "compétences médicales",
+            "operator": "AND"
+          },
+          "operator": "OR",
+          "subConditions": [
+            {
+              "name": "titre mainstream",
+              "group": {
+                "name": "Certificat d'enseignement médical de niveau I",
+                "operator": "OR"
+              },
+              "operator": "contains",
+              "leftOpId": "titres",
+              "leftOpList": [""],
+              "rightOp": "Enseignement médical de niveau I"
+            },
+            {
+              "name": "formations équivalentes au Certificat d'enseignement médical de niveau I",
+              "operator": "AND",
+              "subConditions": [
+                {
+                  "name": "Formation à la prévention et aux secours civiques de niveau 1",
+                  "group": {
+                    "name": "formations équivalentes au Certificat d'enseignement médical de niveau I",
+                    "operator": "AND"
+                  },
+                  "operator": "contains",
+                  "leftOpId": "formations",
+                  "leftOpList": [""],
+                  "rightOp": "UV PSC1"
+                },
+                {
+                  "name": "Formation à l’hygiène et à la prévention des risques",
+                  "group": {
+                    "name": "formations équivalentes au Certificat d'enseignement médical de niveau I",
+                    "operator": "AND"
+                  },
+                  "operator": "contains",
+                  "leftOpId": "formations",
+                  "leftOpList": [""],
+                  "rightOp": "UV HPR"
+                },
+                {
+                  "name": "Formation à l’aide médicale en mer  -consultation télémédicale de niveau 1",
+                  "group": {
+                    "name": "formations équivalentes au Certificat d'enseignement médical de niveau I",
+                    "operator": "AND"
+                  },
+                  "operator": "contains",
+                  "leftOpId": "formations",
+                  "leftOpList": [
+                    ""
+                  ],
+                  "rightOp": "UV AMMCT1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

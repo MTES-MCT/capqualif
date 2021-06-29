@@ -44,7 +44,7 @@ class EvaluationServiceDetailledResultsTest {
         );
 
         // When
-        List<ConditionResult> actual = evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
+        List<ConditionResult> actual = evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_toPopulate.json"), marin).getDetails();
 
         // Then
         List<ConditionResult> expected = Arrays.asList(
@@ -73,7 +73,7 @@ class EvaluationServiceDetailledResultsTest {
         );
 
         // When
-        List<ConditionResult> actual = evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
+        List<ConditionResult> actual = evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_toPopulate.json"), marin).getDetails();
 
         // Then
         List<ConditionResult> expected = Arrays.asList(
@@ -101,7 +101,7 @@ class EvaluationServiceDetailledResultsTest {
         );
 
         // When
-        List<ConditionResult> actual = evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails();
+        List<ConditionResult> actual = evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_toPopulate.json"), marin).getDetails();
 
 
         // Then
