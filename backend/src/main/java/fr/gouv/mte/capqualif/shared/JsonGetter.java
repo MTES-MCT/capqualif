@@ -30,12 +30,19 @@ public class JsonGetter {
         Gson gson = new Gson();
         String className = DTO_PACKAGE + "." + dtoClassName.getName() + "Dto";
         Class<?> myClass = createClass(className);
-        if (res.startsWith("[")) {
+        if (isJsonArray(res)) {
             return getApiDataDtos(dtoClassName, res, gson);
         } else {
             ApiDataDto apiDataDTO = (ApiDataDto) gson.fromJson(res, myClass);
+            /*
+                We are wrapping each single ApiDataDto object in its own List to homogenize returned value. It is unwrapped later in the code.
+             */
             return Collections.singletonList(addApiName(dtoClassName, apiDataDTO));
         }
+    }
+
+    private boolean isJsonArray(String res) {
+        return res.startsWith("[");
     }
 
     /**
@@ -67,8 +74,8 @@ public class JsonGetter {
         return apiDataDTO;
     }
 
-    private Class createClass(String className) {
-        Class myClass = null;
+    private Class<?> createClass(String className) {
+        Class<?> myClass = null;
 
         try {
             myClass = Class.forName(className);
