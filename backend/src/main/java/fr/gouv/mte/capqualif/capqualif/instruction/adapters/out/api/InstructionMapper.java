@@ -51,11 +51,4 @@ public class InstructionMapper {
 
 }
 
-//    public AptitudeMedicale mapToDomainEntity(EsculapeDTO dto) {
-//        return new AptitudeMedicale(
-//                dto.getDateFinDeValidite(),
-//                dto.getDecisionMedicale().getCode()
-//        );
-//    }
-
 

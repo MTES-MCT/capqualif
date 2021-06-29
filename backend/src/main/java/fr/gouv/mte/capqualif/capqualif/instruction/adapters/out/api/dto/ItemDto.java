@@ -27,24 +27,3 @@ public class ItemDto extends ApiDataDto {
                 '}';
     }
 }
-
-//class TitreState {
-//    private String code;
-//    private String libelle;
-//
-//    public String getCode() {
-//        return code;
-//    }
-//
-//    public String getLibelle() {
-//        return libelle;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "TitreState{" +
-//                "code='" + code + '\'' +
-//                ", libelle='" + libelle + '\'' +
-//                '}';
-//    }
-//}
