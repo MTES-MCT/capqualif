@@ -1,3 +1,11 @@
+export const LOGIN = {
+  WELCOME_TEXT:
+    'Bienvenue sur CapQualif, notre nouvel espace pour faire vos demandes de titres.',
+  ID: 'Identifiant',
+  PASSWORD: 'Mot de passe',
+  SIGN_IN: 'Se connecter',
+};
+
 export const DASHBOARD_INFOS = {
   NO_TITLES: "Vous n'avez aucun titre pour le moment.",
 };

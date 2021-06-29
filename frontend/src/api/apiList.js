@@ -7,6 +7,6 @@ export const CAPADMIN_ENDPOINT = 'capadmin';
 export const CAPADMIN_TITRES_ENDPOINT = 'titres';
 
 /**
- * Mobile
+ * Only in mobile version
  */
 export const REQUESTS_ENDPOINT = 'requests';

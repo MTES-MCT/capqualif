@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const ButtonLink = ({
   labelSize,
   width,
   isSecondary,
-  marginInRem,
+  marginsInRem,
   route,
 }) => {
   return (
@@ -20,7 +20,11 @@ const ButtonLink = ({
         width === BUTTON_WIDTH.FULL ? 'cq-helpers-full-width' : ''
       }
     ${isSecondary ? commonStyles['fr-btn--secondary'] : ''}`}
-      style={{ margin: `${marginInRem}rem`, fontSize: labelSize }}
+      style={{
+        marginTop: `${marginsInRem ? `${marginsInRem.top}rem` : '0rem'}`,
+        marginBottom: `${marginsInRem ? `${marginsInRem.bottom}rem` : '0rem'}`,
+        fontSize: labelSize,
+      }}
     >
       {label}
     </Link>
@@ -31,6 +35,8 @@ ButtonLink.propTypes = {
   label: PropTypes.string.isRequired,
   labelSize: PropTypes.string,
   width: PropTypes.string,
+  isSecondary: PropTypes.bool,
+  marginsInRem: PropTypes.object,
   route: PropTypes.string,
 };
 
