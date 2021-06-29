@@ -3,6 +3,7 @@ package fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api;
 import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto.ApiDataDto;
 import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.out.GetMarinDataPort;
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.*;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.marinData.MarinData;
 import fr.gouv.mte.capqualif.shared.JsonGetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

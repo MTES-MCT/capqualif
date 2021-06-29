@@ -1,23 +1,14 @@
-package fr.gouv.mte.capqualif.capqualif.instruction.domain;
+package fr.gouv.mte.capqualif.capqualif.instruction.domain.marinData;
+
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.marinData.MarinData;
 
 public class Titre extends MarinData {
 
-    private final String value;
-    private final String endOfValidity;
     private final String status;
 
     public Titre(String value, String endOfValidity, String status) {
-        this.value = value;
-        this.endOfValidity = endOfValidity;
+        super(value, endOfValidity);
         this.status = status;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public String getEndOfValidity() {
-        return endOfValidity;
     }
 
     public String getStatus() {

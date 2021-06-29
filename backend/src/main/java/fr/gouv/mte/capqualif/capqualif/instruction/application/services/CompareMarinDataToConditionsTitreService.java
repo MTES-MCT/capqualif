@@ -15,6 +15,8 @@ import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.out.GetMari
 //import fr.gouv.mte.capqualif.shared.TimeConverter;
 //import fr.gouv.mte.capqualif.capadmin.titreTemp.application.ports.out.GetTitrePort;
 //import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.*;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.marinData.MarinData;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.marinData.MarinDataPurified;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

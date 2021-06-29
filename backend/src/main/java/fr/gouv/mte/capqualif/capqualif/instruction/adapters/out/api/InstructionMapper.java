@@ -1,7 +1,7 @@
 package fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api;
 
 import fr.gouv.mte.capqualif.capqualif.instruction.adapters.out.api.dto.*;
-import fr.gouv.mte.capqualif.capqualif.instruction.domain.*;
+import fr.gouv.mte.capqualif.capqualif.instruction.domain.marinData.*;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
