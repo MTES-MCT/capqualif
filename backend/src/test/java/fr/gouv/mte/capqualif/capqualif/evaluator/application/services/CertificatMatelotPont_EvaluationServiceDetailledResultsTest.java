@@ -39,7 +39,10 @@ class CertificatMatelotPont_EvaluationServiceDetailledResultsTest {
                 new Data<String>("age", "12"),
                 new Data<String>("aptitude", "1"),
                 new Data<List<String>>("formations", Arrays.asList(
-                        "P1–Appui-Navigation", "P2–Appui-Manutention/arrimage cargaison/pêche")),
+                        "P1–Appui-Navigation",
+                        "P2–Appui-Manutention/arrimage cargaison/pêche",
+                        "P3–Appui-Exploitation/assist/entretien/répar",
+                        "NP–Appui-Module Nation Pont")),
                 new Data<List<String>>("titres", Collections.singletonList("Certificat de sensibilisation à la sûreté (STCW10)"))
             )
         );
@@ -51,8 +54,10 @@ class CertificatMatelotPont_EvaluationServiceDetailledResultsTest {
         List<ConditionResult> expected = Arrays.asList(
                 new ConditionResult("age", "age", "12", false),
                 new ConditionResult("aptitude médicale", "aptitude","1", true),
-                new ConditionResult("module de formation modulaire P1", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
-                new ConditionResult("module de formation modulaire P2", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
+                new ConditionResult("module de formation modulaire P1", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche, P3–Appui-Exploitation/assist/entretien/répar, NP–Appui-Module Nation Pont]", true),
+                new ConditionResult("module de formation modulaire P2", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche, P3–Appui-Exploitation/assist/entretien/répar, NP–Appui-Module Nation Pont]", true),
+                new ConditionResult("module de formation modulaire P3", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche, P3–Appui-Exploitation/assist/entretien/répar, NP–Appui-Module Nation Pont]", true),
+                new ConditionResult("module de formation modulaire NP", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche, P3–Appui-Exploitation/assist/entretien/répar, NP–Appui-Module Nation Pont]", true),
                 new ConditionResult("document en première intention", "compétences en sécurité en première intention","[Certificat de sensibilisation à la sûreté (STCW10)]", true)
 
         );
@@ -68,7 +73,10 @@ class CertificatMatelotPont_EvaluationServiceDetailledResultsTest {
                 new Data<String>("age", "26"),
                 new Data<String>("aptitude", "1"),
                 new Data<List<String>>("formations", Arrays.asList(
-                        "P1–Appui-Navigation", "P2–Appui-Manutention/arrimage cargaison/pêche")),
+                        "P1–Appui-Navigation",
+                        "P2–Appui-Manutention/arrimage cargaison/pêche",
+                        "P3–Appui-Exploitation/assist/entretien/répar",
+                        "NP–Appui-Module Nation Pont")),
                 new Data<List<String>>("titres", Collections.emptyList())
             )
         );
@@ -80,11 +88,13 @@ class CertificatMatelotPont_EvaluationServiceDetailledResultsTest {
         List<ConditionResult> expected = Arrays.asList(
                 new ConditionResult("age", "age", "26", true),
                 new ConditionResult("aptitude médicale", "aptitude","1", true),
-                new ConditionResult("module de formation modulaire P1", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
-                new ConditionResult("module de formation modulaire P2", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
+                new ConditionResult("module de formation modulaire P1", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche, P3–Appui-Exploitation/assist/entretien/répar, NP–Appui-Module Nation Pont]", true),
+                new ConditionResult("module de formation modulaire P2", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche, P3–Appui-Exploitation/assist/entretien/répar, NP–Appui-Module Nation Pont]", true),
+                new ConditionResult("module de formation modulaire P3", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche, P3–Appui-Exploitation/assist/entretien/répar, NP–Appui-Module Nation Pont]", true),
+                new ConditionResult("module de formation modulaire NP", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche, P3–Appui-Exploitation/assist/entretien/répar, NP–Appui-Module Nation Pont]", true),
                 new ConditionResult("document en première intention", "compétences en sécurité en première intention","[]", false),
-                new ConditionResult("document reconnu équivalent au CFBS 2014", "équivalents pour les compétences en sécurité","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", false),
-                new ConditionResult("document reconnu équivalent au CFBS 2015", "équivalents pour les compétences en sécurité","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", false)
+                new ConditionResult("document reconnu équivalent au CFBS 2014", "équivalents pour les compétences en sécurité","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche, P3–Appui-Exploitation/assist/entretien/répar, NP–Appui-Module Nation Pont]", false),
+                new ConditionResult("document reconnu équivalent au CFBS 2015", "équivalents pour les compétences en sécurité","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche, P3–Appui-Exploitation/assist/entretien/répar, NP–Appui-Module Nation Pont]", false)
         );
         assertEquals(expected, actual);
     }
@@ -111,6 +121,8 @@ class CertificatMatelotPont_EvaluationServiceDetailledResultsTest {
                 new ConditionResult("aptitude médicale", "aptitude","1", true),
                 new ConditionResult("module de formation modulaire P1", "formations modulaires","[]", false),
                 new ConditionResult("module de formation modulaire P2", "formations modulaires","[]", false),
+                new ConditionResult("module de formation modulaire P3", "formations modulaires","[]", false),
+                new ConditionResult("module de formation modulaire NP", "formations modulaires","[]", false),
                 new ConditionResult("titre reconnu équivalent à la formation modulaire 2006", "titres reconnus équivalents à la formation modulaire","[]", false),
                 new ConditionResult("titre reconnu équivalent à la formation modulaire 2005", "titres reconnus équivalents à la formation modulaire","[]", false),
                 new ConditionResult("document en première intention", "compétences en sécurité en première intention","[Certificat de sensibilisation à la sûreté (STCW10)]", true)

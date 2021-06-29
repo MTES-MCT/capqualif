@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class JsonPopulatorAndEvaluatorTest {
+class JsonPopulatorTest {
 
     JsonPopulator jsonPopulator;
 
@@ -30,8 +30,11 @@ class JsonPopulatorAndEvaluatorTest {
         Marin marin = new Marin(Arrays.asList(
                 new Data<String>("age", "21"),
                 new Data<String>("aptitude", "1"),
-                new Data<List<String>>("formations", Arrays.asList("P1–Appui-Navigation"
-                        , "P2–Appui-Manutention/arrimage cargaison/pêche")),
+                new Data<List<String>>("formations", Arrays.asList(
+                        "P1–Appui-Navigation",
+                        "P2–Appui-Manutention/arrimage cargaison/pêche",
+                        "P3–Appui-Exploitation/assist/entretien/répar",
+                        "NP–Appui-Module Nation Pont")),
                 new Data<List<String>>("titres", Arrays.asList("Certificat de sensibilisation à la sûreté (STCW10)"))
             )
         );

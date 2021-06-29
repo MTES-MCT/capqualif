@@ -33,8 +33,10 @@ public class EvaluationService {
             }
         }
 
-        // There is only one condition in the list
-        // (the list is only used for deserialization purposes)
+        /**
+         * There is only one condition in the list
+         * (the list is only used for deserialization purposes)
+         */
         Condition condition = titre.getConditions().get(0);
         List<ConditionResult> detailedResults = new ArrayList<>();
         GlobalResult result = new GlobalResult(titre.getName(), areConditionsSatisfied(condition, detailedResults), detailedResults);

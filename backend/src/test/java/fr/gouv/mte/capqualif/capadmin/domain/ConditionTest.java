@@ -38,7 +38,9 @@ class ConditionTest {
                                 "formations",
                                 Arrays.asList(
                                         "P1–Appui-Navigation",
-                                        "P2–Appui-Manutention/arrimage cargaison/pêche"
+                                        "P2–Appui-Manutention/arrimage cargaison/pêche",
+                                        "P3–Appui-Exploitation/assist/entretien/répar",
+                                        "NP–Appui-Module Nation Pont"
                                 )
                         ),
                         new Data<List<String>>(
@@ -66,7 +68,9 @@ class ConditionTest {
                                 "formations",
                                 Arrays.asList(
                                         "P1–Appui-Navigation",
-                                        "P2–Appui-Manutention/arrimage cargaison/pêche"
+                                        "P2–Appui-Manutention/arrimage cargaison/pêche",
+                                        "P3–Appui-Exploitation/assist/entretien/répar",
+                                        "NP–Appui-Module Nation Pont"
                                 )
                         ),
                         new Data<List<String>>(
@@ -95,7 +99,9 @@ class ConditionTest {
                                 "formations",
                                 Arrays.asList(
                                         "P1–Appui-Navigation",
-                                        "P2–Appui-Manutention/arrimage cargaison/pêche"
+                                        "P2–Appui-Manutention/arrimage cargaison/pêche",
+                                        "P3–Appui-Exploitation/assist/entretien/répar",
+                                        "NP–Appui-Module Nation Pont"
                                 )
                         ),
                         new Data<List<String>>(

@@ -64,6 +64,28 @@
                   "leftOpId": "formations",
                   "leftOpList": [""],
                   "rightOp": "P2–Appui-Manutention/arrimage cargaison/pêche"
+                },
+                {
+                  "name": "module de formation modulaire P3",
+                  "group": {
+                    "name": "formations modulaires",
+                    "operator": "AND"
+                  },
+                  "operator": "contains",
+                  "leftOpId": "formations",
+                  "leftOpList": [""],
+                  "rightOp": "P3–Appui-Exploitation/assist/entretien/répar"
+                },
+                {
+                  "name": "module de formation modulaire NP",
+                  "group": {
+                    "name": "formations modulaires",
+                    "operator": "AND"
+                  },
+                  "operator": "contains",
+                  "leftOpId": "formations",
+                  "leftOpList": [""],
+                  "rightOp": "NP–Appui-Module Nation Pont"
                 }
               ]
             },
