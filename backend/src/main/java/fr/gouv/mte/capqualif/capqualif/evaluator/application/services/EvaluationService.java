@@ -37,7 +37,7 @@ public class EvaluationService {
         // (the list is only used for deserialization purposes)
         Condition condition = titre.getConditions().get(0);
         List<ConditionResult> detailedResults = new ArrayList<>();
-        GlobalResult result = new GlobalResult(areConditionsSatisfied(condition, detailedResults), detailedResults);
+        GlobalResult result = new GlobalResult(titre.getName(), areConditionsSatisfied(condition, detailedResults), detailedResults);
         System.out.println(detailedResults);
         System.out.println(result);
         return result;

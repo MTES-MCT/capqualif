@@ -1,6 +1,7 @@
-package fr.gouv.mte.capqualif.capadmin.application.services;
+package fr.gouv.mte.capqualif.capqualif.evaluator.application.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.gouv.mte.capqualif.capadmin.application.services.JsonPopulator;
 import fr.gouv.mte.capqualif.capqualif.evaluator.application.services.EvaluationService;
 import fr.gouv.mte.capqualif.capadmin.domain.*;
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.Data;
@@ -16,7 +17,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class EvaluationServiceDetailledResultsTest {
+class CertificatMatelotPont_EvaluationServiceDetailledResultsTest {
 
     EvaluationService evaluationService;
     JsonPopulator jsonPopulator;
@@ -52,7 +53,7 @@ class EvaluationServiceDetailledResultsTest {
                 new ConditionResult("aptitude médicale", "aptitude","1", true),
                 new ConditionResult("module de formation modulaire P1", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
                 new ConditionResult("module de formation modulaire P2", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
-                new ConditionResult("titre mainstream", "compétences en sécurité mainstream","[Certificat de sensibilisation à la sûreté (STCW10)]", true)
+                new ConditionResult("document en première intention", "compétences en sécurité en première intention","[Certificat de sensibilisation à la sûreté (STCW10)]", true)
 
         );
 
@@ -81,7 +82,7 @@ class EvaluationServiceDetailledResultsTest {
                 new ConditionResult("aptitude médicale", "aptitude","1", true),
                 new ConditionResult("module de formation modulaire P1", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
                 new ConditionResult("module de formation modulaire P2", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
-                new ConditionResult("titre mainstream", "compétences en sécurité mainstream","[]", false),
+                new ConditionResult("document en première intention", "compétences en sécurité en première intention","[]", false),
                 new ConditionResult("document reconnu équivalent au CFBS 2014", "équivalents pour les compétences en sécurité","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", false),
                 new ConditionResult("document reconnu équivalent au CFBS 2015", "équivalents pour les compétences en sécurité","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", false)
         );
@@ -112,7 +113,7 @@ class EvaluationServiceDetailledResultsTest {
                 new ConditionResult("module de formation modulaire P2", "formations modulaires","[]", false),
                 new ConditionResult("titre reconnu équivalent à la formation modulaire 2006", "titres reconnus équivalents à la formation modulaire","[]", false),
                 new ConditionResult("titre reconnu équivalent à la formation modulaire 2005", "titres reconnus équivalents à la formation modulaire","[]", false),
-                new ConditionResult("titre mainstream", "compétences en sécurité mainstream","[Certificat de sensibilisation à la sûreté (STCW10)]", true)
+                new ConditionResult("document en première intention", "compétences en sécurité en première intention","[Certificat de sensibilisation à la sûreté (STCW10)]", true)
         );
 
         assertEquals(expected, actual);

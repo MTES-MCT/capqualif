@@ -1,5 +1,5 @@
 {
-  "titre": "Certificat de Formation de Base à la Sécurité",
+  "name": "Certificat de Formation de Base à la Sécurité",
   "conditions": [
     {
       "name": "all conditions",
@@ -9,7 +9,7 @@
           "name": "aptitude médicale",
           "group": {
             "name": "aptitude",
-            "operator": "AND"
+            "operator": "NO_LOGIC_OPERATOR_NEEDED"
           },
           "operator": "==",
           "leftOpId": "aptitude",
@@ -63,15 +63,15 @@
           "name": "compétences médicales",
           "group": {
             "name": "compétences médicales",
-            "operator": "AND"
+            "operator": "OR"
           },
           "operator": "OR",
           "subConditions": [
             {
-              "name": "titre mainstream",
+              "name": "Certificat d'enseignement médical de niveau I",
               "group": {
-                "name": "Certificat d'enseignement médical de niveau I",
-                "operator": "OR"
+                "name": "document en première intention",
+                "operator": "NO_LOGIC_OPERATOR_NEEDED"
               },
               "operator": "contains",
               "leftOpId": "titres",
@@ -80,6 +80,10 @@
             },
             {
               "name": "formations équivalentes au Certificat d'enseignement médical de niveau I",
+              "group": {
+                "name": "formations équivalentes au Certificat d'enseignement médical de niveau I",
+                "operator": "AND"
+              },
               "operator": "AND",
               "subConditions": [
                 {

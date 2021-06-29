@@ -44,7 +44,8 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
              * TODO: decouple by establishing a proper REST communication between modules
              */
             List<Titre> titresToEvaluation = Arrays.asList(
-                    jsonConverter.jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_ToPopulate.json")
+                    jsonConverter.jsonToTitre("src/test/resources/mocks/capAdmin/conditions/certificatDeMatelotPont_ToPopulate.json"),
+                    jsonConverter.jsonToTitre("src/test/resources/mocks/capAdmin/conditions/CFBS_ToPopulate.json")
 
             );
             List<GlobalResult> allResults = new ArrayList<>();

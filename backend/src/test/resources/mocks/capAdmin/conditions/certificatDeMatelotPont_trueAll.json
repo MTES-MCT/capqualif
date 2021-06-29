@@ -1,5 +1,5 @@
 {
-  "titre": "Certificat de Matelot Pont",
+  "name": "Certificat de Matelot Pont",
   "conditions": [
     {
       "name": "all conditions",
@@ -64,7 +64,7 @@
           "operator": "OR",
           "subConditions": [
             {
-              "name": "titre CFBS mainstream",
+              "name": "titre CFBS en première intention",
               "operator": "==",
               "leftOp": "CFBS",
               "rightOp": "CFBS"

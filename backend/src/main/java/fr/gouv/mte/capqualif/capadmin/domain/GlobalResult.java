@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class GlobalResult {
+
+    private String titre;
     private final boolean conditionsSatisfied;
     private final List<ConditionResult> details;
 
-    public GlobalResult(boolean conditionsSatisfied, List<ConditionResult> details) {
+    public GlobalResult(String titre, boolean conditionsSatisfied, List<ConditionResult> details) {
+        this.titre = titre;
         this.conditionsSatisfied = conditionsSatisfied;
         this.details = details;
     }
@@ -20,6 +23,10 @@ public class GlobalResult {
         return details;
     }
 
+    public String getTitre() {
+        return titre;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -28,18 +35,15 @@ public class GlobalResult {
             return false;
         GlobalResult that = (GlobalResult) o;
         return conditionsSatisfied == that.conditionsSatisfied &&
-                details.equals(that.details);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(conditionsSatisfied, details);
+                Objects.equals(titre, that.titre) &&
+                Objects.equals(details, that.details);
     }
 
     @Override
     public String toString() {
         return "GlobalResult{" +
-                "conditionsSatisfied=" + conditionsSatisfied +
+                "titre='" + titre + '\'' +
+                ", conditionsSatisfied=" + conditionsSatisfied +
                 ", details=" + details +
                 '}';
     }

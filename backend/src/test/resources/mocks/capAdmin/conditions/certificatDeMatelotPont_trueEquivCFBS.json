@@ -1,5 +1,5 @@
 {
-  "titre": "Certificat de Matelot Pont",
+  "name": "Certificat de Matelot Pont",
   "conditions": [
     {
       "name": "all conditions",
@@ -80,7 +80,7 @@
           "operator": "OR",
           "subConditions": [
             {
-              "name": "titre mainstream",
+              "name": "document en première intention",
               "group": "compétences en sécurité",
               "operator": "contains",
               "leftOpId": "titres",
