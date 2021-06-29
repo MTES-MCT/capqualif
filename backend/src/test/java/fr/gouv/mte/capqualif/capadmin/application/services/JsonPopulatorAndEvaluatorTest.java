@@ -29,10 +29,10 @@ class JsonPopulatorAndEvaluatorTest {
         // Given
         Marin marin = new Marin(Arrays.asList(
                 new Data<String>("age", "21"),
-                new Data<String>("aptitude", "apte"),
-                new Data<List<String>>("formations", Arrays.asList("Module P1-Appui navigation"
-                        , "Module P2-Appui manutention et arrimage de la cargaison, pêche")),
-                new Data<List<String>>("titres", Arrays.asList("CFBS"))
+                new Data<String>("aptitude", "1"),
+                new Data<List<String>>("formations", Arrays.asList("P1–Appui-Navigation"
+                        , "P2–Appui-Manutention/arrimage cargaison/pêche")),
+                new Data<List<String>>("titres", Arrays.asList("Certificat de sensibilisation à la sûreté (STCW10)"))
             )
         );
 

@@ -19,10 +19,15 @@ public class IntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     *
+     * TODO: update
+     */
+
     @Test
     public void itShouldReturnAllConditionsAreMet() throws Exception {
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/instruction/comparaison/1/123"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/instruction/comparaison/123"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].conditionMet").value(true))
                 .andExpect(jsonPath("$[0].comparisonResultForMainCriterion.conditionJuridicalDesignation").value("Âge minimum"))
