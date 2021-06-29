@@ -33,18 +33,18 @@ class ConditionTest {
         Marin marin = new Marin(
                 Arrays.asList(
                         new Data<String>("age", "21"),
-                        new Data<String>("aptitude", "apte"),
+                        new Data<String>("aptitude", "1"),
                         new Data<List<String>>(
                                 "formations",
                                 Arrays.asList(
-                                        "Module P1-Appui navigation",
-                                        "Module P2-Appui manutention et arrimage de la cargaison, pêche"
+                                        "P1–Appui-Navigation",
+                                        "P2–Appui-Manutention/arrimage cargaison/pêche"
                                 )
                         ),
                         new Data<List<String>>(
                                 "titres",
                                 Collections.singletonList(
-                                        "CFBS"
+                                        "Certificat de sensibilisation à la sûreté (STCW10)"
                                 )
                         )
                 )
@@ -61,18 +61,18 @@ class ConditionTest {
         Marin marin = new Marin(
                 Arrays.asList(
                         new Data<String>("age", "14"),
-                        new Data<String>("aptitude", "apte"),
+                        new Data<String>("aptitude", "1"),
                         new Data<List<String>>(
                                 "formations",
                                 Arrays.asList(
-                                        "Module P1-Appui navigation",
-                                        "Module P2-Appui manutention et arrimage de la cargaison, pêche"
+                                        "P1–Appui-Navigation",
+                                        "P2–Appui-Manutention/arrimage cargaison/pêche"
                                 )
                         ),
                         new Data<List<String>>(
                                 "titres",
                                 Collections.singletonList(
-                                        "CFBS"
+                                        "Certificat de sensibilisation à la sûreté (STCW10)"
                                 )
                         )
                 )
@@ -94,14 +94,14 @@ class ConditionTest {
                         new Data<List<String>>(
                                 "formations",
                                 Arrays.asList(
-                                        "Module P1-Appui navigation",
-                                        "Module P2-Appui manutention et arrimage de la cargaison, pêche"
+                                        "P1–Appui-Navigation",
+                                        "P2–Appui-Manutention/arrimage cargaison/pêche"
                                 )
                         ),
                         new Data<List<String>>(
                                 "titres",
                                 Collections.singletonList(
-                                        "CFBS"
+                                        "Certificat de sensibilisation à la sûreté (STCW10)"
                                 )
                         )
                 )
@@ -119,17 +119,17 @@ class ConditionTest {
         Marin marin = new Marin(
                 Arrays.asList(
                         new Data<String>("age", "21"),
-                        new Data<String>("aptitude", "apte"),
+                        new Data<String>("aptitude", "1"),
                         new Data<List<String>>(
                                 "formations",
                                 Arrays.asList(
-                                        "Module P1-Appui navigation"
+                                        "P1–Appui-Navigation"
                                 )
                         ),
                         new Data<List<String>>(
                                 "titres",
                                 Collections.singletonList(
-                                        "CFBS"
+                                        "Certificat de sensibilisation à la sûreté (STCW10)"
                                 )
                         )
                 )
@@ -147,7 +147,7 @@ class ConditionTest {
         Marin marin = new Marin(
                 Arrays.asList(
                         new Data<String>("age", "21"),
-                        new Data<String>("aptitude", "apte"),
+                        new Data<String>("aptitude", "1"),
                         new Data<List<String>>(
                                 "formations",
                                 Collections.singletonList(
@@ -158,7 +158,7 @@ class ConditionTest {
                         new Data<List<String>>(
                                 "titres",
                                 Collections.singletonList(
-                                        "CFBS"
+                                        "Certificat de sensibilisation à la sûreté (STCW10)"
                                 )
                         )
                 )

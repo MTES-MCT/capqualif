@@ -17,6 +17,7 @@ import fr.gouv.mte.capqualif.capqualif.instruction.application.ports.out.GetMari
 //import fr.gouv.mte.capqualif.capadmin.titreTemp.domain.*;
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.marinData.MarinData;
 import fr.gouv.mte.capqualif.capqualif.instruction.domain.marinData.MarinDataPurified;
+import fr.gouv.mte.capqualif.shared.JsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +39,9 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
 
     @Autowired
     InstructionMapper instructionMapper;
+
+    @Autowired
+    JsonConverter jsonConverter;
 
     public CompareMarinDataToConditionsTitreService(GetMarinDataPort getMarinDataPort) {
         this.getMarinDataPort = getMarinDataPort;
@@ -83,17 +87,10 @@ public class CompareMarinDataToConditionsTitreService implements CompareMarinDat
         Marin marin = new Marin(data);
         System.out.println("marin " + marin);
         try {
-            System.out.println("eval " + evaluationService.canMarinHaveTitre(jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails());
+            System.out.println("eval " + evaluationService.canMarinHaveTitre(jsonConverter.jsonToTitre("src/test/resources/mocks/capAdmin/conditions/toPopulate.json"), marin).getDetails());
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private Titre jsonToTitre(String location) throws IOException, IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Titre titre = objectMapper.readValue(new File(location), Titre.class);
-        System.out.println(titre);
-        return titre;
     }
 
 //    private boolean checkValidity(MarinData data) {

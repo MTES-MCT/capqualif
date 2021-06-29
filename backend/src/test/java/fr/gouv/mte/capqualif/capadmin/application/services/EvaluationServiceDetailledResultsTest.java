@@ -36,10 +36,10 @@ class EvaluationServiceDetailledResultsTest {
         // Given
         Marin marin = new Marin(Arrays.asList(
                 new Data<String>("age", "12"),
-                new Data<String>("aptitude", "apte"),
+                new Data<String>("aptitude", "1"),
                 new Data<List<String>>("formations", Arrays.asList(
-                        "Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche")),
-                new Data<List<String>>("titres", Collections.singletonList("CFBS"))
+                        "P1–Appui-Navigation", "P2–Appui-Manutention/arrimage cargaison/pêche")),
+                new Data<List<String>>("titres", Collections.singletonList("Certificat de sensibilisation à la sûreté (STCW10)"))
             )
         );
 
@@ -49,10 +49,10 @@ class EvaluationServiceDetailledResultsTest {
         // Then
         List<ConditionResult> expected = Arrays.asList(
                 new ConditionResult("age", "age", "12", false),
-                new ConditionResult("aptitude médicale", "aptitude","apte", true),
-                new ConditionResult("module de formation modulaire P1", "formations modulaires","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", true),
-                new ConditionResult("module de formation modulaire P2", "formations modulaires","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", true),
-                new ConditionResult("titre mainstream", "compétences en sécurité mainstream","[CFBS]", true)
+                new ConditionResult("aptitude médicale", "aptitude","1", true),
+                new ConditionResult("module de formation modulaire P1", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
+                new ConditionResult("module de formation modulaire P2", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
+                new ConditionResult("titre mainstream", "compétences en sécurité mainstream","[Certificat de sensibilisation à la sûreté (STCW10)]", true)
 
         );
 
@@ -65,9 +65,9 @@ class EvaluationServiceDetailledResultsTest {
         // Given
         Marin marin = new Marin(Arrays.asList(
                 new Data<String>("age", "26"),
-                new Data<String>("aptitude", "apte"),
+                new Data<String>("aptitude", "1"),
                 new Data<List<String>>("formations", Arrays.asList(
-                        "Module P1-Appui navigation", "Module P2-Appui manutention et arrimage de la cargaison, pêche")),
+                        "P1–Appui-Navigation", "P2–Appui-Manutention/arrimage cargaison/pêche")),
                 new Data<List<String>>("titres", Collections.emptyList())
             )
         );
@@ -78,12 +78,12 @@ class EvaluationServiceDetailledResultsTest {
         // Then
         List<ConditionResult> expected = Arrays.asList(
                 new ConditionResult("age", "age", "26", true),
-                new ConditionResult("aptitude médicale", "aptitude","apte", true),
-                new ConditionResult("module de formation modulaire P1", "formations modulaires","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", true),
-                new ConditionResult("module de formation modulaire P2", "formations modulaires","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", true),
+                new ConditionResult("aptitude médicale", "aptitude","1", true),
+                new ConditionResult("module de formation modulaire P1", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
+                new ConditionResult("module de formation modulaire P2", "formations modulaires","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", true),
                 new ConditionResult("titre mainstream", "compétences en sécurité mainstream","[]", false),
-                new ConditionResult("document reconnu équivalent au CFBS 2014", "équivalents pour les compétences en sécurité","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", false),
-                new ConditionResult("document reconnu équivalent au CFBS 2015", "équivalents pour les compétences en sécurité","[Module P1-Appui navigation, Module P2-Appui manutention et arrimage de la cargaison, pêche]", false)
+                new ConditionResult("document reconnu équivalent au CFBS 2014", "équivalents pour les compétences en sécurité","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", false),
+                new ConditionResult("document reconnu équivalent au CFBS 2015", "équivalents pour les compétences en sécurité","[P1–Appui-Navigation, P2–Appui-Manutention/arrimage cargaison/pêche]", false)
         );
         assertEquals(expected, actual);
     }
@@ -94,9 +94,9 @@ class EvaluationServiceDetailledResultsTest {
         // Given
         Marin marin = new Marin(Arrays.asList(
                 new Data<String>("age", "26"),
-                new Data<String>("aptitude", "apte"),
+                new Data<String>("aptitude", "1"),
                 new Data<List<String>>("formations", Collections.emptyList()),
-                new Data<List<String>>("titres", Arrays.asList("CFBS"))
+                new Data<List<String>>("titres", Arrays.asList("Certificat de sensibilisation à la sûreté (STCW10)"))
         )
         );
 
@@ -107,12 +107,12 @@ class EvaluationServiceDetailledResultsTest {
         // Then
         List<ConditionResult> expected = Arrays.asList(
                 new ConditionResult("age", "age", "26", true),
-                new ConditionResult("aptitude médicale", "aptitude","apte", true),
+                new ConditionResult("aptitude médicale", "aptitude","1", true),
                 new ConditionResult("module de formation modulaire P1", "formations modulaires","[]", false),
                 new ConditionResult("module de formation modulaire P2", "formations modulaires","[]", false),
                 new ConditionResult("titre reconnu équivalent à la formation modulaire 2006", "titres reconnus équivalents à la formation modulaire","[]", false),
                 new ConditionResult("titre reconnu équivalent à la formation modulaire 2005", "titres reconnus équivalents à la formation modulaire","[]", false),
-                new ConditionResult("titre mainstream", "compétences en sécurité mainstream","[CFBS]", true)
+                new ConditionResult("titre mainstream", "compétences en sécurité mainstream","[Certificat de sensibilisation à la sûreté (STCW10)]", true)
         );
 
         assertEquals(expected, actual);
