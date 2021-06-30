@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class PossibleTitre {
 
-    private String titre;
+    private final String titre;
     private final boolean finalResult;
     private final List<ConditionResult> details;
 
