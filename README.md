@@ -26,8 +26,8 @@ Pré-requis : pour faire tourner l'application sur votre ordinateur, vous devez 
 - Avec IntelliJ, ouvrir le dossier capqualif>backend (et non capqualif, qui comprend le backend et le frontend, ce qui peut embrouiller IntelliJ qui ne sait plus s'il a affaire à un projet en JS ou en Java).
 
 - Builder le projet en cliquant sur le petit marteau en haut à droite (cf. screenshot, un peu trompeur - c'est bien sur le marteau qu'il faut cliquer) :
-
- ![Le petit marteau en question.](https://user-images.githubusercontent.com/71322304/124015831-531bc880-d9e5-11eb-8e27-72d02fbd516b.png)
+ 
+![Le petit marteau en question.](https://user-images.githubusercontent.com/71322304/124722158-0fa3eb80-df0a-11eb-8911-85d48db89af2.png)
  
  > Si une erreur de type "JDK not found" survient, aller dans file > project structure > SDKs et installer le JDK qui a le mauvais chemin par défaut
 
@@ -49,20 +49,17 @@ Pré-requis : pour faire tourner l'application sur votre ordinateur, vous devez 
 
 - Ouvrir Edit Configurations (cf. screenshot). Ne faites pas attention au fait qu'ici CapqualifApplication est affiché, ce qui n'est probablement pas encore le cas sur votre machine.
 
-![Chez vous aussi, bientôt, ce doux nom éclairera l'écran !](https://user-images.githubusercontent.com/71322304/124016380-e1904a00-d9e5-11eb-9d1d-ee12895336fa.png)
+![Chez vous aussi, bientôt, ce doux nom éclairera l'écran !](https://user-images.githubusercontent.com/71322304/124722310-382be580-df0a-11eb-8518-06d23fae29bd.png)
 
 - Autoriser EnvFile et ajouter le fichier de configuration .env.local :
-
-![Autoriser EnvFile](https://user-images.githubusercontent.com/71322304/124016448-f40a8380-d9e5-11eb-928f-e3373e4cc0fd.png)
 
 ![Ajouter le fichier env](https://user-images.githubusercontent.com/71322304/124016506-02f13600-d9e6-11eb-9d3b-eb9b90fd40e6.png)
 
 - Lancer l'application
 
-![run](https://user-images.githubusercontent.com/71322304/124016554-143a4280-d9e6-11eb-820f-5e550a21ba67.png)
+![run](https://user-images.githubusercontent.com/71322304/124722663-8c36ca00-df0a-11eb-810d-c302524eea97.png)
 
 - Faire un test : dans votre navigateur web, tapez http://localhost:8080/instruction/evaluations/12. Une réponse doit s'afficher dans la console (sous l'onglet Run) d'IntelliJ.
-
 
 ## Installer le frontend de CapQualif
 - Ouvrir le dossier frontend dans VSCode.
