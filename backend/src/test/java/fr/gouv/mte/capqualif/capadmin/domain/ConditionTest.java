@@ -157,8 +157,7 @@ class ConditionTest {
                         new Data<List<String>>(
                                 "formations",
                                 Collections.singletonList(
-                                        "Certificat de fin d’études maritimes de matelot, de marin du commerce ou " +
-                                                "“pêche” délivré conformément à l’arrêté du 12 décembre 2006 susvisé"
+                                        "Certificat de fin d'études maritimes de matelot (2006)"
                                 )
                         ),
                         new Data<List<String>>(
